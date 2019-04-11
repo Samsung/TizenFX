@@ -105,14 +105,14 @@ namespace Tizen.NUI
         public bool Empty()
         {
             bool ret = Interop.ActorHoverSignal.ActorHoverSignal_Empty(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
             uint ret = Interop.ActorHoverSignal.ActorHoverSignal_GetConnectionCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -121,7 +121,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
                 Interop.ActorHoverSignal.ActorHoverSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -130,20 +130,20 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
                 Interop.ActorHoverSignal.ActorHoverSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(View arg1, Hover arg2)
         {
             bool ret = Interop.ActorHoverSignal.ActorHoverSignal_Emit(swigCPtr, View.getCPtr(arg1), Hover.getCPtr(arg2));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public HoverSignal() : this(Interop.ActorHoverSignal.new_ActorHoverSignal(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

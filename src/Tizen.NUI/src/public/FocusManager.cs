@@ -56,7 +56,7 @@ namespace Tizen.NUI
 
         internal FocusManager() : this(Interop.FocusManager.new_FocusManager(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -299,7 +299,7 @@ namespace Tizen.NUI
             }
 
             bool ret = Interop.FocusManager.FocusManager_SetCurrentFocusActor(swigCPtr, View.getCPtr(view));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -329,7 +329,7 @@ namespace Tizen.NUI
         public bool MoveFocus(View.FocusDirection direction)
         {
             bool ret = Interop.FocusManager.FocusManager_MoveFocus(swigCPtr, (int)direction);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -341,7 +341,7 @@ namespace Tizen.NUI
         public void ClearFocus()
         {
             Interop.FocusManager.FocusManager_ClearFocus(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace Tizen.NUI
         public void MoveFocusBackward()
         {
             Interop.FocusManager.FocusManager_MoveFocusBackward(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Tizen.NUI
         public void SetAsFocusGroup(View view, bool isFocusGroup)
         {
             Interop.FocusManager.FocusManager_SetAsFocusGroup(swigCPtr, View.getCPtr(view), isFocusGroup);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -376,7 +376,7 @@ namespace Tizen.NUI
         public bool IsFocusGroup(View view)
         {
             bool ret = Interop.FocusManager.FocusManager_IsFocusGroup(swigCPtr, View.getCPtr(view));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -409,7 +409,7 @@ namespace Tizen.NUI
             _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
 
             Interop.NDalic.SetCustomAlgorithm(swigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FocusManager obj)
@@ -420,27 +420,27 @@ namespace Tizen.NUI
         internal static FocusManager Get()
         {
             FocusManager ret = new FocusManager(Interop.FocusManager.FocusManager_Get(), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFocusGroupLoop(bool enabled)
         {
             Interop.FocusManager.FocusManager_SetFocusGroupLoop(swigCPtr, enabled);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool GetFocusGroupLoop()
         {
             bool ret = Interop.FocusManager.FocusManager_GetFocusGroupLoop(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFocusIndicatorView(View indicator)
         {
             Interop.FocusManager.FocusManager_SetFocusIndicatorActor(swigCPtr, View.getCPtr(indicator));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetFocusIndicatorView()
@@ -458,28 +458,28 @@ namespace Tizen.NUI
         internal PreFocusChangeSignal PreFocusChangeSignal()
         {
             PreFocusChangeSignal ret = new PreFocusChangeSignal(Interop.FocusManager.FocusManager_PreFocusChangeSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FocusChangedSignal FocusChangedSignal()
         {
             FocusChangedSignal ret = new FocusChangedSignal(Interop.FocusManager.FocusManager_FocusChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FocusGroupChangedSignal FocusGroupChangedSignal()
         {
             FocusGroupChangedSignal ret = new FocusGroupChangedSignal(Interop.FocusManager.FocusManager_FocusGroupChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ViewSignal FocusedViewEnterKeySignal()
         {
             ViewSignal ret = new ViewSignal(Interop.FocusManager.FocusManager_FocusedActorEnterKeySignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

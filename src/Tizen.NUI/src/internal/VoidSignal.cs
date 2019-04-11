@@ -103,20 +103,20 @@ namespace Tizen.NUI
 
         public VoidSignal() : this(Interop.VoidSignal.new_VoidSignal(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool Empty()
         {
             bool ret = Interop.VoidSignal.VoidSignal_Empty(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
             uint ret = Interop.VoidSignal.VoidSignal_GetConnectionCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -125,7 +125,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
                 Interop.VoidSignal.VoidSignal_Connect__SWIG_0(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -134,20 +134,20 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
                 Interop.VoidSignal.VoidSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         internal void Connect(ConnectionTrackerInterface connectionTracker, SWIGTYPE_p_Dali__FunctorDelegate arg1)
         {
             Interop.VoidSignal.VoidSignal_Connect__SWIG_4(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), SWIGTYPE_p_Dali__FunctorDelegate.getCPtr(arg1));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Emit()
         {
             Interop.VoidSignal.VoidSignal_Emit(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

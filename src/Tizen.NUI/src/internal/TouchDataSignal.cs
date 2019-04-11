@@ -104,14 +104,14 @@ namespace Tizen.NUI
         public bool Empty()
         {
             bool ret = Interop.ActorTouchDataSignal.ActorTouchDataSignal_Empty(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
             uint ret = Interop.ActorTouchDataSignal.ActorTouchDataSignal_GetConnectionCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -120,7 +120,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
                 Interop.ActorTouchDataSignal.ActorTouchDataSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -129,20 +129,20 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
                 Interop.ActorTouchDataSignal.ActorTouchDataSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public bool Emit(View arg1, Touch arg2)
         {
             bool ret = Interop.ActorTouchDataSignal.ActorTouchDataSignal_Emit(swigCPtr, View.getCPtr(arg1), Touch.getCPtr(arg2));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public TouchDataSignal() : this(Interop.ActorTouchDataSignal.new_ActorTouchDataSignal(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

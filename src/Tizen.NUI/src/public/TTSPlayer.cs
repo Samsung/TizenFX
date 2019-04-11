@@ -38,12 +38,12 @@ namespace Tizen.NUI
 
         internal TTSPlayer() : this(Interop.TtsPlayer.new_TtsPlayer__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TTSPlayer(TTSPlayer handle) : this(Interop.TtsPlayer.new_TtsPlayer__SWIG_1(TTSPlayer.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -148,7 +148,7 @@ namespace Tizen.NUI
         public static TTSPlayer Get(TTSMode mode)
         {
             TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.TtsPlayer_Get__SWIG_0((int)mode), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -160,7 +160,7 @@ namespace Tizen.NUI
         public static TTSPlayer Get()
         {
             TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.TtsPlayer_Get__SWIG_1(), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -173,7 +173,7 @@ namespace Tizen.NUI
         public void Play(string text)
         {
             Interop.TtsPlayer.TtsPlayer_Play(swigCPtr, text);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Tizen.NUI
         public void Stop()
         {
             Interop.TtsPlayer.TtsPlayer_Stop(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         public void Pause()
         {
             Interop.TtsPlayer.TtsPlayer_Pause(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace Tizen.NUI
         public void Resume()
         {
             Interop.TtsPlayer.TtsPlayer_Resume(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Tizen.NUI
         public TTSState GetState()
         {
             TTSState ret = (TTSState)Interop.TtsPlayer.TtsPlayer_GetState(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -230,14 +230,14 @@ namespace Tizen.NUI
         internal StateChangedSignalType StateChangedSignal()
         {
             StateChangedSignalType ret = new StateChangedSignalType(Interop.TtsPlayer.TtsPlayer_StateChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TTSPlayer Assign(TTSPlayer rhs)
         {
             TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.TtsPlayer_Assign(swigCPtr, TTSPlayer.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

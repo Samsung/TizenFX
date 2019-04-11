@@ -36,7 +36,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public CheckBoxButton() : this(Interop.CheckBoxButton.CheckBoxButton_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CheckBoxButton.CheckBoxButton_SWIGUpcast(cPtr), cMemoryOwn)

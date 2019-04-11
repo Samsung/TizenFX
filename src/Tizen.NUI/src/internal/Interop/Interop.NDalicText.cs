@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicText
         {
-            static NDalicText()
-            {
-                Tizen.Log.Error("NUI", "NDalicText");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TEXT_VISUAL_TEXT_get")]
             public static extern int TEXT_VISUAL_TEXT_get();

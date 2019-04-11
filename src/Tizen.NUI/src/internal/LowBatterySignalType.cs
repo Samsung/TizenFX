@@ -127,7 +127,7 @@ namespace Tizen.NUI
         public bool Empty()
         {
             bool ret = Interop.LowBatterySignal.LowBatterySignalType_Empty(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -138,7 +138,7 @@ namespace Tizen.NUI
         public uint GetConnectionCount()
         {
             uint ret = Interop.LowBatterySignal.LowBatterySignalType_GetConnectionCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -151,7 +151,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
                 Interop.LowBatterySignal.LowBatterySignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -164,14 +164,14 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
                 Interop.LowBatterySignal.LowBatterySignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         internal void Emit(Application.BatteryStatus arg)
         {
             Interop.LowBatterySignal.LowBatterySignalType_Emit(swigCPtr, (int)arg);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Tizen.NUI
         /// </summary>
         public LowBatterySignalType() : this(Interop.LowBatterySignal.new_LowBatterySignalType(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

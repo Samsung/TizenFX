@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class CustomActorImpl
         {
-            static CustomActorImpl()
-            {
-                Tizen.Log.Error("NUI", "CustomActorImpl");
-            }
 
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_CustomActorImpl_Self")]

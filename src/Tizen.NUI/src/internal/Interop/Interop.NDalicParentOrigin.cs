@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicParentOrigin
         {
-            static NDalicParentOrigin()
-            {
-                Tizen.Log.Error("NUI", "NDalicParentOrigin");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ParentOriginTop_get")]
             public static extern float ParentOriginTop_get();
 

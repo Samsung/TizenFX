@@ -213,7 +213,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Scrollable() : this(Interop.Scrollable.new_Scrollable__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Scrollable.Scrollable_SWIGUpcast(cPtr), cMemoryOwn)
@@ -514,21 +514,21 @@ namespace Tizen.NUI.BaseComponents
         internal ScrollableSignal ScrollStartedSignal()
         {
             ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollStartedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollableSignal ScrollUpdatedSignal()
         {
             ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollUpdatedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollableSignal ScrollCompletedSignal()
         {
             ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollCompletedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -649,39 +649,39 @@ namespace Tizen.NUI.BaseComponents
         private bool IsOvershootEnabled()
         {
             bool ret = Interop.Scrollable.Scrollable_IsOvershootEnabled(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void SetOvershootEnabled(bool enable)
         {
             Interop.Scrollable.Scrollable_SetOvershootEnabled(swigCPtr, enable);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private void SetOvershootEffectColor(Vector4 color)
         {
             Interop.Scrollable.Scrollable_SetOvershootEffectColor(swigCPtr, Vector4.getCPtr(color));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private Vector4 GetOvershootEffectColor()
         {
             Vector4 ret = new Vector4(Interop.Scrollable.Scrollable_GetOvershootEffectColor(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void SetOvershootAnimationSpeed(float pixelsPerSecond)
         {
             Interop.Scrollable.Scrollable_SetOvershootAnimationSpeed(swigCPtr, pixelsPerSecond);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private float GetOvershootAnimationSpeed()
         {
             float ret = Interop.Scrollable.Scrollable_GetOvershootAnimationSpeed(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

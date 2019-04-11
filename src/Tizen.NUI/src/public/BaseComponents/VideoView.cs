@@ -140,7 +140,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public VideoView() : this(Interop.VideoView.VideoView_New__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -151,12 +151,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public VideoView(string url) : this(Interop.VideoView.VideoView_New__SWIG_1(url), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal VideoView(VideoView videoView) : this(Interop.VideoView.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.VideoView_SWIGUpcast(cPtr), cMemoryOwn)
@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
         public void Play()
         {
             Interop.VideoView.VideoView_Play(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -313,7 +313,7 @@ namespace Tizen.NUI.BaseComponents
         public void Pause()
         {
             Interop.VideoView.VideoView_Pause(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace Tizen.NUI.BaseComponents
         public void Stop()
         {
             Interop.VideoView.VideoView_Stop(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace Tizen.NUI.BaseComponents
         public void Forward(int millisecond)
         {
             Interop.VideoView.VideoView_Forward(swigCPtr, millisecond);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -345,13 +345,13 @@ namespace Tizen.NUI.BaseComponents
         public void Backward(int millisecond)
         {
             Interop.VideoView.VideoView_Backward(swigCPtr, millisecond);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal VideoViewSignal FinishedSignal()
         {
             VideoViewSignal ret = new VideoViewSignal(Interop.VideoView.VideoView_FinishedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

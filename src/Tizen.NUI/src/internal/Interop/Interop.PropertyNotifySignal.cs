@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PropertyNotifySignal
         {
-            static PropertyNotifySignal()
-            {
-                Tizen.Log.Error("NUI", "PropertyNotifySignal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PropertyNotifySignal_Empty")]
             public static extern bool PropertyNotifySignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

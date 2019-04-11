@@ -9,11 +9,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewImpl
         {
-            static ViewImpl()
-            {
-                Tizen.Log.Error("NUI", "ViewImpl");
-            }
-            
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ViewImpl_New")]
             public static extern global::System.IntPtr ViewImpl_New();

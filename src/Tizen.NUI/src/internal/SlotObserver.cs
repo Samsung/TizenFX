@@ -126,7 +126,7 @@ namespace Tizen.NUI
         public virtual void SlotDisconnected(SWIGTYPE_p_Dali__CallbackBase callback)
         {
             SlotObserver_SlotDisconnected(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
 

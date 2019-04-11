@@ -103,18 +103,18 @@ namespace Tizen.NUI
 
         public VectorUint16Pair() : this(Interop.VectorUint16Pair.new_VectorUint16Pair__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VectorUint16Pair(VectorUint16Pair vector) : this(Interop.VectorUint16Pair.new_VectorUint16Pair__SWIG_1(VectorUint16Pair.getCPtr(vector)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VectorUint16Pair Assign(VectorUint16Pair vector)
         {
             VectorUint16Pair ret = new VectorUint16Pair(Interop.VectorUint16Pair.VectorUint16Pair_Assign(swigCPtr, VectorUint16Pair.getCPtr(vector)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -122,7 +122,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_Begin(swigCPtr);
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -130,58 +130,58 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_End(swigCPtr);
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Uint16Pair ValueOfIndex(uint index)
         {
             Uint16Pair ret = new Uint16Pair(Interop.VectorUint16Pair.VectorUint16Pair_ValueOfIndex__SWIG_0(swigCPtr, index), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void PushBack(Uint16Pair element)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_PushBack(swigCPtr, Uint16Pair.getCPtr(element));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Insert(Uint16Pair at, Uint16Pair element)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Insert__SWIG_0(swigCPtr, Uint16Pair.getCPtr(at), Uint16Pair.getCPtr(element));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Insert(Uint16Pair at, Uint16Pair from, Uint16Pair to)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Insert__SWIG_1(swigCPtr, Uint16Pair.getCPtr(at), Uint16Pair.getCPtr(from), Uint16Pair.getCPtr(to));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Reserve(uint count)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Reserve(swigCPtr, count);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Resize(uint count)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Resize__SWIG_0(swigCPtr, count);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Resize(uint count, Uint16Pair item)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Resize__SWIG_1(swigCPtr, count, Uint16Pair.getCPtr(item));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Uint16Pair Erase(Uint16Pair iterator)
         {
             global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_Erase__SWIG_0(swigCPtr, Uint16Pair.getCPtr(iterator));
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -189,32 +189,32 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.VectorUint16Pair.VectorUint16Pair_Erase__SWIG_1(swigCPtr, Uint16Pair.getCPtr(first), Uint16Pair.getCPtr(last));
             Uint16Pair ret = (cPtr == global::System.IntPtr.Zero) ? null : new Uint16Pair(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Remove(Uint16Pair iterator)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Remove(swigCPtr, Uint16Pair.getCPtr(iterator));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Swap(VectorUint16Pair vector)
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Swap(swigCPtr, VectorUint16Pair.getCPtr(vector));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Clear()
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Clear(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Release()
         {
             Interop.VectorUint16Pair.VectorUint16Pair_Release(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static readonly int BaseType = Interop.VectorUint16Pair.VectorUint16Pair_BaseType_get();

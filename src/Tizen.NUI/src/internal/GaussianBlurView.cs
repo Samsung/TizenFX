@@ -144,105 +144,105 @@ namespace Tizen.NUI
 
         public GaussianBlurView() : this(Interop.GaussianBlurView.GaussianBlurView_New__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public GaussianBlurView(uint numSamples, float blurBellCurveWidth, PixelFormat renderTargetPixelFormat, float downsampleWidthScale, float downsampleHeightScale, bool blurUserImage) : this(Interop.GaussianBlurView.GaussianBlurView_New__SWIG_1(numSamples, blurBellCurveWidth, (int)renderTargetPixelFormat, downsampleWidthScale, downsampleHeightScale, blurUserImage), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public GaussianBlurView(uint numSamples, float blurBellCurveWidth, PixelFormat renderTargetPixelFormat, float downsampleWidthScale, float downsampleHeightScale) : this(Interop.GaussianBlurView.GaussianBlurView_New__SWIG_2(numSamples, blurBellCurveWidth, (int)renderTargetPixelFormat, downsampleWidthScale, downsampleHeightScale), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public GaussianBlurView(GaussianBlurView handle) : this(Interop.GaussianBlurView.new_GaussianBlurView__SWIG_1(GaussianBlurView.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public GaussianBlurView Assign(GaussianBlurView ZoomView)
         {
             GaussianBlurView ret = new GaussianBlurView(Interop.GaussianBlurView.GaussianBlurView_Assign(swigCPtr, GaussianBlurView.getCPtr(ZoomView)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static GaussianBlurView DownCast(BaseHandle handle)
         {
             GaussianBlurView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as GaussianBlurView;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public new void Add(View child)
         {
             Interop.GaussianBlurView.GaussianBlurView_Add(swigCPtr, View.getCPtr(child));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public new void Remove(View child)
         {
             Interop.GaussianBlurView.GaussianBlurView_Remove(swigCPtr, View.getCPtr(child));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Activate()
         {
             Interop.GaussianBlurView.GaussianBlurView_Activate(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void ActivateOnce()
         {
             Interop.GaussianBlurView.GaussianBlurView_ActivateOnce(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Deactivate()
         {
             Interop.GaussianBlurView.GaussianBlurView_Deactivate(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetUserImageAndOutputRenderTarget(Image inputImage, FrameBufferImage outputRenderTarget)
         {
             Interop.GaussianBlurView.GaussianBlurView_SetUserImageAndOutputRenderTarget(swigCPtr, Image.getCPtr(inputImage), FrameBufferImage.getCPtr(outputRenderTarget));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public int GetBlurStrengthPropertyIndex()
         {
             int ret = Interop.GaussianBlurView.GaussianBlurView_GetBlurStrengthPropertyIndex(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public FrameBufferImage GetBlurredRenderTarget()
         {
             FrameBufferImage ret = new FrameBufferImage(Interop.GaussianBlurView.GaussianBlurView_GetBlurredRenderTarget(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public new void SetBackgroundColor(Vector4 color)
         {
             Interop.GaussianBlurView.GaussianBlurView_SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public new Vector4 GetBackgroundColor()
         {
             Vector4 ret = new Vector4(Interop.GaussianBlurView.GaussianBlurView_GetBackgroundColor(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public GaussianBlurViewSignal FinishedSignal()
         {
             GaussianBlurViewSignal ret = new GaussianBlurViewSignal(Interop.GaussianBlurView.GaussianBlurView_FinishedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

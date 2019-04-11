@@ -100,17 +100,17 @@ namespace Tizen.NUI
         }
         public StringValuePair() : this(Interop.StringValuePair.new_StringValuePair__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public StringValuePair(string t, PropertyValue u) : this(Interop.StringValuePair.new_StringValuePair__SWIG_1(t, PropertyValue.getCPtr(u)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public StringValuePair(StringValuePair p) : this(Interop.StringValuePair.new_StringValuePair__SWIG_2(StringValuePair.getCPtr(p)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public string first
@@ -118,12 +118,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.StringValuePair.StringValuePair_first_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 string ret = Interop.StringValuePair.StringValuePair_first_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -133,13 +133,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.StringValuePair.StringValuePair_second_set(swigCPtr, PropertyValue.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.StringValuePair.StringValuePair_second_get(swigCPtr);
                 PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

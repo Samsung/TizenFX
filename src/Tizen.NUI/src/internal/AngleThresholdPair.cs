@@ -101,17 +101,17 @@ namespace Tizen.NUI
 
         public AngleThresholdPair() : this(Interop.AngleThresholdPair.new_AngleThresholdPair__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public AngleThresholdPair(Radian t, Radian u) : this(Interop.AngleThresholdPair.new_AngleThresholdPair__SWIG_1(Radian.getCPtr(t), Radian.getCPtr(u)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public AngleThresholdPair(AngleThresholdPair p) : this(Interop.AngleThresholdPair.new_AngleThresholdPair__SWIG_2(AngleThresholdPair.getCPtr(p)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Radian first
@@ -119,13 +119,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.AngleThresholdPair.AngleThresholdPair_first_set(swigCPtr, Radian.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.AngleThresholdPair.AngleThresholdPair_first_get(swigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -135,13 +135,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.AngleThresholdPair.AngleThresholdPair_second_set(swigCPtr, Radian.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.AngleThresholdPair.AngleThresholdPair_second_get(swigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

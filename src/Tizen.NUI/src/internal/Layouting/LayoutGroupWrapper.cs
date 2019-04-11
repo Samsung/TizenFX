@@ -75,18 +75,18 @@ namespace Tizen.NUI
 
         public LayoutGroupWrapper() : this(Interop.LayoutGroupWrapper.new_LayoutGroupWrapper__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public LayoutGroupWrapper(LayoutGroupWrapper copy) : this(Interop.LayoutGroupWrapper.new_LayoutGroupWrapper__SWIG_1(LayoutGroupWrapper.getCPtr(copy)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public uint Add(LayoutItemWrapper childLayout)
         {
             uint ret = Interop.LayoutGroupWrapper.LayoutGroupWrapper_Add(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             LayoutChildren.Add(childLayout);
             return ret;
         }
@@ -94,13 +94,13 @@ namespace Tizen.NUI
         public void Remove(uint childId)
         {
             Interop.LayoutGroupWrapper.LayoutGroupWrapper_Remove__SWIG_0(swigCPtr, childId);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Remove(LayoutItemWrapper childLayout)
         {
             Interop.LayoutGroupWrapper.LayoutGroupWrapper_Remove__SWIG_1(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             LayoutChildren.Remove(childLayout);
         }
 
@@ -130,14 +130,14 @@ namespace Tizen.NUI
         public LayoutItemWrapper GetChild(uint childId)
         {
             LayoutItemWrapper ret = new LayoutItemWrapper(Interop.LayoutGroupWrapper.LayoutGroupWrapper_GetChild(swigCPtr, childId), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LayoutGroupWrapper(LayoutGroupWrapperImpl implementation) : this(Interop.LayoutGroupWrapper.new_LayoutGroupWrapper__SWIG_2(LayoutGroupWrapperImpl.getCPtr(implementation)), true)
         {
             layoutGroupWrapperImpl = implementation;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static readonly uint UNKNOWN_ID = Interop.LayoutGroupWrapper.LayoutGroupWrapper_UNKNOWN_ID_get();

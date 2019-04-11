@@ -420,7 +420,7 @@ namespace Tizen.NUI
         public static PageTurnView GetPageTurnViewFromPtr(global::System.IntPtr cPtr)
         {
             PageTurnView ret = new PageTurnView(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -515,7 +515,7 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public Property() : this(Interop.PageTurnView.new_PageTurnView_Property(), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <since_tizen> 3 </since_tizen>
@@ -529,53 +529,53 @@ namespace Tizen.NUI
 
         public PageTurnView() : this(Interop.PageTurnView.new_PageTurnView__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PageTurnView(PageTurnView handle) : this(Interop.PageTurnView.new_PageTurnView__SWIG_1(PageTurnView.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PageTurnView Assign(PageTurnView handle)
         {
             PageTurnView ret = new PageTurnView(Interop.PageTurnView.PageTurnView_Assign(swigCPtr, PageTurnView.getCPtr(handle)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static PageTurnView DownCast(BaseHandle handle)
         {
             PageTurnView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnView;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PageTurnSignal PageTurnStartedSignal()
         {
             PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnView_PageTurnStartedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PageTurnSignal PageTurnFinishedSignal()
         {
             PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnView_PageTurnFinishedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanStartedSignal()
         {
             PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PageTurnView_PagePanStartedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanFinishedSignal()
         {
             PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PageTurnView_PagePanFinishedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ControlKeySignal
         {
-            static ControlKeySignal()
-            {
-                Tizen.Log.Error("NUI", "ControlKeySignal");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ControlKeySignal_Empty")]
             public static extern bool ControlKeySignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

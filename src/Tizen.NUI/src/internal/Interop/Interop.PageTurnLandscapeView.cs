@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PageTurnLandScapeView
         {
-            static PageTurnLandScapeView()
-            {
-                Tizen.Log.Error("NUI", "PageTurnLandScapeView");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PageTurnLandscapeView_SWIGUpcast")]
             public static extern global::System.IntPtr PageTurnLandscapeView_SWIGUpcast(global::System.IntPtr jarg1);

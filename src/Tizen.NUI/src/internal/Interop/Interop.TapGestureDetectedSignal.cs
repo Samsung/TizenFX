@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TapGestureDetectedSignal
         {
-            static TapGestureDetectedSignal()
-            {
-                Tizen.Log.Error("NUI", "TapGestureDetectedSignal");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TapGestureDetectedSignal_Empty")]
             public static extern bool TapGestureDetectedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

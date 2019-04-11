@@ -8,13 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ActorSignal
         {
-            static ActorSignal()
-            {
-                Tizen.Log.Error("NUI", "ActorSignal");
-            }
-
-
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ActorSignal_Empty")]
             public static extern bool ActorSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

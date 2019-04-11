@@ -70,7 +70,7 @@ namespace Tizen.NUI
         /// </summary>
         public AbsoluteLayout() : this(Interop.AbsoluteLayout.AbsoluteLayout_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         internal static AbsoluteLayout DownCast(BaseHandle handle)
         {
             AbsoluteLayout ret = new AbsoluteLayout(Interop.AbsoluteLayout.AbsoluteLayout_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -93,13 +93,13 @@ namespace Tizen.NUI
         /// <param name="other"></param>
         internal AbsoluteLayout(AbsoluteLayout other) : this(Interop.AbsoluteLayout.new_AbsoluteLayout__SWIG_1(AbsoluteLayout.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal AbsoluteLayout Assign(AbsoluteLayout other)
         {
             AbsoluteLayout ret = new AbsoluteLayout(Interop.AbsoluteLayout.AbsoluteLayout_Assign(swigCPtr, AbsoluteLayout.getCPtr(other)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -41,7 +41,7 @@ namespace Tizen.NUI
 
         internal VisualFactory() : this(Interop.VisualFactory.new_VisualFactory__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Tizen.NUI
                 if (!instance)
                 {
                     instance = new VisualFactory(Interop.VisualFactory.VisualFactory_Get(), true);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
 
                 return instance;
@@ -85,7 +85,7 @@ namespace Tizen.NUI
         public VisualBase CreateVisual(PropertyMap propertyMap)
         {
             VisualBase ret = new VisualBase(Interop.VisualFactory.VisualFactory_CreateVisual__SWIG_0(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -97,7 +97,7 @@ namespace Tizen.NUI
         internal VisualBase CreateVisual(Image image)
         {
             VisualBase ret = new VisualBase(Interop.VisualFactory.VisualFactory_CreateVisual__SWIG_1(swigCPtr, Image.getCPtr(image)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

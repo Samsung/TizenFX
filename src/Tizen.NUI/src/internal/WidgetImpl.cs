@@ -307,13 +307,13 @@ namespace Tizen.NUI
         public void SetContentInfo(string contentInfo)
         {
             Interop.WidgetImpl.WidgetImpl_SetContentInfo(swigCPtr, contentInfo);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetImpl(SWIGTYPE_p_Dali__Widget__Impl impl)
         {
             Interop.WidgetImpl.WidgetImpl_SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private void SwigDirectorConnect()

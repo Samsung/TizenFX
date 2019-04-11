@@ -8,11 +8,7 @@ namespace Tizen.NUI
     {
         internal static partial class CameraActor
         {
-
-            static CameraActor()
-            {
-                Tizen.Log.Error("NUI", "CameraActor");
-            }
+            
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_CameraActor_Property_TYPE_get")]
             public static extern int CameraActor_Property_TYPE_get();

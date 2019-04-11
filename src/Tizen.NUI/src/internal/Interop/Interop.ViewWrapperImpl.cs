@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewWrapperImpl
         {
-            static ViewWrapperImpl()
-            {
-                Tizen.Log.Error("NUI", "ViewWrapperImpl");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ViewWrapperImpl_SWIGUpcast")]
             public static extern global::System.IntPtr ViewWrapperImpl_SWIGUpcast(global::System.IntPtr jarg1);

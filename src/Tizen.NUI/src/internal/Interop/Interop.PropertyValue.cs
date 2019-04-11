@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PropertyValue
         {
-            static PropertyValue()
-            {
-                Tizen.Log.Error("NUI", "PropertyValue");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Property_Value__SWIG_0")]
             public static extern global::System.IntPtr new_Property_Value__SWIG_0();
 

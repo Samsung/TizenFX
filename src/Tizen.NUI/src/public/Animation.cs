@@ -67,7 +67,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Animation(int durationMilliSeconds) : this(Interop.Animation.Animation_New((float)durationMilliSeconds / 1000.0f), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Animation.Animation_SWIGUpcast(cPtr), cMemoryOwn)
@@ -327,12 +327,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Animation.Animation_SetDisconnectAction(swigCPtr, (int)value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 Animation.EndActions ret = (Animation.EndActions)Interop.Animation.Animation_GetDisconnectAction(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -350,12 +350,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Animation.Animation_SetCurrentProgress(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 float ret = Interop.Animation.Animation_GetCurrentProgress(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -372,12 +372,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Animation.Animation_SetSpeedFactor(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 float ret = Interop.Animation.Animation_GetSpeedFactor(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -393,12 +393,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Animation.Animation_SetPlayRange(swigCPtr, Vector2.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 Vector2 ret = new Vector2(Interop.Animation.Animation_GetPlayRange(swigCPtr), true);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -415,12 +415,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Animation.Animation_SetProgressNotification(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 float ret = Interop.Animation.Animation_GetProgressNotification(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -512,7 +512,7 @@ namespace Tizen.NUI
         public static Animation DownCast(BaseHandle handle)
         {
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -525,7 +525,7 @@ namespace Tizen.NUI
         {
             SetEndAction(action);
             Interop.Animation.Animation_Stop(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -816,7 +816,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Animation() : this(Interop.Animation.Animation_New(0.0f), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -826,7 +826,7 @@ namespace Tizen.NUI
         public void Play()
         {
             Interop.Animation.Animation_Play(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (DisableAnimation == true)
                 Stop(EndActions.StopFinal);
@@ -842,7 +842,7 @@ namespace Tizen.NUI
         public void PlayFrom(float progress)
         {
             Interop.Animation.Animation_PlayFrom(swigCPtr, progress);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -855,7 +855,7 @@ namespace Tizen.NUI
         public void PlayAfter(int delayMilliseconds)
         {
             Interop.Animation.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -865,7 +865,7 @@ namespace Tizen.NUI
         public void Pause()
         {
             Interop.Animation.Animation_Pause(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -875,7 +875,7 @@ namespace Tizen.NUI
         public void Stop()
         {
             Interop.Animation.Animation_Stop(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -886,7 +886,7 @@ namespace Tizen.NUI
         public void Clear()
         {
             Interop.Animation.Animation_Clear(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animation obj)
@@ -1034,297 +1034,297 @@ namespace Tizen.NUI
 
         internal Animation(float durationSeconds) : this(Interop.Animation.Animation_New(durationSeconds), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
         internal Animation(Animation handle) : this(Interop.Animation.new_Animation__SWIG_1(Animation.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Animation Assign(Animation rhs)
         {
             Animation ret = new Animation(Interop.Animation.Animation_Assign(swigCPtr, Animation.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetDuration(float seconds)
         {
             Interop.Animation.Animation_SetDuration(swigCPtr, seconds);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetDuration()
         {
             float ret = Interop.Animation.Animation_GetDuration(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetLooping(bool looping)
         {
             Interop.Animation.Animation_SetLooping(swigCPtr, looping);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetLoopCount(int count)
         {
             Interop.Animation.Animation_SetLoopCount(swigCPtr, count);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal int GetLoopCount()
         {
             int ret = Interop.Animation.Animation_GetLoopCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal int GetCurrentLoop()
         {
             int ret = Interop.Animation.Animation_GetCurrentLoop(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool IsLooping()
         {
             bool ret = Interop.Animation.Animation_IsLooping(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetEndAction(Animation.EndActions action)
         {
             Interop.Animation.Animation_SetEndAction(swigCPtr, (int)action);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Animation.EndActions GetEndAction()
         {
             Animation.EndActions ret = (Animation.EndActions)Interop.Animation.Animation_GetEndAction(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetDisconnectAction(Animation.EndActions disconnectAction)
         {
             Interop.Animation.Animation_SetDisconnectAction(swigCPtr, (int)disconnectAction);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Animation.EndActions GetDisconnectAction()
         {
             Animation.EndActions ret = (Animation.EndActions)Interop.Animation.Animation_GetDisconnectAction(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetDefaultAlphaFunction(AlphaFunction alpha)
         {
             Interop.Animation.Animation_SetDefaultAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal AlphaFunction GetDefaultAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(Interop.Animation.Animation_GetDefaultAlphaFunction(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetCurrentProgress(float progress)
         {
             Interop.Animation.Animation_SetCurrentProgress(swigCPtr, progress);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetCurrentProgress()
         {
             float ret = Interop.Animation.Animation_GetCurrentProgress(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetSpeedFactor(float factor)
         {
             Interop.Animation.Animation_SetSpeedFactor(swigCPtr, factor);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetSpeedFactor()
         {
             float ret = Interop.Animation.Animation_GetSpeedFactor(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetPlayRange(Vector2 range)
         {
             Interop.Animation.Animation_SetPlayRange(swigCPtr, Vector2.getCPtr(range));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Vector2 GetPlayRange()
         {
             Vector2 ret = new Vector2(Interop.Animation.Animation_GetPlayRange(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Animation.States GetState()
         {
             Animation.States ret = (Animation.States)Interop.Animation.Animation_GetState(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal AnimationSignal FinishedSignal()
         {
             AnimationSignal ret = new AnimationSignal(Interop.Animation.Animation_FinishedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal AnimationSignal ProgressReachedSignal()
         {
             AnimationSignal ret = new AnimationSignal(Interop.Animation.Animation_ProgressReachedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue)
         {
             Interop.Animation.Animation_AnimateBy__SWIG_0(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha)
         {
             Interop.Animation.Animation_AnimateBy__SWIG_1(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, TimePeriod period)
         {
             Interop.Animation.Animation_AnimateBy__SWIG_2(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBy(Property target, PropertyValue relativeValue, AlphaFunction alpha, TimePeriod period)
         {
             Interop.Animation.Animation_AnimateBy__SWIG_3(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue)
         {
             Interop.Animation.Animation_AnimateTo__SWIG_0(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha)
         {
             Interop.Animation.Animation_AnimateTo__SWIG_1(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, TimePeriod period)
         {
             Interop.Animation.Animation_AnimateTo__SWIG_2(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateTo(Property target, PropertyValue destinationValue, AlphaFunction alpha, TimePeriod period)
         {
             Interop.Animation.Animation_AnimateTo__SWIG_3(swigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_0(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, Animation.Interpolation interpolation)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_1(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), (int)interpolation);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_2(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, Animation.Interpolation interpolation)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_3(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_4(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, TimePeriod period, Animation.Interpolation interpolation)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_5(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), TimePeriod.getCPtr(period), (int)interpolation);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_6(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period, Animation.Interpolation interpolation)
         {
             Interop.Animation.Animation_AnimateBetween__SWIG_7(swigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward)
         {
             Interop.Animation.Animation_Animate__SWIG_0(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha)
         {
             Interop.Animation.Animation_Animate__SWIG_1(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward, TimePeriod period)
         {
             Interop.Animation.Animation_Animate__SWIG_2(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha, TimePeriod period)
         {
             Interop.Animation.Animation_Animate__SWIG_3(swigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Show(View view, float delaySeconds)
         {
             Interop.Animation.Animation_Show(swigCPtr, View.getCPtr(view), delaySeconds);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Hide(View view, float delaySeconds)
         {
             Interop.Animation.Animation_Hide(swigCPtr, View.getCPtr(view), delaySeconds);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

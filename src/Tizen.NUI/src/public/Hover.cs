@@ -48,18 +48,18 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Hover() : this(NDalicPINVOKE.new_Hover__SWIG_0(), true)
+        public Hover() : this(Interop.Hover.new_Hover__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// The constructor.
         /// </summary>
         /// <param name="time">The time the event occurred.</param>
-        internal Hover(uint time) : this(NDalicPINVOKE.new_Hover__SWIG_1(time), true)
+        internal Hover(uint time) : this(Interop.Hover.new_Hover__SWIG_1(time), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -97,14 +97,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Hover_points_set(swigCPtr, TouchPointContainer.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                Interop.Hover.Hover_points_set(swigCPtr, TouchPointContainer.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Hover_points_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.Hover.Hover_points_get(swigCPtr);
                 TouchPointContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new TouchPointContainer(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -113,13 +113,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Hover_time_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                Interop.Hover.Hover_time_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.Hover_time_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                uint ret = Interop.Hover.Hover_time_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -214,8 +214,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetPointCount()
         {
-            uint ret = NDalicPINVOKE.Hover_GetPointCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            uint ret = Interop.Hover.Hover_GetPointCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -250,14 +250,14 @@ namespace Tizen.NUI
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
         {
             Hover ret = new Hover(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TouchPoint GetPoint(uint point)
         {
-            TouchPoint ret = new TouchPoint(NDalicPINVOKE.Hover_GetPoint(swigCPtr, point), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            TouchPoint ret = new TouchPoint(Interop.Hover.Hover_GetPoint(swigCPtr, point), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -288,7 +288,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Hover(swigCPtr);
+                    Interop.Hover.delete_Hover(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

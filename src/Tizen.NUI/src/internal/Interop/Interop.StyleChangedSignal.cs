@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class StyleChangedSignal
         {
-            static StyleChangedSignal()
-            {
-                Tizen.Log.Error("NUI", "StyleChangedSignal");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_StyleChangedSignal_Empty")]
             public static extern bool StyleChangedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

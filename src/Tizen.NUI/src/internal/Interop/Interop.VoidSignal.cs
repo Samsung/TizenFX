@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class VoidSignal
         {
-            static VoidSignal()
-            {
-                Tizen.Log.Error("NUI", "VoidSignal");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_VoidSignal")]
             public static extern global::System.IntPtr new_VoidSignal();
 

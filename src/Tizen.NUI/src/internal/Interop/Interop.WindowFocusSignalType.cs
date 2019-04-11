@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class WindowFocusSignalType
         {
-            static WindowFocusSignalType()
-            {
-                Tizen.Log.Error("NUI", "WindowFocusSignalType");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_WindowFocusSignalType_Empty")]
             public static extern bool WindowFocusSignalType_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

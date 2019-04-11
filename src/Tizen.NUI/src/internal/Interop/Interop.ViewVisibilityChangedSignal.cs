@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewVisibilityChangedSignal
         {
-            static ViewVisibilityChangedSignal()
-            {
-                Tizen.Log.Error("NUI", "VisibilityChangedSignal");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ViewVisibilityChangedSignal_Empty")]
             public static extern bool ViewVisibilityChangedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

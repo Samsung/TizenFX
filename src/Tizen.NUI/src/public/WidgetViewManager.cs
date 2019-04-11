@@ -43,7 +43,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public WidgetViewManager(NUIApplication nuiApplication, string appId) : this(Interop.WidgetViewManager.WidgetViewManager_New(Application.getCPtr(nuiApplication.ApplicationHandle), appId), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetViewManager.WidgetViewManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -63,7 +63,7 @@ namespace Tizen.NUI
         public WidgetView AddWidget(string widgetId, string contentInfo, int width, int height, float updatePeriod)
         {
             WidgetView ret = new WidgetView(Interop.WidgetViewManager.WidgetViewManager_AddWidget(swigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -75,19 +75,19 @@ namespace Tizen.NUI
         internal static WidgetViewManager DownCast(BaseHandle handle)
         {
             WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.WidgetViewManager_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewManager(WidgetViewManager handle) : this(Interop.WidgetViewManager.new_WidgetViewManager__SWIG_1(WidgetViewManager.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal WidgetViewManager Assign(WidgetViewManager handle)
         {
             WidgetViewManager ret = new WidgetViewManager(Interop.WidgetViewManager.WidgetViewManager_Assign(swigCPtr, WidgetViewManager.getCPtr(handle)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

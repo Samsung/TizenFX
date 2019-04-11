@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Renderer
         {
-            static Renderer()
-            {
-                Tizen.Log.Error("NUI", "Renderer");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Renderer_Property_DEPTH_INDEX_get")]
             public static extern int Renderer_Property_DEPTH_INDEX_get();

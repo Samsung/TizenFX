@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class View
         {
-            static View()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "View : " + ret);
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_View_New")]
             public static extern global::System.IntPtr View_New();

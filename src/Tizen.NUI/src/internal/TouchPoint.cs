@@ -104,12 +104,12 @@ namespace Tizen.NUI
 
         public TouchPoint(int id, TouchPoint.StateType state, float screenX, float screenY) : this(Interop.TouchPoint.new_TouchPoint__SWIG_0(id, (int)state, screenX, screenY), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public TouchPoint(int id, TouchPoint.StateType state, float screenX, float screenY, float localX, float localY) : this(Interop.TouchPoint.new_TouchPoint__SWIG_1(id, (int)state, screenX, screenY, localX, localY), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public int DeviceId
@@ -117,12 +117,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.TouchPoint.TouchPoint_deviceId_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 int ret = Interop.TouchPoint.TouchPoint_deviceId_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -132,12 +132,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.TouchPoint.TouchPoint_state_set(swigCPtr, (int)value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 TouchPoint.StateType ret = (TouchPoint.StateType)Interop.TouchPoint.TouchPoint_state_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -147,13 +147,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.TouchPoint.TouchPoint_hitActor_set(swigCPtr, View.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.TouchPoint.TouchPoint_hitActor_get(swigCPtr);
                 View ret = (cPtr == global::System.IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -163,13 +163,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.TouchPoint.TouchPoint_local_set(swigCPtr, Vector2.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.TouchPoint.TouchPoint_local_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -179,13 +179,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.TouchPoint.TouchPoint_screen_set(swigCPtr, Vector2.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.TouchPoint.TouchPoint_screen_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

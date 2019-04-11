@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public ScrollViewEffect() : this(Interop.ScrollView.new_ScrollViewEffect(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewEffect obj)

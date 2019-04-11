@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public InputMethodContext() : this(Interop.InputMethodContext.InputMethodContext_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -352,7 +352,7 @@ namespace Tizen.NUI
         public void DestroyContext()
         {
             Interop.InputMethodContext.InputMethodContext_Finalize(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Tizen.NUI
         public void Activate()
         {
             Interop.InputMethodContext.InputMethodContext_Activate(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -375,7 +375,7 @@ namespace Tizen.NUI
         public void Deactivate()
         {
             Interop.InputMethodContext.InputMethodContext_Deactivate(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -387,7 +387,7 @@ namespace Tizen.NUI
         public bool RestoreAfterFocusLost()
         {
             bool ret = Interop.InputMethodContext.InputMethodContext_RestoreAfterFocusLost(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -399,7 +399,7 @@ namespace Tizen.NUI
         public void SetRestoreAfterFocusLost(bool toggle)
         {
             Interop.InputMethodContext.InputMethodContext_SetRestoreAfterFocusLost(swigCPtr, toggle);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -409,7 +409,7 @@ namespace Tizen.NUI
         public new void Reset()
         {
             Interop.InputMethodContext.InputMethodContext_Reset(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -419,7 +419,7 @@ namespace Tizen.NUI
         public void NotifyCursorPosition()
         {
             Interop.InputMethodContext.InputMethodContext_NotifyCursorPosition(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -430,7 +430,7 @@ namespace Tizen.NUI
         public void SetCursorPosition(uint cursorPosition)
         {
             Interop.InputMethodContext.InputMethodContext_SetCursorPosition(swigCPtr, cursorPosition);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -441,7 +441,7 @@ namespace Tizen.NUI
         public uint GetCursorPosition()
         {
             uint ret = Interop.InputMethodContext.InputMethodContext_GetCursorPosition(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -453,7 +453,7 @@ namespace Tizen.NUI
         public void SetSurroundingText(string text)
         {
             Interop.InputMethodContext.InputMethodContext_SetSurroundingText(swigCPtr, text);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -464,7 +464,7 @@ namespace Tizen.NUI
         public string GetSurroundingText()
         {
             string ret = Interop.InputMethodContext.InputMethodContext_GetSurroundingText(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -476,7 +476,7 @@ namespace Tizen.NUI
         public void NotifyTextInputMultiLine(bool multiLine)
         {
             Interop.InputMethodContext.InputMethodContext_NotifyTextInputMultiLine(swigCPtr, multiLine);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -487,7 +487,7 @@ namespace Tizen.NUI
         public InputMethodContext.TextDirection GetTextDirection()
         {
             InputMethodContext.TextDirection ret = (InputMethodContext.TextDirection)Interop.InputMethodContext.InputMethodContext_GetTextDirection(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -503,7 +503,7 @@ namespace Tizen.NUI
         public Rectangle GetInputMethodArea()
         {
             Rectangle ret = new Rectangle(Interop.InputMethodContext.InputMethodContext_GetInputMethodArea(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -515,7 +515,7 @@ namespace Tizen.NUI
         public void SetInputPanelUserData(string text)
         {
             Interop.InputMethodContext.InputMethodContext_SetInputPanelUserData(swigCPtr, text);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -526,7 +526,7 @@ namespace Tizen.NUI
         public void GetInputPanelUserData(out string text)
         {
             Interop.InputMethodContext.InputMethodContext_GetInputPanelUserData(swigCPtr, out text);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -537,7 +537,7 @@ namespace Tizen.NUI
         public InputMethodContext.State GetInputPanelState()
         {
             InputMethodContext.State ret = (InputMethodContext.State)Interop.InputMethodContext.InputMethodContext_GetInputPanelState(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -550,7 +550,7 @@ namespace Tizen.NUI
         public void SetReturnKeyState(bool visible)
         {
             Interop.InputMethodContext.InputMethodContext_SetReturnKeyState(swigCPtr, visible);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace Tizen.NUI
         public void AutoEnableInputPanel(bool enabled)
         {
             Interop.InputMethodContext.InputMethodContext_AutoEnableInputPanel(swigCPtr, enabled);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -571,7 +571,7 @@ namespace Tizen.NUI
         public void ShowInputPanel()
         {
             Interop.InputMethodContext.InputMethodContext_ShowInputPanel(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -581,7 +581,7 @@ namespace Tizen.NUI
         public void HideInputPanel()
         {
             Interop.InputMethodContext.InputMethodContext_HideInputPanel(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -593,7 +593,7 @@ namespace Tizen.NUI
         public InputMethodContext.KeyboardType GetKeyboardType()
         {
             InputMethodContext.KeyboardType ret = (InputMethodContext.KeyboardType)Interop.InputMethodContext.InputMethodContext_GetKeyboardType(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -606,7 +606,7 @@ namespace Tizen.NUI
         public string GetInputPanelLocale()
         {
             string ret = Interop.InputMethodContext.InputMethodContext_GetInputPanelLocale(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -617,81 +617,81 @@ namespace Tizen.NUI
 
         internal InputMethodContext(InputMethodContext inputMethodContext) : this(Interop.InputMethodContext.new_InputMethodContext__SWIG_1(InputMethodContext.getCPtr(inputMethodContext)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal InputMethodContext Assign(InputMethodContext inputMethodContext)
         {
             InputMethodContext ret = new InputMethodContext(Interop.InputMethodContext.InputMethodContext_Assign(swigCPtr, InputMethodContext.getCPtr(inputMethodContext)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static InputMethodContext DownCast(BaseHandle handle)
         {
             InputMethodContext ret = new InputMethodContext(Interop.InputMethodContext.InputMethodContext_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void ApplyOptions(InputMethodOptions options)
         {
             Interop.InputMethodContext.InputMethodContext_ApplyOptions(swigCPtr, InputMethodOptions.getCPtr(options));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void AllowTextPrediction(bool prediction)
         {
             Interop.InputMethodContext.InputMethodContext_AllowTextPrediction(swigCPtr, prediction);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool IsTextPredictionAllowed()
         {
             bool ret = Interop.InputMethodContext.InputMethodContext_IsTextPredictionAllowed(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ActivatedSignalType ActivatedSignal()
         {
             ActivatedSignalType ret = new ActivatedSignalType(Interop.InputMethodContext.InputMethodContext_ActivatedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyboardEventSignalType EventReceivedSignal()
         {
             KeyboardEventSignalType ret = new KeyboardEventSignalType(Interop.InputMethodContext.InputMethodContext_EventReceivedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal StatusSignalType StatusChangedSignal()
         {
             StatusSignalType ret = new StatusSignalType(Interop.InputMethodContext.InputMethodContext_StatusChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyboardResizedSignalType ResizedSignal()
         {
             KeyboardResizedSignalType ret = new KeyboardResizedSignalType(Interop.InputMethodContext.InputMethodContext_ResizedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LanguageChangedSignalType LanguageChangedSignal()
         {
             LanguageChangedSignalType ret = new LanguageChangedSignalType(Interop.InputMethodContext.InputMethodContext_LanguageChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal KeyboardTypeSignalType KeyboardTypeChangedSignal()
         {
             KeyboardTypeSignalType ret = new KeyboardTypeSignalType(Interop.InputMethodContext.InputMethodContext_KeyboardTypeChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -859,7 +859,7 @@ namespace Tizen.NUI
             /// <since_tizen> 5 </since_tizen>
             public EventData() : this(Interop.InputMethodContext.new_InputMethodContext_EventData__SWIG_0(), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <summary>
@@ -872,7 +872,7 @@ namespace Tizen.NUI
             /// <since_tizen> 5 </since_tizen>
             public EventData(InputMethodContext.EventType aEventName, string aPredictiveString, int aCursorOffset, int aNumberOfChars) : this(Interop.InputMethodContext.new_InputMethodContext_EventData__SWIG_1((int)aEventName, aPredictiveString, aCursorOffset, aNumberOfChars), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             internal EventData(IntPtr cPtr, bool cMemoryOwn)
@@ -903,12 +903,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_EventData_predictiveString_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     string ret = Interop.InputMethodContext.InputMethodContext_EventData_predictiveString_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -922,12 +922,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_EventData_eventName_set(swigCPtr, (int)value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     InputMethodContext.EventType ret = (InputMethodContext.EventType)Interop.InputMethodContext.InputMethodContext_EventData_eventName_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -941,12 +941,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_EventData_cursorOffset_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     int ret = Interop.InputMethodContext.InputMethodContext_EventData_cursorOffset_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -960,12 +960,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_EventData_numberOfChars_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     int ret = Interop.InputMethodContext.InputMethodContext_EventData_numberOfChars_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1001,7 +1001,7 @@ namespace Tizen.NUI
             internal static EventData GetEventDataFromPtr(IntPtr cPtr)
             {
                 EventData ret = new EventData(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
 
@@ -1071,7 +1071,7 @@ namespace Tizen.NUI
             /// <since_tizen> 5 </since_tizen>
             public CallbackData() : this(Interop.InputMethodContext.new_InputMethodContext_CallbackData__SWIG_0(), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <summary>
@@ -1084,7 +1084,7 @@ namespace Tizen.NUI
             /// <since_tizen> 5 </since_tizen>
             public CallbackData(bool aUpdate, int aCursorPosition, string aCurrentText, bool aPreeditResetRequired) : this(Interop.InputMethodContext.new_InputMethodContext_CallbackData__SWIG_1(aUpdate, aCursorPosition, aCurrentText, aPreeditResetRequired), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <summary>
@@ -1109,12 +1109,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_CallbackData_currentText_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     string ret = Interop.InputMethodContext.InputMethodContext_CallbackData_currentText_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1128,12 +1128,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_CallbackData_cursorPosition_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     int ret = Interop.InputMethodContext.InputMethodContext_CallbackData_cursorPosition_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1147,12 +1147,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_CallbackData_update_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     bool ret = Interop.InputMethodContext.InputMethodContext_CallbackData_update_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1166,12 +1166,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.InputMethodContext.InputMethodContext_CallbackData_preeditResetRequired_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     bool ret = Interop.InputMethodContext.InputMethodContext_CallbackData_preeditResetRequired_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1218,7 +1218,7 @@ namespace Tizen.NUI
             internal static CallbackData GetCallbackDataFromPtr(IntPtr cPtr)
             {
                 CallbackData ret = new CallbackData(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
 

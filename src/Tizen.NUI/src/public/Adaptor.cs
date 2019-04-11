@@ -177,7 +177,7 @@ namespace Tizen.NUI
         public void FeedWheelEvent(Wheel wheelEvent)
         {
             Interop.Adaptor.Adaptor_FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace Tizen.NUI
         public void FeedKeyEvent(Key keyEvent)
         {
             Interop.Adaptor.Adaptor_FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Adaptor obj)
@@ -199,42 +199,42 @@ namespace Tizen.NUI
         internal static Adaptor GetAdaptorFromPtr(global::System.IntPtr cPtr)
         {
             Adaptor ret = new Adaptor(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static Adaptor New(Window window)
         {
             Adaptor ret = new Adaptor(Interop.Adaptor.Adaptor_New__SWIG_0(Window.getCPtr(window)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static Adaptor New(Window window, SWIGTYPE_p_Configuration__ContextLoss configuration)
         {
             Adaptor ret = new Adaptor(Interop.Adaptor.Adaptor_New__SWIG_1(Window.getCPtr(window), SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static Adaptor New(Any nativeWindow, SWIGTYPE_p_Dali__RenderSurface surface)
         {
             Adaptor ret = new Adaptor(Interop.Adaptor.Adaptor_New__SWIG_2(Any.getCPtr(nativeWindow), SWIGTYPE_p_Dali__RenderSurface.getCPtr(surface)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static Adaptor New(Any nativeWindow, SWIGTYPE_p_Dali__RenderSurface surface, SWIGTYPE_p_Configuration__ContextLoss configuration)
         {
             Adaptor ret = new Adaptor(Interop.Adaptor.Adaptor_New__SWIG_3(Any.getCPtr(nativeWindow), SWIGTYPE_p_Dali__RenderSurface.getCPtr(surface), SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static Adaptor Get()
         {
             Adaptor ret = new Adaptor(Interop.Adaptor.Adaptor_Get(), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -245,7 +245,7 @@ namespace Tizen.NUI
         internal static bool IsAvailable()
         {
             bool ret = Interop.Adaptor.Adaptor_IsAvailable();
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -255,7 +255,7 @@ namespace Tizen.NUI
         internal void Start()
         {
             Interop.Adaptor.Adaptor_Start(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace Tizen.NUI
         internal void Pause()
         {
             Interop.Adaptor.Adaptor_Pause(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace Tizen.NUI
         internal void Resume()
         {
             Interop.Adaptor.Adaptor_Resume(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -283,39 +283,39 @@ namespace Tizen.NUI
         internal void Stop()
         {
             Interop.Adaptor.Adaptor_Stop(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
         {
             bool ret = Interop.Adaptor.Adaptor_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void RemoveIdle(SWIGTYPE_p_Dali__CallbackBase callback)
         {
             Interop.Adaptor.Adaptor_RemoveIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void ReplaceSurface(Any nativeWindow, SWIGTYPE_p_Dali__RenderSurface surface)
         {
             Interop.Adaptor.Adaptor_ReplaceSurface(swigCPtr, Any.getCPtr(nativeWindow), SWIGTYPE_p_Dali__RenderSurface.getCPtr(surface));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal SWIGTYPE_p_Dali__RenderSurface GetSurface()
         {
             SWIGTYPE_p_Dali__RenderSurface ret = new SWIGTYPE_p_Dali__RenderSurface(Interop.Adaptor.Adaptor_GetSurface(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Any GetNativeWindowHandle()
         {
             Any ret = new Any(Interop.Adaptor.Adaptor_GetNativeWindowHandle(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -328,7 +328,7 @@ namespace Tizen.NUI
         internal void ReleaseSurfaceLock()
         {
             Interop.Adaptor.Adaptor_ReleaseSurfaceLock(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace Tizen.NUI
         internal void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
         {
             Interop.Adaptor.Adaptor_SetRenderRefreshRate(swigCPtr, numberOfVSyncsPerRender);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace Tizen.NUI
         internal void SetUseHardwareVSync(bool useHardware)
         {
             Interop.Adaptor.Adaptor_SetUseHardwareVSync(swigCPtr, useHardware);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -365,7 +365,7 @@ namespace Tizen.NUI
         internal void NotifySceneCreated()
         {
             Interop.Adaptor.Adaptor_NotifySceneCreated(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -380,7 +380,7 @@ namespace Tizen.NUI
         internal void NotifyLanguageChanged()
         {
             Interop.Adaptor.Adaptor_NotifyLanguageChanged(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -390,13 +390,13 @@ namespace Tizen.NUI
         internal void SetMinimumPinchDistance(float distance)
         {
             Interop.Adaptor.Adaptor_SetMinimumPinchDistance(swigCPtr, distance);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void FeedTouchPoint(TouchPoint point, int timeStamp)
         {
             Interop.Adaptor.Adaptor_FeedTouchPoint(swigCPtr, TouchPoint.getCPtr(point), timeStamp);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -405,20 +405,20 @@ namespace Tizen.NUI
         internal void SceneCreated()
         {
             Interop.Adaptor.Adaptor_SceneCreated(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal AdaptorSignalType ResizedSignal()
         {
             AdaptorSignalType ret = new AdaptorSignalType(Interop.Adaptor.Adaptor_ResizedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal AdaptorSignalType LanguageChangedSignal()
         {
             AdaptorSignalType ret = new AdaptorSignalType(Interop.Adaptor.Adaptor_LanguageChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

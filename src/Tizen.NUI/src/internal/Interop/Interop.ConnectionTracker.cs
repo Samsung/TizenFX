@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ConnectionTracker
         {
-            static ConnectionTracker()
-            {
-                Tizen.Log.Error("NUI", "ConnectionTracker");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_ConnectionTrackerInterface")]
             public static extern void delete_ConnectionTrackerInterface(global::System.Runtime.InteropServices.HandleRef jarg1);

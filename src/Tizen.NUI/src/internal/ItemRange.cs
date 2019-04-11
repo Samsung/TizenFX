@@ -103,32 +103,32 @@ namespace Tizen.NUI
 
         public ItemRange(uint beginItem, uint endItem) : this(Interop.ItemRange.new_ItemRange__SWIG_0(beginItem, endItem), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ItemRange(ItemRange copy) : this(Interop.ItemRange.new_ItemRange__SWIG_1(ItemRange.getCPtr(copy)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ItemRange Assign(ItemRange range)
         {
             ItemRange ret = new ItemRange(Interop.ItemRange.ItemRange_Assign(swigCPtr, ItemRange.getCPtr(range)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool Within(uint itemId)
         {
             bool ret = Interop.ItemRange.ItemRange_Within(swigCPtr, itemId);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ItemRange Intersection(ItemRange second)
         {
             ItemRange ret = new ItemRange(Interop.ItemRange.ItemRange_Intersection(swigCPtr, ItemRange.getCPtr(second)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -137,12 +137,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.ItemRange.ItemRange_begin_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 uint ret = Interop.ItemRange.ItemRange_begin_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -152,12 +152,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.ItemRange.ItemRange_end_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 uint ret = Interop.ItemRange.ItemRange_end_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

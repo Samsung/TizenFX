@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ActorProperty
         {
-            static ActorProperty()
-            {
-                Tizen.Log.Error("NUI", "ActorProperty");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Actor_Property_INHERIT_LAYOUT_DIRECTION_get")]
             public static extern int Actor_Property_INHERIT_LAYOUT_DIRECTION_get();

@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class VectorFloat
         {
-            static VectorFloat()
-            {
-                Tizen.Log.Error("NUI", "VectorFloat");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_VectorFloat_BaseType_get")]
             public static extern int VectorFloat_BaseType_get();

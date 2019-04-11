@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class FontClient
         {
-            static FontClient()
-            {
-                Tizen.Log.Error("NUI", "FontClient");
-            }
-
 
             //for FontClient
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_FontClient_DEFAULT_POINT_SIZE_get")]

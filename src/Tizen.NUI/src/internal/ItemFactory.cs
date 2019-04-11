@@ -105,26 +105,26 @@ namespace Tizen.NUI
         public virtual uint GetNumberOfItems()
         {
             uint ret = Interop.ItemFactory.ItemFactory_GetNumberOfItems(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual View NewItem(uint itemId)
         {
             View ret = new View(Interop.ItemFactory.ItemFactory_NewItem(swigCPtr, itemId), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual void ItemReleased(uint itemId, View view)
         {
             if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) Interop.ItemFactory.ItemFactory_ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else Interop.ItemFactory.ItemFactory_ItemReleased(swigCPtr, itemId, View.getCPtr(view));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ItemFactory() : this(Interop.ItemFactory.new_ItemFactory(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
         }
 

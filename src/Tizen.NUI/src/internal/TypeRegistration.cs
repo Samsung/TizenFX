@@ -107,7 +107,7 @@ namespace Tizen.NUI
 
         internal TypeRegistration(SWIGTYPE_p_std__type_info registerType, SWIGTYPE_p_std__type_info baseType, System.Delegate f) : this(TypeRegistration.SwigConstructTypeRegistration(registerType, baseType, f), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         static private global::System.IntPtr SwigConstructTypeRegistration(SWIGTYPE_p_std__type_info registerType, SWIGTYPE_p_std__type_info baseType, System.Delegate f, bool callCreateOnInit)
@@ -118,7 +118,7 @@ namespace Tizen.NUI
 
         internal TypeRegistration(SWIGTYPE_p_std__type_info registerType, SWIGTYPE_p_std__type_info baseType, System.Delegate f, bool callCreateOnInit) : this(TypeRegistration.SwigConstructTypeRegistration(registerType, baseType, f, callCreateOnInit), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         static private global::System.IntPtr SwigConstructTypeRegistration(string name, SWIGTYPE_p_std__type_info baseType, System.Delegate f)
@@ -129,13 +129,13 @@ namespace Tizen.NUI
 
         internal TypeRegistration(string name, SWIGTYPE_p_std__type_info baseType, System.Delegate f) : this(TypeRegistration.SwigConstructTypeRegistration(name, baseType, f), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public string RegisteredName()
         {
             string ret = Interop.TypeRegistration.TypeRegistration_RegisteredName(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -144,7 +144,7 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(createFunc);
             {
                 Interop.TypeRegistration.TypeRegistration_RegisterControl(controlName, new System.Runtime.InteropServices.HandleRef(null, ip));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -154,7 +154,7 @@ namespace Tizen.NUI
             System.IntPtr ip2 = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(getFunc);
             {
                 Interop.TypeRegistration.TypeRegistration_RegisterProperty(controlName, propertyName, index, (int)type, new System.Runtime.InteropServices.HandleRef(null, ip), new System.Runtime.InteropServices.HandleRef(null, ip2));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 

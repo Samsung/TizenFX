@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Window
         {
-            static Window()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "Window : " + ret);
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_New__SWIG_0")]
             public static extern global::System.IntPtr Window_New__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);

@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewResourceReadySignal
         {
-            static ViewResourceReadySignal()
-            {
-                Tizen.Log.Error("NUI", "ViewResourceReadySignal");
-            }
-
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ViewResourceReadySignal_Empty")]
             public static extern bool ViewResourceReadySignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

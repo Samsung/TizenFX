@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicAnchorPoint
         {
-            static NDalicAnchorPoint()
-            {
-                Tizen.Log.Error("NUI", "NDalicAnchorPoint");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_AnchorPointTop_get")]
             public static extern float AnchorPointTop_get();

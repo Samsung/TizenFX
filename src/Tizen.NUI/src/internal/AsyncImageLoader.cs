@@ -66,66 +66,66 @@ namespace Tizen.NUI
 
         public AsyncImageLoader() : this(Interop.AsyncImageLoader.AsyncImageLoader_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public AsyncImageLoader(AsyncImageLoader handle) : this(Interop.AsyncImageLoader.new_AsyncImageLoader__SWIG_1(AsyncImageLoader.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public AsyncImageLoader Assign(AsyncImageLoader handle)
         {
             AsyncImageLoader ret = new AsyncImageLoader(Interop.AsyncImageLoader.AsyncImageLoader_Assign(swigCPtr, AsyncImageLoader.getCPtr(handle)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static AsyncImageLoader DownCast(BaseHandle handle)
         {
             AsyncImageLoader ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as AsyncImageLoader;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint Load(string url)
         {
             uint ret = Interop.AsyncImageLoader.AsyncImageLoader_Load__SWIG_0(swigCPtr, url);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint Load(string url, Uint16Pair dimensions)
         {
             uint ret = Interop.AsyncImageLoader.AsyncImageLoader_Load__SWIG_1(swigCPtr, url, Uint16Pair.getCPtr(dimensions));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint Load(string url, Uint16Pair dimensions, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
             uint ret = Interop.AsyncImageLoader.AsyncImageLoader_Load__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(dimensions), (int)fittingMode, (int)samplingMode, orientationCorrection);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool Cancel(uint loadingTaskId)
         {
             bool ret = Interop.AsyncImageLoader.AsyncImageLoader_Cancel(swigCPtr, loadingTaskId);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void CancelAll()
         {
             Interop.AsyncImageLoader.AsyncImageLoader_CancelAll(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ImageLoadedSignal()
         {
             SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t(Interop.AsyncImageLoader.AsyncImageLoader_ImageLoadedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

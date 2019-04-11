@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewProperty
         {
-            static ViewProperty()
-            {
-                Tizen.Log.Error("NUI", "ViewProperty");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_View_Property_STYLE_NAME_get")]
             public static extern int View_Property_STYLE_NAME_get();
 

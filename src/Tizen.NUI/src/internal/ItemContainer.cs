@@ -299,132 +299,132 @@ namespace Tizen.NUI
         public void Clear()
         {
             Interop.ItemContainer.ItemContainer_Clear(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Add(Item x)
         {
             Interop.ItemContainer.ItemContainer_Add(swigCPtr, Item.getCPtr(x));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private uint size()
         {
             uint ret = Interop.ItemContainer.ItemContainer_size(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private uint capacity()
         {
             uint ret = Interop.ItemContainer.ItemContainer_capacity(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void reserve(uint n)
         {
             Interop.ItemContainer.ItemContainer_reserve(swigCPtr, n);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ItemContainer() : this(Interop.ItemContainer.new_ItemContainer__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ItemContainer(ItemContainer other) : this(Interop.ItemContainer.new_ItemContainer__SWIG_1(ItemContainer.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ItemContainer(int capacity) : this(Interop.ItemContainer.new_ItemContainer__SWIG_2(capacity), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private Item getitemcopy(int index)
         {
             Item ret = new Item(Interop.ItemContainer.ItemContainer_getitemcopy(swigCPtr, index), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Item getitem(int index)
         {
             Item ret = new Item(Interop.ItemContainer.ItemContainer_getitem(swigCPtr, index), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void setitem(int index, Item val)
         {
             Interop.ItemContainer.ItemContainer_setitem(swigCPtr, index, Item.getCPtr(val));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void AddRange(ItemContainer values)
         {
             Interop.ItemContainer.ItemContainer_AddRange(swigCPtr, ItemContainer.getCPtr(values));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public ItemContainer GetRange(int index, int count)
         {
             global::System.IntPtr cPtr = Interop.ItemContainer.ItemContainer_GetRange(swigCPtr, index, count);
             ItemContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new ItemContainer(cPtr, true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Insert(int index, Item x)
         {
             Interop.ItemContainer.ItemContainer_Insert(swigCPtr, index, Item.getCPtr(x));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void InsertRange(int index, ItemContainer values)
         {
             Interop.ItemContainer.ItemContainer_InsertRange(swigCPtr, index, ItemContainer.getCPtr(values));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveAt(int index)
         {
             Interop.ItemContainer.ItemContainer_RemoveAt(swigCPtr, index);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveRange(int index, int count)
         {
             Interop.ItemContainer.ItemContainer_RemoveRange(swigCPtr, index, count);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static ItemContainer Repeat(Item value, int count)
         {
             global::System.IntPtr cPtr = Interop.ItemContainer.ItemContainer_Repeat(Item.getCPtr(value), count);
             ItemContainer ret = (cPtr == global::System.IntPtr.Zero) ? null : new ItemContainer(cPtr, true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Reverse()
         {
             Interop.ItemContainer.ItemContainer_Reverse__SWIG_0(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Reverse(int index, int count)
         {
             Interop.ItemContainer.ItemContainer_Reverse__SWIG_1(swigCPtr, index, count);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetRange(int index, ItemContainer values)
         {
             Interop.ItemContainer.ItemContainer_SetRange(swigCPtr, index, ItemContainer.getCPtr(values));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

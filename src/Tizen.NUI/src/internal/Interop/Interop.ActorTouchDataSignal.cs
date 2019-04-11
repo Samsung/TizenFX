@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ActorTouchDataSignal
         {
-            static ActorTouchDataSignal()
-            {
-                Tizen.Log.Error("NUI", "ActorTouchDataSignal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ActorTouchDataSignal_Empty")]
             public static extern bool ActorTouchDataSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

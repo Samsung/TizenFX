@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class FocusGroupChangedSignal
         {
-            static FocusGroupChangedSignal()
-            {
-                Tizen.Log.Error("NUI", "T");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_FocusGroupChangedSignal_Empty")]
             public static extern bool FocusGroupChangedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

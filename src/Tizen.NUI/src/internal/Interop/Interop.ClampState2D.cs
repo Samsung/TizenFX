@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ClampState2D
         {
-            static ClampState2D()
-            {
-                Tizen.Log.Error("NUI", "ClampState2D");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ClampState2D_x_set")]
             public static extern void ClampState2D_x_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 

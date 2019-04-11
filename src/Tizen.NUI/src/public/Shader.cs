@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(Interop.Shader.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Shader(string vertexShader, string fragmentShader) : this(Interop.Shader.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 

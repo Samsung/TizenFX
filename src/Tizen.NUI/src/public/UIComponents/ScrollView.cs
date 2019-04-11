@@ -347,7 +347,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public ScrollView() : this(Interop.ScrollView.ScrollView_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollView_SWIGUpcast(cPtr), cMemoryOwn)
@@ -692,7 +692,7 @@ namespace Tizen.NUI
         public AlphaFunction GetScrollSnapAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(Interop.ScrollView.ScrollView_GetScrollSnapAlphaFunction(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -704,7 +704,7 @@ namespace Tizen.NUI
         public void SetScrollSnapAlphaFunction(AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_SetScrollSnapAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -715,7 +715,7 @@ namespace Tizen.NUI
         public AlphaFunction GetScrollFlickAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(Interop.ScrollView.ScrollView_GetScrollFlickAlphaFunction(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -727,7 +727,7 @@ namespace Tizen.NUI
         public void SetScrollFlickAlphaFunction(AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_SetScrollFlickAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -738,7 +738,7 @@ namespace Tizen.NUI
         public float GetScrollSnapDuration()
         {
             float ret = Interop.ScrollView.ScrollView_GetScrollSnapDuration(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -750,7 +750,7 @@ namespace Tizen.NUI
         public void SetScrollSnapDuration(float time)
         {
             Interop.ScrollView.ScrollView_SetScrollSnapDuration(swigCPtr, time);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -761,7 +761,7 @@ namespace Tizen.NUI
         public float GetScrollFlickDuration()
         {
             float ret = Interop.ScrollView.ScrollView_GetScrollFlickDuration(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -773,7 +773,7 @@ namespace Tizen.NUI
         public void SetScrollFlickDuration(float time)
         {
             Interop.ScrollView.ScrollView_SetScrollFlickDuration(swigCPtr, time);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -784,7 +784,7 @@ namespace Tizen.NUI
         public void SetScrollSensitive(bool sensitive)
         {
             Interop.ScrollView.ScrollView_SetScrollSensitive(swigCPtr, sensitive);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -796,7 +796,7 @@ namespace Tizen.NUI
         public void SetMaxOvershoot(float overshootX, float overshootY)
         {
             Interop.ScrollView.ScrollView_SetMaxOvershoot(swigCPtr, overshootX, overshootY);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -807,7 +807,7 @@ namespace Tizen.NUI
         public void SetSnapOvershootAlphaFunction(AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_SetSnapOvershootAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -818,7 +818,7 @@ namespace Tizen.NUI
         public void SetSnapOvershootDuration(float duration)
         {
             Interop.ScrollView.ScrollView_SetSnapOvershootDuration(swigCPtr, duration);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -831,7 +831,7 @@ namespace Tizen.NUI
         public void SetViewAutoSnap(bool enable)
         {
             Interop.ScrollView.ScrollView_SetActorAutoSnap(swigCPtr, enable);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -843,7 +843,7 @@ namespace Tizen.NUI
         public void SetWrapMode(bool enable)
         {
             Interop.ScrollView.ScrollView_SetWrapMode(swigCPtr, enable);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -854,7 +854,7 @@ namespace Tizen.NUI
         public int GetScrollUpdateDistance()
         {
             int ret = Interop.ScrollView.ScrollView_GetScrollUpdateDistance(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -868,7 +868,7 @@ namespace Tizen.NUI
         public void SetScrollUpdateDistance(int distance)
         {
             Interop.ScrollView.ScrollView_SetScrollUpdateDistance(swigCPtr, distance);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -879,7 +879,7 @@ namespace Tizen.NUI
         public bool GetAxisAutoLock()
         {
             bool ret = Interop.ScrollView.ScrollView_GetAxisAutoLock(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -894,7 +894,7 @@ namespace Tizen.NUI
         public void SetAxisAutoLock(bool enable)
         {
             Interop.ScrollView.ScrollView_SetAxisAutoLock(swigCPtr, enable);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -905,7 +905,7 @@ namespace Tizen.NUI
         public float GetAxisAutoLockGradient()
         {
             float ret = Interop.ScrollView.ScrollView_GetAxisAutoLockGradient(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -918,7 +918,7 @@ namespace Tizen.NUI
         public void SetAxisAutoLockGradient(float gradient)
         {
             Interop.ScrollView.ScrollView_SetAxisAutoLockGradient(swigCPtr, gradient);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -930,7 +930,7 @@ namespace Tizen.NUI
         public float GetFrictionCoefficient()
         {
             float ret = Interop.ScrollView.ScrollView_GetFrictionCoefficient(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -942,7 +942,7 @@ namespace Tizen.NUI
         public void SetFrictionCoefficient(float friction)
         {
             Interop.ScrollView.ScrollView_SetFrictionCoefficient(swigCPtr, friction);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -954,7 +954,7 @@ namespace Tizen.NUI
         public float GetFlickSpeedCoefficient()
         {
             float ret = Interop.ScrollView.ScrollView_GetFlickSpeedCoefficient(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -968,7 +968,7 @@ namespace Tizen.NUI
         public void SetFlickSpeedCoefficient(float speed)
         {
             Interop.ScrollView.ScrollView_SetFlickSpeedCoefficient(swigCPtr, speed);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -979,7 +979,7 @@ namespace Tizen.NUI
         public Vector2 GetMinimumDistanceForFlick()
         {
             Vector2 ret = new Vector2(Interop.ScrollView.ScrollView_GetMinimumDistanceForFlick(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -992,7 +992,7 @@ namespace Tizen.NUI
         public void SetMinimumDistanceForFlick(Vector2 distance)
         {
             Interop.ScrollView.ScrollView_SetMinimumDistanceForFlick(swigCPtr, Vector2.getCPtr(distance));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1003,7 +1003,7 @@ namespace Tizen.NUI
         public float GetMinimumSpeedForFlick()
         {
             float ret = Interop.ScrollView.ScrollView_GetMinimumSpeedForFlick(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1015,7 +1015,7 @@ namespace Tizen.NUI
         public void SetMinimumSpeedForFlick(float speed)
         {
             Interop.ScrollView.ScrollView_SetMinimumSpeedForFlick(swigCPtr, speed);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1027,7 +1027,7 @@ namespace Tizen.NUI
         public float GetMaxFlickSpeed()
         {
             float ret = Interop.ScrollView.ScrollView_GetMaxFlickSpeed(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1040,7 +1040,7 @@ namespace Tizen.NUI
         public void SetMaxFlickSpeed(float speed)
         {
             Interop.ScrollView.ScrollView_SetMaxFlickSpeed(swigCPtr, speed);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1051,7 +1051,7 @@ namespace Tizen.NUI
         public Vector2 GetWheelScrollDistanceStep()
         {
             Vector2 ret = new Vector2(Interop.ScrollView.ScrollView_GetWheelScrollDistanceStep(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1063,7 +1063,7 @@ namespace Tizen.NUI
         public void SetWheelScrollDistanceStep(Vector2 step)
         {
             Interop.ScrollView.ScrollView_SetWheelScrollDistanceStep(swigCPtr, Vector2.getCPtr(step));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1074,7 +1074,7 @@ namespace Tizen.NUI
         public Vector2 GetCurrentScrollPosition()
         {
             Vector2 ret = new Vector2(Interop.ScrollView.ScrollView_GetCurrentScrollPosition(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1087,7 +1087,7 @@ namespace Tizen.NUI
         public uint GetCurrentPage()
         {
             uint ret = Interop.ScrollView.ScrollView_GetCurrentPage(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1099,7 +1099,7 @@ namespace Tizen.NUI
         public void ScrollTo(Vector2 position)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_0(swigCPtr, Vector2.getCPtr(position));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1111,7 +1111,7 @@ namespace Tizen.NUI
         public void ScrollTo(Vector2 position, float duration)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_1(swigCPtr, Vector2.getCPtr(position), duration);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1124,7 +1124,7 @@ namespace Tizen.NUI
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_2(swigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1138,7 +1138,7 @@ namespace Tizen.NUI
         public void ScrollTo(Vector2 position, float duration, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_3(swigCPtr, Vector2.getCPtr(position), duration, (int)horizontalBias, (int)verticalBias);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1153,7 +1153,7 @@ namespace Tizen.NUI
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_4(swigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha), (int)horizontalBias, (int)verticalBias);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1164,7 +1164,7 @@ namespace Tizen.NUI
         public void ScrollTo(uint page)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_5(swigCPtr, page);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1176,7 +1176,7 @@ namespace Tizen.NUI
         public void ScrollTo(uint page, float duration)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_6(swigCPtr, page, duration);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1189,7 +1189,7 @@ namespace Tizen.NUI
         public void ScrollTo(uint page, float duration, DirectionBias bias)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_7(swigCPtr, page, duration, (int)bias);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1200,7 +1200,7 @@ namespace Tizen.NUI
         public void ScrollTo(View view)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_8(swigCPtr, View.getCPtr(view));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1212,7 +1212,7 @@ namespace Tizen.NUI
         public void ScrollTo(View view, float duration)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_9(swigCPtr, View.getCPtr(view), duration);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1224,7 +1224,7 @@ namespace Tizen.NUI
         public bool ScrollToSnapPoint()
         {
             bool ret = Interop.ScrollView.ScrollView_ScrollToSnapPoint(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1236,7 +1236,7 @@ namespace Tizen.NUI
         public void ApplyEffect(ScrollViewEffect effect)
         {
             Interop.ScrollView.ScrollView_ApplyEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1247,7 +1247,7 @@ namespace Tizen.NUI
         public void RemoveEffect(ScrollViewEffect effect)
         {
             Interop.ScrollView.ScrollView_RemoveEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1257,7 +1257,7 @@ namespace Tizen.NUI
         public void RemoveAllEffects()
         {
             Interop.ScrollView.ScrollView_RemoveAllEffects(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1269,7 +1269,7 @@ namespace Tizen.NUI
         public void BindView(View child)
         {
             Interop.ScrollView.ScrollView_BindActor(swigCPtr, View.getCPtr(child));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1281,7 +1281,7 @@ namespace Tizen.NUI
         public void UnbindView(View child)
         {
             Interop.ScrollView.ScrollView_UnbindActor(swigCPtr, View.getCPtr(child));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1293,7 +1293,7 @@ namespace Tizen.NUI
         public void SetScrollingDirection(Radian direction, Radian threshold)
         {
             Interop.ScrollView.ScrollView_SetScrollingDirection__SWIG_0(swigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1304,7 +1304,7 @@ namespace Tizen.NUI
         public void SetScrollingDirection(Radian direction)
         {
             Interop.ScrollView.ScrollView_SetScrollingDirection__SWIG_1(swigCPtr, Radian.getCPtr(direction));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1315,7 +1315,7 @@ namespace Tizen.NUI
         public void RemoveScrollingDirection(Radian direction)
         {
             Interop.ScrollView.ScrollView_RemoveScrollingDirection(swigCPtr, Radian.getCPtr(direction));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollView obj)
@@ -1326,13 +1326,13 @@ namespace Tizen.NUI
         internal void ApplyConstraintToChildren(SWIGTYPE_p_Dali__Constraint constraint)
         {
             Interop.ScrollView.ScrollView_ApplyConstraintToChildren(swigCPtr, SWIGTYPE_p_Dali__Constraint.getCPtr(constraint));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollViewSnapStartedSignal SnapStartedSignal()
         {
             ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.ScrollView_SnapStartedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1561,7 +1561,7 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public SnapEvent() : this(Interop.ScrollView.new_ScrollView_SnapEvent(), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             internal SnapEvent(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -1592,13 +1592,13 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.ScrollView.ScrollView_SnapEvent_position_set(swigCPtr, Vector2.getCPtr(value));
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     global::System.IntPtr cPtr = Interop.ScrollView.ScrollView_SnapEvent_position_get(swigCPtr);
                     Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1612,12 +1612,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.ScrollView.ScrollView_SnapEvent_duration_set(swigCPtr, value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     float ret = Interop.ScrollView.ScrollView_SnapEvent_duration_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1627,12 +1627,12 @@ namespace Tizen.NUI
                 set
                 {
                     Interop.ScrollView.ScrollView_SnapEvent_type_set(swigCPtr, (int)value);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
                     SnapType ret = (SnapType)Interop.ScrollView.ScrollView_SnapEvent_type_get(swigCPtr);
-                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -1644,7 +1644,7 @@ namespace Tizen.NUI
             public static SnapEvent GetSnapEventFromPtr(global::System.IntPtr cPtr)
             {
                 SnapEvent ret = new SnapEvent(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
 

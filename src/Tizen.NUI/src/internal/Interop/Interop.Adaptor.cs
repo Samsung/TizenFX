@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Adaptor
         {
-            static Adaptor()
-            {
-                Tizen.Log.Error("NUI", "Adaptor");
-            }
 
             //For Adaptor
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Adaptor_New__SWIG_0")]

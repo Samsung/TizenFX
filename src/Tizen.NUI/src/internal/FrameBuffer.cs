@@ -81,20 +81,20 @@ namespace Tizen.NUI
 
         public FrameBuffer(uint width, uint height, uint attachments) : this(Interop.FrameBuffer.FrameBuffer_New(width, height, attachments), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
         public void AttachColorTexture(Texture texture)
         {
             Interop.FrameBuffer.FrameBuffer_AttachColorTexture__SWIG_0(swigCPtr, Texture.getCPtr(texture));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void AttachColorTexture(Texture texture, uint mipmapLevel, uint layer)
         {
             Interop.FrameBuffer.FrameBuffer_AttachColorTexture__SWIG_1(swigCPtr, Texture.getCPtr(texture), mipmapLevel, layer);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Texture GetColorTexture()
@@ -106,7 +106,7 @@ namespace Tizen.NUI
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

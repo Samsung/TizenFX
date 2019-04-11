@@ -48,7 +48,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public PushButton() : this(Interop.PushButton.PushButton_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PushButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PushButton.PushButton_SWIGUpcast(cPtr), cMemoryOwn)

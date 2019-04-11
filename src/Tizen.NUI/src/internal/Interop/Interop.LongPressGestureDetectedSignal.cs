@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class LongPressGestureDetectedSignal
         {
-            static LongPressGestureDetectedSignal()
-            {
-                Tizen.Log.Error("NUI", "LongPressGestureDetectorSignal");
-            }
-
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_LongPressGestureDetectedSignal_Empty")]
             public static extern bool LongPressGestureDetectedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

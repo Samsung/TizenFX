@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PageTurnSignal
         {
-            static PageTurnSignal()
-            {
-                Tizen.Log.Error("NUI", "PageTurnSignal");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PageTurnSignal_Empty")]
             public static extern bool PageTurnSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

@@ -8,12 +8,7 @@ namespace Tizen.NUI
     {
         internal static partial class BaseObject
         {
-
-            static BaseObject()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "BaseObject : " + ret);
-            }
+            
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_BaseObject_DoAction")]
             public static extern bool BaseObject_DoAction(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 

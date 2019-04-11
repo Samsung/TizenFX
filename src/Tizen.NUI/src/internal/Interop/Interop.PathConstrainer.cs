@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PathConstrainer
         {
-            static PathConstrainer()
-            {
-                Tizen.Log.Error("NUI", "PathConstrainer");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PathConstrainer_Property_FORWARD_get")]
             public static extern int PathConstrainer_Property_FORWARD_get();

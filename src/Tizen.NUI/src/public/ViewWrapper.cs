@@ -36,7 +36,7 @@ namespace Tizen.NUI
         internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(Interop.ViewWrapper.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
         {
             viewWrapperImpl = implementation;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ViewWrapper obj)

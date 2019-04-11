@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewInternal
         {
-            static ViewInternal()
-            {
-                Tizen.Log.Error("NUI", "ViewInternal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_View_KeyboardFocus")]
             public static extern global::System.IntPtr new_View_KeyboardFocus();

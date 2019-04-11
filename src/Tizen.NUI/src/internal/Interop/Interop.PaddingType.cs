@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PaddingType
         {
-            static PaddingType()
-            {
-                Tizen.Log.Error("NUI", "PaddingType");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_PaddingType__SWIG_0")]
             public static extern global::System.IntPtr new_PaddingType__SWIG_0();
 

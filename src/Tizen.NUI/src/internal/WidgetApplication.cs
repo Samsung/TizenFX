@@ -77,7 +77,7 @@ namespace Tizen.NUI
         public static WidgetApplication NewWidgetApplication(string[] args, string stylesheet)
         {
             WidgetApplication ret = New(args, stylesheet);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             _instance = ret;
             return ret;
         }
@@ -91,20 +91,20 @@ namespace Tizen.NUI
 
             WidgetApplication ret = new WidgetApplication(widgetIntPtr, false);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             return ret;
         }
 
         internal WidgetApplication(WidgetApplication widgetApplication) : this(Interop.WidgetApplication.new_WidgetApplication__SWIG_1(WidgetApplication.getCPtr(widgetApplication)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal WidgetApplication Assign(WidgetApplication widgetApplication)
         {
             WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.WidgetApplication_Assign(swigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -125,7 +125,7 @@ namespace Tizen.NUI
             CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip, true);
 
             Interop.WidgetApplication.WidgetApplication_RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void AddWidgetInstance( Widget widget )

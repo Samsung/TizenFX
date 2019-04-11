@@ -41,7 +41,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public RadioButton() : this(Interop.RadioButton.RadioButton_New__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public RadioButton(string label) : this(Interop.RadioButton.RadioButton_New__SWIG_1(label), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RadioButton.RadioButton_SWIGUpcast(cPtr), cMemoryOwn)

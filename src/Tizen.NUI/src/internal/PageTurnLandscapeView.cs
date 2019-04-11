@@ -66,25 +66,25 @@ namespace Tizen.NUI
 
         public PageTurnLandscapeView(PageFactory pageFactory, Vector2 pageSize) : this(Interop.PageTurnLandScapeView.PageTurnLandscapeView_New(PageFactory.getCPtr(pageFactory), Vector2.getCPtr(pageSize)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public PageTurnLandscapeView(PageTurnLandscapeView pageTurnLandscapeView) : this(Interop.PageTurnLandScapeView.new_PageTurnLandscapeView__SWIG_1(PageTurnLandscapeView.getCPtr(pageTurnLandscapeView)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PageTurnLandscapeView Assign(PageTurnLandscapeView pageTurnLandscapeView)
         {
             PageTurnLandscapeView ret = new PageTurnLandscapeView(Interop.PageTurnLandScapeView.PageTurnLandscapeView_Assign(swigCPtr, PageTurnLandscapeView.getCPtr(pageTurnLandscapeView)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public new static PageTurnLandscapeView DownCast(BaseHandle handle)
         {
             PageTurnLandscapeView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnLandscapeView;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

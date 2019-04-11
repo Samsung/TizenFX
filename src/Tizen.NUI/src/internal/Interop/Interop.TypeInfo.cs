@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TypeInfo
         {
-            static TypeInfo()
-            {
-                Tizen.Log.Error("NUI", "TypeInfo");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TypeInfo_SWIGUpcast")]
             public static extern global::System.IntPtr TypeInfo_SWIGUpcast(global::System.IntPtr jarg1);

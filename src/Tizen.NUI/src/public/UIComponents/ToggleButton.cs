@@ -85,7 +85,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public ToggleButton() : this(Interop.ToggleButton.ToggleButton_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ToggleButton.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)

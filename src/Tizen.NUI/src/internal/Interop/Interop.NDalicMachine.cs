@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicMachine
         {
-            static NDalicMachine()
-            {
-                Tizen.Log.Error("NUI", "NDalicMachine");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_MACHINE_EPSILON_0_get")]
             public static extern float MACHINE_EPSILON_0_get();
 

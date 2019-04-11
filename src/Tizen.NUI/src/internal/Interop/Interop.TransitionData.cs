@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TransitionData
         {
-            static TransitionData()
-            {
-                Tizen.Log.Error("NUI", "TransitionData");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_TransitionData__SWIG_0")]
             public static extern global::System.IntPtr new_TransitionData__SWIG_0();
 

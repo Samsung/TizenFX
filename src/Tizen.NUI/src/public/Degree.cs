@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Degree() : this(Interop.Degree.new_Degree__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Degree(float value) : this(Interop.Degree.new_Degree__SWIG_1(value), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Degree(Radian value) : this(Interop.Degree.new_Degree__SWIG_2(Radian.getCPtr(value)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Degree(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -100,12 +100,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Degree.Degree_degree_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 float ret = Interop.Degree.Degree_degree_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

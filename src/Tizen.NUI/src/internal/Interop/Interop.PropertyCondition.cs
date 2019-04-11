@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PropertyCondition
         {
-            static PropertyCondition()
-            {
-                Tizen.Log.Error("NUI", "PropertyCondition");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_PropertyCondition__SWIG_0")]
             public static extern global::System.IntPtr new_PropertyCondition__SWIG_0();
 

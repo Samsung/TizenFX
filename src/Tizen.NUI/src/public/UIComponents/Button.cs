@@ -418,7 +418,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public Button() : this(Interop.Button.new_Button__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Button.Button_SWIGUpcast(cPtr), cMemoryOwn)
@@ -899,28 +899,28 @@ namespace Tizen.NUI.UIComponents
         internal ButtonSignal PressedSignal()
         {
             ButtonSignal ret = new ButtonSignal(Interop.Button.Button_PressedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ReleasedSignal()
         {
             ButtonSignal ret = new ButtonSignal(Interop.Button.Button_ReleasedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ClickedSignal()
         {
             ButtonSignal ret = new ButtonSignal(Interop.Button.Button_ClickedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal StateChangedSignal()
         {
             ButtonSignal ret = new ButtonSignal(Interop.Button.Button_StateChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

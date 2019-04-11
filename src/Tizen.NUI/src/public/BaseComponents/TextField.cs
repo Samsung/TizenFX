@@ -936,7 +936,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public TextField() : this(Interop.TextField.TextField_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn)
@@ -946,7 +946,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextField(TextField handle) : this(Interop.TextField.new_TextField__SWIG_1(TextField.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -2041,7 +2041,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 /*Avoid raising InputMethodContext reference count.*/
                 inputMethodCotext = new InputMethodContext(Interop.TextField.TextField_GetInputMethodContext(swigCPtr), true);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return inputMethodCotext;
         }
@@ -2054,21 +2054,21 @@ namespace Tizen.NUI.BaseComponents
         internal TextFieldSignal TextChangedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextField_TextChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TextFieldSignal MaxLengthReachedSignal()
         {
             TextFieldSignal ret = new TextFieldSignal(Interop.TextField.TextField_MaxLengthReachedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()
         {
             SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(Interop.TextField.TextField_InputStyleChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

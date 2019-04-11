@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class GaussianBlurViewSignal
         {
-            static GaussianBlurViewSignal()
-            {
-                Tizen.Log.Error("NUI", "GaussianBlurViewSignal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GaussianBlurViewSignal_Empty")]
             public static extern bool GaussianBlurViewSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

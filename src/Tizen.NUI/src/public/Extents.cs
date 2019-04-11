@@ -50,7 +50,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Extents() : this(Interop.Extents.new_Extents__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Extents(Extents copy) : this(Interop.Extents.new_Extents__SWIG_1(Extents.getCPtr(copy)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Extents(ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Extents(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -104,12 +104,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Extents.Extents_start_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 ushort ret = Interop.Extents.Extents_start_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -123,12 +123,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Extents.Extents_end_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 ushort ret = Interop.Extents.Extents_end_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -142,12 +142,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Extents.Extents_top_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 ushort ret = Interop.Extents.Extents_top_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -161,12 +161,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Extents.Extents_bottom_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 ushort ret = Interop.Extents.Extents_bottom_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -203,7 +203,7 @@ namespace Tizen.NUI
         public bool EqualTo(Extents rhs)
         {
             bool ret = Interop.Extents.Extents_EqualTo(swigCPtr, Extents.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -216,7 +216,7 @@ namespace Tizen.NUI
         public bool NotEqualTo(Extents rhs)
         {
             bool ret = Interop.Extents.Extents_NotEqualTo(swigCPtr, Extents.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -228,14 +228,14 @@ namespace Tizen.NUI
         internal Extents Assign(SWIGTYPE_p_uint16_t array)
         {
             Extents ret = new Extents(Interop.Extents.Extents_Assign__SWIG_1(swigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Extents Assign(Extents copy)
         {
             Extents ret = new Extents(Interop.Extents.Extents_Assign__SWIG_0(swigCPtr, Extents.getCPtr(copy)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Handle
         {
-            static Handle()
-            {
-                Tizen.Log.Error("NUI", "Handle");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Handle__SWIG_0")]
             public static extern global::System.IntPtr new_Handle__SWIG_0();
 

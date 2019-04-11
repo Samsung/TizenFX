@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Animation
         {
-            static Animation()
-            {
-                Tizen.Log.Error("NUI", "Animation");
-            }
-
             //Animation Pinvoke
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Animation__SWIG_0")]
             public static extern global::System.IntPtr new_Animation__SWIG_0();

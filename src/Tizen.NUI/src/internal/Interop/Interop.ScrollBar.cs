@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ScrollBar
         {
-            static ScrollBar()
-            {
-                Tizen.Log.Error("NUI", "ScrollBar");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ScrollBar_Property_SCROLL_DIRECTION_get")]
             public static extern int ScrollBar_Property_SCROLL_DIRECTION_get();

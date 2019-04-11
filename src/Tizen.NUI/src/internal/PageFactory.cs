@@ -103,14 +103,14 @@ namespace Tizen.NUI
         public virtual uint GetNumberOfPages()
         {
             uint ret = Interop.PageFactory.PageFactory_GetNumberOfPages(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual Texture NewPage(uint pageId)
         {
             Texture ret = new Texture(Interop.PageFactory.PageFactory_NewPage(swigCPtr, pageId), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

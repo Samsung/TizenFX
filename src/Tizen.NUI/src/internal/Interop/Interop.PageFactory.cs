@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PageFactory
         {
-            static PageFactory()
-            {
-                Tizen.Log.Error("NUI", "PageFactory");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_PageFactory")]
             public static extern void delete_PageFactory(global::System.Runtime.InteropServices.HandleRef jarg1);

@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Layer
         {
-            static Layer()
-            {
-                Tizen.Log.Error("NUI", "Layer");
-            }
 
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Layer_Property_CLIPPING_ENABLE_get")]

@@ -543,7 +543,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public Popup() : this(Interop.Popup.Popup_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Popup.Popup_SWIGUpcast(cPtr), cMemoryOwn)
@@ -1123,7 +1123,7 @@ namespace Tizen.NUI.UIComponents
         public void SetTitle(View titleView)
         {
             Interop.Popup.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1134,7 +1134,7 @@ namespace Tizen.NUI.UIComponents
         public void SetContent(View content)
         {
             Interop.Popup.Popup_SetContent(swigCPtr, View.getCPtr(content));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1145,7 +1145,7 @@ namespace Tizen.NUI.UIComponents
         public void SetFooter(View footer)
         {
             Interop.Popup.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1169,7 +1169,7 @@ namespace Tizen.NUI.UIComponents
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
             Interop.Popup.Popup_SetDisplayState(swigCPtr, (int)displayState);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj)
@@ -1186,7 +1186,7 @@ namespace Tizen.NUI.UIComponents
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1199,7 +1199,7 @@ namespace Tizen.NUI.UIComponents
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1212,49 +1212,49 @@ namespace Tizen.NUI.UIComponents
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Popup.DisplayStateType GetDisplayState()
         {
             Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.Popup_GetDisplayState(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal OutsideTouchedSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.Popup.Popup_OutsideTouchedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShowingSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.Popup.Popup_ShowingSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShownSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.Popup.Popup_ShownSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HidingSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.Popup.Popup_HidingSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HiddenSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.Popup.Popup_HiddenSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

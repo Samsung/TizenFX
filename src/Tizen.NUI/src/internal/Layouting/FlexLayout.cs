@@ -72,90 +72,90 @@ namespace Tizen.NUI
         /// </summary>
         public FlexLayout() : this(Interop.FlexLayout.FlexLayout_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static FlexLayout DownCast(BaseHandle handle)
         {
             FlexLayout ret = new FlexLayout(Interop.FlexLayout.FlexLayout_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FlexLayout(FlexLayout other) : this(Interop.FlexLayout.new_FlexLayout__SWIG_1(FlexLayout.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout Assign(FlexLayout other)
         {
             FlexLayout ret = new FlexLayout(Interop.FlexLayout.FlexLayout_Assign(swigCPtr, FlexLayout.getCPtr(other)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexDirection(FlexLayout.FlexDirection flexDirection)
         {
             Interop.FlexLayout.FlexLayout_SetFlexDirection(swigCPtr, (int)flexDirection);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.FlexDirection GetFlexDirection()
         {
             FlexLayout.FlexDirection ret = (FlexLayout.FlexDirection)Interop.FlexLayout.FlexLayout_GetFlexDirection(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexJustification(FlexLayout.FlexJustification flexJustification)
         {
             Interop.FlexLayout.FlexLayout_SetFlexJustification(swigCPtr, (int)flexJustification);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.FlexJustification GetFlexJustification()
         {
             FlexLayout.FlexJustification ret = (FlexLayout.FlexJustification)Interop.FlexLayout.FlexLayout_GetFlexJustification(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexWrap(FlexLayout.FlexWrapType flexWrap)
         {
             Interop.FlexLayout.FlexLayout_SetFlexWrap(swigCPtr, (int)flexWrap);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.FlexWrapType GetFlexWrap()
         {
             FlexLayout.FlexWrapType ret = (FlexLayout.FlexWrapType)Interop.FlexLayout.FlexLayout_GetFlexWrap(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexAlignment(FlexLayout.AlignmentType flexAlignment)
         {
             Interop.FlexLayout.FlexLayout_SetFlexAlignment(swigCPtr, (int)flexAlignment);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.AlignmentType GetFlexAlignment()
         {
             FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.FlexLayout_GetFlexAlignment(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexItemsAlignment(FlexLayout.AlignmentType flexAlignment)
         {
             Interop.FlexLayout.FlexLayout_SetFlexItemsAlignment(swigCPtr, (int)flexAlignment);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.AlignmentType GetFlexItemsAlignment()
         {
             FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.FlexLayout_GetFlexItemsAlignment(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

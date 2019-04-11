@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Sampler() : this(Interop.Sampler.Sampler_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
         {
             Interop.Sampler.Sampler_SetFilterMode(swigCPtr, (int)minFilter, (int)magFilter);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Tizen.NUI
         public void SetWrapMode(WrapModeType uWrap, WrapModeType vWrap)
         {
             Interop.Sampler.Sampler_SetWrapMode__SWIG_0(swigCPtr, (int)uWrap, (int)vWrap);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
         {
             Interop.Sampler.Sampler_SetWrapMode__SWIG_1(swigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Sampler obj)

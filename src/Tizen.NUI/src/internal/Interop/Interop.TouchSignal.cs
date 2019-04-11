@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TouchSignal
         {
-            static TouchSignal()
-            {
-                Tizen.Log.Error("NUI", "TouchSignal");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TouchSignal_Empty")]
             public static extern bool TouchSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

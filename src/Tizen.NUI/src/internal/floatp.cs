@@ -102,19 +102,19 @@ namespace Tizen.NUI
 
         public floatp() : this(Interop.floatp.new_floatp(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void assign(float value)
         {
             Interop.floatp.floatp_assign(swigCPtr, value);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float value()
         {
             float ret = Interop.floatp.floatp_value(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -122,7 +122,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.floatp.floatp_cast(swigCPtr);
             SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.floatp.floatp_frompointer(SWIGTYPE_p_float.getCPtr(t));
             floatp ret = (cPtr == global::System.IntPtr.Zero) ? null : new floatp(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

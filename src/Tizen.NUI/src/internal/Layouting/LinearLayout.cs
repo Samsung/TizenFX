@@ -70,38 +70,38 @@ namespace Tizen.NUI
         }
         public LinearLayout() : this(Interop.LinearLayout.LinearLayout_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static LinearLayout DownCast(BaseHandle handle)
         {
             LinearLayout ret = new LinearLayout(Interop.LinearLayout.LinearLayout_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LinearLayout(LinearLayout other) : this(Interop.LinearLayout.new_LinearLayout__SWIG_1(LinearLayout.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal LinearLayout Assign(LinearLayout other)
         {
             LinearLayout ret = new LinearLayout(Interop.LinearLayout.LinearLayout_Assign(swigCPtr, LinearLayout.getCPtr(other)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetCellPadding(LayoutSize size)
         {
             Interop.LinearLayout.LinearLayout_SetCellPadding(swigCPtr, LayoutSize.getCPtr(size));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal LayoutSize GetCellPadding()
         {
             LayoutSize ret = new LayoutSize(Interop.LinearLayout.LinearLayout_GetCellPadding(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -109,26 +109,26 @@ namespace Tizen.NUI
         internal void SetOrientation(LinearLayout.Orientation orientation)
         {
             Interop.LinearLayout.LinearLayout_SetOrientation(swigCPtr, (int)orientation);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal LinearLayout.Orientation GetOrientation()
         {
             LinearLayout.Orientation ret = (LinearLayout.Orientation)Interop.LinearLayout.LinearLayout_GetOrientation(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetAlignment(LinearLayout.Alignment alignment)
         {
             Interop.LinearLayout.LinearLayout_SetAlignment(swigCPtr, (uint)alignment);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal LinearLayout.Alignment GetAlignment()
         {
             LinearLayout.Alignment ret = (LinearLayout.Alignment)Interop.LinearLayout.LinearLayout_GetAlignment(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

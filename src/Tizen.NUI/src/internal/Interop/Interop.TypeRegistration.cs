@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TypeRegistration
         {
-            static TypeRegistration()
-            {
-                Tizen.Log.Error("NUI", "TypeRegistration");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_TypeRegistration__SWIG_0")]
             public static extern global::System.IntPtr new_TypeRegistration__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);

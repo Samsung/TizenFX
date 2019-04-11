@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PropertyRegistration(swigCPtr);
+                    Interop.NDalic.delete_PropertyRegistration(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -101,9 +101,9 @@ namespace Tizen.NUI
         }
 
 
-        public PropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type, SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void setFunc, SWIGTYPE_p_f_p_Dali__BaseObject_Dali__Property__Index__Dali__Property__Value getFunc) : this(NDalicPINVOKE.new_PropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type, SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void.getCPtr(setFunc), SWIGTYPE_p_f_p_Dali__BaseObject_Dali__Property__Index__Dali__Property__Value.getCPtr(getFunc)), true)
+        public PropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type, SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void setFunc, SWIGTYPE_p_f_p_Dali__BaseObject_Dali__Property__Index__Dali__Property__Value getFunc) : this(Interop.NDalic.new_PropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type, SWIGTYPE_p_f_p_Dali__BaseObject_int_r_q_const__Dali__Property__Value__void.getCPtr(setFunc), SWIGTYPE_p_f_p_Dali__BaseObject_Dali__Property__Index__Dali__Property__Value.getCPtr(getFunc)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

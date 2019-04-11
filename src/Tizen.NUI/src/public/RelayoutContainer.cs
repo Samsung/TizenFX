@@ -86,8 +86,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public virtual void Add(View view, Size2D size)
         {
-            NDalicPINVOKE.RelayoutContainer_Add(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            Interop.NDalic.RelayoutContainer_Add(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RelayoutContainer obj)
@@ -128,7 +128,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_RelayoutContainer(swigCPtr);
+                    Interop.NDalic.delete_RelayoutContainer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

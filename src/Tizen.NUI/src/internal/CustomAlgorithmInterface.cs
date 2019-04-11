@@ -106,13 +106,13 @@ namespace Tizen.NUI
         public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
         {
             View ret = new View(Interop.CustomAlgorithmInterface.CustomAlgorithmInterface_GetNextFocusableActor(swigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal CustomAlgorithmInterface() : this(Interop.CustomAlgorithmInterface.new_CustomAlgorithmInterface(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
         }
 

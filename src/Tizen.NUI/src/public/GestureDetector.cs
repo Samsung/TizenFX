@@ -38,7 +38,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public GestureDetector() : this(Interop.GestureDetector.new_GestureDetector__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public GestureDetector(GestureDetector handle) : this(Interop.GestureDetector.new_GestureDetector__SWIG_1(GestureDetector.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal GestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.GestureDetector.GestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         public void Attach(View view)
         {
             Interop.GestureDetector.GestureDetector_Attach(swigCPtr, View.getCPtr(view));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Tizen.NUI
         public void Detach(View view)
         {
             Interop.GestureDetector.GestureDetector_Detach(swigCPtr, View.getCPtr(view));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Tizen.NUI
         public void DetachAll()
         {
             Interop.GestureDetector.GestureDetector_DetachAll(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         public uint GetAttachedViewCount()
         {
             uint ret = Interop.GestureDetector.GestureDetector_GetAttachedActorCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -115,21 +115,21 @@ namespace Tizen.NUI
         public View GetAttachedView(uint index)
         {
             View ret = new View(Interop.GestureDetector.GestureDetector_GetAttachedActor(swigCPtr, index), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal GestureDetector Assign(GestureDetector rhs)
         {
             GestureDetector ret = new GestureDetector(Interop.GestureDetector.GestureDetector_Assign(swigCPtr, GestureDetector.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static GestureDetector DownCast(BaseHandle handle)
         {
             GestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as GestureDetector;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

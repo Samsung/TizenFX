@@ -103,7 +103,7 @@ namespace Tizen.NUI
 
         public RenderTaskSignal() : this(Interop.RenderTask.new_RenderTaskSignal(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

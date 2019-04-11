@@ -80,7 +80,7 @@ namespace Tizen.NUI
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_CallbackBase callback)
         {
             Interop.ConnectionTracker.ConnectionTrackerInterface_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
     }

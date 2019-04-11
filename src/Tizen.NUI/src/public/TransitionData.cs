@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TransitionData(PropertyMap transition) : this(Interop.TransitionData.TransitionData_New__SWIG_0(PropertyMap.getCPtr(transition)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -43,7 +43,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TransitionData(PropertyArray transition) : this(Interop.TransitionData.TransitionData_New__SWIG_1(PropertyArray.getCPtr(transition)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TransitionData(TransitionData handle) : this(Interop.TransitionData.new_TransitionData__SWIG_1(TransitionData.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TransitionData.TransitionData_SWIGUpcast(cPtr), cMemoryOwn)
@@ -70,7 +70,7 @@ namespace Tizen.NUI
         public uint Count()
         {
             uint ret = Interop.TransitionData.TransitionData_Count(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -83,7 +83,7 @@ namespace Tizen.NUI
         public PropertyMap GetAnimatorAt(uint index)
         {
             PropertyMap ret = new PropertyMap(Interop.TransitionData.TransitionData_GetAnimatorAt(swigCPtr, index), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

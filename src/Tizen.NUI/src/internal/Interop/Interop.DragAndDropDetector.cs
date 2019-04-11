@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class DragAndDropDetector
         {
-            static DragAndDropDetector()
-            {
-                Tizen.Log.Error("NUI", "DragAndDropDetector");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_DragAndDropDetector")]
             public static extern global::System.IntPtr new_DragAndDropDetector();
 

@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicColor
         {
-            static NDalicColor()
-            {
-                Tizen.Log.Error("NUI", "NDalicColor");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_BLACK_get")]
             public static extern global::System.IntPtr BLACK_get();

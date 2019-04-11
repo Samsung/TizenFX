@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ScrollView
         {
-            static ScrollView()
-            {
-                Tizen.Log.Error("NUI", "ScrollView");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_ScrollViewEffect")]
             public static extern global::System.IntPtr new_ScrollViewEffect();

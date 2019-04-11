@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Button
         {
-            static Button()
-            {
-                Tizen.Log.Error("NUI", "Button");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Button_Property_DISABLED_get")]
             public static extern int Button_Property_DISABLED_get();

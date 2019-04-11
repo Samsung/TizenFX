@@ -33,7 +33,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Renderer(Geometry geometry, Shader shader) : this(Interop.Renderer.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -477,7 +477,7 @@ namespace Tizen.NUI
         public void SetGeometry(Geometry geometry)
         {
             Interop.Renderer.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -494,7 +494,7 @@ namespace Tizen.NUI
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -507,7 +507,7 @@ namespace Tizen.NUI
         public void SetIndexRange(int firstElement, int elementsCount)
         {
             Interop.Renderer.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace Tizen.NUI
         public void SetTextures(TextureSet textureSet)
         {
             Interop.Renderer.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -535,13 +535,13 @@ namespace Tizen.NUI
             if (cPtr != null && ret == null)
             {
                 ret = new TextureSet(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -553,7 +553,7 @@ namespace Tizen.NUI
         public void SetShader(Shader shader)
         {
             Interop.Renderer.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -570,7 +570,7 @@ namespace Tizen.NUI
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class AccessibilityManage
         {
-            static AccessibilityManage()
-            {
-                Tizen.Log.Error("NUI", "AccessibilityManage");
-            }
-
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_AccessibilityManager")]
             public static extern global::System.IntPtr new_AccessibilityManager();
 

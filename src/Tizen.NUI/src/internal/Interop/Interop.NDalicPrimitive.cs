@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NdalicPrimitive
         {
-            static NdalicPrimitive()
-            {
-                Tizen.Log.Error("NUI", "NdalicPrimitive");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SHAPE_get")]
             public static extern int PRIMITIVE_VISUAL_SHAPE_get();
 

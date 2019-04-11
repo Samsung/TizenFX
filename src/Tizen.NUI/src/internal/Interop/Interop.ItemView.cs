@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ItemView
         {
-            static ItemView()
-            {
-                Tizen.Log.Error("NUI", "ItemView");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ItemView_Property_MINIMUM_SWIPE_SPEED_get")]
             public static extern int ItemView_Property_MINIMUM_SWIPE_SPEED_get();
 

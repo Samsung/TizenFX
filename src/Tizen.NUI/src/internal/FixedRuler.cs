@@ -66,39 +66,39 @@ namespace Tizen.NUI
 
         public FixedRuler(float spacing) : this(Interop.Ruler.new_FixedRuler__SWIG_0(spacing), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public FixedRuler() : this(Interop.Ruler.new_FixedRuler__SWIG_1(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public override float Snap(float x, float bias)
         {
             float ret = Interop.Ruler.FixedRuler_Snap(swigCPtr, x, bias);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public override float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
             float ret = Interop.Ruler.FixedRuler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public override uint GetPageFromPosition(float position, bool wrap)
         {
             uint ret = Interop.Ruler.FixedRuler_GetPageFromPosition(swigCPtr, position, wrap);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public override uint GetTotalPages()
         {
             uint ret = Interop.Ruler.FixedRuler_GetTotalPages(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -68,28 +68,28 @@ namespace Tizen.NUI
         public bool DoAction(string actionName, PropertyMap attributes)
         {
             bool ret = Interop.BaseObject.BaseObject_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetTypeName()
         {
             string ret = Interop.BaseObject.BaseObject_GetTypeName(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
             bool ret = Interop.BaseObject.BaseObject_GetTypeInfo(swigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool DoConnectSignal(ConnectionTrackerInterface connectionTracker, string signalName, SWIGTYPE_p_FunctorDelegate functorDelegate)
         {
             bool ret = Interop.BaseObject.BaseObject_DoConnectSignal(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), signalName, SWIGTYPE_p_FunctorDelegate.getCPtr(functorDelegate));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

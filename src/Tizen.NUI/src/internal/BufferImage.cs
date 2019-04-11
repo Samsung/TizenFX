@@ -69,52 +69,52 @@ namespace Tizen.NUI
 
         public BufferImage(uint width, uint height, PixelFormat pixelformat) : this(Interop.BufferImage.BufferImage_New__SWIG_0(width, height, (int)pixelformat), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public BufferImage(uint width, uint height) : this(Interop.BufferImage.BufferImage_New__SWIG_1(width, height), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public BufferImage(byte[] pixelBuffer, uint width, uint height, PixelFormat pixelFormat, uint stride) : this(Interop.BufferImage.BufferImage_New__SWIG_2(pixelBuffer, width, height, (int)pixelFormat, stride), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public BufferImage(byte[] pixelBuffer, uint width, uint height, PixelFormat pixelFormat) : this(Interop.BufferImage.BufferImage_New__SWIG_3(pixelBuffer, width, height, (int)pixelFormat), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public BufferImage(byte[] pixelBuffer, uint width, uint height) : this(Interop.BufferImage.BufferImage_New__SWIG_4(pixelBuffer, width, height), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public new static BufferImage DownCast(BaseHandle handle)
         {
             BufferImage ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as BufferImage;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public BufferImage(BufferImage handle) : this(Interop.BufferImage.new_BufferImage__SWIG_1(BufferImage.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public BufferImage Assign(BufferImage rhs)
         {
             BufferImage ret = new BufferImage(Interop.BufferImage.BufferImage_Assign(swigCPtr, BufferImage.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static BufferImage WHITE()
         {
             BufferImage ret = new BufferImage(Interop.BufferImage.BufferImage_WHITE(), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -122,47 +122,47 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.BufferImage.BufferImage_GetBuffer(swigCPtr);
             SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetBufferSize()
         {
             uint ret = Interop.BufferImage.BufferImage_GetBufferSize(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetBufferStride()
         {
             uint ret = Interop.BufferImage.BufferImage_GetBufferStride(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PixelFormat GetPixelFormat()
         {
             PixelFormat ret = (PixelFormat)Interop.BufferImage.BufferImage_GetPixelFormat(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Update()
         {
             Interop.BufferImage.BufferImage_Update__SWIG_0(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Update(SWIGTYPE_p_Dali__RectT_unsigned_int_t updateArea)
         {
             Interop.BufferImage.BufferImage_Update__SWIG_1(swigCPtr, SWIGTYPE_p_Dali__RectT_unsigned_int_t.getCPtr(updateArea));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool IsDataExternal()
         {
             bool ret = Interop.BufferImage.BufferImage_IsDataExternal(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

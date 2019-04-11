@@ -8,12 +8,7 @@ namespace Tizen.NUI
     {
         internal static partial class RefObject
         {
-
-            static RefObject()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "RefObject : " + ret);
-            }
+            
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_RefObject_Reference")]
             public static extern void RefObject_Reference(global::System.Runtime.InteropServices.HandleRef jarg1);
 

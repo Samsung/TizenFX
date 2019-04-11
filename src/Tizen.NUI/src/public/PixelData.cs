@@ -50,7 +50,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(Interop.PixelData.PixelData_New(buffer, bufferSize, width, height, (int)pixelFormat, (int)releaseFunction), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -88,7 +88,7 @@ namespace Tizen.NUI
         public uint GetWidth()
         {
             uint ret = Interop.PixelData.PixelData_GetWidth(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         public uint GetHeight()
         {
             uint ret = Interop.PixelData.PixelData_GetHeight(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         public PixelFormat GetPixelFormat()
         {
             PixelFormat ret = (PixelFormat)Interop.PixelData.PixelData_GetPixelFormat(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

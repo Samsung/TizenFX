@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicImageVisual
         {
-            static NDalicImageVisual()
-            {
-                Tizen.Log.Error("NUI", "NDalicImageVisual");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_IMAGE_VISUAL_URL_get")]
             public static extern int IMAGE_VISUAL_URL_get();

@@ -953,12 +953,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public TextEditor() : this(Interop.TextEditor.TextEditor_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TextEditor(TextEditor handle) : this(Interop.TextEditor.new_TextEditor__SWIG_1(TextEditor.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextEditor.TextEditor_SWIGUpcast(cPtr), cMemoryOwn)
@@ -2028,7 +2028,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 /*Avoid raising InputMethodContext reference count.*/
                 inputMethodContext = new InputMethodContext(Interop.TextEditor.TextEditor_GetInputMethodContext(swigCPtr), true);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return inputMethodContext;
         }
@@ -2041,21 +2041,21 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_TextChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollStateChangedSignal ScrollStateChangedSignal(TextEditor textEditor)
         {
             ScrollStateChangedSignal ret = new ScrollStateChangedSignal(Interop.TextEditor.TextEditor_ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t InputStyleChangedSignal()
         {
             SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(Interop.TextEditor.TextEditor_InputStyleChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

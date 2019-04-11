@@ -66,35 +66,35 @@ namespace Tizen.NUI
 
         public EncodedBufferImage(SWIGTYPE_p_uint8_t encodedImage, uint encodedImageByteCount) : this(Interop.BufferImage.EncodedBufferImage_New__SWIG_0(SWIGTYPE_p_uint8_t.getCPtr(encodedImage), encodedImageByteCount), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public EncodedBufferImage(SWIGTYPE_p_uint8_t encodedImage, uint encodedImageByteCount, Uint16Pair size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection) : this(Interop.BufferImage.EncodedBufferImage_New__SWIG_1(SWIGTYPE_p_uint8_t.getCPtr(encodedImage), encodedImageByteCount, Uint16Pair.getCPtr(size), (int)fittingMode, (int)samplingMode, orientationCorrection), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public EncodedBufferImage(SWIGTYPE_p_uint8_t encodedImage, uint encodedImageByteCount, Uint16Pair size, FittingModeType fittingMode, SamplingModeType samplingMode) : this(Interop.BufferImage.EncodedBufferImage_New__SWIG_2(SWIGTYPE_p_uint8_t.getCPtr(encodedImage), encodedImageByteCount, Uint16Pair.getCPtr(size), (int)fittingMode, (int)samplingMode), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public new static EncodedBufferImage DownCast(BaseHandle handle)
         {
             EncodedBufferImage ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as EncodedBufferImage;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public EncodedBufferImage(EncodedBufferImage handle) : this(Interop.BufferImage.new_EncodedBufferImage__SWIG_1(EncodedBufferImage.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public EncodedBufferImage Assign(EncodedBufferImage rhs)
         {
             EncodedBufferImage ret = new EncodedBufferImage(Interop.BufferImage.EncodedBufferImage_Assign(swigCPtr, EncodedBufferImage.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

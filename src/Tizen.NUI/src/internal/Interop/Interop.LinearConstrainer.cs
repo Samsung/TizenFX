@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class LinearConstrainer
         {
-            static LinearConstrainer()
-            {
-                Tizen.Log.Error("NUI", "LinearConstrainer");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_LinearConstrainer_Property_VALUE_get")]
             public static extern int LinearConstrainer_Property_VALUE_get();

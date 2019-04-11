@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Widget() : this(new WidgetImpl(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Widget(WidgetImpl widgetImpl, bool swigCMemOwn) : this(Interop.Widget.Widget_New__SWIG_1(WidgetImpl.getCPtr(widgetImpl)), swigCMemOwn)
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         internal Widget Assign(Widget widget)
         {
             Widget ret = new Widget(Interop.Widget.Widget_Assign(swigCPtr, Widget.getCPtr(widget)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

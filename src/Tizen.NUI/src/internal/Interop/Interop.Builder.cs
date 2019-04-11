@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Builder
         {
-            static Builder()
-            {
-                Tizen.Log.Error("NUI", "Builder");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Builder")]
             public static extern global::System.IntPtr new_Builder();

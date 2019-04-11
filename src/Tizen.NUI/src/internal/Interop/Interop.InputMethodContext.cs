@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class InputMethodContext
         {
-            static InputMethodContext()
-            {
-                Tizen.Log.Error("NUI", "InputMethodContext");
-            }
-
 
             //////////////////////InputMethodContext
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_SWIGUpcast")]

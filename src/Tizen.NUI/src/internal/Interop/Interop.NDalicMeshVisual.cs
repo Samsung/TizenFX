@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicMeshVisual
         {
-            static NDalicMeshVisual()
-            {
-                Tizen.Log.Error("NUI", "NDalicMeshVisual");
-            }
 
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_MESH_VISUAL_OBJECT_URL_get")]

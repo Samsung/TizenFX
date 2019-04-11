@@ -36,7 +36,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public KeyFrames() : this(Interop.KeyFrames.KeyFrames_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -78,7 +78,7 @@ namespace Tizen.NUI
         public new PropertyType GetType()
         {
             PropertyType ret = (PropertyType)Interop.KeyFrames.KeyFrames_GetType(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -91,7 +91,7 @@ namespace Tizen.NUI
         public void Add(float progress, PropertyValue value)
         {
             Interop.KeyFrames.KeyFrames_Add__SWIG_0(swigCPtr, progress, PropertyValue.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Tizen.NUI
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
             Interop.KeyFrames.KeyFrames_Add__SWIG_1(swigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(KeyFrames obj)

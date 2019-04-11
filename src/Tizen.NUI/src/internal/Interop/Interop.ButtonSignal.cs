@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ButtonSignal
         {
-            static ButtonSignal()
-            {
-                Tizen.Log.Error("NUI", "ButtonSignal");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ButtonSignal_Empty")]
             public static extern bool ButtonSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

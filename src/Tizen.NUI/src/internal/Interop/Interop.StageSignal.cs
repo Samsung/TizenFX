@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class StageSignal
         {
-            static StageSignal()
-            {
-                Tizen.Log.Error("NUI", "StageSignal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Stage_KeyEventSignal")]
             public static extern global::System.IntPtr Stage_KeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);

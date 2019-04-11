@@ -36,7 +36,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Path() : this(Interop.Path.Path_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -90,7 +90,7 @@ namespace Tizen.NUI
         public void AddPoint(Position point)
         {
             Interop.Path.Path_AddPoint(swigCPtr, Position.getCPtr(point));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         public void AddControlPoint(Vector3 point)
         {
             Interop.Path.Path_AddControlPoint(swigCPtr, Vector3.getCPtr(point));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Tizen.NUI
         public void GenerateControlPoints(float curvature)
         {
             Interop.Path.Path_GenerateControlPoints(swigCPtr, curvature);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         public void Sample(float progress, Vector3 position, Vector3 tangent)
         {
             Interop.Path.Path_Sample(swigCPtr, progress, Vector3.getCPtr(position), Vector3.getCPtr(tangent));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Tizen.NUI
         public Vector3 GetPoint(uint index)
         {
             Vector3 ret = new Vector3(Interop.Path.Path_GetPoint(swigCPtr, index), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -153,7 +153,7 @@ namespace Tizen.NUI
         public Vector3 GetControlPoint(uint index)
         {
             Vector3 ret = new Vector3(Interop.Path.Path_GetControlPoint(swigCPtr, index), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -165,7 +165,7 @@ namespace Tizen.NUI
         public uint GetPointCount()
         {
             uint ret = Interop.Path.Path_GetPointCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

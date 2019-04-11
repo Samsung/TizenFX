@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class StringValuePair
         {
-            static StringValuePair()
-            {
-                Tizen.Log.Error("NUI", "StringValuePair");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_StringValuePair__SWIG_0")]
             public static extern global::System.IntPtr new_StringValuePair__SWIG_0();

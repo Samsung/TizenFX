@@ -515,7 +515,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public TextLabel() : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -525,12 +525,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public TextLabel(string text) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TextLabel(TextLabel handle) : this(Interop.TextLabel.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
@@ -1228,7 +1228,7 @@ namespace Tizen.NUI.BaseComponents
         {
             TextLabel ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

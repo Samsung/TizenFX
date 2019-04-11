@@ -2127,7 +2127,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicParentOrigin.ParentOriginTop_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2141,7 +2141,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicParentOrigin.ParentOriginBottom_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2155,7 +2155,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicParentOrigin.ParentOriginLeft_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2169,7 +2169,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicParentOrigin.ParentOriginRight_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2183,7 +2183,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicParentOrigin.ParentOriginMiddle_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2198,7 +2198,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2213,7 +2213,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2228,7 +2228,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2243,7 +2243,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2258,7 +2258,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2273,7 +2273,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2288,7 +2288,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2303,7 +2303,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2318,7 +2318,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2339,7 +2339,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointTop_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2352,7 +2352,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointBottom_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2365,7 +2365,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointLeft_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2378,7 +2378,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointRight_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2391,7 +2391,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointMiddle_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2405,7 +2405,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2419,7 +2419,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2433,7 +2433,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2447,7 +2447,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2461,7 +2461,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2475,7 +2475,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2489,7 +2489,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2503,7 +2503,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2517,7 +2517,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2538,7 +2538,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Vector3.Vector3_XAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2552,7 +2552,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Vector3.Vector3_YAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2566,7 +2566,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Vector3.Vector3_ZAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2580,7 +2580,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Vector3.Vector3_NEGATIVE_XAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2594,7 +2594,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Vector3.Vector3_NEGATIVE_YAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2608,7 +2608,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.Vector3.Vector3_NEGATIVE_ZAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2631,7 +2631,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointTop_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2644,7 +2644,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointBottom_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2657,7 +2657,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointLeft_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2670,7 +2670,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointRight_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2683,7 +2683,7 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.NDalicAnchorPoint.AnchorPointMiddle_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2697,7 +2697,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2711,7 +2711,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2725,7 +2725,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2739,7 +2739,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2753,7 +2753,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2767,7 +2767,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2781,7 +2781,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2795,7 +2795,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2809,7 +2809,7 @@ namespace Tizen.NUI
             {
                 global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

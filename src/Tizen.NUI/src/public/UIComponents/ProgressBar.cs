@@ -192,7 +192,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public ProgressBar() : this(Interop.ProgressBar.ProgressBar_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -393,7 +393,7 @@ namespace Tizen.NUI.UIComponents
         internal ProgressBarValueChangedSignal ValueChangedSignal()
         {
             ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(Interop.ProgressBar.ProgressBar_ValueChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

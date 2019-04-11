@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PanGestureDetector
         {
-            static PanGestureDetector()
-            {
-                Tizen.Log.Error("NUI", "PanGestureDetector");
-            }
             
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PanGesture_SWIGUpcast")]
             public static extern global::System.IntPtr PanGesture_SWIGUpcast(global::System.IntPtr jarg1);

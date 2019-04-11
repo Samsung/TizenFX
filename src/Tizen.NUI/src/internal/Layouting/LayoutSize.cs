@@ -63,30 +63,30 @@ namespace Tizen.NUI
 
         public LayoutSize() : this(Interop.LayoutSize.new_LayoutSize__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public LayoutSize(int x, int y) : this(Interop.LayoutSize.new_LayoutSize__SWIG_1(x, y), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetWidth(LayoutLength value)
         {
             Interop.LayoutSize.LayoutSize_SetWidth__SWIG_1(swigCPtr, LayoutLength.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetHeight(LayoutLength value)
         {
             Interop.LayoutSize.LayoutSize_SetHeight__SWIG_1(swigCPtr, LayoutLength.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private bool EqualTo(LayoutSize rhs)
         {
             bool ret = Interop.LayoutSize.LayoutSize_EqualTo(swigCPtr, LayoutSize.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -120,12 +120,12 @@ namespace Tizen.NUI
             //set
             //{
             //    LayoutPINVOKE.LayoutSize_width_set(swigCPtr, value);
-            //    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            //    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             //}
             get
             {
                 int ret = Interop.LayoutSize.LayoutSize_width_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -136,12 +136,12 @@ namespace Tizen.NUI
             //set
             //{
             //    LayoutPINVOKE.LayoutSize_height_set(swigCPtr, value);
-            //    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            //    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             //}
             get
             {
                 int ret = Interop.LayoutSize.LayoutSize_height_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

@@ -299,7 +299,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public Slider() : this(Interop.Slider.Slider_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Slider.Slider_SWIGUpcast(cPtr), cMemoryOwn)
@@ -309,7 +309,7 @@ namespace Tizen.NUI.UIComponents
 
         internal Slider(Slider handle) : this(Interop.Slider.new_Slider__SWIG_1(Slider.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -665,7 +665,7 @@ namespace Tizen.NUI.UIComponents
         public static Slider DownCast(BaseHandle handle)
         {
             Slider ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Slider;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -682,35 +682,35 @@ namespace Tizen.NUI.UIComponents
         internal static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
         {
             Slider ret = new Slider(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Slider Assign(Slider handle)
         {
             Slider ret = new Slider(Interop.Slider.Slider_Assign(swigCPtr, Slider.getCPtr(handle)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal ValueChangedSignal()
         {
             SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.Slider_ValueChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal SlidingFinishedSignal()
         {
             SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.Slider_SlidingFinishedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderMarkReachedSignal MarkReachedSignal()
         {
             SliderMarkReachedSignal ret = new SliderMarkReachedSignal(Interop.Slider.Slider_MarkReachedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

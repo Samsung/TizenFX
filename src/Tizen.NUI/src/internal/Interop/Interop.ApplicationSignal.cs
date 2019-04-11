@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ApplicationSignal
         {
-            static ApplicationSignal()
-            {
-
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "ApplicationSignal : " + ret);
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ApplicationSignal_Empty")]
             public static extern bool ApplicationSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

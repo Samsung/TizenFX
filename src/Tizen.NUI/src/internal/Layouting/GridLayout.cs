@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// <returns> New Grid object.</returns>
         public GridLayout() : this(Interop.GridLayout.GridLayout_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         public static GridLayout DownCast(BaseHandle handle)
         {
             GridLayout ret = new GridLayout(Interop.GridLayout.GridLayout_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -106,7 +106,7 @@ namespace Tizen.NUI
         /// <returns>The newly created Grid object.</returns>
         internal GridLayout(GridLayout other) : this(Interop.GridLayout.new_GridLayout_SWIG_1(GridLayout.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Tizen.NUI
         internal GridLayout Assign(GridLayout other)
         {
             GridLayout ret = new GridLayout(Interop.GridLayout.GridLayout_Assign(swigCPtr, GridLayout.getCPtr(other)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -128,7 +128,7 @@ namespace Tizen.NUI
         internal void SetColumns(int columns)
         {
             Interop.GridLayout.GridLayout_SetColumns(swigCPtr, columns);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace Tizen.NUI
         internal int GetColumns()
         {
             int ret = (int)Interop.GridLayout.GridLayout_GetColumns(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public StyleManager() : this(Interop.StyleManager.new_StyleManager(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         public static StyleManager Get()
         {
             StyleManager ret = new StyleManager(Interop.StyleManager.StyleManager_Get(), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -114,7 +114,7 @@ namespace Tizen.NUI
         public void ApplyTheme(string themeFile)
         {
             Interop.StyleManager.StyleManager_ApplyTheme(swigCPtr, themeFile);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         public void ApplyDefaultTheme()
         {
             Interop.StyleManager.StyleManager_ApplyDefaultTheme(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Tizen.NUI
         public void AddConstant(string key, PropertyValue value)
         {
             Interop.StyleManager.StyleManager_SetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         public bool GetConstant(string key, PropertyValue valueOut)
         {
             bool ret = Interop.StyleManager.StyleManager_GetStyleConstant(swigCPtr, key, PropertyValue.getCPtr(valueOut));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -163,7 +163,7 @@ namespace Tizen.NUI
         public void ApplyStyle(View control, string jsonFileName, string styleName)
         {
             Interop.StyleManager.StyleManager_ApplyStyle(swigCPtr, View.getCPtr(control), jsonFileName, styleName);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StyleManager obj)
@@ -179,7 +179,7 @@ namespace Tizen.NUI
         internal StyleChangedSignal StyleChangedSignal()
         {
             StyleChangedSignal ret = new StyleChangedSignal(Interop.StyleManager.StyleManager_StyleChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

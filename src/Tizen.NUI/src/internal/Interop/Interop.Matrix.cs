@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Matrix
         {
-            static Matrix()
-            {
-                Tizen.Log.Error("NUI", "Matrix");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Matrix__SWIG_0")]
             public static extern global::System.IntPtr new_Matrix__SWIG_0();

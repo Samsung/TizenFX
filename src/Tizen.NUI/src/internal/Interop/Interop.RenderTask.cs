@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class RenderTask
         {
-            static RenderTask()
-            {
-                Tizen.Log.Error("NUI", "RenderTask");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_RenderTaskList__SWIG_0")]
             public static extern global::System.IntPtr new_RenderTaskList__SWIG_0();

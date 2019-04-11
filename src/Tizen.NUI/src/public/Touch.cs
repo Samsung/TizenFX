@@ -37,12 +37,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Touch() : this(Interop.Touch.new_Touch__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Touch(Touch other) : this(Interop.Touch.new_Touch__SWIG_1(Touch.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Touch.Touch_SWIGUpcast(cPtr), cMemoryOwn)
@@ -58,7 +58,7 @@ namespace Tizen.NUI
         public uint GetTime()
         {
             uint ret = Interop.Touch.Touch_GetTime(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -70,7 +70,7 @@ namespace Tizen.NUI
         public uint GetPointCount()
         {
             uint ret = Interop.Touch.Touch_GetPointCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -86,7 +86,7 @@ namespace Tizen.NUI
         public int GetDeviceId(uint point)
         {
             int ret = Interop.Touch.Touch_GetDeviceId(swigCPtr, point);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -100,7 +100,7 @@ namespace Tizen.NUI
         public PointStateType GetState(uint point)
         {
             PointStateType ret = (PointStateType)Interop.Touch.Touch_GetState(swigCPtr, point);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -120,7 +120,7 @@ namespace Tizen.NUI
             Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -137,7 +137,7 @@ namespace Tizen.NUI
         public Vector2 GetLocalPosition(uint point)
         {
             Vector2 ret = new Vector2(Interop.Touch.Touch_GetLocalPosition(swigCPtr, point), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -151,7 +151,7 @@ namespace Tizen.NUI
         public Vector2 GetScreenPosition(uint point)
         {
             Vector2 ret = new Vector2(Interop.Touch.Touch_GetScreenPosition(swigCPtr, point), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -166,7 +166,7 @@ namespace Tizen.NUI
         public float GetRadius(uint point)
         {
             float ret = Interop.Touch.Touch_GetRadius(swigCPtr, point);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -180,7 +180,7 @@ namespace Tizen.NUI
         public Vector2 GetEllipseRadius(uint point)
         {
             Vector2 ret = new Vector2(Interop.Touch.Touch_GetEllipseRadius(swigCPtr, point), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -198,7 +198,7 @@ namespace Tizen.NUI
         public float GetPressure(uint point)
         {
             float ret = Interop.Touch.Touch_GetPressure(swigCPtr, point);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -213,7 +213,7 @@ namespace Tizen.NUI
         public MouseButton GetMouseButton(uint point)
         {
             int ret = Interop.Touch.Touch_GetMouseButton(swigCPtr, point);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return (MouseButton)ret;
         }
 
@@ -230,14 +230,14 @@ namespace Tizen.NUI
                 ret = new Touch(cPtr, false);
             }
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Degree GetAngle(uint point)
         {
             Degree ret = new Degree(Interop.Touch.Touch_GetAngle(swigCPtr, point), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

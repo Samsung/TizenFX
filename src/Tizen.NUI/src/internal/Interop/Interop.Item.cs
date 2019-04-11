@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Item
         {
-            static Item()
-            {
-                Tizen.Log.Error("NUI", "Item");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Item__SWIG_0")]
             public static extern global::System.IntPtr new_Item__SWIG_0();

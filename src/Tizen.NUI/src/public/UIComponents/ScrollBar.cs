@@ -230,7 +230,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public ScrollBar(ScrollBar.Direction direction) : this(Interop.ScrollBar.ScrollBar_New__SWIG_0((int)direction), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -239,12 +239,12 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public ScrollBar() : this(Interop.ScrollBar.ScrollBar_New__SWIG_1(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollBar(ScrollBar scrollBar) : this(Interop.ScrollBar.new_ScrollBar__SWIG_1(ScrollBar.getCPtr(scrollBar)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollBar.ScrollBar_SWIGUpcast(cPtr), cMemoryOwn)
@@ -505,7 +505,7 @@ namespace Tizen.NUI.UIComponents
         public void SetScrollPropertySource(Animatable handle, int propertyScrollPosition, int propertyMinScrollPosition, int propertyMaxScrollPosition, int propertyScrollContentSize)
         {
             Interop.ScrollBar.ScrollBar_SetScrollPropertySource(swigCPtr, Animatable.getCPtr(handle), propertyScrollPosition, propertyMinScrollPosition, propertyMaxScrollPosition, propertyScrollContentSize);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollBar obj)
@@ -516,104 +516,104 @@ namespace Tizen.NUI.UIComponents
         internal void SetScrollIndicator(View indicator)
         {
             Interop.ScrollBar.ScrollBar_SetScrollIndicator(swigCPtr, View.getCPtr(indicator));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal View GetScrollIndicator()
         {
             View ret = new View(Interop.ScrollBar.ScrollBar_GetScrollIndicator(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetScrollDirection(ScrollBar.Direction direction)
         {
             Interop.ScrollBar.ScrollBar_SetScrollDirection(swigCPtr, (int)direction);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollBar.Direction GetScrollDirection()
         {
             ScrollBar.Direction ret = (ScrollBar.Direction)Interop.ScrollBar.ScrollBar_GetScrollDirection(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorHeightPolicy(ScrollBar.IndicatorHeightPolicyType policy)
         {
             Interop.ScrollBar.ScrollBar_SetIndicatorHeightPolicy(swigCPtr, (int)policy);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ScrollBar.IndicatorHeightPolicyType GetIndicatorHeightPolicy()
         {
             ScrollBar.IndicatorHeightPolicyType ret = (ScrollBar.IndicatorHeightPolicyType)Interop.ScrollBar.ScrollBar_GetIndicatorHeightPolicy(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorFixedHeight(float height)
         {
             Interop.ScrollBar.ScrollBar_SetIndicatorFixedHeight(swigCPtr, height);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetIndicatorFixedHeight()
         {
             float ret = Interop.ScrollBar.ScrollBar_GetIndicatorFixedHeight(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorShowDuration(float durationSeconds)
         {
             Interop.ScrollBar.ScrollBar_SetIndicatorShowDuration(swigCPtr, durationSeconds);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetIndicatorShowDuration()
         {
             float ret = Interop.ScrollBar.ScrollBar_GetIndicatorShowDuration(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetIndicatorHideDuration(float durationSeconds)
         {
             Interop.ScrollBar.ScrollBar_SetIndicatorHideDuration(swigCPtr, durationSeconds);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal float GetIndicatorHideDuration()
         {
             float ret = Interop.ScrollBar.ScrollBar_GetIndicatorHideDuration(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void ShowIndicator()
         {
             Interop.ScrollBar.ScrollBar_ShowIndicator(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void HideIndicator()
         {
             Interop.ScrollBar.ScrollBar_HideIndicator(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal VoidSignal PanFinishedSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.ScrollBar.ScrollBar_PanFinishedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FloatSignal ScrollPositionIntervalReachedSignal()
         {
             FloatSignal ret = new FloatSignal(Interop.ScrollBar.ScrollBar_ScrollPositionIntervalReachedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

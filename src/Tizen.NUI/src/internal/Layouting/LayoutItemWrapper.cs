@@ -88,27 +88,27 @@ namespace Tizen.NUI
 
         /*public LayoutItemWrapper (Handle handle) : this (LayoutPINVOKE.LayoutItemWrapper_New(Handle.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }*/
 
         public View GetOwner()
         {
             global::System.IntPtr cPtr = Interop.LayoutItemWrapper.LayoutItemWrapper_GetOwner(swigCPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void SetAnimateLayout(bool animateLayout)
         {
             Interop.LayoutItemWrapper.LayoutItemWrapper_SetAnimateLayout(swigCPtr, animateLayout);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private bool IsLayoutAnimated()
         {
             bool ret = Interop.LayoutItemWrapper.LayoutItemWrapper_IsLayoutAnimated(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -127,7 +127,7 @@ namespace Tizen.NUI
         internal LayoutItemWrapper(LayoutItemWrapperImpl implementation) : this(Interop.LayoutItemWrapper.new_LayoutItemWrapper__SWIG_2(LayoutItemWrapperImpl.getCPtr(implementation)), true)
         {
             layoutItemWrapperImpl = implementation;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 
@@ -137,7 +137,7 @@ namespace Tizen.NUI
         /*{
             global::System.IntPtr cPtr = LayoutPINVOKE.LayoutParent_GetParent(swigCPtr);
             LayoutParent ret = (cPtr == global::System.IntPtr.Zero) ? null : new LayoutParent(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }*/
     }

@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class WidgetView
         {
-            static WidgetView()
-            {
-                Tizen.Log.Error("NUI", "WidgetView");
-            }
             //for widget view
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_WidgetView_Property_WIDGET_ID_get")]
             public static extern int WidgetView_Property_WIDGET_ID_get();

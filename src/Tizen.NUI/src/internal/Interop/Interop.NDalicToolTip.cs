@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicToolTip
         {
-            static NDalicToolTip()
-            {
-                Tizen.Log.Error("NUI", "NDalicToolTip");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TOOLTIP_CONTENT_get")]
             public static extern int TOOLTIP_CONTENT_get();

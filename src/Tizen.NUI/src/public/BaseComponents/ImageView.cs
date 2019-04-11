@@ -246,7 +246,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public ImageView() : this(Interop.ImageView.ImageView_New__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -258,13 +258,13 @@ namespace Tizen.NUI.BaseComponents
         public ImageView(string url) : this(Interop.ImageView.ImageView_New__SWIG_2(url), true)
         {
             _url = url;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         internal ImageView(string url, Uint16Pair size) : this(Interop.ImageView.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
         {
             _url = url;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
@@ -569,7 +569,7 @@ namespace Tizen.NUI.BaseComponents
         public static ImageView DownCast(BaseHandle handle)
         {
             ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -583,7 +583,7 @@ namespace Tizen.NUI.BaseComponents
         {
             _url = url;
             Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -595,8 +595,8 @@ namespace Tizen.NUI.BaseComponents
         public new bool IsResourceReady()
         {
             bool ret = Interop.View.IsResourceReady(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending)
-                throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -645,13 +645,13 @@ namespace Tizen.NUI.BaseComponents
         {
             _url = url;
             Interop.ImageView.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ViewResourceReadySignal ResourceReadySignal(View view)
         {
             ViewResourceReadySignal ret = new ViewResourceReadySignal(Interop.View.ResourceReadySignal(View.getCPtr(view)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -103,24 +103,24 @@ namespace Tizen.NUI
 
         public RulerPtr() : this(Interop.Ruler.new_RulerPtr__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public RulerPtr(Ruler p) : this(Interop.Ruler.new_RulerPtr__SWIG_1(Ruler.getCPtr(p)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public RulerPtr(RulerPtr rhs) : this(Interop.Ruler.new_RulerPtr__SWIG_2(RulerPtr.getCPtr(rhs)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Ruler Get()
         {
             global::System.IntPtr cPtr = Interop.Ruler.RulerPtr_Get(swigCPtr);
             Ruler ret = (cPtr == global::System.IntPtr.Zero) ? null : new Ruler(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -128,210 +128,210 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.Ruler.RulerPtr___deref__(swigCPtr);
             Ruler ret = (cPtr == global::System.IntPtr.Zero) ? null : new Ruler(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Ruler __ref__()
         {
             Ruler ret = new Ruler(Interop.Ruler.RulerPtr___ref__(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public RulerPtr Assign(RulerPtr rhs)
         {
             RulerPtr ret = new RulerPtr(Interop.Ruler.RulerPtr_Assign__SWIG_0(swigCPtr, RulerPtr.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public RulerPtr Assign(Ruler rhs)
         {
             RulerPtr ret = new RulerPtr(Interop.Ruler.RulerPtr_Assign__SWIG_1(swigCPtr, Ruler.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Reset()
         {
             Interop.Ruler.RulerPtr_Reset__SWIG_0(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Reset(Ruler rhs)
         {
             Interop.Ruler.RulerPtr_Reset__SWIG_1(swigCPtr, Ruler.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Ruler Detach()
         {
             global::System.IntPtr cPtr = Interop.Ruler.RulerPtr_Detach(swigCPtr);
             Ruler ret = (cPtr == global::System.IntPtr.Zero) ? null : new Ruler(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float Snap(float x, float bias)
         {
             float ret = Interop.Ruler.RulerPtr_Snap__SWIG_0(swigCPtr, x, bias);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float Snap(float x)
         {
             float ret = Interop.Ruler.RulerPtr_Snap__SWIG_1(swigCPtr, x);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
             float ret = Interop.Ruler.RulerPtr_GetPositionFromPage(swigCPtr, page, out volume, wrap);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetPageFromPosition(float position, bool wrap)
         {
             uint ret = Interop.Ruler.RulerPtr_GetPageFromPosition(swigCPtr, position, wrap);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetTotalPages()
         {
             uint ret = Interop.Ruler.RulerPtr_GetTotalPages(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public new Ruler.RulerType GetType()
         {
             Ruler.RulerType ret = (Ruler.RulerType)Interop.Ruler.RulerPtr_GetType(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool IsEnabled()
         {
             bool ret = Interop.Ruler.RulerPtr_IsEnabled(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Enable()
         {
             Interop.Ruler.RulerPtr_Enable(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Disable()
         {
             Interop.Ruler.RulerPtr_Disable(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetDomain(RulerDomain domain)
         {
             Interop.Ruler.RulerPtr_SetDomain(swigCPtr, RulerDomain.getCPtr(domain));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public RulerDomain GetDomain()
         {
             RulerDomain ret = new RulerDomain(Interop.Ruler.RulerPtr_GetDomain(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void DisableDomain()
         {
             Interop.Ruler.RulerPtr_DisableDomain(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float Clamp(float x, float length, float scale)
         {
             float ret = Interop.Ruler.RulerPtr_Clamp__SWIG_0(swigCPtr, x, length, scale);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float Clamp(float x, float length)
         {
             float ret = Interop.Ruler.RulerPtr_Clamp__SWIG_1(swigCPtr, x, length);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float Clamp(float x)
         {
             float ret = Interop.Ruler.RulerPtr_Clamp__SWIG_2(swigCPtr, x);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal float Clamp(float x, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped)
         {
             float ret = Interop.Ruler.RulerPtr_Clamp__SWIG_3(swigCPtr, x, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float SnapAndClamp(float x, float bias, float length, float scale)
         {
             float ret = Interop.Ruler.RulerPtr_SnapAndClamp__SWIG_0(swigCPtr, x, bias, length, scale);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float SnapAndClamp(float x, float bias, float length)
         {
             float ret = Interop.Ruler.RulerPtr_SnapAndClamp__SWIG_1(swigCPtr, x, bias, length);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float SnapAndClamp(float x, float bias)
         {
             float ret = Interop.Ruler.RulerPtr_SnapAndClamp__SWIG_2(swigCPtr, x, bias);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float SnapAndClamp(float x)
         {
             float ret = Interop.Ruler.RulerPtr_SnapAndClamp__SWIG_3(swigCPtr, x);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal float SnapAndClamp(float x, float bias, float length, float scale, SWIGTYPE_p_Dali__Toolkit__ClampState clamped)
         {
             float ret = Interop.Ruler.RulerPtr_SnapAndClamp__SWIG_4(swigCPtr, x, bias, length, scale, SWIGTYPE_p_Dali__Toolkit__ClampState.getCPtr(clamped));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Reference()
         {
             Interop.Ruler.RulerPtr_Reference(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Unreference()
         {
             Interop.Ruler.RulerPtr_Unreference(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public int ReferenceCount()
         {
             int ret = Interop.Ruler.RulerPtr_ReferenceCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

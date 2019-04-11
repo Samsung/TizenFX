@@ -62,7 +62,7 @@ namespace Tizen.NUI
 
         public LayoutGroupWrapperImpl() : this(Interop.LayoutGroupWrapperImpl.new_LayoutGroupWrapperImpl(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             SwigDirectorConnect();
         }
@@ -100,32 +100,32 @@ namespace Tizen.NUI
         internal uint Add(LayoutItemWrapperImpl layoutChild)
         {
             uint ret = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_Add(swigCPtr, LayoutItemWrapperImpl.getCPtr(layoutChild));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void Remove(uint childId)
         {
             Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_Remove__SWIG_0(swigCPtr, childId);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Remove(LayoutItemWrapperImpl child)
         {
             Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_Remove__SWIG_1(swigCPtr, LayoutItemWrapperImpl.getCPtr(child));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void RemoveAll()
         {
             Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_RemoveAll(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal uint GetChildCount()
         {
             uint ret = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChildCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -140,14 +140,14 @@ namespace Tizen.NUI
             Interop.LayoutItemPtr.delete_LayoutItemPtr(CPtrHandleRef);
             CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal uint GetChildId(LayoutItemWrapperImpl child)
         {
             uint ret = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChildId(swigCPtr, LayoutItemWrapperImpl.getCPtr(child));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -162,33 +162,33 @@ namespace Tizen.NUI
             Interop.LayoutItemPtr.delete_LayoutItemPtr(CPtrHandleRef);
             CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static LayoutMeasureSpec GetChildMeasureSpec(LayoutMeasureSpec measureSpec, LayoutLength padding, LayoutLength childDimension)
         {
             LayoutMeasureSpec ret = new LayoutMeasureSpec(Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChildMeasureSpec(LayoutMeasureSpec.getCPtr(measureSpec), LayoutLength.getCPtr(padding), LayoutLength.getCPtr(childDimension)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal virtual void MeasureChildrenNative(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
             Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_MeasureChildrenSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutMeasureSpec.getCPtr(widthMeasureSpec), LayoutMeasureSpec.getCPtr(heightMeasureSpec));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void MeasureChildNative(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutMeasureSpec parentHeightMeasureSpec)
         {
             Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_MeasureChildSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutItem.getCPtr(child), LayoutMeasureSpec.getCPtr(parentWidthMeasureSpec), LayoutMeasureSpec.getCPtr(parentHeightMeasureSpec));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void MeasureChildWithMarginsNative(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutLength widthUsed, LayoutMeasureSpec parentHeightMeasureSpec, LayoutLength heightUsed)
         {
             Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_MeasureChildWithMarginsSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutItem.getCPtr(child), LayoutMeasureSpec.getCPtr(parentWidthMeasureSpec), LayoutLength.getCPtr(widthUsed), LayoutMeasureSpec.getCPtr(parentHeightMeasureSpec), LayoutLength.getCPtr(heightUsed));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private new void SwigDirectorConnect()

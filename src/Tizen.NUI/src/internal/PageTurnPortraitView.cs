@@ -66,25 +66,25 @@ namespace Tizen.NUI
 
         public PageTurnPortraitView(PageFactory pageFactory, Vector2 pageSize) : this(Interop.PageTurnPortraitView.PageTurnPortraitView_New(PageFactory.getCPtr(pageFactory), Vector2.getCPtr(pageSize)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public PageTurnPortraitView(PageTurnPortraitView pageTurnPortraitView) : this(Interop.PageTurnPortraitView.new_PageTurnPortraitView__SWIG_1(PageTurnPortraitView.getCPtr(pageTurnPortraitView)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PageTurnPortraitView Assign(PageTurnPortraitView pageTurnPortraitView)
         {
             PageTurnPortraitView ret = new PageTurnPortraitView(Interop.PageTurnPortraitView.PageTurnPortraitView_Assign(swigCPtr, PageTurnPortraitView.getCPtr(pageTurnPortraitView)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public new static PageTurnPortraitView DownCast(BaseHandle handle)
         {
             PageTurnPortraitView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PageTurnPortraitView;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

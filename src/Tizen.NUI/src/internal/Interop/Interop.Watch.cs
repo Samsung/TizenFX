@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Watch
         {
-            static Watch()
-            {
-                Tizen.Log.Error("NUI", "Watch");
-            }
             //for watch
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_WatchTime")]
             public static extern global::System.IntPtr new_WatchTime();

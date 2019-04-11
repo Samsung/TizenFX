@@ -41,7 +41,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PinchGestureDetector() : this(Interop.PinchGesture.PinchGestureDetector_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PinchGestureDetector(PinchGestureDetector handle) : this(Interop.PinchGesture.new_PinchGestureDetector__SWIG_1(PinchGestureDetector.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PinchGesture.PinchGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
@@ -104,14 +104,14 @@ namespace Tizen.NUI
         internal static PinchGestureDetector GetPinchGestureDetectorFromPtr(global::System.IntPtr cPtr)
         {
             PinchGestureDetector ret = new PinchGestureDetector(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal new static PinchGestureDetector DownCast(BaseHandle handle)
         {
             PinchGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PinchGestureDetector;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -123,14 +123,14 @@ namespace Tizen.NUI
         internal PinchGestureDetector Assign(PinchGestureDetector rhs)
         {
             PinchGestureDetector ret = new PinchGestureDetector(Interop.PinchGesture.PinchGestureDetector_Assign(swigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal PinchGestureDetectedSignal DetectedSignal()
         {
             PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(Interop.PinchGesture.PinchGestureDetector_DetectedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -156,7 +156,7 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public Property() : this(Interop.Model3DView.new_Model3dView_Property(), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <since_tizen> 3 </since_tizen>
@@ -180,30 +180,30 @@ namespace Tizen.NUI
 
         public Model3dView() : this(Interop.Model3DView.Model3dView_New__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public Model3dView(string objUrl, string mtlUrl, string imagesUrl) : this(Interop.Model3DView.Model3dView_New__SWIG_1(objUrl, mtlUrl, imagesUrl), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public Model3dView(Model3dView model3dView) : this(Interop.Model3DView.new_Model3dView__SWIG_1(Model3dView.getCPtr(model3dView)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Model3dView Assign(Model3dView model3dView)
         {
             Model3dView ret = new Model3dView(Interop.Model3DView.Model3dView_Assign(swigCPtr, Model3dView.getCPtr(model3dView)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Model3dView DownCast(BaseHandle handle)
         {
             Model3dView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Model3dView;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

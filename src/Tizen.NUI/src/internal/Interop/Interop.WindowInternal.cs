@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class WindowInternal
         {
-            static WindowInternal()
-            {
-                Tizen.Log.Error("NUI", "WindowInternal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_ShowIndicator")]
             public static extern void Window_ShowIndicator(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);

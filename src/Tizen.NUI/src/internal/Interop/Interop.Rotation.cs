@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Rotation
         {
-            static Rotation()
-            {
-                Tizen.Log.Error("NUI", "Rotation");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Rotation__SWIG_0")]
             public static extern global::System.IntPtr new_Rotation__SWIG_0();
 

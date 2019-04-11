@@ -8,13 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TextEditor
         {
-
-            static TextEditor()
-            {
-                Tizen.Log.Error("NUI", "TextEditor");
-            }
-
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TextEditor_Property_RENDERING_BACKEND_get")]
             public static extern int TextEditor_Property_RENDERING_BACKEND_get();
 

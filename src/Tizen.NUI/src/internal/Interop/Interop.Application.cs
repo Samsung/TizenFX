@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Application
         {
-            static Application()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "Application : " + ret);
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_MakeCallback")]
             public static extern global::System.IntPtr MakeCallback(global::System.Runtime.InteropServices.HandleRef jarg1);
 

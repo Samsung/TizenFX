@@ -26,10 +26,10 @@ namespace Tizen.NUI
     static public class EnvironmentVariable
     {
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetEnvironmentVariable")]
-        public static extern string EnvironmentVariable_GetEnvironmentVariable(string jarg1);
+        private static extern string EnvironmentVariable_GetEnvironmentVariable(string jarg1);
         
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_SetEnvironmentVariable")]
-        public static extern bool EnvironmentVariable_SetEnvironmentVariable(string jarg1, string jarg2);
+        private static extern bool EnvironmentVariable_SetEnvironmentVariable(string jarg1, string jarg2);
 
         /// <summary>
         /// Get value of the specified environment variable.

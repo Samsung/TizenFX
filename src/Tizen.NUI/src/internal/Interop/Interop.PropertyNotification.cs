@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PropertyNotification
         {
-            static PropertyNotification()
-            {
-                Tizen.Log.Error("NUI", "PropertyNotification");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PropertyNotification_SWIGUpcast")]
             public static extern global::System.IntPtr PropertyNotification_SWIGUpcast(global::System.IntPtr jarg1);

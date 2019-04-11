@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ItemContainer
         {
-            static ItemContainer()
-            {
-                Tizen.Log.Error("NUI", "ItemContainer");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ItemContainer_Clear")]
             public static extern void ItemContainer_Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
 

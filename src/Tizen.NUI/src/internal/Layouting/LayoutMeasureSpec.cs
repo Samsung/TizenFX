@@ -63,12 +63,12 @@ namespace Tizen.NUI
 
         public LayoutMeasureSpec(LayoutLength measureSpec, LayoutMeasureSpec.ModeType mode) : this(Interop.MeasureSpec.new_MeasureSpec__SWIG_0(LayoutLength.getCPtr(measureSpec), (int)mode), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public LayoutMeasureSpec(int measureSpec) : this(Interop.MeasureSpec.new_MeasureSpec__SWIG_1(measureSpec), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static bool operator ==(LayoutMeasureSpec r1, LayoutMeasureSpec r2)
@@ -110,28 +110,28 @@ namespace Tizen.NUI
         private bool EqualTo(LayoutMeasureSpec value)
         {
             bool ret = Interop.MeasureSpec.MeasureSpec_EqualTo(swigCPtr, LayoutMeasureSpec.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool NotEqualTo(LayoutMeasureSpec value)
         {
             bool ret = Interop.MeasureSpec.MeasureSpec_NotEqualTo(swigCPtr, LayoutMeasureSpec.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutMeasureSpec.ModeType GetMode()
         {
             LayoutMeasureSpec.ModeType ret = (LayoutMeasureSpec.ModeType)Interop.MeasureSpec.MeasureSpec_GetMode(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private int GetSize()
         {
             int ret = Interop.MeasureSpec.MeasureSpec_GetSize(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -145,7 +145,7 @@ namespace Tizen.NUI
         public static LayoutMeasureSpec Adjust(LayoutMeasureSpec measureSpec, int delta)
         {
             LayoutMeasureSpec ret = new LayoutMeasureSpec(Interop.MeasureSpec.MeasureSpec_Adjust(LayoutMeasureSpec.getCPtr(measureSpec), delta), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -154,12 +154,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.MeasureSpec.MeasureSpec_mSize_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 int ret = Interop.MeasureSpec.MeasureSpec_mSize_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -169,12 +169,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.MeasureSpec.MeasureSpec_mMode_set(swigCPtr, (int)value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 LayoutMeasureSpec.ModeType ret = (LayoutMeasureSpec.ModeType)Interop.MeasureSpec.MeasureSpec_mMode_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

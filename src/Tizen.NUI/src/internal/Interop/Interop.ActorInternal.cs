@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ActorInternal
         {
-            static ActorInternal()
-            {
-                Tizen.Log.Error("NUI", "ActorInternal");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Actor_IsRoot")]
             public static extern bool Actor_IsRoot(global::System.Runtime.InteropServices.HandleRef jarg1);

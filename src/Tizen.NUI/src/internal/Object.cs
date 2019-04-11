@@ -33,7 +33,7 @@ namespace Tizen.NUI
             }
 
             PropertyValue ret = new PropertyValue(Interop.Handle.Handle_GetProperty(handle, index), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -45,7 +45,7 @@ namespace Tizen.NUI
             }
 
             Interop.Handle.Handle_SetProperty(handle, index, PropertyValue.getCPtr(propertyValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 

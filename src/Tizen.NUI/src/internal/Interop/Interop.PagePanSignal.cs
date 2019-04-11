@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class PagePanSignal
         {
-            static PagePanSignal()
-            {
-                Tizen.Log.Error("NUI", "PagePanSignal");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_PagePanSignal_Empty")]
             public static extern bool PagePanSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

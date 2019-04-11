@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class KeyFrames
         {
-            static KeyFrames()
-            {
-                Tizen.Log.Error("NUI", "KeyFrames");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_KeyFrames_New")]
             public static extern global::System.IntPtr KeyFrames_New();
 

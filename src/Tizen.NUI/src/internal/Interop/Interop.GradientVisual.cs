@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicGradientVisual
         {
-            static NDalicGradientVisual()
-            {
-                Tizen.Log.Error("NUI", "GradientVisual");
-            }
-
 
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_POSITION_get")]

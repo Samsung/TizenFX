@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ScrollableSignal
         {
-            static ScrollableSignal()
-            {
-                Tizen.Log.Error("NUI", "ScrollableSignal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ScrollableSignal_Empty")]
             public static extern bool ScrollableSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TextLabel
         {
-            static TextLabel()
-            {
-                Tizen.Log.Error("NUI", "TextLabel");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TextLabel_Property_RENDERING_BACKEND_get")]
             public static extern int TextLabel_Property_RENDERING_BACKEND_get();

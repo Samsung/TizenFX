@@ -50,12 +50,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyArray() : this(Interop.Property.new_Property_Array__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyArray(PropertyArray other) : this(Interop.Property.new_Property_Array__SWIG_1(PropertyArray.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyArray(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -99,7 +99,7 @@ namespace Tizen.NUI
         public uint Size()
         {
             uint ret = Interop.Property.Property_Array_Size(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -111,7 +111,7 @@ namespace Tizen.NUI
         public uint Count()
         {
             uint ret = Interop.Property.Property_Array_Count(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -123,7 +123,7 @@ namespace Tizen.NUI
         public bool Empty()
         {
             bool ret = Interop.Property.Property_Array_Empty(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -134,7 +134,7 @@ namespace Tizen.NUI
         public void Clear()
         {
             Interop.Property.Property_Array_Clear(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Tizen.NUI
         public void Reserve(uint size)
         {
             Interop.Property.Property_Array_Reserve(swigCPtr, size);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace Tizen.NUI
         public void Resize(uint size)
         {
             Interop.Property.Property_Array_Resize(swigCPtr, size);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Tizen.NUI
         public uint Capacity()
         {
             uint ret = Interop.Property.Property_Array_Capacity(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -179,7 +179,7 @@ namespace Tizen.NUI
         public void PushBack(PropertyValue value)
         {
             Interop.Property.Property_Array_PushBack(swigCPtr, PropertyValue.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Tizen.NUI
         public PropertyArray Add(KeyValue value)
         {
             PropertyArray ret = new PropertyArray(Interop.Property.Property_Array_Add(swigCPtr, PropertyValue.getCPtr(value.TrueValue)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -202,7 +202,7 @@ namespace Tizen.NUI
         public PropertyArray Add(PropertyValue value)
         {
             PropertyArray ret = new PropertyArray(Interop.Property.Property_Array_Add(swigCPtr, PropertyValue.getCPtr(value)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -215,7 +215,7 @@ namespace Tizen.NUI
         public PropertyValue GetElementAt(uint index)
         {
             PropertyValue ret = new PropertyValue(Interop.Property.Property_Array_GetElementAt__SWIG_0(swigCPtr, index), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -289,7 +289,7 @@ namespace Tizen.NUI
         private PropertyValue ValueOfIndex(uint index)
         {
             PropertyValue ret = new PropertyValue(Interop.Property.Property_Array_ValueOfIndex__SWIG_0(swigCPtr, index), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
     }
@@ -323,7 +323,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyKey(string key) : this(Interop.Property.new_Property_Key__SWIG_0(key), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -333,7 +333,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyKey(int key) : this(Interop.Property.new_Property_Key__SWIG_1(key), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyKey(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -382,12 +382,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Property.Property_Key_type_set(swigCPtr, (int)value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 PropertyKey.KeyType ret = (PropertyKey.KeyType)Interop.Property.Property_Key_type_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -401,12 +401,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Property.Property_Key_indexKey_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 int ret = Interop.Property.Property_Key_indexKey_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -420,12 +420,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Property.Property_Key_stringKey_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 string ret = Interop.Property.Property_Key_stringKey_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -462,7 +462,7 @@ namespace Tizen.NUI
         public bool EqualTo(string rhs)
         {
             bool ret = Interop.Property.Property_Key_EqualTo__SWIG_0(swigCPtr, rhs);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -475,7 +475,7 @@ namespace Tizen.NUI
         public bool EqualTo(int rhs)
         {
             bool ret = Interop.Property.Property_Key_EqualTo__SWIG_1(swigCPtr, rhs);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -488,7 +488,7 @@ namespace Tizen.NUI
         public bool EqualTo(PropertyKey rhs)
         {
             bool ret = Interop.Property.Property_Key_EqualTo__SWIG_2(swigCPtr, PropertyKey.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -501,7 +501,7 @@ namespace Tizen.NUI
         public bool NotEqualTo(string rhs)
         {
             bool ret = Interop.Property.Property_Key_NotEqualTo__SWIG_0(swigCPtr, rhs);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -514,7 +514,7 @@ namespace Tizen.NUI
         public bool NotEqualTo(int rhs)
         {
             bool ret = Interop.Property.Property_Key_NotEqualTo__SWIG_1(swigCPtr, rhs);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -527,7 +527,7 @@ namespace Tizen.NUI
         public bool NotEqualTo(PropertyKey rhs)
         {
             bool ret = Interop.Property.Property_Key_NotEqualTo__SWIG_2(swigCPtr, PropertyKey.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -599,7 +599,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap() : this(Interop.PropertyMap.new_Property_Map__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -609,7 +609,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap(PropertyMap other) : this(Interop.PropertyMap.new_Property_Map__SWIG_1(PropertyMap.getCPtr(other)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyMap(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -692,7 +692,7 @@ namespace Tizen.NUI
         public uint Count()
         {
             uint ret = Interop.PropertyMap.Property_Map_Count(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -704,7 +704,7 @@ namespace Tizen.NUI
         public bool Empty()
         {
             bool ret = Interop.PropertyMap.Property_Map_Empty(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -718,7 +718,7 @@ namespace Tizen.NUI
         public void Insert(string key, PropertyValue value)
         {
             Interop.PropertyMap.Property_Map_Insert__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -731,7 +731,7 @@ namespace Tizen.NUI
         public void Insert(int key, PropertyValue value)
         {
             Interop.PropertyMap.Property_Map_Insert__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -745,7 +745,7 @@ namespace Tizen.NUI
         public PropertyMap Add(string key, PropertyValue value)
         {
             PropertyMap ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, key, PropertyValue.getCPtr(value)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -760,7 +760,7 @@ namespace Tizen.NUI
         public PropertyMap Add(int key, PropertyValue value)
         {
             PropertyMap ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -781,7 +781,7 @@ namespace Tizen.NUI
             {
                 ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue)), false);
             }
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             return ret;
         }
@@ -795,7 +795,7 @@ namespace Tizen.NUI
         public PropertyValue GetValue(uint position)
         {
             PropertyValue ret = new PropertyValue(Interop.PropertyMap.Property_Map_GetValue(swigCPtr, position), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -808,7 +808,7 @@ namespace Tizen.NUI
         public PropertyKey GetKeyAt(uint position)
         {
             PropertyKey ret = new PropertyKey(Interop.PropertyMap.Property_Map_GetKeyAt(swigCPtr, position), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -822,7 +822,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Property_Map_Find__SWIG_2(swigCPtr, key);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -837,7 +837,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Property_Map_Find__SWIG_3(swigCPtr, indexKey, stringKey);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -848,7 +848,7 @@ namespace Tizen.NUI
         public void Clear()
         {
             Interop.PropertyMap.Property_Map_Clear(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -860,7 +860,7 @@ namespace Tizen.NUI
         public void Merge(PropertyMap from)
         {
             Interop.PropertyMap.Property_Map_Merge(swigCPtr, PropertyMap.getCPtr(from));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -871,7 +871,7 @@ namespace Tizen.NUI
         internal PropertyValue ValueOfIndex(string key)
         {
             PropertyValue ret = new PropertyValue(Interop.PropertyMap.Property_Map_ValueOfIndex__SWIG_0(swigCPtr, key), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -883,7 +883,7 @@ namespace Tizen.NUI
         internal PropertyValue ValueOfIndex(int key)
         {
             PropertyValue ret = new PropertyValue(Interop.PropertyMap.Property_Map_ValueOfIndex__SWIG_2(swigCPtr, key), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -956,7 +956,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Size2D vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_4(Size2D.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -966,7 +966,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Position2D vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_4(Position2D.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -976,7 +976,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Position vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_5(Position.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -986,7 +986,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Color vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_6(Color.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         /// <summary>
         /// The default constructor.
@@ -994,7 +994,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue() : this(Interop.PropertyValue.new_Property_Value__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1004,7 +1004,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(bool boolValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_1(boolValue), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1014,7 +1014,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(int integerValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_2(integerValue), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1024,7 +1024,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(float floatValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_3(floatValue), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1034,7 +1034,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Vector2 vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_4(Vector2.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1044,7 +1044,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Vector3 vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_5(Vector3.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1054,7 +1054,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Vector4 vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_6(Vector4.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1064,7 +1064,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Rectangle vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_9(Rectangle.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1074,7 +1074,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(Rotation quaternion) : this(Interop.PropertyValue.new_Property_Value__SWIG_11(Rotation.getCPtr(quaternion)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1084,7 +1084,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(string stringValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_12(stringValue), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1094,7 +1094,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(PropertyArray arrayValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_14(PropertyArray.getCPtr(arrayValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1104,7 +1104,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(PropertyMap mapValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_15(PropertyMap.getCPtr(mapValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1114,7 +1114,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyValue(Extents extentsValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_16(Extents.getCPtr(extentsValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1124,7 +1124,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(PropertyType type) : this(Interop.PropertyValue.new_Property_Value__SWIG_17((int)type), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1134,7 +1134,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue(PropertyValue value) : this(Interop.PropertyValue.new_Property_Value__SWIG_18(PropertyValue.getCPtr(value)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1143,7 +1143,7 @@ namespace Tizen.NUI
         /// <param name="vectorValue">Size values.</param>
         internal PropertyValue(Size vectorValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_5(Size.getCPtr(vectorValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -1154,17 +1154,17 @@ namespace Tizen.NUI
 
         internal PropertyValue(Matrix3 matrixValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_7(Matrix3.getCPtr(matrixValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyValue(Matrix matrixValue) : this(Interop.PropertyValue.new_Property_Value__SWIG_8(Matrix.getCPtr(matrixValue)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyValue(AngleAxis angleAxis) : this(Interop.PropertyValue.new_Property_Value__SWIG_10(AngleAxis.getCPtr(angleAxis)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1307,7 +1307,7 @@ namespace Tizen.NUI
         public bool Get(Size2D vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_5(swigCPtr, Size2D.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1319,7 +1319,7 @@ namespace Tizen.NUI
         public bool Get(Position2D vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_5(swigCPtr, Position2D.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1332,7 +1332,7 @@ namespace Tizen.NUI
         public bool Get(Size vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_6(swigCPtr, Size.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1344,7 +1344,7 @@ namespace Tizen.NUI
         public bool Get(Position vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_6(swigCPtr, Position.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1356,7 +1356,7 @@ namespace Tizen.NUI
         public bool Get(Color vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_7(swigCPtr, Color.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1368,7 +1368,7 @@ namespace Tizen.NUI
         public new PropertyType GetType()
         {
             PropertyType ret = (PropertyType)Interop.PropertyValue.Property_Value_GetType(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1381,7 +1381,7 @@ namespace Tizen.NUI
         public bool Get(out bool boolValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_1(swigCPtr, out boolValue);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1394,7 +1394,7 @@ namespace Tizen.NUI
         public bool Get(out float floatValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_2(swigCPtr, out floatValue);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1407,7 +1407,7 @@ namespace Tizen.NUI
         public bool Get(out int integerValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_3(swigCPtr, out integerValue);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1420,7 +1420,7 @@ namespace Tizen.NUI
         public bool Get(Rectangle rect)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_4(swigCPtr, Rectangle.getCPtr(rect));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1433,7 +1433,7 @@ namespace Tizen.NUI
         public bool Get(Vector2 vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_5(swigCPtr, Vector2.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1446,7 +1446,7 @@ namespace Tizen.NUI
         public bool Get(Vector3 vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_6(swigCPtr, Vector3.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1459,7 +1459,7 @@ namespace Tizen.NUI
         public bool Get(Vector4 vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_7(swigCPtr, Vector4.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1474,7 +1474,7 @@ namespace Tizen.NUI
         public bool Get(RelativeVector2 vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_5(swigCPtr, RelativeVector2.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1489,7 +1489,7 @@ namespace Tizen.NUI
         public bool Get(RelativeVector3 vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_6(swigCPtr, RelativeVector3.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1504,7 +1504,7 @@ namespace Tizen.NUI
         public bool Get(RelativeVector4 vectorValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_7(swigCPtr, RelativeVector4.getCPtr(vectorValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1517,7 +1517,7 @@ namespace Tizen.NUI
         public bool Get(Rotation quaternionValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_11(swigCPtr, Rotation.getCPtr(quaternionValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1530,7 +1530,7 @@ namespace Tizen.NUI
         public bool Get(out string stringValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_12(swigCPtr, out stringValue);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1543,7 +1543,7 @@ namespace Tizen.NUI
         public bool Get(PropertyArray arrayValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_13(swigCPtr, PropertyArray.getCPtr(arrayValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1556,7 +1556,7 @@ namespace Tizen.NUI
         public bool Get(PropertyMap mapValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_14(swigCPtr, PropertyMap.getCPtr(mapValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1569,7 +1569,7 @@ namespace Tizen.NUI
         public bool Get(Extents extentsValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_15(swigCPtr, Extents.getCPtr(extentsValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1581,21 +1581,21 @@ namespace Tizen.NUI
         internal bool Get(Matrix3 matrixValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_8(swigCPtr, Matrix3.getCPtr(matrixValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool Get(Matrix matrixValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_9(swigCPtr, Matrix.getCPtr(matrixValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool Get(AngleAxis angleAxisValue)
         {
             bool ret = Interop.PropertyValue.Property_Value_Get__SWIG_10(swigCPtr, AngleAxis.getCPtr(angleAxisValue));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1988,7 +1988,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, int propertyIndex) : this(Interop.Property.new_Property__SWIG_0(Animatable.getCPtr(arg0), propertyIndex), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2000,7 +2000,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, int propertyIndex, int componentIndex) : this(Interop.Property.new_Property__SWIG_1(Animatable.getCPtr(arg0), propertyIndex, componentIndex), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2012,7 +2012,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, string propertyName) : this(Interop.Property.new_Property__SWIG_2(Animatable.getCPtr(arg0), propertyName), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2025,7 +2025,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Property(Animatable arg0, string propertyName, int componentIndex) : this(Interop.Property.new_Property__SWIG_3(Animatable.getCPtr(arg0), propertyName, componentIndex), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -2052,12 +2052,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Property.Property_propertyIndex_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 int ret = Interop.Property.Property_propertyIndex_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2071,12 +2071,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Property.Property_componentIndex_set(swigCPtr, value);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 int ret = Interop.Property.Property_componentIndex_get(swigCPtr);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2086,7 +2086,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.Property.Property_INVALID_INDEX_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2096,7 +2096,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.Property.Property_INVALID_KEY_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2106,7 +2106,7 @@ namespace Tizen.NUI
             get
             {
                 int ret = Interop.Property.Property_INVALID_COMPONENT_INDEX_get();
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -2116,12 +2116,12 @@ namespace Tizen.NUI
             set
             {
                 Interop.Property.Property__object_set(swigCPtr, Animatable.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 Animatable ret = new Animatable(Interop.Property.Property__object_get(swigCPtr), false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

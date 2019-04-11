@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TableView
         {
-            static TableView()
-            {
-                Tizen.Log.Error("NUI", "TableView");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TableView_Property_ROWS_get")]
             public static extern int TableView_Property_ROWS_get();

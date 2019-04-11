@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewImplSignal
         {
-            static ViewImplSignal()
-            {
-                Tizen.Log.Error("NUI", "ViewImplSignal");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ViewImpl_OnStageConnection")]
             public static extern void ViewImpl_OnStageConnection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 

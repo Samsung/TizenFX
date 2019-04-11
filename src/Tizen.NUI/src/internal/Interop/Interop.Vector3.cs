@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Vector3
         {
-            static Vector3()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "Vector3 : " + ret);
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_Vector3__SWIG_0")]
             public static extern global::System.IntPtr new_Vector3__SWIG_0();

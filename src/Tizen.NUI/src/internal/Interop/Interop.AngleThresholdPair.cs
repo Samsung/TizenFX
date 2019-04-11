@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class AngleThresholdPair
         {
-            static AngleThresholdPair()
-            {
-                Tizen.Log.Error("NUI", "AngleThresholdPair");
-            }
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_AngleThresholdPair__SWIG_0")]
             public static extern global::System.IntPtr new_AngleThresholdPair__SWIG_0();
 

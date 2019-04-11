@@ -154,7 +154,7 @@ namespace Tizen.NUI
 
             internal Property() : this(Interop.LinearConstrainer.new_LinearConstrainer_Property(), true)
             {
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             internal static readonly int VALUE = Interop.LinearConstrainer.LinearConstrainer_Property_VALUE_get();
@@ -163,44 +163,44 @@ namespace Tizen.NUI
 
         public LinearConstrainer() : this(Interop.LinearConstrainer.LinearConstrainer_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         internal static LinearConstrainer DownCast(BaseHandle handle)
         {
             LinearConstrainer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as LinearConstrainer;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LinearConstrainer(LinearConstrainer handle) : this(Interop.LinearConstrainer.new_LinearConstrainer__SWIG_1(LinearConstrainer.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal LinearConstrainer Assign(LinearConstrainer rhs)
         {
             LinearConstrainer ret = new LinearConstrainer(Interop.LinearConstrainer.LinearConstrainer_Assign(swigCPtr, LinearConstrainer.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Apply(Property target, Property source, Vector2 range, Vector2 wrap)
         {
             Interop.LinearConstrainer.LinearConstrainer_Apply__SWIG_0(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range), Vector2.getCPtr(wrap));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Apply(Property target, Property source, Vector2 range)
         {
             Interop.LinearConstrainer.LinearConstrainer_Apply__SWIG_1(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Remove(Animatable target)
         {
             Interop.LinearConstrainer.LinearConstrainer_Remove(swigCPtr, Animatable.getCPtr(target));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PropertyArray Value

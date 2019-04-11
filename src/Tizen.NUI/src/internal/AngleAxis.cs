@@ -102,12 +102,12 @@ namespace Tizen.NUI
 
         public AngleAxis() : this(Interop.AngleAxis.new_AngleAxis__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public AngleAxis(Radian initialAngle, Vector3 initialAxis) : this(Interop.AngleAxis.new_AngleAxis__SWIG_1(Radian.getCPtr(initialAngle), Vector3.getCPtr(initialAxis)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Radian angle
@@ -115,13 +115,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.AngleAxis.AngleAxis_angle_set(swigCPtr, Radian.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.AngleAxis.AngleAxis_angle_get(swigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -131,13 +131,13 @@ namespace Tizen.NUI
             set
             {
                 Interop.AngleAxis.AngleAxis_axis_set(swigCPtr, Vector3.getCPtr(value));
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
                 global::System.IntPtr cPtr = Interop.AngleAxis.AngleAxis_axis_get(swigCPtr);
                 Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

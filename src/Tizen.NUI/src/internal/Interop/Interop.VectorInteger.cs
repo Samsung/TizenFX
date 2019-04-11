@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class VectorInteger
         {
-            static VectorInteger()
-            {
-                Tizen.Log.Error("NUI", "VectorInteger");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_VectorInteger_BaseType_get")]
             public static extern int VectorInteger_BaseType_get();

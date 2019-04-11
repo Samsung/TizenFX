@@ -67,45 +67,45 @@ namespace Tizen.NUI
 
         public NativeImage(NativeImageInterface nativeImageInterface) : this(Interop.NativeImageInterface.NativeImage_New(NativeImageInterface.getCPtr(nativeImageInterface)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
         public NativeImage(NativeImage handle) : this(Interop.NativeImageInterface.new_NativeImage__SWIG_1(NativeImage.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public NativeImage Assign(NativeImage rhs)
         {
             NativeImage ret = new NativeImage(Interop.NativeImageInterface.NativeImage_Assign(swigCPtr, NativeImage.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void CreateGlTexture()
         {
             Interop.NativeImageInterface.NativeImage_CreateGlTexture(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public new static NativeImage DownCast(BaseHandle handle)
         {
             NativeImage ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as NativeImage;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetCustomFragmentPreFix()
         {
             string ret = Interop.NativeImageInterface.NativeImage_GetCustomFragmentPreFix(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetCustomSamplerTypename()
         {
             string ret = Interop.NativeImageInterface.NativeImage_GetCustomSamplerTypename(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class GestureDetector
         {
-            static GestureDetector()
-            {
-                Tizen.Log.Error("NUI", "GestureDetector");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GestureDetector_SWIGUpcast")]
             public static extern global::System.IntPtr GestureDetector_SWIGUpcast(global::System.IntPtr jarg1);

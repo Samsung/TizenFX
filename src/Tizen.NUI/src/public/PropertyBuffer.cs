@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyBuffer(PropertyMap bufferFormat) : this(Interop.PropertyBuffer.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -55,7 +55,7 @@ namespace Tizen.NUI
         public void SetData(System.IntPtr data, uint size)
         {
             Interop.PropertyBuffer.PropertyBuffer_SetData(swigCPtr, data, size);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Tizen.NUI
         public uint GetSize()
         {
             uint ret = Interop.PropertyBuffer.PropertyBuffer_GetSize(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

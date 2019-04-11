@@ -141,7 +141,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public FlexContainer() : this(Interop.FlexContainer.FlexContainer_New(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FlexContainer.FlexContainer_SWIGUpcast(cPtr), cMemoryOwn)

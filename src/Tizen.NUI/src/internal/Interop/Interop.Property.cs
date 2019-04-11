@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Property
         {
-            static Property()
-            {
-                Tizen.Log.Error("NUI", "Property");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Property_INVALID_INDEX_get")]
             public static extern int Property_INVALID_INDEX_get();

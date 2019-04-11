@@ -57,7 +57,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public WidgetView(string widgetId, string contentInfo, int width, int height, float updatePeriod) : this(Interop.WidgetView.WidgetView_New(widgetId, contentInfo, width, height, updatePeriod), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         }
         internal WidgetView(WidgetView handle) : this(Interop.WidgetView.new_WidgetView__SWIG_1(WidgetView.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -449,7 +449,7 @@ namespace Tizen.NUI
         public bool PauseWidget()
         {
             bool ret = Interop.WidgetView.WidgetView_PauseWidget(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -461,7 +461,7 @@ namespace Tizen.NUI
         public bool ResumeWidget()
         {
             bool ret = Interop.WidgetView.WidgetView_ResumeWidget(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -475,7 +475,7 @@ namespace Tizen.NUI
         public bool CancelTouchEvent()
         {
             bool ret = Interop.WidgetView.WidgetView_CancelTouchEvent(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -487,7 +487,7 @@ namespace Tizen.NUI
         public void ActivateFaultedWidget()
         {
             Interop.WidgetView.WidgetView_ActivateFaultedWidget(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -498,21 +498,21 @@ namespace Tizen.NUI
         public bool TerminateWidget()
         {
             bool ret = Interop.WidgetView.WidgetView_TerminateWidget(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static WidgetView DownCast(BaseHandle handle)
         {
             WidgetView ret = new WidgetView(Interop.WidgetView.WidgetView_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static WidgetView GetWidgetViewFromPtr(global::System.IntPtr cPtr)
         {
             WidgetView ret = new WidgetView(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -524,49 +524,49 @@ namespace Tizen.NUI
         internal WidgetView Assign(WidgetView handle)
         {
             WidgetView ret = new WidgetView(Interop.WidgetView.WidgetView_Assign(swigCPtr, WidgetView.getCPtr(handle)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetAddedSignal()
         {
             WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetAddedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetDeletedSignal()
         {
             WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetDeletedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetCreationAbortedSignal()
         {
             WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetCreationAbortedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetContentUpdatedSignal()
         {
             WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetContentUpdatedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetUpdatePeriodChangedSignal()
         {
             WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetUpdatePeriodChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetFaultedSignal()
         {
             WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetFaultedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

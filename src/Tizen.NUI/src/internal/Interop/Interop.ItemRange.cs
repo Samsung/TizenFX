@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ItemRange
         {
-            static ItemRange()
-            {
-                Tizen.Log.Error("NUI", "ItemRange");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_ItemRange__SWIG_0")]
             public static extern global::System.IntPtr new_ItemRange__SWIG_0(uint jarg1, uint jarg2);

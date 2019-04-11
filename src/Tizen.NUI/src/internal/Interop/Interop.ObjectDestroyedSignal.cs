@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ObjectDestroyedSignal
         {
-            static ObjectDestroyedSignal()
-            {
-                Tizen.Log.Error("NUI", "ObjectDestroyedSignal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ObjectDestroyedSignal_Empty")]
             public static extern bool ObjectDestroyedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

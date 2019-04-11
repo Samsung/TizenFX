@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Actor
         {
-            static Actor()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "Actor : " + ret);
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Actor_SWIGUpcast")]
             public static extern global::System.IntPtr Actor_SWIGUpcast(global::System.IntPtr jarg1);

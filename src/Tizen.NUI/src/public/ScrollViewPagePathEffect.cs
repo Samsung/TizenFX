@@ -89,13 +89,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollViewPagePathEffect(Path path, Vector3 forward, int inputPropertyIndex, Vector3 pageSize, uint pageCount) : this(Interop.ScrollView.ScrollViewPagePathEffect_New(Path.getCPtr(path), Vector3.getCPtr(forward), inputPropertyIndex, Vector3.getCPtr(pageSize), pageCount), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static ScrollViewPagePathEffect DownCast(BaseHandle handle)
         {
             ScrollViewPagePathEffect ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ScrollViewPagePathEffect;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -109,7 +109,7 @@ namespace Tizen.NUI
         public void ApplyToPage(View page, uint pageOrder)
         {
             Interop.ScrollView.ScrollViewPagePathEffect_ApplyToPage(swigCPtr, View.getCPtr(page), pageOrder);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }

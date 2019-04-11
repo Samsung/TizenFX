@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class VectorUnsignedChar
         {
-            static VectorUnsignedChar()
-            {
-                Tizen.Log.Error("NUI", "VectorUnsignedChar");
-            }
-
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_VectorUnsignedChar_BaseType_get")]
             public static extern int VectorUnsignedChar_BaseType_get();
 

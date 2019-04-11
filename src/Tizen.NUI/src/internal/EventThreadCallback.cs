@@ -104,8 +104,8 @@ namespace Tizen.NUI
 
         public EventThreadCallback(CallbackDelegate func) : this(Interop.EventThreadCallback.new_EventThreadCallback(func), true)
         {
-            if (SWIGException.SWIGPendingException.Pending)
-                throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Trigger()
@@ -115,8 +115,8 @@ namespace Tizen.NUI
                 Interop.EventThreadCallback.EventThreadCallback_Trigger(swigCPtr);
             }
 
-            if (SWIGException.SWIGPendingException.Pending)
-                throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 

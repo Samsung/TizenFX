@@ -8,12 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ObjectCreatedSignal
         {
-            static ObjectCreatedSignal()
-            {
-                Tizen.Log.Error("NUI", "ObjectCreatedSignal");
-            }
-
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ObjectCreatedSignal_Empty")]
             public static extern bool ObjectCreatedSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

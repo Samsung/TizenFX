@@ -326,61 +326,6 @@ namespace Tizen.NUI
     internal class Application : BaseHandle, IResourcesProvider, IApplicationController, IElementConfiguration<Application>
     {
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_SWIGUpcast")]
-        public static extern global::System.IntPtr Application_SWIGUpcast(global::System.IntPtr jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_New__MANUAL_4")]
-        public static extern global::System.IntPtr Application_New__MANUAL_4(int jarg1, string jarg2, string jarg3, int jarg4);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_MainLoop__SWIG_0")]
-        public static extern void Application_MainLoop__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_InitSignal")]
-        public static extern global::System.IntPtr Application_InitSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_TerminateSignal")]
-        public static extern global::System.IntPtr Application_TerminateSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_PauseSignal")]
-        public static extern global::System.IntPtr Application_PauseSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_ResumeSignal")]
-        public static extern global::System.IntPtr Application_ResumeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_ResetSignal")]
-        public static extern global::System.IntPtr Application_ResetSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_ResizeSignal")]
-        public static extern global::System.IntPtr Application_ResizeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_AppControlSignal")]
-        public static extern global::System.IntPtr Application_AppControlSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_LanguageChangedSignal")]
-        public static extern global::System.IntPtr Application_LanguageChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_RegionChangedSignal")]
-        public static extern global::System.IntPtr Application_RegionChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_LowBatterySignal")]
-        public static extern global::System.IntPtr Application_LowBatterySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_LowMemorySignal")]
-        public static extern global::System.IntPtr Application_LowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
         static Application s_current;
         Task<IDictionary<string, object>> _propertiesTask;
         readonly Lazy<PlatformConfigurationRegistry<Application>> _platformConfigurationRegistry;
@@ -794,7 +739,7 @@ namespace Tizen.NUI
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Application_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
         {
             NavigationProxy = new NavigationImpl(this);
             SetCurrentApplication(this);
@@ -1508,7 +1453,7 @@ namespace Tizen.NUI
             }
 
             Application ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Application;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1528,7 +1473,7 @@ namespace Tizen.NUI
             //ViewRegistryHelper.Initialize(); //moved to Application side.
 
             Application ret = New(1, stylesheet, windowMode);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // set the singleton
             _instance = ret;
@@ -1539,7 +1484,7 @@ namespace Tizen.NUI
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // set the singleton
             _instance = ret;
@@ -1558,7 +1503,7 @@ namespace Tizen.NUI
 
             bool ret = Interop.Application.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
 
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1568,28 +1513,28 @@ namespace Tizen.NUI
         public static Application New()
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_0(), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc)
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_1(argc), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet)
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_2(argc, stylesheet), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             ret.SendResume();
             return ret;
         }
@@ -1599,8 +1544,9 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            Application ret = new Application(Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            Application ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             return ret;
         }
@@ -1608,167 +1554,167 @@ namespace Tizen.NUI
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Application() : this(Interop.Application.new_Application__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Application(Application application) : this(Interop.Application.new_Application__SWIG_1(Application.getCPtr(application)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Application Assign(Application application)
         {
             Application ret = new Application(Interop.Application.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void MainLoop()
         {
-            Application_MainLoop__SWIG_0(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.Application_MainLoop__SWIG_0(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void MainLoop(SWIGTYPE_p_Configuration__ContextLoss configuration)
         {
             Interop.Application.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Lower()
         {
             Interop.Application.Application_Lower(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Quit()
         {
             Interop.Application.Application_Quit(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
         {
             bool ret = Interop.Application.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Window GetWindow()
         {
             Window ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void ReplaceWindow(Rectangle windowPosition, string name)
         {
             Interop.Application.Application_ReplaceWindow(swigCPtr, Rectangle.getCPtr(windowPosition), name);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static string GetResourcePath()
         {
             string ret = Interop.Application.Application_GetResourcePath();
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetLanguage()
         {
             string ret = Interop.Application.Application_GetLanguage(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetRegion()
         {
             string ret = Interop.Application.Application_GetRegion(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
 
         internal ApplicationSignal InitSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_InitSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_InitSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationSignal TerminateSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_TerminateSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_TerminateSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationSignal PauseSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_PauseSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_PauseSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationSignal ResumeSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_ResumeSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResumeSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationSignal ResetSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_ResetSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResetSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationSignal ResizeSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_ResizeSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_ResizeSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationControlSignal AppControlSignal()
         {
-            ApplicationControlSignal ret = new ApplicationControlSignal(Application_AppControlSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationControlSignal ret = new ApplicationControlSignal(NDalicPINVOKE.Application_AppControlSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationSignal LanguageChangedSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_LanguageChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_LanguageChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ApplicationSignal RegionChangedSignal()
         {
-            ApplicationSignal ret = new ApplicationSignal(Application_RegionChangedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.Application_RegionChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LowBatterySignalType BatteryLowSignal()
         {
-            LowBatterySignalType ret = new LowBatterySignalType(Application_LowBatterySignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            LowBatterySignalType ret = new LowBatterySignalType(NDalicPINVOKE.Application_LowBatterySignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LowMemorySignalType MemoryLowSignal()
         {
-            LowMemorySignalType ret = new LowMemorySignalType(Application_LowMemorySignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.Application_LowMemorySignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

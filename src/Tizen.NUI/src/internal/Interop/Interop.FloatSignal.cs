@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class FloatSignal
         {
-            static FloatSignal()
-            {
-                Tizen.Log.Error("NUI", "FloatSignal");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_FloatSignal_Empty")]
             public static extern bool FloatSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);

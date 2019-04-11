@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification() : this(Interop.PropertyNotification.new_PropertyNotification__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification(PropertyNotification handle) : this(Interop.PropertyNotification.new_PropertyNotification__SWIG_1(PropertyNotification.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyNotification.PropertyNotification_SWIGUpcast(cPtr), cMemoryOwn)
@@ -135,7 +135,7 @@ namespace Tizen.NUI
         public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
         {
             PropertyNotification ret = new PropertyNotification(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -148,7 +148,7 @@ namespace Tizen.NUI
         public static PropertyNotification DownCast(BaseHandle handle)
         {
             PropertyNotification ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as PropertyNotification;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         public PropertyNotification Assign(PropertyNotification rhs)
         {
             PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.PropertyNotification_Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -173,7 +173,7 @@ namespace Tizen.NUI
         public PropertyCondition GetCondition()
         {
             PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.PropertyNotification_GetCondition__SWIG_0(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -184,7 +184,7 @@ namespace Tizen.NUI
         public Animatable GetTarget()
         {
             Animatable ret = new Animatable(Interop.PropertyNotification.PropertyNotification_GetTarget(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -196,7 +196,7 @@ namespace Tizen.NUI
         public int GetTargetProperty()
         {
             int ret = Interop.PropertyNotification.PropertyNotification_GetTargetProperty(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -208,7 +208,7 @@ namespace Tizen.NUI
         public void SetNotifyMode(PropertyNotification.NotifyMode mode)
         {
             Interop.PropertyNotification.PropertyNotification_SetNotifyMode(swigCPtr, (int)mode);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace Tizen.NUI
         public PropertyNotification.NotifyMode GetNotifyMode()
         {
             PropertyNotification.NotifyMode ret = (PropertyNotification.NotifyMode)Interop.PropertyNotification.PropertyNotification_GetNotifyMode(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -231,7 +231,7 @@ namespace Tizen.NUI
         public bool GetNotifyResult()
         {
             bool ret = Interop.PropertyNotification.PropertyNotification_GetNotifyResult(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -243,7 +243,7 @@ namespace Tizen.NUI
         public PropertyNotifySignal NotifySignal()
         {
             PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.PropertyNotification_NotifySignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

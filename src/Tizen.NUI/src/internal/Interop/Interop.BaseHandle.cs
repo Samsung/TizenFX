@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class BaseHandle
         {
-            static BaseHandle()
-            {
-                ulong ret = Interop.Util.GetNanoSeconds();
-                Tizen.Log.Error("NUI", "BaseHandle : " + ret);
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_BaseHandle__SWIG_0")]
             public static extern global::System.IntPtr new_BaseHandle__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);

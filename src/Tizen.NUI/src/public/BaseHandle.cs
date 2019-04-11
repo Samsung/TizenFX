@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public BaseHandle() : this(Interop.BaseHandle.new_BaseHandle__SWIG_1())
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -69,19 +69,19 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.new_BaseHandle__SWIG_2(BaseHandle.getCPtr(handle)))
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             //to catch derived classes dali native exceptions
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             _registerMe = swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             // using copy constructor to create another native handle so Registry.Unregister works fine.
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.new_BaseHandle__SWIG_2(swigCPtr));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (_registerMe)
             {
@@ -99,7 +99,7 @@ namespace Tizen.NUI
 
             // using copy constructor to create another native handle so Registry.Unregister works fine.
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.new_BaseHandle__SWIG_2(swigCPtr));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (_registerMe)
             {
@@ -344,7 +344,7 @@ namespace Tizen.NUI
         public bool DoAction(string actionName, PropertyMap attributes)
         {
             bool ret = Interop.BaseHandle.BaseHandle_DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -358,7 +358,7 @@ namespace Tizen.NUI
         public string GetTypeName()
         {
             string ret = Interop.BaseHandle.BaseHandle_GetTypeName(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -371,7 +371,7 @@ namespace Tizen.NUI
         public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
             bool ret = Interop.BaseHandle.BaseHandle_GetTypeInfo(swigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -382,7 +382,7 @@ namespace Tizen.NUI
         public void Reset()
         {
             Interop.BaseHandle.BaseHandle_Reset(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -394,7 +394,7 @@ namespace Tizen.NUI
         public bool EqualTo(BaseHandle rhs)
         {
             bool ret = Interop.BaseHandle.BaseHandle_EqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -407,7 +407,7 @@ namespace Tizen.NUI
         public bool NotEqualTo(BaseHandle rhs)
         {
             bool ret = Interop.BaseHandle.BaseHandle_NotEqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -424,7 +424,7 @@ namespace Tizen.NUI
             }
 
             bool ret = Interop.BaseHandle.BaseHandle_HasBody(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -442,7 +442,7 @@ namespace Tizen.NUI
             }
 
             bool ret = Interop.BaseHandle.BaseHandle_IsEqual(swigCPtr, BaseHandle.getCPtr(rhs));
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -460,7 +460,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = Interop.BaseHandle.BaseHandle_GetObjectPtr(swigCPtr);
             RefObject ret = (cPtr == global::System.IntPtr.Zero) ? null : new RefObject(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

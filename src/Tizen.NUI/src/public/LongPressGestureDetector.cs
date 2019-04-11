@@ -43,7 +43,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector() : this(Interop.LongPressGestureDetector.LongPressGestureDetector_New__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(uint touchesRequired) : this(Interop.LongPressGestureDetector.LongPressGestureDetector_New__SWIG_1(touchesRequired), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(uint minTouches, uint maxTouches) : this(Interop.LongPressGestureDetector.LongPressGestureDetector_New__SWIG_2(minTouches, maxTouches), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(LongPressGestureDetector handle) : this(Interop.LongPressGestureDetector.new_LongPressGestureDetector__SWIG_1(LongPressGestureDetector.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal LongPressGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LongPressGestureDetector.LongPressGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
@@ -136,7 +136,7 @@ namespace Tizen.NUI
         public void SetTouchesRequired(uint touches)
         {
             Interop.LongPressGestureDetector.LongPressGestureDetector_SetTouchesRequired__SWIG_0(swigCPtr, touches);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Tizen.NUI
         public void SetTouchesRequired(uint minTouches, uint maxTouches)
         {
             Interop.LongPressGestureDetector.LongPressGestureDetector_SetTouchesRequired__SWIG_1(swigCPtr, minTouches, maxTouches);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         public uint GetMinimumTouchesRequired()
         {
             uint ret = Interop.LongPressGestureDetector.LongPressGestureDetector_GetMinimumTouchesRequired(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -174,35 +174,35 @@ namespace Tizen.NUI
         public uint GetMaximumTouchesRequired()
         {
             uint ret = Interop.LongPressGestureDetector.LongPressGestureDetector_GetMaximumTouchesRequired(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static LongPressGestureDetector GetLongPressGestureDetectorFromPtr(global::System.IntPtr cPtr)
         {
             LongPressGestureDetector ret = new LongPressGestureDetector(cPtr, false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal new static LongPressGestureDetector DownCast(BaseHandle handle)
         {
             LongPressGestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as LongPressGestureDetector;
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LongPressGestureDetector Assign(LongPressGestureDetector rhs)
         {
             LongPressGestureDetector ret = new LongPressGestureDetector(Interop.LongPressGestureDetector.LongPressGestureDetector_Assign(swigCPtr, LongPressGestureDetector.getCPtr(rhs)), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LongPressGestureDetectedSignal DetectedSignal()
         {
             LongPressGestureDetectedSignal ret = new LongPressGestureDetectedSignal(Interop.LongPressGestureDetector.LongPressGestureDetector_DetectedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

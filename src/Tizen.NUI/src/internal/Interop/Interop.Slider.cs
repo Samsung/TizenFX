@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Slider
         {
-            static Slider()
-            {
-                Tizen.Log.Error("NUI", "Slider");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Slider_SWIGUpcast")]
             public static extern global::System.IntPtr Slider_SWIGUpcast(global::System.IntPtr jarg1);

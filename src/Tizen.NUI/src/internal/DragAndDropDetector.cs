@@ -67,48 +67,48 @@ namespace Tizen.NUI
 
         public DragAndDropDetector() : this(Interop.DragAndDropDetector.new_DragAndDropDetector(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public string GetContent()
         {
             string ret = Interop.DragAndDropDetector.DragAndDropDetector_GetContent(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Vector2 GetCurrentScreenPosition()
         {
             Vector2 ret = new Vector2(Interop.DragAndDropDetector.DragAndDropDetector_GetCurrentScreenPosition(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t EnteredSignal()
         {
             SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(Interop.DragAndDropDetector.DragAndDropDetector_EnteredSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ExitedSignal()
         {
             SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(Interop.DragAndDropDetector.DragAndDropDetector_ExitedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t MovedSignal()
         {
             SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(Interop.DragAndDropDetector.DragAndDropDetector_MovedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t DroppedSignal()
         {
             SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__DragAndDropDetectorF_t(Interop.DragAndDropDetector.DragAndDropDetector_DroppedSignal(swigCPtr), false);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

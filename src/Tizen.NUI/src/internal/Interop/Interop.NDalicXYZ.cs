@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicXYZ
         {
-            static NDalicXYZ()
-            {
-                Tizen.Log.Error("NUI", "NDalicXYZ");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_POSITIVE_X_get")]
             public static extern uint POSITIVE_X_get();
 

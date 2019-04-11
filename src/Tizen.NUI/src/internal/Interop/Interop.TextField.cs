@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class TextField
         {
-            static TextField()
-            {
-                Tizen.Log.Error("NUI", "TextField");
-            }
-
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TextField_Property_RENDERING_BACKEND_get")]
             public static extern int TextField_Property_RENDERING_BACKEND_get();
 

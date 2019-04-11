@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TypeInfo() : this(Interop.TypeInfo.new_TypeInfo__SWIG_0(), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TypeInfo(TypeInfo handle) : this(Interop.TypeInfo.new_TypeInfo__SWIG_1(TypeInfo.getCPtr(handle)), true)
         {
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TypeInfo.TypeInfo_SWIGUpcast(cPtr), cMemoryOwn)
@@ -58,7 +58,7 @@ namespace Tizen.NUI
         public string GetName()
         {
             string ret = Interop.TypeInfo.TypeInfo_GetName(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -70,7 +70,7 @@ namespace Tizen.NUI
         public string GetBaseName()
         {
             string ret = Interop.TypeInfo.TypeInfo_GetBaseName(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         public BaseHandle CreateInstance()
         {
             BaseHandle ret = new BaseHandle(Interop.TypeInfo.TypeInfo_CreateInstance(swigCPtr), true);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         public uint GetPropertyCount()
         {
             uint ret = Interop.TypeInfo.TypeInfo_GetPropertyCount(swigCPtr);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -108,7 +108,7 @@ namespace Tizen.NUI
         public string GetPropertyName(int index)
         {
             string ret = Interop.TypeInfo.TypeInfo_GetPropertyName(swigCPtr, index);
-            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

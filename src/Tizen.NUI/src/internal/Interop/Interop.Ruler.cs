@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class Ruler
         {
-            static Ruler()
-            {
-                Tizen.Log.Error("NUI", "Ruler");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Ruler_SWIGUpcast")]
             public static extern global::System.IntPtr Ruler_SWIGUpcast(global::System.IntPtr jarg1);

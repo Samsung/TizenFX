@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class NDalicVisual
         {
-            static NDalicVisual()
-            {
-                Tizen.Log.Error("NUI", "NDalicVisual");
-            }
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_VISUAL_PROPERTY_TYPE_get")]
             public static extern int VISUAL_PROPERTY_TYPE_get();

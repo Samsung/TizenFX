@@ -8,11 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class CustomAlgorithmInterface
         {
-            static CustomAlgorithmInterface()
-            {
-                Tizen.Log.Error("NUI", "CustomAlgorithmInterface");
-            }
-
 
             [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_CustomAlgorithmInterface")]
             public static extern void delete_CustomAlgorithmInterface(global::System.Runtime.InteropServices.HandleRef jarg1);
