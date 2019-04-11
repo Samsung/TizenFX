@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the audio pitch.
         /// </summary>
-        /// <remarks>This function is used for audio content only.</remarks>
+        /// <remarks>This function is used for audio content only. The default value is false.</remarks>
         /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
