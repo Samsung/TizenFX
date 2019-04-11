@@ -338,16 +338,16 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_video_roi_area")]
         internal static extern PlayerErrorCode GetVideoRoi(IntPtr player, out double scaleX, out double scaleY, out double scaleWidth, out double scaleHeight);
 
-        [DllImport(Libraries.Player, EntryPoint = "player_pitch_set_enabled")]
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_set_enabled")]
         internal static extern PlayerErrorCode SetAudioPitchEnabled(IntPtr player, bool enabled);
 
-        [DllImport(Libraries.Player, EntryPoint = "player_pitch_is_enabled")]
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_is_enabled")]
         internal static extern PlayerErrorCode IsAudioPitchEnabled(IntPtr player, out bool enabled);
 
-        [DllImport(Libraries.Player, EntryPoint = "player_pitch_set_value")]
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_set_value")]
         internal static extern PlayerErrorCode SetAudioPitch(IntPtr player, float level);
 
-        [DllImport(Libraries.Player, EntryPoint = "player_pitch_get_value")]
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_get_value")]
         internal static extern PlayerErrorCode GetAudioPitch(IntPtr player, out float level);
     }
 
