@@ -259,7 +259,7 @@ namespace Tizen.Network.Bluetooth
             else
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }   
+            }
 
             Log.Info (Globals.LogTag, "Device name " + deviceName);
             return deviceName;
@@ -424,7 +424,7 @@ namespace Tizen.Network.Bluetooth
                 IntPtr manufData;
 
                 BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
-                
+
                 int ret = Interop.Bluetooth.GetScanResultManufacturerData(ref scanDataStruct, packetType, out dataId, out manufData, out dataLength);
                 if (ret != (int)BluetoothError.None)
                 {
