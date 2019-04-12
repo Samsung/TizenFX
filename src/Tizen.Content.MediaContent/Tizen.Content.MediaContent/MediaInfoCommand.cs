@@ -954,6 +954,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <remarks>
         ///     Media in the external storage is not supported, with the exception of MMC.
+        ///     Only JPEG, PNG, BMP images are supported.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
@@ -1016,6 +1017,14 @@ namespace Tizen.Content.MediaContent
                 if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
                 {
                     throw new UnsupportedContentException("Only image is supported.");
+                }
+
+                // Native P/Invoke function also check below case, but it returns invalid operation error.
+                // So we check it here to throw more proper exception.
+                string mimeType = InteropHelper.GetString(handle, Interop.MediaInfo.GetMimeType);
+                if (!mimeType.Equals("image/jpeg") && !mimeType.Equals("image/png") && !mimeType.Equals("image/bmp"))
+                {
+                    throw new UnsupportedContentException($"{mimeType} is not supported. Only JPEG, PNG, BMP is supported.");
                 }
 
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
