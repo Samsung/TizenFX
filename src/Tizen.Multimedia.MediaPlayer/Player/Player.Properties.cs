@@ -563,7 +563,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the audio pitch.
         /// </summary>
-        /// <value>The value indicating whether or not AudioPitch is enabled. The default is false.</value>
+        /// <value>The value indicating whether or not AudioPitch is enabled.</value>
+        /// <remarks>The default is false.</remarks>
         /// <remarks>This function is used for audio content only.</remarks>
         /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
@@ -593,7 +594,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the audio pitch value.
         /// </summary>
-        /// <value>The audio stream pitch value. The default is 1.</value>
+        /// <value>The audio stream pitch value.</value>
+        /// <remarks>The default is 1.</remarks>
         /// <remarks>Enabling pitch control could increase the CPU usage on some devices.</remarks>
         /// <remarks>This function is used for audio content only.</remarks>
         /// <exception cref="InvalidOperationException">A pitch is not enabled.</exception>
