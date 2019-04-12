@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -65,21 +65,28 @@ namespace Tizen.Network.Stc
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (_disposed)
             {
                 return;
             }
 
-            int ret = Interop.Stc.Rule.Destroy(_ruleHandle);
-            if (ret != (int)StcError.None)
+            if(disposing)
             {
-                Log.Error(Globals.LogTag, "Failed to destroy Rule handle, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                // destroy managed resources
             }
 
-            _ruleHandle = IntPtr.Zero;
+            int ret = Interop.Stc.Rule.Destroy(_ruleHandle);
+            if (ret == (int)StcError.None)
+            {
+                _ruleHandle = IntPtr.Zero;
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Failed to destroy Rule handle, Error - " + (StcError)ret);
+            }
+
             _disposed = true;
         }
 
@@ -189,86 +196,92 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// A property for Interface type for statistics rule.
+        /// To get Interface type for statistics rule.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Interface type.</value>
+        /// <returns>Interface type.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public NetworkInterface InterfaceType
+        public NetworkInterface GetInterfaceType()
         {
-            get
+            NativeNetworkInterface ifaceType;
+            int ret = Interop.Stc.Rule.GetInterfaceType(_ruleHandle, out ifaceType);
+            if (ret != (int)StcError.None)
             {
-                NativeNetworkInterface ifaceType;
-                int ret = Interop.Stc.Rule.GetInterfaceType(_ruleHandle, out ifaceType);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get Interface type, Error - " + (StcError)ret);
-                }
-                if (ifaceType == NativeNetworkInterface.Unknown)
-                {
-                    throw new InvalidOperationException("Interface Type is Unknown.");
-                }
-                else
-                {
-                    return (NetworkInterface)ifaceType;
-                }
+                Log.Error(Globals.LogTag, "Failed to get Interface type, Error - " + (StcError)ret);
             }
-            set
+            if (ifaceType == NativeNetworkInterface.Unknown)
             {
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
-                }
-                int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, (NativeNetworkInterface)value);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to set Interface type, Error - " + (StcError)ret);
-                    StcErrorFactory.ThrowStcException(ret);
-                }
+                throw new InvalidOperationException("Interface Type is Unknown.");
+            }
+            return (NetworkInterface)ifaceType;
+        }
+
+        /// <summary>
+        /// To set Interface type for statistics rule.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="interfaceType"> Interface type.</param>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public void SetInterfaceType(NetworkInterface interfaceType)
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+            }
+            int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, (NativeNetworkInterface)interfaceType);
+            if (ret != (int)StcError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set Interface type, Error - " + (StcError)ret);
+                StcErrorFactory.ThrowStcException(ret);
             }
         }
 
         /// <summary>
-        /// A property for Time period for statistics rule.
+        /// To get Time period for statistics rule.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Time period.</value>
+        /// <returns>Time period.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public TimePeriodType TimePeriod
+        public TimePeriodType GetTimePeriod()
         {
-            get
+            NativeTimePeriodType timePeriod;
+            int ret = Interop.Stc.Rule.GetTimePeriod(_ruleHandle, out timePeriod);
+            if (ret != (int)StcError.None)
             {
-                NativeTimePeriodType timePeriod;
-                int ret = Interop.Stc.Rule.GetTimePeriod(_ruleHandle, out timePeriod);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get Time period, Error - " + (StcError)ret);
-                }
-                if (timePeriod == NativeTimePeriodType.Unknown)
-                {
-                    throw new InvalidOperationException("Time period is Unknown.");
-                }
-                else
-                {
-                    return (TimePeriodType)timePeriod;
-                }
+                Log.Error(Globals.LogTag, "Failed to get Time period, Error - " + (StcError)ret);
             }
-            set
+            if (timePeriod == NativeTimePeriodType.Unknown)
             {
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
-                }
-                int ret = Interop.Stc.Rule.SetTimePeriod(_ruleHandle, (NativeTimePeriodType)value);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to set Time period, Error - " + (StcError)ret);
-                    StcErrorFactory.ThrowStcException(ret);
-                }
+                throw new InvalidOperationException("Time period is Unknown.");
+            }
+            return (TimePeriodType)timePeriod;
+        }
+
+        /// <summary>
+        /// To set Time period for statistics rule.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="timePeriod">Time period.</param>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public void SetTimePeriod(TimePeriodType timePeriod)
+        {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+            }
+            int ret = Interop.Stc.Rule.SetTimePeriod(_ruleHandle, (NativeTimePeriodType)timePeriod);
+            if (ret != (int)StcError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set Time period, Error - " + (StcError)ret);
+                StcErrorFactory.ThrowStcException(ret);
             }
         }
     }

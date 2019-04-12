@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ namespace Tizen.Network.Stc
 
     internal class StcHandleHolder
     {
-        private SafeStcHandle _handle;
+        readonly SafeStcHandle _handle;
 
         internal StcHandleHolder()
         {
@@ -124,7 +124,7 @@ namespace Tizen.Network.Stc
                 return CallbackRet.Continue;
             };
 
-            int ret = Interop.Stc.GetStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, _getStatsCb, IntPtr.Zero);
+            int ret = Interop.Stc.GetStats(GetSafeHandle(), rule._ruleHandle, _getStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
@@ -181,10 +181,9 @@ namespace Tizen.Network.Stc
                 }
 
                 task.SetResult(statsList);
-                return;
             };
 
-            int ret = Interop.Stc.GetAllStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, _getAllStatsCb, IntPtr.Zero);
+            int ret = Interop.Stc.GetAllStats(GetSafeHandle(), rule._ruleHandle, _getAllStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
@@ -223,7 +222,7 @@ namespace Tizen.Network.Stc
                 return CallbackRet.Continue;
             };
 
-            int ret = Interop.Stc.GetTotalStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, _getTotalStatsCb, IntPtr.Zero);
+            int ret = Interop.Stc.GetTotalStats(GetSafeHandle(), rule._ruleHandle, _getTotalStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetTotalStats() failed , Error - " + (StcError)ret);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -40,13 +40,14 @@ namespace Tizen.Network.Stc
         {
             get
             {
-                return (this.handle == IntPtr.Zero);
+                return this.handle == IntPtr.Zero;
             }
         }
 
         /// <summary>
         /// Release the Stc handle
         /// </summary>
+        /// <returns>True if the handle is released successfully, otherwise false.</returns>
         protected override bool ReleaseHandle()
         {
             Interop.Stc.Deinitialize(this.handle);
@@ -79,6 +80,7 @@ namespace Tizen.Network.Stc
         /// Gets the statistics information of an application, which matched the rule, asynchronously. The rule must contain an Application ID.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <param name="rule"> The StcRule object.</param>
         /// <returns>The Statistics information of the application that used network in between timestamps specified.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
@@ -93,6 +95,7 @@ namespace Tizen.Network.Stc
         /// Gets statistics information of each application that used network in between specified timestamps and matches the given rule, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <param name="rule"> The StcRule object.</param>
         /// <returns>A list of the NetworkStatistics objects.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
@@ -107,6 +110,7 @@ namespace Tizen.Network.Stc
         /// Gets the total statistics information by interface type and according to the given rule, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <param name="rule"> The StcRule object.</param>
         /// <returns>The total statistics information of the applications that used network in between timestamps specified.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -54,21 +54,28 @@ namespace Tizen.Network.Stc
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (_disposed)
             {
                 return;
             }
 
-            int ret = Interop.Stc.Info.StatsDestroy(_infoHandle);
-            if (ret != (int)StcError.None)
+            if(disposing)
             {
-                Log.Error(Globals.LogTag, "Failed to destroy network statistics handle, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                // destroy managed resources
             }
 
-            _infoHandle = IntPtr.Zero;
+            int ret = Interop.Stc.Info.StatsDestroy(_infoHandle);
+            if (ret == (int)StcError.None)
+            {
+                _infoHandle = IntPtr.Zero;
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Failed to destroy network statistics handle, Error - " + (StcError)ret);
+            }
+
             _disposed = true;
         }
 
@@ -165,32 +172,26 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// A property to get the interface type from statistics information.
+        /// To get the interface type from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Interface type.</value>
+        /// <returns>Interface type.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public NetworkInterface InterfaceType
+        public NetworkInterface GetInterfaceType()
         {
-            get
+            NativeNetworkInterface ifaceType;
+            int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out ifaceType);
+            if (ret != (int)StcError.None)
             {
-                NativeNetworkInterface ifaceType;
-                int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out ifaceType);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get Interface type from info, Error - " + (StcError)ret);
-                }
-                if (ifaceType == NativeNetworkInterface.Unknown)
-                {
-                    throw new InvalidOperationException("Interface Type is Unknown.");
-                }
-                else
-                {
-                    return (NetworkInterface)ifaceType;
-                }
+                Log.Error(Globals.LogTag, "Failed to get Interface type from info, Error - " + (StcError)ret);
             }
+            if (ifaceType == NativeNetworkInterface.Unknown)
+            {
+                throw new InvalidOperationException("Interface Type is Unknown.");
+            }
+            return (NetworkInterface)ifaceType;
         }
 
         /// <summary>
@@ -258,72 +259,55 @@ namespace Tizen.Network.Stc
                     Log.Error(Globals.LogTag, "Failed to get Roaming type from info, Error - " + (StcError)ret);
                 }
 
-                if(roaming == RoamingType.Disabled)
-                {
-                    return false;
-                }
-                return true;
+                return roaming == RoamingType.Enabled;
             }
         }
 
         /// <summary>
-        /// A property to get the network protocol type from statistics information.
+        /// To get the network protocol type from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>NetworkProtocol type.</value>
+        /// <returns>NetworkProtocol type.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public NetworkProtocol Protocol
+        public NetworkProtocol GetProtocol()
         {
-            get
+            NativeNetworkProtocol protocol;
+            int ret = Interop.Stc.Info.GetProtocol(_infoHandle, out protocol);
+            if (ret != (int)StcError.None)
             {
-                NativeNetworkProtocol protocol;
-                int ret = Interop.Stc.Info.GetProtocol(_infoHandle, out protocol);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get Protocol type from info, Error - " + (StcError)ret);
-                }
-                if (protocol == NativeNetworkProtocol.Unknown)
-                {
-                    throw new InvalidOperationException("Network protocol is Unknown.");
-                }
-                else
-                {
-                    return (NetworkProtocol)protocol;
-                }
+                Log.Error(Globals.LogTag, "Failed to get Protocol type from info, Error - " + (StcError)ret);
             }
+            if (protocol == NativeNetworkProtocol.Unknown)
+            {
+                throw new InvalidOperationException("Network protocol is Unknown.");
+            }
+            return (NetworkProtocol)protocol;
         }
 
         /// <summary>
-        /// A property to get if the app is running as a foreground process, from it's statistics information.
+        /// To get if the app is running as a foreground process, from it's statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Process state is Foreground Process or not.</value>
+        /// <returns>True, if process state is Foreground, otherwise False.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public bool IsForegroundProcess
+        public bool IsForegroundProcess()
         {
-            get
+            ProcessState state;
+            int ret = Interop.Stc.Info.GetProcessState(_infoHandle, out state);
+            if (ret != (int)StcError.None)
             {
-                ProcessState state;
-                int ret = Interop.Stc.Info.GetProcessState(_infoHandle, out state);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get IsForegroundProcess from info, Error - " + (StcError)ret);
-                }
-
-                if(state == ProcessState.Unknown)
-                {
-                    throw new InvalidOperationException("Process state is Unknown.");
-                }
-                else if(state == ProcessState.Foreground)
-                {
-                    return true;
-                }
-                return false;
+                Log.Error(Globals.LogTag, "Failed to get IsForegroundProcess from info, Error - " + (StcError)ret);
             }
+
+            if(state == ProcessState.Unknown)
+            {
+                throw new InvalidOperationException("Process state is Unknown.");
+            }
+            return state == ProcessState.Foreground;
         }
     }
 }
