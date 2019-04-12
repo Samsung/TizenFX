@@ -19,6 +19,38 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
+    /// Enumeration for the AnimationView state
+    /// </summary>
+    /// <since_tizen> preview </since_tizen>
+    public enum AnimationViewState
+    {
+        /// <summary>
+        /// Animation is not ready to play.
+        /// </summary>
+        NotReady,
+
+        /// <summary>
+        /// Animation is on playing.
+        /// </summary>
+        Play,
+
+        /// <summary>
+        /// Animation is on reverse playing.
+        /// </summary>
+        ReversedPlay,
+
+        /// <summary>
+        /// Animation has been paused.
+        /// </summary>
+        Pause,
+
+        /// <summary>
+        /// AnimationView successfully loaded a file then readied for playing. Otherwise after finished animation or stopped forcely by request.
+        /// </summary>
+        Stop
+    }
+
+    /// <summary>
     /// The AnimationView is designed to show and play animation of vector graphics based content.
     /// Currently ElmSharp AnimationView is supporting only json format (known for Lottie file as well).
     /// </summary>
@@ -207,23 +239,173 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets current keyframe position of animation view.
+        /// Sets or gets current progress position of animation view.
         /// <remarks>
-        /// When you required to jump on a certain frame instantly,
-        /// you can change current keyframe by using this property
-        /// The range of keyframe is 0 ~ 1.
+        /// When you required to jump on a certain progress instantly,
+        /// you can change current position by using this property
+        /// The range of progress is 0 ~ 1.
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public double KeyFrame
+        public double Progress
         {
             get
             {
-                return Interop.Elementary.elm_animation_view_keyframe_get(Handle);
+                return Interop.Elementary.elm_animation_view_progress_get(Handle);
             }
             set
             {
-                Interop.Elementary.elm_animation_view_keyframe_set(Handle, value);
+                Interop.Elementary.elm_animation_view_progress_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets current frame position of animation view.
+        /// <remarks>
+        /// The range of frame is from 0 to FrameCount - 1
+        /// </remarks>
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public int Frame
+        {
+            get
+            {
+                return Interop.Elementary.elm_animation_view_frame_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_animation_view_frame_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Get the default view size that specified from vector resource.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public Size DefaultSize
+        {
+            get
+            {
+                Interop.Elementary.elm_animation_view_default_size_get(Handle, out int w, out int h);
+                return new Size(w, h);
+            }
+        }
+
+        /// <summary>
+        /// Get current animation view state.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public AnimationViewState State
+        {
+            get
+            {
+                return (AnimationViewState)Interop.Elementary.elm_animation_view_state_get(Handle);
+            }
+        }
+
+        /// <summary>
+        /// Get the status whether current animation is on playing forward or backward.
+        /// </summary>
+        /// <remarks>
+        /// If AnimationView is not on playing, it will return False.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public bool IsReversedPlaying
+        {
+            get
+            {
+                return Interop.Elementary.elm_animation_view_is_playing_back(Handle);
+            }
+        }
+
+        /// <summary>
+        /// Get the index of end frame of the AnimationView, if it's animated.
+        /// </summary>
+        /// <remarks>
+        /// Frame number starts with 0.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public int FrameCount
+        {
+            get
+            {
+                return Interop.Elementary.elm_animation_view_frame_count_get(Handle);
+            }
+        }
+
+        /// <summary>
+        /// Sets or Gets the start progress of the play
+        /// </summary>
+        /// <remarks>
+        /// Default value is 0.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public double MinProgress
+        {
+            get
+            {
+                return Interop.Elementary.elm_animation_view_min_progress_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_animation_view_min_progress_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or Gets the last progress of the play
+        /// </summary>
+        /// <remarks>
+        /// Default value is 1.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public double MaxProgress
+        {
+            get
+            {
+                return Interop.Elementary.elm_animation_view_max_progress_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_animation_view_max_progress_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or Gets the start frame of the play
+        /// </summary>
+        /// <remarks>
+        /// Default value is 0.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public int MinFrame
+        {
+            get
+            {
+                return Interop.Elementary.elm_animation_view_min_frame_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_animation_view_min_frame_set(Handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or Gets the last frame of the play
+        /// </summary>
+        /// <remarks>
+        /// Default value is FrameCount -1.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public int MaxFrame
+        {
+            get
+            {
+                return Interop.Elementary.elm_animation_view_max_frame_get(Handle);
+            }
+            set
+            {
+                Interop.Elementary.elm_animation_view_max_frame_set(Handle, value);
             }
         }
 

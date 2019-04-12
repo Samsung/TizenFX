@@ -4139,6 +4139,8 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Key_state_get")]
         public static extern int Key_state_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Key_logicalKey_get")]
+        public static extern string Key_logicalKey_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_LongPressGestureDetector__SWIG_0")]
         public static extern global::System.IntPtr new_LongPressGestureDetector__SWIG_0();
@@ -8125,43 +8127,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_DroppedSignal")]
         public static extern global::System.IntPtr DragAndDropDetector_DroppedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_ApplicationExtensions__SWIG_0")]
-        public static extern global::System.IntPtr new_ApplicationExtensions__SWIG_0();
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_ApplicationExtensions__SWIG_1")]
-        public static extern global::System.IntPtr new_ApplicationExtensions__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_ApplicationExtensions")]
-        public static extern void delete_ApplicationExtensions(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ApplicationExtensions_Init")]
-        public static extern void ApplicationExtensions_Init(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ApplicationExtensions_Start")]
-        public static extern void ApplicationExtensions_Start(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ApplicationExtensions_Terminate")]
-        public static extern void ApplicationExtensions_Terminate(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ApplicationExtensions_Pause")]
-        public static extern void ApplicationExtensions_Pause(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ApplicationExtensions_Resume")]
-        public static extern void ApplicationExtensions_Resume(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_ApplicationExtensions_LanguageChange")]
-        public static extern void ApplicationExtensions_LanguageChange(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_New__SWIG_0")]
         public static extern global::System.IntPtr Window_New__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
@@ -15265,6 +15230,8 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_4")]
         public static extern global::System.IntPtr GetClosestImageSize__SWIG_4(string jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetOriginalImageSize")]
+        public static extern global::System.IntPtr GetOriginalImageSize(string jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_0")]
         public static extern global::System.IntPtr DownloadImageSynchronously__SWIG_0(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4, bool jarg5);

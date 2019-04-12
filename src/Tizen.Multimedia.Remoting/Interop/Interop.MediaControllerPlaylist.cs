@@ -31,7 +31,7 @@ internal static partial class Interop
             IntPtr handle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void PlaylistCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool PlaylistCallback(IntPtr handle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool PlaylistItemCallback(string index, IntPtr handle, IntPtr userData);
@@ -80,12 +80,33 @@ internal static partial class Interop
         internal static extern MediaControllerError GetServerMetadata(MediaControllerClientHandle handle,
             string serverName, out IntPtr metadata);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_metadata_encode_season")]
+        internal static extern MediaControllerError EncodeSeason(int number, string title, out string encoded);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_metadata_encode_episode")]
+        internal static extern MediaControllerError EncodeEpisode(int number, string title, out string encoded);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_metadata_encode_resolution")]
+        internal static extern MediaControllerError EncodeResolution(uint width, uint height, out string encoded);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_metadata_decode_season")]
+        internal static extern MediaControllerError DecodeSeason(string season, out int number, out string title);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_metadata_decode_episode")]
+        internal static extern MediaControllerError DecodeEpisode(string episode, out int number, out string title);
+
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_metadata_decode_resolution")]
+        internal static extern MediaControllerError DecodeResolution(string episode, out uint width, out uint height);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_create")]
         internal static extern MediaControllerError CreatePlaylist(string name, out IntPtr handle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_destroy")]
         internal static extern MediaControllerError DestroyPlaylist(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_get_playlist")]
+        internal static extern MediaControllerError GetPlaylistHandle(string name, string playlistName, out IntPtr playlistHandle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_clone")]
         internal static extern MediaControllerError ClonePlaylist(IntPtr source, IntPtr destination);

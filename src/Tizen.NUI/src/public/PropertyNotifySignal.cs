@@ -18,28 +18,21 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     ///<summary>
     /// Signal connection class for PropertyNotification
     ///</summary>
     /// <since_tizen> 4 </since_tizen>
-    /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PropertyNotifySignal : global::System.IDisposable
     {
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool swigCMemOwn;
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool disposed = false;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -51,8 +44,6 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal() : this(NDalicPINVOKE.new_PropertyNotifySignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -68,8 +59,6 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         ~PropertyNotifySignal()
         {
             if (!isDisposeQueued)
@@ -83,8 +72,6 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -109,8 +96,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal.</returns>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
             bool ret = NDalicPINVOKE.PropertyNotifySignal_Empty(swigCPtr);
@@ -123,8 +108,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
             uint ret = NDalicPINVOKE.PropertyNotifySignal_GetConnectionCount(swigCPtr);
@@ -137,8 +120,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -153,8 +134,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect.</param>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -169,8 +148,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks.</param>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(PropertyNotification arg)
         {
             NDalicPINVOKE.PropertyNotifySignal_Emit(swigCPtr, PropertyNotification.getCPtr(arg));
@@ -187,8 +164,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="type">The dispose type.</param>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)

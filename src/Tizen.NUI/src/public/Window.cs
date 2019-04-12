@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ namespace Tizen.NUI
         private WindowResizedEventCallbackType _windowResizedEventCallback;
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
 
-        private static readonly Window instance = Application.Instance.GetWindow();
+        private static readonly Window instance = Application.Instance?.GetWindow();
+
+        private LayoutController localController;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -59,6 +61,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+
+                localController = new LayoutController();
+                NUILog.Debug("layoutController id:" + localController.GetId() );
+
                 // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
                 // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
                 // Currently without these measure specs the new layout added will always be the size of the window.
@@ -272,6 +278,19 @@ namespace Tizen.NUI
                     WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
                 }
             }
+        }
+
+        /// <summary>
+        /// ViewAdded will be triggered when the view added on Window
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler ViewAdded;
+
+        internal void SendViewAdded(View view)
+        {
+            ViewAdded?.Invoke(view, EventArgs.Empty);
         }
 
         internal event EventHandler EventProcessingFinished
@@ -983,7 +1002,7 @@ namespace Tizen.NUI
         {
             if (depth < LayersChildren?.Count)
             {
-                Layer ret = LayersChildren[Convert.ToInt32(depth)];
+                Layer ret = LayersChildren?[Convert.ToInt32(depth)];
                 return ret;
             }
             else
@@ -1511,7 +1530,7 @@ namespace Tizen.NUI
         private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
             if (wheelEvent == global::System.IntPtr.Zero)
-        {
+            {
                 NUILog.Error("wheelEvent should not be null!");
                 return true;
             }
@@ -1802,7 +1821,7 @@ namespace Tizen.NUI
         /// Disconnect all native signals
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        internal void DisconnectNativeSignals() 
+        internal void DisconnectNativeSignals()
         {
             if( _windowFocusChangedEventCallback != null )
             {
