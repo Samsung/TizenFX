@@ -1288,7 +1288,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SendViewAddedEventToWindow(IntPtr data)
         {
-            Window.Instance.SendViewAdded(this);
+            Window.Instance?.SendViewAdded(this);
         }
 
         /// <summary>
