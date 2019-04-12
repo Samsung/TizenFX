@@ -203,7 +203,7 @@ namespace Tizen.Network.Bluetooth
 
         private string GetPacketTypeToString(BluetoothLePacketType packetType)
         {
-            return packetType == BluetoothLePacketType.BluetoothLeAdvertisingPacket ? "AdvertisingPacket" : "ScanResponsePacket";
+            return (packetType == BluetoothLePacketType.BluetoothLeAdvertisingPacket) ? "AdvertisingPacket" : "ScanResponsePacket";
         }
 
         internal IList<string> GetLeScanResultServiceUuids(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
