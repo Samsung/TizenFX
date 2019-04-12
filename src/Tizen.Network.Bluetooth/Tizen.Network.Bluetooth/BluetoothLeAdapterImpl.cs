@@ -377,7 +377,7 @@ namespace Tizen.Network.Bluetooth
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return null;
             }
-            if (ret != (int)BluetoothError.None)
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Info(Globals.LogTag, "Failed to get Service Data List, Error - " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
