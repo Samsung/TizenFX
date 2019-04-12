@@ -247,6 +247,7 @@ namespace Tizen.Network.Bluetooth {
         /// The type of the packet.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use new methods with this type on BluetoothLeDevice.")]
         public BluetoothLePacketType PacketType
         {
             get
@@ -269,17 +270,29 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use GetServiceUuid() method on BluetoothLeDevice.")]
         public IEnumerable<string> ServiceUuid
         {
             get
             {
-                if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-                {
-                    Log.Info(Globals.LogTag, "Retrieving Service uuid- ");
-                    return BluetoothLeImplAdapter.Instance.GetLeScanResultServiceUuids(_scanData, _packetType);
-                }
-                return null;
+                return GetServiceUuid(_packetType);
             }
+        }
+
+        /// <summary>
+        /// Gets the service UUIDs list from the LE scan result information.
+        /// </summary>
+        /// <value> Gets the list of the string service UUIDs.</value>
+        /// <remarks>The Bluetooth must be enabled.</remarks>
+        /// <param name="packetType"> The enumeration for BLE packet type.</param>
+        /// <returns>The service uuid value</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<string> GetServiceUuid(BluetoothLePacketType packetType)
+        {
+            return BluetoothLeImplAdapter.Instance.GetLeScanResultServiceUuids(_scanData, packetType);
         }
 
         /// <summary>
@@ -292,18 +305,31 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use GetDeviceName() method on BluetoothLeDevice.")]
         public string DeviceName
         {
             get
             {
-                Log.Info(Globals.LogTag, "Retrieving device name- ");
-                if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-                {
-                    return BluetoothLeImplAdapter.Instance.GetLeScanResultDeviceName(_scanData, _packetType);
-                }
-                return null;
+                return GetDeviceName(_packetType);
             }
         }
+
+        /// <summary>
+        /// Gets the device name from the LE scan result information.
+        /// </summary>
+        /// <value> Gets the device name.</value>
+        /// <remarks>The Bluetooth must be enabled.</remarks>
+        /// <param name="packetType"> The enumeration for BLE packet type.</param>
+        /// <returns>The device name value</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public string GetDeviceName(BluetoothLePacketType packetType)
+        {
+            return BluetoothLeImplAdapter.Instance.GetLeScanResultDeviceName(_scanData, packetType);
+        }
+
         /// <summary>
         /// Gets the transmission power level from the LE scan result information.
         /// </summary>
@@ -314,16 +340,29 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use GetTxPowerLevel() method on BluetoothLeDevice.")]
         public int TxPowerLevel
         {
             get
             {
-                if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-                {
-                    return BluetoothLeImplAdapter.Instance.GetScanResultTxPowerLevel(_scanData, _packetType);
-                }
-                return -1;
+                return GetTxPowerLevel(_packetType);
             }
+        }
+
+        /// <summary>
+        /// Gets the transmission power level from the LE scan result information.
+        /// </summary>
+        /// <value> Gets the transmission power level in dB.</value>
+        /// <remarks>The Bluetooth must be enabled.</remarks>
+        /// <param name="packetType"> The enumeration for BLE packet type.</param>
+        /// <returns>The tx power level value</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public int GetTxPowerLevel(BluetoothLePacketType packetType)
+        {
+            return BluetoothLeImplAdapter.Instance.GetScanResultTxPowerLevel(_scanData, packetType);
         }
 
         /// <summary>
@@ -336,17 +375,31 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use GetServiceSolicitationUuid() method on BluetoothLeDevice.")]
         public IEnumerable<string> ServiceSolictationUuid
         {
             get
             {
-                if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-                {
-                    return BluetoothLeImplAdapter.Instance.GetScanResultSvcSolicitationUuids(_scanData, _packetType);
-                }
-                return null;
+                return GetServiceSolicitationUuid(_packetType);
             }
         }
+
+        /// <summary>
+        /// Gets the service solicitation UUID list from the scan result information.
+        /// </summary>
+        /// <value> Gets the list of the service solicitation UUIDs.</value>
+        /// <remarks>The Bluetooth must be enabled.</remarks>
+        /// <param name="packetType"> The enumeration for BLE packet type.</param>
+        /// <returns>The service solicitation uuid value</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<string> GetServiceSolicitationUuid(BluetoothLePacketType packetType)
+        {
+            return BluetoothLeImplAdapter.Instance.GetScanResultSvcSolicitationUuids(_scanData, packetType);
+        }
+
         /// <summary>
         /// Gets the manufacturer data from the scan result information.
         /// </summary>
@@ -357,17 +410,31 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use GetAppearance() method on BluetoothLeDevice.")]
         public int Appearance
         {
             get
             {
-                if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-                {
-                    return BluetoothLeImplAdapter.Instance.GetScanResultAppearance(_scanData, _packetType);
-                }
-                return -1;
+                return GetAppearance(_packetType);
             }
         }
+
+        /// <summary>
+        /// Gets the manufacturer data from the scan result information.
+        /// </summary>
+        /// <value> Gets the appearance value.</value>
+        /// <remarks>The Bluetooth must be enabled.</remarks>
+        /// <param name="packetType"> The enumeration for BLE packet type.</param>
+        /// <returns>The appearance value</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public int GetAppearance(BluetoothLePacketType packetType)
+        {
+            return BluetoothLeImplAdapter.Instance.GetScanResultAppearance(_scanData, packetType);
+        }
+
         /// <summary>
         /// Gets the manufacturer data from the scan result information.
         /// </summary>
@@ -378,16 +445,29 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>/// 
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use GetManufacturerData() method on BluetoothLeDevice.")]
         public ManufacturerData ManufacturerData
         {
             get
             {
-                if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-                {
-                    return BluetoothLeImplAdapter.Instance.GetScanResultManufacturerData(_scanData, _packetType);
-                }
-                return null;
+                return GetManufacturerData(_packetType);
             }
+        }
+
+        /// <summary>
+        /// Gets the manufacturer data from the scan result information.
+        /// </summary>
+        /// <value> Gets the manufacturer data containing the manucturer data and ID information.</value>
+        /// <remarks>The Bluetooth must be enabled.</remarks>
+        /// <param name="packetType"> The enumeration for BLE packet type.</param>
+        /// <returns>The manufacturer data object</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>/// 
+        /// <since_tizen> 6 </since_tizen>
+        public ManufacturerData GetManufacturerData(BluetoothLePacketType packetType)
+        {
+            return BluetoothLeImplAdapter.Instance.GetScanResultManufacturerData(_scanData, packetType);
         }
 
         /// <summary>
@@ -400,17 +480,26 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use GetServiceDataList() method on BluetoothLeDevice.")]
         public IEnumerable<BluetoothLeServiceData> GetServiceDataList()
         {
-            int serviceCount = 0;
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                return BluetoothLeImplAdapter.Instance.GetScanResultServiceDataList(_scanData,
-                                            _packetType, out serviceCount);
-            }
-            return null;
+            return GetServiceDataList(_packetType);
         }
 
+        /// <summary>
+        /// Gets the service data list from the scan result information.
+        /// </summary>
+        /// <remarks>The Bluetooth must be enabled.</remarks>
+        /// <param name="packetType"> The packet type.</param>
+        /// <returns> Returns the service data list.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<BluetoothLeServiceData> GetServiceDataList(BluetoothLePacketType packetType)
+        {
+            return BluetoothLeImplAdapter.Instance.GetScanResultServiceDataList(_scanData, packetType);
+        }
 
         /// <summary>
         /// Creates a GATT connection with the remote device.
@@ -651,6 +740,7 @@ namespace Tizen.Network.Bluetooth {
                 }
             }
         }
+
         /// <summary>
         /// Sets whether the device name has to be included in the advertise or the scan response data.
         /// The maximum advertised or responded data size is 31 bytes including the data type and the system wide data.
