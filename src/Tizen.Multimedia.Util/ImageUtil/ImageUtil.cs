@@ -60,7 +60,7 @@ namespace Tizen.Multimedia.Util
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated.")]
+        [Obsolete("Please do not use! This will be deprecated in level 6.")]
         public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)
         {
             if (resolution.Width <= 0)
