@@ -29,488 +29,320 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        private ActivatedEventCallbackType _activatedEventCallback;
+        private EventReceivedEventCallbackType _eventReceivedEventCallback;
+        private StatusChangedEventCallbackType _statusChangedEventCallback;
+        private ResizedEventCallbackType _resizedEventCallback;
+        private LanguageChangedEventCallbackType _languageChangedEventCallback;
+        private KeyboardTypeChangedEventCallbackType _keyboardTypeChangedEventCallback;
+
+        /// <summary>
+        /// Constructor.<br/>
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public InputMethodContext() : this(NDalicManualPINVOKE.InputMethodContext_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
         internal InputMethodContext(IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.InputMethodContext_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodContext obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-        }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ActivatedEventCallbackType(IntPtr data);
+        private delegate IntPtr EventReceivedEventCallbackType(IntPtr inputMethodContext, IntPtr eventData);
+        private delegate void StatusChangedEventCallbackType(bool statusChanged);
+        private delegate void ResizedEventCallbackType(int resized);
+        private delegate void LanguageChangedEventCallbackType(int languageChanged);
+        private delegate void KeyboardTypeChangedEventCallbackType(KeyboardType type);
 
+        private event EventHandler<ActivatedEventArgs> _activatedEventHandler;
+        private event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> _eventReceivedEventHandler;
+        private event EventHandler<StatusChangedEventArgs> _statusChangedEventHandler;
+        private event EventHandler<ResizedEventArgs> _resizedEventHandler;
+        private event EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
+        private event EventHandler<KeyboardTypeChangedEventArgs> _keyboardTypeChangedEventHandler;
 
         /// <summary>
-        /// Dispose
+        /// InputMethodContext activated.
         /// </summary>
-        /// <param name="type">Dispose Type</param>
         /// <since_tizen> 5 </since_tizen>
-        /// Please DO NOT use! This will be deprecated!
-        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, InputMethodContext, TtsPlayer, Window) is not required.
+        public event EventHandler<ActivatedEventArgs> Activated
+        {
+            add
+            {
+                if (_activatedEventHandler == null)
+                {
+                    _activatedEventCallback = OnActivated;
+                    ActivatedSignal().Connect(_activatedEventCallback);
+                }
+
+                _activatedEventHandler += value;
+            }
+            remove
+            {
+                _activatedEventHandler -= value;
+
+                if (_activatedEventHandler == null && _activatedEventCallback != null)
+                {
+                    ActivatedSignal().Disconnect(_activatedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext event received.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> EventReceived
+        {
+            add
+            {
+                if (_eventReceivedEventHandler == null)
+                {
+                    _eventReceivedEventCallback = OnEventReceived;
+                    EventReceivedSignal().Connect(_eventReceivedEventCallback);
+                }
+
+                _eventReceivedEventHandler += value;
+            }
+            remove
+            {
+                _eventReceivedEventHandler -= value;
+
+                if (_eventReceivedEventHandler == null && _eventReceivedEventCallback != null)
+                {
+                    EventReceivedSignal().Disconnect(_eventReceivedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext status changed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<StatusChangedEventArgs> StatusChanged
+        {
+            add
+            {
+                if (_statusChangedEventHandler == null)
+                {
+                    _statusChangedEventCallback = OnStatusChanged;
+                    StatusChangedSignal().Connect(_statusChangedEventCallback);
+                }
+
+                _statusChangedEventHandler += value;
+            }
+            remove
+            {
+                _statusChangedEventHandler -= value;
+
+                if (_statusChangedEventHandler == null && _statusChangedEventCallback != null)
+                {
+                    StatusChangedSignal().Disconnect(_statusChangedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext resized.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<ResizedEventArgs> Resized
+        {
+            add
+            {
+                if (_resizedEventHandler == null)
+                {
+                    _resizedEventCallback = OnResized;
+                    ResizedSignal().Connect(_resizedEventCallback);
+                }
+
+                _resizedEventHandler += value;
+            }
+            remove
+            {
+                _resizedEventHandler -= value;
+
+                if (_resizedEventHandler == null && _resizedEventCallback != null)
+                {
+                    ResizedSignal().Disconnect(_resizedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext language changed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<LanguageChangedEventArgs> LanguageChanged
+        {
+            add
+            {
+                if (_languageChangedEventHandler == null)
+                {
+                    _languageChangedEventCallback = OnLanguageChanged;
+                    LanguageChangedSignal().Connect(_languageChangedEventCallback);
+                }
+
+                _languageChangedEventHandler += value;
+            }
+            remove
+            {
+                _languageChangedEventHandler -= value;
+
+                if (_languageChangedEventHandler == null && _languageChangedEventCallback != null)
+                {
+                    LanguageChangedSignal().Disconnect(_languageChangedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext keyboard type changed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<KeyboardTypeChangedEventArgs> KeyboardTypeChanged
+        {
+            add
+            {
+                if (_keyboardTypeChangedEventHandler == null)
+                {
+                    _keyboardTypeChangedEventCallback = OnKeyboardTypeChanged;
+                    KeyboardTypeChangedSignal().Connect(_keyboardTypeChangedEventCallback);
+                }
+
+                _keyboardTypeChangedEventHandler += value;
+            }
+            remove
+            {
+                _keyboardTypeChangedEventHandler -= value;
+
+                if (_keyboardTypeChangedEventHandler == null && _keyboardTypeChangedEventCallback != null)
+                {
+                    KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The direction of the text.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public enum TextDirection
+        {
+            /// <summary>
+            /// Left to right.
+            /// </summary>
+            LeftToRight,
+            /// <summary>
+            /// Right to left.
+            /// </summary>
+            RightToLeft
+        }
+
+        /// <summary>
+        /// Events that are generated by the IMF.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public enum EventType
+        {
+            /// <summary>
+            /// No event.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Void,
+            /// <summary>
+            /// Pre-edit changed.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Preedit,
+            /// <summary>
+            /// Commit received.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Commit,
+            /// <summary>
+            /// An event to delete a range of characters from the string.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            DeleteSurrounding,
+            /// <summary>
+            /// An event to query string and the cursor position.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            GetSurrounding,
+            /// <summary>
+            /// Private command sent from the input panel.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            PrivateCommand
+        }
+
+        /// <summary>
+        /// Enumeration for the state of the input panel.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public enum State
+        {
+            /// <summary>
+            /// Unknown state.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Default = 0,
+            /// <summary>
+            /// Input panel is shown.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Show,
+            /// <summary>
+            /// Input panel is hidden.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Hide,
+            /// <summary>
+            /// Input panel in process of being shown.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            WillShow
+        }
+
+        /// <summary>
+        /// Enumeration for the types of keyboard.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public enum KeyboardType
+        {
+            /// <summary>
+            /// Software keyboard (virtual keyboard) is default.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            SoftwareKeyboard,
+            /// <summary>
+            /// Hardware keyboard.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            HardwareKeyboard
+        }
+
+        /// <summary>
+        /// Gets or sets whether the IM context allows to use the text prediction.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        public bool TextPrediction
         {
-            if (disposed)
+            get
             {
-                return;
+                return IsTextPredictionAllowed();
             }
-
-            if (type == DisposeTypes.Explicit)
+            set
             {
-                //Called by User.
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
+                AllowTextPrediction(value);
             }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //Because the execution order of Finalizes is non-deterministic.
-
-            if (_keyboardTypeChangedEventCallback != null)
-            {
-                KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_InputMethodContext(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        /// <summary>
-        /// This structure is used to pass on data from the IMF regarding predictive text.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class EventData : global::System.IDisposable
-        {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            /// <summary>
-            /// swigCMemOwn
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected bool swigCMemOwn;
-
-            internal EventData(IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EventData obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            /// <summary>
-            /// A flag to check if it is already disposed.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected bool disposed = false;
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            ~EventData()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <summary>
-            /// The dispose pattern.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User.
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicManualPINVOKE.delete_InputMethodContext_EventData(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-            internal static EventData GetEventDataFromPtr(IntPtr cPtr)
-            {
-                EventData ret = new EventData(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-
-            /// <summary>
-            /// The default constructor.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public EventData() : this(NDalicManualPINVOKE.new_InputMethodContext_EventData__SWIG_0(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The constructor.
-            /// </summary>
-            /// <param name="aEventName">The name of the event from the IMF.</param>
-            /// <param name="aPredictiveString">The pre-edit or the commit string.</param>
-            /// <param name="aCursorOffset">Start the position from the current cursor position to start deleting characters.</param>
-            /// <param name="aNumberOfChars">The number of characters to delete from the cursorOffset.</param>
-            /// <since_tizen> 5 </since_tizen>
-            public EventData(InputMethodContext.EventType aEventName, string aPredictiveString, int aCursorOffset, int aNumberOfChars) : this(NDalicManualPINVOKE.new_InputMethodContext_EventData__SWIG_1((int)aEventName, aPredictiveString, aCursorOffset, aNumberOfChars), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The pre-edit or the commit string.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public string PredictiveString
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_EventData_predictiveString_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    string ret = NDalicManualPINVOKE.InputMethodContext_EventData_predictiveString_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The name of the event from the IMF.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public InputMethodContext.EventType EventName
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_EventData_eventName_set(swigCPtr, (int)value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    InputMethodContext.EventType ret = (InputMethodContext.EventType)NDalicManualPINVOKE.InputMethodContext_EventData_eventName_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The start position from the current cursor position to start deleting characters.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public int CursorOffset
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_EventData_cursorOffset_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.InputMethodContext_EventData_cursorOffset_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The number of characters to delete from the cursorOffset.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public int NumberOfChars
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_EventData_numberOfChars_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.InputMethodContext_EventData_numberOfChars_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-        }
-
-        /// <summary>
-        /// Data required by the IMF from the callback.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class CallbackData : global::System.IDisposable
-        {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            /// <summary>
-            /// swigCMemOwn
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected bool swigCMemOwn;
-
-            internal IntPtr GetCallbackDataPtr()
-            {
-                return (IntPtr)swigCPtr;
-            }
-
-            internal CallbackData(IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CallbackData obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            /// <summary>
-            /// A Flag to check if it is already disposed.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected bool disposed = false;
-
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            ~CallbackData()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <summary>
-            /// The dispose pattern.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User.
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //Because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicManualPINVOKE.delete_InputMethodContext_CallbackData(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-            internal static CallbackData GetCallbackDataFromPtr(IntPtr cPtr)
-            {
-                CallbackData ret = new CallbackData(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-
-            /// <summary>
-            /// The default constructor.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public CallbackData() : this(NDalicManualPINVOKE.new_InputMethodContext_CallbackData__SWIG_0(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The constructor.
-            /// </summary>
-            /// <param name="aUpdate">True if the cursor position needs to be updated.</param>
-            /// <param name="aCursorPosition">The new position of the cursor.</param>
-            /// <param name="aCurrentText">The current text string.</param>
-            /// <param name="aPreeditResetRequired">Flag if preedit reset is required.</param>
-            /// <since_tizen> 5 </since_tizen>
-            public CallbackData(bool aUpdate, int aCursorPosition, string aCurrentText, bool aPreeditResetRequired) : this(NDalicManualPINVOKE.new_InputMethodContext_CallbackData__SWIG_1(aUpdate, aCursorPosition, aCurrentText, aPreeditResetRequired), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The current text string.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public string CurrentText
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_CallbackData_currentText_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    string ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_currentText_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The current cursor position.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public int CursorPosition
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_CallbackData_cursorPosition_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_cursorPosition_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// If the cursor position needs to be updated.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public bool Update
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_CallbackData_update_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    bool ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_update_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Flags if the pre-edit reset is required.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public bool PreeditResetRequired
-            {
-                set
-                {
-                    NDalicManualPINVOKE.InputMethodContext_CallbackData_preeditResetRequired_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    bool ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_preeditResetRequired_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
         }
 
         /// <summary>
@@ -521,43 +353,6 @@ namespace Tizen.NUI
         {
             NDalicManualPINVOKE.InputMethodContext_Finalize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Destroys the context of the IMF.<br/>
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// Please do not use! This will be deprecated, instead please USE Tizen.NUI.InputMethodContext.Instance.DestroyContext()!
-        [Obsolete("Please do not use! This will be deprecated! Please use InputMethodContext.Instance.DestroyContext() instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Finalize()
-        {
-            DestroyContext();
-        }
-
-        /// <summary>
-        /// Constructor.<br/>
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public InputMethodContext () : this (NDalicManualPINVOKE.InputMethodContext_New(), true) {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-  
-        internal InputMethodContext(InputMethodContext inputMethodContext) : this(NDalicManualPINVOKE.new_InputMethodContext__SWIG_1(InputMethodContext.getCPtr(inputMethodContext)), true) {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal InputMethodContext Assign(InputMethodContext inputMethodContext) {
-            InputMethodContext ret = new InputMethodContext(NDalicManualPINVOKE.InputMethodContext_Assign(swigCPtr, InputMethodContext.getCPtr(inputMethodContext)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal static InputMethodContext DownCast(BaseHandle handle) {
-            InputMethodContext ret = new InputMethodContext(NDalicManualPINVOKE.InputMethodContext_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -712,12 +507,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void ApplyOptions(InputMethodOptions options)
-        {
-            NDalicManualPINVOKE.InputMethodContext_ApplyOptions(swigCPtr, InputMethodOptions.getCPtr(options));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         /// <summary>
         /// Sets up the input panel specific data.
         /// </summary>
@@ -821,6 +610,36 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodContext obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal InputMethodContext(InputMethodContext inputMethodContext) : this(NDalicManualPINVOKE.new_InputMethodContext__SWIG_1(InputMethodContext.getCPtr(inputMethodContext)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal InputMethodContext Assign(InputMethodContext inputMethodContext)
+        {
+            InputMethodContext ret = new InputMethodContext(NDalicManualPINVOKE.InputMethodContext_Assign(swigCPtr, InputMethodContext.getCPtr(inputMethodContext)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static InputMethodContext DownCast(BaseHandle handle)
+        {
+            InputMethodContext ret = new InputMethodContext(NDalicManualPINVOKE.InputMethodContext_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void ApplyOptions(InputMethodOptions options)
+        {
+            NDalicManualPINVOKE.InputMethodContext_ApplyOptions(swigCPtr, InputMethodOptions.getCPtr(options));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal void AllowTextPrediction(bool prediction)
         {
             NDalicManualPINVOKE.InputMethodContext_AllowTextPrediction(swigCPtr, prediction);
@@ -834,70 +653,91 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal ActivatedSignalType ActivatedSignal()
+        {
+            ActivatedSignalType ret = new ActivatedSignalType(NDalicManualPINVOKE.InputMethodContext_ActivatedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal KeyboardEventSignalType EventReceivedSignal()
+        {
+            KeyboardEventSignalType ret = new KeyboardEventSignalType(NDalicManualPINVOKE.InputMethodContext_EventReceivedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal StatusSignalType StatusChangedSignal()
+        {
+            StatusSignalType ret = new StatusSignalType(NDalicManualPINVOKE.InputMethodContext_StatusChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal KeyboardResizedSignalType ResizedSignal()
+        {
+            KeyboardResizedSignalType ret = new KeyboardResizedSignalType(NDalicManualPINVOKE.InputMethodContext_ResizedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal LanguageChangedSignalType LanguageChangedSignal()
+        {
+            LanguageChangedSignalType ret = new LanguageChangedSignalType(NDalicManualPINVOKE.InputMethodContext_LanguageChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal KeyboardTypeSignalType KeyboardTypeChangedSignal()
+        {
+            KeyboardTypeSignalType ret = new KeyboardTypeSignalType(NDalicManualPINVOKE.InputMethodContext_KeyboardTypeChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
-        /// Gets or sets whether the IM context allows to use the text prediction.
+        /// You can override it to clean-up your own resources.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="type">Dispose Type</param>
+        /// <since_tizen> 5 </since_tizen>
+        /// Please do not use! This will be deprecated!
+        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, InputMethodContext, TtsPlayer, Window) is not required.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool TextPrediction
+        protected override void Dispose(DisposeTypes type)
         {
-            get
+            if (disposed)
             {
-                return IsTextPredictionAllowed();
+                return;
             }
-            set
+
+            if (type == DisposeTypes.Explicit)
             {
-                AllowTextPrediction(value);
+                //Called by User.
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
             }
-        }
 
-        /// <summary>
-        /// InputMethodContext activated event arguments.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class ActivatedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// InputMethodContext
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public InputMethodContext InputMethodContext
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (_keyboardTypeChangedEventCallback != null)
             {
-                get;
-                set;
+                KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
             }
-        }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ActivatedEventCallbackType(IntPtr data);
-        private ActivatedEventCallbackType _activatedEventCallback;
-        private event EventHandler<ActivatedEventArgs> _activatedEventHandler;
-
-        /// <summary>
-        /// InputMethodContext activated.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<ActivatedEventArgs> Activated
-        {
-            add
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                if (_activatedEventHandler == null)
+                if (swigCMemOwn)
                 {
-                    _activatedEventCallback = OnActivated;
-                    ActivatedSignal().Connect(_activatedEventCallback);
+                    swigCMemOwn = false;
+                    NDalicManualPINVOKE.delete_InputMethodContext(swigCPtr);
                 }
-
-                _activatedEventHandler += value;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
             }
-            remove
-            {
-                _activatedEventHandler -= value;
 
-                if (_activatedEventHandler == null && _activatedEventCallback != null)
-                {
-                    ActivatedSignal().Disconnect(_activatedEventCallback);
-                }
-            }
+            base.Dispose(type);
         }
 
         private void OnActivated(IntPtr data)
@@ -912,71 +752,6 @@ namespace Tizen.NUI
             if (_activatedEventHandler != null)
             {
                 _activatedEventHandler(this, e);
-            }
-        }
-
-        internal ActivatedSignalType ActivatedSignal()
-        {
-            ActivatedSignalType ret = new ActivatedSignalType(NDalicManualPINVOKE.InputMethodContext_ActivatedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// InputMethodContext event receives event arguments.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class EventReceivedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// InputMethodContext
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public InputMethodContext InputMethodContext
-            {
-                get;
-                set;
-            }
-
-            /// <summary>
-            /// EventData.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public EventData EventData
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate IntPtr EventReceivedEventCallbackType(IntPtr inputMethodContext, IntPtr eventData);
-        private EventReceivedEventCallbackType _eventReceivedEventCallback;
-        private event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> _eventReceivedEventHandler;
-
-        /// <summary>
-        /// InputMethodContext event received.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> EventReceived
-        {
-            add
-            {
-                if (_eventReceivedEventHandler == null)
-                {
-                    _eventReceivedEventCallback = OnEventReceived;
-                    EventReceivedSignal().Connect(_eventReceivedEventCallback);
-                }
-
-                _eventReceivedEventHandler += value;
-            }
-            remove
-            {
-                _eventReceivedEventHandler -= value;
-
-                if (_eventReceivedEventHandler == null && _eventReceivedEventCallback != null)
-                {
-                    EventReceivedSignal().Disconnect(_eventReceivedEventCallback);
-                }
             }
         }
 
@@ -1009,11 +784,523 @@ namespace Tizen.NUI
             }
         }
 
-        internal KeyboardEventSignalType EventReceivedSignal()
+        private void OnStatusChanged(bool statusChanged)
         {
-            KeyboardEventSignalType ret = new KeyboardEventSignalType(NDalicManualPINVOKE.InputMethodContext_EventReceivedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            StatusChangedEventArgs e = new StatusChangedEventArgs();
+
+            e.StatusChanged = statusChanged;
+
+            if (_statusChangedEventHandler != null)
+            {
+                _statusChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnResized(int resized)
+        {
+            ResizedEventArgs e = new ResizedEventArgs();
+            e.Resized = resized;
+
+            if (_resizedEventHandler != null)
+            {
+                _resizedEventHandler(this, e);
+            }
+        }
+
+        private void OnLanguageChanged(int languageChanged)
+        {
+            LanguageChangedEventArgs e = new LanguageChangedEventArgs();
+            e.LanguageChanged = languageChanged;
+
+            if (_languageChangedEventHandler != null)
+            {
+                _languageChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnKeyboardTypeChanged(KeyboardType type)
+        {
+            KeyboardTypeChangedEventArgs e = new KeyboardTypeChangedEventArgs();
+
+            e.KeyboardType = type;
+
+            if (_keyboardTypeChangedEventHandler != null)
+            {
+                _keyboardTypeChangedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// This structure is used to pass on data from the IMF regarding predictive text.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class EventData : global::System.IDisposable
+        {
+            /// <summary>
+            /// The state if it owns memory
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            protected bool swigCMemOwn;
+
+            /// <summary>
+            /// A flag to check if it is already disposed.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            protected bool disposed = false;
+
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+            //A flag to check who called Dispose(). (By User or DisposeQueue)
+            private bool isDisposeQueued = false;
+
+            /// <summary>
+            /// The default constructor.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public EventData() : this(NDalicManualPINVOKE.new_InputMethodContext_EventData__SWIG_0(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// The constructor.
+            /// </summary>
+            /// <param name="aEventName">The name of the event from the IMF.</param>
+            /// <param name="aPredictiveString">The pre-edit or the commit string.</param>
+            /// <param name="aCursorOffset">Start the position from the current cursor position to start deleting characters.</param>
+            /// <param name="aNumberOfChars">The number of characters to delete from the cursorOffset.</param>
+            /// <since_tizen> 5 </since_tizen>
+            public EventData(InputMethodContext.EventType aEventName, string aPredictiveString, int aCursorOffset, int aNumberOfChars) : this(NDalicManualPINVOKE.new_InputMethodContext_EventData__SWIG_1((int)aEventName, aPredictiveString, aCursorOffset, aNumberOfChars), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal EventData(IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            /// <summary>
+            /// Releases the resource.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            ~EventData()
+            {
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
+            }
+
+            /// <summary>
+            /// The pre-edit or the commit string.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public string PredictiveString
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_EventData_predictiveString_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    string ret = NDalicManualPINVOKE.InputMethodContext_EventData_predictiveString_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The name of the event from the IMF.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public InputMethodContext.EventType EventName
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_EventData_eventName_set(swigCPtr, (int)value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    InputMethodContext.EventType ret = (InputMethodContext.EventType)NDalicManualPINVOKE.InputMethodContext_EventData_eventName_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The start position from the current cursor position to start deleting characters.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public int CursorOffset
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_EventData_cursorOffset_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    int ret = NDalicManualPINVOKE.InputMethodContext_EventData_cursorOffset_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The number of characters to delete from the cursorOffset.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public int NumberOfChars
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_EventData_numberOfChars_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    int ret = NDalicManualPINVOKE.InputMethodContext_EventData_numberOfChars_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The dispose pattern.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public void Dispose()
+            {
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                    System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EventData obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            internal static EventData GetEventDataFromPtr(IntPtr cPtr)
+            {
+                EventData ret = new EventData(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+
+            /// <summary>
+            /// You can override it to clean-up your own resources.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            protected virtual void Dispose(DisposeTypes type)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (type == DisposeTypes.Explicit)
+                {
+                    //Called by User.
+                    //Release your own managed resources here.
+                    //You should release all of your own disposable objects here.
+
+                }
+
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //because the execution order of Finalizes is non-deterministic.
+
+                if (swigCPtr.Handle != IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicManualPINVOKE.delete_InputMethodContext_EventData(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
+                }
+
+                disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Data required by the IMF from the callback.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class CallbackData : global::System.IDisposable
+        {
+            /// <summary>
+            /// The state if it owns memory
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            protected bool swigCMemOwn;
+
+            /// <summary>
+            /// A Flag to check if it is already disposed.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            protected bool disposed = false;
+
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+            //A flag to check who called Dispose(). (By User or DisposeQueue)
+            private bool isDisposeQueued = false;
+
+            /// <summary>
+            /// The default constructor.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public CallbackData() : this(NDalicManualPINVOKE.new_InputMethodContext_CallbackData__SWIG_0(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// The constructor.
+            /// </summary>
+            /// <param name="aUpdate">True if the cursor position needs to be updated.</param>
+            /// <param name="aCursorPosition">The new position of the cursor.</param>
+            /// <param name="aCurrentText">The current text string.</param>
+            /// <param name="aPreeditResetRequired">Flag if preedit reset is required.</param>
+            /// <since_tizen> 5 </since_tizen>
+            public CallbackData(bool aUpdate, int aCursorPosition, string aCurrentText, bool aPreeditResetRequired) : this(NDalicManualPINVOKE.new_InputMethodContext_CallbackData__SWIG_1(aUpdate, aCursorPosition, aCurrentText, aPreeditResetRequired), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// Releases the resource.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            ~CallbackData()
+            {
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
+            }
+
+            /// <summary>
+            /// The current text string.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public string CurrentText
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_CallbackData_currentText_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    string ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_currentText_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The current cursor position.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public int CursorPosition
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_CallbackData_cursorPosition_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    int ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_cursorPosition_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The state if the cursor position needs to be updated.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public bool Update
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_CallbackData_update_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    bool ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_update_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// Flags if the pre-edit reset is required.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public bool PreeditResetRequired
+            {
+                set
+                {
+                    NDalicManualPINVOKE.InputMethodContext_CallbackData_preeditResetRequired_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    bool ret = NDalicManualPINVOKE.InputMethodContext_CallbackData_preeditResetRequired_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The dispose pattern.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public void Dispose()
+            {
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                    System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal IntPtr GetCallbackDataPtr()
+            {
+                return (IntPtr)swigCPtr;
+            }
+
+            internal CallbackData(IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CallbackData obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            internal static CallbackData GetCallbackDataFromPtr(IntPtr cPtr)
+            {
+                CallbackData ret = new CallbackData(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+
+            /// <summary>
+            /// You can override it to clean-up your own resources.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            protected virtual void Dispose(DisposeTypes type)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (type == DisposeTypes.Explicit)
+                {
+                    //Called by User.
+                    //Release your own managed resources here.
+                    //You should release all of your own disposable objects here.
+
+                }
+
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //Because the execution order of Finalizes is non-deterministic.
+
+                if (swigCPtr.Handle != IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicManualPINVOKE.delete_InputMethodContext_CallbackData(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
+                }
+
+                disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext activated event arguments.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class ActivatedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// The instance of InputMethodContext
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public InputMethodContext InputMethodContext
+            {
+                get;
+                set;
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext event receives event arguments.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class EventReceivedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// The instance of InputMethodContext
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public InputMethodContext InputMethodContext
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// The event data of IMF
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public EventData EventData
+            {
+                get;
+                set;
+            }
         }
 
         /// <summary>
@@ -1033,56 +1320,6 @@ namespace Tizen.NUI
             }
         }
 
-        private delegate void StatusChangedEventCallbackType(bool statusChanged);
-        private StatusChangedEventCallbackType _statusChangedEventCallback;
-        private event EventHandler<StatusChangedEventArgs> _statusChangedEventHandler;
-
-        /// <summary>
-        /// InputMethodContext status changed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<StatusChangedEventArgs> StatusChanged
-        {
-            add
-            {
-                if (_statusChangedEventHandler == null)
-                {
-                    _statusChangedEventCallback = OnStatusChanged;
-                    StatusChangedSignal().Connect(_statusChangedEventCallback);
-                }
-
-                _statusChangedEventHandler += value;
-            }
-            remove
-            {
-                _statusChangedEventHandler -= value;
-
-                if (_statusChangedEventHandler == null && _statusChangedEventCallback != null)
-                {
-                    StatusChangedSignal().Disconnect(_statusChangedEventCallback);
-                }
-            }
-        }
-
-        private void OnStatusChanged(bool statusChanged)
-        {
-            StatusChangedEventArgs e = new StatusChangedEventArgs();
-
-            e.StatusChanged = statusChanged;
-
-            if (_statusChangedEventHandler != null)
-            {
-                _statusChangedEventHandler(this, e);
-            }
-        }
-
-        internal StatusSignalType StatusChangedSignal()
-        {
-            StatusSignalType ret = new StatusSignalType(NDalicManualPINVOKE.InputMethodContext_StatusChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// InputMethodContext resized event arguments.
         /// </summary>
@@ -1090,7 +1327,7 @@ namespace Tizen.NUI
         public class ResizedEventArgs : EventArgs
         {
             /// <summary>
-            /// resized.
+            /// The state if the IMF resized.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public int Resized
@@ -1098,55 +1335,6 @@ namespace Tizen.NUI
                 get;
                 set;
             }
-        }
-
-        private delegate void ResizedEventCallbackType(int resized);
-        private ResizedEventCallbackType _resizedEventCallback;
-        private event EventHandler<ResizedEventArgs> _resizedEventHandler;
-
-        /// <summary>
-        /// InputMethodContext resized.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<ResizedEventArgs> Resized
-        {
-            add
-            {
-                if (_resizedEventHandler == null)
-                {
-                    _resizedEventCallback = OnResized;
-                    ResizedSignal().Connect(_resizedEventCallback);
-                }
-
-                _resizedEventHandler += value;
-            }
-            remove
-            {
-                _resizedEventHandler -= value;
-
-                if (_resizedEventHandler == null && _resizedEventCallback != null)
-                {
-                    ResizedSignal().Disconnect(_resizedEventCallback);
-                }
-            }
-        }
-
-        private void OnResized(int resized)
-        {
-            ResizedEventArgs e = new ResizedEventArgs();
-            e.Resized = resized;
-
-            if (_resizedEventHandler != null)
-            {
-                _resizedEventHandler(this, e);
-            }
-        }
-
-        internal KeyboardResizedSignalType ResizedSignal()
-        {
-            KeyboardResizedSignalType ret = new KeyboardResizedSignalType(NDalicManualPINVOKE.InputMethodContext_ResizedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -1166,55 +1354,6 @@ namespace Tizen.NUI
             }
         }
 
-        private delegate void LanguageChangedEventCallbackType(int languageChanged);
-        private LanguageChangedEventCallbackType _languageChangedEventCallback;
-        private event EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
-
-        /// <summary>
-        /// InputMethodContext language changed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<LanguageChangedEventArgs> LanguageChanged
-        {
-            add
-            {
-                if (_languageChangedEventHandler == null)
-                {
-                    _languageChangedEventCallback = OnLanguageChanged;
-                    LanguageChangedSignal().Connect(_languageChangedEventCallback);
-                }
-
-                _languageChangedEventHandler += value;
-            }
-            remove
-            {
-                _languageChangedEventHandler -= value;
-
-                if (_languageChangedEventHandler == null && _languageChangedEventCallback != null)
-                {
-                    LanguageChangedSignal().Disconnect(_languageChangedEventCallback);
-                }
-            }
-        }
-
-        private void OnLanguageChanged(int languageChanged)
-        {
-            LanguageChangedEventArgs e = new LanguageChangedEventArgs();
-            e.LanguageChanged = languageChanged;
-
-            if (_languageChangedEventHandler != null)
-            {
-                _languageChangedEventHandler(this, e);
-            }
-        }
-
-        internal LanguageChangedSignalType LanguageChangedSignal()
-        {
-            LanguageChangedSignalType ret = new LanguageChangedSignalType(NDalicManualPINVOKE.InputMethodContext_LanguageChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// InputMethodContext keyboard type changed event arguments.
         /// </summary>
@@ -1230,156 +1369,6 @@ namespace Tizen.NUI
                 get;
                 set;
             }
-        }
-
-        private delegate void KeyboardTypeChangedEventCallbackType(KeyboardType type);
-        private KeyboardTypeChangedEventCallbackType _keyboardTypeChangedEventCallback;
-        private event EventHandler<KeyboardTypeChangedEventArgs> _keyboardTypeChangedEventHandler;
-
-        /// <summary>
-        /// InputMethodContext keyboard type changed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<KeyboardTypeChangedEventArgs> KeyboardTypeChanged
-        {
-            add
-            {
-                if (_keyboardTypeChangedEventHandler == null)
-                {
-                    _keyboardTypeChangedEventCallback = OnKeyboardTypeChanged;
-                    KeyboardTypeChangedSignal().Connect(_keyboardTypeChangedEventCallback);
-                }
-
-                _keyboardTypeChangedEventHandler += value;
-            }
-            remove
-            {
-                _keyboardTypeChangedEventHandler -= value;
-
-                if (_keyboardTypeChangedEventHandler == null && _keyboardTypeChangedEventCallback != null)
-                {
-                    KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
-                }
-            }
-        }
-
-        private void OnKeyboardTypeChanged(KeyboardType type)
-        {
-            KeyboardTypeChangedEventArgs e = new KeyboardTypeChangedEventArgs();
-
-            e.KeyboardType = type;
-
-            if (_keyboardTypeChangedEventHandler != null)
-            {
-                _keyboardTypeChangedEventHandler(this, e);
-            }
-        }
-
-        internal KeyboardTypeSignalType KeyboardTypeChangedSignal()
-        {
-            KeyboardTypeSignalType ret = new KeyboardTypeSignalType(NDalicManualPINVOKE.InputMethodContext_KeyboardTypeChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// The direction of the text.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public enum TextDirection
-        {
-            /// <summary>
-            /// Left to right.
-            /// </summary>
-            LeftToRight,
-            /// <summary>
-            /// Right to left.
-            /// </summary>
-            RightToLeft
-        }
-
-        /// <summary>
-        /// Events that are generated by the IMF.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public enum EventType
-        {
-            /// <summary>
-            /// No event.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Void,
-            /// <summary>
-            /// Pre-edit changed.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Preedit,
-            /// <summary>
-            /// Commit received.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Commit,
-            /// <summary>
-            /// An event to delete a range of characters from the string.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            DeleteSurrounding,
-            /// <summary>
-            /// An event to query string and the cursor position.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            GetSurrounding,
-            /// <summary>
-            /// Private command sent from the input panel.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            PrivateCommand
-        }
-
-        /// <summary>
-        /// Enumeration for the state of the input panel.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public enum State
-        {
-            /// <summary>
-            /// Unknown state.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Default = 0,
-            /// <summary>
-            /// Input panel is shown.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Show,
-            /// <summary>
-            /// Input panel is hidden.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Hide,
-            /// <summary>
-            /// Input panel in process of being shown.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            WillShow
-        }
-
-        /// <summary>
-        /// Enumeration for the types of keyboard.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public enum KeyboardType
-        {
-            /// <summary>
-            /// Software keyboard (virtual keyboard) is default.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            SoftwareKeyboard,
-            /// <summary>
-            /// Hardware keyboard.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            HardwareKeyboard
         }
     }
 }

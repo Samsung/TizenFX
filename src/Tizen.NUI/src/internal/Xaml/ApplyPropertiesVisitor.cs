@@ -125,7 +125,7 @@ namespace Tizen.NUI.Xaml
                     var addMethod =
                         Context.Types[parentElement].GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
 
-                    addMethod.Invoke(source, new[] { value });
+                    addMethod?.Invoke(source, new[] { value });
                     return;
                 }
                 if (xpe == null && (contentProperty = GetContentPropertyName(Context.Types[parentElement].GetTypeInfo())) != null) {
@@ -236,8 +236,9 @@ namespace Tizen.NUI.Xaml
             if (value.GetType().GetTypeInfo().GetCustomAttribute<AcceptEmptyServiceProviderAttribute>() == null)
                 serviceProvider = new XamlServiceProvider(node, Context);
 
-            if (serviceProvider != null && serviceProvider.IProvideValueTarget != null && propertyName != XmlName.Empty)
+            if (serviceProvider != null && serviceProvider.IProvideValueTarget != null && propertyName != XmlName.Empty) {
                 ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = GetTargetProperty(source, propertyName, Context, node);
+            }
 
             if (markupExtension != null)
                 value = markupExtension.ProvideValue(serviceProvider);

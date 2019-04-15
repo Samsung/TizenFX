@@ -19,7 +19,6 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A two-dimensional size.
     /// </summary>
@@ -27,31 +26,44 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(Size2DTypeConverter))]
     public class Size2D : global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
-        internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Size2D obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
+        private Size2DChangedCallback callback = null;
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Size2D() : this(NDalicPINVOKE.new_Vector2__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="x">The x (or width) component.</param>
+        /// <param name="y">The y (or height) component.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Size2D(int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         /// <summary>
         /// Dispose.
@@ -66,61 +78,48 @@ namespace Tizen.NUI
             }
         }
 
+        internal delegate void Size2DChangedCallback(int width, int height);
+
         /// <summary>
-        /// Dispose.
+        /// The property for the width component of a size.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
+        public int Width
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            set
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
+                NDalicPINVOKE.Vector2_Width_set(swigCPtr, (float)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
+                callback?.Invoke(Width, Height);
             }
-            else
+            get
             {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
+                float ret = NDalicPINVOKE.Vector2_Width_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return (int)ret;
             }
         }
 
         /// <summary>
-        /// Dispose.
+        /// The property for the height component of a size.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        public int Height
         {
-            if (disposed)
+            set
             {
-                return;
-            }
+                NDalicPINVOKE.Vector2_Height_set(swigCPtr, (float)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if (type == DisposeTypes.Explicit)
+                callback?.Invoke(Width, Height);
+            }
+            get
             {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
+                float ret = NDalicPINVOKE.Vector2_Height_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return (int)ret;
             }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Vector2(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
         }
 
         /// <summary>
@@ -208,6 +207,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The type cast operator, Size2D to Vector2.
+        /// </summary>
+        /// <param name="size">An object of the Size2D type.</param>
+        /// <returns>return a Vector2 instance</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static implicit operator Vector2(Size2D size)
+        {
+            return new Vector2((float)size.Width, (float)size.Height);
+        }
+
+        /// <summary>
+        /// The type cast operator, Vector2 to Size2D type.
+        /// </summary>
+        /// <param name="vector2">An object of the Vector2 type.</param>
+        /// <returns>return a Size2D instance</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static implicit operator Size2D(Vector2 vector2)
+        {
+            return new Size2D((int)vector2.X, (int)vector2.Y);
+        }
+
+        /// <summary>
         /// The array subscript operator.
         /// </summary>
         /// <param name="index">The subscript index.</param>
@@ -222,94 +243,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the size from the pointer.
-        /// </summary>
-        /// <param name="cPtr">The pointer of the size.</param>
-        /// <returns>Size</returns>
-        internal static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr)
-        {
-            Size2D ret = new Size2D(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// The constructor.
+        /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Size2D() : this(NDalicPINVOKE.new_Vector2__SWIG_0(), true)
+        public void Dispose()
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
 
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <param name="x">The x (or width) component.</param>
-        /// <param name="y">The y (or height) component.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Size2D(int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal delegate void Size2DChangedCallback(int width, int height);
-        private Size2DChangedCallback callback = null;
-        internal Size2D(Size2DChangedCallback cb, int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
-        {
-            callback = cb;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        private Size2D Add(Size2D rhs)
-        {
-            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Add(swigCPtr, Size2D.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Size2D Subtract(Size2D rhs)
-        {
-            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Subtract__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-
-        private Size2D Multiply(Size2D rhs)
-        {
-            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Multiply__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Size2D Multiply(int rhs)
-        {
-            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Multiply__SWIG_1(swigCPtr, (float)rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-
-        private Size2D Divide(Size2D rhs)
-        {
-            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Divide__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Size2D Divide(int rhs)
-        {
-            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Divide__SWIG_1(swigCPtr, (float)rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Size2D Subtract()
-        {
-            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Subtract__SWIG_1(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
         }
 
         /// <summary>
@@ -326,6 +279,16 @@ namespace Tizen.NUI
                 equal = true;
             }
             return equal;
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this Size2D.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public override int GetHashCode()
+        {
+            return swigCPtr.Handle.GetHashCode();
         }
 
         /// <summary>
@@ -356,76 +319,123 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Size2D obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// <summary>
+        /// Gets the size from the pointer.
+        /// </summary>
+        /// <param name="cPtr">The pointer of the size.</param>
+        /// <returns>Size</returns>
+        internal static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr)
+        {
+            Size2D ret = new Size2D(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Size2D(Size2DChangedCallback cb, int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Vector2(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
+        }
+
+        private Size2D Add(Size2D rhs)
+        {
+            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Add(swigCPtr, Size2D.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Size2D Subtract(Size2D rhs)
+        {
+            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Subtract__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Size2D Multiply(Size2D rhs)
+        {
+            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Multiply__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Size2D Multiply(int rhs)
+        {
+            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Multiply__SWIG_1(swigCPtr, (float)rhs), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Size2D Divide(Size2D rhs)
+        {
+            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Divide__SWIG_0(swigCPtr, Size2D.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Size2D Divide(int rhs)
+        {
+            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Divide__SWIG_1(swigCPtr, (float)rhs), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Size2D Subtract()
+        {
+            Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Subtract__SWIG_1(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         private int ValueOfIndex(uint index)
         {
             int ret = (int)NDalicPINVOKE.Vector2_ValueOfIndex__SWIG_0(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <summary>
-        /// The property for the width component of a size.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Width
-        {
-            set
-            {
-                NDalicPINVOKE.Vector2_Width_set(swigCPtr, (float)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(Width, Height);
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector2_Width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return (int)ret;
-            }
-        }
-
-        /// <summary>
-        /// The property for the height component of a size.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Height
-        {
-            set
-            {
-                NDalicPINVOKE.Vector2_Height_set(swigCPtr, (float)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                callback?.Invoke(Width, Height);
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector2_Height_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return (int)ret;
-            }
-        }
-
-        /// <summary>
-        /// The type cast operator, Size2D to Vector2.
-        /// </summary>
-        /// <param name="size">An object of the Size2D type.</param>
-        /// <returns>return a Vector2 instance</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static implicit operator Vector2(Size2D size)
-        {
-            return new Vector2((float)size.Width, (float)size.Height);
-        }
-
-        /// <summary>
-        /// The type cast operator, Vector2 to Size2D type.
-        /// </summary>
-        /// <param name="vector2">An object of the Vector2 type.</param>
-        /// <returns>return a Size2D instance</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static implicit operator Size2D(Vector2 vector2)
-        {
-            return new Size2D((int)vector2.X, (int)vector2.Y);
-        }
     }
-
 }

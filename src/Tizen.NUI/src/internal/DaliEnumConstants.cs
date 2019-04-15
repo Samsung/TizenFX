@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,14 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
-  namespace Constants
-  {
-    /// <summary>
-    /// Enumeration for texture types.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum TextureType
+    namespace Constants
     {
+        /// <summary>
+        /// Enumeration for texture types.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum TextureType
+        {
             /// <summary>
             /// One 2D image
             /// </summary>
@@ -39,35 +39,7 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             TextureCube = Tizen.NUI.TextureType.TEXTURE_CUBE
-    }
-
-    /// <summary>
-    /// Enumeration for stereoscopic view modes.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum ViewMode
-    {
-            /// <summary>
-            /// Monoscopic (single camera). This is the default.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Mono = Tizen.NUI.ViewMode.MONO,
-            /// <summary>
-            /// Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            StereoHorizontal = Tizen.NUI.ViewMode.STEREO_HORIZONTAL,
-            /// <summary>
-            /// Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            StereoVertical = Tizen.NUI.ViewMode.STEREO_VERTICAL,
-            /// <summary>
-            /// Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            StereoInterlaced = Tizen.NUI.ViewMode.STEREO_INTERLACED
-    }
+        }
 
         /// <summary>
         /// Enumeration for the direction
@@ -93,8 +65,6 @@ namespace Tizen.NUI
                 RightToLeft = Tizen.NUI.DirectionType.RIGHT_TO_LEFT
             }
         }
-
-
 
         /// <summary>
         /// ToolTip
@@ -196,29 +166,78 @@ namespace Tizen.NUI
                 public static readonly int BelowVisual = NDalic.TOOLTIP_TAIL_BELOW_VISUAL;
             }
         }
+
+        /// <summary>
+        /// Enumeration for stereoscopic view modes.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// Deprecated.(API Level 6) Not used.
+        /// </remarks>
+        [Obsolete("Please do not use this ViewMode(Deprecated).")]
+        public enum ViewMode
+        {
+            /// <summary>
+            /// Monoscopic (single camera). This is the default.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.Mono(Deprecated).")]
+            Mono,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.StereoHorizontal(Deprecated).")]
+            StereoHorizontal,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.StereoVertical(Deprecated).")]
+            StereoVertical,
+            /// <summary>
+            /// Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <remarks>
+            /// Deprecated.(API Level 6) Not used.
+            /// </remarks>
+            [Obsolete("Please do not use this ViewMode.StereoInterlaced(Deprecated).")]
+            StereoInterlaced
+        }
+
     } // namespace Constants
 
 
-internal class NUILog
-{
-    [Conditional("DEBUG_ON")]
-    public static void Debug(string msg,
-        [CallerLineNumber] int lineNum = 0,
-        [CallerMemberName] string caller = null,
-        [CallerFilePath] string file = null
-    )
+    internal class NUILog
     {
-        Tizen.Log.Fatal("NUI", $"{msg} (at line {lineNum} of {caller} in {file})" );
-    }
+        [Conditional("DEBUG_ON")]
+        public static void Debug(string msg,
+            [CallerLineNumber] int lineNum = 0,
+            [CallerMemberName] string caller = null,
+            [CallerFilePath] string file = null
+        )
+        {
+            Tizen.Log.Fatal("NUI", $"{msg} (at line {lineNum} of {caller} in {file})");
+        }
 
-    public static void Error(string msg,
-        [CallerLineNumber] int lineNum = 0,
-        [CallerMemberName] string caller = null,
-        [CallerFilePath] string file = null
-    )
-    {
-        Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at line {lineNum} of {caller} in {file})" );
+        public static void Error(string msg,
+            [CallerLineNumber] int lineNum = 0,
+            [CallerMemberName] string caller = null,
+            [CallerFilePath] string file = null
+        )
+        {
+            Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at line {lineNum} of {caller} in {file})");
+        }
     }
-}
 
 } // namesapce Dali

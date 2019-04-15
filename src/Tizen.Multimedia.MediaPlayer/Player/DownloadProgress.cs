@@ -37,7 +37,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the start position.
+        /// Gets or sets the starting position.
         /// </summary>
         /// <value>The position that downloading started in percentage.</value>
         /// <since_tizen> 3 </since_tizen>
@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the current position.
+        /// Gets or sets the current position(The end position of received data).
         /// </summary>
         /// <value>The position indicating the current downloading progress in percentage.</value>
         /// <since_tizen> 3 </since_tizen>

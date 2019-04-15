@@ -314,6 +314,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">No source is set.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="PlayerState.Preparing"/>
         /// <since_tizen> 3 </since_tizen>
         public virtual Task PrepareAsync()
         {

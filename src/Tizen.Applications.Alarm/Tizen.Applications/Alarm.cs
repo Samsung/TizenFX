@@ -55,11 +55,19 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the recurrence days of the week.
+        /// Gets or sets the recurrence days of the week.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
         /// <remarks>
-        /// week_flag may be a combination of days, like Tuesday | Friday.
+        /// The <c>WeekFlag</c> property setter is available since API Level 6.
+        /// Weekflag may be a combination of days, like Tuesday | Friday.
+        /// If the period was set before, it will be removed and the week recurrence flag will be set.
+        /// If the week recurrence flag was set before, it will be overwritten.If it was not, it will be set.
+        /// If the Weekflag argument is 0 and the flag was previously set,
+        /// the flag attribute will be cleared and the alarm will be changed to one-time.
+        /// If the Weekflag argument is 0 and the flag was not set,
+        /// or the period was set, the alarm will be unchanged.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public AlarmWeekFlag WeekFlag
@@ -75,12 +83,26 @@ namespace Tizen.Applications
 
                 return (AlarmWeekFlag)week;
             }
+
+            set
+            {
+                int week = (int)value;
+                AlarmError ret = Interop.Alarm.UpdateWeekFlag(this.AlarmId, week);
+                if (ret != AlarmError.None)
+                {
+                    throw AlarmErrorFactory.GetException(ret, "Failed to update Alarm");
+                }
+            }
         }
 
         /// <summary>
-        /// Gets the scheduled time.
+        /// Gets or sets the scheduled time.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        /// <remarks>
+        /// The <c>SchduleDate</c> property setter is available since API Level 6.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public DateTime ScheduledDate
         {
@@ -96,12 +118,42 @@ namespace Tizen.Applications
                 DateTime time = AlarmManager.ConvertIntPtrToDateTime(value);
                 return time;
             }
+
+            set
+            {
+                Interop.Alarm.DateTime time = new Interop.Alarm.DateTime();
+                time.sec = value.Second;
+                time.min = value.Minute;
+                time.hour = value.Hour;
+                time.mday = value.Day;
+                time.mon = value.Month - 1;
+                time.year = value.Year - 1900;
+                time.wday = (int)value.DayOfWeek;
+                time.yday = value.DayOfYear;
+                time.isdst = 0;
+
+                AlarmError ret = Interop.Alarm.UpdateDate(this.AlarmId, ref time);
+                if (ret != AlarmError.None)
+                {
+                    throw AlarmErrorFactory.GetException(ret, "Failed to update Alarm");
+                }
+            }
         }
 
         /// <summary>
         /// Gets the period of time between the recurrent alarms.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        /// <remarks>
+        /// The <c>Period</c> property setter is available since API Level 6.
+        /// If the week recurrence flag was set before, it will be removed and the period will be set
+        /// If the period was set before, it will be overwritten.If it was not, it will be set.
+        /// If the @a period argument is 0 and the period was previously set,
+        /// the period attribute will be cleared and the alarm will be changed to one-time.
+        /// If the @a period argument is 0 and the period was not set,
+        /// or the week recurrence flag was set, the alarm will be unchanged.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public int Period
         {
@@ -115,6 +167,15 @@ namespace Tizen.Applications
                 }
 
                 return period;
+            }
+
+            set
+            {
+                AlarmError ret = Interop.Alarm.UpdatePeriod(this.AlarmId, value);
+                if (ret != AlarmError.None)
+                {
+                    throw AlarmErrorFactory.GetException(ret, "Failed to update Alarm");
+                }
             }
         }
 
@@ -168,6 +229,7 @@ namespace Tizen.Applications
                 }
             }
         }
+
 
         /// <summary>
         /// Cancels the specific alarm.

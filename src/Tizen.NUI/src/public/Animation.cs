@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     using System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
@@ -43,78 +42,19 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Animation : BaseHandle
     {
+        private static bool? disableAnimation = null;
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Animation_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
+        private System.IntPtr _finishedCallbackOfNative;
 
-            _animationFinishedEventCallback = OnFinished;
-            _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
-        }
+        private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animation obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// To make animation instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (this != null)
-            {
-                if (_animationFinishedEventCallback != null)
-                {
-                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
-                }
-
-                if (_animationProgressReachedEventCallback != null)
-                {
-
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-                }
-            }
-
-            if(disposed)
-            {
-                return;
-            }
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-            else if(type == DisposeTypes.Implicit)
-            {
-
-            }
-
-            if (this != null)
-            {
-                this.Clear();
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Animation(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
+        private string[] _properties = null;
+        private string[] _destValue = null;
+        private int[] _startTime = null;
+        private int[] _endTime = null;
 
         /// <summary>
         /// Creates an initialized animation.<br />
@@ -130,12 +70,21 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
+        internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Animation_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            _animationFinishedEventCallback = OnFinished;
+            _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnimationFinishedEventCallbackType(IntPtr data);
-        private event EventHandler _animationFinishedEventHandler;
 
-        private System.IntPtr _finishedCallbackOfNative;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AnimationProgressReachedEventCallbackType(IntPtr data);
+
+        private event EventHandler _animationFinishedEventHandler;
 
         /**
         * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
@@ -162,23 +111,13 @@ namespace Tizen.NUI
                 }
             }
         }
-        private void OnFinished(IntPtr data)
-        {
-            if (_animationFinishedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _animationFinishedEventHandler(this, null);
-            }
-        }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void AnimationProgressReachedEventCallbackType(IntPtr data);
-        private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
         private event EventHandler _animationProgressReachedEventHandler;
+
         /**
-        * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
-        * The ProgressReached signal is emitted when the animation has reached a given progress percentage, this is set in the api SetProgressNotification.
-        */
+       * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
+       * The ProgressReached signal is emitted when the animation has reached a given progress percentage, this is set in the api SetProgressNotification.
+       */
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler ProgressReached
         {
@@ -202,25 +141,63 @@ namespace Tizen.NUI
                 }
             }
         }
-        private void OnProgressReached(IntPtr data)
+
+        /// <summary>
+        /// Enumeration for what to do when the animation ends, stopped, or destroyed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum EndActions
         {
-            if (_animationProgressReachedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _animationProgressReachedEventHandler(this, null);
-            }
+            /// <summary>
+            /// When the animation ends, the animated property values are saved.
+            /// </summary>
+            Cancel,
+            /// <summary>
+            /// When the animation ends, the animated property values are forgotten.
+            /// </summary>
+            Discard,
+            /// <summary>
+            /// If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like cancel.
+            /// </summary>
+            StopFinal
         }
 
-        private float MilliSecondsToSeconds(int millisec)
+        /// <summary>
+        /// Enumeration for what interpolation method to use on key-frame animations.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum Interpolation
         {
-            return (float)millisec / 1000.0f;
+            /// <summary>
+            /// Values in between key frames are interpolated using a linear polynomial. (Default)
+            /// </summary>
+            Linear,
+            /// <summary>
+            /// Values in between key frames are interpolated using a cubic polynomial.
+            /// </summary>
+            Cubic
         }
 
-        private int SecondsToMilliSeconds(float sec)
+        /// <summary>
+        /// Enumeration for what state the animation is in.
+        /// </summary>
+        /// <remarks>Calling Reset() on this class will not reset the animation. It will call the BaseHandle.Reset() which drops the object handle.</remarks>
+        /// <since_tizen> 3 </since_tizen>
+        public enum States
         {
-            return (int)(sec * 1000);
+            /// <summary>
+            /// The animation has stopped.
+            /// </summary>
+            Stopped,
+            /// <summary>
+            /// The animation is playing.
+            /// </summary>
+            Playing,
+            /// <summary>
+            /// The animation is paused.
+            /// </summary>
+            Paused
         }
-
 
         /// <summary>
         /// Gets or sets the duration in milliseconds of the animation.
@@ -324,19 +301,6 @@ namespace Tizen.NUI
             {
                 return GetEndAction();
             }
-        }
-
-
-        /// <summary>
-        /// Stops the animation.
-        /// </summary>
-        /// <param name="action">The end action can be set.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void Stop(EndActions action = EndActions.Cancel)
-        {
-            SetEndAction(action);
-            NDalicPINVOKE.Animation_Stop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -462,6 +426,109 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the properties of the animation.
+        /// </summary>
+        public string[] Properties
+        {
+            get
+            {
+                return _properties;
+            }
+            set
+            {
+                _properties = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the destination value for each property of the animation.
+        /// </summary>
+        public string[] DestValue
+        {
+            get
+            {
+                return _destValue;
+            }
+            set
+            {
+                _destValue = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the start time for each property of the animation.
+        /// </summary>
+        public int[] StartTime
+        {
+            get
+            {
+                return _startTime;
+            }
+            set
+            {
+                _startTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the end time for each property of the animation.
+        /// </summary>
+        public int[] EndTime
+        {
+            get
+            {
+                return _endTime;
+            }
+            set
+            {
+                _endTime = value;
+            }
+        }
+
+        private bool DisableAnimation
+        {
+            get
+            {
+                if (disableAnimation.HasValue == false)
+                {
+                    string type = Environment.GetEnvironmentVariable("PlatformSmartType");
+                    if (type == "Entry")
+                        disableAnimation = true;
+                    else
+                        disableAnimation = false;
+                }
+                return disableAnimation.Value;
+            }
+        }
+
+        /// <summary>
+        /// Downcasts a handle to animation handle.<br />
+        /// If handle points to an animation object, the downcast produces a valid handle.<br />
+        /// If not, the returned handle is left uninitialized.<br />
+        /// </summary>
+        /// <param name="handle">Handle to an object.</param>
+        /// <returns>Handle to an animation object or an uninitialized handle.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Animation DownCast(BaseHandle handle)
+        {
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Stops the animation.
+        /// </summary>
+        /// <param name="action">The end action can be set.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void Stop(EndActions action = EndActions.Cancel)
+        {
+            SetEndAction(action);
+            NDalicPINVOKE.Animation_Stop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Animates a property value by a relative amount.<br />
         /// </summary>
         /// <param name="target">The target object to animate.</param>
@@ -474,7 +541,7 @@ namespace Tizen.NUI
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
 
             PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
+            if (propertyType.Equals(PropertyType.Float))
             {
                 System.Type type = relativeValue.GetType();
                 if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
@@ -511,7 +578,7 @@ namespace Tizen.NUI
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
 
             PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
+            if (propertyType.Equals(PropertyType.Float))
             {
                 System.Type type = relativeValue.GetType();
                 if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
@@ -548,7 +615,7 @@ namespace Tizen.NUI
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
 
             PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
+            if (propertyType.Equals(PropertyType.Float))
             {
                 System.Type type = destinationValue.GetType();
                 if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
@@ -567,73 +634,6 @@ namespace Tizen.NUI
             else
             {
                 AnimateTo(_prop, val);
-            }
-        }
-        private string[] _properties = null;
-
-        /// <summary>
-        /// Gets or sets the properties of the animation.
-        /// </summary>
-        public string[] Properties
-        {
-            get
-            {
-                return _properties;
-            }
-            set
-            {
-                _properties = value;
-            }
-        }
-
-        private string[] _destValue = null;
-
-        /// <summary>
-        /// Gets or sets the destination value for each property of the animation.
-        /// </summary>
-        public string[] DestValue
-        {
-            get
-            {
-                return _destValue;
-            }
-            set
-            {
-                _destValue = value;
-            }
-        }
-
-        private int[] _startTime = null;
-
-        /// <summary>
-        /// Gets or sets the start time for each property of the animation.
-        /// </summary>
-        public int[] StartTime
-        {
-            get
-            {
-                return _startTime;
-            }
-            set
-            {
-                _startTime = value;
-            }
-        }
-
-        private int[] _endTime = null;
-
-        /// <summary>
-        /// Gets or sets the end time for each property of the animation.
-        /// </summary>
-        public int[] EndTime
-        {
-            get
-            {
-                return _endTime;
-            }
-            set
-            {
-                _endTime = value;
             }
         }
 
@@ -657,7 +657,7 @@ namespace Tizen.NUI
                     {
                         object destinationValue = ConvertTo(_destValue[index], propertyInfo.PropertyType);
 
-                        if(destinationValue != null)
+                        if (destinationValue != null)
                         {
                             AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
                         }
@@ -667,12 +667,237 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Animates a property to a destination value.<br />
+        /// </summary>
+        /// <param name="target">The target object to animate.</param>
+        /// <param name="property">The target property to animate.</param>
+        /// <param name="destinationValue">The destination value.</param>
+        /// <param name="startTime">The start time of the animation.</param>
+        /// <param name="endTime">The end time of the animation.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
+        {
+            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+
+            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
+            if (propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = destinationValue.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)destinationValue;
+                    destinationValue = (float)num;
+                }
+            }
+
+            PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
+
+            if (alphaFunction != null)
+            {
+                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
+                AnimateTo(_prop, val, alphaFunction, time);
+            }
+            else
+            {
+                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
+                AnimateTo(_prop, val, time);
+            }
+        }
+
+        /// <summary>
+        /// Animates a property between keyframes.
+        /// </summary>
+        /// <param name="target">The target object to animate.</param>
+        /// <param name="property">The target property to animate.</param>
+        /// <param name="keyFrames">The set of time or value pairs between which to animate.</param>
+        /// <param name="interpolation">The method used to interpolate between values.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void AnimateBetween(View target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
+        {
+            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+
+            if (_prop.propertyIndex == Property.INVALID_INDEX)
+            {
+                throw new System.ArgumentException("second argument string property is invalid parameter!");
+            }
+
+            if (alphaFunction != null)
+            {
+                AnimateBetween(_prop, keyFrames, alphaFunction, interpolation);
+            }
+            else
+            {
+                AnimateBetween(_prop, keyFrames, interpolation);
+            }
+        }
+
+        /// <summary>
+        /// Animates a property between keyframes.
+        /// </summary>
+        /// <param name="target">The target object to animate</param>
+        /// <param name="property">The target property to animate</param>
+        /// <param name="keyFrames">The set of time/value pairs between which to animate</param>
+        /// <param name="startTime">The start time of animation in milliseconds.</param>
+        /// <param name="endTime">The end time of animation in milliseconds.</param>
+        /// <param name="interpolation">The method used to interpolate between values.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void AnimateBetween(View target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
+        {
+            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
+
+            Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
+            if (alphaFunction != null)
+            {
+                AnimateBetween(_prop, keyFrames, alphaFunction, time, interpolation);
+            }
+            else
+            {
+                AnimateBetween(_prop, keyFrames, time, interpolation);
+            }
+        }
+
+        /// <summary>
+        /// Animates the view's position and orientation through a predefined path.<br />
+        /// The view will rotate to orient the supplied forward vector with the path's tangent.<br />
+        /// If forward is the zero vector then no rotation will happen.<br />
+        /// </summary>
+        /// <param name="view">The view to animate.</param>
+        /// <param name="path">It defines position and orientation.</param>
+        /// <param name="forward">The vector (in local space coordinate system) will be oriented with the path's tangent direction.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void AnimatePath(View view, Path path, Vector3 forward, AlphaFunction alphaFunction = null)
+        {
+            if (alphaFunction == null)
+            {
+                Animate(view, path, forward);
+            }
+            else
+            {
+                Animate(view, path, forward, alphaFunction);
+            }
+        }
+
+        /// <summary>
+        /// Animates the view's position and orientation through a predefined path.<br />
+        /// The view will rotate to orient the supplied forward vector with the path's tangent.<br />
+        /// If forward is the zero vector then no rotation will happen.<br />
+        /// </summary>
+        /// <param name="view">The view to animate.</param>
+        /// <param name="path">It defines position and orientation.</param>
+        /// <param name="forward">The vector (in local space coordinate system) will be oriented with the path's tangent direction.</param>
+        /// <param name="startTime">The start time of the animation.</param>
+        /// <param name="endTime">The end time of the animation.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void AnimatePath(View view, Path path, Vector3 forward, int startTime, int endTime, AlphaFunction alphaFunction = null)
+        {
+            TimePeriod time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
+            if (alphaFunction == null)
+            {
+                Animate(view, path, forward, time);
+            }
+            else
+            {
+                Animate(view, path, forward, alphaFunction, time);
+            }
+        }
+
+        /// <summary>
+        /// Creates an initialized animation.<br />
+        /// The animation will not loop.<br />
+        /// The default end action is "Cancel".<br />
+        /// The default alpha function is linear.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Animation() : this(NDalicPINVOKE.Animation_New(0.0f), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Plays the animation.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Play()
+        {
+            NDalicPINVOKE.Animation_Play(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (DisableAnimation == true)
+                Stop(EndActions.StopFinal);
+        }
+
+        /// <summary>
+        /// Plays the animation from a given point.<br />
+        /// The progress must be in the 0-1 interval or in the play range interval if defined,
+        /// otherwise, it will be ignored.<br />
+        /// </summary>
+        /// <param name="progress">A value between [0,1], or between the play range if specified, from where the animation should start playing.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void PlayFrom(float progress)
+        {
+            NDalicPINVOKE.Animation_PlayFrom(swigCPtr, progress);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Plays the animation after a given delay time.<br/>
+        /// The delay time is not included in the looping time.<br/>
+        /// When the delay time is a negative value, it would treat as play immediately.<br/>
+        /// </summary>
+        /// <param name="delayMilliseconds">The delay time.</param>
+        /// <since_tizen> 4 </since_tizen>
+        public void PlayAfter(int delayMilliseconds)
+        {
+            NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Pauses the animation.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Pause()
+        {
+            NDalicPINVOKE.Animation_Pause(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Stops the animation.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Stop()
+        {
+            NDalicPINVOKE.Animation_Stop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Clears the animation.<br />
+        /// This disconnects any objects that were being animated, effectively stopping the animation.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Clear()
+        {
+            NDalicPINVOKE.Animation_Clear(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animation obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
         internal object ConvertTo(object value, Type toType)
         {
             Func<object> getConverter = () =>
             {
-                MemberInfo memberInfo;
-
                 string converterTypeName = GetTypeConverterTypeName(toType.GetTypeInfo().CustomAttributes);
                 if (converterTypeName == null)
                     return null;
@@ -807,179 +1032,10 @@ namespace Tizen.NUI
             return mi;
         }
 
-
-        /// <summary>
-        /// Animates a property to a destination value.<br />
-        /// </summary>
-        /// <param name="target">The target object to animate.</param>
-        /// <param name="property">The target property to animate.</param>
-        /// <param name="destinationValue">The destination value.</param>
-        /// <param name="startTime">The start time of the animation.</param>
-        /// <param name="endTime">The end time of the animation.</param>
-        /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
-        {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if(propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = destinationValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)destinationValue;
-                    destinationValue = (float)num;
-                }
-            }
-
-            PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
-
-            if (alphaFunction != null)
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, alphaFunction, time);
-            }
-            else
-            {
-                Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-                AnimateTo(_prop, val, time);
-            }
-        }
-
-        /// <summary>
-        /// Animates a property between keyframes.
-        /// </summary>
-        /// <param name="target">The target object to animate.</param>
-        /// <param name="property">The target property to animate.</param>
-        /// <param name="keyFrames">The set of time or value pairs between which to animate.</param>
-        /// <param name="interpolation">The method used to interpolate between values.</param>
-        /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void AnimateBetween(View target, string property, KeyFrames keyFrames, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
-        {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            if (_prop.propertyIndex == Property.INVALID_INDEX)
-            {
-                throw new System.ArgumentException("second argument string property is invalid parameter!");
-            }
-
-            if (alphaFunction != null)
-            {
-                AnimateBetween(_prop, keyFrames, alphaFunction, interpolation);
-            }
-            else
-            {
-                AnimateBetween(_prop, keyFrames, interpolation);
-            }
-        }
-
-
-        /// <summary>
-        /// Animates a property between keyframes.
-        /// </summary>
-        /// <param name="target">The target object to animate</param>
-        /// <param name="property">The target property to animate</param>
-        /// <param name="keyFrames">The set of time/value pairs between which to animate</param>
-        /// <param name="startTime">The start time of animation in milliseconds.</param>
-        /// <param name="endTime">The end time of animation in milliseconds.</param>
-        /// <param name="interpolation">The method used to interpolate between values.</param>
-        /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void AnimateBetween(View target, string property, KeyFrames keyFrames, int startTime, int endTime, Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)
-        {
-            Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            Tizen.NUI.TimePeriod time = new Tizen.NUI.TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-            if (alphaFunction != null)
-            {
-                AnimateBetween(_prop, keyFrames, alphaFunction, time, interpolation);
-            }
-            else
-            {
-                AnimateBetween(_prop, keyFrames, time, interpolation);
-            }
-        }
-
-        /// <summary>
-        /// Animates the view's position and orientation through a predefined path.<br />
-        /// The view will rotate to orient the supplied forward vector with the path's tangent.<br />
-        /// If forward is the zero vector then no rotation will happen.<br />
-        /// </summary>
-        /// <param name="view">The view to animate.</param>
-        /// <param name="path">It defines position and orientation.</param>
-        /// <param name="forward">The vector (in local space coordinate system) will be oriented with the path's tangent direction.</param>
-        /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void AnimatePath(View view, Path path, Vector3 forward, AlphaFunction alphaFunction = null)
-        {
-            if (alphaFunction == null)
-            {
-                Animate(view, path, forward);
-            }
-            else
-            {
-                Animate(view, path, forward, alphaFunction);
-            }
-        }
-
-        /// <summary>
-        /// Animates the view's position and orientation through a predefined path.<br />
-        /// The view will rotate to orient the supplied forward vector with the path's tangent.<br />
-        /// If forward is the zero vector then no rotation will happen.<br />
-        /// </summary>
-        /// <param name="view">The view to animate.</param>
-        /// <param name="path">It defines position and orientation.</param>
-        /// <param name="forward">The vector (in local space coordinate system) will be oriented with the path's tangent direction.</param>
-        /// <param name="startTime">The start time of the animation.</param>
-        /// <param name="endTime">The end time of the animation.</param>
-        /// <param name="alphaFunction">The alpha function to apply.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void AnimatePath(View view, Path path, Vector3 forward, int startTime, int endTime, AlphaFunction alphaFunction = null)
-        {
-            TimePeriod time = new TimePeriod(MilliSecondsToSeconds(startTime), MilliSecondsToSeconds(endTime - startTime));
-            if (alphaFunction == null)
-            {
-                Animate(view, path, forward, time);
-            }
-            else
-            {
-                Animate(view, path, forward, alphaFunction, time);
-            }
-        }
-
-        /// <summary>
-        /// Creates an initialized animation.<br />
-        /// The animation will not loop.<br />
-        /// The default end action is "Cancel".<br />
-        /// The default alpha function is linear.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Animation() : this(NDalicPINVOKE.Animation_New(0.0f), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal Animation(float durationSeconds) : this(NDalicPINVOKE.Animation_New(durationSeconds), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-        }
-
-        /// <summary>
-        /// Downcasts a handle to animation handle.<br />
-        /// If handle points to an animation object, the downcast produces a valid handle.<br />
-        /// If not, the returned handle is left uninitialized.<br />
-        /// </summary>
-        /// <param name="handle">Handle to an object.</param>
-        /// <returns>Handle to an animation object or an uninitialized handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Animation DownCast(BaseHandle handle)
-        {
-            Animation ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal Animation(Animation handle) : this(NDalicPINVOKE.new_Animation__SWIG_1(Animation.getCPtr(handle)), true)
@@ -1118,98 +1174,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        private static bool? disableAnimation = null;
-        private bool DisableAnimation
-        {
-            get
-            {
-                if (disableAnimation.HasValue == false)
-                {
-                    string type = Environment.GetEnvironmentVariable("PlatformSmartType");
-                    if (type == "Entry")
-                        disableAnimation = true;
-                    else
-                        disableAnimation = false;
-                }
-                return disableAnimation.Value;
-            }
-        }
-
-        /// <summary>
-        /// Plays the animation.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Play()
-        {
-            NDalicPINVOKE.Animation_Play(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (DisableAnimation == true)
-                Stop(EndActions.StopFinal);
-        }
-
-        /// <summary>
-        /// Plays the animation from a given point.<br />
-        /// The progress must be in the 0-1 interval or in the play range interval if defined,
-        /// otherwise, it will be ignored.<br />
-        /// </summary>
-        /// <param name="progress">A value between [0,1], or between the play range if specified, from where the animation should start playing.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void PlayFrom(float progress)
-        {
-            NDalicPINVOKE.Animation_PlayFrom(swigCPtr, progress);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Plays the animation after a given delay time.<br/>
-        /// The delay time is not included in the looping time.<br/>
-        /// When the delay time is a negative value, it would treat as play immediately.<br/>
-        /// </summary>
-        /// <param name="delayMilliseconds">The delay time.</param>
-        /// <since_tizen> 4 </since_tizen>
-        public void PlayAfter(int delayMilliseconds)
-        {
-            NDalicPINVOKE.Animation_PlayAfter(swigCPtr, MilliSecondsToSeconds(delayMilliseconds));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Pauses the animation.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Pause()
-        {
-            NDalicPINVOKE.Animation_Pause(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal Animation.States GetState()
         {
             Animation.States ret = (Animation.States)NDalicPINVOKE.Animation_GetState(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Stops the animation.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Stop()
-        {
-            NDalicPINVOKE.Animation_Stop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Clears the animation.<br />
-        /// This disconnects any objects that were being animated, effectively stopping the animation.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Clear()
-        {
-            NDalicPINVOKE.Animation_Clear(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal AnimationSignal FinishedSignal()
@@ -1359,60 +1328,89 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for what to do when the animation ends, stopped, or destroyed.
+        /// To make animation instance be disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public enum EndActions
+        protected override void Dispose(DisposeTypes type)
         {
-            /// <summary>
-            /// When the animation ends, the animated property values are saved.
-            /// </summary>
-            Cancel,
-            /// <summary>
-            /// When the animation ends, the animated property values are forgotten.
-            /// </summary>
-            Discard,
-            /// <summary>
-            /// If the animation is stopped, the animated property values are saved as if the animation had run to completion, otherwise behaves like cancel.
-            /// </summary>
-            StopFinal
+            if (this != null)
+            {
+                if (_animationFinishedEventCallback != null)
+                {
+                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                }
+
+                if (_animationProgressReachedEventCallback != null)
+                {
+
+                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                }
+            }
+
+            if(disposed)
+            {
+                return;
+            }
+            if(type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+            else if(type == DisposeTypes.Implicit)
+            {
+
+            }
+
+            if (this != null)
+            {
+                this.Clear();
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Animation(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
-        /// <summary>
-        /// Enumeration for what interpolation method to use on key-frame animations.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum Interpolation
+        private void OnFinished(IntPtr data)
         {
-            /// <summary>
-            /// Values in between key frames are interpolated using a linear polynomial. (Default)
-            /// </summary>
-            Linear,
-            /// <summary>
-            /// Values in between key frames are interpolated using a cubic polynomial.
-            /// </summary>
-            Cubic
+            if (_animationFinishedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _animationFinishedEventHandler(this, null);
+            }
         }
 
-        /// <summary>
-        /// Enumeration for what state the animation is in.
-        /// </summary>
-        /// <remarks>Calling Reset() on this class will not reset the animation. It will call the BaseHandle.Reset() which drops the object handle.</remarks>
-        /// <since_tizen> 3 </since_tizen>
-        public enum States
+        private void OnProgressReached(IntPtr data)
         {
-            /// <summary>
-            /// The animation has stopped.
-            /// </summary>
-            Stopped,
-            /// <summary>
-            /// The animation is playing.
-            /// </summary>
-            Playing,
-            /// <summary>
-            /// The animation is paused.
-            /// </summary>
-            Paused
+            if (_animationProgressReachedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _animationProgressReachedEventHandler(this, null);
+            }
+        }
+
+        private float MilliSecondsToSeconds(int millisec)
+        {
+            return (float)millisec / 1000.0f;
+        }
+
+        private int SecondsToMilliSeconds(float sec)
+        {
+            return (int)(sec * 1000);
         }
 
     }
