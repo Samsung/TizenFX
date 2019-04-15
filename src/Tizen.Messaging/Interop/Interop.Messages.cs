@@ -120,5 +120,8 @@ internal static partial class Interop
         [DllImport(Libraries.Messages, EntryPoint = "messages_foreach_message")]
         internal static extern int SearchMessage(IntPtr serviceHandle, int mbox, int messageType, string textKeyword, string addressKeyword, int offset, int limit, MessageSearchCallback cb, IntPtr userData);
 
+        [DllImport(Libraries.Messages, EntryPoint = "messages_get_message_count")]
+        internal static extern int GetMessageCount(IntPtr serviceHandle, int mbox, int messageType, out int count);
+
     }
 }

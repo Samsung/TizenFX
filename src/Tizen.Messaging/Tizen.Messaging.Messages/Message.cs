@@ -131,6 +131,21 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        public int GetMessageCount(int mbox, int messageType)
+        {
+            int count;
+            Log.Error(Globals.LogTag, "GetMessageCount is Called");
+            int ret = Interop.Messages.GetMessageCount(_messageHandle, mbox, messageType, out count);
+            if (ret != (int)MessagesError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get Message count, Error - " + (MessagesError)ret);
+                MessagesErrorFactory.ThrowMessagesException(ret, _messageHandle);
+                return 1;
+            }
+            Log.Error(Globals.LogTag, "GetMessageCount ends");
+            return 0;
+        }
+
         private void GetAllAddresses()
         {
             int count;
