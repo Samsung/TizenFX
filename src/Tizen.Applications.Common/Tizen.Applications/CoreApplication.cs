@@ -17,6 +17,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using System.Timers;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
@@ -29,6 +30,8 @@ namespace Tizen.Applications
     {
         private readonly ICoreBackend _backend;
         private bool _disposedValue = false;
+
+        private static Timer sTimer;
 
         /// <summary>
         /// Initializes the CoreApplication class.
@@ -112,18 +115,13 @@ namespace Tizen.Applications
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
 
-            string[] argsClone = null;
-
-            if (args == null)
+            string[] argsClone = new string[args.Length + 1];
+            if (args.Length > 1)
             {
-                argsClone = new string[1];
-            }
-            else
-            {
-                argsClone = new string[args.Length + 1];
                 args.CopyTo(argsClone, 1);
             }
             argsClone[0] = string.Empty;
+
             _backend.Run(argsClone);
         }
 
@@ -176,6 +174,14 @@ namespace Tizen.Applications
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             LowMemory?.Invoke(this, e);
+            sTimer = new Timer(new Random().Next(10 * 1000));
+            sTimer.Elapsed += OnTimedEvent;
+            sTimer.AutoReset = false;
+            sTimer.Enabled = true;
+        }
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
             System.GC.Collect();
         }
 

@@ -105,7 +105,6 @@ namespace Tizen.Multimedia.Remoting
 
             try
             {
-                RegisterPlaybackCommandReceivedEvent();
                 RegisterPlaybackActionCommandReceivedEvent();
                 RegisterPlaybackPositionCommandReceivedEvent();
                 RegisterPlaylistCommandReceivedEvent();
@@ -196,7 +195,10 @@ namespace Tizen.Multimedia.Remoting
 
         private static void SetMetadata(MediaControllerNativeAttribute attribute, string value)
         {
-            Native.SetMetadata(Handle, attribute, value).ThrowIfError($"Failed to set metadata({attribute}).");
+            if (value != null)
+            {
+                Native.SetMetadata(Handle, attribute, value).ThrowIfError($"Failed to set metadata({attribute}).");
+            }
         }
 
         /// <summary>
@@ -228,6 +230,9 @@ namespace Tizen.Multimedia.Remoting
             SetMetadata(MediaControllerNativeAttribute.Description, metadata.Description);
             SetMetadata(MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
             SetMetadata(MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
+            SetMetadata(MediaControllerNativeAttribute.Season, metadata.EncodedSeason);
+            SetMetadata(MediaControllerNativeAttribute.Episode, metadata.EncodedEpisode);
+            SetMetadata(MediaControllerNativeAttribute.Resolution, metadata.EncodedResolution);
 
             Native.UpdateMetadata(Handle).ThrowIfError("Failed to set metadata.");
         }

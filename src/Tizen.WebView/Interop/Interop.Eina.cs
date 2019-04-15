@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -27,5 +27,10 @@ internal static partial class Interop
         [DllImport(Libraries.Eina)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool eina_hash_add(IntPtr hash, string Key, string Value);
+
+        internal static extern uint eina_list_count(IntPtr list);
+
+        [DllImport(Libraries.Eina)]
+        internal static extern IntPtr eina_list_nth(IntPtr list, uint n);
     }
 }

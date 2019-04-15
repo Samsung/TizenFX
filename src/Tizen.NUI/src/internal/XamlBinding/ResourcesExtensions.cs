@@ -14,15 +14,18 @@ namespace Tizen.NUI.Binding
                 if (ve != null && ve.IsResourcesCreated)
                 {
                     resources = resources ?? new Dictionary<string, object>();
-                    foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
-                        if (!resources.ContainsKey(res.Key))
-                            resources.Add(res.Key, res.Value);
-                        else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
-                        {
-                            var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                            mergedClassStyles.AddRange(res.Value as List<Style>);
-                            resources[res.Key] = mergedClassStyles;
-                        }
+                    if (ve.XamlResources != null)
+                    {
+                        foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
+                            if (!resources.ContainsKey(res.Key))
+                                resources.Add(res.Key, res.Value);
+                            else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
+                            {
+                                var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
+                                mergedClassStyles.AddRange(res.Value as List<Style>);
+                                resources[res.Key] = mergedClassStyles;
+                            }
+                    }
                 }
                 var app = element as Application;
                 if (app != null && app.SystemResources != null)
@@ -48,11 +51,15 @@ namespace Tizen.NUI.Binding
             while (element != null)
             {
                 var ve = element as IResourcesProvider;
-                if (ve != null && ve.IsResourcesCreated && ve.XamlResources.TryGetValue(key, out value))
+                if (ve != null && ve.IsResourcesCreated && ve.XamlResources != null && ve.XamlResources.TryGetValue(key, out value))
+                {
                     return true;
+                }
                 var app = element as Application;
                 if (app != null && app.SystemResources != null && app.SystemResources.TryGetValue(key, out value))
+                {
                     return true;
+                }
                 element = element.Parent;
             }
 

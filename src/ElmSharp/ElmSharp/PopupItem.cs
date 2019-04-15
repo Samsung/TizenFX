@@ -30,6 +30,12 @@ namespace ElmSharp
             Icon = icon;
         }
 
+        internal PopupItem(string text, EvasObject icon, EvasObject parent) : base(IntPtr.Zero, parent)
+        {
+            Text = text;
+            Icon = icon;
+        }
+
         /// <summary>
         /// Gets the text label of the popupitem. Return value is string.
         /// </summary>

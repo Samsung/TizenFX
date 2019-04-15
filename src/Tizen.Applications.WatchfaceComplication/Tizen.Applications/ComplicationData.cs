@@ -217,7 +217,7 @@ namespace Tizen.Applications.WatchfaceComplication
                     Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
                     break;
                 case ComplicationTypes.Time:
-                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(sharedData, _timestamp);
+                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(sharedData, (Int32)_timestamp);
                     Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
                     Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
                     break;

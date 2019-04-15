@@ -101,13 +101,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_repeat_mode")]
         internal static extern MediaControllerError UpdateRepeatMode(IntPtr handle, MediaControllerNativeRepeatMode mode);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_state_command_received_cb")]
-        internal static extern MediaControllerError SetPlaybackStateCommandReceivedCb(IntPtr handle,
-            PlaybackStateCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_state_command_received_cb")]
-        internal static extern MediaControllerError UnsetPlaybackStateCmdRecvCb(IntPtr handle);
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_action_cmd_received_cb")]
         internal static extern MediaControllerError SetPlaybackActionCommandReceivedCb(IntPtr handle,
             PlaybackActionCommandReceivedCallback callback, IntPtr userData = default(IntPtr));

@@ -75,14 +75,15 @@ namespace Tizen.NUI.Binding
 
         public IEnumerator<T> GetEnumerator()
         {
-            ReadOnlyCollection<T> snap = _snapshot;
-            if (snap == null)
+            lock (_list)
             {
-                lock (_list)
+                ReadOnlyCollection<T> snap = _snapshot;
+                if (snap == null)
+                {
                     _snapshot = snap = new ReadOnlyCollection<T>(_list.ToList());
+                }
+                return snap?.GetEnumerator();
             }
-
-            return snap?.GetEnumerator();
         }
 
         public int IndexOf(T item)
@@ -112,7 +113,6 @@ namespace Tizen.NUI.Binding
 
                     return _list[index];
                 }
-
             }
 
             set

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,29 +28,51 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
     public class Size : global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>swigCMemOwn.</summary>
         /// <since_tizen> 5 </since_tizen>
         protected bool swigCMemOwn;
 
-        internal Size(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Size obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public Size() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="x">The x (or width) component.</param>
+        /// <param name="y">The y (or height) component.</param>
+        /// <param name="z">The z (or depth) component.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public Size(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="size2d">Size2D with x (width) and y (height).</param>
+        /// <since_tizen> 5 </since_tizen>
+        public Size(Size2D size2d) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Size2D.getCPtr(size2d)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         /// <summary>
         /// Dispose.
@@ -65,62 +87,75 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
+        /// The Zero constant, (0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public void Dispose()
+        public static Size Zero
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            get
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
+                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ZERO_get();
+                Size ret = (cPtr == global::System.IntPtr.Zero) ? null : new Size(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
         /// <summary>
-        /// Dispose.
+        /// The Width property for the width component of size
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        public float Width
         {
-            if (disposed)
+            set
             {
-                return;
+                NDalicPINVOKE.Vector3_Width_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-
-            if (type == DisposeTypes.Explicit)
+            get
             {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
+                float ret = NDalicPINVOKE.Vector3_Width_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
+        }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+        /// <summary>
+        /// The Height property for the height component of size.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public float Height
+        {
+            set
             {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Vector3(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                NDalicPINVOKE.Vector3_Height_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+            get
+            {
+                float ret = NDalicPINVOKE.Vector3_Height_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
 
-            disposed = true;
+        /// <summary>
+        /// The Depth property for the depth component of size.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public float Depth
+        {
+            set
+            {
+                NDalicPINVOKE.Vector3_Depth_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Vector3_Depth_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
         }
 
         /// <summary>
@@ -220,6 +255,105 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Size size = obj as Size;
+            bool equal = false;
+            if (Width == size?.Width && Height == size?.Height && Depth == size?.Depth)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this Size.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public override int GetHashCode()
+        {
+            return swigCPtr.Handle.GetHashCode();
+        }
+
+        /// <summary>
+        /// Checks equality.<br />
+        /// Utilizes appropriate machine epsilon values.<br />
+        /// </summary>
+        /// <param name="rhs">The size to test against.</param>
+        /// <returns>True if the sizes are equal.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public bool EqualTo(Size rhs)
+        {
+            bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Size.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Checks inequality.<br />
+        /// Utilizes appropriate machine epsilon values.<br />
+        /// </summary>
+        /// <param name="rhs">The size to test against.</param>
+        /// <returns>True if the sizes are not equal.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public bool NotEqualTo(Size rhs)
+        {
+            bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Size.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
+
+        /// <summary>
+        /// The type cast operator, Size to Vector3.
+        /// </summary>
+        /// <param name="size">The object of size type.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public static implicit operator Vector3(Size size)
+        {
+            return new Vector3(size.Width, size.Height, size.Depth);
+        }
+
+        /// <summary>
+        /// The type cast operator, Vector3 to Size type.
+        /// </summary>
+        /// <param name="vec">The object of Vector3 type.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public static implicit operator Size(Vector3 vec)
+        {
+            return new Size(vec.Width, vec.Height, vec.Depth);
+        }
+
         internal static Size GetSizeFromPtr(global::System.IntPtr cPtr)
         {
             Size ret = new Size(cPtr, false);
@@ -227,50 +361,51 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public Size() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Size obj)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal Size(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <param name="x">The x (or width) component.</param>
-        /// <param name="y">The y (or height) component.</param>
-        /// <param name="z">The z (or depth) component.</param>
-        /// <since_tizen> 5 </since_tizen>
-        public Size(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <param name="size2d">Size2D with x (width) and y (height).</param>
-        /// <since_tizen> 5 </since_tizen>
-        public Size(Size2D size2d) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Size2D.getCPtr(size2d)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// The Zero constant, (0.0f, 0.0f, 0.0f).
+        /// Dispose.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public static Size Zero
+        protected virtual void Dispose(DisposeTypes type)
         {
-            get
+            if (disposed)
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ZERO_get();
-                Size ret = (cPtr == global::System.IntPtr.Zero) ? null : new Size(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return;
             }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Vector3(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            disposed = true;
         }
 
         private Size Add(Size rhs)
@@ -328,130 +463,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(System.Object obj)
-        {
-            Size size = obj as Size;
-            bool equal = false;
-            if (Width == size?.Width && Height == size?.Height && Depth == size?.Depth)
-            {
-                equal = true;
-            }
-            return equal;
-        }
-
-
-        /// <summary>
-        /// Checks equality.<br />
-        /// Utilizes appropriate machine epsilon values.<br />
-        /// </summary>
-        /// <param name="rhs">The size to test against.</param>
-        /// <returns>True if the sizes are equal.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        public bool EqualTo(Size rhs)
-        {
-            bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Size.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Checks inequality.<br />
-        /// Utilizes appropriate machine epsilon values.<br />
-        /// </summary>
-        /// <param name="rhs">The size to test against.</param>
-        /// <returns>True if the sizes are not equal.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        public bool NotEqualTo(Size rhs)
-        {
-            bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Size.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// The Width property for the width component of size
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public float Width
-        {
-            set
-            {
-                NDalicPINVOKE.Vector3_Width_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector3_Width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// The Height property for the height component of size.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public float Height
-        {
-            set
-            {
-                NDalicPINVOKE.Vector3_Height_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector3_Height_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// The Depth property for the depth component of size.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public float Depth
-        {
-            set
-            {
-                NDalicPINVOKE.Vector3_Depth_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector3_Depth_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// The type cast operator, Size to Vector3.
-        /// </summary>
-        /// <param name="size">The object of size type.</param>
-        /// <since_tizen> 5 </since_tizen>
-        public static implicit operator Vector3(Size size)
-        {
-            return new Vector3(size.Width, size.Height, size.Depth);
-        }
-
-        /// <summary>
-        /// The type cast operator, Vector3 to Size type.
-        /// </summary>
-        /// <param name="vec">The object of Vector3 type.</param>
-        /// <since_tizen> 5 </since_tizen>
-        public static implicit operator Size(Vector3 vec)
-        {
-            return new Size(vec.Width, vec.Height, vec.Depth);
-        }
-
     }
-
 }
 

@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
@@ -24,12 +26,45 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Key : global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
+        /// <summary>
+        /// The default constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Key() : this(NDalicPINVOKE.new_Key__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <param name="keyName">The name of the key pressed or command from the IMF, if later, then the following parameters will be needed.</param>
+        /// <param name="keyString">A string of input characters or key pressed.</param>
+        /// <param name="keyCode">The unique key code for the key pressed.</param>
+        /// <param name="keyModifier">The key modifier for special keys like Shift and Alt.</param>
+        /// <param name="timeStamp">The time (in ms) that the key event occurred.</param>
+        /// <param name="keyState">The state of the key event.</param>
+        internal Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(NDalicPINVOKE.new_Key__SWIG_1(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal Key(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
@@ -37,26 +72,13 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Key obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         /// <summary>
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         ~Key()
         {
-            if(!isDisposeQueued)
+            if (!isDisposeQueued)
             {
                 isDisposeQueued = true;
                 DisposeQueue.Instance.Add(this);
@@ -64,69 +86,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
+        /// Enumeration for specifying the state of the key event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
+        public enum StateType
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type.</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Key(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
-        }
-
-
-        internal static Key GetKeyFromPtr(global::System.IntPtr cPtr)
-        {
-            Key ret = new Key(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            /// <summary>
+            /// Key Down.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Down,
+            /// <summary>
+            /// Key Up.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Up,
+            /// <summary>
+            /// Key Last.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Last
         }
 
         /// <summary>
@@ -159,7 +138,26 @@ namespace Tizen.NUI
             }
         }
 
-        /* duplicated with KeyPressedName : removed
+        /// <summary>
+        /// Get the logical key string. (eg. shift + 1 == "exclamation")
+        /// </summary>
+        /// <returns>The logical key symbol</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LogicalKey
+        {
+            get
+            {
+                return logicalKey;
+            }
+        }
+
+        /// <summary>
+        /// Get the actual string returned that should be used for input editors.
+        /// </summary>
+        /// <returns>The key string</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string KeyPressed
         {
             get
@@ -167,7 +165,6 @@ namespace Tizen.NUI
                 return keyPressed;
             }
         }
-        */
 
         /// <summary>
         /// Keycode for the key pressed.
@@ -261,65 +258,6 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// The default constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Key() : this(NDalicPINVOKE.new_Key__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <param name="keyName">The name of the key pressed or command from the IMF, if later, then the following parameters will be needed.</param>
-        /// <param name="keyString">A string of input characters or key pressed.</param>
-        /// <param name="keyCode">The unique key code for the key pressed.</param>
-        /// <param name="keyModifier">The key modifier for special keys like Shift and Alt.</param>
-        /// <param name="timeStamp">The time (in ms) that the key event occurred.</param>
-        /// <param name="keyState">The state of the key event.</param>
-        internal Key(string keyName, string keyString, int keyCode, int keyModifier, uint timeStamp, Key.StateType keyState) : this(NDalicPINVOKE.new_Key__SWIG_1(keyName, keyString, keyCode, keyModifier, timeStamp, (int)keyState), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Checks to see if the Shift key modifier has been supplied.
-        /// </summary>
-        /// <returns>True if Shift modifier.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool IsShiftModifier()
-        {
-            bool ret = NDalicPINVOKE.Key_IsShiftModifier(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Checks to see if Ctrl (control) key modifier has been supplied.
-        /// </summary>
-        /// <returns>True if Ctrl modifier.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool IsCtrlModifier()
-        {
-            bool ret = NDalicPINVOKE.Key_IsCtrlModifier(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Checks to see if Alt key modifier has been supplied.
-        /// </summary>
-        /// <returns>True if Alt modifier.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool IsAltModifier()
-        {
-            bool ret = NDalicPINVOKE.Key_IsAltModifier(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         private string keyPressedName
         {
             set
@@ -410,28 +348,120 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Enumeration for specifying the state of the key event.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum StateType
+        private string logicalKey
         {
-            /// <summary>
-            /// Key Down.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Down,
-            /// <summary>
-            /// Key Up.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Up,
-            /// <summary>
-            /// Key Last.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Last
+            get
+            {
+                string ret = NDalicPINVOKE.Key_logicalKey_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the Shift key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if Shift modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool IsShiftModifier()
+        {
+            bool ret = NDalicPINVOKE.Key_IsShiftModifier(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Checks to see if Ctrl (control) key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if Ctrl modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool IsCtrlModifier()
+        {
+            bool ret = NDalicPINVOKE.Key_IsCtrlModifier(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Checks to see if Alt key modifier has been supplied.
+        /// </summary>
+        /// <returns>True if Alt modifier.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool IsAltModifier()
+        {
+            bool ret = NDalicPINVOKE.Key_IsAltModifier(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Key obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal static Key GetKeyFromPtr(global::System.IntPtr cPtr)
+        {
+            Key ret = new Key(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if(type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Key(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// Actor will use its own color.
         /// </summary>
         UseOwnColor,
-         /// <summary>
+        /// <summary>
         /// Actor will use its parent color.
         /// </summary>
         UseParentColor,
@@ -117,6 +117,7 @@ namespace Tizen.NUI
         /// Draw the actor and its children as an overlay.
         /// </summary>
         Overlay2D = 1,
+
         /// <summary>
         /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer.
         /// </summary>
@@ -251,6 +252,27 @@ namespace Tizen.NUI
         /// True if the control does not need size negotiation, i.e., it can be skipped in the algorithm.
         /// </summary>
         DisableSizeNegotiation = 1 << 0,
+        /// <summary>
+        /// True if OnTouch() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresTouchEventsSupport = 1 << 1,
+        /// <summary>
+        /// True if OnHover() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresHoverEventsSupport = 1 << 2,
+        /// <summary>
+        /// True if OnWheel() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresWheelEventsSupport = 1 << 3,
         /// <summary>
         /// Use to provide key navigation support.
         /// </summary>
@@ -657,18 +679,18 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public enum ReleasePolicyType
     {
-      /// <summary>
-      /// Image is released when visual detached from scene.
-      /// </summary>
-      Detached = 0,
-      /// <summary>
-      /// Image is only released when visual is destroyed.
-      /// </summary>
-      Destroyed,
-      /// <summary>
-      /// Image is not released.
-      /// </summary>
-      Never
+        /// <summary>
+        /// Image is released when visual detached from scene.
+        /// </summary>
+        Detached = 0,
+        /// <summary>
+        /// Image is only released when visual is destroyed.
+        /// </summary>
+        Destroyed,
+        /// <summary>
+        /// Image is not released.
+        /// </summary>
+        Never
     }
 
     /// <summary>
@@ -678,16 +700,15 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public enum LoadPolicyType
     {
-       /// <summary>
-       /// Load texture once the image source has been provided. Even if not being used yet.
-       /// </summary>
-       Immediate = 0,
-       /// <summary>
-       /// Only load texture once the visual is attached, when the image needs to be shown.
-       /// </summary>
-       Attached
+        /// <summary>
+        /// Load texture once the image source has been provided. Even if not being used yet.
+        /// </summary>
+        Immediate = 0,
+        /// <summary>
+        /// Only load texture once the visual is attached, when the image needs to be shown.
+        /// </summary>
+        Attached
     }
-
 
     /// <summary>
     /// The type of coordinate system for certain attributes of the points in a gradient.
@@ -911,6 +932,445 @@ namespace Tizen.NUI
         /// Whether the width or the height size values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
         /// </summary>
         SizePolicy
+    }
+
+    /// <summary>
+    /// The type for HiddenInput mode.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum HiddenInputModeType
+    {
+        /// <summary>
+        /// Don't hide text.
+        /// </summary>
+        HideNone,
+        /// <summary>
+        /// Hide all the input text.
+        /// </summary>
+        HideAll,
+        /// <summary>
+        /// Hide n characters from start.
+        /// </summary>
+        HideCount,
+        /// <summary>
+        /// Show n characters from start.
+        /// </summary>
+        ShowCount,
+        /// <summary>
+        /// Show last character for the duration(use ShowLastCharacterDuration property to modify duration).
+        /// </summary>
+        ShowLastCharacter
+    }
+
+    /// <summary>
+    /// Auto scrolling stop behavior.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum AutoScrollStopMode
+    {
+        /// <summary>
+        /// Stop animation after current loop finished.
+        /// </summary>
+        FinishLoop,
+        /// <summary>
+        /// Stop animation immediately and reset position.
+        /// </summary>
+        Immediate
+    }
+
+    /// <summary>
+    /// An enum of screen mode.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum ScreenOffMode
+    {
+        /// <summary>
+        /// The mode which turns the screen off after a timeout.
+        /// </summary>
+        Timout,
+        /// <summary>
+        /// The mode which keeps the screen turned on.
+        /// </summary>
+        Never
+    }
+
+    /// <summary>
+    /// An enum of notification window's priority level.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum NotificationLevel
+    {
+        /// <summary>
+        /// No notification level.<br />
+        /// Default level.<br />
+        /// This value makes the notification window place in the layer of the normal window.
+        /// </summary>
+        None = -1,
+        /// <summary>
+        /// The base nofitication level.
+        /// </summary>
+        Base = 10,
+        /// <summary>
+        /// The medium notification level than base.
+        /// </summary>
+        Medium = 20,
+        /// <summary>
+        /// The higher notification level than medium.
+        /// </summary>
+        High = 30,
+        /// <summary>
+        /// The highest notification level.
+        /// </summary>
+        Top = 40
+    }
+
+    /// <summary>
+    /// An enum of window types.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum WindowType
+    {
+        /// <summary>
+        /// A default window type.<br />
+        /// Indicates a normal or top-level window.
+        /// Almost every window will be created with this type.
+        /// </summary>
+        Normal,
+        /// <summary>
+        /// A notification window, like a warning about battery life or a new email received.
+        /// </summary>
+        Notification,
+        /// <summary>
+        /// A persistent utility window, like a toolbox or a palette.
+        /// </summary>
+        Utility,
+        /// <summary>
+        /// Used for simple dialog windows.
+        /// </summary>
+        Dialog
+    }
+
+    /// <since_tizen> 3 </since_tizen>
+    public enum DisposeTypes
+    {
+        /// <summary>
+        /// Called By User
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        Explicit,
+        /// <summary>
+        /// Called by DisposeQueue
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        Implicit,
+    }
+
+    /// <summary>
+    /// An enum of the scroll state of the text eidtor.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum ScrollState
+    {
+        /// <summary>
+        /// Scrolling is started.
+        /// </summary>
+        Started,
+
+        /// <summary>
+        /// Scrolling is finished.
+        /// </summary>
+        Finished
+    }
+
+    /// <summary>
+    /// An enum of the line wrap mode of text controls.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum LineWrapMode
+    {
+        /// <summary>
+        /// The word mode will move a word to the next line.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        Word,
+
+        /// <summary>
+        /// character will move character by character to the next line.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        Character
+    }
+
+    /// <summary>
+    /// An enum of text directions.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum TextDirection
+    {
+        /// <summary>
+        /// Text direction is from left to right.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        LeftToRight,
+
+        /// <summary>
+        /// Text direction is from right to left.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        RightToLeft
+    }
+
+    /// <summary>
+    /// An enum of vertical line alignments.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum VerticalLineAlignment
+    {
+        /// <summary>
+        /// vertical line alignment is from top.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Top,
+
+        /// <summary>
+        /// vertical line alignment is from center.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Center,
+
+        /// <summary>
+        /// vertical line alignment is from bottom.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Bottom
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's slant.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontSlantType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// Roman.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Roman = Normal,
+        /// <summary>
+        /// Italic.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Italic,
+        /// <summary>
+        /// Oblique.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Oblique
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's weight.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontWeightType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// Thin.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Thin,
+        /// <summary>
+        /// UltraLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraLight,
+        /// <summary>
+        /// ExtraLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraLight = UltraLight,
+        /// <summary>
+        /// Light.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Light,
+        /// <summary>
+        /// DemiLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DemiLight,
+        /// <summary>
+        /// SemiLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiLight = DemiLight,
+        /// <summary>
+        /// Book.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Book,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// Regular.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Regular = Normal,
+        /// <summary>
+        /// Medium.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Medium,
+        /// <summary>
+        /// DemiBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DemiBold,
+        /// <summary>
+        /// SemiBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiBold = DemiBold,
+        /// <summary>
+        /// Bold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Bold,
+        /// <summary>
+        /// UltraBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraBold,
+        /// <summary>
+        /// ExtraBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraBold = UltraBold,
+        /// <summary>
+        /// Black.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Black,
+        /// <summary>
+        /// Heavy.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Heavy = Black,
+        /// <summary>
+        /// ExtraBlack.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraBlack = Black
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's width.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontWidthType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// UltraCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraCondensed,
+        /// <summary>
+        /// ExtraCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraCondensed,
+        /// <summary>
+        /// Condensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Condensed,
+        /// <summary>
+        /// SemiCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiCondensed,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// SemiExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiExpanded,
+        /// <summary>
+        /// Expanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Expanded,
+        /// <summary>
+        /// ExtraExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraExpanded,
+        /// <summary>
+        /// UltraExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraExpanded
+    }
+
+    /// <summary>
+    /// Enumeration type for the glyph type.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum GlyphType
+    {
+        /// <summary>
+        /// Glyph stored as pixels.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        BitmapGlyph,
+        /// <summary>
+        /// Glyph stored as vectors (scalable). This feature requires highp shader support and is not available on all platforms.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        VectorGlyph
+    }
+
+    /// <summary>
+    /// Enumeration for Setting the rendering behavior of a Window.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderingBehaviorType
+    {
+        /// <summary>
+        /// Default. Only renders if required.
+        /// </summary>
+        IfRequired,
+        /// <summary>
+        /// Renders continuously.
+        /// </summary>
+        Continuously
     }
 
     /// <summary>
@@ -1201,122 +1661,180 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
-        /// <summary>
-        /// The URL of the alpha mask image.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
+
         /// <summary>
         /// Fitting options, used when resizing images to fit desired dimensions.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
+
         /// <summary>
         /// Filtering options, used when resizing images to sample original pixels.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
+
         /// <summary>
         /// The desired image width.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
+
         /// <summary>
         /// The desired image height.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
+
         /// <summary>
         /// Whether to load the image synchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
+
         /// <summary>
         /// If true, only draws the borders.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
+
         /// <summary>
         /// The image area to be displayed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
+
         /// <summary>
         /// The wrap mode for u coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
+
         /// <summary>
         /// The wrap mode for v coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+
         /// <summary>
         /// The border of the image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
+
         /// <summary>
         /// Whether to use the texture atlas.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int Atlasing = NDalic.IMAGE_VISUAL_BORDER + 1;
+
         /// <summary>
-        /// The scale factor to apply to the content image before masking.
+        /// The URL of the alpha mask image.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
-        /// <summary>
-        /// Whether to crop image to mask or scale mask to fit image
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
+
         /// <summary>
         /// Defines the batch size for pre-loading images in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int BatchSize = NDalic.IMAGE_VISUAL_BATCH_SIZE;
+
         /// <summary>
         /// Defines the cache size for loading images in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int CacheSize = NDalic.IMAGE_VISUAL_CACHE_SIZE;
+
         /// <summary>
         /// The number of milliseconds between each frame in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
+
+        /// <summary>
+        /// The scale factor to apply to the content image before masking.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
+
+        /// <summary>
+        /// Whether to crop image to mask or scale mask to fit image
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
+
+        /// <summary>
+        /// The policy to determine when an image should be loaded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
+
+        /// <summary>
+        /// The policy to determine when an image should no longer be cached.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
+
+        /// <summary>
+        /// Determines if image orientation should be corrected so that the image displays as it was intended.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
+
+        /// <summary>
+        /// Overlays the auxiliary image on top of an NPatch image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int AuxiliaryImageURL = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL;
+
+        /// <summary>
+        /// Alpha value for the auxiliary image, without affecting the underlying NPatch image
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int AuxiliaryImageAlpha = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA;
+
         /// <summary>
         /// The number of times the AnimatedImageVisual will be looped.
         /// The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
+
         /// <summary>
-        /// The policy to determine when an image should no longer be cached.
+        /// The playing range the AnimatedVectorImageVisual will use.
+        /// Animation will play between the values specified. Both values should be between 0-1,
+        /// otherwise they will be ignored. If the range provided is not in proper order ( minimum,maximum ), it will be reordered.
+        /// Type Property::VECTOR2, between 0 and 1
+        /// Default 0 and 1
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int PlayRange = OrientationCorrection + 4;
+
         /// <summary>
-        /// The policy to determine when an image should be loaded.
+        /// The playing state the AnimatedVectorImageVisual will use.
+        /// Type PlayState (Property::INTEGER)
+        /// This property is read-only.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int PlayState = OrientationCorrection + 5;
+
         /// <summary>
-        /// Determines if image orientation should be corrected so that the image displays as it was intended.
+        /// The animation progress the AnimatedVectorImageVisual will use.
+        /// Type Property::FLOAT, between [0, 1] or between the play range if specified
+        /// This property is read-only.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
-        /// <summary>
-        /// Overlays the auxiliary image on top of an NPatch image.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int AuxiliaryImageURL = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL;
-        /// <summary>
-        /// Alpha value for the auxiliary image, without affecting the underlying NPatch image
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int AuxiliaryImageAlpha = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA;
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int CurrentProgress = OrientationCorrection + 6;
     }
 
     /// <summary>
@@ -1592,34 +2110,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int ShowLastCharacterDuration = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get();
-    }
-
-    /// <summary>
-    /// The type for HiddenInput mode.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum HiddenInputModeType
-    {
-        /// <summary>
-        /// Don't hide text.
-        /// </summary>
-        HideNone,
-        /// <summary>
-        /// Hide all the input text.
-        /// </summary>
-        HideAll,
-        /// <summary>
-        /// Hide n characters from start.
-        /// </summary>
-        HideCount,
-        /// <summary>
-        /// Show n characters from start.
-        /// </summary>
-        ShowCount,
-        /// <summary>
-        /// Show last character for the duration(use ShowLastCharacterDuration property to modify duration).
-        /// </summary>
-        ShowLastCharacter
     }
 
     /// <summary>
@@ -2125,108 +2615,6 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Auto scrolling stop behavior.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum AutoScrollStopMode
-    {
-        /// <summary>
-        /// Stop animation after current loop finished.
-        /// </summary>
-        FinishLoop,
-        /// <summary>
-        /// Stop animation immediately and reset position.
-        /// </summary>
-        Immediate
-    }
-
-    /// <summary>
-    /// An enum of screen mode.
-    /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum ScreenOffMode {
-        /// <summary>
-        /// The mode which turns the screen off after a timeout.
-        /// </summary>
-        Timout,
-        /// <summary>
-        /// The mode which keeps the screen turned on.
-        /// </summary>
-        Never
-    }
-
-    /// <summary>
-    /// An enum of notification window's priority level.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum NotificationLevel {
-        /// <summary>
-        /// No notification level.<br />
-        /// Default level.<br />
-        /// This value makes the notification window place in the layer of the normal window.
-        /// </summary>
-        None = -1,
-        /// <summary>
-        /// The base nofitication level.
-        /// </summary>
-        Base = 10,
-        /// <summary>
-        /// The medium notification level than base.
-        /// </summary>
-        Medium = 20,
-        /// <summary>
-        /// The higher notification level than medium.
-        /// </summary>
-        High = 30,
-        /// <summary>
-        /// The highest notification level.
-        /// </summary>
-        Top = 40
-    }
-
-    /// <summary>
-    /// An enum of window types.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum WindowType {
-        /// <summary>
-        /// A default window type.<br />
-        /// Indicates a normal or top-level window.
-        /// Almost every window will be created with this type.
-        /// </summary>
-        Normal,
-        /// <summary>
-        /// A notification window, like a warning about battery life or a new email received.
-        /// </summary>
-        Notification,
-        /// <summary>
-        /// A persistent utility window, like a toolbox or a palette.
-        /// </summary>
-        Utility,
-        /// <summary>
-        /// Used for simple dialog windows.
-        /// </summary>
-        Dialog
-    }
-
-    /// <since_tizen> 3 </since_tizen>
-    public enum DisposeTypes
-    {
-        /// <summary>
-        /// Called By User
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Explicit,
-        /// <summary>
-        /// Called by DisposeQueue
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Implicit,
-    }
-
-
-
-    /// <summary>
     /// [Obsolete("Please do not use! this will be deprecated")]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -2426,313 +2814,4 @@ namespace Tizen.NUI
             }
         }
     }
-
-    /// <summary>
-    /// An enum of the scroll state of the text eidtor.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum ScrollState
-    {
-        /// <summary>
-        /// Scrolling is started.
-        /// </summary>
-        Started,
-
-        /// <summary>
-        /// Scrolling is finished.
-        /// </summary>
-        Finished
-    }
-
-    /// <summary>
-    /// An enum of the line wrap mode of text controls.
-    /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum LineWrapMode
-    {
-        /// <summary>
-        /// The word mode will move a word to the next line.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        Word,
-
-        /// <summary>
-        /// character will move character by character to the next line.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        Character
-    }
-
-    /// <summary>
-    /// An enum of text directions.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum TextDirection
-    {
-        /// <summary>
-        /// Text direction is from left to right.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        LeftToRight,
-
-        /// <summary>
-        /// Text direction is from right to left.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        RightToLeft
-    }
-
-    /// <summary>
-    /// An enum of vertical line alignments.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum VerticalLineAlignment
-    {    
-        /// <summary>
-        /// vertical line alignment is from top. 
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Top,
-
-        /// <summary>
-        /// vertical line alignment is from center.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Center,
-
-        /// <summary>
-        /// vertical line alignment is from bottom.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Bottom
-    }
-
-    /// <summary>
-    /// Enumeration type for the font's slant.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum FontSlantType
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        None,
-        /// <summary>
-        /// Normal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Normal,
-        /// <summary>
-        /// Roman.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Roman = Normal,
-        /// <summary>
-        /// Italic.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Italic,
-        /// <summary>
-        /// Oblique.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Oblique
-    }
-
-    /// <summary>
-    /// Enumeration type for the font's weight.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum FontWeightType
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        None,
-        /// <summary>
-        /// Thin.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Thin,
-        /// <summary>
-        /// UltraLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraLight,
-        /// <summary>
-        /// ExtraLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraLight = UltraLight,
-        /// <summary>
-        /// Light.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Light,
-        /// <summary>
-        /// DemiLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        DemiLight,
-        /// <summary>
-        /// SemiLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiLight = DemiLight,
-        /// <summary>
-        /// Book.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Book,
-        /// <summary>
-        /// Normal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Normal,
-        /// <summary>
-        /// Regular.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Regular = Normal,
-        /// <summary>
-        /// Medium.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Medium,
-        /// <summary>
-        /// DemiBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        DemiBold,
-        /// <summary>
-        /// SemiBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiBold = DemiBold,
-        /// <summary>
-        /// Bold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Bold,
-        /// <summary>
-        /// UltraBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraBold,
-        /// <summary>
-        /// ExtraBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraBold = UltraBold,
-        /// <summary>
-        /// Black.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Black,
-        /// <summary>
-        /// Heavy.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Heavy = Black,
-        /// <summary>
-        /// ExtraBlack.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraBlack = Black
-    }
-
-    /// <summary>
-    /// Enumeration type for the font's width.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum FontWidthType
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        None,
-        /// <summary>
-        /// UltraCondensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraCondensed,
-        /// <summary>
-        /// ExtraCondensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraCondensed,
-        /// <summary>
-        /// Condensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Condensed,
-        /// <summary>
-        /// SemiCondensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiCondensed,
-        /// <summary>
-        /// Normal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Normal,
-        /// <summary>
-        /// SemiExpanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiExpanded,
-        /// <summary>
-        /// Expanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Expanded,
-        /// <summary>
-        /// ExtraExpanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraExpanded,
-        /// <summary>
-        /// UltraExpanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraExpanded
-    }
-
-    /// <summary>
-    /// Enumeration type for the glyph type.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum GlyphType
-    {
-        /// <summary>
-        /// Glyph stored as pixels.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        BitmapGlyph,
-        /// <summary>
-        /// Glyph stored as vectors (scalable). This feature requires highp shader support and is not available on all platforms.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        VectorGlyph
-    }
-
-    /// <summary>
-    /// Enumeration for Setting the rendering behavior of a Window.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum RenderingBehaviorType
-    {
-        /// <summary>
-        /// Default. Only renders if required.
-        /// </summary>
-        IfRequired,
-        /// <summary>
-        /// Renders continuously.
-        /// </summary>
-        Continuously
-    }
-
 }

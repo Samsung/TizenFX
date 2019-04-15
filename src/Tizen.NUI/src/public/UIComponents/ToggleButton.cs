@@ -19,7 +19,6 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A ToggleButton allows the user to change a setting between two or more states.
     /// </summary>
@@ -36,15 +35,14 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
             Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+
         public static readonly BindableProperty TooltipsProperty = BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;
@@ -53,13 +51,14 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
             Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
             return temp;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create("CurrentStateIndex", typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
@@ -70,7 +69,7 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             int temp = 0;
@@ -80,9 +79,66 @@ namespace Tizen.NUI
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        /// <summary>
+        /// Create an instance for toggleButton.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public ToggleButton() : this(NDalicPINVOKE.ToggleButton_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Gets and Sets the state visual array of toggle button.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Tizen.NUI.PropertyArray StateVisuals
+        {
+            get
+            {
+                return (PropertyArray)GetValue(StateVisualsProperty);
+            }
+            set
+            {
+                SetValue(StateVisualsProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets the tooltips of toggle button.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Tizen.NUI.PropertyArray Tooltips
+        {
+            get
+            {
+                return (PropertyArray)GetValue(TooltipsProperty);
+            }
+            set
+            {
+                SetValue(TooltipsProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets the current state index of toggle button.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public int CurrentStateIndex
+        {
+            get
+            {
+                return (int)GetValue(CurrentStateIndexProperty);
+            }
+            set
+            {
+                SetValue(CurrentStateIndexProperty, value);
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ToggleButton obj)
@@ -149,65 +205,5 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public static readonly int CURRENT_STATE_INDEX = NDalicPINVOKE.ToggleButton_Property_CURRENT_STATE_INDEX_get();
         }
-
-        /// <summary>
-        /// Create an instance for toggleButton.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ToggleButton() : this(NDalicPINVOKE.ToggleButton_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Gets and Sets the state visual array of toggle button.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Tizen.NUI.PropertyArray StateVisuals
-        {
-            get
-            {
-                return (PropertyArray)GetValue(StateVisualsProperty);
-            }
-            set
-            {
-                SetValue(StateVisualsProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets and Sets the tooltips of toggle button.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Tizen.NUI.PropertyArray Tooltips
-        {
-            get
-            {
-                return (PropertyArray)GetValue(TooltipsProperty);
-            }
-            set
-            {
-                SetValue(TooltipsProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets and Sets the current state index of toggle button.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int CurrentStateIndex
-        {
-            get
-            {
-                return (int)GetValue(CurrentStateIndexProperty);
-            }
-            set
-            {
-                SetValue(CurrentStateIndexProperty, value);
-            }
-        }
-
     }
-
 }

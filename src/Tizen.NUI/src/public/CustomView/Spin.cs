@@ -45,12 +45,6 @@ namespace Tizen.NUI
         private Color _textBackgroundColor;
         private int _maxTextLength;
 
-        // Called by DALi Builder if it finds a Spin control in a JSON file
-        static CustomView CreateInstance()
-        {
-            return new Spin();
-        }
-
         // static constructor registers the control type (only runs once)
         static Spin()
         {
@@ -68,136 +62,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides the method of OnInitialize() for the CustomView class.<br />
-        /// This method is called after the control has been initialized.<br />
-        /// Derived classes should do any second phase initialization by overriding this method.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public override void OnInitialize()
-        {
-            // Initialize the propertiesControl
-            _arrowImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
-            _textBackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
-            _currentValue = 0;
-            _minValue = 0;
-            _maxValue = 0;
-            _singleStep = 1;
-            _maxTextLength = 0;
-
-            // Create image visual for the arrow keys
-            _arrowVisualPropertyIndex = RegisterProperty("ArrowImage", new PropertyValue(_arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
-            _arrowVisual = VisualFactory.Instance.CreateVisual(
-                new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
-                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
-                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
-                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
-            RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
-
-            // Create a text field
-            _textField = new TextField();
-            _textField.PivotPoint = Tizen.NUI.PivotPoint.Center;
-            _textField.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _textField.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
-            _textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
-            _textField.PlaceholderText = "----";
-            _textField.BackgroundColor = _textBackgroundColor;
-            _textField.HorizontalAlignment = HorizontalAlignment.Center;
-            _textField.VerticalAlignment = VerticalAlignment.Center;
-            _textField.Focusable = (true);
-            _textField.Name = "_textField";
-            _textField.Position2D = new Position2D(0, 40);
-
-            this.Add(_textField);
-
-            _textField.FocusGained += TextFieldKeyInputFocusGained;
-            _textField.FocusLost += TextFieldKeyInputFocusLost;
-        }
-
-        /// <summary>
-        /// Overrides the method of GetNaturalSize() for the CustomView class.<br />
-        /// Returns the natural size of the actor.<br />
-        /// </summary>
-        /// <returns> Natural size of this spin itself.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public override Size2D GetNaturalSize()
-        {
-            return new Size2D(150, 150);
-        }
-
-        /// <summary>
-        /// An event handler is used when the TextField in the spin gets the key focus.<br />
-        /// Make sure when the current spin that takes input focus, also takes the keyboard focus.<br />
-        /// For example, when you tap the spin directly.<br />
-        /// </summary>
-        /// <param name="source">Sender of this event.</param>
-        /// <param name="e">Event arguments.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void TextFieldKeyInputFocusGained(object source, EventArgs e)
-        {
-            FocusManager.Instance.SetCurrentFocusView(_textField);
-        }
-
-        /// <summary>
-        /// An event handler when the TextField in the spin looses it's key focus.
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        /// <since_tizen> 3 </since_tizen>
-        public void TextFieldKeyInputFocusLost(object source, EventArgs e)
-        {
-            int previousValue = _currentValue;
-
-            // If the input value is invalid, change it back to the previous valid value
-            if (int.TryParse(_textField.Text, out _currentValue))
-            {
-                if (_currentValue < _minValue || _currentValue > _maxValue)
-                {
-                    _currentValue = previousValue;
-                }
-            }
-            else
-            {
-                _currentValue = previousValue;
-            }
-
-            // Otherwise take the new value
-            this.Value = _currentValue;
-        }
-
-        /// <summary>
-        /// Overrides the method of GetNextKeyboardFocusableView() for the CustomView class.<br />
-        /// Gets the next key focusable view in this view towards the given direction.<br />
-        /// A view needs to override this function in order to support two-dimensional key navigation.<br />
-        /// </summary>
-        /// <param name="currentFocusedView">The current focused view.</param>
-        /// <param name="direction">The direction to move the focus towards.</param>
-        /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
-        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
-        {
-            // Respond to Up/Down keys to change the value while keeping the current spin focused
-            View nextFocusedView = currentFocusedView;
-            if (direction == View.FocusDirection.Up)
-            {
-                this.Value += this.Step;
-                nextFocusedView = _textField;
-            }
-            else if (direction == View.FocusDirection.Down)
-            {
-                this.Value -= this.Step;
-                nextFocusedView = _textField;
-            }
-            else
-            {
-                // Return null
-                return null;
-            }
-
-            return nextFocusedView;
-        }
-
-        /// <summary>
         /// Value to be set in the spin.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -210,7 +74,6 @@ namespace Tizen.NUI
             }
             set
             {
-
                 NUILog.Debug("Value set to " + value);
                 _currentValue = value;
 
@@ -389,6 +252,142 @@ namespace Tizen.NUI
                                  .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
                 RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
             }
+        }
+
+        // Called by DALi Builder if it finds a Spin control in a JSON file
+        static CustomView CreateInstance()
+        {
+            return new Spin();
+        }
+
+        /// <summary>
+        /// Overrides the method of OnInitialize() for the CustomView class.<br />
+        /// This method is called after the control has been initialized.<br />
+        /// Derived classes should do any second phase initialization by overriding this method.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public override void OnInitialize()
+        {
+            // Initialize the propertiesControl
+            _arrowImage = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+            _textBackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
+            _currentValue = 0;
+            _minValue = 0;
+            _maxValue = 0;
+            _singleStep = 1;
+            _maxTextLength = 0;
+
+            // Create image visual for the arrow keys
+            _arrowVisualPropertyIndex = RegisterProperty("ArrowImage", new PropertyValue(_arrowImage), Tizen.NUI.PropertyAccessMode.ReadWrite);
+            _arrowVisual = VisualFactory.Instance.CreateVisual(
+                new PropertyMap().Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image))
+                                 .Add(ImageVisualProperty.URL, new PropertyValue(_arrowImage))
+                                 .Add(ImageVisualProperty.DesiredHeight, new PropertyValue(150))
+                                 .Add(ImageVisualProperty.DesiredWidth, new PropertyValue(150)));
+            RegisterVisual(_arrowVisualPropertyIndex, _arrowVisual);
+
+            // Create a text field
+            _textField = new TextField();
+            _textField.PivotPoint = Tizen.NUI.PivotPoint.Center;
+            _textField.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            _textField.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
+            _textField.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
+            _textField.PlaceholderText = "----";
+            _textField.BackgroundColor = _textBackgroundColor;
+            _textField.HorizontalAlignment = HorizontalAlignment.Center;
+            _textField.VerticalAlignment = VerticalAlignment.Center;
+            _textField.Focusable = (true);
+            _textField.Name = "_textField";
+            _textField.Position2D = new Position2D(0, 40);
+
+            this.Add(_textField);
+
+            _textField.FocusGained += TextFieldKeyInputFocusGained;
+            _textField.FocusLost += TextFieldKeyInputFocusLost;
+        }
+
+        /// <summary>
+        /// Overrides the method of GetNaturalSize() for the CustomView class.<br />
+        /// Returns the natural size of the actor.<br />
+        /// </summary>
+        /// <returns> Natural size of this spin itself.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public override Size2D GetNaturalSize()
+        {
+            return new Size2D(150, 150);
+        }
+
+        /// <summary>
+        /// An event handler is used when the TextField in the spin gets the key focus.<br />
+        /// Make sure when the current spin that takes input focus, also takes the keyboard focus.<br />
+        /// For example, when you tap the spin directly.<br />
+        /// </summary>
+        /// <param name="source">Sender of this event.</param>
+        /// <param name="e">Event arguments.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void TextFieldKeyInputFocusGained(object source, EventArgs e)
+        {
+            FocusManager.Instance.SetCurrentFocusView(_textField);
+        }
+
+        /// <summary>
+        /// An event handler when the TextField in the spin looses it's key focus.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        /// <since_tizen> 3 </since_tizen>
+        public void TextFieldKeyInputFocusLost(object source, EventArgs e)
+        {
+            int previousValue = _currentValue;
+
+            // If the input value is invalid, change it back to the previous valid value
+            if (int.TryParse(_textField.Text, out _currentValue))
+            {
+                if (_currentValue < _minValue || _currentValue > _maxValue)
+                {
+                    _currentValue = previousValue;
+                }
+            }
+            else
+            {
+                _currentValue = previousValue;
+            }
+
+            // Otherwise take the new value
+            this.Value = _currentValue;
+        }
+
+        /// <summary>
+        /// Overrides the method of GetNextKeyboardFocusableView() for the CustomView class.<br />
+        /// Gets the next key focusable view in this view towards the given direction.<br />
+        /// A view needs to override this function in order to support two-dimensional key navigation.<br />
+        /// </summary>
+        /// <param name="currentFocusedView">The current focused view.</param>
+        /// <param name="direction">The direction to move the focus towards.</param>
+        /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
+        /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        {
+            // Respond to Up/Down keys to change the value while keeping the current spin focused
+            View nextFocusedView = currentFocusedView;
+            if (direction == View.FocusDirection.Up)
+            {
+                this.Value += this.Step;
+                nextFocusedView = _textField;
+            }
+            else if (direction == View.FocusDirection.Down)
+            {
+                this.Value -= this.Step;
+                nextFocusedView = _textField;
+            }
+            else
+            {
+                // Return null
+                return null;
+            }
+
+            return nextFocusedView;
         }
     }
 }

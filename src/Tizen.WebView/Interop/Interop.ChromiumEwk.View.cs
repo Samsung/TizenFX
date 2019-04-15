@@ -32,6 +32,12 @@ internal static partial class Interop
         internal static extern IntPtr ewk_view_settings_get(IntPtr obj);
 
         [DllImport(Libraries.ChromiumEwk)]
+        internal static extern IntPtr ewk_view_back_forward_list_get(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_view_back_forward_list_clear(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool ewk_view_url_set(IntPtr obj, string url);
 

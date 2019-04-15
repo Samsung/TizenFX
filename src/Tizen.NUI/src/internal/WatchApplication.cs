@@ -209,13 +209,10 @@ namespace Tizen.NUI
         private void OnTimeTick(IntPtr application, IntPtr watchTime)
         {
             TimeTickEventArgs e = new TimeTickEventArgs();
-            using (e.Application = Application.GetApplicationFromPtr(application))
-            {
-            using (e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime))
-            {
-                _timeTickEventHandler?.Invoke(this, e);
-            }
-            }
+            e.Application = this;
+            e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
+
+            _timeTickEventHandler?.Invoke(this, e);
 
         }
 
@@ -289,13 +286,9 @@ namespace Tizen.NUI
         {
             AmbientTickEventArgs e = new AmbientTickEventArgs();
 
-            using (e.Application = Application.GetApplicationFromPtr(application))
-            {
-            using (e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime))
-            {
-                _ambientTickEventHandler?.Invoke(this, e);
-            }
-            }
+            e.Application = this;
+            e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
+            _ambientTickEventHandler?.Invoke(this, e);
         }
 
         internal WatchTimeSignal AmbientTickSignal()
@@ -367,11 +360,9 @@ namespace Tizen.NUI
         private void OnAmbientChanged(IntPtr application, bool changed)
         {
             AmbientChangedEventArgs e = new AmbientChangedEventArgs();
-            using (e.Application = Application.GetApplicationFromPtr(application))
-            {
-                e.Changed = changed;
-                _ambientChangedEventHandler?.Invoke(this, e);
-            }
+            e.Application = this;
+            e.Changed = changed;
+            _ambientChangedEventHandler?.Invoke(this, e);
         }
 
         internal WatchBoolSignal AmbientChangedSignal()

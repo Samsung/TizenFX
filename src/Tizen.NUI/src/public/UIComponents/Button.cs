@@ -402,95 +402,38 @@ namespace Tizen.NUI.UIComponents
         });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private EventHandlerWithReturnType<object, EventArgs, bool> _clickedEventHandler;
+        private ClickedCallbackType _clickedCallback;
+        private EventHandlerWithReturnType<object, EventArgs, bool> _pressedEventHandler;
+        private PressedCallbackType _pressedCallback;
+        private EventHandlerWithReturnType<object, EventArgs, bool> _releasedEventHandler;
+        private ReleasedCallbackType _releasedCallback;
+        private EventHandlerWithReturnType<object, EventArgs, bool> _stateChangedEventHandler;
+        private StateChangedCallback _stateChangedCallback;
+
+        /// <summary>
+        /// Creates an uninitialized button.<br />
+        /// Only the derived versions can be instantiated.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Button_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Button obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// To dispose the button instance.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (this != null)
-            {
-                DisConnectFromSignals();
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Button(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        private void DisConnectFromSignals()
-        {
-            // Save current CPtr.
-            global::System.Runtime.InteropServices.HandleRef currentCPtr = swigCPtr;
-
-            // Use BaseHandle CPtr as current might have been deleted already in derived classes.
-            swigCPtr = GetBaseHandleCPtrHandleRef;
-
-            if (_stateChangedCallback != null)
-            {
-                StateChangedSignal().Disconnect(_stateChangedCallback);
-            }
-
-            if (_releasedCallback != null)
-            {
-                ReleasedSignal().Disconnect(_releasedCallback);
-            }
-
-            if (_pressedCallback != null)
-            {
-                this.PressedSignal().Disconnect(_pressedCallback);
-            }
-
-            if (_clickedCallback != null)
-            {
-                ClickedSignal().Disconnect(_clickedCallback);
-            }
-
-            // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
-            // Restore current CPtr.
-            swigCPtr = currentCPtr;
-        }
-
-
-        private EventHandlerWithReturnType<object, EventArgs, bool> _clickedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ClickedCallbackType(global::System.IntPtr data);
-        private ClickedCallbackType _clickedCallback;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool PressedCallbackType(global::System.IntPtr data);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool ReleasedCallbackType(global::System.IntPtr data);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool StateChangedCallback(global::System.IntPtr data);
 
         /// <summary>
         /// The Clicked event will be triggered when the button is touched and the touch point doesn't leave the boundary of the button.
@@ -520,23 +463,6 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-
-        private bool OnClicked(IntPtr data)
-        {
-            if (_clickedEventHandler != null)
-            {
-                return _clickedEventHandler(this, null);
-            }
-            return false;
-        }
-
-
-
-        private EventHandlerWithReturnType<object, EventArgs, bool> _pressedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool PressedCallbackType(global::System.IntPtr data);
-        private PressedCallbackType _pressedCallback;
-
         /// <summary>
         /// The Pressed event will be triggered when the button is touched.
         /// </summary>
@@ -564,22 +490,6 @@ namespace Tizen.NUI.UIComponents
                 }
             }
         }
-
-        private bool OnPressed(IntPtr data)
-        {
-            if (_pressedEventHandler != null)
-            {
-                return _pressedEventHandler(this, null);
-            }
-            return false;
-        }
-
-
-
-        private EventHandlerWithReturnType<object, EventArgs, bool> _releasedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool ReleasedCallbackType(global::System.IntPtr data);
-        private ReleasedCallbackType _releasedCallback;
 
         /// <summary>
         /// The Released event will be triggered when the button is touched and the touch point leaves the boundary of the button.
@@ -609,21 +519,6 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        private bool OnReleased(IntPtr data)
-        {
-            if (_releasedEventHandler != null)
-            {
-                return _releasedEventHandler(this, null);
-            }
-            return false;
-        }
-
-
-        private EventHandlerWithReturnType<object, EventArgs, bool> _stateChangedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool StateChangedCallback(global::System.IntPtr data);
-        private StateChangedCallback _stateChangedCallback;
-
         /// <summary>
         /// The StateChanged event will be triggered when the button's state is changed.
         /// </summary>
@@ -652,15 +547,29 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        private bool OnStateChanged(IntPtr data)
+        /// <summary>
+        /// Enumeration for describing the position, the text label can be, in relation to the control (and foreground/icon).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum Align
         {
-            if (_stateChangedEventHandler != null)
-            {
-                return _stateChangedEventHandler(this, null);
-            }
-            return false;
+            /// <summary>
+            /// At the start of the control before the foreground or icon.
+            /// </summary>
+            Begin,
+            /// <summary>
+            /// At the end of the control after the foreground or icon.
+            /// </summary>
+            End,
+            /// <summary>
+            /// At the top of the control above the foreground or icon.
+            /// </summary>
+            Top,
+            /// <summary>
+            /// At the bottom of the control below the foreground or icon.
+            /// </summary>
+            Bottom
         }
-
 
         /// <summary>
         /// Gets or sets the unselected button foreground or icon visual.
@@ -838,67 +747,6 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        internal new class Property
-        {
-            internal static readonly int UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_VISUAL_get();
-            internal static readonly int SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_VISUAL_get();
-            internal static readonly int DISABLED_SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_VISUAL_get();
-            internal static readonly int DISABLED_UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_UNSELECTED_VISUAL_get();
-            internal static readonly int UNSELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int SELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int DISABLED_UNSELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int DISABLED_SELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int LABEL_RELATIVE_ALIGNMENT = NDalicManualPINVOKE.Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
-            internal static readonly int LABEL_PADDING = NDalicManualPINVOKE.Button_Property_LABEL_PADDING_get();
-            internal static readonly int FOREGROUND_VISUAL_PADDING = NDalicManualPINVOKE.Button_Property_VISUAL_PADDING_get();
-            internal static readonly int AUTO_REPEATING = NDalicPINVOKE.Button_Property_AUTO_REPEATING_get();
-            internal static readonly int INITIAL_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
-            internal static readonly int NEXT_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
-            internal static readonly int TOGGLABLE = NDalicPINVOKE.Button_Property_TOGGLABLE_get();
-            internal static readonly int SELECTED = NDalicPINVOKE.Button_Property_SELECTED_get();
-            internal static readonly int UNSELECTED_COLOR = NDalicPINVOKE.Button_Property_UNSELECTED_COLOR_get();
-            internal static readonly int SELECTED_COLOR = NDalicPINVOKE.Button_Property_SELECTED_COLOR_get();
-            internal static readonly int LABEL = NDalicPINVOKE.Button_Property_LABEL_get();
-        }
-
-        /// <summary>
-        /// Creates an uninitialized button.<br />
-        /// Only the derived versions can be instantiated.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal ButtonSignal PressedSignal()
-        {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_PressedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ButtonSignal ReleasedSignal()
-        {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ReleasedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ButtonSignal ClickedSignal()
-        {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ClickedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ButtonSignal StateChangedSignal()
-        {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_StateChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// If the autorepeating property is set to true, then the togglable property is set to false.
         /// </summary>
@@ -1043,30 +891,169 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        /// <summary>
-        /// Enumeration for describing the position, the text label can be, in relation to the control (and foreground/icon).
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum Align
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Button obj)
         {
-            /// <summary>
-            /// At the start of the control before the foreground or icon.
-            /// </summary>
-            Begin,
-            /// <summary>
-            /// At the end of the control after the foreground or icon.
-            /// </summary>
-            End,
-            /// <summary>
-            /// At the top of the control above the foreground or icon.
-            /// </summary>
-            Top,
-            /// <summary>
-            /// At the bottom of the control below the foreground or icon.
-            /// </summary>
-            Bottom
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-    }
+        internal ButtonSignal PressedSignal()
+        {
+            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_PressedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
+        internal ButtonSignal ReleasedSignal()
+        {
+            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ReleasedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ButtonSignal ClickedSignal()
+        {
+            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ClickedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ButtonSignal StateChangedSignal()
+        {
+            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_StateChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// To dispose the button instance.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (this != null)
+            {
+                DisConnectFromSignals();
+            }
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Button(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        private void DisConnectFromSignals()
+        {
+            // Save current CPtr.
+            global::System.Runtime.InteropServices.HandleRef currentCPtr = swigCPtr;
+
+            // Use BaseHandle CPtr as current might have been deleted already in derived classes.
+            swigCPtr = GetBaseHandleCPtrHandleRef;
+
+            if (_stateChangedCallback != null)
+            {
+                StateChangedSignal().Disconnect(_stateChangedCallback);
+            }
+
+            if (_releasedCallback != null)
+            {
+                ReleasedSignal().Disconnect(_releasedCallback);
+            }
+
+            if (_pressedCallback != null)
+            {
+                this.PressedSignal().Disconnect(_pressedCallback);
+            }
+
+            if (_clickedCallback != null)
+            {
+                ClickedSignal().Disconnect(_clickedCallback);
+            }
+
+            // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
+            // Restore current CPtr.
+            swigCPtr = currentCPtr;
+        }
+
+        private bool OnClicked(IntPtr data)
+        {
+            if (_clickedEventHandler != null)
+            {
+                return _clickedEventHandler(this, null);
+            }
+            return false;
+        }
+
+        private bool OnPressed(IntPtr data)
+        {
+            if (_pressedEventHandler != null)
+            {
+                return _pressedEventHandler(this, null);
+            }
+            return false;
+        }
+
+        private bool OnReleased(IntPtr data)
+        {
+            if (_releasedEventHandler != null)
+            {
+                return _releasedEventHandler(this, null);
+            }
+            return false;
+        }
+
+        private bool OnStateChanged(IntPtr data)
+        {
+            if (_stateChangedEventHandler != null)
+            {
+                return _stateChangedEventHandler(this, null);
+            }
+            return false;
+        }
+
+        internal new class Property
+        {
+            internal static readonly int UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_VISUAL_get();
+            internal static readonly int SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_VISUAL_get();
+            internal static readonly int DISABLED_SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_VISUAL_get();
+            internal static readonly int DISABLED_UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_UNSELECTED_VISUAL_get();
+            internal static readonly int UNSELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int SELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int DISABLED_UNSELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int DISABLED_SELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int LABEL_RELATIVE_ALIGNMENT = NDalicManualPINVOKE.Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
+            internal static readonly int LABEL_PADDING = NDalicManualPINVOKE.Button_Property_LABEL_PADDING_get();
+            internal static readonly int FOREGROUND_VISUAL_PADDING = NDalicManualPINVOKE.Button_Property_VISUAL_PADDING_get();
+            internal static readonly int AUTO_REPEATING = NDalicPINVOKE.Button_Property_AUTO_REPEATING_get();
+            internal static readonly int INITIAL_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
+            internal static readonly int NEXT_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
+            internal static readonly int TOGGLABLE = NDalicPINVOKE.Button_Property_TOGGLABLE_get();
+            internal static readonly int SELECTED = NDalicPINVOKE.Button_Property_SELECTED_get();
+            internal static readonly int UNSELECTED_COLOR = NDalicPINVOKE.Button_Property_UNSELECTED_COLOR_get();
+            internal static readonly int SELECTED_COLOR = NDalicPINVOKE.Button_Property_SELECTED_COLOR_get();
+            internal static readonly int LABEL = NDalicPINVOKE.Button_Property_LABEL_get();
+        }
+    }
 }

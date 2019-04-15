@@ -123,7 +123,7 @@ namespace Tizen.WebView
     /// A view used to render the web contents.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    public class WebView: EvasObject
+    public class WebView : EvasObject
     {
         private static IDictionary<string, JavaScriptMessageHandler> _javaScriptMessageHandlerMap = new Dictionary<string, JavaScriptMessageHandler>();
 
@@ -142,8 +142,14 @@ namespace Tizen.WebView
         private SmartEvent<SmartCallbackLoadErrorArgs> _loadError;
         private SmartEvent<SmartCallbackArgs> _titleChanged;
         private SmartEvent<SmartCallbackArgs> _urlChanged;
+        private SmartEvent<NavigationPolicyEventArgs> _policyNavigationDecide;
+        private SmartEvent<NewWindowPolicyEventArgs> _policyNewWindowDecide;
+        private SmartEvent<ResponsePolicyEventArgs> _policyResponseDecide;
 
+        private SmartEvent<ContextMenuItemEventArgs> _contextMenuItemSelected;
+        private SmartEvent<ContextMenuCustomizeEventArgs> _contextMenuCustomize;
 
+        private ContextMenuCustomize _contextMenuCustomizeDelegate;
 
         /// <summary>
         /// Event that occurs when the load is started.
@@ -174,6 +180,38 @@ namespace Tizen.WebView
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackArgs> UrlChanged;
+
+        /// <summary>
+
+        /// Event that occurs when the policy navigation is decided.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<NavigationPolicyEventArgs> NavigationPolicyDecideRequested;
+
+        /// <summary>
+        /// Event that occurs when the policy new window is decided.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<NewWindowPolicyEventArgs> NewWindowPolicyDecideRequested;
+
+        /// <summary>
+        /// Event that occurs when the policy response is decided.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<ResponsePolicyEventArgs> ResponsePolicyDecideRequested;
+
+        /// <summary>
+        /// Event that occurs when the context menu item selected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<ContextMenuItemEventArgs> ContextMenuItemSelected;
+        
+        /// The delegate is invoked when context menu customization is needed.
+        /// </summary>
+        /// <param name="menu">The instance of ContextMenu.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public delegate void ContextMenuCustomize(ContextMenu menu);
+
 
         /// <summary>
         /// Current URL of the main frame.
@@ -274,6 +312,30 @@ namespace Tizen.WebView
                 _settings = new Settings(settingsHandle);
             }
             return _settings;
+        }
+
+        /// <summary>
+        /// Gets the back/forward list object of this view.
+        /// </summary>
+        /// <returns>The BackForward List object of this view.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public BackForwardList GetBackForwardList()
+        {
+            IntPtr backforwardlistHandle = Interop.ChromiumEwk.ewk_view_back_forward_list_get(_realHandle);
+            if (backforwardlistHandle == IntPtr.Zero)
+            {
+                return null;
+            }
+            return new BackForwardList(backforwardlistHandle);
+        }
+
+        /// <summary>
+        /// Clear the back/forward list object of this view.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void ClearBackForwardList()
+        {
+            Interop.ChromiumEwk.ewk_view_back_forward_list_clear(_realHandle);
         }
 
         /// <summary>
@@ -603,6 +665,16 @@ namespace Tizen.WebView
             return _handle;
         }
 
+        /// <summary>
+        /// Sets the delegate for context menu customization.
+        /// </summary>
+        /// <param name="contextMenuCustomizeDelegate">The delegate for context menu customization.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetContextMenuCustomizeDelegate(ContextMenuCustomize contextMenuCustomizeDelegate)
+        {
+            _contextMenuCustomizeDelegate = contextMenuCustomizeDelegate;
+        }
+
         private void InitializeSmartEvent()
         {
             // focus dummy
@@ -617,12 +689,23 @@ namespace Tizen.WebView
             _loadError = new SmartEvent<SmartCallbackLoadErrorArgs>(this, _realHandle, "load,error", SmartCallbackLoadErrorArgs.CreateFromSmartEvent);
             _titleChanged = new SmartEvent<SmartCallbackArgs>(this, _realHandle, "title,changed", SmartCallbackArgs.CreateFromSmartEvent);
             _urlChanged = new SmartEvent<SmartCallbackArgs>(this, _realHandle, "url,changed", SmartCallbackArgs.CreateFromSmartEvent);
+            _contextMenuCustomize = new SmartEvent<ContextMenuCustomizeEventArgs>(this, _realHandle, "contextmenu,customize", ContextMenuCustomizeEventArgs.CreateFromSmartEvent);
+            _contextMenuItemSelected = new SmartEvent<ContextMenuItemEventArgs>(this, _realHandle, "contextmenu,selected", ContextMenuItemEventArgs.CreateFromSmartEvent);
+            _policyNavigationDecide = new SmartEvent<NavigationPolicyEventArgs>(this, _realHandle, "policy,navigation,decide", NavigationPolicyEventArgs.CreateFromSmartEvent);
+            _policyNewWindowDecide = new SmartEvent<NewWindowPolicyEventArgs>(this, _realHandle, "policy,newwindow,decide", NewWindowPolicyEventArgs.CreateFromSmartEvent);
+            _policyResponseDecide = new SmartEvent<ResponsePolicyEventArgs>(this, _realHandle, "policy,response,decide", ResponsePolicyEventArgs.CreateFromSmartEvent);            
 
             _loadStarted.On += (s, e) => { LoadStarted?.Invoke(this, EventArgs.Empty); };
             _loadFinished.On += (s, e) => { LoadFinished?.Invoke(this, EventArgs.Empty); };
             _loadError.On += (s, e) => { LoadError?.Invoke(this, e); };
             _titleChanged.On += (s, e) => { TitleChanged?.Invoke(this, e); };
             _urlChanged.On += (s, e) => { UrlChanged?.Invoke(this, e); };
+            _policyNavigationDecide.On += (s, e) => { NavigationPolicyDecideRequested?.Invoke(this, e); };
+            _policyNewWindowDecide.On += (s, e) => { NewWindowPolicyDecideRequested?.Invoke(this, e); };
+            _policyResponseDecide.On += (s, e) => { ResponsePolicyDecideRequested?.Invoke(this, e); };
+            _contextMenuItemSelected.On += (s, e) => { ContextMenuItemSelected?.Invoke(this, e); };
+            _contextMenuCustomize.On += (s, e) => { _contextMenuCustomizeDelegate?.Invoke(e.Menu); };
         }
+        
     }
 }
