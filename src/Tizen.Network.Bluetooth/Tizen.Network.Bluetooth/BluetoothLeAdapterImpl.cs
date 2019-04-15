@@ -208,13 +208,19 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
 
-            IList<string> list = new List<string>();
             IntPtr uuidListArray = IntPtr.Zero;
             int count = -1;
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
             int ret = Interop.Bluetooth.GetScanResultServiceUuid(ref scanDataStruct, packetType, ref uuidListArray, ref count);
-            if (ret != (int)BluetoothError.None)
+            if (ret == (int)BluetoothError.NoData)
+            {
+                Log.Info(Globals.LogTag, "No ServiceUuids in " + packetType);
+                Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                return null;
+            }
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Info(Globals.LogTag, "Failed to service uuids list- " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
@@ -222,8 +228,9 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
 
-            Log.Info(Globals.LogTag, "Count of UUIDs:  " + count);
+            Log.Info(Globals.LogTag, "Count of ServiceUuids: " + count);
 
+            IList<string> list = new List<string>();
             IntPtr[] uuidList = new IntPtr[count];
             Marshal.Copy(uuidListArray, uuidList, 0, count);
             foreach (IntPtr uuids in uuidList)
@@ -249,7 +256,14 @@ namespace Tizen.Network.Bluetooth
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
             int ret = Interop.Bluetooth.GetLeScanResultDeviceName(ref scanDataStruct, packetType, out deviceName);
-            if (ret != (int)BluetoothError.None)
+            if (ret == (int)BluetoothError.NoData)
+            {
+                Log.Info(Globals.LogTag, "No DeviceName in " + packetType);
+                Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                return null;
+            }
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get Device name- " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
@@ -274,7 +288,14 @@ namespace Tizen.Network.Bluetooth
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
             int ret = Interop.Bluetooth.GetScanResultTxPowerLevel(ref scanDataStruct, packetType, out powerLevel);
-            if (ret != (int)BluetoothError.None)
+            if (ret == (int)BluetoothError.NoData)
+            {
+                Log.Info(Globals.LogTag, "No TxPowerLevel data in " + packetType);
+                Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                return -1;
+            }
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get tx power level- " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
@@ -295,13 +316,19 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
 
-            IList<string> list = new List<string>();
             IntPtr uuidListArray;
             int count;
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
             int ret = Interop.Bluetooth.GetScanResultSvcSolicitationUuids(ref scanDataStruct, packetType, out uuidListArray, out count);
-            if (ret != (int)BluetoothError.None)
+            if (ret == (int)BluetoothError.NoData)
+            {
+                Log.Info(Globals.LogTag, "No ServiceSolicitationUuids in " + packetType);
+                Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                return null;
+            }
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get service solicitation uuids " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
@@ -309,6 +336,9 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
 
+            Log.Info(Globals.LogTag, "Count of ServiceSolicitationUuids: " + count);
+
+            IList<string> list = new List<string>();
             IntPtr[] uuidList = new IntPtr[count];
             Marshal.Copy(uuidListArray, uuidList, 0, count);
             foreach (IntPtr uuids in uuidList)
@@ -335,14 +365,22 @@ namespace Tizen.Network.Bluetooth
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
             int ret = Interop.Bluetooth.GetScanResultServiceDataList(ref scanDataStruct, packetType, out serviceListArray, out _serviceListCount);
-            Log.Info(Globals.LogTag, "ServiceListCount :  " + _serviceListCount + " PacketType : " + packetType + " Error: " + (BluetoothError)ret);
-            if (ret != (int)BluetoothError.None)
+            if (ret == (int)BluetoothError.NoData)
+            {
+                Log.Info(Globals.LogTag, "No ServiceDataList in " + packetType);
+                Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                return null;
+            }
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Info(Globals.LogTag, "Failed to get Service Data List, Error - " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
+
+            Log.Info(Globals.LogTag, "Count of ServiceDataList: " + _serviceListCount);
 
             int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
             for (int i = 0; i < _serviceListCount; i++)
@@ -388,7 +426,14 @@ namespace Tizen.Network.Bluetooth
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
             int ret = Interop.Bluetooth.GetScanResultAppearance(ref scanDataStruct, packetType, out appearance);
-            if (ret != (int)BluetoothError.None)
+            if (ret == (int)BluetoothError.NoData)
+            {
+                Log.Info(Globals.LogTag, "No Appearance in " + packetType);
+                Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                return -1;
+            }
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get Appearance value- " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
@@ -408,14 +453,20 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
 
-            ManufacturerData data = new ManufacturerData();
             int dataId = 0;
             int dataLength = 0;
             IntPtr manufData;
             BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
             int ret = Interop.Bluetooth.GetScanResultManufacturerData(ref scanDataStruct, packetType, out dataId, out manufData, out dataLength);
-            if (ret != (int)BluetoothError.None)
+            if (ret == (int)BluetoothError.NoData)
+            {
+                Log.Info(Globals.LogTag, "No ManufacturerData in " + packetType);
+                Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                return null;
+            }
+            else if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get Manufacturer data - " + (BluetoothError)ret);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
@@ -423,6 +474,9 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
 
+            Log.Info(Globals.LogTag, "Count of ManufacturerData: " + dataLength);
+
+            ManufacturerData data = new ManufacturerData();
             data.Id = dataId;
             data.DataLength = dataLength;
             if (data.DataLength > 0)
