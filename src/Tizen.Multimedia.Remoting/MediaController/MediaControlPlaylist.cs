@@ -190,8 +190,6 @@ namespace Tizen.Multimedia.Remoting
             {
                 AddMetadata(data.Key, data.Value);
             }
-
-            MediaControlServer.SavePlaylist(Handle);
         }
 
         /// <summary>
