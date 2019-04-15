@@ -201,11 +201,6 @@ namespace Tizen.Network.Bluetooth
             return ret;
         }
 
-        private string GetPacketTypeToString(BluetoothLePacketType packetType)
-        {
-            return (packetType == BluetoothLePacketType.BluetoothLeAdvertisingPacket) ? "AdvertisingPacket" : "ScanResponsePacket";
-        }
-
         internal IList<string> GetLeScanResultServiceUuids(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
             if (!BluetoothAdapter.IsBluetoothEnabled || !Globals.IsInitialize)
@@ -220,7 +215,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetScanResultServiceUuid(ref scanDataStruct, packetType, ref uuidListArray, ref count);
             if (ret == (int)BluetoothError.NoData)
             {
-                Log.Info(Globals.LogTag, "No ServiceUuids in " + GetPacketTypeToString(packetType));
+                Log.Info(Globals.LogTag, "No ServiceUuids in " + packetType);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return null;
@@ -263,7 +258,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetLeScanResultDeviceName(ref scanDataStruct, packetType, out deviceName);
             if (ret == (int)BluetoothError.NoData)
             {
-                Log.Info(Globals.LogTag, "No DeviceName in " + GetPacketTypeToString(packetType));
+                Log.Info(Globals.LogTag, "No DeviceName in " + packetType);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return null;
@@ -295,7 +290,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetScanResultTxPowerLevel(ref scanDataStruct, packetType, out powerLevel);
             if (ret == (int)BluetoothError.NoData)
             {
-                Log.Info(Globals.LogTag, "No TxPowerLevel data in " + GetPacketTypeToString(packetType));
+                Log.Info(Globals.LogTag, "No TxPowerLevel data in " + packetType);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return -1;
@@ -328,7 +323,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetScanResultSvcSolicitationUuids(ref scanDataStruct, packetType, out uuidListArray, out count);
             if (ret == (int)BluetoothError.NoData)
             {
-                Log.Info(Globals.LogTag, "No ServiceSolicitationUuids in " + GetPacketTypeToString(packetType));
+                Log.Info(Globals.LogTag, "No ServiceSolicitationUuids in " + packetType);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return null;
@@ -372,7 +367,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetScanResultServiceDataList(ref scanDataStruct, packetType, out serviceListArray, out _serviceListCount);
             if (ret == (int)BluetoothError.NoData)
             {
-                Log.Info(Globals.LogTag, "No ServiceDataList in " + GetPacketTypeToString(packetType));
+                Log.Info(Globals.LogTag, "No ServiceDataList in " + packetType);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return null;
@@ -433,7 +428,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetScanResultAppearance(ref scanDataStruct, packetType, out appearance);
             if (ret == (int)BluetoothError.NoData)
             {
-                Log.Info(Globals.LogTag, "No Appearance in " + GetPacketTypeToString(packetType));
+                Log.Info(Globals.LogTag, "No Appearance in " + packetType);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return -1;
@@ -466,7 +461,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.GetScanResultManufacturerData(ref scanDataStruct, packetType, out dataId, out manufData, out dataLength);
             if (ret == (int)BluetoothError.NoData)
             {
-                Log.Info(Globals.LogTag, "No ManufacturerData in " + GetPacketTypeToString(packetType));
+                Log.Info(Globals.LogTag, "No ManufacturerData in " + packetType);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
                 return null;
