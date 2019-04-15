@@ -203,7 +203,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public HoverselItem AddItem(string label)
         {
-            HoverselItem item = new HoverselItem();
+            HoverselItem item = new HoverselItem(this);
             item.Label = label;
             item.Handle = Interop.Elementary.elm_hoversel_item_add(RealHandle, label, null, 0, _onItemSelected, (IntPtr)item.Id);
             return item;

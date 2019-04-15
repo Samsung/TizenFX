@@ -28,6 +28,10 @@ namespace ElmSharp
         {
         }
 
+        internal ColorSelectorItem(EvasObject parent) : base(IntPtr.Zero, parent)
+        {
+        }
+
         /// <summary>
         /// Gets or sets the palette item's color.
         /// </summary>

@@ -226,16 +226,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.TOOLTIP).Get(temp);
             return temp;
         });
-        // public static readonly BindableProperty TooltipTextProperty = BindableProperty.Create("TooltipText", typeof(string), typeof(View), default(string), propertyChanged: (bindable, oldValue, newValue) =>
-        // {
-        //     var view = (View)bindable;
-        //     if (newValue != null)
-        //     {
-        //         Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.TOOLTIP, new Tizen.NUI.PropertyValue((string)newValue));
-        //     }
-        // });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+
         public static readonly BindableProperty FlexProperty = BindableProperty.Create("Flex", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
@@ -251,6 +242,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, FlexContainer.ChildProperty.FLEX).Get(out temp);
             return temp;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AlignSelfProperty = BindableProperty.Create("AlignSelf", typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
@@ -1292,6 +1284,13 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<BackgroundResourceLoadedEventArgs> _backgroundResourceLoadedEventHandler;
         private _backgroundResourceLoadedCallbackType _backgroundResourceLoadedCallback;
 
+        private OnWindowEventCallbackType _onWindowSendEventCallback;
+
+        private void SendViewAddedEventToWindow(IntPtr data)
+        {
+            Window.Instance?.SendViewAdded(this);
+        }
+
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
@@ -1313,6 +1312,9 @@ namespace Tizen.NUI.BaseComponents
                 PositionUsesPivotPoint = false;
             }
             _mergedStyle = new MergedStyle(GetType(), this);
+
+            _onWindowSendEventCallback = SendViewAddedEventToWindow;
+            this.OnWindowSignal().Connect(_onWindowSendEventCallback);
         }
 
         internal View(ViewImpl implementation) : this(NDalicPINVOKE.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
@@ -4210,6 +4212,13 @@ namespace Tizen.NUI.BaseComponents
             IntPtr cPtr = NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
+            if (cPtr != null && ret == null)
+            {
+                ret = new Renderer(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
             NDalicPINVOKE.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
@@ -5206,6 +5215,11 @@ namespace Tizen.NUI.BaseComponents
             if (_backgroundResourceLoadedCallback != null)
             {
                 this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+            }
+
+            if (_onWindowSendEventCallback != null)
+            {
+                this.OnWindowSignal().Disconnect(_onWindowSendEventCallback);
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.

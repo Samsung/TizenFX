@@ -58,9 +58,9 @@ namespace Tizen.Applications.WatchfaceComplication
             if (minValue > maxValue || currentValue < minValue || currentValue > maxValue)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "Invalid value range min(" + minValue + "), cur(" + currentValue + "), max(" + maxValue + ")");
             Type = ComplicationTypes.RangedValue;
-            RangeCurrent = currentValue;
-            RangeMin = minValue;
-            RangeMax = maxValue;
+            base.RangeMin = minValue;
+            base.RangeMax = maxValue;
+            base.RangeCurrent = currentValue;
             ShortText = shortText;
             IconPath = iconPath;
             Title = title;

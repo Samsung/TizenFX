@@ -55,10 +55,21 @@ namespace ElmSharp
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static event EventHandler EvasObjectRealized;
-        
+
+        /// <summary>
+        /// ItemObjectRealized will be triggered when the ItemObject is realized.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public static event EventHandler ItemObjectRealized;
+
         internal static void SendEvasObjectRealized(EvasObject obj)
         {
             EvasObjectRealized?.Invoke(obj, EventArgs.Empty);
+        }
+
+        internal static void SendItemObjectRealized(ItemObject obj)
+        {
+            ItemObjectRealized?.Invoke(obj, EventArgs.Empty);
         }
 
         /// <summary>

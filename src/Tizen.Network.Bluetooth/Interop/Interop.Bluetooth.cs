@@ -244,7 +244,7 @@ internal static partial class Interop
                             BluetoothLePacketType packetType, out int txPowerLevel);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_get_scan_result_service_solicitation_uuids")]
-        public static extern int GetScaResultSvcSolicitationUuids(ref BluetoothLeScanDataStruct scanData,
+        public static extern int GetScanResultSvcSolicitationUuids(ref BluetoothLeScanDataStruct scanData,
                             BluetoothLePacketType packetType, out IntPtr uuids, out int count);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_get_scan_result_service_data_list")]
@@ -516,7 +516,7 @@ internal static partial class Interop
         internal delegate void BtGattServerReadValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, int offset, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, int offset, bool response_needed, byte[] value, int len, IntPtr userData);
+        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, bool response_needed, int offset, byte[] value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, IntPtr value, int len, IntPtr userData);

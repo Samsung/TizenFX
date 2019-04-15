@@ -31,6 +31,10 @@ namespace ElmSharp
         {
         }
 
+        internal GenGridItem(object data, GenItemClass itemClass, EvasObject parent) : base(data, itemClass, parent)
+        {
+        }
+
         /// <summary>
         /// Gets or sets whether a given gengrid item is selected.
         /// If one gengrid item is selected, any other previously selected items get unselected in favor of this new one.

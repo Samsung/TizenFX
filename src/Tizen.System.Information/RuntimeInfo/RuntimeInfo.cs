@@ -94,7 +94,7 @@ namespace Tizen.System
 
             if (type == typeof(bool))
             {
-                InformationError ret = Interop.RuntimeInfo.GetValue(TvProductHelper.ConvertKeyIfTvProduct(key), out bool val);
+                InformationError ret = Interop.RuntimeInfo.GetValue(key, out bool val);
 
                 if (ret != InformationError.None)
                 {
@@ -106,7 +106,7 @@ namespace Tizen.System
             }
             else if(type == typeof(int))
             {
-                InformationError ret = Interop.RuntimeInfo.GetValue(TvProductHelper.ConvertKeyIfTvProduct(key), out int val);
+                InformationError ret = Interop.RuntimeInfo.GetValue(key, out int val);
 
                 if (ret != InformationError.None)
                 {

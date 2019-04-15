@@ -315,7 +315,7 @@ namespace Tizen.NUI.Xaml
                         enode.SkipProperties.Add(name);
                     var value = Context.Values[node];
                     var serviceProvider = new XamlServiceProvider(enode, Context);
-                    var convertedValue = value.ConvertTo(parameter?.ParameterType, () => parameter, serviceProvider);
+                    var convertedValue = value?.ConvertTo(parameter.ParameterType, () => parameter, serviceProvider);
                     array[i] = convertedValue;
                 }
                 return array;

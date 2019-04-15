@@ -64,6 +64,10 @@ namespace ElmSharp
         {
         }
 
+        internal GenListItem(object data, GenItemClass itemClass, EvasObject parent) : base(data, itemClass, parent)
+        {
+        }
+
         /// <summary>
         /// Gets or sets whether a given genlist item is selected.
         /// </summary>

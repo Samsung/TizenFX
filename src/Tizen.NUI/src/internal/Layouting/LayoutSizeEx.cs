@@ -71,6 +71,7 @@ namespace Tizen.NUI
             return ((lhs.Width == rhs.Width) && (lhs.Height == rhs.Height));
         }
 
+
         /// <summary>
         /// Compares whether the two LayoutSize instances are same or not.
         /// </summary>

@@ -532,6 +532,12 @@ namespace Tizen.NUI
             System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetTextures(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TextureSet;
+            if (cPtr != null && ret == null)
+            {
+                ret = new TextureSet(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
             NDalicPINVOKE.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
@@ -792,5 +798,6 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int STENCIL_OPERATION_ON_Z_PASS = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
         }
+
     }
 }

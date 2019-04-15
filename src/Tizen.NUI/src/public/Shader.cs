@@ -164,5 +164,6 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int PROGRAM = NDalicPINVOKE.Shader_Property_PROGRAM_get();
         }
+
     }
 }
