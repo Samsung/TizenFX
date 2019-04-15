@@ -179,6 +179,30 @@ namespace Tizen.WebView
         }
 
         /// <summary>
+        /// Gets the back/forward list object of this view.
+        /// </summary>
+        /// <returns>The BackForward List object of this view.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public BackForwardList GetBackForwardList()
+        {
+            IntPtr backforwardlistHandle = Interop.ChromiumEwk.ewk_view_back_forward_list_get(_realHandle);
+            if (backforwardlistHandle == IntPtr.Zero)
+            {
+                return null;
+            }
+            return new BackForwardList(backforwardlistHandle);
+        }
+
+        /// <summary>
+        /// Clear the back/forward list object of this view.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void ClearBackForwardList()
+        {
+            Interop.ChromiumEwk.ewk_view_back_forward_list_clear(_realHandle);
+        }
+
+        /// <summary>
         /// Asks the object to load the given URL.
         /// </summary>
         /// <remarks>
