@@ -28,6 +28,7 @@ internal static partial class Interop
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool eina_hash_add(IntPtr hash, string Key, string Value);
 
+        [DllImport(Libraries.Eina)]
         internal static extern uint eina_list_count(IntPtr list);
 
         [DllImport(Libraries.Eina)]
