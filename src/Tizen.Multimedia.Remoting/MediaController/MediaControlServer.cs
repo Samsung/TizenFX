@@ -31,9 +31,9 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 4 </since_tizen>
     public static partial class MediaControlServer
     {
-        private static IntPtr _handle = IntPtr.Zero;
+        private static IntPtr _handle;
         private static bool? _isRunning;
-        private static string _serverName = null;
+        private static string _serverName;
 
         /// <summary>
         /// Gets a value indicating whether the server is running.
