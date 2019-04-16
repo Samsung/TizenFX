@@ -612,7 +612,9 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 if (AudioPitchEnabled == false)
+                {
                     throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
 
                 NativePlayer.GetAudioPitch(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get the audio pitch");
@@ -625,7 +627,9 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 if (AudioPitchEnabled == false)
+                {
                     throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
 
                 if (value < 0.5F || 2.0F < value)
                 {
