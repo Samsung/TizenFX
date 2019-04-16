@@ -15,6 +15,7 @@ namespace Tizen.NUI.Xaml
         void Visit(RootNode node, INode parentNode);
         void Visit(ListNode node, INode parentNode);
         bool SkipChildren(INode node, INode parentNode);
+        bool IsResourceDictionary(ElementNode node);
     }
 
     internal enum TreeVisitingMode {
@@ -45,5 +46,6 @@ namespace Tizen.NUI.Xaml
         public void Visit(RootNode node, INode parentNode) => action(node, parentNode);
         public void Visit(ListNode node, INode parentNode) => action(node, parentNode);
         public bool SkipChildren(INode node, INode parentNode) => false;
+        public bool IsResourceDictionary(ElementNode node) => false;
     }
 }

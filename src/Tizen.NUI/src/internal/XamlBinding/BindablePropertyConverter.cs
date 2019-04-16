@@ -10,7 +10,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    // [Xaml.ProvideCompiled("Xamarin.Forms.Core.XamlC.BindablePropertyConverter")]
+    [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.BindablePropertyConverter")]
     [Xaml.TypeConversion(typeof(BindableProperty))]
     internal sealed class BindablePropertyConverter : TypeConverter, IExtendedTypeConverter
     {

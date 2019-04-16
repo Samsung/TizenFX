@@ -58,7 +58,7 @@ namespace Tizen.NUI.Binding
         public static readonly BindableProperty CascadeInputTransparentProperty = BindableProperty.Create(
             nameof(CascadeInputTransparent), typeof(bool), typeof(Layout), true);
 
-        public new static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
+        public static new readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
 
         static IList<KeyValuePair<Layout, int>> s_resolutionList = new List<KeyValuePair<Layout, int>>();
         static bool s_relayoutInProgress;

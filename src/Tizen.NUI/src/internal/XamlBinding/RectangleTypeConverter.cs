@@ -5,7 +5,7 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.Binding
 {
-    // [Xaml.ProvideCompiled("Xamarin.Forms.Core.XamlC.RectangleTypeConverter")]
+    [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.RectangleTypeConverter")]
     [Xaml.TypeConversion(typeof(Rectangle))]
     internal class RectangleTypeConverter : TypeConverter
     {

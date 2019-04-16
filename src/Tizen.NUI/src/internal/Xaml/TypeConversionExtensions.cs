@@ -100,6 +100,19 @@ namespace Tizen.NUI.Xaml
             return value.ConvertTo(toType, getConverter, serviceProvider);
         }
 
+        private delegate void ParseValueFunc(string s, IFormatProvider provider);
+
+        static private Dictionary<Type, ParseValueFunc> typeToParseValueFunc = null;
+
+        static private void BuildParseValueFunc()
+        {
+            if (null == typeToParseValueFunc)
+            {
+                typeToParseValueFunc = new Dictionary<Type, ParseValueFunc>();
+
+            }
+        }
+
         internal static object ConvertTo(this object value, Type toType, Func<object> getConverter,
             IServiceProvider serviceProvider)
         {
@@ -111,20 +124,24 @@ namespace Tizen.NUI.Xaml
             {
                 //If there's a [TypeConverter], use it
                 object converter = getConverter?.Invoke();
-                var xfTypeConverter = converter as TypeConverter;
-                var xfExtendedTypeConverter = xfTypeConverter as IExtendedTypeConverter;
-                if (xfExtendedTypeConverter != null)
-                    return value = xfExtendedTypeConverter.ConvertFromInvariantString(str, serviceProvider);
-                if (xfTypeConverter != null)
-                    return value = xfTypeConverter.ConvertFromInvariantString(str);
-                var converterType = converter?.GetType();
-                if (converterType != null)
+                if (null != converter)
                 {
-                    var convertFromStringInvariant = converterType.GetRuntimeMethod("ConvertFromInvariantString",
-                        new[] { typeof (string) });
-                    if (convertFromStringInvariant != null)
-                        return value = convertFromStringInvariant.Invoke(converter, new object[] { str });
+                    var xfTypeConverter = converter as TypeConverter;
+                    var xfExtendedTypeConverter = xfTypeConverter as IExtendedTypeConverter;
+                    if (xfExtendedTypeConverter != null)
+                        return value = xfExtendedTypeConverter.ConvertFromInvariantString(str, serviceProvider);
+                    if (xfTypeConverter != null)
+                        return value = xfTypeConverter.ConvertFromInvariantString(str);
+                    var converterType = converter?.GetType();
+                    if (converterType != null)
+                    {
+                        var convertFromStringInvariant = converterType.GetRuntimeMethod("ConvertFromInvariantString",
+                            new[] { typeof(string) });
+                        if (convertFromStringInvariant != null)
+                            return value = convertFromStringInvariant.Invoke(converter, new object[] { str });
+                    }
                 }
+
                 var ignoreCase = (serviceProvider?.GetService(typeof(IConverterOptions)) as IConverterOptions)?.IgnoreCase ?? false;
 
                 //If the type is nullable, as the value is not null, it's safe to assume we want the built-in conversion
@@ -134,6 +151,7 @@ namespace Tizen.NUI.Xaml
                 //Obvious Built-in conversions
                 if (toType.GetTypeInfo().IsEnum)
                     return Enum.Parse(toType, str, ignoreCase);
+
                 if (toType == typeof(SByte))
                     return SByte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(Int16))

@@ -5,7 +5,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    // [ProvideCompiled("Tizen.NUI.Core.XamlC.PassthroughValueProvider")]
+    [ProvideCompiled("Tizen.NUI.Core.XamlC.PassthroughValueProvider")]
     [AcceptEmptyServiceProvider]
     internal sealed class XamlPropertyCondition : Condition, IValueProvider
     {
@@ -28,7 +28,6 @@ namespace Tizen.NUI.Binding
                     return;
                 if (IsSealed)
                     throw new InvalidOperationException("Can not change Property once the Trigger has been applied.");
-
                 _property = value;
 
                 //convert the value
