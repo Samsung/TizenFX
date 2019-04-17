@@ -132,12 +132,14 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_title")]
         internal static extern MediaContentError GetTitle(MediaInfoHandle mediaInformationHandle, out IntPtr title);
 
+        // Please do not use! The public API related this will be deprecated in level 6
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_storage_id")]
         internal static extern MediaContentError GetStorageId(MediaInfoHandle mediaInformationHandle, out IntPtr storageId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_is_drm")]
         internal static extern MediaContentError IsDrm(MediaInfoHandle mediaInformationHandle, out bool isDrm);
 
+        // Please do not use! The public API related this will be deprecated in level 6
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_storage_type")]
         internal static extern MediaContentError GetStorageType(MediaInfoHandle mediaInformationHandle, out StorageType storageType);
 

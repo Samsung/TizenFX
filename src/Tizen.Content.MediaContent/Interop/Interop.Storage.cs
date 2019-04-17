@@ -20,6 +20,7 @@ using Tizen.Content.MediaContent;
 
 internal static partial class Interop
 {
+    [Obsolete("Please do not use! The public API related all these API will be deprecated in level 6")]
     internal static class Storage
     {
         [DllImport(Libraries.MediaContent, EntryPoint = "media_storage_get_storage_info_from_db")]
