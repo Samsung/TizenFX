@@ -52,7 +52,6 @@ namespace Tizen.Network.Stc
         private static StcManagerImpl _instance;
         private Interop.Stc.StatsInfoCallback _getStatsCb;
         private Interop.Stc.GetAllStatsFinishedCallback _getAllStatsCb;
-        private Interop.Stc.StatsInfoCallback _getTotalStatsCb;
 
         private StcManagerImpl()
         {
