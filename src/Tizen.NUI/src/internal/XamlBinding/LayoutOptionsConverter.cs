@@ -7,7 +7,7 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.Binding
 {
-    // [Xaml.ProvideCompiled("Xamarin.Forms.Core.XamlC.LayoutOptionsConverter")]
+    [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.LayoutOptionsConverter")]
     [Xaml.TypeConversion(typeof(LayoutOptions))]
     internal sealed class LayoutOptionsConverter : TypeConverter
     {

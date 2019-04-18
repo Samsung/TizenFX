@@ -2,7 +2,7 @@
 
 namespace Tizen.NUI.Xaml
 {
-    // [ProvideCompiled("Tizen.NUI.Build.Tasks.NullExtension")]
+    [ProvideCompiled("Tizen.NUI.Xaml.Build.Tasks.NullExtension")]
     [AcceptEmptyServiceProvider]
     internal class NullExtension : IMarkupExtension
     {

@@ -7,7 +7,6 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding.Internals
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal abstract class Ticker
     {
         static Ticker s_ticker;
