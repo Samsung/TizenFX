@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Text;
 using System.Xml;
 
 namespace Tizen.NUI.Xaml
@@ -7,7 +9,22 @@ namespace Tizen.NUI.Xaml
     {
         readonly string _unformattedMessage;
 
-        public XamlParseException(string message, IXmlLineInfo xmlInfo, Exception innerException = null) : base(FormatMessage(message, xmlInfo), innerException)
+        static private StringBuilder GetStackInfo()
+        {
+            StringBuilder ret = new StringBuilder("\nStack:\n");
+
+            StackTrace st = new StackTrace();
+
+            for (int i = 2; i < st.FrameCount; i++)
+            {
+                StackFrame sf = st.GetFrame(i);
+                ret.AppendFormat("File:{0}, Method:{1}, Line:{2}\n", sf.GetFileName(), sf.GetMethod().Name, sf.GetFileLineNumber());
+            }
+
+            return ret;
+        }
+
+        public XamlParseException(string message, IXmlLineInfo xmlInfo, Exception innerException = null) : base(FormatMessage(message + GetStackInfo(), xmlInfo), innerException)
         {
             _unformattedMessage = message;
             XmlInfo = xmlInfo;

@@ -173,9 +173,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_delete_playlist")]
         internal static extern MediaControllerError DeletePlaylist(IntPtr handle, IntPtr playlist);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_playlist")]
-        internal static extern MediaControllerError ForeachPlaylist(IntPtr handle, PlaylistCallback callback, IntPtr userData);
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_index")]
         internal static extern MediaControllerError SetIndexOfCurrentPlayingMedia(IntPtr handle, string index);
 

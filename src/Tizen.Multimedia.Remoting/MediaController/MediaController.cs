@@ -204,8 +204,9 @@ namespace Tizen.Multimedia.Remoting
                     return false;
                 }
             };
-            NativePlaylist.ForeachServerPlaylist(Manager.Handle, ServerAppId, playlistCallback, IntPtr.Zero)
-                .ThrowIfError("Failed to get playlist.");
+
+            NativePlaylist.ForeachPlaylist(ServerAppId, playlistCallback, IntPtr.Zero).
+                ThrowIfError("Failed to get playlist.");
 
             if (caught != null)
             {

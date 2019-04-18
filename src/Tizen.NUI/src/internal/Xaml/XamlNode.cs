@@ -164,11 +164,9 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        bool IsResourceDictionary() => XmlType.Name == "ResourceDictionary";
-
         protected bool SkipChildren(IXamlNodeVisitor visitor, INode node, INode parentNode) =>
                (visitor.StopOnDataTemplate && IsDataTemplate(parentNode))
-            || (visitor.StopOnResourceDictionary && IsResourceDictionary())
+            || (visitor.StopOnResourceDictionary && visitor.IsResourceDictionary(this))
             || visitor.SkipChildren(node, parentNode);
 
         protected bool SkipVisitNode(IXamlNodeVisitor visitor, INode parentNode) =>
