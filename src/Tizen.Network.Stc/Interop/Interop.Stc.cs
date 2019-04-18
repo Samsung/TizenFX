@@ -47,8 +47,6 @@ internal static partial class Interop
         internal static extern int GetAllStats(SafeStcHandle stc, IntPtr rule, GetAllStatsFinishedCallback infoCb, IntPtr userData);
         [DllImport(Libraries.Stc,EntryPoint = "stc_foreach_all_stats")]
         internal static extern int ForeachAllStats(IntPtr info, StatsInfoCallback infoCb, IntPtr userData);
-        [DllImport(Libraries.Stc,EntryPoint = "stc_get_total_stats")]
-        internal static extern int GetTotalStats(SafeStcHandle stc, IntPtr rule, StatsInfoCallback infoCb, IntPtr userData);
 
         internal static class Rule {
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_create")]

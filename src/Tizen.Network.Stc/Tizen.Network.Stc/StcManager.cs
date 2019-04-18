@@ -105,20 +105,5 @@ namespace Tizen.Network.Stc
         {
             return StcManagerImpl.Instance.GetAllStatisticsAsync(rule);
         }
-
-        /// <summary>
-        /// Gets the total statistics information by interface type and according to the given rule, asynchronously.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <param name="rule"> The StcRule object.</param>
-        /// <returns>The total statistics information of the applications that used network in between timestamps specified.</returns>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public static Task<NetworkStatistics> GetTotalStatisticsAsync(StcRule rule)
-        {
-            return StcManagerImpl.Instance.GetTotalStatisticsAsync(rule);
-        }
     }
 }

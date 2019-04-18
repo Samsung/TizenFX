@@ -192,44 +192,5 @@ namespace Tizen.Network.Stc
 
             return task.Task;
         }
-
-        internal Task<NetworkStatistics> GetTotalStatisticsAsync(StcRule rule)
-        {
-            if (rule._disposed)
-            {
-                throw new ArgumentException("Invalid StcRule object (Object may have been disposed or released).");
-            }
-
-            TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
-
-            _getTotalStatsCb = (int result, IntPtr info, IntPtr userData) =>
-            {
-                if(result != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "GetTotalStats() failed, Error - " + (StcError)result);
-                    task.SetException(new InvalidOperationException("Error occurs during GetTotalStats(), " + (StcError)result));
-                }
-
-                IntPtr cloned;
-                int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
-                if (retValue != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
-                    task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
-                }
-
-                task.SetResult(new NetworkStatistics(cloned));
-                return CallbackRet.Continue;
-            };
-
-            int ret = Interop.Stc.GetTotalStats(GetSafeHandle(), rule._ruleHandle, _getTotalStatsCb, IntPtr.Zero);
-            if (ret != (int)StcError.None)
-            {
-                Log.Error(Globals.LogTag, "GetTotalStats() failed , Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
-            }
-
-            return task.Task;
-        }
     }
 }
