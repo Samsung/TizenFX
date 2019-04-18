@@ -1062,21 +1062,21 @@ namespace Tizen.Uix.Tts
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
-			{
-				lock (thisLock)
-				{
-					if (_handle != IntPtr.Zero)
-					{
-						TtsError error = TtsDestroy(_handle);
-						if (error != TtsError.None)
-						{
-							Log.Error(LogTag, "Destroy Failed with error " + error);
-						}
-						_handle = IntPtr.Zero;
-					}
-				}
+            {
+                lock (thisLock)
+                {
+                    if (_handle != IntPtr.Zero)
+                    {
+                        TtsError error = TtsDestroy(_handle);
+                        if (error != TtsError.None)
+                        {
+	                        Log.Error(LogTag, "Destroy Failed with error " + error);
+                        }
+                        _handle = IntPtr.Zero;
+	                }
+                }
 
-				disposedValue = true;
+                disposedValue = true;
             }
         }
     }
