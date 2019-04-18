@@ -105,6 +105,19 @@ namespace Tizen.NUI.Binding
         {
             { typeof(Uri), new UriTypeConverter() },
             { typeof(Color), new ColorTypeConverter() },
+            { typeof(Size2D), new Size2DTypeConverter() },
+            { typeof(Position2D), new Position2DTypeConverter() },
+            { typeof(Size), new SizeTypeConverter() },
+            { typeof(Position), new PositionTypeConverter() },
+            { typeof(Rectangle), new RectangleTypeConverter() },
+            { typeof(Rotation), new RotationTypeConverter() },
+            { typeof(Thickness), new ThicknessTypeConverter() },
+            { typeof(Vector2), new Vector2TypeConverter() },
+            { typeof(Vector3), new Vector3TypeConverter() },
+            { typeof(Vector4), new Vector4TypeConverter() },
+            { typeof(RelativeVector2), new RelativeVector2TypeConverter() },
+            { typeof(RelativeVector3), new RelativeVector3TypeConverter() },
+            { typeof(RelativeVector4), new RelativeVector4TypeConverter() },
         };
 
         // more or less the encoding of this, without the need to reflect

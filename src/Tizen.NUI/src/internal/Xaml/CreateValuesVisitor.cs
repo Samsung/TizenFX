@@ -29,6 +29,7 @@ namespace Tizen.NUI.Xaml
         public bool StopOnResourceDictionary => false;
         public bool VisitNodeOnDataTemplate => false;
         public bool SkipChildren(INode node, INode parentNode) => false;
+        public bool IsResourceDictionary(ElementNode node) => typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]);
 
         public void Visit(ValueNode node, INode parentNode)
         {

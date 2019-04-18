@@ -37,6 +37,7 @@ namespace Tizen.NUI.Xaml
         public bool StopOnResourceDictionary { get; }
         public bool VisitNodeOnDataTemplate => true;
         public bool SkipChildren(INode node, INode parentNode) => false;
+        public bool IsResourceDictionary(ElementNode node) => typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]);
 
         public void Visit(ValueNode node, INode parentNode)
         {
@@ -281,7 +282,12 @@ namespace Tizen.NUI.Xaml
 #if NETSTANDARD1_0
             var bindableFieldInfo = elementType.GetFields().FirstOrDefault(fi => fi.Name == localName + "Property");
 #else
-            var bindableFieldInfo = elementType.GetFields(BindingFlags.Static | BindingFlags.Public|BindingFlags.FlattenHierarchy).FirstOrDefault(fi => fi.Name == localName + "Property");
+            var bindableFieldInfo = elementType.GetFields(BindingFlags.Static | BindingFlags.NonPublic|BindingFlags.FlattenHierarchy).FirstOrDefault(fi => fi.Name == localName + "Property");
+
+            if (null == bindableFieldInfo)
+            {
+                bindableFieldInfo = elementType.GetFields(BindingFlags.Static | BindingFlags.Public | BindingFlags.FlattenHierarchy).FirstOrDefault(fi => fi.Name == localName + "Property");
+            }
 #endif
             Exception exception = null;
             if (exception == null && bindableFieldInfo == null) {
@@ -323,6 +329,7 @@ namespace Tizen.NUI.Xaml
             //If it's an attached BP, update elementType and propertyName
             var bpOwnerType = xamlelement.GetType();
             var attached = GetRealNameAndType(ref bpOwnerType, propertyName.NamespaceURI, ref localName, context, lineInfo);
+
             var property = GetBindableProperty(bpOwnerType, localName, lineInfo, false);
 
             //If the target is an event, connect

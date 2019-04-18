@@ -10,6 +10,7 @@ namespace Tizen.NUI.Xaml
         public bool StopOnResourceDictionary => false;
         public bool VisitNodeOnDataTemplate => true;
         public bool SkipChildren(INode node, INode parentNode) => false;
+        public bool IsResourceDictionary(ElementNode node) => false;
 
         public void Visit(ElementNode node, INode parentNode)
         {
@@ -21,7 +22,7 @@ namespace Tizen.NUI.Xaml
                     continue;
                 if (!propertyName.Equals(XamlParser.McUri, "Ignorable"))
                     continue;
-                (parentNode.IgnorablePrefixes ?? (parentNode.IgnorablePrefixes = new List<string>()))?.AddRange(propertyValue.Split(','));
+                (parentNode.IgnorablePrefixes ?? (parentNode.IgnorablePrefixes = new List<string>())).AddRange(propertyValue.Split(','));
             }
 
             foreach (var propertyKvp in node.Properties.ToList())

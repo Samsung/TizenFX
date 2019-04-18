@@ -40,7 +40,7 @@ namespace Tizen.NUI.Xaml
 {
     internal static class XamlParser
     {
-        public const string XFUri = "http://xamarin.com/schemas/2014/forms";
+        public const string XFUri = "http://tizen.org/Tizen.NUI/2018/XAML";
         public const string NUI2018Uri = "http://tizen.org/Tizen.NUI/2018/XAML";
         public const string X2006Uri = "http://schemas.microsoft.com/winfx/2006/xaml";
         public const string X2009Uri = "http://schemas.microsoft.com/winfx/2009/xaml";

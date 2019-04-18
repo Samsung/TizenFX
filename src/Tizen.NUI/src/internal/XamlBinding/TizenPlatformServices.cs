@@ -215,9 +215,9 @@ namespace Tizen.NUI.Binding
                             if (refAsm != null)
                             {
                                 RegisterAssemblyRecursively(refAsm);
-                                if (refName.Name == "Xamarin.Forms.Core")
+                                if (refName.Name == "Tizen.NUI.Xaml.Core")
                                 {
-                                    if (refAsm.GetType("Xamarin.Forms.PlatformConfiguration.TizenSpecific.VisualElement") != null)
+                                    if (refAsm.GetType("Tizen.NUI.Xaml.PlatformConfiguration.TizenSpecific.VisualElement") != null)
                                     {
                                         IsTizenSpecificAvailable = true;
                                     }
