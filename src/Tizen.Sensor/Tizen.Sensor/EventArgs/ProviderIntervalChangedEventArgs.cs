@@ -31,18 +31,13 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Provider Interval Changed callback.
         /// </summary>
-        internal ProviderIntervalChangedEventArgs(Int64 _userData, uint intervalMs) {
-            IntervalMs = intervalMs;
-            UserData = _userData;
+        internal ProviderIntervalChangedEventArgs(IntPtr provider, uint interval, Int64 userData) {
+            Interval = interval;
         }
 
         /// <summary>
         /// Interval
         /// </summary>
-        public uint IntervalMs { get; private set; }
-        /// <summary>
-        /// Indicates userdata sent by provider Interval changed callback
-        /// </summary>
-        public Int64 UserData { get; private set; }
+        public uint Interval { get; private set; }
     }
 }

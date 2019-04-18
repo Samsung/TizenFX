@@ -85,13 +85,12 @@ namespace Tizen.Sensor
         {
             customSensorKey = String.Copy(uri);
             _index = index;
-            try
-            {
+            
                 Values = new float[maxDataCount];
-            }
-            catch (OutOfMemoryException e)
+
+            if (Values == null)
             {
-                Log.Error(Globals.LogTag, e.Message + "Memory allocation failed");
+                Log.Error(Globals.LogTag, "Memory allocation failed");
             }
 
             Log.Info(Globals.LogTag, "Creating CustomSensor");

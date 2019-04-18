@@ -16,12 +16,60 @@
 
 using System;
 using Tizen.System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Sensor
 {
     internal static class Globals
     {
         internal const string LogTag = "Tizen.Sensor";
+    }
+
+    /// <summary>
+    /// Data from sensor
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 0)]
+    public struct SensorEventStruct
+    {
+        /// <summary>
+        /// Accuracy of sensor data 
+        /// </summary>
+        public SensorDataAccuracy accuracy
+        {
+            get { return accuracy; }
+            private set { }
+        }
+
+        /// <summary>
+        /// time stamp value 
+        /// </summary>
+        public UInt64 Timestamp
+        {
+            get { return Timestamp; }
+            private set { }
+        }
+
+        /// <summary> 
+        /// value count
+        /// </summary>
+        public int valueCount
+        {
+            get { return valueCount; }
+            private set { }
+        }
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+        private float[] values;
+
+        /// <summary> 
+        /// sensor data values
+        /// </summary>
+        public float[] Values
+        {
+            get { return values; }
+            private set { }
+        }
+
     }
 
     /// <summary>
@@ -828,11 +876,8 @@ namespace Tizen.Sensor
         /// <param name="type">
         /// Sensor type.
         /// </param>
-        /// <param name="userData">
-        ///  User data to be passed to the callback function.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderRead(Enum type, IntPtr userData)
+        public void RecorderRead(Enum type)
         {
             _sensorRecorderDataCallBack = (Enum _type, Int64 data, int remains, Enum _error, Int64 _userData) =>
             {
@@ -840,14 +885,14 @@ namespace Tizen.Sensor
                 {
                 };
                 RecorderDataReceived?.Invoke(null, e);
-                Log.Debug(Globals.LogTag, "Recorder Data Status: " + e.RecorderDataStatus);
-                return e.RecorderDataStatus;
+                Log.Debug(Globals.LogTag, "Recorder data callback recieved");
+                return true;
             };
 
-            int error = Interop.SensorRecoder.RecorderRead(type, recorderQuery, _sensorRecorderDataCallBack, userData);
+            int error = Interop.SensorRecoder.RecorderRead(type, recorderQuery, _sensorRecorderDataCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error in Reading Recorder");
+                Log.Error(Globals.LogTag, "Error in reading recorder");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
             }
 
@@ -865,7 +910,7 @@ namespace Tizen.Sensor
             int error = Interop.SensorRecoder.RecorderStart(type, recorderOption);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error in Starting Recorder");
+                Log.Error(Globals.LogTag, "Error in starting recorder");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderStart Failed");
             }
 
@@ -883,7 +928,7 @@ namespace Tizen.Sensor
             int error = Interop.SensorRecoder.RecorderStop(type);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error in Starting Recorder");
+                Log.Error(Globals.LogTag, "Error in starting recorder");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderStop Failed");
             }
 
@@ -1031,11 +1076,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Registers the callback function to be invoked when a listener starts the sensor provider.
         /// </summary>
-        /// <param name="userData">
-        /// The user data to be passed to the callback function
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void ProviderSetStartCb(IntPtr userData)
+        public void ProviderSetStartCb()
         {
             _sensorProviderStartCallBack = (IntPtr _provider, Int64 _userData) =>
             {
@@ -1045,7 +1087,7 @@ namespace Tizen.Sensor
                 ProviderStarted?.Invoke(null, e);  
             };
 
-            int error = Interop.SensorProvider.ProviderSetStartCb(_sensorProviderHandle, _sensorProviderStartCallBack, userData);
+            int error = Interop.SensorProvider.ProviderSetStartCb(_sensorProviderHandle, _sensorProviderStartCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in setting start callback of sensor provider");
@@ -1054,7 +1096,11 @@ namespace Tizen.Sensor
 
         }
 
-        private void ProviderSetStopCb(IntPtr userData)
+        /// <summary>
+        /// Registers the callback function to be invoked when a sensor listener stops the sensor provider.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void ProviderSetStopCb()
         {
             _sensorProviderStopCallBack = (IntPtr _provider, Int64 _userData) =>
             {
@@ -1064,7 +1110,7 @@ namespace Tizen.Sensor
                 ProviderStoped?.Invoke(null, e);
             };
 
-            int error = Interop.SensorProvider.ProviderSetStopCb(_sensorProviderHandle, _sensorProviderStopCallBack, userData);
+            int error = Interop.SensorProvider.ProviderSetStopCb(_sensorProviderHandle, _sensorProviderStopCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in setting stop callback of sensor provider");
@@ -1073,17 +1119,21 @@ namespace Tizen.Sensor
 
         }
 
-        private void ProviderSetIntervalChangedCb(IntPtr userData)
+        /// <summary>
+        /// Registers the callback function to be invoked when the interval is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void ProviderSetIntervalChangedCb()
         {
             _sensorProviderIntervalChangedCallBack = (IntPtr _provider, uint IntervalMs, Int64 _userData) =>
             {
-                ProviderIntervalChangedEventArgs e = new ProviderIntervalChangedEventArgs(_userData,IntervalMs)
+                ProviderIntervalChangedEventArgs e = new ProviderIntervalChangedEventArgs(_provider, IntervalMs, _userData)
                 {
                 };
                 ProviderIntervalChanged?.Invoke(null, e);
             };
 
-            int error = Interop.SensorProvider.ProviderSetIntervalChangedCb(_sensorProviderHandle, _sensorProviderIntervalChangedCallBack, userData);
+            int error = Interop.SensorProvider.ProviderSetIntervalChangedCb(_sensorProviderHandle, _sensorProviderIntervalChangedCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in setting interval callback of sensor provider");
@@ -1092,7 +1142,15 @@ namespace Tizen.Sensor
 
         }
 
-        private void ProviderPublish(Interop.SensorProvider.SensorEventS sensorEventS)
+        /// <summary>
+        /// Publishes a sensor event through the declared sensor.
+        /// This function publishes a sensor's data to its listeners.
+        /// </summary>
+        /// <param name="sensorEventS">
+        /// The sensor event.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        public void ProviderPublish(SensorEventStruct sensorEventS)
         {
             int error = Interop.SensorProvider.ProviderPublish(_sensorProviderHandle, sensorEventS);
             if (error != (int)SensorError.None)
@@ -1106,11 +1164,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Adds a callback function to be invoked when a new sensor is added.
         /// </summary>
-        /// <param name="userData">
-        /// The user data to be passed to the callback function.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void AddSensorAddedCB(IntPtr userData)
+        public void SetSensorAddedCB()
         {
             _sensorAddedCallBack = (String uri, Int64 _userData) =>
             {
@@ -1120,7 +1175,7 @@ namespace Tizen.Sensor
                 AddSensorAdded?.Invoke(null, e);
             };
 
-            int error = Interop.SensorManager.AddSensorAddedCB(_sensorAddedCallBack, userData);
+            int error = Interop.SensorManager.AddSensorAddedCB(_sensorAddedCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in sensor add sensor added callback");
@@ -1132,11 +1187,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Adds a callback function to be invoked when a sensor is removed.
         /// </summary>
-        /// <param name="userData">
-        /// The user data to be passed to the callback function.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void AddSensorRemovedCB(IntPtr userData)
+        public void SetSensorRemovedCB()
         {
             _sensorRemovedCallBack = (String uri, Int64 _userData) =>
             {
@@ -1146,7 +1198,7 @@ namespace Tizen.Sensor
                 AddSensorRemoved?.Invoke(null, e);
             };
 
-            int error = Interop.SensorManager.AddSensorRemovedCB(_sensorRemovedCallBack, userData);
+            int error = Interop.SensorManager.AddSensorRemovedCB(_sensorRemovedCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in sensor add sensor removed callback");
@@ -1157,8 +1209,9 @@ namespace Tizen.Sensor
 
         /// <summary>
         /// Removes a callback function added using AddSensorRemovedCB()
+        /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void RemoveSensorAddedCB()
+        public void UnsetSensorAddedCB()
         {
             _sensorAddedCallBack = (String uri, Int64 _userData) =>
             {
@@ -1179,8 +1232,9 @@ namespace Tizen.Sensor
 
         /// <summary>
         /// Removes a callback function added using AddSensorRemovedCB()
+        /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void RemoveSensorRemovedCB()
+        public void UnsetSensorRemovedCB()
         {
             _sensorRemovedCallBack = (String uri, Int64 _userData) =>
             {

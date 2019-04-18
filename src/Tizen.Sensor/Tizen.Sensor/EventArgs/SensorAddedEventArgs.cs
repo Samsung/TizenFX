@@ -31,13 +31,6 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Sensor Added Callback.
         /// </summary>
-        internal SensorAddedEventArgs(Int64 userData) {
-            UserData = UserData;
-        }
-
-        /// <summary>
-        /// Indicates userdata sent by provider sensor added callback
-        /// </summary>
-        public Int64 UserData { get; private set; }
+        internal SensorAddedEventArgs(Int64 userData) { }
     }
 }

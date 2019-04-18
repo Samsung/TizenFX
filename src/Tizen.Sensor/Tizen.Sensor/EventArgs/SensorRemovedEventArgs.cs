@@ -28,13 +28,6 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Sensor Removed callback.
         /// </summary>
-        internal SensorRemovedEventArgs(Int64 userData) {
-            UserData = userData;
-        }
-
-        /// <summary>
-        /// Indicates userdata sent by provider sensor removed callback
-        /// </summary>
-        public Int64 UserData { get; private set; }
+        internal SensorRemovedEventArgs(Int64 userData) { }
     }
 }

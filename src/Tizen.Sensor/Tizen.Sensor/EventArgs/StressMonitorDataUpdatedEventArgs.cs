@@ -20,34 +20,128 @@ using System.Runtime.InteropServices;
 namespace Tizen.Sensor
 {
     /// <summary>
-    ///StressMonitorData
+    /// Data of the stress monitor
     /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
     public struct SensorStressMonitorData
     {
         internal const int SENSOR_STRESS_MONITOR_DATA_SIZE = 600;
         internal const int SENSOR_STRESS_MONITOR_BUF_SIZE = 44;
-        public int Mode;
-        public int Accuracy;
-        public int ValueCount;
+
+        /// <summary> 
+        /// Mode value 
+        /// </summary>
+        public int Mode
+        {
+            get { return Mode; }
+            private set { }
+        }
 
         /// <summary>
-        ///StressMonitorValue
+        /// Accuracy value
         /// </summary>
+        public int Accuracy
+        {
+            get { return Accuracy; }
+            private set { }
+        }
+
+        /// <summary>
+        /// Value Count
+        /// </summary>
+        public int ValueCount
+        {
+            get { return ValueCount; }
+            private set { }
+        }
+
+        /// <summary>
+        /// Values of the stress monitor sensor
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
         public struct StressMonitorValue
         {
-            public UInt64 TimeStamp;
-            public Byte Flag;
-            public Byte Stress;
-            public Byte Progress;
-            public Byte InfoAlgo;
-        }
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = SENSOR_STRESS_MONITOR_DATA_SIZE)]
-        public StressMonitorValue[] Values;
+            /// <summary> 
+            /// Time stamp value 
+            /// </summary>
+            public UInt64 TimeStamp
+            {
+                get { return TimeStamp; }
+                private set { }
+            }
 
-        public UInt32 BaseHr;
+            /// <summary> 
+            /// Flag value 
+            /// </summary>
+            public Byte Flag
+            {
+                get { return Flag; }
+                private set { }
+            }
+
+            /// <summary>
+            /// Stress value
+            /// </summary>
+            public Byte Stress
+            {
+                get { return Stress; }
+                private set { }
+            }
+
+            /// <summary>
+            /// Progress value
+            /// </summary>
+            public Byte Progress
+            {
+                get { return Progress; }
+                private set { }
+            }
+
+            /// <summary>
+            /// Info algo value 
+            /// </summary>
+            public Byte InfoAlgo
+            {
+                get { return InfoAlgo; }
+                private set { }
+            }
+        }
+
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = SENSOR_STRESS_MONITOR_DATA_SIZE)]
+        private StressMonitorValue[] values;
+
+        /// <summary> 
+        /// Array of StressMonitorValue
+        /// </summary>
+        public StressMonitorValue[] Values
+        {
+            get { return values; }
+            private set { }
+        }
+
+    /// <summary>
+    /// Base Hr value
+    /// </summary>
+    public UInt32 BaseHr
+        {
+            get { return BaseHr; }
+            private set { }
+        }
+
+
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = SENSOR_STRESS_MONITOR_BUF_SIZE)]
-        public UInt32[] Histogram;
+        private UInt32[] histogram;
+
+        /// <summary> 
+        /// Array of Histogram values
+        /// </summary>
+        public UInt32[] Histogram
+        {
+            get { return histogram; }
+            private set { }
+        }
     }
+
     /// <summary>
     /// The StressMonitor changed event arguments class is used for storing the data returned by a stress monitor.
     /// </summary>
@@ -63,7 +157,9 @@ namespace Tizen.Sensor
         /// Gets the value of the stress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value> The stress monitor data. </value>
+        /// <value>
+        /// The stress monitor data.
+        /// </value>
         public SensorStressMonitorData Data { get; private set; }
     }
 }

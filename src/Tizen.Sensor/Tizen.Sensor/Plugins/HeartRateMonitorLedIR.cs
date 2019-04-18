@@ -89,7 +89,7 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the heart rate monitor data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public event EventHandler<HeartRateMonitorLedIRDataUpdatedEventArgs> DataUpdated;
+        public event EventHandler<HeartRateMonitorDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()
         {
@@ -116,7 +116,7 @@ namespace Tizen.Sensor
                 TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 HrmIRLightValue = (int)sensorData.values[0];
 
-                DataUpdated?.Invoke(this, new HeartRateMonitorLedIRDataUpdatedEventArgs((int)sensorData.values[0]));
+                DataUpdated?.Invoke(this, new HeartRateMonitorDataUpdatedEventArgs((int)sensorData.values[0]));
             };
 
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);

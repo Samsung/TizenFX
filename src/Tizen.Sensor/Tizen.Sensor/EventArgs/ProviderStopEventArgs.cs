@@ -31,13 +31,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Provider Stop callback.
         /// </summary>
-        internal ProviderStopEventArgs(Int64 userData) {
-            UserData = userData;
-        }
+        internal ProviderStopEventArgs(Int64 userData) { }
 
-        /// <summary>
-        /// Indicates userdata sent by provider stop callback
-        /// </summary>
-        public Int64 UserData { get; private set; }
     }
 }

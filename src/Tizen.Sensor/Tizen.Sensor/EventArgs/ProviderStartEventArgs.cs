@@ -31,12 +31,6 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Provider Start callback.
         /// </summary>
-        internal ProviderStartEventArgs(Int64 userData) {
-            UserData = userData;
-        }
-        /// <summary>
-        /// Indicates userdata sent by provider start callback
-        /// </summary>
-        public Int64 UserData { get; private set; }
+        internal ProviderStartEventArgs(Int64 userData) { }
     }
 }

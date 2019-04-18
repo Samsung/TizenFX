@@ -36,8 +36,6 @@ namespace Tizen.Sensor
             Data = data;
             Remains = remains;
             Error = error;
-            UserData = userData;
-            RecorderDataStatus = true;
         }
 
         /// <summary>
@@ -59,16 +57,5 @@ namespace Tizen.Sensor
         /// Gets Error.
         /// </summary>
         public Enum Error { get; private set; }
-
-        /// <summary>
-        /// Gets UserData.
-        /// </summary>
-        public Int64 UserData { get; private set; }
-
-        /// <summary>
-        /// Sets RecorderDataStatus.
-        /// </summary>
-        public bool RecorderDataStatus { get; set; }
-
     }
 }

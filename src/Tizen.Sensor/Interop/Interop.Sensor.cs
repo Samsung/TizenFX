@@ -189,18 +189,7 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SensorProviderIntervalChangedCb(IntPtr provider, uint IntervalMs, Int64 userData);
-
-       
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct SensorEventS
-        {
-            internal int accuracy;
-            internal UInt64 timeStamp;
-            internal int valueCount;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_VALUE_SIZE)]
-            internal float[] values;
-        }
-
+   
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_create_provider")]
         internal static extern int CreateProvider(String uri, out  IntPtr provider);
 
@@ -235,11 +224,8 @@ internal static partial class Interop
         internal static extern int ProviderSetIntervalChangedCb(IntPtr provider, SensorProviderIntervalChangedCb intervalCb, IntPtr userData);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_publish")]
-        internal static extern int ProviderPublish(IntPtr provider,  SensorEventS _event);
-
+        internal static extern int ProviderPublish(IntPtr provider, Tizen.Sensor.SensorEventStruct _event);
     }
-
-    
 
     internal static partial class Libc
     {
@@ -274,5 +260,4 @@ internal static partial class Interop
         SensorStressMonitorData outStruct = (SensorStressMonitorData)Marshal.PtrToStructure<SensorStressMonitorData>(unmanagedVariable);
         return outStruct;
     }
-
 }
