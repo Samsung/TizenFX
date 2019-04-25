@@ -29,7 +29,7 @@ namespace CustomLayoutByAbsoluteLayout
         {
             Console.WriteLine($"CustomLayoutHorizental() constructor!");
         }
-        protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             Console.WriteLine($"CustomLayoutHorizental OnMeasure() START");
 
@@ -138,7 +138,7 @@ namespace CustomLayoutByAbsoluteLayout
 
         private static LayoutItem[] childLayouts = new LayoutItem[10];
 
-        protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             var accumulatedHeight = new LayoutLength(0);
             var maxWidth = new LayoutLength(0);
@@ -219,7 +219,7 @@ namespace CustomLayoutByAbsoluteLayout
             Console.WriteLine($"CustomLayoutVertical OnLayout() END");
         }
     }
-    
+
     class Example : NUIApplication
     {
         public Example() : base()
