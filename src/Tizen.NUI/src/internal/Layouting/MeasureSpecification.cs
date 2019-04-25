@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// <summary>
         /// MeasureSpecification Size value.
         /// </summary>
-        public LayoutLengthEx Size;
+        public LayoutLength Size;
 
         /// <summary>
         /// MeasureSpecification Mode.
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="size">size value.</param>
         /// <param name="mode">mode vaue.</param>
-        public MeasureSpecification(LayoutLengthEx size, MeasureSpecification.ModeType mode)
+        public MeasureSpecification(LayoutLength size, MeasureSpecification.ModeType mode)
         {
             Size = size;
             Mode = mode;

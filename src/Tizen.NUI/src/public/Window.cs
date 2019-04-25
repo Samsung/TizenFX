@@ -1,3 +1,5 @@
+
+
 /*
  * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
@@ -31,11 +33,8 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
-        private readonly global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
         private Layer _rootLayer;
         private string _windowTitle;
-        private readonly LayoutItem rootLayoutItem;
-
         private List<Layer> _childLayers = new List<Layer>();
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback;
         private RootLayerTouchDataCallbackType _rootLayerTouchDataCallback;
@@ -62,24 +61,8 @@ namespace Tizen.NUI
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
 
-                localController = new LayoutController();
+                localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId() );
-
-                // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
-                // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
-                // Currently without these measure specs the new layout added will always be the size of the window.
-                global::System.IntPtr rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
-                // Store HandleRef used by Add()
-                rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
-                Layer rootLayer = GetRootLayer();
-                // Add the root layout created above to the root layer.
-                NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                global::System.IntPtr rootControlLayoutIntPtr = Tizen.NUI.NDalicManualPINVOKE.GetLayout__SWIG_1(rootLayoutCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                rootLayoutItem = new LayoutItem(rootControlLayoutIntPtr, true);
             }
         }
 
@@ -640,6 +623,14 @@ namespace Tizen.NUI
             }
         }
 
+        internal LayoutController LayoutController
+        {
+            get
+            {
+                return localController;
+            }
+        }
+
         /// <summary>
         /// Feed a key-event into the window.
         /// </summary>
@@ -974,7 +965,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            NDalicPINVOKE.Actor_Add(rootLayoutCPtr, View.getCPtr(view));
+            NDalicPINVOKE.Actor_Add(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
             view.InternalParent = this.GetRootLayer();
@@ -987,7 +978,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            NDalicPINVOKE.Actor_Remove(rootLayoutCPtr, View.getCPtr(view));
+            NDalicPINVOKE.Actor_Remove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
             this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
             view.InternalParent = null;
         }
@@ -1410,10 +1401,7 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if(rootLayoutItem != null)
-            {
-                rootLayoutItem.RequestLayout();
-            }
+            // Resetting Window size should request a relayout of the tree.
         }
 
         internal Size2D GetWindowSize()
@@ -1432,10 +1420,8 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if(rootLayoutItem != null)
-            {
-                rootLayoutItem.RequestLayout();
-            }
+            // Setting Position of the window should request a relayout of the tree.
+
         }
 
         internal Position2D GetPosition()
@@ -1453,10 +1439,8 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if(rootLayoutItem != null)
-            {
-                rootLayoutItem.RequestLayout();
-            }
+            // Setting Position of the window should request a relayout of the tree.
+
         }
 
         /// <summary>
@@ -1468,10 +1452,8 @@ namespace Tizen.NUI
             NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            if(rootLayoutItem != null)
-            {
-                rootLayoutItem.RequestLayout();
-            }
+            // Setting transparency of the window should request a relayout of the tree in the case the window changes from fully transparent.
+
         }
 
         internal System.IntPtr GetNativeWindowHandler()
