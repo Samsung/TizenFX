@@ -118,13 +118,19 @@ namespace Tizen.NUI
 			static void SetPendingArgumentNullException(string message, string paramName)
 			{
 				global::System.Exception e = SWIGPendingException.Retrieve();
-				if (e != null) message = message + " Inner Exception: " + e.Message;
+				if (e != null) 
+				{
+                    message = message + " Inner Exception: " + e.Message;
+				}
 				SWIGPendingException.Set(new global::System.ArgumentNullException(message, paramName));
 			}
 			static void SetPendingArgumentOutOfRangeException(string message, string paramName)
 			{
 				global::System.Exception e = SWIGPendingException.Retrieve();
-				if (e != null) message = message + " Inner Exception: " + e.Message;
+				if (e != null) 
+				{
+                    message = message + " Inner Exception: " + e.Message;
+				}
 				SWIGPendingException.Set(new global::System.ArgumentOutOfRangeException(paramName, message));
 			}
 	
@@ -150,7 +156,7 @@ namespace Tizen.NUI
 			}
 		}
 	
-		protected static SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
+		protected static readonly SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
 
         /// <since_tizen> 3 </since_tizen>
         public class SWIGPendingException
@@ -166,8 +172,12 @@ namespace Tizen.NUI
                 {
                     bool pending = false;
                     if (numExceptionsPending > 0)
+                    {
                         if (pendingException != null)
+                        {
                             pending = true;
+                        }
+                    }
                     return pending;
                 }
             }
@@ -176,9 +186,11 @@ namespace Tizen.NUI
             public static void Set(global::System.Exception e)
             {
                 if (pendingException != null)
+                {
                     throw new global::System.ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
+                }
                 pendingException = e;
-                lock (typeof(NDalicPINVOKE))
+                lock (pendingException)
                 {
                     numExceptionsPending++;
                 }
@@ -194,7 +206,7 @@ namespace Tizen.NUI
                     {
                         e = pendingException;
                         pendingException = null;
-                        lock (typeof(NDalicPINVOKE))
+                        lock (pendingException)
                         {
                             numExceptionsPending--;
                         }
@@ -233,7 +245,7 @@ namespace Tizen.NUI
 
         }
 
-        static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
+        static protected readonly SWIGStringHelper swigStringHelper = new SWIGStringHelper();
 
 
         static NDalicPINVOKE()
