@@ -26,14 +26,14 @@ namespace Tizen.Sensor
     {
         internal CustomSensorDataUpdatedEventArgs(Interop.SensorEventStruct sensorData)
         {
-            
-                Values = new float[sensorData.value_count];
-                Array.Copy(sensorData.values, Values, sensorData.value_count);
-            
-                if(Values == null)
-                { 
-                Log.Error(Globals.LogTag,  "Memory allocation failed");
-                }
+
+            Values = new float[sensorData.value_count];
+            Array.Copy(sensorData.values, Values, sensorData.value_count);
+
+            if (Values == null)
+            {
+                Log.Error(Globals.LogTag, "Memory allocation failed");
+            }
 
         }
 

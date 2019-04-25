@@ -31,31 +31,15 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Recorder Data callback.
         /// </summary>
-        internal RecorderDataEventArgs(Enum type, Int64 data, int remains, Enum error, Int64 userData) {
-            Type = type;
+        internal RecorderDataEventArgs(int type, int data, int remains, int error, Int64 userData)
+        {
             Data = data;
-            Remains = remains;
-            Error = error;
         }
-
-        /// <summary>
-        /// Gets Type.
-        /// </summary>
-        public Enum Type { get; private set; }
 
         /// <summary>
         /// Gets Data.
         /// </summary>
-        public Int64 Data { get; private set; }
+        public int Data { get; private set; }
 
-        /// <summary>
-        /// Gets Remains.
-        /// </summary>
-        public int Remains { get; private set; }
-
-        /// <summary>
-        /// Gets Error.
-        /// </summary>
-        public Enum Error { get; private set; }
     }
 }

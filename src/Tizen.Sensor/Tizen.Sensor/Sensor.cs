@@ -34,10 +34,10 @@ namespace Tizen.Sensor
         /// <summary>
         /// Accuracy of sensor data 
         /// </summary>
-        public SensorDataAccuracy accuracy
+        public SensorDataAccuracy Accuracy
         {
-            get { return accuracy; }
-            private set { }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -45,17 +45,17 @@ namespace Tizen.Sensor
         /// </summary>
         public UInt64 Timestamp
         {
-            get { return Timestamp; }
-            private set { }
+            get;
+            private set;
         }
 
         /// <summary> 
         /// value count
         /// </summary>
-        public int valueCount
+        public int ValueCount
         {
-            get { return valueCount; }
-            private set { }
+            get;
+            private set;
         }
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
@@ -68,6 +68,16 @@ namespace Tizen.Sensor
         {
             get { return values; }
             private set { }
+        }
+
+        /// <summary>
+        /// Gets the hash code for this instance of <see cref="SensorEventStruct"/>.
+        /// </summary>
+        /// <returns>The hash code for this instance of <see cref="SensorEventStruct"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public override int GetHashCode()
+        {
+            return new { Accuracy, Timestamp, ValueCount, Values }.GetHashCode();
         }
 
     }
@@ -111,35 +121,11 @@ namespace Tizen.Sensor
         /// <summary>
         /// RecorderDataReceived
         /// </summary>
-        public static event EventHandler<RecorderDataEventArgs> RecorderDataReceived;
-        /// <summary>
-        /// ProviderStarted
-        /// </summary>
-        public static event EventHandler<ProviderStartEventArgs> ProviderStarted;
-        /// <summary>
-        /// ProviderStoped
-        /// </summary>
-        public static event EventHandler<ProviderStopEventArgs> ProviderStoped;
+        private static event EventHandler<RecorderDataEventArgs> RecorderDataReceived;
         /// <summary>
         /// ProviderIntervalChanged
         /// </summary>
-        public static event EventHandler<ProviderIntervalChangedEventArgs> ProviderIntervalChanged;
-        /// <summary>
-        /// AddSensorAdded
-        /// </summary>
-        public static event EventHandler<SensorAddedEventArgs> AddSensorAdded;
-        /// <summary>
-        /// RemoveSensorAdded
-        /// </summary>
-        public static event EventHandler<SensorAddedEventArgs> RemoveSensorAdded;
-        /// <summary>
-        /// AddSensorRemoved
-        /// </summary>
-        public static event EventHandler<SensorRemovedEventArgs> AddSensorRemoved;
-        /// <summary>
-        /// RemoveSensorRemoved
-        /// </summary>
-        public static event EventHandler<SensorRemovedEventArgs> RemoveSensorRemoved;
+        private static event EventHandler<ProviderIntervalChangedEventArgs> ProviderIntervalChanged;
 
         internal Sensor(uint index)
         {
@@ -663,18 +649,20 @@ namespace Tizen.Sensor
         /// The default sensor handle.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void GetDefaultSensorByUri(string uri, out IntPtr sensorHandle)
+        public void GetDefaultSensorByUri(string uri)
         {
+            IntPtr sensorHandle;
             int error = Interop.SensorManager.GetDefaultSensorByUri(uri, out sensorHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error getting default sensor by uri");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.GetDefaultSensorByUri Failed");
             }
-
+            _sensorHandle = sensorHandle;
         }
 
-        private void GetHandleList(string uri, uint index) {
+        private void GetHandleList(string uri, uint index)
+        {
             IntPtr list;
             IntPtr[] sensorList;
             int count;
@@ -693,7 +681,8 @@ namespace Tizen.Sensor
         /// Creates a recorder option handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderCreateOption() {
+        public void RecorderCreateOption()
+        {
             int error = Interop.SensorRecoder.RecorderCreateOption(out recorderOption);
             if (error != (int)SensorError.None)
             {
@@ -725,18 +714,17 @@ namespace Tizen.Sensor
         /// <param name="key">
         /// Data attribute to retrieve.
         /// </param>
-        /// <param name="value">
-        /// Retrieved value.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderDataGetDouble(IntPtr data, int key, out IntPtr value)
+        public double RecorderDataGetDouble(int data, int key)
         {
-            int error = Interop.SensorRecoder.RecorderDataGetDouble(data , key , out value);
+            double value;
+            int error = Interop.SensorRecoder.RecorderDataGetDouble(data, key, out value);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error getting the sensor recorder double data");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDataGetDouble Failed");
             }
+            return value;
         }
 
         /// <summary>
@@ -745,21 +733,20 @@ namespace Tizen.Sensor
         /// <param name="data">
         /// Record data handle.
         /// </param>
-        /// <param name="startTime">
-        /// Start time of the time period of the record.
-        /// </param>
-        /// <param name="endTime">
-        /// End time of the time period of the record.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderDataGetTime(IntPtr data, out IntPtr startTime, out IntPtr endTime)
+        public Tuple<long, long> RecorderDataGetTime(int data)
         {
+            long startTime, endTime;
+            
             int error = Interop.SensorRecoder.RecorderDataGetTime(data, out startTime, out endTime);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error getting the sensor recorder time");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDataGetTime Failed");
             }
+
+            Tuple<long, long> list = new Tuple<long, long>(startTime, endTime);
+            return list;
         }
 
         /// <summary>
@@ -796,18 +783,17 @@ namespace Tizen.Sensor
         /// <param name="type">
         /// A sensor type to check.
         /// </param>
-        /// <param name="isSupported">
-        /// If supported.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderIsSupported(Enum type, out IntPtr isSupported)
+        public bool RecorderIsSupported(int type)
         {
+            bool isSupported;
             int error = Interop.SensorRecoder.RecorderIsSupported(type, out isSupported);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error checking if sensor recorder is supported");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderIsSupported Failed");
             }
+            return isSupported;
         }
 
         /// <summary>
@@ -820,9 +806,9 @@ namespace Tizen.Sensor
         /// Value.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderOptionSetInt(Enum recorderOptionE, int value)
+        public void RecorderOptionSetInt(int recorderOptionE, int value)
         {
-            int error = Interop.SensorRecoder.RecorderOptionSetInt(recorderOption, recorderOptionE,  value);
+            int error = Interop.SensorRecoder.RecorderOptionSetInt(recorderOption, recorderOptionE, value);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error checking sensor recorder option set int");
@@ -840,7 +826,7 @@ namespace Tizen.Sensor
         /// Value.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderQuerySetInt(Enum recorderQueryE, int value)
+        public void RecorderQuerySetInt(int recorderQueryE, int value)
         {
             int error = Interop.SensorRecoder.RecorderQuerySetInt(recorderQuery, recorderQueryE, value);
             if (error != (int)SensorError.None)
@@ -860,7 +846,7 @@ namespace Tizen.Sensor
         /// Time.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderQuerySetTime(Enum recorderQueryE, int time)
+        public void RecorderQuerySetTime(int recorderQueryE, int time)
         {
             int error = Interop.SensorRecoder.RecorderQuerySetTime(recorderQuery, recorderQueryE, time);
             if (error != (int)SensorError.None)
@@ -871,19 +857,59 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
+        ///  Queries the recorded data synchronously.
+        /// </summary>
+        /// <param name="type">
+        /// Sensor type.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        public void RecorderReadSync(int type)
+        {
+            _sensorRecorderDataCallBack = (int _type, int data, int remains, int _error, Int64 _userData) =>
+            {
+                RecorderDataEventArgs e = new RecorderDataEventArgs(_type, data, remains, _error, _userData)
+                {
+                };
+
+                if (_error != 0)
+                {
+                    Log.Error(Globals.LogTag, "Error in Sensor Recorder Data Read Synchronously CallBack");
+                }
+
+                RecorderDataReceived?.Invoke(null, e);
+                Log.Debug(Globals.LogTag, "Recorder data callback recieved");
+                return true;
+            };
+
+            int error = Interop.SensorRecoder.RecorderReadSync(type, recorderQuery, _sensorRecorderDataCallBack, IntPtr.Zero);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in synchronously reading recorder");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
+            }
+
+        }
+
+        /// <summary>
         ///  Queries the recorded data asynchronously.
         /// </summary>
         /// <param name="type">
         /// Sensor type.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderRead(Enum type)
+        public void RecorderRead(int type)
         {
-            _sensorRecorderDataCallBack = (Enum _type, Int64 data, int remains, Enum _error, Int64 _userData) =>
+            _sensorRecorderDataCallBack = (int _type, int data, int remains, int _error, Int64 _userData) =>
             {
-                RecorderDataEventArgs e = new RecorderDataEventArgs(_type,data,remains,_error,_userData)
+                RecorderDataEventArgs e = new RecorderDataEventArgs(_type, data, remains, _error, _userData)
                 {
                 };
+
+                if (_error != 0)
+                {
+                    Log.Error(Globals.LogTag, "Error in Sensor Recorder Data aynchronously CallBack");
+                }
+
                 RecorderDataReceived?.Invoke(null, e);
                 Log.Debug(Globals.LogTag, "Recorder data callback recieved");
                 return true;
@@ -892,7 +918,7 @@ namespace Tizen.Sensor
             int error = Interop.SensorRecoder.RecorderRead(type, recorderQuery, _sensorRecorderDataCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error in reading recorder");
+                Log.Error(Globals.LogTag, "Error in asynchronously reading recorder");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
             }
 
@@ -905,7 +931,7 @@ namespace Tizen.Sensor
         /// A sensor type to be recorded.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderStart(Enum type)
+        public void RecorderStart(int type)
         {
             int error = Interop.SensorRecoder.RecorderStart(type, recorderOption);
             if (error != (int)SensorError.None)
@@ -923,7 +949,7 @@ namespace Tizen.Sensor
         /// A sensor type to be recorded.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderStop(Enum type)
+        public void RecorderStop(int type)
         {
             int error = Interop.SensorRecoder.RecorderStop(type);
             if (error != (int)SensorError.None)
@@ -941,9 +967,10 @@ namespace Tizen.Sensor
         /// The URI of sensor to be created.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void CreateProvider(string uri) {
+        public void CreateProvider(string uri)
+        {
 
-            int error = Interop.SensorProvider.CreateProvider(uri,out _sensorProviderHandle);
+            int error = Interop.SensorProvider.CreateProvider(uri, out _sensorProviderHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in creating sensor provider");
@@ -1077,17 +1104,13 @@ namespace Tizen.Sensor
         /// Registers the callback function to be invoked when a listener starts the sensor provider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void ProviderSetStartCb()
+        public void SetProviderStartCb()
         {
             _sensorProviderStartCallBack = (IntPtr _provider, Int64 _userData) =>
             {
-                ProviderStartEventArgs e = new ProviderStartEventArgs(_userData)
-                {
-                };
-                ProviderStarted?.Invoke(null, e);  
             };
 
-            int error = Interop.SensorProvider.ProviderSetStartCb(_sensorProviderHandle, _sensorProviderStartCallBack, IntPtr.Zero);
+            int error = Interop.SensorProvider.SetProviderStartCb(_sensorProviderHandle, _sensorProviderStartCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in setting start callback of sensor provider");
@@ -1100,17 +1123,13 @@ namespace Tizen.Sensor
         /// Registers the callback function to be invoked when a sensor listener stops the sensor provider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void ProviderSetStopCb()
+        public void SetProviderStopCb()
         {
             _sensorProviderStopCallBack = (IntPtr _provider, Int64 _userData) =>
             {
-                ProviderStopEventArgs e = new ProviderStopEventArgs(_userData)
-                {
-                };
-                ProviderStoped?.Invoke(null, e);
             };
 
-            int error = Interop.SensorProvider.ProviderSetStopCb(_sensorProviderHandle, _sensorProviderStopCallBack, IntPtr.Zero);
+            int error = Interop.SensorProvider.SetProviderStopCb(_sensorProviderHandle, _sensorProviderStopCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in setting stop callback of sensor provider");
@@ -1123,7 +1142,7 @@ namespace Tizen.Sensor
         /// Registers the callback function to be invoked when the interval is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void ProviderSetIntervalChangedCb()
+        public void SetProviderIntervalChangedCb()
         {
             _sensorProviderIntervalChangedCallBack = (IntPtr _provider, uint IntervalMs, Int64 _userData) =>
             {
@@ -1133,7 +1152,7 @@ namespace Tizen.Sensor
                 ProviderIntervalChanged?.Invoke(null, e);
             };
 
-            int error = Interop.SensorProvider.ProviderSetIntervalChangedCb(_sensorProviderHandle, _sensorProviderIntervalChangedCallBack, IntPtr.Zero);
+            int error = Interop.SensorProvider.SetProviderIntervalChangedCb(_sensorProviderHandle, _sensorProviderIntervalChangedCallBack, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in setting interval callback of sensor provider");
@@ -1169,10 +1188,6 @@ namespace Tizen.Sensor
         {
             _sensorAddedCallBack = (String uri, Int64 _userData) =>
             {
-                SensorAddedEventArgs e = new SensorAddedEventArgs(_userData)
-                {
-                };
-                AddSensorAdded?.Invoke(null, e);
             };
 
             int error = Interop.SensorManager.AddSensorAddedCB(_sensorAddedCallBack, IntPtr.Zero);
@@ -1192,10 +1207,6 @@ namespace Tizen.Sensor
         {
             _sensorRemovedCallBack = (String uri, Int64 _userData) =>
             {
-                SensorRemovedEventArgs e = new SensorRemovedEventArgs(_userData)
-                {
-                };
-                AddSensorRemoved?.Invoke(null, e);
             };
 
             int error = Interop.SensorManager.AddSensorRemovedCB(_sensorRemovedCallBack, IntPtr.Zero);
@@ -1215,10 +1226,6 @@ namespace Tizen.Sensor
         {
             _sensorAddedCallBack = (String uri, Int64 _userData) =>
             {
-                SensorAddedEventArgs e = new SensorAddedEventArgs(_userData)
-                {
-                };
-                RemoveSensorAdded?.Invoke(null, e);
             };
 
             int error = Interop.SensorManager.RemoveSensorAddedCB(_sensorAddedCallBack);
@@ -1238,10 +1245,6 @@ namespace Tizen.Sensor
         {
             _sensorRemovedCallBack = (String uri, Int64 _userData) =>
             {
-                SensorRemovedEventArgs e = new SensorRemovedEventArgs(_userData)
-                {
-                };
-                RemoveSensorRemoved?.Invoke(null, e);
             };
 
             int error = Interop.SensorManager.RemoveSensorRemovedCB(_sensorRemovedCallBack);

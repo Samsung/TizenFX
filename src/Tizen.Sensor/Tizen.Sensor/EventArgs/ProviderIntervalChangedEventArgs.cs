@@ -31,7 +31,8 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Provider Interval Changed callback.
         /// </summary>
-        internal ProviderIntervalChangedEventArgs(IntPtr provider, uint interval, Int64 userData) {
+        internal ProviderIntervalChangedEventArgs(IntPtr provider, uint interval, Int64 userData)
+        {
             Interval = interval;
         }
 

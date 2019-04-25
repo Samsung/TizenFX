@@ -85,8 +85,8 @@ namespace Tizen.Sensor
         {
             customSensorKey = String.Copy(uri);
             _index = index;
-            
-                Values = new float[maxDataCount];
+
+            Values = new float[maxDataCount];
 
             if (Values == null)
             {
@@ -129,7 +129,8 @@ namespace Tizen.Sensor
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) =>
+            {
                 Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
 
                 TimeSpan = new TimeSpan((Int64)sensorData.timestamp);

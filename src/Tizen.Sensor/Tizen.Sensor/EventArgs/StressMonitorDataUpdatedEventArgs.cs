@@ -33,8 +33,8 @@ namespace Tizen.Sensor
         /// </summary>
         public int Mode
         {
-            get { return Mode; }
-            private set { }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace Tizen.Sensor
         /// </summary>
         public int Accuracy
         {
-            get { return Accuracy; }
-            private set { }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace Tizen.Sensor
         /// </summary>
         public int ValueCount
         {
-            get { return ValueCount; }
-            private set { }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace Tizen.Sensor
             /// </summary>
             public UInt64 TimeStamp
             {
-                get { return TimeStamp; }
-                private set { }
+                get;
+                private set;
             }
 
             /// <summary> 
@@ -75,8 +75,8 @@ namespace Tizen.Sensor
             /// </summary>
             public Byte Flag
             {
-                get { return Flag; }
-                private set { }
+                get;
+                private set;
             }
 
             /// <summary>
@@ -84,8 +84,8 @@ namespace Tizen.Sensor
             /// </summary>
             public Byte Stress
             {
-                get { return Stress; }
-                private set { }
+                get;
+                private set;
             }
 
             /// <summary>
@@ -93,8 +93,8 @@ namespace Tizen.Sensor
             /// </summary>
             public Byte Progress
             {
-                get { return Progress; }
-                private set { }
+                get;
+                private set;
             }
 
             /// <summary>
@@ -102,8 +102,8 @@ namespace Tizen.Sensor
             /// </summary>
             public Byte InfoAlgo
             {
-                get { return InfoAlgo; }
-                private set { }
+                get;
+                private set;
             }
         }
 
@@ -115,17 +115,17 @@ namespace Tizen.Sensor
         /// </summary>
         public StressMonitorValue[] Values
         {
-            get { return values; }
-            private set { }
+            get;
+            private set;
         }
 
-    /// <summary>
-    /// Base Hr value
-    /// </summary>
-    public UInt32 BaseHr
+        /// <summary>
+        /// Base Hr value
+        /// </summary>
+        public UInt32 BaseHr
         {
-            get { return BaseHr; }
-            private set { }
+            get;
+            private set;
         }
 
 
