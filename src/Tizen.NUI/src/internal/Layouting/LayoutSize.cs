@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,129 +21,77 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] This class represents a layout size (width and height)
+    /// [Draft] This class represents a layout size (width and height), non mutable.
     /// </summary>
-    internal class LayoutSize : global::System.IDisposable
+    internal struct LayoutSize
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
-
-        internal LayoutSize(global::System.IntPtr cPtr, bool cMemoryOwn)
+        /// <summary>
+        /// [Draft] Constructor from width and height
+        /// </summary>
+        /// <param name="width">Int to initialize with.</param>
+        /// <param name="height">Int to initialize with.</param>
+        public LayoutSize(int width, int height)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Width = width;
+            Height = height;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LayoutSize obj)
+        /// <summary>
+        /// Computes a hash code for this LayoutSize for use in hash based collections.
+        /// </summary>
+        /// <returns>A non unique hash code .</returns>
+        public override int GetHashCode()
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            return Width ^ Height;
         }
 
-        ~LayoutSize()
+        /// <summary>
+        /// Whether the values of two LayoutSize objects are equals
+        /// </summary>
+        /// <param name="obj">Object to be compared against.</param>
+        /// <returns>true if obj is equal to this LayoutSize.</returns>
+        public override bool Equals(object obj)
         {
-            Dispose();
-        }
-
-        public virtual void Dispose()
-        {
-            lock(this)
+            if (obj is LayoutSize)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.LayoutSize.delete_LayoutSize(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
-            }
-        }
-
-        public LayoutSize() : this(Interop.LayoutSize.new_LayoutSize__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public LayoutSize(int x, int y) : this(Interop.LayoutSize.new_LayoutSize__SWIG_1(x, y), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetWidth(LayoutLength value)
-        {
-            Interop.LayoutSize.LayoutSize_SetWidth__SWIG_1(swigCPtr, LayoutLength.getCPtr(value));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetHeight(LayoutLength value)
-        {
-            Interop.LayoutSize.LayoutSize_SetHeight__SWIG_1(swigCPtr, LayoutLength.getCPtr(value));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        private bool EqualTo(LayoutSize rhs)
-        {
-            bool ret = Interop.LayoutSize.LayoutSize_EqualTo(swigCPtr, LayoutSize.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public bool IsEqualTo(LayoutSize target)
-        {
-            if (this.Width == target.Width && this.Height == target.Height)
-            {
-                return true;
+                LayoutSize layoutSize = (LayoutSize)obj;
+                return ((layoutSize.Width == Width) && (layoutSize.Height == Height));
             }
             return false;
         }
 
-
-        // This causes crash!
-        // compile warning message :
-        //'LayoutSize' defines operator == or operator != but does not override Object.Equals(object o)
-        //'LayoutSize' defines operator == or operator != but does not override Object.GetHashCode()
-        //public static bool operator ==(LayoutSize r1, LayoutSize r2)
-        //{
-        //    return r1.EqualTo(r2);
-        //}
-        //public static bool operator !=(LayoutSize r1, LayoutSize r2)
-        //{
-        //    return !r1.EqualTo(r2);
-        //}
-
-
-        public int Width
+        /// <summary>
+        /// Compares whether the two LayoutSize instances are equal.
+        /// </summary>
+        /// <param name="lhs">A LayoutSize instance.</param>
+        /// <param name="rhs">A LayoutSize instance.</param>
+        /// <returns>true if the two LayoutSize instances have equal values.</returns>
+        public static bool operator ==(LayoutSize lhs, LayoutSize rhs)
         {
-            //This should be blocked! Otherwise, user can set multiple-cascading property setting like "LinearLayout.CellPadding.Width = 100;". This will not be working!
-            //set
-            //{
-            //    LayoutPINVOKE.LayoutSize_width_set(swigCPtr, value);
-            //    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            //}
-            get
-            {
-                int ret = Interop.LayoutSize.LayoutSize_width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
+            return ((lhs.Width == rhs.Width) && (lhs.Height == rhs.Height));
         }
 
-        public int Height
+
+        /// <summary>
+        /// Compares whether the two LayoutSize instances are same or not.
+        /// </summary>
+        /// <param name="lhs">A LayoutSize instance.</param>
+        /// <param name="rhs">A LayoutSize instance.</param>
+        /// <returns>true if the two LayoutSize instances have do not have equal values.</returns>
+        public static bool operator !=(LayoutSize lhs, LayoutSize rhs)
         {
-            //This should be blocked! Otherwise, user can set multiple-cascading property setting like "LinearLayout.CellPadding.Height = 100;". This will not be working!
-            //set
-            //{
-            //    LayoutPINVOKE.LayoutSize_height_set(swigCPtr, value);
-            //    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            //}
-            get
-            {
-                int ret = Interop.LayoutSize.LayoutSize_height_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
+            return ((lhs.Width != rhs.Width) || (lhs.Height != rhs.Height));
         }
+
+        /// <summary>
+        /// [Draft] Get the width value of this layout
+        /// </summary>
+        public int Width{ get; private set; }
+
+        /// <summary>
+        /// [Draft] Get the height value of this layout
+        /// </summary>
+        public int Height{ get; private set; }
+
     }
 }

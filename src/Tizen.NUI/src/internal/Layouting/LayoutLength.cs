@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -23,52 +24,107 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] A type that represents a layout length. Currently, this implies pixels, but could be extended to handle device dependant sizes, etc.
     /// </summary>
-    internal class LayoutLength : global::System.IDisposable
+    internal struct LayoutLength
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
+        private float _value;
 
-        internal LayoutLength(global::System.IntPtr cPtr, bool cMemoryOwn)
+        /// <summary>
+        /// [Draft] Constructor from an int
+        /// </summary>
+        /// <param name="value">Int to initialize with.</param>
+        public LayoutLength(int value)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            _value = value;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LayoutLength obj)
+        /// <summary>
+        /// [Draft] Constructor from a float
+        /// </summary>
+        /// <param name="value">Float to initialize with.</param>
+        public LayoutLength(float value)
         {
-            return (obj.Equals(null)) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            _value = value;
         }
 
-        ~LayoutLength()
+        /// <summary>
+        /// [Draft] Constructor from a LayoutLength
+        /// </summary>
+        /// <param name="layoutLength">LayoutLength object to initialize with.</param>
+        public LayoutLength(LayoutLength layoutLength)
         {
-            Dispose();
+            _value = layoutLength._value;
         }
 
-        public virtual void Dispose()
+        /// <summary>
+        /// [Draft] Return value as rounded value (whole number), best used as final output
+        /// </summary>
+        /// <returns>The layout length value as a rounded whole number.</returns>
+        public float AsRoundedValue()
         {
-            lock (this)
+            return (float)Math.Round((decimal)_value, MidpointRounding.AwayFromZero);
+        }
+
+        /// <summary>
+        /// [Draft] Return value as the raw decimal value, best used for calculations
+        /// </summary>
+        /// <returns>The layout length value as the raw decimal value.</returns>
+        public float AsDecimal()
+        {
+            return _value;
+        }
+
+        /// <summary>
+        /// [Draft] The == operator.
+        /// </summary>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value</param>
+        /// <returns>true if LayoutLengths are equal</returns>
+        public static bool operator ==(LayoutLength arg1, LayoutLength arg2)
+        {
+            return arg1.Equals(arg2);
+        }
+
+        /// <summary>
+        /// [Draft] The != operator.
+        /// </summary>
+        /// <param name="arg1">The first value.</param>
+        /// <param name="arg2">The second value</param>
+        /// <returns>true if LayoutLengths are not equal</returns>
+        public static bool operator !=(LayoutLength arg1, LayoutLength arg2)
+        {
+            return !arg1.Equals(arg2);
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal LayoutLength, else false.</returns>
+        public override bool Equals(object obj)
+        {
+            if (obj is LayoutLength)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.LayoutLength.delete_LayoutLength(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
+                return this.Equals((LayoutLength)obj);
             }
+            return false;
         }
 
-        public LayoutLength(int value) : this(Interop.LayoutLength.new_LayoutLength__SWIG_0(value), true)
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="layoutLength">The LayoutLength to compare with the current LayoutLength.</param>
+        /// <returns>true if equal LayoutLengths, else false.</returns>
+        public bool Equals(LayoutLength layoutLength)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (Math.Abs(_value - layoutLength._value ) <= float.Epsilon);
         }
 
-        public LayoutLength(LayoutLength layoutLength) : this(Interop.LayoutLength.new_LayoutLength__SWIG_1(LayoutLength.getCPtr(layoutLength)), true)
+        /// <summary>
+        /// A hash code for the current object.
+        /// </summary>
+        public override int GetHashCode()
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (int)Math.Ceiling(_value);
         }
 
         /// <summary>
@@ -79,7 +135,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the addition.</returns>
         public static LayoutLength operator +(LayoutLength arg1, LayoutLength arg2)
         {
-            return arg1.Add(arg2);
+            return new LayoutLength( arg1._value + arg2._value );
         }
 
         /// <summary>
@@ -90,7 +146,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the addition.</returns>
         public static LayoutLength operator +(LayoutLength arg1, int arg2)
         {
-            return arg1.Add(arg2);
+            return new LayoutLength(arg1._value + (float)arg2);
         }
 
         /// <summary>
@@ -101,7 +157,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the subtraction.</returns>
         public static LayoutLength operator -(LayoutLength arg1, LayoutLength arg2)
         {
-            return arg1.Subtract(arg2);
+            return new LayoutLength(arg1._value - arg2._value);
         }
 
         /// <summary>
@@ -112,7 +168,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the subtraction.</returns>
         public static LayoutLength operator -(LayoutLength arg1, int arg2)
         {
-            return arg1.Subtract(arg2);
+            return new LayoutLength(arg1._value - (float)arg2);
         }
 
         /// <summary>
@@ -123,7 +179,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the multiplication.</returns>
         public static LayoutLength operator *(LayoutLength arg1, LayoutLength arg2)
         {
-            return arg1.Multiply(arg2);
+            return new LayoutLength(arg1._value * arg2._value);
         }
 
         /// <summary>
@@ -134,7 +190,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the scaling.</returns>
         public static LayoutLength operator *(LayoutLength arg1, int arg2)
         {
-            return arg1.Multiply(arg2);
+            return new LayoutLength(arg1._value * arg2);
         }
 
         /// <summary>
@@ -145,7 +201,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the division.</returns>
         public static LayoutLength operator /(LayoutLength arg1, LayoutLength arg2)
         {
-            return arg1.Divide(arg2);
+            return new LayoutLength(arg1._value /  arg2._value);
         }
 
         /// <summary>
@@ -156,184 +212,7 @@ namespace Tizen.NUI
         /// <returns>The LayoutLength containing the result of the scaling.</returns>
         public static LayoutLength operator /(LayoutLength arg1, int arg2)
         {
-            return arg1.Divide(arg2);
-        }
-
-        public static bool operator ==(LayoutLength r1, LayoutLength r2)
-        {
-            return r1.EqualTo(r2);
-        }
-
-        public static bool operator !=(LayoutLength r1, LayoutLength r2)
-        {
-            return !r1.EqualTo(r2);
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(System.Object obj)
-        {
-            LayoutLength layoutLength = obj as LayoutLength;
-            bool equal = false;
-            if (Value == layoutLength?.Value)
-            {
-                equal = true;
-            }
-            return equal;
-        }
-
-        /// <summary>
-        /// Gets the the hash code of this LayoutLength.
-        /// </summary>
-        /// <returns>The Hash Code.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        public override int GetHashCode()
-        {
-            return swigCPtr.Handle.GetHashCode();
-        }
-
-        private bool EqualTo(LayoutLength rhs)
-        {
-            bool ret = Interop.LayoutLength.LayoutLength_EqualTo__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private bool EqualTo(int rhs)
-        {
-            bool ret = Interop.LayoutLength.LayoutLength_EqualTo__SWIG_1(swigCPtr, rhs);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private bool NotEqualTo(LayoutLength rhs)
-        {
-            bool ret = Interop.LayoutLength.LayoutLength_NotEqualTo(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private bool LessThan(LayoutLength rhs)
-        {
-            bool ret = Interop.LayoutLength.LayoutLength_LessThan__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private bool GreaterThan(LayoutLength rhs)
-        {
-            bool ret = Interop.LayoutLength.LayoutLength_GreaterThan__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Add(LayoutLength rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Add__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Add(int rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Add__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Subtract(LayoutLength rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Subtract__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Subtract(int rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Subtract__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength AddAssign(LayoutLength rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_AddAssign__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength AddAssign(int rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_AddAssign__SWIG_1(swigCPtr, rhs), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength SubtractAssign(LayoutLength rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_SubtractAssign__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength SubtractAssign(int rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_SubtractAssign__SWIG_1(swigCPtr, rhs), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Divide(LayoutLength rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Divide__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Divide(int rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Divide__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Multiply(LayoutLength rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Multiply__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Multiply(int rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Multiply__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private LayoutLength Multiply(float rhs)
-        {
-            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Multiply__SWIG_2(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public int Value
-        {
-            set
-            {
-                Interop.LayoutLength.LayoutLength_mValue_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                int ret = Interop.LayoutLength.LayoutLength_mValue_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
+            return new LayoutLength(arg1._value / (float)arg2);
         }
     }
 }

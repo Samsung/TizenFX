@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,37 +15,75 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
+
+    [FlagsAttribute]
+    enum LayoutFlags : short
+    {
+      None = 0,
+      ForceLayout = 1,
+      LayoutRequired = 2,
+      MeasuredDimensionSet = 4
+    };
+
     /// <summary>
-    /// [Draft] Base class for layouts. It is used to layout a control (or visual).
+    /// [Draft] Base class for layouts. It is used to layout a View
     /// It can be laid out by a LayoutGroup.
     /// </summary>
-    internal class LayoutItem : LayoutItemWrapper
+    internal class LayoutItem
     {
-        //It is called by LayoutGroupWrapper constructor.
-        internal LayoutItem(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
+        private MeasureSpecification OldHeightMeasureSpec;// Store measure specification to compare against later
+
+        private LayoutFlags Flags = LayoutFlags.None;
+
+        private ILayoutParent Parent;
+
+        private LayoutLength _left;
+        private LayoutLength _right;
+        private LayoutLength _top;
+        private LayoutLength _bottom;
+        private LayoutData _layoutData;
+
+        /// <summary>
+        /// The View that this Layout has been assigned to.
+        /// </summary>
+        public View Owner{get; set;}  // Should not keep a View alive.
+
+        /// <summary>
+        /// [Draft] Constructor
+        /// </summary>
+        public LayoutItem()
         {
-            System.IntPtr wrapperImpe_CPtr = Interop.LayoutItemWrapperImpl.LayoutItemWrapper_GetImplementation(cPtr);
-            layoutItemWrapperImpl = new LayoutItemWrapperImpl(wrapperImpe_CPtr, true);
-            LayoutItemInitialize(layoutItemWrapperImpl);
         }
 
-        public LayoutItem() : base(new LayoutItemWrapperImpl())
+        /// <summary>
+        /// [Draft] Constructor setting the owner of this LayoutItem.
+        /// </summary>
+        /// <param name="owner">Owning View of this layout, currently a View but may be extending for Windows/Layers.</param>
+        public LayoutItem(View owner)
         {
-            LayoutItemInitialize(layoutItemWrapperImpl);
+            Owner = owner;
+            _layoutData = new LayoutData();
+            _left = new LayoutLength(0);
+            _top = new LayoutLength(0);
+            _right = new LayoutLength(0);
+            _bottom = new LayoutLength(0);
         }
 
-        // This should be protected though but made internal because LayoutItemWrapperImpl is internal.
-        internal void LayoutItemInitialize(LayoutItemWrapperImpl implementation)
+        /// <summary>
+        /// [Draft] Set parent to this layout.
+        /// </summary>
+        /// <param name="parent">Parent to set on this Layout.</param>
+        public void SetParent( ILayoutParent parent)
         {
-            layoutItemWrapperImpl = implementation;
-            layoutItemWrapperImpl.OnMeasure = new LayoutItemWrapperImpl.OnMeasureDelegate(OnMeasure);
-            layoutItemWrapperImpl.OnLayout = new LayoutItemWrapperImpl.OnLayoutDelegate(OnLayout);
-            layoutItemWrapperImpl.OnSizeChanged = new LayoutItemWrapperImpl.OnSizeChangedDelegate(OnSizeChanged);
+            Parent = parent as LayoutGroup;
+            Log.Info("NUI", "Setting Parent Layout for:" +  Owner?.Name + " to (Parent):" + (parent == null ? "null":parent.ToString() ) + "\n");
         }
 
         /// <summary>
@@ -53,12 +91,39 @@ namespace Tizen.NUI
         /// </summary>
         public void Unparent()
         {
-            layoutItemWrapperImpl.Unparent();
+            // Enable directly derived types to first remove children
+            OnUnparent();
+
+            // Remove myself from parent
+            Parent?.Remove( this );
+
+            // Remove parent reference
+            Parent = null;
+
+            // Lastly, clear layout from owning View.
+            Owner?.ResetLayout();
         }
 
-        protected void SetMeasuredDimensions(MeasuredSize measuredWidth, MeasuredSize measuredHeight)
+        /// <summary>
+        /// Get the View owning this LayoutItem
+        /// </summary>
+        internal View GetOwner()
         {
-            layoutItemWrapperImpl.SetMeasuredDimensions(measuredWidth, measuredHeight);
+            return Owner;
+        }
+
+        /// <summary>
+        /// Initialize the layout and allow derived classes to also perform any operations
+        /// </summary>
+        /// <param name="owner">Owner of this Layout.</param>
+        internal void AttachToOwner(View owner)
+        {
+            // Assign the layout owner.
+            Owner = owner;
+            OnAttachedToOwner();
+            // Add layout to parent layout if a layout container
+            View parent = Owner.GetParent() as View;
+            (parent?.Layout as LayoutGroup)?.Add( this );
         }
 
         /// <summary>
@@ -69,9 +134,35 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec"> Horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">Vertical space requirements as imposed by the parent.</param>
-        internal void Measure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        internal void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            layoutItemWrapperImpl.Measure(widthMeasureSpec, heightMeasureSpec);
+            // Check if relayouting is required.
+            bool specChanged = (widthMeasureSpec.Size != OldWidthMeasureSpec.Size) ||
+                               (heightMeasureSpec.Size != OldHeightMeasureSpec.Size) ||
+                               (widthMeasureSpec.Mode != OldWidthMeasureSpec.Mode) ||
+                               (heightMeasureSpec.Mode != OldHeightMeasureSpec.Mode);
+
+            bool isSpecExactly = (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly) &&
+                                 (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly);
+
+            bool matchesSpecSize = (MeasuredWidth.Size == widthMeasureSpec.Size) &&
+                                   (MeasuredHeight.Size == heightMeasureSpec.Size);
+
+            bool needsLayout = specChanged && ( !isSpecExactly || !matchesSpecSize);
+            needsLayout = needsLayout || ((Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
+
+            Log.Info("NUI", "Measuring:" + Owner.Name + " needsLayout[" + needsLayout.ToString() + "]\n");
+
+            if (needsLayout)
+            {
+                OnMeasure(widthMeasureSpec, heightMeasureSpec);
+                Flags = Flags | LayoutFlags.LayoutRequired;
+                Flags &= ~LayoutFlags.ForceLayout;
+            }
+            OldWidthMeasureSpec = widthMeasureSpec;
+            OldHeightMeasureSpec = heightMeasureSpec;
+
+            Log.Info("NUI", "LayoutItem Measure owner:" + Owner.Name + " width:" + widthMeasureSpec.Size.AsRoundedValue() + " height:" +  heightMeasureSpec.Size.AsRoundedValue() + "\n");
         }
 
         /// <summary>
@@ -86,29 +177,72 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Log.Info("NUI", "LayoutItem Layout\n");
-            layoutItemWrapperImpl.Layout(left, top, right, bottom);
+            Log.Info("NUI", "LayoutItem Layout owner:" + Owner.Name + "\n");
+
+            bool changed = SetFrame(left, top, right, bottom);
+
+            // Check if Measure needed before Layouting
+            if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
+            {
+                Log.Info("NUI", "LayoutItem Layout Frame changed or Layout forced\n");
+                OnLayout(changed, left, top, right, bottom);
+                // Clear flag
+                Flags &= ~LayoutFlags.LayoutRequired;
+            }
         }
 
         /// <summary>
         /// Utility to return a default size.<br />
-        /// Uses the supplied size if the MeasureSpec imposed no constraints. Will get larger if allowed by the
-        /// MeasureSpec.<br />
+        /// Uses the supplied size if the MeasureSpecification imposed no constraints. Will get larger if allowed by the
+        /// MeasureSpecification.<br />
         /// </summary>
         /// <param name="size"> Default size for this layout.</param>
-        /// <param name="measureSpec"> Constraints imposed by the parent.</param>
+        /// <param name="measureSpecification"> Constraints imposed by the parent.</param>
         /// <returns>The size this layout should be.</returns>
-        public static LayoutLength GetDefaultSize(LayoutLength size, LayoutMeasureSpec measureSpec)
+        public static LayoutLength GetDefaultSize(LayoutLength size, MeasureSpecification measureSpecification)
         {
-            return LayoutItemWrapperImpl.GetDefaultSize(size, measureSpec);
+            LayoutLength result = size;
+            MeasureSpecification.ModeType specMode = measureSpecification.Mode;
+            LayoutLength specSize = measureSpecification.Size;
+
+            switch (specMode)
+            {
+                case MeasureSpecification.ModeType.Unspecified:
+                {
+                    result = size;
+                    break;
+                }
+                case MeasureSpecification.ModeType.AtMost:
+                {
+                    // Ensure the default size does not exceed the spec size unless the default size is 0.
+                    // Another container could provide a default size of 0.
+
+                    // Do not set size to 0, use specSize in this case as could be a legacy container
+                    if( ( size.AsDecimal() < specSize.AsDecimal()) && ( size.AsDecimal() >  0) )
+                    {
+                        result = size;
+                    }
+                    else
+                    {
+                        result = specSize;
+                    }
+                    break;
+                }
+                case MeasureSpecification.ModeType.Exactly:
+                {
+                    result = specSize;
+                    break;
+                }
+            }
+
+            Log.Info("NUI", "DefaultSize :" + result.AsRoundedValue() +  "\n");
+
+            return result;
         }
 
-        public ILayoutParent GetParent
+        public ILayoutParent GetParent()
         {
-            get
-            {
-                return layoutItemWrapperImpl.GetParent();
-            }
+            return Parent;
         }
 
         /// <summary>
@@ -117,7 +251,9 @@ namespace Tizen.NUI
         /// </summary>
         public void RequestLayout()
         {
-            layoutItemWrapperImpl.RequestLayout();
+            Log.Info("NUI", "RequestLayout on:" + Owner?.Name + "\n");
+            Flags = Flags | LayoutFlags.ForceLayout;
+            Window.Instance.LayoutController.RequestLayout(this);
         }
 
         /// <summary>
@@ -127,28 +263,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return IsLayoutRequested();
-            }
-        }
-
-        /// <summary>
-        /// Predicate to determine if this layout has been requested to re-layout.<br />
-        /// </summary>
-        /// <returns>True if a layout request has occured on this layout.</returns>
-        private bool IsLayoutRequested()
-        {
-            return layoutItemWrapperImpl.IsLayoutRequested();
-        }
-
-        /// <summary>
-        /// Get the measured width (without any measurement flags).<br />
-        /// This method should be used only during measurement and layout calculations.<br />
-        /// </summary>
-        public LayoutLength MeasuredWidth
-        {
-            get
-            {
-                return GetMeasuredWidth();
+                return ( Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout;
             }
         }
 
@@ -156,31 +271,13 @@ namespace Tizen.NUI
         /// Get the measured width (without any measurement flags).<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
-        private LayoutLength GetMeasuredWidth()
-        {
-            return layoutItemWrapperImpl.GetMeasuredWidth();
-        }
+        public MeasuredSize MeasuredWidth{ get; set; } = new MeasuredSize( new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
 
         /// <summary>
         /// Get the measured height (without any measurement flags).<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
-        public LayoutLength MeasuredHeight
-        {
-            get
-            {
-                return GetMeasuredHeight();
-            }
-        }
-
-        /// <summary>
-        /// Get the measured height (without any measurement flags).<br />
-        /// This method should be used only during measurement and layout calculations.<br />
-        /// </summary>
-        private LayoutLength GetMeasuredHeight()
-        {
-            return layoutItemWrapperImpl.GetMeasuredHeight();
-        }
+        public MeasuredSize MeasuredHeight{ get; set; } = new MeasuredSize( new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
 
         /// <summary>
         /// Get the measured width and state.<br />
@@ -190,18 +287,10 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetMeasuredWidthAndState();
+                return MeasuredWidth; // Not bitmasking State unless proven to be required.
             }
         }
 
-        /// <summary>
-        /// Get the measured width and state.<br />
-        /// This method should be used only during measurement and layout calculations.<br />
-        /// </summary>
-        private MeasuredSize GetMeasuredWidthAndState()
-        {
-            return layoutItemWrapperImpl.GetMeasuredWidthAndState();
-        }
 
         /// <summary>
         /// Get the measured height and state.<br />
@@ -211,17 +300,8 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetMeasuredHeightAndState();
+                return MeasuredHeight;  // Not bitmasking State unless proven to be required.
             }
-        }
-
-        /// <summary>
-        /// Get the measured height and state.<br />
-        /// This method should be used only during measurement and layout calculations.<br />
-        /// </summary>
-        private MeasuredSize GetMeasuredHeightAndState()
-        {
-            return layoutItemWrapperImpl.GetMeasuredHeightAndState();
         }
 
         /// <summary>
@@ -232,18 +312,10 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetSuggestedMinimumWidth();
+                int naturalWidth = Owner.NaturalSize2D.Width;
+                Log.Info("NUI", "NaturalWidth for: " + Owner.Name + " :" + naturalWidth +"\n");
+                return new LayoutLength(Math.Max( MinimumWidth.AsDecimal(), naturalWidth ));
             }
-        }
-
-        /// <summary>
-        /// Returns the suggested minimum width that the layout should use.<br />
-        /// This returns the maximum of the layout's minimum width and the owner's natural width.<br />
-        /// </summary>
-        /// <returns>The suggested minimum width of the layout.</returns>
-        private LayoutLength GetSuggestedMinimumWidth()
-        {
-            return layoutItemWrapperImpl.GetSuggestedMinimumWidth();
         }
 
         /// <summary>
@@ -254,18 +326,10 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetSuggestedMinimumHeight();
+                int naturalHeight = Owner.NaturalSize2D.Height;
+                Log.Info("NUI", "NaturalHeight for: " + Owner.Name + " :" + naturalHeight +"\n");
+                return new LayoutLength(Math.Max( MinimumHeight.AsDecimal(), naturalHeight ));
             }
-        }
-
-        /// <summary>
-        /// Returns the suggested minimum height that the layout should use.<br />
-        /// This returns the maximum of the layout's minimum height and the owner's natural height.<br />
-        /// </summary>
-        /// <returns>The suggested minimum height of the layout.</returns>
-        private LayoutLength GetSuggestedMinimumHeight()
-        {
-            return layoutItemWrapperImpl.GetSuggestedMinimumHeight();
         }
 
         /// <summary>
@@ -273,79 +337,73 @@ namespace Tizen.NUI
         /// It is not guaranteed the layout will be able to achieve this minimum width (for example, if its parent
         /// layout constrains it with less available width).<br />
         /// 1. if the owner's View.LayoutWidthSpecification has exact value, then that value overrides the minimum size.<br />
-        /// 2. If the owner's View.LayoutWidthSpecification is set to View.ChildLayoutData.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
-        /// 3. If the owner's View.LayoutWidthSpecification is set to View.ChildLayoutData.MatchParent, then the parent width takes precedence over the minimum width.<br />
+        /// 2. If the owner's View.LayoutWidthSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
+        /// 3. If the owner's View.LayoutWidthSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent width takes precedence over the minimum width.<br />
         /// </summary>
-        public LayoutLength MinimumWidth
-        {
-            get
-            {
-                return GetMinimumWidth();
-            }
-            set
-            {
-                SetMinimumWidth(value);
-            }
-        }
-
-        /// <summary>
-        /// Sets the minimum width of the layout.<br />
-        /// It is not guaranteed the layout will be able to achieve this minimum width (for example, if its parent
-        /// layout constrains it with less available width).<br />
-        /// </summary>
-        /// <param name="minWidth">The minimum width the layout will try to be, in pixels.</param>
-        private void SetMinimumWidth(LayoutLength minWidth)
-        {
-            layoutItemWrapperImpl.SetMinimumWidth(minWidth);
-        }
+        public LayoutLength MinimumWidth {get; set;}
 
         /// <summary>
         /// Sets the minimum height of the layout.<br />
         /// It is not guaranteed the layout will be able to achieve this minimum height (for example, if its parent
         /// layout constrains it with less available height).<br />
         /// 1. if the owner's View.LayoutHeightSpecification has exact value, then that value overrides the minimum size.<br />
-        /// 2. If the owner's View.LayoutHeightSpecification is set to View.ChildLayoutData.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
-        /// 3. If the owner's View.LayoutHeightSpecification is set to View.ChildLayoutData.MatchParent, then the parent height takes precedence over the minimum height.<br />
+        /// 2. If the owner's View.LayoutHeightSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
+        /// 3. If the owner's View.LayoutHeightSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent height takes precedence over the minimum height.<br />
         /// </summary>
-        public LayoutLength MinimumHeight
+        public LayoutLength MinimumHeight {get; set;}
+
+        ///<summary>
+        /// Utility to reconcile a desired size and state, with constraints imposed by a MeasureSpecification.
+        ///</summary>
+        /// <param name="size"> How big the layout wants to be.</param>
+        /// <param name="measureSpecification"> Constraints imposed by the parent.</param>
+        /// <param name="childMeasuredState"> Size information bit mask for the layout's children.</param>
+        /// <returns> A measured size, which may indicate that it is too small. </returns>
+        protected MeasuredSize ResolveSizeAndState( LayoutLength size, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState )
         {
-            get
+            var specMode = measureSpecification.Mode;
+            LayoutLength specSize = measureSpecification.Size;
+            MeasuredSize result = new MeasuredSize( size, childMeasuredState);
+
+            switch( specMode )
             {
-                return GetMinimumHeight();
+                case MeasureSpecification.ModeType.AtMost:
+                {
+                    if (specSize.AsRoundedValue() < size.AsRoundedValue())
+                    {
+                        result = new MeasuredSize( specSize, MeasuredSize.StateType.MeasuredSizeTooSmall);
+                    }
+                    break;
+                }
+
+                case MeasureSpecification.ModeType.Exactly:
+                {
+                    result.Size = specSize;
+                    break;
+                }
+
+                case MeasureSpecification.ModeType.Unspecified:
+                default:
+                {
+                    break;
+                }
             }
-            set
-            {
-                SetMinimumHeight(value);
-            }
+            return result;
         }
 
         /// <summary>
-        /// Sets the minimum height of the layout.<br />
-        /// It is not guaranteed the layout will be able to achieve this minimum height (for example, if its parent
-        /// layout constrains it with less available height).<br />
+        /// This method must be called by OnMeasure(MeasureSpec,MeasureSpec) to store the measured width and measured height.
         /// </summary>
-        /// <param name="minHeight">The minimum height the layout will try to be, in pixels.</param>
-        private void SetMinimumHeight(LayoutLength minHeight)
+        /// <param name="measuredWidth">The measured width of this layout.</param>
+        /// <param name="measuredHeight">The measured height of this layout.</param>
+        protected void SetMeasuredDimensions( MeasuredSize measuredWidth, MeasuredSize measuredHeight )
         {
-            layoutItemWrapperImpl.SetMinimumHeight(minHeight);
-        }
+            Log.Info("NUI", "For " + Owner.Name + " MeasuredWidth:" + measuredWidth.Size.AsRoundedValue()
+                                   + " MeasureHeight:" + measuredHeight.Size.AsRoundedValue() + "\n");
 
-        /// <summary>
-        /// Returns the minimum width of the layout.<br />
-        /// </summary>
-        /// <returns>the minimum width the layout will try to be, in pixels.</returns>
-        private LayoutLength GetMinimumWidth()
-        {
-            return layoutItemWrapperImpl.GetMinimumWidth();
-        }
-
-        /// <summary>
-        /// Returns the minimum height of the layout.<br />
-        /// </summary>
-        /// <returns>the minimum height the layout will try to be, in pixels.</returns>
-        private LayoutLength GetMinimumHeight()
-        {
-            return layoutItemWrapperImpl.GetMinimumHeight();
+            MeasuredWidth = measuredWidth;
+            MeasuredHeight = measuredHeight;
+            Flags = Flags | LayoutFlags.MeasuredDimensionSet;
         }
 
         /// <summary>
@@ -359,9 +417,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
-        protected virtual void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        protected virtual void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            layoutItemWrapperImpl.OnMeasureNative(widthMeasureSpec, heightMeasureSpec);
+            // GetDefaultSize will limit the MeasureSpec to the suggested minimumWidth and minimumHeight
+            SetMeasuredDimensions( GetDefaultSize( SuggestedMinimumWidth, widthMeasureSpec ),
+                                   GetDefaultSize( SuggestedMinimumHeight, heightMeasureSpec ) );
         }
 
         /// <summary>
@@ -385,5 +445,54 @@ namespace Tizen.NUI
         protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
         }
+
+        /// <summary>
+        /// Virtual method to allow derived classes to remove any children before it is removed from
+        /// its parent.
+        /// </summary>
+        public virtual void OnUnparent()
+        {
+        }
+
+        /// <summary>
+        /// Virtual method called when this Layout is attached to it's owner.
+        /// Allows derived layouts to take ownership of child Views and connect to any Owner signals required.
+        /// </summary>
+        protected virtual void OnAttachedToOwner()
+        {
+        }
+
+        private bool SetFrame(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        {
+            bool changed = false;
+
+            if( _left != left || _right != right || _top != top || _bottom != bottom  )
+            {
+                changed = true;
+            }
+
+            LayoutLength oldWidth = _right - _left;
+            LayoutLength oldHeight = _bottom - _top;
+            LayoutLength newWidth = right - left;
+            LayoutLength newHeight = bottom - top;
+            bool sizeChanged = ( newWidth != oldWidth ) || ( newHeight != oldHeight );
+
+            _left = left;
+            _top = top;
+            _right = right;
+            _bottom = bottom;
+
+            // Set actual positions of View.
+            Owner.SetX(_left.AsRoundedValue());
+            Owner.SetY(_top.AsRoundedValue());
+            Owner.SetSize((int)newWidth.AsRoundedValue(), (int)newHeight.AsRoundedValue());
+
+            Log.Info("NUI", "Frame set for " + Owner.Name + " to left:" + _left.AsRoundedValue() + " top:"
+                            + _top.AsRoundedValue() + " width: " + newWidth.AsRoundedValue() + " height: "
+                            + newHeight.AsRoundedValue() + "\n");
+
+            return changed;
+        }
+
     }
 }

@@ -17,13 +17,23 @@
 
 namespace Tizen.NUI
 {
-    class LayoutPINVOKE
+    /// <summary>
+    /// [Draft]
+    /// Interface that defines a layout Parent. Enables a layout child to access methods on its parent, e.g. Remove (during unparenting)
+    /// </summary>
+    internal interface ILayoutParent
     {
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetImplementation__SWIG_0")]
-        public static extern global::System.IntPtr GetImplementation__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetImplementation__SWIG_2")]
-        public static extern global::System.IntPtr GetImplementation__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
-        
-	  }
+        /// <summary>
+        /// Add this child to the parent.
+        /// </summary>
+        /// <param name="layoutItem">The layout child to add.</param>
+        void Add(LayoutItem layoutItem);
+
+        /// <summary>
+        /// Remove this child from the parent
+        /// </summary>
+        /// <param name="layoutItem">The layout child to add.</param>
+        void Remove(LayoutItem layoutItem);
+    }
 }
