@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
             Plane = ConvertPlane(unmanagedStruct);
         }
 
-        private static IPreviewPlane ConvertPlane(CameraPreviewDataStruct unmanagedStruct)
+        private IPreviewPlane ConvertPlane(CameraPreviewDataStruct unmanagedStruct)
         {
             if (unmanagedStruct.NumOfPlanes == 1)
             {
@@ -61,6 +61,9 @@ namespace Tizen.Multimedia
             }
             else if (unmanagedStruct.NumOfPlanes == 2)
             {
+                var size = Resolution.Width * Resolution.Height;
+                unmanagedStruct.Plane.DoublePlane.YLength = (uint)size;
+                unmanagedStruct.Plane.DoublePlane.UVLength = (uint)size / 2;
                 return new DoublePlane(unmanagedStruct.Plane.DoublePlane);
             }
             else if (unmanagedStruct.NumOfPlanes == 3)

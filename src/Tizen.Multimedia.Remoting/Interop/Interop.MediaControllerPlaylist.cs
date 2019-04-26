@@ -115,6 +115,13 @@ internal static partial class Interop
         internal static extern MediaControllerError UpdatePlaylist(IntPtr handle, string index,
             MediaControllerNativeAttribute attribute, string value);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_foreach_playlist")]
+        internal static extern MediaControllerError ForeachPlaylist(string serverName, PlaylistCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_get_playlist")]
+        internal static extern MediaControllerError GetPlaylistHandle(string serverName, string playlistName, IntPtr handle);
+
+        [Obsolete("Please do not use! This will be deprecated in level 6. Please use ForeachPlaylist instead.")]
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_foreach_server_playlist")]
         internal static extern MediaControllerError ForeachServerPlaylist(MediaControllerClientHandle handle,
             string serverName, PlaylistCallback callback, IntPtr userData);

@@ -560,6 +560,86 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Gets or sets the audio pitch.
+        /// </summary>
+        /// <value>The value indicating whether or not AudioPitch is enabled. The default is false.</value>
+        /// <remarks>This function is used for audio content only.
+        /// To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <seealso cref="AudioPitch"/>
+        /// <since_tizen> 6 </since_tizen>
+        public bool AudioPitchEnabled
+        {
+            get
+            {
+                ValidateNotDisposed();
+                NativePlayer.IsAudioPitchEnabled(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get whether the audio pitch is enabled or not");
+                return value;
+            }
+
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Idle);
+
+                NativePlayer.SetAudioPitchEnabled(Handle, value).
+                    ThrowIfFailed(this, "Failed to enable the audio pitch of the player");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the audio pitch value.
+        /// </summary>
+        /// <value>The audio stream pitch value. The default is 1.</value>
+        /// <remarks>Enabling pitch control could increase the CPU usage on some devices.
+        /// This function is used for audio content only.</remarks>
+        /// <exception cref="InvalidOperationException">A pitch is not enabled.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     value is less than 0.5.
+        ///     -or-<br/>
+        ///     value is greater than 2.0.<br/>
+        /// </exception>
+        /// <seealso cref="AudioPitchEnabled"/>
+        /// <since_tizen> 6 </since_tizen>
+        public float AudioPitch
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                if (AudioPitchEnabled == false)
+                {
+                    throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
+
+                NativePlayer.GetAudioPitch(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio pitch");
+
+                return value;
+            }
+
+            set
+            {
+                ValidateNotDisposed();
+
+                if (AudioPitchEnabled == false)
+                {
+                    throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
+
+                if (value < 0.5F || 2.0F < value)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Valid value is 0.5 to 2.0");
+                }
+
+                NativePlayer.SetAudioPitch(Handle, value).ThrowIfFailed(this, "Failed to set the audio pitch");
+            }
+        }
+
         private SphericalVideo _sphericalVideo;
 
         /// <summary>
