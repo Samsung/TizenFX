@@ -156,15 +156,17 @@ namespace Tizen.WebView
         /// <since_tizen> 6 </since_tizen>
         public IList<BackForwardListItem> BackItems(int limit)
         {
-            IntPtr backList = Interop.ChromiumEwk.ewk_back_forward_list_n_back_items_copy(_list_handle, limit);
+            IntPtr list = Interop.ChromiumEwk.ewk_back_forward_list_n_back_items_copy(_list_handle, limit);
             List<BackForwardListItem> backItemsList = new List<BackForwardListItem>();
 
-            uint count = Interop.Eina.eina_list_count(backList);
-
-            for(uint i=0; i < count; i++) {
-              IntPtr data = Interop.Eina.eina_list_nth(backList, i);
+            var iter = Interop.Eina.eina_list_iterator_new(list);
+            for (IntPtr data; Interop.Eina.eina_iterator_next(iter, out data);) {
               backItemsList.Add(new BackForwardListItem(data));
             }
+
+            Interop.Eina.eina_iterator_free(iter);
+            Interop.Eina.eina_list_free(list);
+
             return backItemsList;
         }
 
@@ -177,15 +179,17 @@ namespace Tizen.WebView
         /// <since_tizen> 6 </since_tizen>
         public IList<BackForwardListItem> ForwardItems(int limit)
         {
-            IntPtr forwardList = Interop.ChromiumEwk.ewk_back_forward_list_n_forward_items_copy(_list_handle, limit);
+            IntPtr list = Interop.ChromiumEwk.ewk_back_forward_list_n_forward_items_copy(_list_handle, limit);
             List<BackForwardListItem> forwardItemsList = new List<BackForwardListItem>();
 
-            uint count = Interop.Eina.eina_list_count(forwardList);
-
-            for(uint i = 0; i < count; i++) {
-              IntPtr data = Interop.Eina.eina_list_nth(forwardList, i);
+            var iter = Interop.Eina.eina_list_iterator_new(list);
+            for (IntPtr data; Interop.Eina.eina_iterator_next(iter, out data);) {
               forwardItemsList.Add(new BackForwardListItem(data));
             }
+
+            Interop.Eina.eina_iterator_free(iter);
+            Interop.Eina.eina_list_free(list);
+
             return forwardItemsList;
         }
     }

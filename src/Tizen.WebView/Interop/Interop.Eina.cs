@@ -29,9 +29,16 @@ internal static partial class Interop
         internal static extern bool eina_hash_add(IntPtr hash, string Key, string Value);
 
         [DllImport(Libraries.Eina)]
-        internal static extern uint eina_list_count(IntPtr list);
+        internal static extern IntPtr eina_list_iterator_new(IntPtr list);
 
         [DllImport(Libraries.Eina)]
-        internal static extern IntPtr eina_list_nth(IntPtr list, uint n);
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool eina_iterator_next(IntPtr iterator, out IntPtr data);
+
+        [DllImport(Libraries.Eina)]
+        internal static extern void eina_iterator_free(IntPtr list);
+
+        [DllImport(Libraries.Eina)]
+        internal static extern IntPtr eina_list_free(IntPtr list);
     }
 }
