@@ -186,6 +186,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The storage ID of the storage that the media is stored on.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public string StorageId { get; }
 
         /// <summary>
@@ -200,6 +201,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The storage type of the storage that the media is stored on.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public StorageType StorageType { get; }
 
         /// <summary>
