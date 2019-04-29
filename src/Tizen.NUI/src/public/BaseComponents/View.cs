@@ -209,7 +209,7 @@ namespace Tizen.NUI.BaseComponents
                 default: return States.Normal;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to Fbe hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TooltipProperty = BindableProperty.Create("Tooltip", typeof(PropertyMap), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -227,6 +227,8 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to Fbe hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexProperty = BindableProperty.Create("Flex", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
