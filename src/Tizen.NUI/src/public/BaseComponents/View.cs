@@ -4059,7 +4059,7 @@ namespace Tizen.NUI.BaseComponents
         public override void Add(View child)
         {
             bool hasLayout = (_layout != null);
-            Log.Info("NUI", "Add:" + child.Name + " to View:" + Name + "which has layout[" + hasLayout + "] + \n");
+            Log.Info("NUI", "Add:" + child.Name + " to View:" + Name + " which has layout[" + hasLayout + "] + \n");
 
             if (null == child)
             {
