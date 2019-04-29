@@ -3077,13 +3077,36 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Extents)GetValue(PaddingProperty);
+                // If View has a Layout then padding in stored in the base Layout class
+                if (Layout !=null)
+                {
+                    return Layout.Padding;
+                }
+                else
+                {
+                    return (Extents)GetValue(PaddingProperty);
+                }
+                // Two return points to prevent creating a zeroed Extent native object before assignment
             }
             set
             {
-                SetValue(PaddingProperty, value);
+                Extents padding = value;
+                if (Layout !=null)
+                {
+                    // Layout set so store Padding in LayoutItem instead of in View.
+                    // If View stores the Padding value then Legacy Size Negotiation will overwrite
+                    // the position and sizes measure in the Layouting.
+                    Layout.Padding = value;
+                    // If Layout is a LayoutItem then it could be a View that handles it's own padding.
+                    // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
+                    if( Layout.GetType() != typeof(LayoutItem)) // If a Layout container of some kind.
+                    {
+                        padding =  new Extents(0,0,0,0); // Reset value stored in View.
+                    }
+                    _layout?.RequestLayout();
+                }
+                SetValue(PaddingProperty, padding);
                 NotifyPropertyChanged();
-                _layout?.RequestLayout();
             }
         }
 
@@ -3329,13 +3352,34 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Extents)GetValue(MarginProperty);
+                // If View has a Layout then margin is stored in Layout.
+                if (Layout != null)
+                {
+                    return Layout.Margin;
+                }
+                else
+                {
+                    // If Layout not set then return margin stored in View.
+                    return (Extents)GetValue(MarginProperty);
+                }
+                // Two return points to prevent creating a zeroed Extent native object before assignment
             }
             set
             {
-                SetValue(MarginProperty, value);
+                if (Layout != null)
+                {
+                    // Layout set so store Margin in LayoutItem instead of View.
+                    // If View stores the Margin too then the Legacy Size Negotiation will
+                    // overwrite the position and size values measured in the Layouting.
+                    Layout.Margin = value;
+                    SetValue(MarginProperty, new Extents(0,0,0,0));
+                    _layout?.RequestLayout();
+                }
+                else
+                {
+                    SetValue(MarginProperty, value);
+                }
                 NotifyPropertyChanged();
-                _layout?.RequestLayout();
             }
         }
 
@@ -3591,11 +3635,58 @@ namespace Tizen.NUI.BaseComponents
 
                 // If new layout being set already has a owner then that owner receives a replacement default layout.
                 // First check if the layout to be set already has a owner.
-                if ( value.Owner != null )
+                if (value?.Owner != null)
                 {
                     Log.Info("NUI", "Set layout already in use by another View: " + value.Owner.Name + "will get a LayoutGroup\n");
                     // Previous owner of the layout gets a default layout as a replacement.
                     value.Owner.Layout = new LayoutGroup();
+                    // Copy Margin and Padding to replacement LayoutGroup.
+                    value.Owner.Layout.Margin = value.Margin;
+                    value.Owner.Layout.Padding = value.Padding;
+                }
+
+                // Copy Margin and Padding to new layout being set or restore padding and margin back to
+                // View if no replacement. Previously margin and padding values would have been moved from
+                // the View to the layout.
+                if (_layout != null ) // Existing layout
+                {
+                    if (value != null)
+                    {
+                        // Existing layout being replaced so copy over margin and padding values.
+                        value.Margin = _layout.Margin;
+                        value.Padding = _layout.Padding;
+                    }
+                    else
+                    {
+                      // Layout not being replaced so restore margin and padding to View.
+                      SetValue(MarginProperty, _layout.Margin);
+                      SetValue(PaddingProperty, _layout.Padding);
+                      NotifyPropertyChanged();
+                    }
+                }
+                else
+                {
+                    // First Layout to be added to the View hence copy
+
+                    // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
+                    if (value !=null)
+                    {
+                        if (Margin.Top != 0 || Margin.Bottom !=0 || Margin.Start !=0 || Margin.End != 0)
+                        {
+                            // If View already has a margin set then store it in Layout instead.
+                            value.Margin = Margin;
+                            SetValue(MarginProperty, new Extents(0,0,0,0));
+                            NotifyPropertyChanged();
+                        }
+
+                        if (Padding.Top != 0 || Padding.Bottom !=0 || Padding.Start !=0 || Padding.End != 0)
+                        {
+                            // If View already has a padding set then store it in Layout instead.
+                            value.Padding = Padding;
+                            SetValue(PaddingProperty, new Extents(0,0,0,0));
+                            NotifyPropertyChanged();
+                        }
+                    }
                 }
 
                 // Remove existing layout from it's parent layout group.
@@ -3609,8 +3700,8 @@ namespace Tizen.NUI.BaseComponents
         internal void SetLayout(LayoutItem layout)
         {
             _layout = layout;
-            _layout.AttachToOwner(this);
-            _layout.RequestLayout();
+            _layout?.AttachToOwner(this);
+            _layout?.RequestLayout();
         }
 
         /// <summary>
