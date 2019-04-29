@@ -240,6 +240,14 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
+        /// Destructor to destroy TtsClient handle.
+        /// </summary>
+        ~TtsClient()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Event to be invoked when TTS state changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1041,6 +1049,7 @@ namespace Tizen.Uix.Tts
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -1053,20 +1062,21 @@ namespace Tizen.Uix.Tts
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    lock (thisLock)
-                    {
-                        TtsError error = TtsDestroy(_handle);
-                        if (error != TtsError.None)
-                        {
-                            Log.Error(LogTag, "Destroy Failed with error " + error);
-                        }
-                    }
-                }
+			{
+				lock (thisLock)
+				{
+					if (_handle != IntPtr.Zero)
+					{
+						TtsError error = TtsDestroy(_handle);
+						if (error != TtsError.None)
+						{
+							Log.Error(LogTag, "Destroy Failed with error " + error);
+						}
+						_handle = IntPtr.Zero;
+					}
+				}
 
-                disposedValue = true;
+				disposedValue = true;
             }
         }
     }
