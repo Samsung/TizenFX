@@ -154,7 +154,6 @@ namespace Tizen.NUI
         {
             if (rootNode.Layout != null)
             {
-                Log.Info("NUI", "Found root:" + rootNode.Name + "\n");
                 // rootNode has a layout, ensure all children have default layouts or layout items.
                 AutomaticallyAssignLayouts(rootNode);
                 // rootNode has a layout, start measuring and layouting from here.
@@ -204,7 +203,7 @@ namespace Tizen.NUI
                 MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.AtMost;
                 MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.AtMost;
 
-                if (root.WidthSpecification >= 0 )
+                if ( root.WidthSpecification >= 0 )
                 {
                     // exact size provided so match width exactly
                     width = new LayoutLength(root.WidthSpecification);
@@ -212,6 +211,7 @@ namespace Tizen.NUI
                 }
                 else if (root.WidthSpecification == LayoutParamPolicies.MatchParent)
                 {
+
                     widthMode = MeasureSpecification.ModeType.Exactly;
                 }
 
