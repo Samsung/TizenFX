@@ -2312,6 +2312,12 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_SHIFT_SELECTION_get")]
         public static extern int TextField_Property_ENABLE_SHIFT_SELECTION_get();
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get")]
+        public static extern int TextField_Property_ENABLE_GRAB_HANDLE_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get")]
+        public static extern int TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get();
+
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextEditor_Property_ENABLE_SHIFT_SELECTION_get")]
         public static extern int TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
