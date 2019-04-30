@@ -3,8 +3,10 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { 
+namespace Efl {
+
 /// <summary>Bidirectionaltext type</summary>
 public enum TextBidirectionalType
 {
@@ -21,8 +23,13 @@ Inherit = 3,
 /// <summary>@internal EVAS_BIDI_DIRECTION_ANY_RTL is not made for public. It should be opened to public when it is accepted to EFL upstream.</summary>
 AnyRtl = 4,
 }
-} 
-namespace Efl { namespace Ui { 
+
+}
+
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>This structure includes all the information about content changes.
 /// It&apos;s meant to be used to implement undo/redo.</summary>
 [StructLayout(LayoutKind.Sequential)]
@@ -40,11 +47,11 @@ public struct TextChangeInfo
     public bool Merge;
     ///<summary>Constructor for TextChangeInfo.</summary>
     public TextChangeInfo(
-        System.String Content=default(System.String),
-        uint Position=default(uint),
-        uint Length=default(uint),
-        bool Insert=default(bool),
-        bool Merge=default(bool)    )
+        System.String Content = default(System.String),
+        uint Position = default(uint),
+        uint Length = default(uint),
+        bool Insert = default(bool),
+        bool Merge = default(bool)    )
     {
         this.Content = Content;
         this.Position = Position;
@@ -101,4 +108,7 @@ public struct TextChangeInfo
 
 }
 
-} } 
+}
+
+}
+

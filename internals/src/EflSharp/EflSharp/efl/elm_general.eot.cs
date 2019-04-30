@@ -3,8 +3,10 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Elm { 
+namespace Elm {
+
 /// <summary>Policy identifiers.</summary>
 public enum Policy
 {
@@ -19,8 +21,11 @@ Throttle = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 3,
 }
-} 
-namespace Elm { 
+
+}
+
+namespace Elm {
+
 /// <summary>Possible values for the <see cref="Elm.Policy.Quit"/> policy</summary>
 public enum PolicyQuit
 {
@@ -32,8 +37,11 @@ LastWindowClosed = 1,
 /// (Since EFL 1.14)</summary>
 LastWindowHidden = 2,
 }
-} 
-namespace Elm { 
+
+}
+
+namespace Elm {
+
 /// <summary>Possible values for the <see cref="Elm.Policy.Exit"/> policy.
 /// (Since EFL 1.8)</summary>
 public enum PolicyExit
@@ -43,8 +51,11 @@ None = 0,
 /// <summary>delete all the windows after quitting the main loop</summary>
 WindowsDel = 1,
 }
-} 
-namespace Elm { 
+
+}
+
+namespace Elm {
+
 /// <summary>Possible values for the <see cref="Elm.Policy.Throttle"/> policy.
 /// (Since EFL 1.8)</summary>
 public enum PolicyThrottle
@@ -56,8 +67,13 @@ HiddenAlways = 1,
 /// <summary>never throttle when windows are all hidden, regardless of config settings</summary>
 Never = 2,
 }
-} 
-namespace Elm { namespace Object { 
+
+}
+
+namespace Elm {
+
+namespace Object {
+
 /// <summary>Possible values for the #ELM_OBJECT_SELECT_MODE policy.
 /// (Since EFL 1.7)</summary>
 public enum SelectMode
@@ -73,8 +89,15 @@ DisplayOnly = 3,
 /// <summary>canary value: any value greater or equal to ELM_OBJECT_SELECT_MODE_MAX is forbidden.</summary>
 Max = 4,
 }
-} } 
-namespace Elm { namespace Object { 
+
+}
+
+}
+
+namespace Elm {
+
+namespace Object {
+
 /// <summary>Possible values for the #ELM_OBJECT_MULTI_SELECT_MODE policy.
 /// (Since EFL 1.8)</summary>
 public enum MultiSelectMode
@@ -86,8 +109,15 @@ WithControl = 1,
 /// <summary>canary value: any value greater or equal to ELM_OBJECT_MULTI_SELECT_MODE_MAX is forbidden.</summary>
 Max = 2,
 }
-} } 
-namespace Elm { namespace Wrap { 
+
+}
+
+}
+
+namespace Elm {
+
+namespace Wrap {
+
 /// <summary>Line wrapping types. Type of word or character wrapping to use.
 /// See also @ref elm_entry_line_wrap_set, @ref elm_popup_content_text_wrap_type_set, @ref elm_label_line_wrap_set.</summary>
 public enum Type
@@ -103,8 +133,15 @@ Mixed = 3,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 4,
 }
-} } 
-namespace Elm { namespace Icon { 
+
+}
+
+}
+
+namespace Elm {
+
+namespace Icon {
+
 /// <summary>Elementary icon types</summary>
 public enum Type
 {
@@ -115,8 +152,13 @@ File = 1,
 /// <summary>Icon is of type standard</summary>
 Standard = 2,
 }
-} } 
-namespace Elm { 
+
+}
+
+}
+
+namespace Elm {
+
 /// <summary>Text Format types.</summary>
 public enum TextFormat
 {
@@ -125,8 +167,15 @@ PlainUtf8 = 0,
 /// <summary>Markup UTF8 type</summary>
 MarkupUtf8 = 1,
 }
-} 
-namespace Elm { namespace Input { namespace Panel { 
+
+}
+
+namespace Elm {
+
+namespace Input {
+
+namespace Panel {
+
 /// <summary>Input panel (virtual keyboard) layout types. Type of input panel (virtual keyboard) to use - this is a hint and may not provide exactly what is desired.</summary>
 public enum Layout
 {
@@ -164,8 +213,19 @@ Emoticon = 13,
 /// (Since EFL 1.19)</summary>
 Voice = 14,
 }
-} } } 
-namespace Elm { namespace Input { namespace Panel { 
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace Input {
+
+namespace Panel {
+
 /// <summary>Input panel (virtual keyboard) language modes.</summary>
 public enum Lang
 {
@@ -174,8 +234,17 @@ Automatic = 0,
 /// <summary>Alphabet</summary>
 Alphabet = 1,
 }
-} } } 
-namespace Elm { namespace Autocapital { 
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace Autocapital {
+
 /// <summary>Autocapitalization Types. Choose method of auto-capitalization.</summary>
 public enum Type
 {
@@ -188,8 +257,19 @@ Sentence = 2,
 /// <summary>Autocapitalize all letters.</summary>
 Allcharacter = 3,
 }
-} } 
-namespace Elm { namespace Input { namespace Panel { namespace ReturnKey { 
+
+}
+
+}
+
+namespace Elm {
+
+namespace Input {
+
+namespace Panel {
+
+namespace ReturnKey {
+
 /// <summary>&quot;Return&quot; Key types on the input panel (virtual keyboard).</summary>
 public enum Type
 {
@@ -213,8 +293,19 @@ Send = 7,
 /// (Since EFL 1.8)</summary>
 Signin = 8,
 }
-} } } } 
-namespace Elm { namespace Input { 
+
+}
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace Input {
+
 /// <summary>Enumeration that defines the types of Input Hints.
 /// (Since EFL 1.12)</summary>
 public enum Hints
@@ -262,8 +353,13 @@ AutofillPostalCode = 2560,
 /// (Since EFL 1.21)</summary>
 AutofillId = 2816,
 }
-} } 
-namespace Elm { 
+
+}
+
+}
+
+namespace Elm {
+
 /// <summary>Enum of entry&apos;s copy &amp; paste policy.</summary>
 public enum CnpMode
 {
@@ -274,8 +370,15 @@ NoImage = 1,
 /// <summary>copy &amp; paste text without markup tag</summary>
 Plaintext = 2,
 }
-} 
-namespace Elm { namespace Genlist { namespace Item { 
+
+}
+
+namespace Elm {
+
+namespace Genlist {
+
+namespace Item {
+
 /// <summary>Defines if the item is of any special type (has subitems or it&apos;s the index of a group), or is just a simple item.</summary>
 public enum Type
 {
@@ -288,8 +391,19 @@ Group = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Max = 4,
 }
-} } } 
-namespace Elm { namespace Genlist { namespace Item { 
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace Genlist {
+
+namespace Item {
+
 /// <summary>Defines the type of the item part Used while updating item&apos;s parts It can be used at updating multi fields.</summary>
 public enum FieldType
 {
@@ -302,8 +416,19 @@ Content = 2,
 /// <summary>Type state</summary>
 State = 4,
 }
-} } } 
-namespace Elm { namespace Genlist { namespace Item { 
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace Genlist {
+
+namespace Item {
+
 /// <summary>Defines where to position the item in the genlist.</summary>
 public enum ScrolltoType
 {
@@ -318,8 +443,19 @@ Middle = 4,
 /// <summary>To the bottom of viewport.</summary>
 Bottom = 8,
 }
-} } } 
-namespace Elm { namespace Gengrid { namespace Item { 
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace Gengrid {
+
+namespace Item {
+
 /// <summary>Defines where to position the item in the genlist.</summary>
 public enum ScrolltoType
 {
@@ -334,8 +470,19 @@ Middle = 4,
 /// <summary>To the bottom of viewport.</summary>
 Bottom = 8,
 }
-} } } 
-namespace Elm { namespace Gengrid { namespace Item { 
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace Gengrid {
+
+namespace Item {
+
 /// <summary>Defines the type of the item part Used while updating item&apos;s parts. It can be used at updating multi fields.</summary>
 public enum FieldType
 {
@@ -348,8 +495,17 @@ Content = 2,
 /// <summary>Type state</summary>
 State = 4,
 }
-} } } 
-namespace Elm { namespace List { 
+
+}
+
+}
+
+}
+
+namespace Elm {
+
+namespace List {
+
 /// <summary>Set list&apos;s resizing behavior, transverse axis scrolling and items cropping. See each mode&apos;s description for more details.
 /// Note: Default value is <see cref="Elm.List.Mode.Scroll"/>.
 /// 
@@ -367,8 +523,15 @@ Expand = 3,
 /// <summary>Indicates error if returned by elm_list_mode_get().</summary>
 Last = 4,
 }
-} } 
-namespace Elm { namespace Event { 
+
+}
+
+}
+
+namespace Elm {
+
+namespace Event {
+
 /// <summary>Data on the event when an Elementary policy has changed</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct PolicyChanged
@@ -381,9 +544,9 @@ public struct PolicyChanged
     public int Old_value;
     ///<summary>Constructor for PolicyChanged.</summary>
     public PolicyChanged(
-        uint Policy=default(uint),
-        int New_value=default(int),
-        int Old_value=default(int)    )
+        uint Policy = default(uint),
+        int New_value = default(int),
+        int Old_value = default(int)    )
     {
         this.Policy = Policy;
         this.New_value = New_value;
@@ -430,7 +593,9 @@ public struct PolicyChanged
 
 }
 
-} } 
+}
+
+}
 
 /// <summary>Elementary gen item</summary>
 [StructLayout(LayoutKind.Sequential)]
@@ -505,7 +670,9 @@ public struct EflAccessActionData
 }
 
 
-namespace Elm { 
+
+namespace Elm {
+
 /// <summary>Data for the elm_validator_regexp_helper()</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct ValidateContent
@@ -541,8 +708,10 @@ public struct ValidateContent
 
 }
 
-} 
-namespace Elm { 
+}
+
+namespace Elm {
+
 /// <summary>The info sent in the callback for the &quot;anchor,clicked&quot; signals emitted by entries.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct EntryAnchorInfo
@@ -578,8 +747,10 @@ public struct EntryAnchorInfo
 
 }
 
-} 
-namespace Elm { 
+}
+
+namespace Elm {
+
 /// <summary>The info sent in the callback for &quot;anchor,hover&quot; signals emitted by the Anchor_Hover widget</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct EntryAnchorHoverInfo
@@ -615,8 +786,10 @@ public struct EntryAnchorHoverInfo
 
 }
 
-} 
-namespace Elm { 
+}
+
+namespace Elm {
+
 /// <summary>This corresponds to Edje_Entry_Change_Info. Includes information about a change in the entry</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct EntryChangeInfo
@@ -652,4 +825,5 @@ public struct EntryChangeInfo
 
 }
 
-} 
+}
+

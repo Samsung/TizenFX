@@ -161,7 +161,14 @@ public class Connection : IDisposable
 
         if (Own)
         {
-            eldbus_connection_unref(h);
+            if (disposing)
+            {
+                eldbus_connection_unref(h);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eldbus_connection_unref, h);
+            }
         }
     }
 

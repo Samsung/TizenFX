@@ -3,37 +3,48 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { 
+namespace Efl {
+
 /// <summary>Object representing the application itself.
 /// (Since EFL 1.22)</summary>
-[AppNativeInherit]
+[Efl.App.NativeMethods]
 public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
 {
     ///<summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (App))
-                return Efl.AppNativeInherit.GetEflClassStatic();
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(App))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_app_class_get();
-    ///<summary>Creates a new instance.</summary>
-    ///<param name="parent">Parent instance.</param>
+    /// <summary>Initializes a new instance of the <see cref="App"/> class.</summary>
+    /// <param name="parent">Parent instance.</param>
     public App(Efl.Object parent= null
-            ) :
-        base(efl_app_class_get(), typeof(App), parent)
+            ) : base(efl_app_class_get(), typeof(App), parent)
     {
         FinishInstantiation();
     }
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+
+    /// <summary>Initializes a new instance of the <see cref="App"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="raw">The native pointer to be wrapped.</param>
     protected App(System.IntPtr raw) : base(raw)
     {
-                RegisterEventProxies();
-    }
+            }
+
     [Efl.Eo.PrivateNativeClass]
     private class AppRealized : App
     {
@@ -41,359 +52,426 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
         }
     }
-    ///<summary>Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
-    protected App(IntPtr base_klass, System.Type managed_type, Efl.Object parent) : base(base_klass, managed_type, parent) {}
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+    /// <summary>Initializes a new instance of the <see cref="App"/> class.
+    /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
+    /// <param name="baseKlass">The pointer to the base native Eo class.</param>
+    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
+    /// <param name="parent">The Efl.Object parent of this instance.</param>
+    protected App(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-        var other = obj as Efl.Object;
+    }
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
+    {
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-private static object PauseEvtKey = new object();
+
     /// <summary>Called when the application is not going be displayed or otherwise used by a user for some time
     /// (Since EFL 1.22)</summary>
     public event EventHandler PauseEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_APP_EVENT_PAUSE";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_PauseEvt_delegate)) {
-                    eventHandlers.AddHandler(PauseEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_APP_EVENT_PAUSE";
-                if (RemoveNativeEventHandler(key, this.evt_PauseEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(PauseEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event PauseEvt.</summary>
-    public void On_PauseEvt(EventArgs e)
+    public void OnPauseEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[PauseEvtKey];
+        var key = "_EFL_APP_EVENT_PAUSE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_PauseEvt_delegate;
-    private void on_PauseEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_PauseEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ResumeEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called before a window is rendered after a pause event
     /// (Since EFL 1.22)</summary>
     public event EventHandler ResumeEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_APP_EVENT_RESUME";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_ResumeEvt_delegate)) {
-                    eventHandlers.AddHandler(ResumeEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_APP_EVENT_RESUME";
-                if (RemoveNativeEventHandler(key, this.evt_ResumeEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ResumeEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event ResumeEvt.</summary>
-    public void On_ResumeEvt(EventArgs e)
+    public void OnResumeEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ResumeEvtKey];
+        var key = "_EFL_APP_EVENT_RESUME";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ResumeEvt_delegate;
-    private void on_ResumeEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ResumeEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object StandbyEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when the application&apos;s windows are all destroyed
     /// (Since EFL 1.22)</summary>
     public event EventHandler StandbyEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_APP_EVENT_STANDBY";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_StandbyEvt_delegate)) {
-                    eventHandlers.AddHandler(StandbyEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_APP_EVENT_STANDBY";
-                if (RemoveNativeEventHandler(key, this.evt_StandbyEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(StandbyEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event StandbyEvt.</summary>
-    public void On_StandbyEvt(EventArgs e)
+    public void OnStandbyEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[StandbyEvtKey];
+        var key = "_EFL_APP_EVENT_STANDBY";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_StandbyEvt_delegate;
-    private void on_StandbyEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_StandbyEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object TerminateEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called before starting the shutdown of the application
     /// (Since EFL 1.22)</summary>
     public event EventHandler TerminateEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_APP_EVENT_TERMINATE";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_TerminateEvt_delegate)) {
-                    eventHandlers.AddHandler(TerminateEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_APP_EVENT_TERMINATE";
-                if (RemoveNativeEventHandler(key, this.evt_TerminateEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(TerminateEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event TerminateEvt.</summary>
-    public void On_TerminateEvt(EventArgs e)
+    public void OnTerminateEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[TerminateEvtKey];
+        var key = "_EFL_APP_EVENT_TERMINATE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_TerminateEvt_delegate;
-    private void on_TerminateEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_TerminateEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object SignalUsr1EvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>System specific, but on unix maps to SIGUSR1 signal to the process - only called on main loop object
     /// (Since EFL 1.22)</summary>
     public event EventHandler SignalUsr1Evt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_APP_EVENT_SIGNAL_USR1";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_SignalUsr1Evt_delegate)) {
-                    eventHandlers.AddHandler(SignalUsr1EvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_APP_EVENT_SIGNAL_USR1";
-                if (RemoveNativeEventHandler(key, this.evt_SignalUsr1Evt_delegate)) { 
-                    eventHandlers.RemoveHandler(SignalUsr1EvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event SignalUsr1Evt.</summary>
-    public void On_SignalUsr1Evt(EventArgs e)
+    public void OnSignalUsr1Evt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[SignalUsr1EvtKey];
+        var key = "_EFL_APP_EVENT_SIGNAL_USR1";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_SignalUsr1Evt_delegate;
-    private void on_SignalUsr1Evt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_SignalUsr1Evt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object SignalUsr2EvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>System specific, but on unix maps to SIGUSR2 signal to the process - only called on main loop object
     /// (Since EFL 1.22)</summary>
     public event EventHandler SignalUsr2Evt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_APP_EVENT_SIGNAL_USR2";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_SignalUsr2Evt_delegate)) {
-                    eventHandlers.AddHandler(SignalUsr2EvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_APP_EVENT_SIGNAL_USR2";
-                if (RemoveNativeEventHandler(key, this.evt_SignalUsr2Evt_delegate)) { 
-                    eventHandlers.RemoveHandler(SignalUsr2EvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event SignalUsr2Evt.</summary>
-    public void On_SignalUsr2Evt(EventArgs e)
+    public void OnSignalUsr2Evt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[SignalUsr2EvtKey];
+        var key = "_EFL_APP_EVENT_SIGNAL_USR2";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_SignalUsr2Evt_delegate;
-    private void on_SignalUsr2Evt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_SignalUsr2Evt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object SignalHupEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>System specific, but on unix maps to SIGHUP signal to the process - only called on main loop object
     /// (Since EFL 1.22)</summary>
     public event EventHandler SignalHupEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_APP_EVENT_SIGNAL_HUP";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_SignalHupEvt_delegate)) {
-                    eventHandlers.AddHandler(SignalHupEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_APP_EVENT_SIGNAL_HUP";
-                if (RemoveNativeEventHandler(key, this.evt_SignalHupEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(SignalHupEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event SignalHupEvt.</summary>
-    public void On_SignalHupEvt(EventArgs e)
+    public void OnSignalHupEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[SignalHupEvtKey];
+        var key = "_EFL_APP_EVENT_SIGNAL_HUP";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_SignalHupEvt_delegate;
-    private void on_SignalHupEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_SignalHupEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-    protected override void RegisterEventProxies()
-    {
-        base.RegisterEventProxies();
-        evt_PauseEvt_delegate = new Efl.EventCb(on_PauseEvt_NativeCallback);
-        evt_ResumeEvt_delegate = new Efl.EventCb(on_ResumeEvt_NativeCallback);
-        evt_StandbyEvt_delegate = new Efl.EventCb(on_StandbyEvt_NativeCallback);
-        evt_TerminateEvt_delegate = new Efl.EventCb(on_TerminateEvt_NativeCallback);
-        evt_SignalUsr1Evt_delegate = new Efl.EventCb(on_SignalUsr1Evt_NativeCallback);
-        evt_SignalUsr2Evt_delegate = new Efl.EventCb(on_SignalUsr2Evt_NativeCallback);
-        evt_SignalHupEvt_delegate = new Efl.EventCb(on_SignalHupEvt_NativeCallback);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Returns the app object that is representing this process
     /// Note: This function call only works in the main loop thread of the process.
     /// (Since EFL 1.22)</summary>
     /// <returns>Application for this process</returns>
     public static Efl.App GetAppMain() {
-         var _ret_var = Efl.AppNativeInherit.efl_app_main_get_ptr.Value.Delegate();
+         var _ret_var = Efl.App.NativeMethods.efl_app_main_get_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -402,7 +480,7 @@ private static object SignalHupEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl build version</returns>
     virtual public Efl.Version GetBuildEflVersion() {
-         var _ret_var = Efl.AppNativeInherit.efl_app_build_efl_version_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.App.NativeMethods.efl_app_build_efl_version_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Version>(_ret_var);
         
@@ -413,7 +491,7 @@ private static object SignalHupEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl version</returns>
     virtual public Efl.Version GetEflVersion() {
-         var _ret_var = Efl.AppNativeInherit.efl_app_efl_version_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.App.NativeMethods.efl_app_efl_version_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Version>(_ret_var);
         
@@ -427,9 +505,8 @@ private static object SignalHupEvtKey = new object();
     /// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
     /// 
     /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
-    /// <returns></returns>
     virtual public System.String GetCommand() {
-         var _ret_var = Efl.Core.ICommandLineNativeInherit.efl_core_command_line_command_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -437,11 +514,11 @@ private static object SignalHupEvtKey = new object();
     /// Every element of a string is a argument.</summary>
     /// <param name="array">An array where every array field is an argument</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandArray( Eina.Array<System.String> array) {
+    virtual public bool SetCommandArray(Eina.Array<System.String> array) {
          var _in_array = array.Handle;
 array.Own = false;
 array.OwnContent = false;
-                        var _ret_var = Efl.Core.ICommandLineNativeInherit.efl_core_command_line_command_array_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), _in_array);
+                        var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_array);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -449,15 +526,14 @@ array.OwnContent = false;
     /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
     /// <param name="str">A command in form of a string</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandString( System.String str) {
-                                 var _ret_var = Efl.Core.ICommandLineNativeInherit.efl_core_command_line_command_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), str);
+    virtual public bool SetCommandString(System.String str) {
+                                 var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),str);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Get the accessor which enables access to each argument that got passed to this object.</summary>
-    /// <returns></returns>
     virtual public Eina.Accessor<System.String> CommandAccess() {
-         var _ret_var = Efl.Core.ICommandLineNativeInherit.efl_core_command_line_command_access_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Accessor<System.String>(_ret_var, false, false);
  }
@@ -490,7 +566,6 @@ array.OwnContent = false;
 /// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
 /// 
 /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
-/// <value></value>
     public System.String Command {
         get { return GetCommand(); }
     }
@@ -498,234 +573,356 @@ array.OwnContent = false;
 /// Every element of a string is a argument.</summary>
 /// <value>An array where every array field is an argument</value>
     public Eina.Array<System.String> CommandArray {
-        set { SetCommandArray( value); }
+        set { SetCommandArray(value); }
     }
     /// <summary>Use a string to fill this object
 /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
 /// <value>A command in form of a string</value>
     public System.String CommandString {
-        set { SetCommandString( value); }
+        set { SetCommandString(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.App.efl_app_class_get();
     }
-}
-public class AppNativeInherit : Efl.LoopNativeInherit{
-    public new  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public new class NativeMethods : Efl.Loop.NativeMethods
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        if (efl_app_build_efl_version_get_static_delegate == null)
-            efl_app_build_efl_version_get_static_delegate = new efl_app_build_efl_version_get_delegate(build_efl_version_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetBuildEflVersion") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_app_build_efl_version_get"), func = Marshal.GetFunctionPointerForDelegate(efl_app_build_efl_version_get_static_delegate)});
-        if (efl_app_efl_version_get_static_delegate == null)
-            efl_app_efl_version_get_static_delegate = new efl_app_efl_version_get_delegate(efl_version_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetEflVersion") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_app_efl_version_get"), func = Marshal.GetFunctionPointerForDelegate(efl_app_efl_version_get_static_delegate)});
-        if (efl_core_command_line_command_get_static_delegate == null)
-            efl_core_command_line_command_get_static_delegate = new efl_core_command_line_command_get_delegate(command_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetCommand") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_core_command_line_command_get"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_get_static_delegate)});
-        if (efl_core_command_line_command_array_set_static_delegate == null)
-            efl_core_command_line_command_array_set_static_delegate = new efl_core_command_line_command_array_set_delegate(command_array_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetCommandArray") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_core_command_line_command_array_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_array_set_static_delegate)});
-        if (efl_core_command_line_command_string_set_static_delegate == null)
-            efl_core_command_line_command_string_set_static_delegate = new efl_core_command_line_command_string_set_delegate(command_string_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetCommandString") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_core_command_line_command_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_string_set_static_delegate)});
-        if (efl_core_command_line_command_access_static_delegate == null)
-            efl_core_command_line_command_access_static_delegate = new efl_core_command_line_command_access_delegate(command_access);
-        if (methods.FirstOrDefault(m => m.Name == "CommandAccess") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_core_command_line_command_access"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_access_static_delegate)});
-        descs.AddRange(base.GetEoOps(type));
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.App.efl_app_class_get();
-    }
-    public static new  IntPtr GetEflClassStatic()
-    {
-        return Efl.App.efl_app_class_get();
-    }
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
 
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.App, Efl.Eo.NonOwnTag>))] private delegate Efl.App efl_app_main_get_delegate();
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.App, Efl.Eo.NonOwnTag>))] public delegate Efl.App efl_app_main_get_api_delegate();
-     public static Efl.Eo.FunctionWrapper<efl_app_main_get_api_delegate> efl_app_main_get_ptr = new Efl.Eo.FunctionWrapper<efl_app_main_get_api_delegate>(_Module, "efl_app_main_get");
-     private static Efl.App app_main_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_app_main_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.App _ret_var = default(Efl.App);
-            try {
-                _ret_var = App.GetAppMain();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            if (efl_app_build_efl_version_get_static_delegate == null)
+            {
+                efl_app_build_efl_version_get_static_delegate = new efl_app_build_efl_version_get_delegate(build_efl_version_get);
             }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetBuildEflVersion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_app_build_efl_version_get"), func = Marshal.GetFunctionPointerForDelegate(efl_app_build_efl_version_get_static_delegate) });
+            }
+
+            if (efl_app_efl_version_get_static_delegate == null)
+            {
+                efl_app_efl_version_get_static_delegate = new efl_app_efl_version_get_delegate(efl_version_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetEflVersion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_app_efl_version_get"), func = Marshal.GetFunctionPointerForDelegate(efl_app_efl_version_get_static_delegate) });
+            }
+
+            if (efl_core_command_line_command_get_static_delegate == null)
+            {
+                efl_core_command_line_command_get_static_delegate = new efl_core_command_line_command_get_delegate(command_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCommand") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_get"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_get_static_delegate) });
+            }
+
+            if (efl_core_command_line_command_array_set_static_delegate == null)
+            {
+                efl_core_command_line_command_array_set_static_delegate = new efl_core_command_line_command_array_set_delegate(command_array_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCommandArray") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_array_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_array_set_static_delegate) });
+            }
+
+            if (efl_core_command_line_command_string_set_static_delegate == null)
+            {
+                efl_core_command_line_command_string_set_static_delegate = new efl_core_command_line_command_string_set_delegate(command_string_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCommandString") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_string_set_static_delegate) });
+            }
+
+            if (efl_core_command_line_command_access_static_delegate == null)
+            {
+                efl_core_command_line_command_access_static_delegate = new efl_core_command_line_command_access_delegate(command_access);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "CommandAccess") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_access"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_access_static_delegate) });
+            }
+
+            descs.AddRange(base.GetEoOps(type));
+            return descs;
+        }
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.App.efl_app_class_get();
+        }
+
+        #pragma warning disable CA1707, SA1300, SA1600
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.App efl_app_main_get_delegate();
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.App efl_app_main_get_api_delegate();
+
+        public static Efl.Eo.FunctionWrapper<efl_app_main_get_api_delegate> efl_app_main_get_ptr = new Efl.Eo.FunctionWrapper<efl_app_main_get_api_delegate>(Module, "efl_app_main_get");
+
+        private static Efl.App app_main_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_app_main_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.App _ret_var = default(Efl.App);
+                try
+                {
+                    _ret_var = App.GetAppMain();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_app_main_get_ptr.Value.Delegate();
-        }
-    }
 
-
-     private delegate System.IntPtr efl_app_build_efl_version_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate System.IntPtr efl_app_build_efl_version_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_app_build_efl_version_get_api_delegate> efl_app_build_efl_version_get_ptr = new Efl.Eo.FunctionWrapper<efl_app_build_efl_version_get_api_delegate>(_Module, "efl_app_build_efl_version_get");
-     private static System.IntPtr build_efl_version_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_app_build_efl_version_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Version _ret_var = default(Efl.Version);
-            try {
-                _ret_var = ((App)wrapper).GetBuildEflVersion();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_app_main_get_ptr.Value.Delegate();
+            }
+        }
+
+        
+        private delegate System.IntPtr efl_app_build_efl_version_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_app_build_efl_version_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_app_build_efl_version_get_api_delegate> efl_app_build_efl_version_get_ptr = new Efl.Eo.FunctionWrapper<efl_app_build_efl_version_get_api_delegate>(Module, "efl_app_build_efl_version_get");
+
+        private static System.IntPtr build_efl_version_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_app_build_efl_version_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Version _ret_var = default(Efl.Version);
+                try
+                {
+                    _ret_var = ((App)wrapper).GetBuildEflVersion();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return Eina.PrimitiveConversion.ManagedToPointerAlloc(_ret_var);
-        } else {
-            return efl_app_build_efl_version_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_app_build_efl_version_get_delegate efl_app_build_efl_version_get_static_delegate;
 
-
-     private delegate System.IntPtr efl_app_efl_version_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate System.IntPtr efl_app_efl_version_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_app_efl_version_get_api_delegate> efl_app_efl_version_get_ptr = new Efl.Eo.FunctionWrapper<efl_app_efl_version_get_api_delegate>(_Module, "efl_app_efl_version_get");
-     private static System.IntPtr efl_version_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_app_efl_version_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Version _ret_var = default(Efl.Version);
-            try {
-                _ret_var = ((App)wrapper).GetEflVersion();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_app_build_efl_version_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_app_build_efl_version_get_delegate efl_app_build_efl_version_get_static_delegate;
+
+        
+        private delegate System.IntPtr efl_app_efl_version_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_app_efl_version_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_app_efl_version_get_api_delegate> efl_app_efl_version_get_ptr = new Efl.Eo.FunctionWrapper<efl_app_efl_version_get_api_delegate>(Module, "efl_app_efl_version_get");
+
+        private static System.IntPtr efl_version_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_app_efl_version_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Version _ret_var = default(Efl.Version);
+                try
+                {
+                    _ret_var = ((App)wrapper).GetEflVersion();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return Eina.PrimitiveConversion.ManagedToPointerAlloc(_ret_var);
-        } else {
-            return efl_app_efl_version_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_app_efl_version_get_delegate efl_app_efl_version_get_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_core_command_line_command_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_core_command_line_command_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate> efl_core_command_line_command_get_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate>(_Module, "efl_core_command_line_command_get");
-     private static System.String command_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_core_command_line_command_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((App)wrapper).GetCommand();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_app_efl_version_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_app_efl_version_get_delegate efl_app_efl_version_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_core_command_line_command_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_core_command_line_command_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate> efl_core_command_line_command_get_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate>(Module, "efl_core_command_line_command_get");
+
+        private static System.String command_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_core_command_line_command_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((App)wrapper).GetCommand();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_core_command_line_command_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+
+            }
+            else
+            {
+                return efl_core_command_line_command_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
         }
-    }
-    private static efl_core_command_line_command_get_delegate efl_core_command_line_command_get_static_delegate;
 
+        private static efl_core_command_line_command_get_delegate efl_core_command_line_command_get_static_delegate;
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_core_command_line_command_array_set_delegate(System.IntPtr obj, System.IntPtr pd,   System.IntPtr array);
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_core_command_line_command_array_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr array);
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_core_command_line_command_array_set_api_delegate(System.IntPtr obj,  System.IntPtr array);
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_core_command_line_command_array_set_api_delegate(System.IntPtr obj,   System.IntPtr array);
-     public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate> efl_core_command_line_command_array_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate>(_Module, "efl_core_command_line_command_array_set");
-     private static bool command_array_set(System.IntPtr obj, System.IntPtr pd,  System.IntPtr array)
-    {
-        Eina.Log.Debug("function efl_core_command_line_command_array_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                    var _in_array = new Eina.Array<System.String>(array, true, true);
+        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate> efl_core_command_line_command_array_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate>(Module, "efl_core_command_line_command_array_set");
+
+        private static bool command_array_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr array)
+        {
+            Eina.Log.Debug("function efl_core_command_line_command_array_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+        var _in_array = new Eina.Array<System.String>(array, true, true);
                             bool _ret_var = default(bool);
-            try {
-                _ret_var = ((App)wrapper).SetCommandArray( _in_array);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+                try
+                {
+                    _ret_var = ((App)wrapper).SetCommandArray(_in_array);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         return _ret_var;
-        } else {
-            return efl_core_command_line_command_array_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  array);
-        }
-    }
-    private static efl_core_command_line_command_array_set_delegate efl_core_command_line_command_array_set_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_core_command_line_command_string_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String str);
-
-
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_core_command_line_command_string_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String str);
-     public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate> efl_core_command_line_command_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate>(_Module, "efl_core_command_line_command_string_set");
-     private static bool command_string_set(System.IntPtr obj, System.IntPtr pd,  System.String str)
-    {
-        Eina.Log.Debug("function efl_core_command_line_command_string_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                bool _ret_var = default(bool);
-            try {
-                _ret_var = ((App)wrapper).SetCommandString( str);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_core_command_line_command_array_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), array);
+            }
+        }
+
+        private static efl_core_command_line_command_array_set_delegate efl_core_command_line_command_array_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_core_command_line_command_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String str);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_core_command_line_command_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String str);
+
+        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate> efl_core_command_line_command_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate>(Module, "efl_core_command_line_command_string_set");
+
+        private static bool command_string_set(System.IntPtr obj, System.IntPtr pd, System.String str)
+        {
+            Eina.Log.Debug("function efl_core_command_line_command_string_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((App)wrapper).SetCommandString(str);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         return _ret_var;
-        } else {
-            return efl_core_command_line_command_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  str);
-        }
-    }
-    private static efl_core_command_line_command_string_set_delegate efl_core_command_line_command_string_set_static_delegate;
 
-
-     private delegate System.IntPtr efl_core_command_line_command_access_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate System.IntPtr efl_core_command_line_command_access_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate> efl_core_command_line_command_access_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate>(_Module, "efl_core_command_line_command_access");
-     private static System.IntPtr command_access(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_core_command_line_command_access was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
-            try {
-                _ret_var = ((App)wrapper).CommandAccess();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_core_command_line_command_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), str);
+            }
+        }
+
+        private static efl_core_command_line_command_string_set_delegate efl_core_command_line_command_string_set_static_delegate;
+
+        
+        private delegate System.IntPtr efl_core_command_line_command_access_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_core_command_line_command_access_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate> efl_core_command_line_command_access_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate>(Module, "efl_core_command_line_command_access");
+
+        private static System.IntPtr command_access(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_core_command_line_command_access was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
+                try
+                {
+                    _ret_var = ((App)wrapper).CommandAccess();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var.Handle;
-        } else {
-            return efl_core_command_line_command_access_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+
+            }
+            else
+            {
+                return efl_core_command_line_command_access_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
         }
-    }
-    private static efl_core_command_line_command_access_delegate efl_core_command_line_command_access_static_delegate;
+
+        private static efl_core_command_line_command_access_delegate efl_core_command_line_command_access_static_delegate;
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} 
+}
+}
+
