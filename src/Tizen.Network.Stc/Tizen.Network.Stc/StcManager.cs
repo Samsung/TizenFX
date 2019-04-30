@@ -86,6 +86,7 @@ namespace Tizen.Network.Stc
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
         public static Task<NetworkStatistics> GetStatisticsAsync(StcRule rule)
         {
             return StcManagerImpl.Instance.GetStatisticsAsync(rule);
@@ -101,6 +102,7 @@ namespace Tizen.Network.Stc
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
         public static Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StcRule rule)
         {
             return StcManagerImpl.Instance.GetAllStatisticsAsync(rule);

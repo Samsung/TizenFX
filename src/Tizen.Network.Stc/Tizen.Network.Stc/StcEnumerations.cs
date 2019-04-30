@@ -95,7 +95,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         Bluetooth,
         /// <summary>
-        /// Network interface type is all.
+        /// Type for any network interface.
         /// </summary>
         All
     }
@@ -122,7 +122,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         Bluetooth,
         /// <summary>
-        /// Network interface type is all.
+        /// Type for any network interface.
         /// </summary>
         All
     }

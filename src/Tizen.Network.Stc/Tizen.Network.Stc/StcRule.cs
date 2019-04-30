@@ -65,6 +65,10 @@ namespace Tizen.Network.Stc
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the resources used by the StcRule.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected void Dispose(bool disposing)
         {
             if (_disposed)
@@ -95,9 +99,9 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>AppId.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown while setting this value, when the object instance is disposed or released.</exception>
         public string AppId
         {
             get
@@ -127,14 +131,14 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Set the time interval for statistics rule.
+        /// Set the time range (interval) for statistics rule.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <param name="from">The beginning of the time interval.</param>
         /// <param name="to">The end of the time interval.</param>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
         public void SetTimeInterval(DateTime from, DateTime to)
         {
             if (_disposed)
@@ -154,9 +158,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>from(start) of time interval.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public DateTime From
         {
             get
@@ -177,9 +178,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>to(end) of time interval.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public DateTime To
         {
             get
@@ -200,9 +198,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>Interface type.</returns>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public NetworkInterface GetInterfaceType()
         {
             NativeNetworkInterface ifaceType;
@@ -213,7 +208,8 @@ namespace Tizen.Network.Stc
             }
             if (ifaceType == NativeNetworkInterface.Unknown)
             {
-                throw new InvalidOperationException("Interface Type is Unknown.");
+                Log.Debug(Globals.LogTag, "Interface Type in Rule is Unknown(default), i.e. user didn't set it.");
+                /// throw new InvalidOperationException("Interface Type is Unknown.");
             }
             return (NetworkInterface)ifaceType;
         }
@@ -223,9 +219,9 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <param name="interfaceType"> Interface type.</param>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
         public void SetInterfaceType(NetworkInterface interfaceType)
         {
             if (_disposed)
@@ -245,9 +241,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>Time period.</returns>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public TimePeriodType GetTimePeriod()
         {
             NativeTimePeriodType timePeriod;
@@ -258,7 +251,8 @@ namespace Tizen.Network.Stc
             }
             if (timePeriod == NativeTimePeriodType.Unknown)
             {
-                throw new InvalidOperationException("Time period is Unknown.");
+                Log.Debug(Globals.LogTag, "Time period in Rule is Unknown(default), i.e. user didn't set it.");
+                /// throw new InvalidOperationException("Time period is Unknown.");
             }
             return (TimePeriodType)timePeriod;
         }
@@ -268,9 +262,9 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <param name="timePeriod">Time period.</param>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
         public void SetTimePeriod(TimePeriodType timePeriod)
         {
             if (_disposed)

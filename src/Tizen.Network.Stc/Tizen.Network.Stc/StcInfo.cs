@@ -54,6 +54,10 @@ namespace Tizen.Network.Stc
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases the resources used by the NetworkStatistics.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         protected void Dispose(bool disposing)
         {
             if (_disposed)
@@ -84,9 +88,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Application ID.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string AppId
         {
             get
@@ -107,9 +108,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Interface name.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public string InterfaceName
         {
             get
@@ -130,9 +128,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>from(start) of time interval.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public DateTime From
         {
             get
@@ -153,9 +148,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>to(end) of time interval.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public DateTime To
         {
             get
@@ -176,9 +168,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>Interface type.</returns>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation/value.</exception>
         public NetworkInterface GetInterfaceType()
         {
             NativeNetworkInterface ifaceType;
@@ -199,9 +189,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>incoming counter.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public long IncomingCounter
         {
             get
@@ -222,9 +209,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>outgoing counter.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public long OutgoingCounter
         {
             get
@@ -245,9 +229,6 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>IsRoaming.</value>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
         public bool IsRoaming
         {
             get
@@ -268,9 +249,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>NetworkProtocol type.</returns>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation/value.</exception>
         public NetworkProtocol GetProtocol()
         {
             NativeNetworkProtocol protocol;
@@ -291,9 +270,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>True, if process state is Foreground, otherwise False.</returns>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation/value.</exception>
         public bool IsForegroundProcess()
         {
             ProcessState state;
