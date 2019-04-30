@@ -7,6 +7,7 @@
 // Do not make changes to this file unless you know what you are doing--modify
 // the SWIG interface file instead.
 //------------------------------------------------------------------------------
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -137,5 +138,4 @@ namespace Tizen.NUI
         }
 
     }
-
 }

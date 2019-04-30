@@ -696,11 +696,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose
+        /// You can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">Dispose Type</param>
         /// <since_tizen> 5 </since_tizen>
-        /// Please DO NOT use! This will be deprecated!
+        /// Please do not use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, InputMethodContext, TtsPlayer, Window) is not required.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -719,8 +719,8 @@ namespace Tizen.NUI
             }
 
             //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //Because the execution order of Finalizes is non-deterministic.
+            //You should not access any managed member here except static instance
+            //because the execution order of Finalizes is non-deterministic.
 
             if (_keyboardTypeChangedEventCallback != null)
             {
@@ -837,7 +837,7 @@ namespace Tizen.NUI
         public class EventData : global::System.IDisposable
         {
             /// <summary>
-            /// swigCMemOwn
+            /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected bool swigCMemOwn;
@@ -882,7 +882,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// Releases the resource.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             ~EventData()
@@ -1006,7 +1006,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// You can override it to clean-up your own resources.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
@@ -1049,7 +1049,7 @@ namespace Tizen.NUI
         public class CallbackData : global::System.IDisposable
         {
             /// <summary>
-            /// swigCMemOwn
+            /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected bool swigCMemOwn;
@@ -1062,7 +1062,7 @@ namespace Tizen.NUI
 
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            //A flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
 
             /// <summary>
@@ -1088,7 +1088,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// Releases the resource.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             ~CallbackData()
@@ -1139,7 +1139,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// If the cursor position needs to be updated.
+            /// The state if the cursor position needs to be updated.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public bool Update
@@ -1223,7 +1223,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// You can override it to clean-up your own resources.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
@@ -1266,7 +1266,7 @@ namespace Tizen.NUI
         public class ActivatedEventArgs : EventArgs
         {
             /// <summary>
-            /// InputMethodContext
+            /// The instance of InputMethodContext
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public InputMethodContext InputMethodContext
@@ -1283,7 +1283,7 @@ namespace Tizen.NUI
         public class EventReceivedEventArgs : EventArgs
         {
             /// <summary>
-            /// InputMethodContext
+            /// The instance of InputMethodContext
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public InputMethodContext InputMethodContext
@@ -1293,7 +1293,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// EventData.
+            /// The event data of IMF
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public EventData EventData
@@ -1327,7 +1327,7 @@ namespace Tizen.NUI
         public class ResizedEventArgs : EventArgs
         {
             /// <summary>
-            /// resized.
+            /// The state if the IMF resized.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public int Resized

@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Tizen.NUI.Binding
 {
-    // [Xaml.ProvideCompiled("Xamarin.Forms.Core.XamlC.ThicknessTypeConverter")]
+    [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.ThicknessTypeConverter")]
     [Xaml.TypeConversion(typeof(Thickness))]
     internal class ThicknessTypeConverter : TypeConverter
     {

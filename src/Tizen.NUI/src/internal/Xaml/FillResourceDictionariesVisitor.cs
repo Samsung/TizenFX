@@ -21,6 +21,8 @@ namespace Tizen.NUI.Xaml
         public bool StopOnResourceDictionary => false;
         public bool VisitNodeOnDataTemplate => false;
 
+        public bool IsResourceDictionary(ElementNode node) => typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]);
+
         public void Visit(ValueNode node, INode parentNode)
         {
             if (!typeof(ResourceDictionary).IsAssignableFrom(Context.Types[((IElementNode)parentNode)]))
@@ -81,6 +83,5 @@ namespace Tizen.NUI.Xaml
                 return true;
             return false;
         }
-
     }
 }

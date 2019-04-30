@@ -28,11 +28,12 @@
 using System;
 using System.Reflection;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
     /// <summary>
-    /// Extension class for View defining Xamarin.Forms.Xaml.Extensions.LoadFromXaml{TView} method.
+    /// Extension class for View defining Tizen.NUI.Xaml.Extensions.LoadFromXaml{TView} method.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class Extensions
@@ -69,9 +70,9 @@ namespace Tizen.NUI.Xaml
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Transition LoadTransition(string animationXamlPath)
+        public static T LoadObject<T>(string path)
         {
-            return XamlLoader.LoadTransition(animationXamlPath);
+            return XamlLoader.LoadObject<T>(path);
         }
-	}
+    }
 }

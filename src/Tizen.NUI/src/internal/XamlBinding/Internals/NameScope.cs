@@ -7,7 +7,6 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding.Internals
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class NameScope : INameScope
     {
         public static readonly BindableProperty NameScopeProperty = BindableProperty.CreateAttached("NameScope", typeof(INameScope), typeof(NameScope), default(INameScope));

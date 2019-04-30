@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     ///<summary>
     /// Signal connection class for PropertyNotification
     ///</summary>

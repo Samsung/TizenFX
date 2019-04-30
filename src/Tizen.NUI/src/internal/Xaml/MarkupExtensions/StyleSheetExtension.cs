@@ -8,7 +8,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Xaml
 {
     [ContentProperty(nameof(Style))]
-    // [ProvideCompiled("Tizen.NUI.Core.XamlC.StyleSheetProvider")]
+    [ProvideCompiled("Tizen.NUI.Core.XamlC.StyleSheetProvider")]
     internal sealed class StyleSheetExtension : IValueProvider
     {
         public string Style { get; set; }
@@ -33,7 +33,7 @@ namespace Tizen.NUI.Xaml
                     return null;
                 var rootTargetPath = XamlResourceIdAttribute.GetPathForType(rootObjectType);
                 var resourcePath = ResourceDictionary.RDSourceTypeConverter.GetResourcePath(Source, rootTargetPath);
-                var resString = DependencyService.Get<IResourcesLoader>().GetResource(resourcePath, rootObjectType.GetTypeInfo().Assembly, lineInfo);
+                var resString = DependencyService.Get<IResourcesLoader>()?.GetResource(resourcePath, rootObjectType.GetTypeInfo().Assembly, lineInfo);
                 return StyleSheet.FromString(resString);
             }
 
