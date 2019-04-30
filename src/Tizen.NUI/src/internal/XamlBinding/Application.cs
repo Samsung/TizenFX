@@ -30,7 +30,7 @@ namespace Tizen.NUI.Binding
             NavigationProxy = new NavigationImpl(this);
             SetCurrentApplication(this);
 
-            SystemResources = DependencyService.Get<ISystemResourcesProvider>().GetSystemResources();
+            SystemResources = DependencyService.Get<ISystemResourcesProvider>()?.GetSystemResources();
             SystemResources.ValuesChanged += OnParentResourcesChanged;
             _platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Application>>(() => new PlatformConfigurationRegistry<Application>(this));
         }
@@ -47,7 +47,7 @@ namespace Tizen.NUI.Binding
                 if (_appIndexProvider == null)
                     throw new ArgumentException("No IAppIndexingProvider was provided");
                 if (_appIndexProvider.AppLinks == null)
-                    throw new ArgumentException("No AppLinks implementation was found, if in Android make sure you installed the Xamarin.Forms.AppLinks");
+                    throw new ArgumentException("No AppLinks implementation was found, if in Android make sure you installed the Tizen.NUI.Binding.AppLinks");
                 return _appIndexProvider.AppLinks;
             }
         }
@@ -350,7 +350,7 @@ namespace Tizen.NUI.Binding
             await SaveSemaphore.WaitAsync();
             try
             {
-                await DependencyService.Get<IDeserializer>().SerializePropertiesAsync(Properties);
+                await DependencyService.Get<IDeserializer>()?.SerializePropertiesAsync(Properties);
             }
             finally
             {

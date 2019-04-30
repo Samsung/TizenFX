@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
@@ -136,7 +138,26 @@ namespace Tizen.NUI
             }
         }
 
-        /* duplicated with KeyPressedName : removed
+        /// <summary>
+        /// Get the logical key string. (eg. shift + 1 == "exclamation")
+        /// </summary>
+        /// <returns>The logical key symbol</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LogicalKey
+        {
+            get
+            {
+                return logicalKey;
+            }
+        }
+
+        /// <summary>
+        /// Get the actual string returned that should be used for input editors.
+        /// </summary>
+        /// <returns>The key string</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string KeyPressed
         {
             get
@@ -144,7 +165,6 @@ namespace Tizen.NUI
                 return keyPressed;
             }
         }
-        */
 
         /// <summary>
         /// Keycode for the key pressed.
@@ -323,6 +343,16 @@ namespace Tizen.NUI
             get
             {
                 Key.StateType ret = (Key.StateType)NDalicPINVOKE.Key_state_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private string logicalKey
+        {
+            get
+            {
+                string ret = NDalicPINVOKE.Key_logicalKey_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

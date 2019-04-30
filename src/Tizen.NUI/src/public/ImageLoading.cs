@@ -211,6 +211,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Get the size of an original image
+        /// </summary>
+        /// <param name="filename">The name of the image.</param>
+        /// <returns>Dimension of the original image.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Size2D GetOriginalImageSize(string filename)
+        {
+            var val = new Uint16Pair(NDalicPINVOKE.GetOriginalImageSize(filename), true);
+            Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Load an image synchronously from a remote resource.
         /// </summary>
         /// <param name="url">The URL of the image file to load.</param>

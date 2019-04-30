@@ -205,6 +205,7 @@ namespace Tizen.NUI
         /// ImfManager keyboard type changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<KeyboardTypeChangedEventArgs> KeyboardTypeChanged
         {
             add
@@ -704,11 +705,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
+        /// You can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">Dispose Type</param>
         /// <since_tizen> 3 </since_tizen>
-        /// Please DO NOT use! This will be deprecated!
+        /// Please do not use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, ImfManager, TtsPlayer, Window) is not required.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -727,7 +728,7 @@ namespace Tizen.NUI
             }
 
             //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
+            //You should not access any managed member here except static instance
             //because the execution order of Finalizes is non-deterministic.
 
             if (_keyboardTypeChangedEventCallback != null)
@@ -845,20 +846,20 @@ namespace Tizen.NUI
         public class ImfEventData : global::System.IDisposable
         {
             /// <summary>
-            /// swigCMemOwn
+            /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             /// <summary>
-            /// A Flat to check if it is already disposed.
+            /// A flag to check if it is already disposed.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            //A flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
 
             /// <summary>
@@ -890,7 +891,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// Releases the resource.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             ~ImfEventData()
@@ -1014,7 +1015,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// You can override it to clean-up your own resources.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
@@ -1057,20 +1058,20 @@ namespace Tizen.NUI
         public class ImfCallbackData : global::System.IDisposable
         {
             /// <summary>
-            /// swigCMemOwn
+            /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             /// <summary>
-            /// A Flat to check if it is already disposed.
+            /// A flag to check if it is already disposed.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            //A flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
 
             /// <summary>
@@ -1102,7 +1103,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// Releases the resource.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             ~ImfCallbackData()
@@ -1231,7 +1232,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Dispose.
+            /// You can override it to clean-up your own resources.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
@@ -1274,7 +1275,7 @@ namespace Tizen.NUI
         public class ActivatedEventArgs : EventArgs
         {
             /// <summary>
-            /// ImfManager
+            /// The instance of ImfManager
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public ImfManager ImfManager
@@ -1291,7 +1292,7 @@ namespace Tizen.NUI
         public class EventReceivedEventArgs : EventArgs
         {
             /// <summary>
-            /// ImfManager
+            /// The instance of ImfManager
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public ImfManager ImfManager
@@ -1301,7 +1302,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// ImfEventData
+            /// The event data of IMF
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public ImfEventData ImfEventData
@@ -1335,7 +1336,7 @@ namespace Tizen.NUI
         public class ResizedEventArgs : EventArgs
         {
             /// <summary>
-            /// resized.
+            /// The state if the IMF resized.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public int Resized

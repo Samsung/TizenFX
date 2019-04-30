@@ -94,7 +94,7 @@ namespace Tizen.NUI.Binding
             if (type != null)
                 _mergedInstance = s_instances.GetValue(type, (key) => (ResourceDictionary)Activator.CreateInstance(key));
             else
-                _mergedInstance = DependencyService.Get<IResourcesLoader>().CreateFromResource<ResourceDictionary>(resourcePath, assembly, lineInfo);
+                _mergedInstance = DependencyService.Get<IResourcesLoader>()?.CreateFromResource<ResourceDictionary>(resourcePath, assembly, lineInfo);
             OnValuesChanged(_mergedInstance.ToArray());
         }
 
@@ -369,7 +369,7 @@ namespace Tizen.NUI.Binding
 
         event EventHandler<ResourcesChangedEventArgs> ValuesChanged;
 
-        // [Xaml.ProvideCompiled("Xamarin.Forms.Core.XamlC.RDSourceTypeConverter")]
+        [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.RDSourceTypeConverter")]
         internal class RDSourceTypeConverter : TypeConverter, IExtendedTypeConverter
         {
             object IExtendedTypeConverter.ConvertFromInvariantString(string value, IServiceProvider serviceProvider)

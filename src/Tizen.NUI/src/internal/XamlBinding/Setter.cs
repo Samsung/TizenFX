@@ -9,7 +9,7 @@ using Tizen.NUI.Xaml;
 namespace Tizen.NUI.Binding
 {
     [ContentProperty("Value")]
-    // [ProvideCompiled("Tizen.NUI.Core.XamlC.SetterValueProvider")]
+    [ProvideCompiled("Tizen.NUI.Core.XamlC.SetterValueProvider")]
     internal sealed class Setter : IValueProvider
     {
         readonly ConditionalWeakTable<BindableObject, object> _originalValues = new ConditionalWeakTable<BindableObject, object>();
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Binding
                 () =>
                 (MemberInfo)Property.DeclaringType.GetRuntimeProperty(Property.PropertyName) ?? (MemberInfo)Property.DeclaringType.GetRuntimeMethod("Get" + Property.PropertyName, new[] { typeof(BindableObject) });
 
-            object value = valueconverter.Convert(Value, Property.ReturnType, minforetriever, serviceProvider);
+            object value = valueconverter?.Convert(Value, Property.ReturnType, minforetriever, serviceProvider);
             Value = value;
             return this;
         }

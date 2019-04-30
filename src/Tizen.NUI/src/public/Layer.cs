@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ namespace Tizen.NUI
             // Store HandleRef used by Add()
             rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
             // Add the root layout created above to this layer.
-            NDalicPINVOKE.Actor_Add( swigCPtr, rootLayoutCPtr );
+            NDalicPINVOKE.Actor_Add(swigCPtr, rootLayoutCPtr);
         }
 
         /// <summary>
@@ -64,13 +64,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum LayerBehavior
         {
-            /// <summary>
-            /// UI control rendering mode.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use LayerUI property instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Layer2D,
             /// <summary>
             /// UI control rendering mode (default mode).
             /// This mode is designed for UI controls that can overlap. In this
@@ -82,7 +75,14 @@ namespace Tizen.NUI
             /// traversal, the actors would interleave).<br />
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            LayerUI = Layer2D,
+            LayerUI,
+
+            /// <summary>
+            /// UI control rendering mode.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Layer2D = LayerUI,
+
             /// <summary>
             /// Layer will use depth test.
             /// This mode is designed for a 3 dimensional scene where actors in front
@@ -277,13 +277,13 @@ namespace Tizen.NUI
                     child.InternalParent = this;
                 }
                 // If adding a View then set layout required flag
-                if( child.GetType() == typeof(View) )
+                if (child.GetType() == typeof(View))
                 {
                     Log.Info("NUI", "Add child[" + child.Name + "] LayoutingRequired set as pure view\n");
                     child.LayoutingRequired = true;
                 }
 
-                NDalicPINVOKE.Actor_Add( rootLayoutCPtr , View.getCPtr(child));
+                NDalicPINVOKE.Actor_Add(rootLayoutCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
@@ -298,7 +298,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(child));
+            NDalicPINVOKE.Actor_Remove(rootLayoutCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

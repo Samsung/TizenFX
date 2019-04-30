@@ -1983,9 +1983,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The text alignment to match the direction of the system language.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public bool MatchSystemLanguageDirection
         {
             get

@@ -17,7 +17,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Implements the bound property whose interface is provided by the BindingContext property.
         /// </summary>
-        internal static readonly BindableProperty BindingContextProperty =
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BindingContextProperty =
             BindableProperty.Create("BindingContext", typeof(object), typeof(BindableObject), default(object),
                                     BindingMode.OneWay, null, BindingContextPropertyChanged, null, null, BindingContextPropertyBindingChanging);
 
@@ -62,7 +63,7 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
-        /// Clears any value set by Xamarin.Forms.BindableObject.SetValue.
+        /// Clears any value set by Tizen.NUI.Xaml.BindableObject.SetValue.
         /// </summary>
         /// <param name="property">The BindableProperty to clear</param>
         internal void ClearValue(BindableProperty property)
@@ -71,7 +72,7 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
-        /// Clears any value set by Xamarin.Forms.BindableObject.SetValue for the property that is identified by propertyKey.
+        /// Clears any value set by Tizen.NUI.Xaml.BindableObject.SetValue for the property that is identified by propertyKey.
         /// </summary>
         /// <param name="propertyKey">The BindablePropertyKey that identifies the BindableProperty to clear.</param>
         internal void ClearValue(BindablePropertyKey propertyKey)

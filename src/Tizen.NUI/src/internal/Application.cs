@@ -683,7 +683,7 @@ namespace Tizen.NUI
             await SaveSemaphore.WaitAsync();
             try
             {
-                await DependencyService.Get<IDeserializer>().SerializePropertiesAsync(Properties);
+                await DependencyService.Get<IDeserializer>()?.SerializePropertiesAsync(Properties);
             }
             finally
             {
@@ -1009,8 +1009,10 @@ namespace Tizen.NUI
                 e.Application = this;
                 _applicationTerminateEventHandler.Invoke(this, e);
             }
-
-            Window.Instance.DisconnectNativeSignals();
+            if (Window.Instance)
+            {
+                Window.Instance.DisconnectNativeSignals();
+            }
         }
 
         /**
@@ -1327,11 +1329,14 @@ namespace Tizen.NUI
         // Callback for Application BatteryLowSignal
         private void OnNUIApplicationBatteryLow(BatteryStatus status)
         {
-            NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
+            lock (this)
+            {
+                NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
 
-            // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
-            e.BatteryStatus = status;
-            _applicationBatteryLowEventHandler?.Invoke(this, e);
+                // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
+                e.BatteryStatus = status;
+                _applicationBatteryLowEventHandler?.Invoke(this, e);
+            }
         }
 
         /**
@@ -1372,11 +1377,14 @@ namespace Tizen.NUI
         // Callback for Application MemoryLowSignal
         private void OnNUIApplicationMemoryLow(MemoryStatus status)
         {
-            NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
+            lock (this)
+            {
+                NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
 
-            // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
-            e.MemoryStatus = status;
-            _applicationMemoryLowEventHandler?.Invoke(this, e);
+                // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
+                e.MemoryStatus = status;
+                _applicationMemoryLowEventHandler?.Invoke(this, e);
+            }
         }
 
         /**

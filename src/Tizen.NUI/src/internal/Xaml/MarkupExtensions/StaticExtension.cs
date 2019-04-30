@@ -7,7 +7,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Xaml
 {
     [ContentProperty(nameof(Member))]
-    // [ProvideCompiled("Tizen.NUI.Build.Tasks.StaticExtension")]
+    [ProvideCompiled("Tizen.NUI.Xaml.Build.Tasks.StaticExtension")]
     internal class StaticExtension : IMarkupExtension
     {
         public string Member { get; set; }

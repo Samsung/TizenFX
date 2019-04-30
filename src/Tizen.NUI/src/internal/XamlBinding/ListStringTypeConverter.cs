@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Tizen.NUI.Binding
 {
-    // [Xaml.ProvideCompiled("Tizen.NUI.Core.XamlC.ListStringTypeConverter")]
+    [Xaml.ProvideCompiled("Tizen.NUI.Core.XamlC.ListStringTypeConverter")]
     [Xaml.TypeConversion(typeof(List<string>))]
     internal class ListStringTypeConverter : TypeConverter
     {

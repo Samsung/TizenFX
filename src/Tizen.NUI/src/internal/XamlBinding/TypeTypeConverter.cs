@@ -4,7 +4,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    // [Xaml.ProvideCompiled("Xamarin.Forms.Core.XamlC.TypeTypeConverter")]
+    [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.TypeTypeConverter")]
     [Xaml.TypeConversion(typeof(Type))]
     internal sealed class TypeTypeConverter : TypeConverter, IExtendedTypeConverter
     {
