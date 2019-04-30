@@ -170,7 +170,9 @@ namespace Tizen.NUI
                 string[] parts = value.Split(',');
                 if (parts.Length == 2)
                 {
-                    return new Position2D(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+                    int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
+                    int y = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[1].Trim());
+                    return new Position2D(x, y);
                 }
             }
 
