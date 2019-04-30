@@ -20,6 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tizen.System;
 
 namespace Tizen.Content.MediaContent
 {
@@ -880,12 +881,15 @@ namespace Tizen.Content.MediaContent
 
             using (handle)
             {
-                if (InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType) == StorageType.ExternalUsb)
-                {
-                    throw new UnsupportedContentException("The media is in external usb storage.");
-                }
-
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
+
+                foreach (var extendedInternal in StorageManager.Storages.Where(s => s.StorageType == StorageArea.ExtendedInternal))
+                {
+                    if (path.Contains(extendedInternal.RootDirectory))
+                    {
+                        throw new UnsupportedContentException("The media is in external usb storage.");
+                    }
+                }
 
                 if (File.Exists(path) == false)
                 {
