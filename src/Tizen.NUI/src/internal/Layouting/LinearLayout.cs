@@ -183,19 +183,12 @@ namespace Tizen.NUI
             // Weighted children are not measured at this phase.
             // Available space for weighted children will be calculated in the phase 2 based on totalLength value.
 
-            Log.Info("NUI", "Measuring Horizontal, " + _children.Count + " child(ren) with parent width mode:" + widthMode + ",height mode:" + heightMode + "\n");
-
             foreach( LayoutItem childLayout in _children )
             {
                 LayoutLength childDesiredWidth = new LayoutLength(childLayout.Owner.WidthSpecification);
                 LayoutLength childDesiredHeight = new LayoutLength(childLayout.Owner.HeightSpecification);
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
-                Log.Info("NUI", "Retrieved parameters for child:" + childLayout.Owner.Name
-                                + " childDesiredWidth: " + childDesiredWidth.AsRoundedValue()
-                                + " childDesiredHeight:" + childDesiredHeight.AsRoundedValue()
-                                + " childWeight:" + childWeight+ "\n");
-
                 totalWeight += childWeight;
 
                 bool useExcessSpace = (childDesiredWidth.AsRoundedValue() == 0 ) && (childWeight > 0);
@@ -325,8 +318,6 @@ namespace Tizen.NUI
             // Weighted children are not measured at this phase.
             // Available space for weighted children will be calculated in the phase 2 based on mTotalLength value.
 
-            Log.Info("NUI", "Measuring Vertical[" + _children.Count + "] child with parent width mode:" + widthMode + ",height mode:" + heightMode + "\n");
-
             uint index = 0;
             foreach( LayoutItem childLayout in _children )
             {
@@ -334,11 +325,6 @@ namespace Tizen.NUI
                 LayoutLength childDesiredHeight = new LayoutLength(childLayout.Owner.HeightSpecification);
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
-                Log.Info("NUI", "Retrieved parameters for child:" + childLayout.Owner.Name
-                                + " desiredWidth: " + childDesiredWidth.AsRoundedValue()
-                                + " desiredHeight:" + childDesiredHeight.AsRoundedValue()
-                                + " childWeight:" + childWeight + "\n");
-
                 totalWeight += childWeight;
 
                 bool useExcessSpace = (childDesiredHeight.AsRoundedValue() == 0) && (childWeight > 0);
@@ -550,8 +536,6 @@ namespace Tizen.NUI
 
         void LayoutHorizontal(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Log.Info("NUI", "left,top,right,bottom:" + left.AsRoundedValue() + "," + top.AsRoundedValue()
-                                                     + " " + right .AsRoundedValue() + "," + bottom.AsRoundedValue() + "\n");
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
 
             LayoutLength childTop = new LayoutLength(Padding.Top);
@@ -641,9 +625,6 @@ namespace Tizen.NUI
 
         void LayoutVertical(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Log.Info("NUI", "left,top,right,bottom:" + left.AsRoundedValue() + "," + top.AsRoundedValue()
-                                                     + " " + right .AsRoundedValue() + "," + bottom.AsRoundedValue() + "\n");
-
             LayoutLength childTop = new LayoutLength(Padding.Top);
             LayoutLength childLeft = new LayoutLength(Padding.Start);
 

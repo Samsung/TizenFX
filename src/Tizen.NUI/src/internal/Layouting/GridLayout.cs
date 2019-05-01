@@ -132,7 +132,6 @@ namespace Tizen.NUI
                 desiredChildWidth += childMargin.Start + childMargin.End;
 
                 _totalWidth = desiredChildWidth * _columns;
-                Log.Info("NUI", "Grid::OnMeasure TotalDesiredWidth(" + _totalWidth + ") \n" );
 
                 // Include padding for max and min checks
                 _totalWidth += gridLayoutPadding.Start + gridLayoutPadding.End;
@@ -150,7 +149,6 @@ namespace Tizen.NUI
                 availableContentWidth = _totalWidth - gridLayoutPadding.Start - gridLayoutPadding.End;
                 widthSize = _totalWidth;
 
-                Log.Info("NUI", "Grid::OnMeasure availableContentWidth:" + availableContentWidth + " TotalWidth(" + _totalWidth + ") \n" );
                 // HEIGHT SPECIFICATIONS
 
                 // heightMode EXACTLY so grid must be the given height
@@ -164,7 +162,6 @@ namespace Tizen.NUI
                         {
                           _totalHeight += desiredChildHeight;
                         }
-                        Log.Info( "NUI", "Grid::OnMeasure TotalDesiredHeight(" + _totalHeight + ") \n" );
 
                         // Ensure ourHeight does not exceed specified at most height
                         _totalHeight = Math.Min( _totalHeight, heightSize );
@@ -228,9 +225,6 @@ namespace Tizen.NUI
                     // Get top and bottom position of child y1,y2
                     int y1 = locations[ index ].Top;
                     int y2 = locations[ index ].Bottom;
-
-                    Log.Info("NUI", "CellSize(" + (x2-x1) + "," + (y2-y1) +
-                                    ") CellPos(" + x1 + "," + y1 + "," + x2 + "," + y2  +")\n");
 
                     // Offset children by the grids padding if present
                     x1 += gridLayoutPadding.Start;
