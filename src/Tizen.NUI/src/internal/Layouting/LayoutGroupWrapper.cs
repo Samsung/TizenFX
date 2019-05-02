@@ -26,7 +26,7 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         internal LayoutGroupWrapperImpl layoutGroupWrapperImpl;
 
-        internal LayoutGroupWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.LayoutGroupWrapper_SWIGUpcast(cPtr), cMemoryOwn)
+        internal LayoutGroupWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LayoutGroupWrapper.LayoutGroupWrapper_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -60,7 +60,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    LayoutPINVOKE.delete_LayoutGroupWrapper(swigCPtr);
+                    Interop.LayoutGroupWrapper.delete_LayoutGroupWrapper(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -70,22 +70,22 @@ namespace Tizen.NUI
 
         public new class ChildProperty
         {
-            public static readonly int MARGIN_SPECIFICATION = LayoutPINVOKE.LayoutGroupWrapper_ChildProperty_MARGIN_SPECIFICATION_get();
+            public static readonly int MARGIN_SPECIFICATION = Interop.LayoutGroupWrapper.LayoutGroupWrapper_ChildProperty_MARGIN_SPECIFICATION_get();
         }
 
-        public LayoutGroupWrapper() : this(LayoutPINVOKE.new_LayoutGroupWrapper__SWIG_0(), true)
+        public LayoutGroupWrapper() : this(Interop.LayoutGroupWrapper.new_LayoutGroupWrapper__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public LayoutGroupWrapper(LayoutGroupWrapper copy) : this(LayoutPINVOKE.new_LayoutGroupWrapper__SWIG_1(LayoutGroupWrapper.getCPtr(copy)), true)
+        public LayoutGroupWrapper(LayoutGroupWrapper copy) : this(Interop.LayoutGroupWrapper.new_LayoutGroupWrapper__SWIG_1(LayoutGroupWrapper.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public uint Add(LayoutItemWrapper childLayout)
         {
-            uint ret = LayoutPINVOKE.LayoutGroupWrapper_Add(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
+            uint ret = Interop.LayoutGroupWrapper.LayoutGroupWrapper_Add(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             LayoutChildren.Add(childLayout);
             return ret;
@@ -93,13 +93,13 @@ namespace Tizen.NUI
 
         public void Remove(uint childId)
         {
-            LayoutPINVOKE.LayoutGroupWrapper_Remove__SWIG_0(swigCPtr, childId);
+            Interop.LayoutGroupWrapper.LayoutGroupWrapper_Remove__SWIG_0(swigCPtr, childId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Remove(LayoutItemWrapper childLayout)
         {
-            LayoutPINVOKE.LayoutGroupWrapper_Remove__SWIG_1(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
+            Interop.LayoutGroupWrapper.LayoutGroupWrapper_Remove__SWIG_1(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             LayoutChildren.Remove(childLayout);
         }
@@ -129,17 +129,17 @@ namespace Tizen.NUI
 
         public LayoutItemWrapper GetChild(uint childId)
         {
-            LayoutItemWrapper ret = new LayoutItemWrapper(LayoutPINVOKE.LayoutGroupWrapper_GetChild(swigCPtr, childId), true);
+            LayoutItemWrapper ret = new LayoutItemWrapper(Interop.LayoutGroupWrapper.LayoutGroupWrapper_GetChild(swigCPtr, childId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal LayoutGroupWrapper(LayoutGroupWrapperImpl implementation) : this(LayoutPINVOKE.new_LayoutGroupWrapper__SWIG_2(LayoutGroupWrapperImpl.getCPtr(implementation)), true)
+        internal LayoutGroupWrapper(LayoutGroupWrapperImpl implementation) : this(Interop.LayoutGroupWrapper.new_LayoutGroupWrapper__SWIG_2(LayoutGroupWrapperImpl.getCPtr(implementation)), true)
         {
             layoutGroupWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public static readonly uint UNKNOWN_ID = LayoutPINVOKE.LayoutGroupWrapper_UNKNOWN_ID_get();
+        public static readonly uint UNKNOWN_ID = Interop.LayoutGroupWrapper.LayoutGroupWrapper_UNKNOWN_ID_get();
     }
 }

@@ -297,17 +297,17 @@ namespace Tizen.NUI.UIComponents
         /// Creates the slider control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Slider() : this(NDalicPINVOKE.Slider_New(), true)
+        public Slider() : this(Interop.Slider.Slider_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Slider_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Slider.Slider_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal Slider(Slider handle) : this(NDalicPINVOKE.new_Slider__SWIG_1(Slider.getCPtr(handle)), true)
+        internal Slider(Slider handle) : this(Interop.Slider.new_Slider__SWIG_1(Slider.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -688,28 +688,28 @@ namespace Tizen.NUI.UIComponents
 
         internal Slider Assign(Slider handle)
         {
-            Slider ret = new Slider(NDalicPINVOKE.Slider_Assign(swigCPtr, Slider.getCPtr(handle)), false);
+            Slider ret = new Slider(Interop.Slider.Slider_Assign(swigCPtr, Slider.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal ValueChangedSignal()
         {
-            SliderValueChangedSignal ret = new SliderValueChangedSignal(NDalicPINVOKE.Slider_ValueChangedSignal(swigCPtr), false);
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.Slider_ValueChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderValueChangedSignal SlidingFinishedSignal()
         {
-            SliderValueChangedSignal ret = new SliderValueChangedSignal(NDalicPINVOKE.Slider_SlidingFinishedSignal(swigCPtr), false);
+            SliderValueChangedSignal ret = new SliderValueChangedSignal(Interop.Slider.Slider_SlidingFinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SliderMarkReachedSignal MarkReachedSignal()
         {
-            SliderMarkReachedSignal ret = new SliderMarkReachedSignal(NDalicPINVOKE.Slider_MarkReachedSignal(swigCPtr), false);
+            SliderMarkReachedSignal ret = new SliderMarkReachedSignal(Interop.Slider.Slider_MarkReachedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -759,7 +759,7 @@ namespace Tizen.NUI.UIComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Slider(swigCPtr);
+                    Interop.Slider.delete_Slider(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -946,21 +946,21 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int LOWER_BOUND = NDalicPINVOKE.Slider_Property_LOWER_BOUND_get();
-            internal static readonly int UPPER_BOUND = NDalicPINVOKE.Slider_Property_UPPER_BOUND_get();
-            internal static readonly int VALUE = NDalicPINVOKE.Slider_Property_VALUE_get();
-            internal static readonly int TRACK_VISUAL = NDalicPINVOKE.Slider_Property_TRACK_VISUAL_get();
-            internal static readonly int HANDLE_VISUAL = NDalicPINVOKE.Slider_Property_HANDLE_VISUAL_get();
-            internal static readonly int PROGRESS_VISUAL = NDalicPINVOKE.Slider_Property_PROGRESS_VISUAL_get();
-            internal static readonly int POPUP_VISUAL = NDalicPINVOKE.Slider_Property_POPUP_VISUAL_get();
-            internal static readonly int POPUP_ARROW_VISUAL = NDalicPINVOKE.Slider_Property_POPUP_ARROW_VISUAL_get();
-            internal static readonly int DISABLED_COLOR = NDalicPINVOKE.Slider_Property_DISABLED_COLOR_get();
-            internal static readonly int VALUE_PRECISION = NDalicPINVOKE.Slider_Property_VALUE_PRECISION_get();
-            internal static readonly int SHOW_POPUP = NDalicPINVOKE.Slider_Property_SHOW_POPUP_get();
-            internal static readonly int SHOW_VALUE = NDalicPINVOKE.Slider_Property_SHOW_VALUE_get();
-            internal static readonly int MARKS = NDalicPINVOKE.Slider_Property_MARKS_get();
-            internal static readonly int SNAP_TO_MARKS = NDalicPINVOKE.Slider_Property_SNAP_TO_MARKS_get();
-            internal static readonly int MARK_TOLERANCE = NDalicPINVOKE.Slider_Property_MARK_TOLERANCE_get();
+            internal static readonly int LOWER_BOUND = Interop.Slider.Slider_Property_LOWER_BOUND_get();
+            internal static readonly int UPPER_BOUND = Interop.Slider.Slider_Property_UPPER_BOUND_get();
+            internal static readonly int VALUE = Interop.Slider.Slider_Property_VALUE_get();
+            internal static readonly int TRACK_VISUAL = Interop.Slider.Slider_Property_TRACK_VISUAL_get();
+            internal static readonly int HANDLE_VISUAL = Interop.Slider.Slider_Property_HANDLE_VISUAL_get();
+            internal static readonly int PROGRESS_VISUAL = Interop.Slider.Slider_Property_PROGRESS_VISUAL_get();
+            internal static readonly int POPUP_VISUAL = Interop.Slider.Slider_Property_POPUP_VISUAL_get();
+            internal static readonly int POPUP_ARROW_VISUAL = Interop.Slider.Slider_Property_POPUP_ARROW_VISUAL_get();
+            internal static readonly int DISABLED_COLOR = Interop.Slider.Slider_Property_DISABLED_COLOR_get();
+            internal static readonly int VALUE_PRECISION = Interop.Slider.Slider_Property_VALUE_PRECISION_get();
+            internal static readonly int SHOW_POPUP = Interop.Slider.Slider_Property_SHOW_POPUP_get();
+            internal static readonly int SHOW_VALUE = Interop.Slider.Slider_Property_SHOW_VALUE_get();
+            internal static readonly int MARKS = Interop.Slider.Slider_Property_MARKS_get();
+            internal static readonly int SNAP_TO_MARKS = Interop.Slider.Slider_Property_SNAP_TO_MARKS_get();
+            internal static readonly int MARK_TOLERANCE = Interop.Slider.Slider_Property_MARK_TOLERANCE_get();
         }
     }
 }
