@@ -95,7 +95,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_CustomAlgorithmInterface(swigCPtr);
+                    Interop.CustomAlgorithmInterface.delete_CustomAlgorithmInterface(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -105,12 +105,12 @@ namespace Tizen.NUI
 
         public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
         {
-            View ret = new View(NDalicPINVOKE.CustomAlgorithmInterface_GetNextFocusableActor(swigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
+            View ret = new View(Interop.CustomAlgorithmInterface.CustomAlgorithmInterface_GetNextFocusableActor(swigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal CustomAlgorithmInterface() : this(NDalicPINVOKE.new_CustomAlgorithmInterface(), true)
+        internal CustomAlgorithmInterface() : this(Interop.CustomAlgorithmInterface.new_CustomAlgorithmInterface(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SwigDirectorConnect();
@@ -120,7 +120,7 @@ namespace Tizen.NUI
         {
             if (SwigDerivedClassHasMethod("GetNextFocusableView", swigMethodTypes0))
                 swigDelegate0 = new SwigDelegateCustomAlgorithmInterface_0(SwigDirectorGetNextFocusableView);
-            NDalicPINVOKE.CustomAlgorithmInterface_director_connect(swigCPtr, swigDelegate0);
+            Interop.CustomAlgorithmInterface.CustomAlgorithmInterface_director_connect(swigCPtr, swigDelegate0);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)

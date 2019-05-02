@@ -27,7 +27,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal FlexLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.FlexLayout_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FlexLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FlexLayout.FlexLayout_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -60,7 +60,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    LayoutPINVOKE.delete_FlexLayout(swigCPtr);
+                    Interop.FlexLayout.delete_FlexLayout(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -70,91 +70,91 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Creates a FlexLayout object.
         /// </summary>
-        public FlexLayout() : this(LayoutPINVOKE.FlexLayout_New(), true)
+        public FlexLayout() : this(Interop.FlexLayout.FlexLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static FlexLayout DownCast(BaseHandle handle)
         {
-            FlexLayout ret = new FlexLayout(LayoutPINVOKE.FlexLayout_DownCast(BaseHandle.getCPtr(handle)), true);
+            FlexLayout ret = new FlexLayout(Interop.FlexLayout.FlexLayout_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal FlexLayout(FlexLayout other) : this(LayoutPINVOKE.new_FlexLayout__SWIG_1(FlexLayout.getCPtr(other)), true)
+        internal FlexLayout(FlexLayout other) : this(Interop.FlexLayout.new_FlexLayout__SWIG_1(FlexLayout.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout Assign(FlexLayout other)
         {
-            FlexLayout ret = new FlexLayout(LayoutPINVOKE.FlexLayout_Assign(swigCPtr, FlexLayout.getCPtr(other)), false);
+            FlexLayout ret = new FlexLayout(Interop.FlexLayout.FlexLayout_Assign(swigCPtr, FlexLayout.getCPtr(other)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexDirection(FlexLayout.FlexDirection flexDirection)
         {
-            LayoutPINVOKE.FlexLayout_SetFlexDirection(swigCPtr, (int)flexDirection);
+            Interop.FlexLayout.FlexLayout_SetFlexDirection(swigCPtr, (int)flexDirection);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.FlexDirection GetFlexDirection()
         {
-            FlexLayout.FlexDirection ret = (FlexLayout.FlexDirection)LayoutPINVOKE.FlexLayout_GetFlexDirection(swigCPtr);
+            FlexLayout.FlexDirection ret = (FlexLayout.FlexDirection)Interop.FlexLayout.FlexLayout_GetFlexDirection(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexJustification(FlexLayout.FlexJustification flexJustification)
         {
-            LayoutPINVOKE.FlexLayout_SetFlexJustification(swigCPtr, (int)flexJustification);
+            Interop.FlexLayout.FlexLayout_SetFlexJustification(swigCPtr, (int)flexJustification);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.FlexJustification GetFlexJustification()
         {
-            FlexLayout.FlexJustification ret = (FlexLayout.FlexJustification)LayoutPINVOKE.FlexLayout_GetFlexJustification(swigCPtr);
+            FlexLayout.FlexJustification ret = (FlexLayout.FlexJustification)Interop.FlexLayout.FlexLayout_GetFlexJustification(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexWrap(FlexLayout.FlexWrapType flexWrap)
         {
-            LayoutPINVOKE.FlexLayout_SetFlexWrap(swigCPtr, (int)flexWrap);
+            Interop.FlexLayout.FlexLayout_SetFlexWrap(swigCPtr, (int)flexWrap);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.FlexWrapType GetFlexWrap()
         {
-            FlexLayout.FlexWrapType ret = (FlexLayout.FlexWrapType)LayoutPINVOKE.FlexLayout_GetFlexWrap(swigCPtr);
+            FlexLayout.FlexWrapType ret = (FlexLayout.FlexWrapType)Interop.FlexLayout.FlexLayout_GetFlexWrap(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexAlignment(FlexLayout.AlignmentType flexAlignment)
         {
-            LayoutPINVOKE.FlexLayout_SetFlexAlignment(swigCPtr, (int)flexAlignment);
+            Interop.FlexLayout.FlexLayout_SetFlexAlignment(swigCPtr, (int)flexAlignment);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.AlignmentType GetFlexAlignment()
         {
-            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)LayoutPINVOKE.FlexLayout_GetFlexAlignment(swigCPtr);
+            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.FlexLayout_GetFlexAlignment(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetFlexItemsAlignment(FlexLayout.AlignmentType flexAlignment)
         {
-            LayoutPINVOKE.FlexLayout_SetFlexItemsAlignment(swigCPtr, (int)flexAlignment);
+            Interop.FlexLayout.FlexLayout_SetFlexItemsAlignment(swigCPtr, (int)flexAlignment);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal FlexLayout.AlignmentType GetFlexItemsAlignment()
         {
-            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)LayoutPINVOKE.FlexLayout_GetFlexItemsAlignment(swigCPtr);
+            FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.FlexLayout_GetFlexItemsAlignment(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -167,8 +167,8 @@ namespace Tizen.NUI
 
         internal new class ChildProperty
         {
-            internal static readonly int FLEX = LayoutPINVOKE.FlexLayout_ChildProperty_FLEX_get();
-            internal static readonly int ALIGN_SELF = LayoutPINVOKE.FlexLayout_ChildProperty_ALIGN_SELF_get();
+            internal static readonly int FLEX = Interop.FlexLayout.FlexLayout_ChildProperty_FLEX_get();
+            internal static readonly int ALIGN_SELF = Interop.FlexLayout.FlexLayout_ChildProperty_ALIGN_SELF_get();
         }
 
         /// <summary>

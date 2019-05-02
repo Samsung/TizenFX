@@ -46,12 +46,12 @@ namespace Tizen.NUI.UIComponents
         /// Creates the PushButton.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PushButton() : this(NDalicPINVOKE.PushButton_New(), true)
+        public PushButton() : this(Interop.PushButton.PushButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PushButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PushButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PushButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PushButton.PushButton_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -141,7 +141,7 @@ namespace Tizen.NUI.UIComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PushButton(swigCPtr);
+                    Interop.PushButton.delete_PushButton(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -151,11 +151,11 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int UNSELECTED_ICON = NDalicPINVOKE.PushButton_Property_UNSELECTED_ICON_get();
-            internal static readonly int SELECTED_ICON = NDalicPINVOKE.PushButton_Property_SELECTED_ICON_get();
-            internal static readonly int ICON_ALIGNMENT = NDalicPINVOKE.PushButton_Property_ICON_ALIGNMENT_get();
-            internal static readonly int LABEL_PADDING = NDalicPINVOKE.PushButton_Property_LABEL_PADDING_get();
-            internal static readonly int ICON_PADDING = NDalicPINVOKE.PushButton_Property_ICON_PADDING_get();
+            internal static readonly int UNSELECTED_ICON = Interop.PushButton.PushButton_Property_UNSELECTED_ICON_get();
+            internal static readonly int SELECTED_ICON = Interop.PushButton.PushButton_Property_SELECTED_ICON_get();
+            internal static readonly int ICON_ALIGNMENT = Interop.PushButton.PushButton_Property_ICON_ALIGNMENT_get();
+            internal static readonly int LABEL_PADDING = Interop.PushButton.PushButton_Property_LABEL_PADDING_get();
+            internal static readonly int ICON_PADDING = Interop.PushButton.PushButton_Property_ICON_PADDING_get();
         }
     }
 }

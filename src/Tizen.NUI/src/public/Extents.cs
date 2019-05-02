@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// Constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public Extents() : this(NDalicPINVOKE.new_Extents__SWIG_0(), true)
+        public Extents() : this(Interop.Extents.new_Extents__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -58,7 +58,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="copy">A reference to the copied Extents.</param>
         /// <since_tizen> 4 </since_tizen>
-        public Extents(Extents copy) : this(NDalicPINVOKE.new_Extents__SWIG_1(Extents.getCPtr(copy)), true)
+        public Extents(Extents copy) : this(Interop.Extents.new_Extents__SWIG_1(Extents.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom extent.</param>
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public Extents(ushort start, ushort end, ushort top, ushort bottom) : this(NDalicPINVOKE.new_Extents__SWIG_2(start, end, top, bottom), true)
+        public Extents(ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -103,12 +103,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Extents_start_set(swigCPtr, value);
+                Interop.Extents.Extents_start_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                ushort ret = NDalicPINVOKE.Extents_start_get(swigCPtr);
+                ushort ret = Interop.Extents.Extents_start_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -122,12 +122,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Extents_end_set(swigCPtr, value);
+                Interop.Extents.Extents_end_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                ushort ret = NDalicPINVOKE.Extents_end_get(swigCPtr);
+                ushort ret = Interop.Extents.Extents_end_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -141,12 +141,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Extents_top_set(swigCPtr, value);
+                Interop.Extents.Extents_top_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                ushort ret = NDalicPINVOKE.Extents_top_get(swigCPtr);
+                ushort ret = Interop.Extents.Extents_top_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -160,12 +160,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Extents_bottom_set(swigCPtr, value);
+                Interop.Extents.Extents_bottom_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                ushort ret = NDalicPINVOKE.Extents_bottom_get(swigCPtr);
+                ushort ret = Interop.Extents.Extents_bottom_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -202,7 +202,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool EqualTo(Extents rhs)
         {
-            bool ret = NDalicPINVOKE.Extents_EqualTo(swigCPtr, Extents.getCPtr(rhs));
+            bool ret = Interop.Extents.Extents_EqualTo(swigCPtr, Extents.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -215,7 +215,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool NotEqualTo(Extents rhs)
         {
-            bool ret = NDalicPINVOKE.Extents_NotEqualTo(swigCPtr, Extents.getCPtr(rhs));
+            bool ret = Interop.Extents.Extents_NotEqualTo(swigCPtr, Extents.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -227,14 +227,14 @@ namespace Tizen.NUI
 
         internal Extents Assign(SWIGTYPE_p_uint16_t array)
         {
-            Extents ret = new Extents(NDalicPINVOKE.Extents_Assign__SWIG_1(swigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);
+            Extents ret = new Extents(Interop.Extents.Extents_Assign__SWIG_1(swigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Extents Assign(Extents copy)
         {
-            Extents ret = new Extents(NDalicPINVOKE.Extents_Assign__SWIG_0(swigCPtr, Extents.getCPtr(copy)), false);
+            Extents ret = new Extents(Interop.Extents.Extents_Assign__SWIG_0(swigCPtr, Extents.getCPtr(copy)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -267,7 +267,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Extents(swigCPtr);
+                    Interop.Extents.delete_Extents(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
