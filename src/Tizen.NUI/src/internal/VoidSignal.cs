@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_VoidSignal(swigCPtr);
+                    Interop.VoidSignal.delete_VoidSignal(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -101,21 +101,21 @@ namespace Tizen.NUI
         }
 
 
-        public VoidSignal() : this(NDalicPINVOKE.new_VoidSignal(), true)
+        public VoidSignal() : this(Interop.VoidSignal.new_VoidSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool Empty()
         {
-            bool ret = NDalicPINVOKE.VoidSignal_Empty(swigCPtr);
+            bool ret = Interop.VoidSignal.VoidSignal_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = NDalicPINVOKE.VoidSignal_GetConnectionCount(swigCPtr);
+            uint ret = Interop.VoidSignal.VoidSignal_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicPINVOKE.VoidSignal_Connect__SWIG_0(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.VoidSignal.VoidSignal_Connect__SWIG_0(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -133,20 +133,20 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicPINVOKE.VoidSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.VoidSignal.VoidSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         internal void Connect(ConnectionTrackerInterface connectionTracker, SWIGTYPE_p_Dali__FunctorDelegate arg1)
         {
-            NDalicPINVOKE.VoidSignal_Connect__SWIG_4(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), SWIGTYPE_p_Dali__FunctorDelegate.getCPtr(arg1));
+            Interop.VoidSignal.VoidSignal_Connect__SWIG_4(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), SWIGTYPE_p_Dali__FunctorDelegate.getCPtr(arg1));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Emit()
         {
-            NDalicPINVOKE.VoidSignal_Emit(swigCPtr);
+            Interop.VoidSignal.VoidSignal_Emit(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

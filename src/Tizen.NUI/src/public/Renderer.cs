@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// Create an instance of Renderer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Renderer(Geometry geometry, Shader shader) : this(NDalicPINVOKE.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
+        public Renderer(Geometry geometry, Shader shader) : this(Interop.Renderer.Renderer_New(Geometry.getCPtr(geometry), Shader.getCPtr(shader)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -476,7 +476,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetGeometry(Geometry geometry)
         {
-            NDalicPINVOKE.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
+            Interop.Renderer.Renderer_SetGeometry(swigCPtr, Geometry.getCPtr(geometry));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -488,10 +488,10 @@ namespace Tizen.NUI
         public Geometry GetGeometry()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetGeometry(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.Renderer_GetGeometry(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Geometry ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Geometry;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -506,7 +506,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetIndexRange(int firstElement, int elementsCount)
         {
-            NDalicPINVOKE.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
+            Interop.Renderer.Renderer_SetIndexRange(swigCPtr, firstElement, elementsCount);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -517,7 +517,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetTextures(TextureSet textureSet)
         {
-            NDalicPINVOKE.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
+            Interop.Renderer.Renderer_SetTextures(swigCPtr, TextureSet.getCPtr(textureSet));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -529,7 +529,7 @@ namespace Tizen.NUI
         public TextureSet GetTextures()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetTextures(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.Renderer_GetTextures(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TextureSet;
             if (cPtr != null && ret == null)
@@ -538,7 +538,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -552,7 +552,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetShader(Shader shader)
         {
-            NDalicPINVOKE.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
+            Interop.Renderer.Renderer_SetShader(swigCPtr, Shader.getCPtr(shader));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -564,10 +564,10 @@ namespace Tizen.NUI
         public Shader GetShader()
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetShader(swigCPtr);
+            System.IntPtr cPtr = Interop.Renderer.Renderer_GetShader(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Shader ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Shader;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -579,7 +579,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Renderer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Renderer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Renderer.Renderer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -613,7 +613,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Renderer(swigCPtr);
+                    Interop.Renderer.delete_Renderer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -631,122 +631,122 @@ namespace Tizen.NUI
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_INDEX = NDalicPINVOKE.Renderer_Property_DEPTH_INDEX_get();
+            public static readonly int DEPTH_INDEX = Interop.Renderer.Renderer_Property_DEPTH_INDEX_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int FACE_CULLING_MODE = NDalicPINVOKE.Renderer_Property_FACE_CULLING_MODE_get();
+            public static readonly int FACE_CULLING_MODE = Interop.Renderer.Renderer_Property_FACE_CULLING_MODE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_MODE = NDalicPINVOKE.Renderer_Property_BLEND_MODE_get();
+            public static readonly int BLEND_MODE = Interop.Renderer.Renderer_Property_BLEND_MODE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_EQUATION_RGB = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_RGB_get();
+            public static readonly int BLEND_EQUATION_RGB = Interop.Renderer.Renderer_Property_BLEND_EQUATION_RGB_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_EQUATION_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_EQUATION_ALPHA_get();
+            public static readonly int BLEND_EQUATION_ALPHA = Interop.Renderer.Renderer_Property_BLEND_EQUATION_ALPHA_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_SRC_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
+            public static readonly int BLEND_FACTOR_SRC_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_DEST_RGB = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
+            public static readonly int BLEND_FACTOR_DEST_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_SRC_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
+            public static readonly int BLEND_FACTOR_SRC_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_DEST_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
+            public static readonly int BLEND_FACTOR_DEST_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_COLOR = NDalicPINVOKE.Renderer_Property_BLEND_COLOR_get();
+            public static readonly int BLEND_COLOR = Interop.Renderer.Renderer_Property_BLEND_COLOR_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
+            public static readonly int BLEND_PRE_MULTIPLIED_ALPHA = Interop.Renderer.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int INDEX_RANGE_FIRST = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_FIRST_get();
+            public static readonly int INDEX_RANGE_FIRST = Interop.Renderer.Renderer_Property_INDEX_RANGE_FIRST_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int INDEX_RANGE_COUNT = NDalicPINVOKE.Renderer_Property_INDEX_RANGE_COUNT_get();
+            public static readonly int INDEX_RANGE_COUNT = Interop.Renderer.Renderer_Property_INDEX_RANGE_COUNT_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_WRITE_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_WRITE_MODE_get();
+            public static readonly int DEPTH_WRITE_MODE = Interop.Renderer.Renderer_Property_DEPTH_WRITE_MODE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_FUNCTION = NDalicPINVOKE.Renderer_Property_DEPTH_FUNCTION_get();
+            public static readonly int DEPTH_FUNCTION = Interop.Renderer.Renderer_Property_DEPTH_FUNCTION_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_TEST_MODE = NDalicPINVOKE.Renderer_Property_DEPTH_TEST_MODE_get();
+            public static readonly int DEPTH_TEST_MODE = Interop.Renderer.Renderer_Property_DEPTH_TEST_MODE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int RENDER_MODE = NDalicPINVOKE.Renderer_Property_RENDER_MODE_get();
+            public static readonly int RENDER_MODE = Interop.Renderer.Renderer_Property_RENDER_MODE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_FUNCTION = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_get();
+            public static readonly int STENCIL_FUNCTION = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_FUNCTION_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_MASK_get();
+            public static readonly int STENCIL_FUNCTION_MASK = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_MASK_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_FUNCTION_REFERENCE = NDalicPINVOKE.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
+            public static readonly int STENCIL_FUNCTION_REFERENCE = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_MASK = NDalicPINVOKE.Renderer_Property_STENCIL_MASK_get();
+            public static readonly int STENCIL_MASK = Interop.Renderer.Renderer_Property_STENCIL_MASK_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_OPERATION_ON_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
+            public static readonly int STENCIL_OPERATION_ON_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_OPERATION_ON_Z_FAIL = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
+            public static readonly int STENCIL_OPERATION_ON_Z_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_OPERATION_ON_Z_PASS = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
+            public static readonly int STENCIL_OPERATION_ON_Z_PASS = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
         }
 
     }

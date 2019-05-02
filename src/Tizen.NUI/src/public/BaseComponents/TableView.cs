@@ -123,7 +123,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates the default TableView view.
         /// </summary>
-        public TableView() : this(NDalicPINVOKE.TableView_New(1, 1), true)
+        public TableView() : this(Interop.TableView.TableView_New(1, 1), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -134,7 +134,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="initialRows">Initial rows for the table.</param>
         /// <param name="initialColumns">Initial columns for the table.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TableView(uint initialRows, uint initialColumns) : this(NDalicPINVOKE.TableView_New(initialRows, initialColumns), true)
+        public TableView(uint initialRows, uint initialColumns) : this(Interop.TableView.TableView_New(initialRows, initialColumns), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -145,12 +145,12 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle">Handle to copy from.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TableView(TableView handle) : this(NDalicPINVOKE.new_TableView__SWIG_1(TableView.getCPtr(handle)), true)
+        public TableView(TableView handle) : this(Interop.TableView.new_TableView__SWIG_1(TableView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TableView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TableView.TableView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -277,7 +277,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool AddChild(View child, TableView.CellPosition position)
         {
-            bool ret = NDalicPINVOKE.TableView_AddChild(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            bool ret = Interop.TableView.TableView_AddChild(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -291,10 +291,10 @@ namespace Tizen.NUI.BaseComponents
         public View GetChildAt(TableView.CellPosition position)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
+            IntPtr cPtr = Interop.TableView.TableView_GetChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -310,10 +310,10 @@ namespace Tizen.NUI.BaseComponents
         public View RemoveChildAt(TableView.CellPosition position)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
+            IntPtr cPtr = Interop.TableView.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -329,7 +329,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool FindChildPosition(View child, TableView.CellPosition position)
         {
-            bool ret = NDalicPINVOKE.TableView_FindChildPosition(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            bool ret = Interop.TableView.TableView_FindChildPosition(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -341,7 +341,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void InsertRow(uint rowIndex)
         {
-            NDalicPINVOKE.TableView_InsertRow(swigCPtr, rowIndex);
+            Interop.TableView.TableView_InsertRow(swigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -353,7 +353,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void DeleteRow(uint rowIndex)
         {
-            NDalicPINVOKE.TableView_DeleteRow__SWIG_0(swigCPtr, rowIndex);
+            Interop.TableView.TableView_DeleteRow__SWIG_0(swigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -364,7 +364,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void InsertColumn(uint columnIndex)
         {
-            NDalicPINVOKE.TableView_InsertColumn(swigCPtr, columnIndex);
+            Interop.TableView.TableView_InsertColumn(swigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -376,7 +376,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void DeleteColumn(uint columnIndex)
         {
-            NDalicPINVOKE.TableView_DeleteColumn__SWIG_0(swigCPtr, columnIndex);
+            Interop.TableView.TableView_DeleteColumn__SWIG_0(swigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -388,7 +388,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Resize(uint rows, uint columns)
         {
-            NDalicPINVOKE.TableView_Resize__SWIG_0(swigCPtr, rows, columns);
+            Interop.TableView.TableView_Resize__SWIG_0(swigCPtr, rows, columns);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -399,7 +399,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetCellPadding(Size2D padding)
         {
-            NDalicPINVOKE.TableView_SetCellPadding(swigCPtr, Size2D.getCPtr(padding));
+            Interop.TableView.TableView_SetCellPadding(swigCPtr, Size2D.getCPtr(padding));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -410,7 +410,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetCellPadding()
         {
-            Vector2 ret = new Vector2(NDalicPINVOKE.TableView_GetCellPadding(swigCPtr), true);
+            Vector2 ret = new Vector2(Interop.TableView.TableView_GetCellPadding(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -422,7 +422,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFitHeight(uint rowIndex)
         {
-            NDalicPINVOKE.TableView_SetFitHeight(swigCPtr, rowIndex);
+            Interop.TableView.TableView_SetFitHeight(swigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -434,7 +434,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool IsFitHeight(uint rowIndex)
         {
-            bool ret = NDalicPINVOKE.TableView_IsFitHeight(swigCPtr, rowIndex);
+            bool ret = Interop.TableView.TableView_IsFitHeight(swigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -446,7 +446,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFitWidth(uint columnIndex)
         {
-            NDalicPINVOKE.TableView_SetFitWidth(swigCPtr, columnIndex);
+            Interop.TableView.TableView_SetFitWidth(swigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -458,7 +458,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool IsFitWidth(uint columnIndex)
         {
-            bool ret = NDalicPINVOKE.TableView_IsFitWidth(swigCPtr, columnIndex);
+            bool ret = Interop.TableView.TableView_IsFitWidth(swigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -472,7 +472,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFixedHeight(uint rowIndex, float height)
         {
-            NDalicPINVOKE.TableView_SetFixedHeight(swigCPtr, rowIndex, height);
+            Interop.TableView.TableView_SetFixedHeight(swigCPtr, rowIndex, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -484,7 +484,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetFixedHeight(uint rowIndex)
         {
-            float ret = NDalicPINVOKE.TableView_GetFixedHeight(swigCPtr, rowIndex);
+            float ret = Interop.TableView.TableView_GetFixedHeight(swigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -499,7 +499,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetRelativeHeight(uint rowIndex, float heightPercentage)
         {
-            NDalicPINVOKE.TableView_SetRelativeHeight(swigCPtr, rowIndex, heightPercentage);
+            Interop.TableView.TableView_SetRelativeHeight(swigCPtr, rowIndex, heightPercentage);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -511,7 +511,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetRelativeHeight(uint rowIndex)
         {
-            float ret = NDalicPINVOKE.TableView_GetRelativeHeight(swigCPtr, rowIndex);
+            float ret = Interop.TableView.TableView_GetRelativeHeight(swigCPtr, rowIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -525,7 +525,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFixedWidth(uint columnIndex, float width)
         {
-            NDalicPINVOKE.TableView_SetFixedWidth(swigCPtr, columnIndex, width);
+            Interop.TableView.TableView_SetFixedWidth(swigCPtr, columnIndex, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -537,7 +537,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetFixedWidth(uint columnIndex)
         {
-            float ret = NDalicPINVOKE.TableView_GetFixedWidth(swigCPtr, columnIndex);
+            float ret = Interop.TableView.TableView_GetFixedWidth(swigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -552,7 +552,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetRelativeWidth(uint columnIndex, float widthPercentage)
         {
-            NDalicPINVOKE.TableView_SetRelativeWidth(swigCPtr, columnIndex, widthPercentage);
+            Interop.TableView.TableView_SetRelativeWidth(swigCPtr, columnIndex, widthPercentage);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -564,7 +564,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public float GetRelativeWidth(uint columnIndex)
         {
-            float ret = NDalicPINVOKE.TableView_GetRelativeWidth(swigCPtr, columnIndex);
+            float ret = Interop.TableView.TableView_GetRelativeWidth(swigCPtr, columnIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -579,7 +579,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetCellAlignment(TableView.CellPosition position, HorizontalAlignmentType horizontal, VerticalAlignmentType vertical)
         {
-            NDalicPINVOKE.TableView_SetCellAlignment(swigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
+            Interop.TableView.TableView_SetCellAlignment(swigCPtr, TableView.CellPosition.getCPtr(position), (int)horizontal, (int)vertical);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -616,7 +616,7 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TableView(swigCPtr);
+                    Interop.TableView.delete_TableView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -653,7 +653,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="rowSpan">The row span initialized.</param>
             /// <param name="columnSpan">The column span initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_0(rowIndex, columnIndex, rowSpan, columnSpan), true)
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(Interop.TableView.new_TableView_CellPosition__SWIG_0(rowIndex, columnIndex, rowSpan, columnSpan), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -665,7 +665,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="columnIndex">The column index initialized.</param>
             /// <param name="rowSpan">The row span initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true)
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(Interop.TableView.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -676,7 +676,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="rowIndex">The row index initialized.</param>
             /// <param name="columnIndex">The column index initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true)
+            public CellPosition(uint rowIndex, uint columnIndex) : this(Interop.TableView.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -686,7 +686,7 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             /// <param name="rowIndex">The row index initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_3(rowIndex), true)
+            public CellPosition(uint rowIndex) : this(Interop.TableView.new_TableView_CellPosition__SWIG_3(rowIndex), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -695,7 +695,7 @@ namespace Tizen.NUI.BaseComponents
             /// The default constructor.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition() : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_4(), true)
+            public CellPosition() : this(Interop.TableView.new_TableView_CellPosition__SWIG_4(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -729,12 +729,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 set
                 {
-                    NDalicPINVOKE.TableView_CellPosition_rowIndex_set(swigCPtr, value);
+                    Interop.TableView.TableView_CellPosition_rowIndex_set(swigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_rowIndex_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -748,7 +748,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_rowIndex_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -765,12 +765,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 set
                 {
-                    NDalicPINVOKE.TableView_CellPosition_columnIndex_set(swigCPtr, value);
+                    Interop.TableView.TableView_CellPosition_columnIndex_set(swigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_columnIndex_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -784,7 +784,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_columnIndex_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -800,12 +800,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 set
                 {
-                    NDalicPINVOKE.TableView_CellPosition_rowSpan_set(swigCPtr, value);
+                    Interop.TableView.TableView_CellPosition_rowSpan_set(swigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_rowSpan_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -819,7 +819,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_rowSpan_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -835,12 +835,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 set
                 {
-                    NDalicPINVOKE.TableView_CellPosition_columnSpan_set(swigCPtr, value);
+                    Interop.TableView.TableView_CellPosition_columnSpan_set(swigCPtr, value);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_columnSpan_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -854,7 +854,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
+                    uint ret = Interop.TableView.TableView_CellPosition_columnSpan_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -917,7 +917,7 @@ namespace Tizen.NUI.BaseComponents
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        NDalicPINVOKE.delete_TableView_CellPosition(swigCPtr);
+                        Interop.TableView.delete_TableView_CellPosition(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -928,20 +928,20 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int ROWS = NDalicPINVOKE.TableView_Property_ROWS_get();
-            internal static readonly int COLUMNS = NDalicPINVOKE.TableView_Property_COLUMNS_get();
-            internal static readonly int CELL_PADDING = NDalicPINVOKE.TableView_Property_CELL_PADDING_get();
-            internal static readonly int LAYOUT_ROWS = NDalicPINVOKE.TableView_Property_LAYOUT_ROWS_get();
-            internal static readonly int LAYOUT_COLUMNS = NDalicPINVOKE.TableView_Property_LAYOUT_COLUMNS_get();
+            internal static readonly int ROWS = Interop.TableView.TableView_Property_ROWS_get();
+            internal static readonly int COLUMNS = Interop.TableView.TableView_Property_COLUMNS_get();
+            internal static readonly int CELL_PADDING = Interop.TableView.TableView_Property_CELL_PADDING_get();
+            internal static readonly int LAYOUT_ROWS = Interop.TableView.TableView_Property_LAYOUT_ROWS_get();
+            internal static readonly int LAYOUT_COLUMNS = Interop.TableView.TableView_Property_LAYOUT_COLUMNS_get();
         }
 
         internal class ChildProperty
         {
-            internal static readonly int CELL_INDEX = NDalicPINVOKE.TableView_ChildProperty_CELL_INDEX_get();
-            internal static readonly int ROW_SPAN = NDalicPINVOKE.TableView_ChildProperty_ROW_SPAN_get();
-            internal static readonly int COLUMN_SPAN = NDalicPINVOKE.TableView_ChildProperty_COLUMN_SPAN_get();
-            internal static readonly int CELL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int CELL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get();
+            internal static readonly int CELL_INDEX = Interop.TableView.TableView_ChildProperty_CELL_INDEX_get();
+            internal static readonly int ROW_SPAN = Interop.TableView.TableView_ChildProperty_ROW_SPAN_get();
+            internal static readonly int COLUMN_SPAN = Interop.TableView.TableView_ChildProperty_COLUMN_SPAN_get();
+            internal static readonly int CELL_HORIZONTAL_ALIGNMENT = Interop.TableView.TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get();
+            internal static readonly int CELL_VERTICAL_ALIGNMENT = Interop.TableView.TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get();
         }
     }
 }

@@ -58,7 +58,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_WatchApplication(swigCPtr);
+                    Interop.Watch.delete_WatchApplication(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -117,7 +117,7 @@ namespace Tizen.NUI
 
         public new static WatchApplication New()
         {
-            WatchApplication ret = new WatchApplication(NDalicManualPINVOKE.WatchApplication_New__SWIG_0(), true);
+            WatchApplication ret = new WatchApplication(Interop.Watch.WatchApplication_New__SWIG_0(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -127,7 +127,7 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            WatchApplication ret = new WatchApplication(NDalicManualPINVOKE.WatchApplication_New__SWIG_1(argc, argvStr), true);
+            WatchApplication ret = new WatchApplication(Interop.Watch.WatchApplication_New__SWIG_1(argc, argvStr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -137,12 +137,12 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            WatchApplication ret = new WatchApplication(NDalicManualPINVOKE.WatchApplication_New__SWIG_2(argc, argvStr, stylesheet), true);
+            WatchApplication ret = new WatchApplication(Interop.Watch.WatchApplication_New__SWIG_2(argc, argvStr, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal WatchApplication(WatchApplication implementation) : this(NDalicManualPINVOKE.new_WatchApplication__SWIG_1(WatchApplication.getCPtr(implementation)), true)
+        internal WatchApplication(WatchApplication implementation) : this(Interop.Watch.new_WatchApplication__SWIG_1(WatchApplication.getCPtr(implementation)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -218,7 +218,7 @@ namespace Tizen.NUI
 
         internal WatchTimeSignal TimeTickSignal()
         {
-            WatchTimeSignal ret = new WatchTimeSignal(NDalicManualPINVOKE.WatchApplication_TimeTickSignal(swigCPtr), false);
+            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplication_TimeTickSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -293,7 +293,7 @@ namespace Tizen.NUI
 
         internal WatchTimeSignal AmbientTickSignal()
         {
-            WatchTimeSignal ret = new WatchTimeSignal(NDalicManualPINVOKE.WatchApplication_AmbientTickSignal(swigCPtr), false);
+            WatchTimeSignal ret = new WatchTimeSignal(Interop.Watch.WatchApplication_AmbientTickSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -367,7 +367,7 @@ namespace Tizen.NUI
 
         internal WatchBoolSignal AmbientChangedSignal()
         {
-            WatchBoolSignal ret = new WatchBoolSignal(NDalicManualPINVOKE.WatchApplication_AmbientChangedSignal(swigCPtr), false);
+            WatchBoolSignal ret = new WatchBoolSignal(Interop.Watch.WatchApplication_AmbientChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

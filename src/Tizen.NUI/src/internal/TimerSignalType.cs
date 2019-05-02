@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TimerSignalType(swigCPtr);
+                    Interop.Timer.delete_TimerSignalType(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -103,14 +103,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = NDalicPINVOKE.TimerSignalType_Empty(swigCPtr);
+            bool ret = Interop.Timer.TimerSignalType_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = NDalicPINVOKE.TimerSignalType_GetConnectionCount(swigCPtr);
+            uint ret = Interop.Timer.TimerSignalType_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -119,7 +119,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicPINVOKE.TimerSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Timer.TimerSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -128,32 +128,32 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicPINVOKE.TimerSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.Timer.TimerSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Connect(System.IntPtr callback)
         {
-            NDalicPINVOKE.TimerSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            Interop.Timer.TimerSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Disconnect(System.IntPtr callback)
         {
-            NDalicPINVOKE.TimerSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            Interop.Timer.TimerSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
 
         public bool Emit()
         {
-            bool ret = NDalicPINVOKE.TimerSignalType_Emit(swigCPtr);
+            bool ret = Interop.Timer.TimerSignalType_Emit(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public TimerSignalType() : this(NDalicPINVOKE.new_TimerSignalType(), true)
+        public TimerSignalType() : this(Interop.Timer.new_TimerSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
