@@ -27,10 +27,10 @@ namespace Tizen.Network.Stc
 
     public class NetworkStatistics : IDisposable
     {
-        private IntPtr _infoHandle = IntPtr.Zero;
+        private Interop.Stc.SafeStatsHandle _infoHandle;
         private bool _disposed;
 
-        internal NetworkStatistics(IntPtr handle)
+        internal NetworkStatistics(Interop.Stc.SafeStatsHandle handle)
         {
             Log.Debug(Globals.LogTag, "New Info. Handle: " + handle);
             _infoHandle = handle;
@@ -70,17 +70,10 @@ namespace Tizen.Network.Stc
                 // destroy managed resources
             }
 
-            int ret = Interop.Stc.Info.StatsDestroy(_infoHandle);
-            if (ret == (int)StcError.None)
-            {
-                _infoHandle = IntPtr.Zero;
+            if(_infoHandle != null && !_infoHandle.IsInvalid) {
+                _infoHandle.Dispose();
+                _disposed = true;
             }
-            else
-            {
-                Log.Error(Globals.LogTag, "Failed to destroy network statistics handle, Error - " + (StcError)ret);
-            }
-
-            _disposed = true;
         }
 
         /// <summary>

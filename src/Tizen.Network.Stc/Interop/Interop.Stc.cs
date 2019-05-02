@@ -15,6 +15,7 @@
  */
 
 using System;
+using Tizen;
 using Tizen.Network.Stc;
 using System.Runtime.InteropServices;
 
@@ -30,7 +31,7 @@ internal static partial class Interop
     {
         // Callback for Statistics Information
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate CallbackRet StatsInfoCallback(int result, IntPtr info, IntPtr userData);
+        internal delegate CallbackRet StatsInfoCallback(int result, SafeStatsHandle info, IntPtr userData);
 
         // Callback for getting All Statistics Information in one handle
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -42,56 +43,116 @@ internal static partial class Interop
         internal static extern int Deinitialize(IntPtr stc);
 
         [DllImport(Libraries.Stc,EntryPoint = "stc_get_stats")]
-        internal static extern int GetStats(SafeStcHandle stc, IntPtr rule, StatsInfoCallback infoCb, IntPtr userData);
+        internal static extern int GetStats(SafeStcHandle stc, SafeRuleHandle rule, StatsInfoCallback infoCb, IntPtr userData);
         [DllImport(Libraries.Stc,EntryPoint = "stc_get_all_stats")]
-        internal static extern int GetAllStats(SafeStcHandle stc, IntPtr rule, GetAllStatsFinishedCallback infoCb, IntPtr userData);
+        internal static extern int GetAllStats(SafeStcHandle stc, SafeRuleHandle rule, GetAllStatsFinishedCallback infoCb, IntPtr userData);
         [DllImport(Libraries.Stc,EntryPoint = "stc_foreach_all_stats")]
-        internal static extern int ForeachAllStats(IntPtr info, StatsInfoCallback infoCb, IntPtr userData);
+        internal static extern int ForeachAllStats(IntPtr infoList, StatsInfoCallback infoCb, IntPtr userData);
 
         internal static class Rule {
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_create")]
-            internal static extern int Create(SafeStcHandle stc, out IntPtr rule);
+            internal static extern int Create(SafeStcHandle stc, out SafeRuleHandle rule);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_destroy")]
             internal static extern int Destroy(IntPtr rule);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_app_id")]
-            internal static extern int SetAppId(IntPtr rule, string appId);
+            internal static extern int SetAppId(SafeRuleHandle rule, string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_app_id")]
-            internal static extern int GetAppId(IntPtr rule, out string appId);
+            internal static extern int GetAppId(SafeRuleHandle rule, out string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
-            internal static extern int SetTimeInterval(IntPtr rule, DateTime from, DateTime to);
+            internal static extern int SetTimeInterval(SafeRuleHandle rule, DateTime from, DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_interval")]
-            internal static extern int GetTimeInterval(IntPtr rule, out DateTime from, out DateTime to);
+            internal static extern int GetTimeInterval(SafeRuleHandle rule, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
-            internal static extern int SetInterfaceType(IntPtr rule, NativeNetworkInterface ifaceType);
+            internal static extern int SetInterfaceType(SafeRuleHandle rule, NativeNetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_iface_type")]
-            internal static extern int GetInterfaceType(IntPtr rule, out NativeNetworkInterface ifaceType);
+            internal static extern int GetInterfaceType(SafeRuleHandle rule, out NativeNetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
-            internal static extern int SetTimePeriod(IntPtr rule, NativeTimePeriodType timePeriod);
+            internal static extern int SetTimePeriod(SafeRuleHandle rule, NativeTimePeriodType timePeriod);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_period")]
-            internal static extern int GetTimePeriod(IntPtr rule, out NativeTimePeriodType timePeriod);
+            internal static extern int GetTimePeriod(SafeRuleHandle rule, out NativeTimePeriodType timePeriod);
         }
 
         internal static class Info {
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_clone")]
-            internal static extern int StatsClone(IntPtr info, out IntPtr cloned);
+            internal static extern int StatsClone(SafeStatsHandle info, out SafeStatsHandle cloned);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_destroy")]
             internal static extern int StatsDestroy(IntPtr info);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_app_id")]
-            internal static extern int GetAppId(IntPtr info, out string appId);
+            internal static extern int GetAppId(SafeStatsHandle info, out string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_name")]
-            internal static extern int GetInterfaceName(IntPtr info, out string IfaceName);
+            internal static extern int GetInterfaceName(SafeStatsHandle info, out string IfaceName);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_time_interval")]
-            internal static extern int GetTimeInterval(IntPtr info, out DateTime from, out DateTime to);
+            internal static extern int GetTimeInterval(SafeStatsHandle info, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_type")]
-            internal static extern int GetInterfaceType(IntPtr info, out NativeNetworkInterface ifaceType);
+            internal static extern int GetInterfaceType(SafeStatsHandle info, out NativeNetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_counter")]
-            internal static extern int GetCounter(IntPtr info, out long incoming, out long outgoing);
+            internal static extern int GetCounter(SafeStatsHandle info, out long incoming, out long outgoing);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_roaming_type")]
-            internal static extern int GetRoaming(IntPtr info, out RoamingType roaming);
+            internal static extern int GetRoaming(SafeStatsHandle info, out RoamingType roaming);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_protocol_type")]
-            internal static extern int GetProtocol(IntPtr info, out NativeNetworkProtocol protocol);
+            internal static extern int GetProtocol(SafeStatsHandle info, out NativeNetworkProtocol protocol);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_process_state")]
-            internal static extern int GetProcessState(IntPtr info, out ProcessState state);
+            internal static extern int GetProcessState(SafeStatsHandle info, out ProcessState state);
+        }
+
+        internal sealed class SafeRuleHandle : SafeHandle
+        {
+            public SafeRuleHandle() : base(IntPtr.Zero, true)
+            {
+            }
+
+            public SafeRuleHandle(IntPtr handle) : base(handle, true)
+            {
+            }
+
+            public override bool IsInvalid
+            {
+                get
+                {
+                    return this.handle == IntPtr.Zero;
+                }
+            }
+
+            protected override bool ReleaseHandle()
+            {
+                int ret = Interop.Stc.Rule.Destroy(this.handle);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to release Rule handle, Error - " + (StcError)ret);
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        internal sealed class SafeStatsHandle : SafeHandle
+        {
+            public SafeStatsHandle() : base(IntPtr.Zero, true)
+            {
+            }
+
+            public SafeStatsHandle(IntPtr handle) : base(handle, true)
+            {
+            }
+
+            public override bool IsInvalid
+            {
+                get
+                {
+                    return this.handle == IntPtr.Zero;
+                }
+            }
+
+            protected override bool ReleaseHandle()
+            {
+                int ret = Interop.Stc.Info.StatsDestroy(this.handle);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to release network statistics handle, Error - " + (StcError)ret);
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }

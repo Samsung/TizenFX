@@ -103,7 +103,7 @@ namespace Tizen.Network.Stc
 
             TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
 
-            _getStatsCb = (int result, IntPtr info, IntPtr userData) =>
+            _getStatsCb = (int result, Interop.Stc.SafeStatsHandle info, IntPtr userData) =>
             {
                 if(result != (int)StcError.None)
                 {
@@ -111,7 +111,7 @@ namespace Tizen.Network.Stc
                     task.SetException(new InvalidOperationException("Error occurs during GetStats(), " + (StcError)result));
                 }
 
-                IntPtr cloned;
+                Interop.Stc.SafeStatsHandle cloned;
                 int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
                 if (retValue != (int)StcError.None)
                 {
@@ -152,7 +152,7 @@ namespace Tizen.Network.Stc
 
                 List<NetworkStatistics> statsList = new List<NetworkStatistics>();
 
-                Interop.Stc.StatsInfoCallback foreachAllStatsCb = (int resultTemp, IntPtr info, IntPtr userDataTemp) =>
+                Interop.Stc.StatsInfoCallback foreachAllStatsCb = (int resultTemp, Interop.Stc.SafeStatsHandle info, IntPtr userDataTemp) =>
                 {
                     if(resultTemp != (int)StcError.None)
                     {
@@ -160,7 +160,7 @@ namespace Tizen.Network.Stc
                         task.SetException(new InvalidOperationException("Error occurs during ForeachAllStats(), " + (StcError)resultTemp));
                     }
 
-                    IntPtr cloned;
+                    Interop.Stc.SafeStatsHandle cloned;
                     int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
                     if (retValue != (int)StcError.None)
                     {

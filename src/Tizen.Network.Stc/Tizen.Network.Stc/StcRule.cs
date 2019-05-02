@@ -26,7 +26,7 @@ namespace Tizen.Network.Stc
     /// <since_tizen> 6 </since_tizen>
     public class StcRule : IDisposable
     {
-        internal IntPtr _ruleHandle = IntPtr.Zero;
+        internal Interop.Stc.SafeRuleHandle _ruleHandle;
         internal bool _disposed;
 
         /// <summary>
@@ -81,17 +81,10 @@ namespace Tizen.Network.Stc
                 // destroy managed resources
             }
 
-            int ret = Interop.Stc.Rule.Destroy(_ruleHandle);
-            if (ret == (int)StcError.None)
-            {
-                _ruleHandle = IntPtr.Zero;
+            if(_ruleHandle != null && !_ruleHandle.IsInvalid) {
+                _ruleHandle.Dispose();
+                _disposed = true;
             }
-            else
-            {
-                Log.Error(Globals.LogTag, "Failed to destroy Rule handle, Error - " + (StcError)ret);
-            }
-
-            _disposed = true;
         }
 
         /// <summary>
