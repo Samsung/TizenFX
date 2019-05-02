@@ -227,8 +227,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// Only for XAML property binding. This will be changed as Inhouse API by ACR later.
         public static readonly BindableProperty FlexProperty = BindableProperty.Create("Flex", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
