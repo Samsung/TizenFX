@@ -26,7 +26,7 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         internal LayoutItemWrapperImpl layoutItemWrapperImpl;
 
-        internal LayoutItemWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.LayoutItemWrapper_SWIGUpcast(cPtr), cMemoryOwn)
+        internal LayoutItemWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LayoutItemWrapper.LayoutItemWrapper_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -60,7 +60,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    LayoutPINVOKE.delete_LayoutItemWrapper(swigCPtr);
+                    Interop.LayoutItemWrapper.delete_LayoutItemWrapper(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -81,8 +81,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildProperty
         {
-            public static readonly int WIDTH_SPECIFICATION = LayoutPINVOKE.LayoutItemWrapper_ChildProperty_WIDTH_SPECIFICATION_get();
-            public static readonly int HEIGHT_SPECIFICATION = LayoutPINVOKE.LayoutItemWrapper_ChildProperty_HEIGHT_SPECIFICATION_get();
+            public static readonly int WIDTH_SPECIFICATION = Interop.LayoutItemWrapper.LayoutItemWrapper_ChildProperty_WIDTH_SPECIFICATION_get();
+            public static readonly int HEIGHT_SPECIFICATION = Interop.LayoutItemWrapper.LayoutItemWrapper_ChildProperty_HEIGHT_SPECIFICATION_get();
 
         }
 
@@ -93,7 +93,7 @@ namespace Tizen.NUI
 
         public View GetOwner()
         {
-            global::System.IntPtr cPtr = LayoutPINVOKE.LayoutItemWrapper_GetOwner(swigCPtr);
+            global::System.IntPtr cPtr = Interop.LayoutItemWrapper.LayoutItemWrapper_GetOwner(swigCPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -101,13 +101,13 @@ namespace Tizen.NUI
 
         private void SetAnimateLayout(bool animateLayout)
         {
-            LayoutPINVOKE.LayoutItemWrapper_SetAnimateLayout(swigCPtr, animateLayout);
+            Interop.LayoutItemWrapper.LayoutItemWrapper_SetAnimateLayout(swigCPtr, animateLayout);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private bool IsLayoutAnimated()
         {
-            bool ret = LayoutPINVOKE.LayoutItemWrapper_IsLayoutAnimated(swigCPtr);
+            bool ret = Interop.LayoutItemWrapper.LayoutItemWrapper_IsLayoutAnimated(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -124,7 +124,7 @@ namespace Tizen.NUI
             }
         }
 
-        internal LayoutItemWrapper(LayoutItemWrapperImpl implementation) : this(LayoutPINVOKE.new_LayoutItemWrapper__SWIG_2(LayoutItemWrapperImpl.getCPtr(implementation)), true)
+        internal LayoutItemWrapper(LayoutItemWrapperImpl implementation) : this(Interop.LayoutItemWrapper.new_LayoutItemWrapper__SWIG_2(LayoutItemWrapperImpl.getCPtr(implementation)), true)
         {
             layoutItemWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

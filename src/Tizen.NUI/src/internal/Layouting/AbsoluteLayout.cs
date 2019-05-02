@@ -25,7 +25,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal AbsoluteLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.AbsoluteLayout_SWIGUpcast(cPtr), cMemoryOwn)
+        internal AbsoluteLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AbsoluteLayout.AbsoluteLayout_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -58,7 +58,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    LayoutPINVOKE.delete_AbsoluteLayout(swigCPtr);
+                    Interop.AbsoluteLayout.delete_AbsoluteLayout(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Creates a AbsoluteLayout object.
         /// </summary>
-        public AbsoluteLayout() : this(LayoutPINVOKE.AbsoluteLayout_New(), true)
+        public AbsoluteLayout() : this(Interop.AbsoluteLayout.AbsoluteLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         /// <returns>Handle to a AbsoluteLayout or an uninitialized handle</returns>
         internal static AbsoluteLayout DownCast(BaseHandle handle)
         {
-            AbsoluteLayout ret = new AbsoluteLayout(LayoutPINVOKE.AbsoluteLayout_DownCast(BaseHandle.getCPtr(handle)), true);
+            AbsoluteLayout ret = new AbsoluteLayout(Interop.AbsoluteLayout.AbsoluteLayout_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -91,14 +91,14 @@ namespace Tizen.NUI
         /// [Draft] Copy constructor
         /// </summary>
         /// <param name="other"></param>
-        internal AbsoluteLayout(AbsoluteLayout other) : this(LayoutPINVOKE.new_AbsoluteLayout__SWIG_1(AbsoluteLayout.getCPtr(other)), true)
+        internal AbsoluteLayout(AbsoluteLayout other) : this(Interop.AbsoluteLayout.new_AbsoluteLayout__SWIG_1(AbsoluteLayout.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal AbsoluteLayout Assign(AbsoluteLayout other)
         {
-            AbsoluteLayout ret = new AbsoluteLayout(LayoutPINVOKE.AbsoluteLayout_Assign(swigCPtr, AbsoluteLayout.getCPtr(other)), false);
+            AbsoluteLayout ret = new AbsoluteLayout(Interop.AbsoluteLayout.AbsoluteLayout_Assign(swigCPtr, AbsoluteLayout.getCPtr(other)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
