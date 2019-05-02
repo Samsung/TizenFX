@@ -25,10 +25,10 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     static public class EnvironmentVariable
     {
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetEnvironmentVariable")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetEnvironmentVariable")]
         private static extern string EnvironmentVariable_GetEnvironmentVariable(string jarg1);
         
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_SetEnvironmentVariable")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetEnvironmentVariable")]
         private static extern bool EnvironmentVariable_SetEnvironmentVariable(string jarg1, string jarg2);
 
         /// <summary>

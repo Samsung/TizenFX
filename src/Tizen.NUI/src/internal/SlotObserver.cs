@@ -130,11 +130,11 @@ namespace Tizen.NUI
         }
 
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_SlotObserver")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_SlotObserver")]
         public static extern void delete_SlotObserver(global::System.Runtime.InteropServices.HandleRef jarg1);
 
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_SlotObserver_SlotDisconnected")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlotObserver_SlotDisconnected")]
         public static extern void SlotObserver_SlotDisconnected(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
 

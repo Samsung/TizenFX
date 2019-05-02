@@ -19,10 +19,10 @@ namespace Tizen.NUI
 {
     class LayoutPINVOKE
     {
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetImplementation__SWIG_0")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetImplementation__SWIG_0")]
         public static extern global::System.IntPtr GetImplementation__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetImplementation__SWIG_2")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetImplementation__SWIG_2")]
         public static extern global::System.IntPtr GetImplementation__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
         
 	  }

@@ -32,10 +32,10 @@ namespace Tizen.NUI
         public const int reservedVer1 = 0;
         public const int reservedVer2 = 0;
         
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_NativeVersionCheck")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeVersionCheck")]
         public static extern bool NativeVersionCheck(ref int ver1, ref int ver2, ref int ver3);
         
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_NUI_InternalAPIVersionCheck")]
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_NUI_InternalAPIVersionCheck")]
         public static extern bool InternalAPIVersionCheck(ref int ver1, ref int ver2, ref int ver3);
 
         static internal bool DaliVersionMatchWithNUI()

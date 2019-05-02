@@ -20,9 +20,9 @@ namespace Tizen.NUI
 
     class NDalicPINVOKE
     {
-		protected class SWIGExceptionHelper
+        public const string Lib = "libdali-csharp-binder.so";
+        protected class SWIGExceptionHelper
 		{
-	
 			/// <since_tizen> 3 </since_tizen>
 			public delegate void ExceptionDelegate(string message);
 			/// <since_tizen> 3 </since_tizen>
