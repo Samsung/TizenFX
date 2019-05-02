@@ -43,6 +43,7 @@ namespace Tizen.NUI
             return temp;
         });
 
+        /// Only for XAML property binding. This will be changed as Inhouse API by ACR later.
         public static readonly BindableProperty TooltipsProperty = BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = (ToggleButton)bindable;

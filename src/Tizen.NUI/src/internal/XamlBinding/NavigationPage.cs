@@ -241,10 +241,6 @@ namespace Tizen.NUI
         /// </summary>
         public event EventHandler<NavigationEventArgs> Popped;
 
-        /// <summary>
-        /// Event that is raised when the last nonroot element is popped from this NavigationPage element.
-        /// </summary>
-        public event EventHandler<NavigationEventArgs> PoppedToRoot;
 
         /// <summary>
         /// Pops all but the root Page off the navigation stack.
