@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.NDalic.delete_SignalConnectorType(swigCPtr);
+                    NDalicPINVOKE.delete_SignalConnectorType(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,7 +100,7 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-        public SignalConnectorType(TypeRegistration typeRegistration, string name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool func) : this(Interop.NDalic.new_SignalConnectorType(TypeRegistration.getCPtr(typeRegistration), name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool.getCPtr(func)), true)
+        public SignalConnectorType(TypeRegistration typeRegistration, string name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool func) : this(NDalicPINVOKE.new_SignalConnectorType(TypeRegistration.getCPtr(typeRegistration), name, SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool.getCPtr(func)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

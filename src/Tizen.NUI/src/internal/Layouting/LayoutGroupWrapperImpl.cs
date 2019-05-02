@@ -50,7 +50,7 @@ namespace Tizen.NUI
         public MeasureChildDelegate MeasureChild;
         public MeasureChildWithMarginsDelegate MeasureChildWithMargins;
 
-        internal LayoutGroupWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal LayoutGroupWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.LayoutGroupWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -60,7 +60,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        public LayoutGroupWrapperImpl() : this(Interop.LayoutGroupWrapperImpl.new_LayoutGroupWrapperImpl(), true)
+        public LayoutGroupWrapperImpl() : this(LayoutPINVOKE.new_LayoutGroupWrapperImpl(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -99,45 +99,45 @@ namespace Tizen.NUI
 
         internal uint Add(LayoutItemWrapperImpl layoutChild)
         {
-            uint ret = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_Add(swigCPtr, LayoutItemWrapperImpl.getCPtr(layoutChild));
+            uint ret = LayoutPINVOKE.LayoutGroupWrapperImpl_Add(swigCPtr, LayoutItemWrapperImpl.getCPtr(layoutChild));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void Remove(uint childId)
         {
-            Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_Remove__SWIG_0(swigCPtr, childId);
+            LayoutPINVOKE.LayoutGroupWrapperImpl_Remove__SWIG_0(swigCPtr, childId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Remove(LayoutItemWrapperImpl child)
         {
-            Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_Remove__SWIG_1(swigCPtr, LayoutItemWrapperImpl.getCPtr(child));
+            LayoutPINVOKE.LayoutGroupWrapperImpl_Remove__SWIG_1(swigCPtr, LayoutItemWrapperImpl.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void RemoveAll()
         {
-            Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_RemoveAll(swigCPtr);
+            LayoutPINVOKE.LayoutGroupWrapperImpl_RemoveAll(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal uint GetChildCount()
         {
-            uint ret = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChildCount(swigCPtr);
+            uint ret = LayoutPINVOKE.LayoutGroupWrapperImpl_GetChildCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public LayoutItem GetChildAt(uint childIndex)
         {
-            IntPtr cPtr = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChildAt(swigCPtr, childIndex);
+            IntPtr cPtr = LayoutPINVOKE.LayoutGroupWrapperImpl_GetChildAt(swigCPtr, childIndex);
             HandleRef CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
-            global::System.IntPtr refObjectPtr = Interop.LayoutItemPtr.LayoutItemPtr_Get(CPtrHandleRef);
+            global::System.IntPtr refObjectPtr = LayoutPINVOKE.LayoutItemPtr_Get(CPtrHandleRef);
             LayoutItem ret = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as LayoutItem;
 
-            Interop.LayoutItemPtr.delete_LayoutItemPtr(CPtrHandleRef);
+            LayoutPINVOKE.delete_LayoutItemPtr(CPtrHandleRef);
             CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -146,20 +146,20 @@ namespace Tizen.NUI
 
         internal uint GetChildId(LayoutItemWrapperImpl child)
         {
-            uint ret = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChildId(swigCPtr, LayoutItemWrapperImpl.getCPtr(child));
+            uint ret = LayoutPINVOKE.LayoutGroupWrapperImpl_GetChildId(swigCPtr, LayoutItemWrapperImpl.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public LayoutItem GetChild(uint childId)
         {
-            IntPtr cPtr = Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChild(swigCPtr, childId);
+            IntPtr cPtr = LayoutPINVOKE.LayoutGroupWrapperImpl_GetChild(swigCPtr, childId);
             HandleRef CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
-            global::System.IntPtr refObjectPtr = Interop.LayoutItemPtr.LayoutItemPtr_Get(CPtrHandleRef);
+            global::System.IntPtr refObjectPtr = LayoutPINVOKE.LayoutItemPtr_Get(CPtrHandleRef);
             LayoutItem ret = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as LayoutItem;
 
-            Interop.LayoutItemPtr.delete_LayoutItemPtr(CPtrHandleRef);
+            LayoutPINVOKE.delete_LayoutItemPtr(CPtrHandleRef);
             CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -168,26 +168,26 @@ namespace Tizen.NUI
 
         internal static LayoutMeasureSpec GetChildMeasureSpec(LayoutMeasureSpec measureSpec, LayoutLength padding, LayoutLength childDimension)
         {
-            LayoutMeasureSpec ret = new LayoutMeasureSpec(Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_GetChildMeasureSpec(LayoutMeasureSpec.getCPtr(measureSpec), LayoutLength.getCPtr(padding), LayoutLength.getCPtr(childDimension)), true);
+            LayoutMeasureSpec ret = new LayoutMeasureSpec(LayoutPINVOKE.LayoutGroupWrapperImpl_GetChildMeasureSpec(LayoutMeasureSpec.getCPtr(measureSpec), LayoutLength.getCPtr(padding), LayoutLength.getCPtr(childDimension)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal virtual void MeasureChildrenNative(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_MeasureChildrenSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutMeasureSpec.getCPtr(widthMeasureSpec), LayoutMeasureSpec.getCPtr(heightMeasureSpec));
+            LayoutPINVOKE.LayoutGroupWrapperImpl_MeasureChildrenSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutMeasureSpec.getCPtr(widthMeasureSpec), LayoutMeasureSpec.getCPtr(heightMeasureSpec));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void MeasureChildNative(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutMeasureSpec parentHeightMeasureSpec)
         {
-            Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_MeasureChildSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutItem.getCPtr(child), LayoutMeasureSpec.getCPtr(parentWidthMeasureSpec), LayoutMeasureSpec.getCPtr(parentHeightMeasureSpec));
+            LayoutPINVOKE.LayoutGroupWrapperImpl_MeasureChildSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutItem.getCPtr(child), LayoutMeasureSpec.getCPtr(parentWidthMeasureSpec), LayoutMeasureSpec.getCPtr(parentHeightMeasureSpec));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void MeasureChildWithMarginsNative(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutLength widthUsed, LayoutMeasureSpec parentHeightMeasureSpec, LayoutLength heightUsed)
         {
-            Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_MeasureChildWithMarginsSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutItem.getCPtr(child), LayoutMeasureSpec.getCPtr(parentWidthMeasureSpec), LayoutLength.getCPtr(widthUsed), LayoutMeasureSpec.getCPtr(parentHeightMeasureSpec), LayoutLength.getCPtr(heightUsed));
+            LayoutPINVOKE.LayoutGroupWrapperImpl_MeasureChildWithMarginsSwigExplicitLayoutGroupWrapperImpl(swigCPtr, LayoutItem.getCPtr(child), LayoutMeasureSpec.getCPtr(parentWidthMeasureSpec), LayoutLength.getCPtr(widthUsed), LayoutMeasureSpec.getCPtr(parentHeightMeasureSpec), LayoutLength.getCPtr(heightUsed));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -210,7 +210,7 @@ namespace Tizen.NUI
             swigDelegate13 = new SwigDelegateLayoutGroupWrapperImpl_13(SwigDirectorMeasureChild);
             swigDelegate14 = new SwigDelegateLayoutGroupWrapperImpl_14(SwigDirectorMeasureChildWithMargins);
 
-            Interop.LayoutGroupWrapperImpl.LayoutGroupWrapperImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14);
+            LayoutPINVOKE.LayoutGroupWrapperImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7, swigDelegate8, swigDelegate9, swigDelegate10, swigDelegate11, swigDelegate12, swigDelegate13, swigDelegate14);
         }
 
         /*private global::System.IntPtr SwigDirectorGetParent()
@@ -262,12 +262,12 @@ namespace Tizen.NUI
         {
             HandleRef CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(this, child);
 
-            global::System.IntPtr refObjectPtr = Interop.LayoutItemPtr.LayoutItemPtr_Get(CPtrHandleRef);
+            global::System.IntPtr refObjectPtr = LayoutPINVOKE.LayoutItemPtr_Get(CPtrHandleRef);
             LayoutItem layoutItem = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as LayoutItem;
 
             MeasureChild(layoutItem, new LayoutMeasureSpec(parentWidthMeasureSpec, true), new LayoutMeasureSpec(parentHeightMeasureSpec, true));
 
-            Interop.LayoutItemPtr.delete_LayoutItemPtr(CPtrHandleRef);
+            LayoutPINVOKE.delete_LayoutItemPtr(CPtrHandleRef);
             CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
 
@@ -275,12 +275,12 @@ namespace Tizen.NUI
         {
             HandleRef CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(this, child);
 
-            global::System.IntPtr refObjectPtr = Interop.LayoutItemPtr.LayoutItemPtr_Get(CPtrHandleRef);
+            global::System.IntPtr refObjectPtr = LayoutPINVOKE.LayoutItemPtr_Get(CPtrHandleRef);
             LayoutItem layoutItem = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as LayoutItem;
 
             MeasureChildWithMargins(layoutItem, new LayoutMeasureSpec(parentWidthMeasureSpec, true), new LayoutLength(widthUsed, true), new LayoutMeasureSpec(parentHeightMeasureSpec, true), new LayoutLength(heightUsed, true));
 
-            Interop.LayoutItemPtr.delete_LayoutItemPtr(CPtrHandleRef);
+            LayoutPINVOKE.delete_LayoutItemPtr(CPtrHandleRef);
             CPtrHandleRef = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
 

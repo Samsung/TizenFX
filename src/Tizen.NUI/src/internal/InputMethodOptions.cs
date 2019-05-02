@@ -90,7 +90,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.InputMethodOptions.delete_InputMethodOptions(swigCPtr);
+                    NDalicManualPINVOKE.delete_InputMethodOptions(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -98,33 +98,33 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-        public InputMethodOptions() : this(Interop.InputMethodOptions.new_InputMethodOptions(), true)
+        public InputMethodOptions() : this(NDalicManualPINVOKE.new_InputMethodOptions(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool IsPassword()
         {
-            bool ret = Interop.InputMethodOptions.InputMethodOptions_IsPassword(swigCPtr);
+            bool ret = NDalicManualPINVOKE.InputMethodOptions_IsPassword(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void ApplyProperty(PropertyMap settings)
         {
-            Interop.InputMethodOptions.InputMethodOptions_ApplyProperty(swigCPtr, PropertyMap.getCPtr(settings));
+            NDalicManualPINVOKE.InputMethodOptions_ApplyProperty(swigCPtr, PropertyMap.getCPtr(settings));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RetrieveProperty(PropertyMap settings)
         {
-            Interop.InputMethodOptions.InputMethodOptions_RetrieveProperty(swigCPtr, PropertyMap.getCPtr(settings));
+            NDalicManualPINVOKE.InputMethodOptions_RetrieveProperty(swigCPtr, PropertyMap.getCPtr(settings));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool CompareAndSet(InputMethod.CategoryType type, InputMethodOptions options, SWIGTYPE_p_int index)
         {
-            bool ret = Interop.InputMethodOptions.InputMethodOptions_CompareAndSet(swigCPtr, (int)type, InputMethodOptions.getCPtr(options), SWIGTYPE_p_int.getCPtr(index));
+            bool ret = NDalicManualPINVOKE.InputMethodOptions_CompareAndSet(swigCPtr, (int)type, InputMethodOptions.getCPtr(options), SWIGTYPE_p_int.getCPtr(index));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

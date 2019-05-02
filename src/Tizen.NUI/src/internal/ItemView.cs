@@ -28,7 +28,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ItemView.ItemView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ItemView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -62,7 +62,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ItemView.delete_ItemView(swigCPtr);
+                    NDalicPINVOKE.delete_ItemView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -88,32 +88,32 @@ namespace Tizen.NUI
         public new class Property
         {
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int LAYOUT = Interop.ItemView.ItemView_Property_LAYOUT_get();
+            public static readonly int LAYOUT = NDalicManualPINVOKE.ItemView_Property_LAYOUT_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int MINIMUM_SWIPE_SPEED = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
+            public static readonly int MINIMUM_SWIPE_SPEED = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int MINIMUM_SWIPE_DISTANCE = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
+            public static readonly int MINIMUM_SWIPE_DISTANCE = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int WHEEL_SCROLL_DISTANCE_STEP = Interop.ItemView.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
+            public static readonly int WHEEL_SCROLL_DISTANCE_STEP = NDalicPINVOKE.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int SNAP_TO_ITEM_ENABLED = Interop.ItemView.ItemView_Property_SNAP_TO_ITEM_ENABLED_get();
+            public static readonly int SNAP_TO_ITEM_ENABLED = NDalicPINVOKE.ItemView_Property_SNAP_TO_ITEM_ENABLED_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int REFRESH_INTERVAL = Interop.ItemView.ItemView_Property_REFRESH_INTERVAL_get();
+            public static readonly int REFRESH_INTERVAL = NDalicPINVOKE.ItemView_Property_REFRESH_INTERVAL_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int LAYOUT_POSITION = Interop.ItemView.ItemView_Property_LAYOUT_POSITION_get();
+            public static readonly int LAYOUT_POSITION = NDalicPINVOKE.ItemView_Property_LAYOUT_POSITION_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_SPEED = Interop.ItemView.ItemView_Property_SCROLL_SPEED_get();
+            public static readonly int SCROLL_SPEED = NDalicPINVOKE.ItemView_Property_SCROLL_SPEED_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT = Interop.ItemView.ItemView_Property_OVERSHOOT_get();
+            public static readonly int OVERSHOOT = NDalicPINVOKE.ItemView_Property_OVERSHOOT_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_DIRECTION = Interop.ItemView.ItemView_Property_SCROLL_DIRECTION_get();
+            public static readonly int SCROLL_DIRECTION = NDalicPINVOKE.ItemView_Property_SCROLL_DIRECTION_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int LAYOUT_ORIENTATION = Interop.ItemView.ItemView_Property_LAYOUT_ORIENTATION_get();
+            public static readonly int LAYOUT_ORIENTATION = NDalicPINVOKE.ItemView_Property_LAYOUT_ORIENTATION_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_CONTENT_SIZE = Interop.ItemView.ItemView_Property_SCROLL_CONTENT_SIZE_get();
+            public static readonly int SCROLL_CONTENT_SIZE = NDalicPINVOKE.ItemView_Property_SCROLL_CONTENT_SIZE_get();
         }
 
-        public ItemView(ItemFactory factory) : this(Interop.ItemView.ItemView_New(ItemFactory.getCPtr(factory)), true)
+        public ItemView(ItemFactory factory) : this(NDalicPINVOKE.ItemView_New(ItemFactory.getCPtr(factory)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -128,231 +128,231 @@ namespace Tizen.NUI
 
         public uint GetLayoutCount()
         {
-            uint ret = Interop.ItemView.ItemView_GetLayoutCount(swigCPtr);
+            uint ret = NDalicPINVOKE.ItemView_GetLayoutCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void AddLayout(ItemLayout layout)
         {
-            Interop.ItemView.ItemView_AddLayout(swigCPtr, ItemLayout.getCPtr(layout));
+            NDalicPINVOKE.ItemView_AddLayout(swigCPtr, ItemLayout.getCPtr(layout));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveLayout(uint layoutIndex)
         {
-            Interop.ItemView.ItemView_RemoveLayout(swigCPtr, layoutIndex);
+            NDalicPINVOKE.ItemView_RemoveLayout(swigCPtr, layoutIndex);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetLayout(uint layoutIndex)
         {
-            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.ItemView_GetLayout(swigCPtr, layoutIndex), true);
+            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(NDalicPINVOKE.ItemView_GetLayout(swigCPtr, layoutIndex), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t GetActiveLayout()
         {
-            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(Interop.ItemView.ItemView_GetActiveLayout(swigCPtr), true);
+            SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t ret = new SWIGTYPE_p_Dali__IntrusivePtrT_Dali__Toolkit__ItemLayout_t(NDalicPINVOKE.ItemView_GetActiveLayout(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public float GetCurrentLayoutPosition(uint itemId)
         {
-            float ret = Interop.ItemView.ItemView_GetCurrentLayoutPosition(swigCPtr, itemId);
+            float ret = NDalicPINVOKE.ItemView_GetCurrentLayoutPosition(swigCPtr, itemId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void ActivateLayout(uint layoutIndex, Vector3 targetSize, float durationSeconds)
         {
-            Interop.ItemView.ItemView_ActivateLayout(swigCPtr, layoutIndex, Vector3.getCPtr(targetSize), durationSeconds);
+            NDalicPINVOKE.ItemView_ActivateLayout(swigCPtr, layoutIndex, Vector3.getCPtr(targetSize), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void DeactivateCurrentLayout()
         {
-            Interop.ItemView.ItemView_DeactivateCurrentLayout(swigCPtr);
+            NDalicPINVOKE.ItemView_DeactivateCurrentLayout(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetMinimumSwipeSpeed(float speed)
         {
-            Interop.ItemView.ItemView_SetMinimumSwipeSpeed(swigCPtr, speed);
+            NDalicPINVOKE.ItemView_SetMinimumSwipeSpeed(swigCPtr, speed);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetMinimumSwipeSpeed()
         {
-            float ret = Interop.ItemView.ItemView_GetMinimumSwipeSpeed(swigCPtr);
+            float ret = NDalicPINVOKE.ItemView_GetMinimumSwipeSpeed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetMinimumSwipeDistance(float distance)
         {
-            Interop.ItemView.ItemView_SetMinimumSwipeDistance(swigCPtr, distance);
+            NDalicPINVOKE.ItemView_SetMinimumSwipeDistance(swigCPtr, distance);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetMinimumSwipeDistance()
         {
-            float ret = Interop.ItemView.ItemView_GetMinimumSwipeDistance(swigCPtr);
+            float ret = NDalicPINVOKE.ItemView_GetMinimumSwipeDistance(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetWheelScrollDistanceStep(float step)
         {
-            Interop.ItemView.ItemView_SetWheelScrollDistanceStep(swigCPtr, step);
+            NDalicPINVOKE.ItemView_SetWheelScrollDistanceStep(swigCPtr, step);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetWheelScrollDistanceStep()
         {
-            float ret = Interop.ItemView.ItemView_GetWheelScrollDistanceStep(swigCPtr);
+            float ret = NDalicPINVOKE.ItemView_GetWheelScrollDistanceStep(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetAnchoring(bool enabled)
         {
-            Interop.ItemView.ItemView_SetAnchoring(swigCPtr, enabled);
+            NDalicPINVOKE.ItemView_SetAnchoring(swigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool GetAnchoring()
         {
-            bool ret = Interop.ItemView.ItemView_GetAnchoring(swigCPtr);
+            bool ret = NDalicPINVOKE.ItemView_GetAnchoring(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetAnchoringDuration(float durationSeconds)
         {
-            Interop.ItemView.ItemView_SetAnchoringDuration(swigCPtr, durationSeconds);
+            NDalicPINVOKE.ItemView_SetAnchoringDuration(swigCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetAnchoringDuration()
         {
-            float ret = Interop.ItemView.ItemView_GetAnchoringDuration(swigCPtr);
+            float ret = NDalicPINVOKE.ItemView_GetAnchoringDuration(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void ScrollToItem(uint itemId, float durationSeconds)
         {
-            Interop.ItemView.ItemView_ScrollToItem(swigCPtr, itemId, durationSeconds);
+            NDalicPINVOKE.ItemView_ScrollToItem(swigCPtr, itemId, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetRefreshInterval(float intervalLayoutPositions)
         {
-            Interop.ItemView.ItemView_SetRefreshInterval(swigCPtr, intervalLayoutPositions);
+            NDalicPINVOKE.ItemView_SetRefreshInterval(swigCPtr, intervalLayoutPositions);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public float GetRefreshInterval()
         {
-            float ret = Interop.ItemView.ItemView_GetRefreshInterval(swigCPtr);
+            float ret = NDalicPINVOKE.ItemView_GetRefreshInterval(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Refresh()
         {
-            Interop.ItemView.ItemView_Refresh(swigCPtr);
+            NDalicPINVOKE.ItemView_Refresh(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public View GetItem(uint itemId)
         {
-            View ret = new View(Interop.ItemView.ItemView_GetItem(swigCPtr, itemId), true);
+            View ret = new View(NDalicPINVOKE.ItemView_GetItem(swigCPtr, itemId), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetItemId(View view)
         {
-            uint ret = Interop.ItemView.ItemView_GetItemId(swigCPtr, View.getCPtr(view));
+            uint ret = NDalicPINVOKE.ItemView_GetItemId(swigCPtr, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void InsertItem(Item newItem, float durationSeconds)
         {
-            Interop.ItemView.ItemView_InsertItem(swigCPtr, Item.getCPtr(newItem), durationSeconds);
+            NDalicPINVOKE.ItemView_InsertItem(swigCPtr, Item.getCPtr(newItem), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void InsertItems(ItemContainer newItems, float durationSeconds)
         {
-            Interop.ItemView.ItemView_InsertItems(swigCPtr, ItemContainer.getCPtr(newItems), durationSeconds);
+            NDalicPINVOKE.ItemView_InsertItems(swigCPtr, ItemContainer.getCPtr(newItems), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveItem(uint itemId, float durationSeconds)
         {
-            Interop.ItemView.ItemView_RemoveItem(swigCPtr, itemId, durationSeconds);
+            NDalicPINVOKE.ItemView_RemoveItem(swigCPtr, itemId, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveItems(ItemIdContainer itemIds, float durationSeconds)
         {
-            Interop.ItemView.ItemView_RemoveItems(swigCPtr, ItemIdContainer.getCPtr(itemIds), durationSeconds);
+            NDalicPINVOKE.ItemView_RemoveItems(swigCPtr, ItemIdContainer.getCPtr(itemIds), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void ReplaceItem(Item replacementItem, float durationSeconds)
         {
-            Interop.ItemView.ItemView_ReplaceItem(swigCPtr, Item.getCPtr(replacementItem), durationSeconds);
+            NDalicPINVOKE.ItemView_ReplaceItem(swigCPtr, Item.getCPtr(replacementItem), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void ReplaceItems(ItemContainer replacementItems, float durationSeconds)
         {
-            Interop.ItemView.ItemView_ReplaceItems(swigCPtr, ItemContainer.getCPtr(replacementItems), durationSeconds);
+            NDalicPINVOKE.ItemView_ReplaceItems(swigCPtr, ItemContainer.getCPtr(replacementItems), durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetItemsParentOrigin(Vector3 parentOrigin)
         {
-            Interop.ItemView.ItemView_SetItemsParentOrigin(swigCPtr, Vector3.getCPtr(parentOrigin));
+            NDalicPINVOKE.ItemView_SetItemsParentOrigin(swigCPtr, Vector3.getCPtr(parentOrigin));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector3 GetItemsParentOrigin()
         {
-            Vector3 ret = new Vector3(Interop.ItemView.ItemView_GetItemsParentOrigin(swigCPtr), true);
+            Vector3 ret = new Vector3(NDalicPINVOKE.ItemView_GetItemsParentOrigin(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetItemsAnchorPoint(Vector3 anchorPoint)
         {
-            Interop.ItemView.ItemView_SetItemsAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
+            NDalicPINVOKE.ItemView_SetItemsAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Vector3 GetItemsAnchorPoint()
         {
-            Vector3 ret = new Vector3(Interop.ItemView.ItemView_GetItemsAnchorPoint(swigCPtr), true);
+            Vector3 ret = new Vector3(NDalicPINVOKE.ItemView_GetItemsAnchorPoint(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void GetItemsRange(ItemRange range)
         {
-            Interop.ItemView.ItemView_GetItemsRange(swigCPtr, ItemRange.getCPtr(range));
+            NDalicPINVOKE.ItemView_GetItemsRange(swigCPtr, ItemRange.getCPtr(range));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public VoidSignal LayoutActivatedSignal()
         {
-            VoidSignal ret = new VoidSignal(Interop.ItemView.ItemView_LayoutActivatedSignal(swigCPtr), false);
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.ItemView_LayoutActivatedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.DaliException.delete_DaliException(swigCPtr);
+                    NDalicPINVOKE.delete_DaliException(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,7 +100,7 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-        public DaliException(string location, string condition) : this(Interop.DaliException.new_DaliException(location, condition), true)
+        public DaliException(string location, string condition) : this(NDalicPINVOKE.new_DaliException(location, condition), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -109,12 +109,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.DaliException.DaliException_location_set(swigCPtr, value);
+                NDalicPINVOKE.DaliException_location_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.DaliException.DaliException_location_get(swigCPtr);
+                string ret = NDalicPINVOKE.DaliException_location_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -124,12 +124,12 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.DaliException.DaliException_condition_set(swigCPtr, value);
+                NDalicPINVOKE.DaliException_condition_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = Interop.DaliException.DaliException_condition_get(swigCPtr);
+                string ret = NDalicPINVOKE.DaliException_condition_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

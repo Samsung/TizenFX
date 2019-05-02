@@ -55,17 +55,17 @@ namespace Tizen.NUI
         /// Creates a new WidgetView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public WidgetView(string widgetId, string contentInfo, int width, int height, float updatePeriod) : this(Interop.WidgetView.WidgetView_New(widgetId, contentInfo, width, height, updatePeriod), true)
+        public WidgetView(string widgetId, string contentInfo, int width, int height, float updatePeriod) : this(NDalicManualPINVOKE.WidgetView_New(widgetId, contentInfo, width, height, updatePeriod), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetView.WidgetView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.WidgetView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-        internal WidgetView(WidgetView handle) : this(Interop.WidgetView.new_WidgetView__SWIG_1(WidgetView.getCPtr(handle)), true)
+        internal WidgetView(WidgetView handle) : this(NDalicManualPINVOKE.new_WidgetView__SWIG_1(WidgetView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -448,7 +448,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool PauseWidget()
         {
-            bool ret = Interop.WidgetView.WidgetView_PauseWidget(swigCPtr);
+            bool ret = NDalicManualPINVOKE.WidgetView_PauseWidget(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -460,7 +460,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool ResumeWidget()
         {
-            bool ret = Interop.WidgetView.WidgetView_ResumeWidget(swigCPtr);
+            bool ret = NDalicManualPINVOKE.WidgetView_ResumeWidget(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -474,7 +474,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool CancelTouchEvent()
         {
-            bool ret = Interop.WidgetView.WidgetView_CancelTouchEvent(swigCPtr);
+            bool ret = NDalicManualPINVOKE.WidgetView_CancelTouchEvent(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -486,7 +486,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void ActivateFaultedWidget()
         {
-            Interop.WidgetView.WidgetView_ActivateFaultedWidget(swigCPtr);
+            NDalicManualPINVOKE.WidgetView_ActivateFaultedWidget(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -497,14 +497,14 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool TerminateWidget()
         {
-            bool ret = Interop.WidgetView.WidgetView_TerminateWidget(swigCPtr);
+            bool ret = NDalicManualPINVOKE.WidgetView_TerminateWidget(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static WidgetView DownCast(BaseHandle handle)
         {
-            WidgetView ret = new WidgetView(Interop.WidgetView.WidgetView_DownCast(BaseHandle.getCPtr(handle)), true);
+            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -523,49 +523,49 @@ namespace Tizen.NUI
 
         internal WidgetView Assign(WidgetView handle)
         {
-            WidgetView ret = new WidgetView(Interop.WidgetView.WidgetView_Assign(swigCPtr, WidgetView.getCPtr(handle)), false);
+            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetView_Assign(swigCPtr, WidgetView.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetAddedSignal()
         {
-            WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetAddedSignal(swigCPtr), false);
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetAddedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetDeletedSignal()
         {
-            WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetDeletedSignal(swigCPtr), false);
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetDeletedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetCreationAbortedSignal()
         {
-            WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetCreationAbortedSignal(swigCPtr), false);
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetCreationAbortedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetContentUpdatedSignal()
         {
-            WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetContentUpdatedSignal(swigCPtr), false);
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetContentUpdatedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetUpdatePeriodChangedSignal()
         {
-            WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetUpdatePeriodChangedSignal(swigCPtr), false);
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetUpdatePeriodChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal WidgetViewSignal WidgetFaultedSignal()
         {
-            WidgetViewSignal ret = new WidgetViewSignal(Interop.WidgetView.WidgetView_WidgetFaultedSignal(swigCPtr), false);
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetFaultedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -628,7 +628,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.WidgetView.delete_WidgetView(swigCPtr);
+                    NDalicManualPINVOKE.delete_WidgetView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -755,17 +755,17 @@ namespace Tizen.NUI
 
         internal new class Property
         {
-            internal static readonly int WIDGET_ID = Interop.WidgetView.WidgetView_Property_WIDGET_ID_get();
-            internal static readonly int INSTANCE_ID = Interop.WidgetView.WidgetView_Property_INSTANCE_ID_get();
-            internal static readonly int CONTENT_INFO = Interop.WidgetView.WidgetView_Property_CONTENT_INFO_get();
-            internal static readonly int TITLE = Interop.WidgetView.WidgetView_Property_TITLE_get();
-            internal static readonly int UPDATE_PERIOD = Interop.WidgetView.WidgetView_Property_UPDATE_PERIOD_get();
-            internal static readonly int PREVIEW = Interop.WidgetView.WidgetView_Property_PREVIEW_get();
-            internal static readonly int LOADING_TEXT = Interop.WidgetView.WidgetView_Property_LOADING_TEXT_get();
-            internal static readonly int WIDGET_STATE_FAULTED = Interop.WidgetView.WidgetView_Property_WIDGET_STATE_FAULTED_get();
-            internal static readonly int PERMANENT_DELETE = Interop.WidgetView.WidgetView_Property_PERMANENT_DELETE_get();
-            internal static readonly int RETRY_TEXT = Interop.WidgetView.WidgetView_Property_RETRY_TEXT_get();
-            internal static readonly int EFFECT = Interop.WidgetView.WidgetView_Property_EFFECT_get();
+            internal static readonly int WIDGET_ID = NDalicManualPINVOKE.WidgetView_Property_WIDGET_ID_get();
+            internal static readonly int INSTANCE_ID = NDalicManualPINVOKE.WidgetView_Property_INSTANCE_ID_get();
+            internal static readonly int CONTENT_INFO = NDalicManualPINVOKE.WidgetView_Property_CONTENT_INFO_get();
+            internal static readonly int TITLE = NDalicManualPINVOKE.WidgetView_Property_TITLE_get();
+            internal static readonly int UPDATE_PERIOD = NDalicManualPINVOKE.WidgetView_Property_UPDATE_PERIOD_get();
+            internal static readonly int PREVIEW = NDalicManualPINVOKE.WidgetView_Property_PREVIEW_get();
+            internal static readonly int LOADING_TEXT = NDalicManualPINVOKE.WidgetView_Property_LOADING_TEXT_get();
+            internal static readonly int WIDGET_STATE_FAULTED = NDalicManualPINVOKE.WidgetView_Property_WIDGET_STATE_FAULTED_get();
+            internal static readonly int PERMANENT_DELETE = NDalicManualPINVOKE.WidgetView_Property_PERMANENT_DELETE_get();
+            internal static readonly int RETRY_TEXT = NDalicManualPINVOKE.WidgetView_Property_RETRY_TEXT_get();
+            internal static readonly int EFFECT = NDalicManualPINVOKE.WidgetView_Property_EFFECT_get();
         }
     }
 

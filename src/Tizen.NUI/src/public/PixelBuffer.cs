@@ -47,17 +47,17 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PixelBuffer(uint width, uint height, PixelFormat pixelFormat) : this(Interop.PixelBuffer.PixelBuffer_New(width, height, (int)pixelFormat), true)
+        public PixelBuffer(uint width, uint height, PixelFormat pixelFormat) : this(NDalicPINVOKE.PixelBuffer_New(width, height, (int)pixelFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PixelBuffer(PixelBuffer handle) : this(Interop.PixelBuffer.new_PixelBuffer__SWIG_1(PixelBuffer.getCPtr(handle)), true)
+        internal PixelBuffer(PixelBuffer handle) : this(NDalicPINVOKE.new_PixelBuffer__SWIG_1(PixelBuffer.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PixelBuffer.PixelBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PixelBuffer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -75,7 +75,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelData Convert(PixelBuffer pixelBuffer)
         {
-            PixelData ret = new PixelData(Interop.PixelBuffer.PixelBuffer_Convert(PixelBuffer.getCPtr(pixelBuffer)), true);
+            PixelData ret = new PixelData(NDalicPINVOKE.PixelBuffer_Convert(PixelBuffer.getCPtr(pixelBuffer)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -90,7 +90,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelData CreatePixelData()
         {
-            PixelData ret = new PixelData(Interop.PixelBuffer.PixelBuffer_CreatePixelData(swigCPtr), true);
+            PixelData ret = new PixelData(NDalicPINVOKE.PixelBuffer_CreatePixelData(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -104,7 +104,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetWidth()
         {
-            uint ret = Interop.PixelBuffer.PixelBuffer_GetWidth(swigCPtr);
+            uint ret = NDalicPINVOKE.PixelBuffer_GetWidth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetHeight()
         {
-            uint ret = Interop.PixelBuffer.PixelBuffer_GetHeight(swigCPtr);
+            uint ret = NDalicPINVOKE.PixelBuffer_GetHeight(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -132,7 +132,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelFormat GetPixelFormat()
         {
-            PixelFormat ret = (PixelFormat)Interop.PixelBuffer.PixelBuffer_GetPixelFormat(swigCPtr);
+            PixelFormat ret = (PixelFormat)NDalicPINVOKE.PixelBuffer_GetPixelFormat(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -156,7 +156,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyMask(PixelBuffer mask, float contentScale, bool cropToMask)
         {
-            Interop.PixelBuffer.PixelBuffer_ApplyMask__SWIG_0(swigCPtr, PixelBuffer.getCPtr(mask), contentScale, cropToMask);
+            NDalicPINVOKE.PixelBuffer_ApplyMask__SWIG_0(swigCPtr, PixelBuffer.getCPtr(mask), contentScale, cropToMask);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -178,7 +178,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyMask(PixelBuffer mask, float contentScale)
         {
-            Interop.PixelBuffer.PixelBuffer_ApplyMask__SWIG_1(swigCPtr, PixelBuffer.getCPtr(mask), contentScale);
+            NDalicPINVOKE.PixelBuffer_ApplyMask__SWIG_1(swigCPtr, PixelBuffer.getCPtr(mask), contentScale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -199,7 +199,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyMask(PixelBuffer mask)
         {
-            Interop.PixelBuffer.PixelBuffer_ApplyMask__SWIG_2(swigCPtr, PixelBuffer.getCPtr(mask));
+            NDalicPINVOKE.PixelBuffer_ApplyMask__SWIG_2(swigCPtr, PixelBuffer.getCPtr(mask));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -213,7 +213,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyGaussianBlur(float blurRadius)
         {
-            Interop.PixelBuffer.PixelBuffer_ApplyGaussianBlur(swigCPtr, blurRadius);
+            NDalicPINVOKE.PixelBuffer_ApplyGaussianBlur(swigCPtr, blurRadius);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -229,7 +229,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Crop(ushort x, ushort y, ushort width, ushort height)
         {
-            Interop.PixelBuffer.PixelBuffer_Crop(swigCPtr, x, y, width, height);
+            NDalicPINVOKE.PixelBuffer_Crop(swigCPtr, x, y, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -243,7 +243,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Resize(ushort width, ushort height)
         {
-            Interop.PixelBuffer.PixelBuffer_Resize(swigCPtr, width, height);
+            NDalicPINVOKE.PixelBuffer_Resize(swigCPtr, width, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -254,14 +254,14 @@ namespace Tizen.NUI
 
         internal PixelBuffer Assign(PixelBuffer rhs)
         {
-            PixelBuffer ret = new PixelBuffer(Interop.PixelBuffer.PixelBuffer_Assign(swigCPtr, PixelBuffer.getCPtr(rhs)), false);
+            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.PixelBuffer_Assign(swigCPtr, PixelBuffer.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_unsigned_char GetBuffer()
         {
-            global::System.IntPtr cPtr = Interop.PixelBuffer.PixelBuffer_GetBuffer(swigCPtr);
+            global::System.IntPtr cPtr = NDalicPINVOKE.PixelBuffer_GetBuffer(swigCPtr);
             SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -294,7 +294,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.PixelBuffer.delete_PixelBuffer(swigCPtr);
+                    NDalicPINVOKE.delete_PixelBuffer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

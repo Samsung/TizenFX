@@ -30,7 +30,7 @@ namespace Tizen.NUI
     public class WebView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.WebView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
@@ -41,8 +41,8 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef pageLoadFinishedSignalProxy;
         private void InitializeSignals()
         {
-            pageLoadStartedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.WebView.new_WebViewSignalProxy_PageLoadStarted(swigCPtr));
-            pageLoadFinishedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.WebView.new_WebViewSignalProxy_PageLoadFinished(swigCPtr));
+            pageLoadStartedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_WebViewSignalProxy_PageLoadStarted(swigCPtr));
+            pageLoadFinishedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_WebViewSignalProxy_PageLoadFinished(swigCPtr));
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebView obj)
@@ -81,7 +81,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.WebView.delete_WebView(swigCPtr);
+                    NDalicPINVOKE.delete_WebView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -97,7 +97,7 @@ namespace Tizen.NUI
                 {
                     WebViewProxyDisconnect(pageLoadStartedSignalProxy, pageLoadStartedCallback);
                 }
-                Interop.WebView.delete_WebViewSignalProxy(pageLoadStartedSignalProxy);
+                NDalicPINVOKE.delete_WebViewSignalProxy(pageLoadStartedSignalProxy);
                 pageLoadStartedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
@@ -107,7 +107,7 @@ namespace Tizen.NUI
                 {
                     WebViewProxyDisconnect(pageLoadFinishedSignalProxy, pageLoadFinishedCallback);
                 }
-                Interop.WebView.delete_WebViewSignalProxy(pageLoadFinishedSignalProxy);
+                NDalicPINVOKE.delete_WebViewSignalProxy(pageLoadFinishedSignalProxy);
                 pageLoadFinishedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
         }
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         /// Creates an uninitialized WebView.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebView() : this(Interop.WebView.WebView_New(), true)
+        public WebView() : this(NDalicPINVOKE.WebView_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -128,7 +128,7 @@ namespace Tizen.NUI
         /// <param name="timezoneId">The timezoneId of Web</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebView(string locale, string timezoneId) : this(Interop.WebView.WebView_New_2(locale, timezoneId), true)
+        public WebView(string locale, string timezoneId) : this(NDalicPINVOKE.WebView_New_2(locale, timezoneId), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -138,21 +138,21 @@ namespace Tizen.NUI
         /// <param name="webView">WebView to copy. The copied WebView will point at the same implementation</param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebView(WebView webView) : this(Interop.WebView.new_WebView__SWIG_1(WebView.getCPtr(webView)), true)
+        public WebView(WebView webView) : this(NDalicPINVOKE.new_WebView__SWIG_1(WebView.getCPtr(webView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal WebView Assign(WebView webView)
         {
-            WebView ret = new WebView(Interop.WebView.WebView_Assign(swigCPtr, WebView.getCPtr(webView)), false);
+            WebView ret = new WebView(NDalicPINVOKE.WebView_Assign(swigCPtr, WebView.getCPtr(webView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static WebView DownCast(BaseHandle handle)
         {
-            WebView ret = new WebView(Interop.WebView.WebView_DownCast(BaseHandle.getCPtr(handle)), true);
+            WebView ret = new WebView(NDalicPINVOKE.WebView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -205,7 +205,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.WebView.WebViewSignalProxy_Connect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicPINVOKE.WebViewSignalProxy_Connect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -214,7 +214,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.WebView.WebViewSignalProxy_Disconnect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicPINVOKE.WebViewSignalProxy_Disconnect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -310,7 +310,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadUrl(string url)
         {
-            Interop.WebView.WebView_LoadUrl(swigCPtr, url);
+            NDalicPINVOKE.WebView_LoadUrl(swigCPtr, url);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -321,7 +321,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetUrl()
         {
-            string url = Interop.WebView.WebView_GetUrl(swigCPtr);
+            string url = NDalicPINVOKE.WebView_GetUrl(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return url;
         }
@@ -333,7 +333,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadHTMLString(string data)
         {
-            Interop.WebView.WebView_LoadHTMLString(swigCPtr, data);
+            NDalicPINVOKE.WebView_LoadHTMLString(swigCPtr, data);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -343,7 +343,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reload()
         {
-            Interop.WebView.WebView_Reload(swigCPtr);
+            NDalicPINVOKE.WebView_Reload(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -353,7 +353,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StopLoading()
         {
-            Interop.WebView.WebView_StopLoading(swigCPtr);
+            NDalicPINVOKE.WebView_StopLoading(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -363,7 +363,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void GoBack()
         {
-            Interop.WebView.WebView_GoBack(swigCPtr);
+            NDalicPINVOKE.WebView_GoBack(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -373,7 +373,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void GoForward()
         {
-            Interop.WebView.WebView_GoForward(swigCPtr);
+            NDalicPINVOKE.WebView_GoForward(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -384,7 +384,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanGoBack()
         {
-            bool ret = Interop.WebView.WebView_CanGoBack(swigCPtr);
+            bool ret = NDalicPINVOKE.WebView_CanGoBack(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -396,7 +396,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanGoForward()
         {
-            bool ret = Interop.WebView.WebView_CanGoForward(swigCPtr);
+            bool ret = NDalicPINVOKE.WebView_CanGoForward(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -408,7 +408,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script)
         {
-            Interop.WebView.WebView_EvaluateJavaScript(swigCPtr, script);
+            NDalicPINVOKE.WebView_EvaluateJavaScript(swigCPtr, script);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -439,7 +439,7 @@ namespace Tizen.NUI
             handlerRootMap.Add(objectName, handler);
 
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
-            Interop.WebView.WebView_AddJavaScriptMessageHandler(swigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
+            NDalicPINVOKE.WebView_AddJavaScriptMessageHandler(swigCPtr, objectName, new System.Runtime.InteropServices.HandleRef(this, ip));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -450,7 +450,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearHistory()
         {
-            Interop.WebView.WebView_ClearHistory(swigCPtr);
+            NDalicPINVOKE.WebView_ClearHistory(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -460,7 +460,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearCache()
         {
-            Interop.WebView.WebView_ClearCache(swigCPtr);
+            NDalicPINVOKE.WebView_ClearCache(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

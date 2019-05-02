@@ -108,19 +108,19 @@ namespace Tizen.NUI
 
         public void Reference()
         {
-            Interop.RefObject.RefObject_Reference(swigCPtr);
+            NDalicPINVOKE.RefObject_Reference(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Unreference()
         {
-            Interop.RefObject.RefObject_Unreference(swigCPtr);
+            NDalicPINVOKE.RefObject_Unreference(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public int ReferenceCount()
         {
-            int ret = Interop.RefObject.RefObject_ReferenceCount(swigCPtr);
+            int ret = NDalicPINVOKE.RefObject_ReferenceCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

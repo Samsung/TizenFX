@@ -91,7 +91,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.Watch.delete_WatchTimeSignal(swigCPtr);
+                    NDalicManualPINVOKE.delete_WatchTimeSignal(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -101,14 +101,14 @@ namespace Tizen.NUI
 
         public bool Empty()
         {
-            bool ret = Interop.Watch.WatchTimeSignal_Empty(swigCPtr);
+            bool ret = NDalicManualPINVOKE.WatchTimeSignal_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.Watch.WatchTimeSignal_GetConnectionCount(swigCPtr);
+            uint ret = NDalicManualPINVOKE.WatchTimeSignal_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -117,7 +117,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.Watch.WatchTimeSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.WatchTimeSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -126,18 +126,18 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
             {
-                Interop.Watch.WatchTimeSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.WatchTimeSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Application arg1, WatchTime arg2)
         {
-            Interop.Watch.WatchTimeSignal_Emit(swigCPtr, Application.getCPtr(arg1), WatchTime.getCPtr(arg2));
+            NDalicManualPINVOKE.WatchTimeSignal_Emit(swigCPtr, Application.getCPtr(arg1), WatchTime.getCPtr(arg2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public WatchTimeSignal() : this(Interop.Watch.new_WatchTimeSignal(), true)
+        public WatchTimeSignal() : this(NDalicManualPINVOKE.new_WatchTimeSignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.NDalic.delete_TypeAction(swigCPtr);
+                    NDalicPINVOKE.delete_TypeAction(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         }
 
 
-        internal TypeAction(TypeRegistration registered, string name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool f) : this(Interop.NDalic.new_TypeAction(TypeRegistration.getCPtr(registered), name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool.getCPtr(f)), true)
+        internal TypeAction(TypeRegistration registered, string name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool f) : this(NDalicPINVOKE.new_TypeAction(TypeRegistration.getCPtr(registered), name, SWIGTYPE_p_f_p_Dali__BaseObject_r_q_const__std__string_r_q_const__Dali__Property__Map__bool.getCPtr(f)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

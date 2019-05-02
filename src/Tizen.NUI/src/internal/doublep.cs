@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.doublep.delete_doublep(swigCPtr);
+                    NDalicPINVOKE.delete_doublep(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,27 +100,27 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-        public doublep() : this(Interop.doublep.new_doublep(), true)
+        public doublep() : this(NDalicPINVOKE.new_doublep(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void assign(double value)
         {
-            Interop.doublep.doublep_assign(swigCPtr, value);
+            NDalicPINVOKE.doublep_assign(swigCPtr, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public double value()
         {
-            double ret = Interop.doublep.doublep_value(swigCPtr);
+            double ret = NDalicPINVOKE.doublep_value(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public SWIGTYPE_p_double cast()
         {
-            global::System.IntPtr cPtr = Interop.doublep.doublep_cast(swigCPtr);
+            global::System.IntPtr cPtr = NDalicPINVOKE.doublep_cast(swigCPtr);
             SWIGTYPE_p_double ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_double(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -128,7 +128,7 @@ namespace Tizen.NUI
 
         public static doublep frompointer(SWIGTYPE_p_double t)
         {
-            global::System.IntPtr cPtr = Interop.doublep.doublep_frompointer(SWIGTYPE_p_double.getCPtr(t));
+            global::System.IntPtr cPtr = NDalicPINVOKE.doublep_frompointer(SWIGTYPE_p_double.getCPtr(t));
             doublep ret = (cPtr == global::System.IntPtr.Zero) ? null : new doublep(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

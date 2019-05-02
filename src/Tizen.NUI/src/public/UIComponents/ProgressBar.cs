@@ -190,13 +190,13 @@ namespace Tizen.NUI.UIComponents
         /// Creates the ProgressBar.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ProgressBar() : this(Interop.ProgressBar.ProgressBar_New(), true)
+        public ProgressBar() : this(NDalicPINVOKE.ProgressBar_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ProgressBar.ProgressBar_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ProgressBar_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -392,7 +392,7 @@ namespace Tizen.NUI.UIComponents
 
         internal ProgressBarValueChangedSignal ValueChangedSignal()
         {
-            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(Interop.ProgressBar.ProgressBar_ValueChangedSignal(swigCPtr), false);
+            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(NDalicPINVOKE.ProgressBar_ValueChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -430,7 +430,7 @@ namespace Tizen.NUI.UIComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ProgressBar.delete_ProgressBar(swigCPtr);
+                    NDalicPINVOKE.delete_ProgressBar(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -516,15 +516,15 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int PROGRESS_VALUE = Interop.ProgressBar.ProgressBar_Property_PROGRESS_VALUE_get();
-            internal static readonly int SECONDARY_PROGRESS_VALUE = Interop.ProgressBar.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();
-            internal static readonly int INDETERMINATE = Interop.ProgressBar.ProgressBar_Property_INDETERMINATE_get();
-            internal static readonly int TRACK_VISUAL = Interop.ProgressBar.ProgressBar_Property_TRACK_VISUAL_get();
-            internal static readonly int PROGRESS_VISUAL = Interop.ProgressBar.ProgressBar_Property_PROGRESS_VISUAL_get();
-            internal static readonly int SECONDARY_PROGRESS_VISUAL = Interop.ProgressBar.ProgressBar_Property_SECONDARY_PROGRESS_VISUAL_get();
-            internal static readonly int INDETERMINATE_VISUAL = Interop.ProgressBar.ProgressBar_Property_INDETERMINATE_VISUAL_get();
-            internal static readonly int INDETERMINATE_VISUAL_ANIMATION = Interop.ProgressBar.ProgressBar_Property_INDETERMINATE_VISUAL_ANIMATION_get();
-            internal static readonly int LABEL_VISUAL = Interop.ProgressBar.ProgressBar_Property_LABEL_VISUAL_get();
+            internal static readonly int PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VALUE_get();
+            internal static readonly int SECONDARY_PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();
+            internal static readonly int INDETERMINATE = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_get();
+            internal static readonly int TRACK_VISUAL = NDalicPINVOKE.ProgressBar_Property_TRACK_VISUAL_get();
+            internal static readonly int PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VISUAL_get();
+            internal static readonly int SECONDARY_PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VISUAL_get();
+            internal static readonly int INDETERMINATE_VISUAL = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_get();
+            internal static readonly int INDETERMINATE_VISUAL_ANIMATION = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_ANIMATION_get();
+            internal static readonly int LABEL_VISUAL = NDalicPINVOKE.ProgressBar_Property_LABEL_VISUAL_get();
         }
     }
 }

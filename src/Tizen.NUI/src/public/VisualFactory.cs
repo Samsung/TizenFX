@@ -34,12 +34,12 @@ namespace Tizen.NUI
         private static VisualFactory instance;
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualFactory.VisualFactory_SWIGUpcast(cPtr), cMemoryOwn)
+        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.VisualFactory_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal VisualFactory() : this(Interop.VisualFactory.new_VisualFactory__SWIG_0(), true)
+        internal VisualFactory() : this(NDalicPINVOKE.new_VisualFactory__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -54,7 +54,7 @@ namespace Tizen.NUI
             {
                 if (!instance)
                 {
-                    instance = new VisualFactory(Interop.VisualFactory.VisualFactory_Get(), true);
+                    instance = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
 
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public VisualBase CreateVisual(PropertyMap propertyMap)
         {
-            VisualBase ret = new VisualBase(Interop.VisualFactory.VisualFactory_CreateVisual__SWIG_0(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
+            VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_0(swigCPtr, PropertyMap.getCPtr(propertyMap)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -96,7 +96,7 @@ namespace Tizen.NUI
 
         internal VisualBase CreateVisual(Image image)
         {
-            VisualBase ret = new VisualBase(Interop.VisualFactory.VisualFactory_CreateVisual__SWIG_1(swigCPtr, Image.getCPtr(image)), true);
+            VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_1(swigCPtr, Image.getCPtr(image)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

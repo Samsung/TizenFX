@@ -25,12 +25,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     static public class EnvironmentVariable
     {
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetEnvironmentVariable")]
-        private static extern string EnvironmentVariable_GetEnvironmentVariable(string jarg1);
-        
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetEnvironmentVariable")]
-        private static extern bool EnvironmentVariable_SetEnvironmentVariable(string jarg1, string jarg2);
-
         /// <summary>
         /// Get value of the specified environment variable.
         /// </summary>
@@ -39,7 +33,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public string GetEnvironmentVariable(string variable)
         {
-            return EnvironmentVariable_GetEnvironmentVariable(variable);
+            return NDalicPINVOKE.EnvironmentVariable_GetEnvironmentVariable(variable);
         }
 
         /// <summary>
@@ -51,7 +45,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool SetEnvironmentVariable(string variable, string value)
         {
-            return EnvironmentVariable_SetEnvironmentVariable(variable, value);
+            return NDalicPINVOKE.EnvironmentVariable_SetEnvironmentVariable(variable, value);
         }
     }
 }
