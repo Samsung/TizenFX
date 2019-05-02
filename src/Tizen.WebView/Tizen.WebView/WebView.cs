@@ -92,7 +92,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Delete.
         /// </summary>
-        Delete, 
+        Delete,
     }
 
     /// <summary>
@@ -205,7 +205,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<ContextMenuItemEventArgs> ContextMenuItemSelected;
-        
+
         /// The delegate is invoked when context menu customization is needed.
         /// </summary>
         /// <param name="menu">The instance of ContextMenu.</param>
@@ -637,12 +637,23 @@ namespace Tizen.WebView
         /// <since_tizen> 6 </since_tizen>
         public void SetUrlRequest (string url, HttpMethod httpMethod, IDictionary<string, string> httpHeaders, string httpBody)
         {
-            IntPtr hashHttpHeaders = Interop.Eina.eina_hash_string_small_new();
+            List<IntPtr> stringHandles = new List<IntPtr>();
+            IntPtr hashHttpHeaders = Interop.Eina.eina_hash_string_small_new(IntPtr.Zero);
+
             foreach (KeyValuePair<string, string> entry in httpHeaders)
             {
-                Interop.Eina.eina_hash_add(hashHttpHeaders, entry.Key, entry.Value);
-            }
-            Interop.ChromiumEwk.ewk_view_url_request_set(_realHandle, url, httpMethod, hashHttpHeaders, httpBody);
+                IntPtr keyHandle = Marshal.StringToHGlobalAnsi(entry.Key);
+                IntPtr valueHandle = Marshal.StringToHGlobalAnsi(entry.Value);
+                Interop.Eina.eina_hash_add(hashHttpHeaders, keyHandle, valueHandle);
+                stringHandles.Add(keyHandle);
+                stringHandles.Add(valueHandle);
+             }
+             Interop.ChromiumEwk.ewk_view_url_request_set(_realHandle, url, httpMethod, hashHttpHeaders, httpBody);
+
+             foreach(IntPtr handle in stringHandles)
+             {
+                 Marshal.FreeHGlobal(handle);
+             }
         }
 
         /// <summary>
@@ -693,7 +704,7 @@ namespace Tizen.WebView
             _contextMenuItemSelected = new SmartEvent<ContextMenuItemEventArgs>(this, _realHandle, "contextmenu,selected", ContextMenuItemEventArgs.CreateFromSmartEvent);
             _policyNavigationDecide = new SmartEvent<NavigationPolicyEventArgs>(this, _realHandle, "policy,navigation,decide", NavigationPolicyEventArgs.CreateFromSmartEvent);
             _policyNewWindowDecide = new SmartEvent<NewWindowPolicyEventArgs>(this, _realHandle, "policy,newwindow,decide", NewWindowPolicyEventArgs.CreateFromSmartEvent);
-            _policyResponseDecide = new SmartEvent<ResponsePolicyEventArgs>(this, _realHandle, "policy,response,decide", ResponsePolicyEventArgs.CreateFromSmartEvent);            
+            _policyResponseDecide = new SmartEvent<ResponsePolicyEventArgs>(this, _realHandle, "policy,response,decide", ResponsePolicyEventArgs.CreateFromSmartEvent);
 
             _loadStarted.On += (s, e) => { LoadStarted?.Invoke(this, EventArgs.Empty); };
             _loadFinished.On += (s, e) => { LoadFinished?.Invoke(this, EventArgs.Empty); };
@@ -706,6 +717,6 @@ namespace Tizen.WebView
             _contextMenuItemSelected.On += (s, e) => { ContextMenuItemSelected?.Invoke(this, e); };
             _contextMenuCustomize.On += (s, e) => { _contextMenuCustomizeDelegate?.Invoke(e.Menu); };
         }
-        
+
     }
 }
