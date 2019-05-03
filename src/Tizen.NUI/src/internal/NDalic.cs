@@ -22,11 +22,6 @@ namespace Tizen.NUI
 
     internal class NDalic
     {
-        internal NDalic()
-        {
-            Tizen.Log.Error("NUI", "Create NDalic");
-        }
-
         public static uint int_to_uint(int x)
         {
             uint ret = Interop.NDalic.int_to_uint(x);
