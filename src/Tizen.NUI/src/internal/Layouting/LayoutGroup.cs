@@ -283,7 +283,7 @@ namespace Tizen.NUI
                     MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
                     LayoutLength childWidth = new LayoutLength(childLayout.MeasuredWidth.Size);
                     LayoutLength childHeight = new LayoutLength( childLayout.MeasuredHeight.Size);
-                    Extents childMargin = childLayout.Owner.Margin;
+                    Extents childMargin = childLayout.Margin;
                     measuredWidth = new LayoutLength(Math.Max( measuredWidth.AsDecimal(), childWidth.AsDecimal() + childMargin.Start + childMargin.End));
                     measuredHeight = new LayoutLength(Math.Max( measuredHeight.AsDecimal(), childHeight.AsDecimal() + childMargin.Top + childMargin.Bottom));
                 }
@@ -327,8 +327,8 @@ namespace Tizen.NUI
                         // Margin and Padding only supported when child anchor point is TOP_LEFT.
                         if ( owner.PivotPoint == PivotPoint.TopLeft || ( owner.PositionUsesPivotPoint == false ) )
                         {
-                            childLeft = childLeft + owner.Padding.Start + childLayout.Owner.Margin.Start;
-                            childTop = childTop + owner.Padding.Top + childLayout.Owner.Margin.Top;
+                            childLeft = childLeft + owner.Padding.Start + childLayout.Margin.Start;
+                            childTop = childTop + owner.Padding.Top + childLayout.Margin.Top;
                         }
                     }
                     childLayout.Layout( childLeft, childTop, childLeft + childLayout.MeasuredWidth.Size, childTop + childLayout.MeasuredHeight.Size );
@@ -412,7 +412,7 @@ namespace Tizen.NUI
                           + " child widthSpecification policy:" + childOwner.WidthSpecification
                           + " child heightSpecification policy:" + childOwner.HeightSpecification + "\n");
 
-            Extents padding = childOwner.Padding; // Padding of this layout's owner, not of the child being measured.
+            Extents padding = child.Padding; // Padding of this layout's owner, not of the child being measured.
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
                                                                                        new LayoutLength(padding.Start + padding.End ),
@@ -442,7 +442,7 @@ namespace Tizen.NUI
             int desiredWidth = childOwner.WidthSpecification;
             int desiredHeight = childOwner.HeightSpecification;
 
-            Extents padding = childOwner.Padding; // Padding of this layout's owner, not of the child being measured.
+            Extents padding = child.Padding; // Padding of this layout's owner, not of the child being measured.
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
                                                                                        new LayoutLength( padding.Start + padding.End ) +

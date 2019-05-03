@@ -109,7 +109,7 @@ namespace Tizen.NUI
             int desiredChildHeight;
             int desiredChildWidth;
 
-            Extents gridLayoutPadding = Owner.Padding;
+            Extents gridLayoutPadding = Padding;
 
             var childCount = _children.Count;
 
@@ -127,7 +127,7 @@ namespace Tizen.NUI
                 desiredChildWidth = (int)childLayoutItem.MeasuredWidth.Size.AsRoundedValue();
 
                 // If child has a margin then add it to desired size
-                Extents childMargin = childOwner.Margin;
+                Extents childMargin = childLayoutItem.Margin;
                 desiredChildHeight += childMargin.Top + childMargin.Bottom;
                 desiredChildWidth += childMargin.Start + childMargin.End;
 
@@ -206,13 +206,13 @@ namespace Tizen.NUI
         {
             List<GridLocations.Cell> locations = _locations.GetLocations();
 
-            Extents gridLayoutPadding = Owner.Padding;
+            Extents gridLayoutPadding = Padding;
             Extents childMargins = new Extents();
 
             // Margin for all children dependant on if set on first child
             if( _children.Count > 0 )
             {
-              childMargins = _children[0]?.Owner?.Margin;
+              childMargins = _children[0]?.Margin;
             }
 
             int index = 0;

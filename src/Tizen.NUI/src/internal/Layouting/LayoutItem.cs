@@ -50,16 +50,52 @@ namespace Tizen.NUI
         private LayoutLength _bottom;
         private LayoutData _layoutData;
 
+        private Extents _padding;
+        private Extents _margin;
+
         /// <summary>
-        /// The View that this Layout has been assigned to.
+        /// [Draft] The View that this Layout has been assigned to.
         /// </summary>
         public View Owner{get; set;}  // Should not keep a View alive.
+
+        /// <summary>
+        /// [Draft] Margin for this LayoutItem
+        /// </summary>
+        public Extents Margin
+        {
+            get
+            {
+                return _margin;
+            }
+            set
+            {
+                _margin = value;
+                RequestLayout();
+            }
+        }
+
+        /// <summary>
+        /// [Draft] Padding for this LayoutItem
+        /// </summary>
+        public Extents Padding
+        {
+            get
+            {
+                return _padding;
+            }
+            set
+            {
+                _padding = value;
+                RequestLayout();
+            }
+        }
 
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
         public LayoutItem()
         {
+            Initialize();
         }
 
         /// <summary>
@@ -69,11 +105,7 @@ namespace Tizen.NUI
         public LayoutItem(View owner)
         {
             Owner = owner;
-            _layoutData = new LayoutData();
-            _left = new LayoutLength(0);
-            _top = new LayoutLength(0);
-            _right = new LayoutLength(0);
-            _bottom = new LayoutLength(0);
+            Initialize();
         }
 
         /// <summary>
@@ -102,6 +134,17 @@ namespace Tizen.NUI
 
             // Lastly, clear layout from owning View.
             Owner?.ResetLayout();
+        }
+
+        private void Initialize()
+        {
+            _layoutData = new LayoutData();
+            _left = new LayoutLength(0);
+            _top = new LayoutLength(0);
+            _right = new LayoutLength(0);
+            _bottom = new LayoutLength(0);
+            _padding = new Extents(0,0,0,0);
+            _margin = new Extents(0,0,0,0);
         }
 
         /// <summary>
