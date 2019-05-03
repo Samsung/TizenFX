@@ -42,15 +42,21 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// [Draft] Available policies for layout parameters
     /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class LayoutParamPolicies
     {
         /// <summary>
         /// Constant which indicates child size should match parent size
         /// </summary>
+       /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+       [EditorBrowsable(EditorBrowsableState.Never)]
         public const int MatchParent = -1;
         /// <summary>
         /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public const int WrapContent = -2;
     }
 
@@ -424,7 +430,6 @@ namespace Tizen.NUI.BaseComponents
         /// "Please DO NOT use! This will be deprecated! Please use 'View Weight' instead of BindableProperty"
         /// This needs to be hidden as inhouse API until all applications using it have been updated.  Do not make public.
         /// </summary>
-        [Obsolete("Please DO NOT use! This will be deprecated! Please use 'View Weight' instead of BindableProperty ")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WeightProperty = BindableProperty.Create("Weight", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1272,6 +1277,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool layoutSet = false;
 
         /// <summary>
@@ -1279,6 +1286,8 @@ namespace Tizen.NUI.BaseComponents
         /// Once a View has a Layout set then any children added to Views from then on will receive
         /// automatic Layouts.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool layoutingDisabled{get; set;} = true;
 
         internal readonly MergedStyle _mergedStyle;
@@ -3343,6 +3352,8 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// The required policy for this dimension, ChildLayoutData enum or exact value.
         ///</summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int WidthSpecification
         {
             get
@@ -3364,6 +3375,8 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// The required policy for this dimension, ChildLayoutData enum or exact value.
         ///</summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int HeightSpecification
         {
             get
