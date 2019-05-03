@@ -67,13 +67,11 @@ namespace Tizen.Network.Stc
 
             if(disposing)
             {
-                // destroy managed resources
+                _infoHandle.Dispose();
+                _infoHandle = null;
             }
 
-            if(_infoHandle != null && !_infoHandle.IsInvalid) {
-                _infoHandle.Dispose();
-                _disposed = true;
-            }
+            _disposed = true;
         }
 
         /// <summary>
