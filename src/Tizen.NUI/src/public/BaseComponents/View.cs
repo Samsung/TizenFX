@@ -39,16 +39,40 @@ namespace Tizen.NUI.BaseComponents
         RTL
     }
 
+    /// <summary>
+    /// [Draft] Available policies for layout parameters
+    /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class LayoutParamPolicies
+    {
+        /// <summary>
+        /// Constant which indicates child size should match parent size
+        /// </summary>
+       /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+       [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int MatchParent = -1;
+        /// <summary>
+        /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int WrapContent = -2;
+    }
+
+    /// <summary>
+    /// [Draft] Replaced by LayoutParamPolicies, will be removed once occurrences replaced.
+    /// </summary>
     internal enum ChildLayoutData
     {
         /// <summary>
         /// Constant which indicates child size should match parent size
         /// </summary>
-        MatchParent = -1,
+        MatchParent = LayoutParamPolicies.MatchParent,
         /// <summary>
         /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
         /// </summary>
-        WrapContent = -2,
+        WrapContent = LayoutParamPolicies.WrapContent,
     }
 
     internal enum ResourceLoadingStatusType
@@ -401,23 +425,27 @@ namespace Tizen.NUI.BaseComponents
                 default: return Tizen.NUI.VerticalAlignmentType.Top;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// "Please DO NOT use! This will be deprecated! Please use 'View Weight' instead of BindableProperty"
+        /// This needs to be hidden as inhouse API until all applications using it have been updated.  Do not make public.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WeightProperty = BindableProperty.Create("Weight", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, LinearLayout.ChildProperty.WEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+                view.Weight = (float)newValue;
             }
         },
+
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, LinearLayout.ChildProperty.WEIGHT).Get(out temp);
-            return temp;
+            return view.Weight;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create(nameof(View.LeftFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -1246,16 +1274,30 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StyleProperty = BindableProperty.Create("Style", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
 
-        internal readonly MergedStyle _mergedStyle;
+        /// <summary>
+        /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool layoutSet = false;
+
         /// <summary>
         /// Flag to allow Layouting to be disabled for Views.
         /// Once a View has a Layout set then any children added to Views from then on will receive
         /// automatic Layouts.
         /// </summary>
-        private static bool layoutingDisabled = true;
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool layoutingDisabled{get; set;} = true;
 
-        private bool layoutSet = false; // Flag to indicate if SetLayout was called or View was automatically given a Layout
+        internal readonly MergedStyle _mergedStyle;
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private LayoutItem _layout; // Exclusive layout assigned to this View.
+        private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
+        private int _heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
+        private float _weight = 0.0f; // Weighting of child View in a Layout
+        private MeasureSpecification _measureSpecificationWidth; // Layout width and internal Mode
+        private MeasureSpecification _measureSpecificationHeight; // Layout height and internal Mode
         private bool _backgroundImageSynchronosLoading = false;
         private EventHandler _offWindowEventHandler;
         private OffWindowEventCallbackType _offWindowEventCallback;
@@ -2236,8 +2278,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(Size2DProperty, value);
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
-                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Width));
-                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Height));
+                MeasureSpecificationWidth = new MeasureSpecification(new LayoutLength(value.Width), MeasureSpecification.ModeType.Exactly);
+                MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
                 NotifyPropertyChanged();
             }
         }
@@ -2319,7 +2361,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is true by default.
         /// </summary>
         /// <remarks>If false, then the top-left of the view is used for the position.
-        /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the view's position.
+        /// Setting this to false will allow scaling or rotation around the pivot point without affecting the view's position.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public bool PositionUsesPivotPoint
@@ -2502,7 +2544,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeWidthProperty, value);
-                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
+                WidthSpecification = (int)Math.Ceiling(value);
                 NotifyPropertyChanged();
             }
         }
@@ -2520,7 +2562,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeHeightProperty, value);
-                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
+                HeightSpecification = (int)Math.Ceiling(value);
                 NotifyPropertyChanged();
             }
         }
@@ -2926,17 +2968,17 @@ namespace Tizen.NUI.BaseComponents
                 {
                     case ResizePolicyType.UseNaturalSize:
                     {
-                        SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                        WidthSpecification = LayoutParamPolicies.WrapContent;
                         break;
                     }
                     case ResizePolicyType.FillToParent:
                     {
-                        SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue((int)ChildLayoutData.MatchParent));
+                        WidthSpecification = LayoutParamPolicies.MatchParent;
                         break;
                     }
                     case ResizePolicyType.FitToChildren:
                     {
-                        SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue((int)ChildLayoutData.WrapContent));
+                        WidthSpecification = LayoutParamPolicies.WrapContent;
                         break;
                     }
                     default:
@@ -2965,17 +3007,17 @@ namespace Tizen.NUI.BaseComponents
                 {
                     case ResizePolicyType.UseNaturalSize:
                     {
-                        SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                        HeightSpecification = LayoutParamPolicies.WrapContent;
                         break;
                     }
                     case ResizePolicyType.FillToParent:
                     {
-                        SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue((int)ChildLayoutData.MatchParent));
+                        HeightSpecification = LayoutParamPolicies.MatchParent;
                         break;
                     }
                     case ResizePolicyType.FitToChildren:
                     {
-                        SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue((int)ChildLayoutData.WrapContent));
+                        HeightSpecification = LayoutParamPolicies.WrapContent;
                         break;
                     }
                     default:
@@ -3051,6 +3093,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(PaddingProperty, value);
                 NotifyPropertyChanged();
+                _layout?.RequestLayout();
             }
         }
 
@@ -3066,12 +3109,13 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (Layout != null)
+                if (_layout != null)
                 {
                     // Note: it only works if minimum size is >= than natural size.
                     // To force the size it should be done through the width&height spec or Size2D.
-                    Layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Width);
-                    Layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Height);
+                    _layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Width);
+                    _layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Height);
+                    _layout.RequestLayout();
                 }
                 SetValue(MinimumSizeProperty, value);
                 NotifyPropertyChanged();
@@ -3092,6 +3136,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
+                if (_layout != null)
+                {
+                    // Note: it only works if minimum size is >= than natural size.
+                    // To force the size it should be done through the width&height spec or Size2D.
+                    _layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Width);
+                    _layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Height);
+                    _layout.RequestLayout();
+                }
                 SetValue(MaximumSizeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3197,8 +3249,8 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(SizeProperty, value);
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
-                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Width));
-                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Height));
+                WidthSpecification = (int)Math.Ceiling(value.Width);
+                HeightSpecification = (int)Math.Ceiling(value.Height);
                 NotifyPropertyChanged();
             }
         }
@@ -3271,6 +3323,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(LayoutDirectionProperty, value);
                 NotifyPropertyChanged();
+                _layout?.RequestLayout();
             }
         }
 
@@ -3292,6 +3345,53 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(MarginProperty, value);
                 NotifyPropertyChanged();
+                _layout?.RequestLayout();
+            }
+        }
+
+        ///<summary>
+        /// The required policy for this dimension, ChildLayoutData enum or exact value.
+        ///</summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int WidthSpecification
+        {
+            get
+            {
+                return _widthPolicy;
+            }
+            set
+            {
+                _widthPolicy = value;
+                if (_widthPolicy >= 0)
+                {
+                    _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
+                    Size2D.Width = _widthPolicy;
+                }
+                _layout?.RequestLayout();
+            }
+        }
+
+        ///<summary>
+        /// The required policy for this dimension, ChildLayoutData enum or exact value.
+        ///</summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int HeightSpecification
+        {
+            get
+            {
+                return _heightPolicy;
+            }
+            set
+            {
+                _heightPolicy = value;
+                if (_heightPolicy >= 0)
+                {
+                    _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
+                    Size2D.Height = _heightPolicy;
+                }
+               _layout?.RequestLayout();
             }
         }
 
@@ -3315,6 +3415,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
+                _layout?.RequestLayout();
             }
         }
 
@@ -3337,16 +3438,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int tmp = 0;
-                if (GetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION).Get(out tmp) == false)
-                {
-                    NUILog.Error("WidthSpecificationFixed get error!");
-                }
-                return tmp;
+                return _widthPolicy;
             }
             set
             {
-                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
+                _widthPolicy = value;
+                _measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
+                Size2D.Width = value;
+                _layout?.RequestLayout();
             }
         }
 
@@ -3357,16 +3456,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int tmp = 0;
-                if (GetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION).Get(out tmp) == false)
-                {
-                    NUILog.Error("HeightSpecificationFixed get error!");
-                }
-                return tmp;
+                return _heightPolicy;
             }
             set
             {
-                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
+                _heightPolicy = value;
+                _measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
+                Size2D.Height = value;
+                _layout?.RequestLayout();
             }
         }
 
@@ -3377,16 +3474,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int tmp = 0;
-                if (GetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION).Get(out tmp) == false)
-                {
-                    NUILog.Error("WidthSpecificationFixed get error!");
-                }
-                return (ChildLayoutData)tmp;
+                return (ChildLayoutData)_widthPolicy;
             }
             set
             {
-                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue((int)value));
+                _widthPolicy = (int)value;
             }
         }
 
@@ -3397,16 +3489,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int tmp = 0;
-                if (GetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION).Get(out tmp) == false)
-                {
-                    NUILog.Error("HeightSpecificationFixed get error!");
-                }
-                return (ChildLayoutData)tmp;
+                return (ChildLayoutData)_heightPolicy;
             }
             set
             {
-                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue((int)value));
+                _heightPolicy = (int)value;
             }
         }
 
@@ -3414,12 +3501,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(WeightProperty);
+                return _weight;
             }
             set
             {
-                SetValue(WeightProperty, value);
-                NotifyPropertyChanged();
+                _weight = value;
+                _layout.RequestLayout();
             }
         }
 
@@ -3494,7 +3581,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set the layout on this control.
+        /// Set the layout on this View. Replaces any existing Layout.
         /// </summary>
         /// <remarks>
         /// </remarks>
@@ -3502,42 +3589,73 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                IntPtr cPtr = Interop.Layout.GetLayout__SWIG_1(View.getCPtr(this));
-
-                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
-                Interop.BaseHandle.delete_BaseHandle(CPtr);
-                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                return basehandle as LayoutItem;
+                return _layout;
             }
             set
             {
-                Log.Info("NUI", "Set Layout on:" + Name + "\n");
+                // Do nothing if layout provided is already set on this View.
+                if (value == _layout)
+                {
+                    return;
+                }
+
+                Log.Info("NUI", "Setting Layout on:" + Name + "\n");
                 layoutingDisabled = false;
                 layoutSet = true;
+
+                // If new layout being set already has a owner then that owner receives a replacement default layout.
+                // First check if the layout to be set already has a owner.
+                if ( value.Owner != null )
+                {
+                    Log.Info("NUI", "Set layout already in use by another View: " + value.Owner.Name + "will get a LayoutGroup\n");
+                    // Previous owner of the layout gets a default layout as a replacement.
+                    value.Owner.Layout = new LayoutGroup();
+                }
+
+                // Remove existing layout from it's parent layout group.
+                _layout?.Unparent();
+
+                // Set layout to this view
                 SetLayout(value);
             }
         }
 
-        /// <summary>
-        /// Set that layouting is required on this View. It will automatically receive a Layout.
-        /// </summary>
-        /// <remarks>
-        /// </remarks>
-        internal bool LayoutingRequired
+        internal void SetLayout(LayoutItem layout)
         {
-            get
-            {
-                bool result = Interop.View.View_IsLayoutingRequired(View.getCPtr(this));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return result;
-            }
+            _layout = layout;
+            _layout.AttachToOwner(this);
+            _layout.RequestLayout();
+        }
+
+        /// <summary>
+        /// Stores the calculated width value and its ModeType. Width component.
+        /// </summary>
+        internal MeasureSpecification MeasureSpecificationWidth
+        {
             set
             {
-                Tizen.NUI.Interop.View.View_SetLayoutingRequired(View.getCPtr(this), value);
+                _measureSpecificationWidth = value;
+                _layout?.RequestLayout();
+            }
+            get
+            {
+                return _measureSpecificationWidth;
+            }
+        }
+
+        /// <summary>
+        /// Stores the calculated width value and its ModeType. Height component.
+        /// </summary>
+        internal MeasureSpecification MeasureSpecificationHeight
+        {
+            set
+            {
+                _measureSpecificationHeight = value;
+                _layout?.RequestLayout();
+            }
+            get
+            {
+                return _measureSpecificationHeight;
             }
         }
 
@@ -3780,52 +3898,27 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            bool hasLayout = (_layout != null);
+            Log.Info("NUI", "Add:" + child.Name + " to View:" + Name + "which has layout[" + hasLayout + "] + \n");
+
             if (null == child)
             {
                 Tizen.Log.Fatal("NUI", "Child is null");
                 return;
             }
 
-            Log.Info("NUI", "Adding Child:" + child.Name + " to " + Name + "\n");
-
             Container oldParent = child.GetParent();
             if (oldParent != this)
             {
+                // If child already has a parent then re-parent child
                 if (oldParent != null)
                 {
                     oldParent.Remove(child);
                 }
                 child.InternalParent = this;
 
-                // Only give children a layout if their parent is an explicit container or a pure View.
-                // Pure View meaning not derived from a View, e.g a Legacy container.
-                // layoutSet flag is true when the View became a layout using the set Layout API opposed to automatically due to it's parent.
-                // First time the set Layout API is used by any View the Window no longer has layoutingDisabled.
-                if ((true == layoutSet || GetType() == typeof(View)) && null == child.Layout && false == layoutingDisabled)
-                {
-                    Log.Info("NUI", "Parent[" + Name + "] Layout set[" + layoutSet.ToString() + "] Pure View[" + (!layoutSet).ToString() + "]\n");
-                    // If child is a View or explicitly set to require layouting then set child as a LayoutGroup.
-                    // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    if (child.GetType() == typeof(View) || true == child.LayoutingRequired)
-                    {
-                        Log.Info("NUI", "Creating LayoutGroup for " + child.Name + " LayoutingRequired[" + child.LayoutingRequired.ToString() + "]\n");
-                        child.SetLayout(new LayoutGroup());
-                    }
-                    else
-                    {
-                        // Adding child as a leaf, layouting will not propagate past this child.
-                        // Legacy containers will be a LayoutItems too and layout their children how they wish.
-                        Log.Info("NUI", "Creating LayoutItem for " + child.Name + "\n");
-                        child.SetLayout(new LayoutItem());
-                    }
-                }
-
-                if (Layout)
-                {
-                    Layout.LayoutChildren.Add(child.Layout);
-                }
-
                 Interop.Actor.Actor_Add(swigCPtr, View.getCPtr(child));
+
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
@@ -3848,20 +3941,15 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
+            bool hasLayout = (_layout != null);
+            Log.Info("NUI","Removing View:" + child.Name + "layout[" + hasLayout.ToString() +"]\n");
+
             Interop.Actor.Actor_Remove(swigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
             child.InternalParent = null;
-
-            if (Layout)
-            {
-                if (child.Layout)
-                {
-                    Layout.LayoutChildren.Remove(child.Layout);
-                }
-            }
 
             if (ChildRemoved != null)
             {
@@ -5054,14 +5142,12 @@ namespace Tizen.NUI.BaseComponents
             return (IntPtr)swigCPtr;
         }
 
-        internal void SetLayout(LayoutItem layout)
+        /// <summary>
+        /// Removes the layout from this View.
+        /// </summary>
+        internal void ResetLayout()
         {
-            Interop.Layout.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(layout));
-            layout.LayoutChildren.Clear();
-            foreach (View view in Children)
-            {
-                layout.LayoutChildren.Add(view.Layout);
-            }
+            _layout = null;
         }
 
         internal ResourceLoadingStatusType GetBackgroundResourceStatus()
