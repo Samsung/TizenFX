@@ -3,66 +3,88 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Core { 
-/// <summary></summary>
-[ProcEnvNativeInherit]
+namespace Efl {
+
+namespace Core {
+
+[Efl.Core.ProcEnv.NativeMethods]
 public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
 {
     ///<summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (ProcEnv))
-                return Efl.Core.ProcEnvNativeInherit.GetEflClassStatic();
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(ProcEnv))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_core_proc_env_class_get();
-    ///<summary>Creates a new instance.</summary>
-    ///<param name="parent">Parent instance.</param>
+    /// <summary>Initializes a new instance of the <see cref="ProcEnv"/> class.</summary>
+    /// <param name="parent">Parent instance.</param>
     public ProcEnv(Efl.Object parent= null
-            ) :
-        base(efl_core_proc_env_class_get(), typeof(ProcEnv), parent)
+            ) : base(efl_core_proc_env_class_get(), typeof(ProcEnv), parent)
     {
         FinishInstantiation();
     }
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+
+    /// <summary>Initializes a new instance of the <see cref="ProcEnv"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="raw">The native pointer to be wrapped.</param>
     protected ProcEnv(System.IntPtr raw) : base(raw)
     {
-                RegisterEventProxies();
-    }
-    ///<summary>Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
-    protected ProcEnv(IntPtr base_klass, System.Type managed_type, Efl.Object parent) : base(base_klass, managed_type, parent) {}
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+            }
+
+    /// <summary>Initializes a new instance of the <see cref="ProcEnv"/> class.
+    /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
+    /// <param name="baseKlass">The pointer to the base native Eo class.</param>
+    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
+    /// <param name="parent">The Efl.Object parent of this instance.</param>
+    protected ProcEnv(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-        var other = obj as Efl.Object;
+    }
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
+    {
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-    protected override void RegisterEventProxies()
-    {
-        base.RegisterEventProxies();
-    }
+
     /// <summary>Get a instance of this object
     /// The object will apply the environment operations onto this process.</summary>
-    /// <returns></returns>
     public static Efl.Core.Env Self() {
-         var _ret_var = Efl.Core.ProcEnvNativeInherit.efl_env_self_ptr.Value.Delegate();
+         var _ret_var = Efl.Core.ProcEnv.NativeMethods.efl_env_self_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -70,47 +92,67 @@ public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
     {
         return Efl.Core.ProcEnv.efl_core_proc_env_class_get();
     }
-}
-public class ProcEnvNativeInherit : Efl.Core.EnvNativeInherit{
-    public new  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public new class NativeMethods : Efl.Core.Env.NativeMethods
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        descs.AddRange(base.GetEoOps(type));
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.Core.ProcEnv.efl_core_proc_env_class_get();
-    }
-    public static new  IntPtr GetEflClassStatic()
-    {
-        return Efl.Core.ProcEnv.efl_core_proc_env_class_get();
-    }
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Core.Env, Efl.Eo.NonOwnTag>))] private delegate Efl.Core.Env efl_env_self_delegate();
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Core.Env, Efl.Eo.NonOwnTag>))] public delegate Efl.Core.Env efl_env_self_api_delegate();
-     public static Efl.Eo.FunctionWrapper<efl_env_self_api_delegate> efl_env_self_ptr = new Efl.Eo.FunctionWrapper<efl_env_self_api_delegate>(_Module, "efl_env_self");
-     private static Efl.Core.Env self(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_env_self was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Core.Env _ret_var = default(Efl.Core.Env);
-            try {
-                _ret_var = ProcEnv.Self();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-        return _ret_var;
-        } else {
-            return efl_env_self_ptr.Value.Delegate();
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            descs.AddRange(base.GetEoOps(type));
+            return descs;
         }
-    }
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.Core.ProcEnv.efl_core_proc_env_class_get();
+        }
+
+        #pragma warning disable CA1707, SA1300, SA1600
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.Core.Env efl_env_self_delegate();
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.Core.Env efl_env_self_api_delegate();
+
+        public static Efl.Eo.FunctionWrapper<efl_env_self_api_delegate> efl_env_self_ptr = new Efl.Eo.FunctionWrapper<efl_env_self_api_delegate>(Module, "efl_env_self");
+
+        private static Efl.Core.Env self(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_env_self was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Core.Env _ret_var = default(Efl.Core.Env);
+                try
+                {
+                    _ret_var = ProcEnv.Self();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_env_self_ptr.Value.Delegate();
+            }
+        }
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} } 
+}
+}
+
+}
+

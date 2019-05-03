@@ -3,21 +3,35 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Font { 
-public struct Size {
+namespace Efl {
+
+namespace Font {
+
+public struct Size
+{
     private int payload;
     public static implicit operator Size(int x)
     {
         return new Size{payload=x};
     }
+
     public static implicit operator int(Size x)
     {
         return x.payload;
     }
+
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Graphics colorspace type</summary>
 public enum Colorspace
 {
@@ -69,11 +83,17 @@ RgbaS3tcDxt4 = 17,
 /// <summary>OpenGL COMPRESSED_RGBA_S3TC_DXT5_EXT format with RGBA.
 /// (Since EFL 1.11.)</summary>
 RgbaS3tcDxt5 = 18,
-/// <summary></summary>
 Palette = 19,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Graphics render operation mode</summary>
 public enum RenderOp
 {
@@ -84,8 +104,15 @@ Copy = 1,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 2,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>These values determine how the points are interpreted in a stream of points.
 /// (Since EFL 1.14)</summary>
 public enum PathCommandType
@@ -103,8 +130,15 @@ Close = 4,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 5,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>These values determine how the end of opened sub-paths are rendered in a stroke. <see cref="Efl.Gfx.IShape.SetStrokeCap"/>
 /// (Since EFL 1.14)</summary>
 public enum Cap
@@ -118,8 +152,15 @@ Square = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 3,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>These values determine how two joining lines are rendered in a stroker. <see cref="Efl.Gfx.IShape.SetStrokeJoin"/>
 /// (Since EFL 1.14)</summary>
 public enum Join
@@ -133,8 +174,15 @@ Bevel = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 3,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Specifies how the area outside the gradient area should be filled. <see cref="Efl.Gfx.IGradient.SetSpread"/>
 /// (Since EFL 1.14)</summary>
 public enum GradientSpread
@@ -148,8 +196,15 @@ Repeat = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 3,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Type defining how an image content get filled.
 /// (Since EFL 1.14)</summary>
 public enum FillRule
@@ -159,8 +214,15 @@ Winding = 0,
 /// <summary>Draw a horizontal line from the point to a location outside the shape, and count the number of intersections. If the number of intersections is an odd number, the point is inside the shape.</summary>
 OddEven = 1,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>How an image&apos;s center region (the complement to the border region) should be rendered by EFL</summary>
 public enum BorderFillMode
 {
@@ -171,8 +233,15 @@ Default = 1,
 /// <summary>Image&apos;s center region is to be made solid, even if it has transparency on it</summary>
 Solid = 2,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>What property got changed for this object
 /// (Since EFL 1.18)</summary>
 public enum ChangeFlag
@@ -188,8 +257,15 @@ Fill = 4,
 /// <summary>all properties got changed</summary>
 All = 65535,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Aspect types/policies for scaling size hints.
 /// See also <see cref="Efl.Gfx.IHint.GetHintAspect"/>.</summary>
 public enum HintAspect
@@ -205,8 +281,15 @@ Vertical = 3,
 /// <summary>Use all horizontal and vertical container spaces to place an object (never growing it out of those bounds), using the given aspect.</summary>
 Both = 4,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Efl Gfx Color Class layer enum</summary>
 public enum ColorClassLayer
 {
@@ -217,8 +300,15 @@ Outline = 1,
 /// <summary>Shadow color</summary>
 Shadow = 2,
 }
-} } 
-namespace Efl { namespace Gfx { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Type describing dash. <see cref="Efl.Gfx.IShape.GetStrokeDash"/>
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
@@ -230,8 +320,8 @@ public struct Dash
     public double Gap;
     ///<summary>Constructor for Dash.</summary>
     public Dash(
-        double Length=default(double),
-        double Gap=default(double)    )
+        double Length = default(double),
+        double Gap = default(double)    )
     {
         this.Length = Length;
         this.Gap = Gap;
@@ -273,8 +363,14 @@ public struct Dash
 
 }
 
-} } 
-namespace Efl { namespace Gfx { 
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Type defining gradient stops. Describes the location and color of a transition point in a gradient.
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
@@ -292,11 +388,11 @@ public struct GradientStop
     public int A;
     ///<summary>Constructor for GradientStop.</summary>
     public GradientStop(
-        double Offset=default(double),
-        int R=default(int),
-        int G=default(int),
-        int B=default(int),
-        int A=default(int)    )
+        double Offset = default(double),
+        int R = default(int),
+        int G = default(int),
+        int B = default(int),
+        int A = default(int)    )
     {
         this.Offset = Offset;
         this.R = R;
@@ -353,8 +449,14 @@ public struct GradientStop
 
 }
 
-} } 
-namespace Efl { namespace Gfx { 
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Internal structure for <see cref="Efl.Gfx.Stroke"/>.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct StrokeColor
@@ -369,10 +471,10 @@ public struct StrokeColor
     public int A;
     ///<summary>Constructor for StrokeColor.</summary>
     public StrokeColor(
-        int R=default(int),
-        int G=default(int),
-        int B=default(int),
-        int A=default(int)    )
+        int R = default(int),
+        int G = default(int),
+        int B = default(int),
+        int A = default(int)    )
     {
         this.R = R;
         this.G = G;
@@ -424,8 +526,14 @@ public struct StrokeColor
 
 }
 
-} } 
-namespace Efl { namespace Gfx { 
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Type defining stroke information. Describes the properties to define the path stroke.
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
@@ -449,14 +557,14 @@ public struct Stroke
     public Efl.Gfx.Join Join;
     ///<summary>Constructor for Stroke.</summary>
     public Stroke(
-        double Scale=default(double),
-        double Width=default(double),
-        double Centered=default(double),
-        Efl.Gfx.StrokeColor Color=default(Efl.Gfx.StrokeColor),
-        Efl.Gfx.Dash Dash=default(Efl.Gfx.Dash),
-        uint Dash_length=default(uint),
-        Efl.Gfx.Cap Cap=default(Efl.Gfx.Cap),
-        Efl.Gfx.Join Join=default(Efl.Gfx.Join)    )
+        double Scale = default(double),
+        double Width = default(double),
+        double Centered = default(double),
+        Efl.Gfx.StrokeColor Color = default(Efl.Gfx.StrokeColor),
+        Efl.Gfx.Dash Dash = default(Efl.Gfx.Dash),
+        uint Dash_length = default(uint),
+        Efl.Gfx.Cap Cap = default(Efl.Gfx.Cap),
+        Efl.Gfx.Join Join = default(Efl.Gfx.Join)    )
     {
         this.Scale = Scale;
         this.Width = Width;
@@ -528,8 +636,14 @@ public struct Stroke
 
 }
 
-} } 
-namespace Efl { namespace Gfx { 
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>Public shape</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct ShapePublic
@@ -538,7 +652,7 @@ public struct ShapePublic
     public Efl.Gfx.Stroke Stroke;
     ///<summary>Constructor for ShapePublic.</summary>
     public ShapePublic(
-        Efl.Gfx.Stroke Stroke=default(Efl.Gfx.Stroke)    )
+        Efl.Gfx.Stroke Stroke = default(Efl.Gfx.Stroke)    )
     {
         this.Stroke = Stroke;
     }
@@ -575,9 +689,14 @@ public struct ShapePublic
 
 }
 
-} } 
-namespace Efl { namespace Gfx { 
-/// <summary></summary>
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 [StructLayout(LayoutKind.Sequential)]
 public struct PathChangeEvent
 {
@@ -585,7 +704,7 @@ public struct PathChangeEvent
     public Efl.Gfx.ChangeFlag What;
     ///<summary>Constructor for PathChangeEvent.</summary>
     public PathChangeEvent(
-        Efl.Gfx.ChangeFlag What=default(Efl.Gfx.ChangeFlag)    )
+        Efl.Gfx.ChangeFlag What = default(Efl.Gfx.ChangeFlag)    )
     {
         this.What = What;
     }
@@ -622,8 +741,16 @@ public struct PathChangeEvent
 
 }
 
-} } 
-namespace Efl { namespace Gfx { namespace Event { 
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
+namespace Event {
+
 /// <summary>Data sent along a &quot;render,post&quot; event, after a frame has been rendered.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct RenderPost
@@ -632,7 +759,7 @@ public struct RenderPost
     public Eina.List<Eina.Rect> Updated_area;
     ///<summary>Constructor for RenderPost.</summary>
     public RenderPost(
-        Eina.List<Eina.Rect> Updated_area=default(Eina.List<Eina.Rect>)    )
+        Eina.List<Eina.Rect> Updated_area = default(Eina.List<Eina.Rect>)    )
     {
         this.Updated_area = Updated_area;
     }
@@ -669,4 +796,9 @@ public struct RenderPost
 
 }
 
-} } } 
+}
+
+}
+
+}
+

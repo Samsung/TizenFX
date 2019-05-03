@@ -3,36 +3,60 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Access { 
-public struct StateSet {
+namespace Efl {
+
+namespace Access {
+
+public struct StateSet
+{
     private ulong payload;
     public static implicit operator StateSet(ulong x)
     {
         return new StateSet{payload=x};
     }
+
     public static implicit operator ulong(StateSet x)
     {
         return x.payload;
     }
+
 }
-} } 
-namespace Efl { namespace Access { 
-public struct RelationSet {
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
+public struct RelationSet
+{
     private Eina.List<Efl.Access.Relation> payload;
     public static implicit operator RelationSet(Eina.List<Efl.Access.Relation> x)
     {
         return new RelationSet{payload=x};
     }
+
     public static implicit operator Eina.List<Efl.Access.Relation>(RelationSet x)
     {
         return x.payload;
     }
+
 }
-} } 
-namespace Efl { namespace Access { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Accessibility accessible mixin</summary>
-[IObjectNativeInherit]
+[Efl.Access.IObjectConcrete.NativeMethods]
 public interface IObject : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -44,14 +68,11 @@ System.String GetLocalizedRoleName();
 System.String GetI18nName();
     /// <summary>Accessible name of the object.</summary>
 /// <param name="i18n_name">Accessible name</param>
-/// <returns></returns>
-void SetI18nName( System.String i18n_name);
+void SetI18nName(System.String i18n_name);
     /// <summary>Sets name information callback about widget.
 /// @if WEARABLE @since_tizen 3.0 @endif</summary>
 /// <param name="name_cb">reading information callback</param>
-/// <param name="data"></param>
-/// <returns></returns>
-void SetNameCb( Efl.Access.ReadingInfoCb name_cb,  System.IntPtr data);
+void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data);
     /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
 /// <returns>Accessible relation set</returns>
 Efl.Access.RelationSet GetRelationSet();
@@ -60,29 +81,23 @@ Efl.Access.RelationSet GetRelationSet();
 Efl.Access.Role GetRole();
     /// <summary>Sets the role of the object in accessibility domain.</summary>
 /// <param name="role">Accessible role</param>
-/// <returns></returns>
-void SetRole( Efl.Access.Role role);
+void SetRole(Efl.Access.Role role);
     /// <summary>Gets object&apos;s accessible parent.</summary>
 /// <returns>Accessible parent</returns>
 Efl.Access.IObject GetAccessParent();
     /// <summary>Gets object&apos;s accessible parent.</summary>
 /// <param name="parent">Accessible parent</param>
-/// <returns></returns>
-void SetAccessParent( Efl.Access.IObject parent);
+void SetAccessParent(Efl.Access.IObject parent);
     /// <summary>Sets contextual information callback about widget.
 /// @if WEARABLE @since_tizen 3.0 @endif</summary>
 /// <param name="description_cb">The function called to provide the accessible description.</param>
 /// <param name="data">The data passed to @c description_cb.</param>
-/// <returns></returns>
-void SetDescriptionCb( Efl.Access.ReadingInfoCb description_cb,  System.IntPtr data);
+void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data);
     /// <summary>Sets gesture callback to give widget.
 /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
 /// 
 /// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <param name="gesture_cb"></param>
-/// <param name="data"></param>
-/// <returns></returns>
-void SetGestureCb( Efl.Access.GestureCb gesture_cb,  System.IntPtr data);
+void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data);
     /// <summary>Gets object&apos;s accessible children.</summary>
 /// <returns>List of widget&apos;s children</returns>
 Eina.List<Efl.Access.IObject> GetAccessChildren();
@@ -99,8 +114,7 @@ Efl.Access.ReadingInfoTypeMask GetReadingInfoType();
     /// <summary>Sets reading information of an accessible object. If set as 0, existing reading info will be deleted and by default all four reading information types like name, role, state and description will be read on object highlight
 /// @if WEARABLE @since_tizen 3.0 @endif</summary>
 /// <param name="reading_info">Reading information types</param>
-/// <returns></returns>
-void SetReadingInfoType( Efl.Access.ReadingInfoTypeMask reading_info);
+void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info);
     /// <summary>Gets index of the child in parent&apos;s children list.</summary>
 /// <returns>Index in children list</returns>
 int GetIndexInParent();
@@ -109,8 +123,7 @@ int GetIndexInParent();
 System.String GetDescription();
     /// <summary>Sets widget contextual information.</summary>
 /// <param name="description">Accessible contextual information</param>
-/// <returns></returns>
-void SetDescription( System.String description);
+void SetDescription(System.String description);
     /// <summary>Gets set describing object accessible states.</summary>
 /// <returns>Accessible state set</returns>
 Efl.Access.StateSet GetStateSet();
@@ -121,8 +134,7 @@ bool GetCanHighlight();
     /// <summary>Sets highlightable to given widget.
 /// @if WEARABLE @since_tizen 3.0 @endif</summary>
 /// <param name="can_highlight">If @c true, the object is highlightable.</param>
-/// <returns></returns>
-void SetCanHighlight( bool can_highlight);
+void SetCanHighlight(bool can_highlight);
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
 /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
 /// 
@@ -138,24 +150,18 @@ System.String GetTranslationDomain();
 /// 
 /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
 /// <param name="domain">Translation domain</param>
-/// <returns></returns>
-void SetTranslationDomain( System.String domain);
+void SetTranslationDomain(System.String domain);
         /// <summary>Handles gesture on given widget.</summary>
-/// <param name="gesture_info"></param>
-/// <returns></returns>
-bool GestureDo( Efl.Access.GestureInfo gesture_info);
+bool GestureDo(Efl.Access.GestureInfo gesture_info);
     /// <summary>Add key-value pair identifying object extra attribute
 /// @if WEARABLE @since_tizen 3.0 @endif</summary>
 /// <param name="key">The string key to give extra information</param>
 /// <param name="value">The string value to give extra information</param>
-/// <returns></returns>
-void AppendAttribute( System.String key,  System.String value);
+void AppendAttribute(System.String key, System.String value);
     /// <summary>delete key-value pair identifying object extra attributes when key is given</summary>
 /// <param name="key">The string key to identify the key-value pair</param>
-/// <returns></returns>
-void DelAttribute( System.String key);
+void DelAttribute(System.String key);
     /// <summary>Removes all attributes in accessible object.</summary>
-/// <returns></returns>
 void ClearAttributes();
                 /// <summary>Defines the relationship between two accessible objects.
 /// Adds a unique relationship between source object and relation_object of a given type.
@@ -166,24 +172,19 @@ void ClearAttributes();
 /// <param name="type">Relation type</param>
 /// <param name="relation_object">Object to relate to</param>
 /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
-bool AppendRelationship( Efl.Access.RelationType type,  Efl.Access.IObject relation_object);
+bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
     /// <summary>Removes the relationship between two accessible objects.
 /// If relation_object is NULL function removes all relations of the given type.</summary>
 /// <param name="type">Relation type</param>
 /// <param name="relation_object">Object to remove relation from</param>
-/// <returns></returns>
-void RelationshipRemove( Efl.Access.RelationType type,  Efl.Access.IObject relation_object);
+void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
     /// <summary>Removes all relationships in accessible object.</summary>
-/// <returns></returns>
 void ClearRelationships();
     /// <summary>Notifies accessibility clients about current state of the accessible object.
 /// Function limits information broadcast to clients to types specified by state_types_mask parameter.
 /// 
 /// if recursive parameter is set, function will traverse all accessible children and call state_notify function on them.</summary>
-/// <param name="state_types_mask"></param>
-/// <param name="recursive"></param>
-/// <returns></returns>
-void StateNotify( Efl.Access.StateSet state_types_mask,  bool recursive);
+void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
                                                                                                                                                     /// <summary>Called when property has changed</summary>
     event EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> PropertyChangedEvt;
     /// <summary>Called when children have changed</summary>
@@ -200,7 +201,6 @@ void StateNotify( Efl.Access.StateSet state_types_mask,  bool recursive);
     event EventHandler AddedEvt;
     /// <summary>Called when item is removed</summary>
     event EventHandler RemovedEvt;
-    /// <summary></summary>
     event EventHandler MoveOutedEvt;
     /// <summary>Gets an localized string describing accessible object role name.</summary>
 /// <value>Localized accessible object role name</value>
@@ -319,636 +319,783 @@ IObject
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (IObjectConcrete))
-                return Efl.Access.IObjectNativeInherit.GetEflClassStatic();
+    public System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(IObjectConcrete))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
-    private EventHandlerList eventHandlers = new EventHandlerList();
+
+    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
+    private readonly object eventLock = new object();
     private  System.IntPtr handle;
     ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle {
+    public System.IntPtr NativeHandle
+    {
         get { return handle; }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_object_mixin_get();
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
+    /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     private IObjectConcrete(System.IntPtr raw)
     {
         handle = raw;
-        RegisterEventProxies();
     }
     ///<summary>Destructor.</summary>
     ~IObjectConcrete()
     {
         Dispose(false);
     }
+
     ///<summary>Releases the underlying native instance.</summary>
-    void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
-        if (handle != System.IntPtr.Zero) {
-            Efl.Eo.Globals.efl_unref(handle);
-            handle = System.IntPtr.Zero;
+        if (handle != System.IntPtr.Zero)
+        {
+            IntPtr h = handle;
+            handle = IntPtr.Zero;
+
+            IntPtr gcHandlePtr = IntPtr.Zero;
+            if (eoEvents.Count != 0)
+            {
+                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
+                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
+            }
+
+            if (disposing)
+            {
+                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
+            }
+            else
+            {
+                Monitor.Enter(Efl.All.InitLock);
+                if (Efl.All.MainLoopInitialized)
+                {
+                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
+                }
+
+                Monitor.Exit(Efl.All.InitLock);
+            }
         }
+
     }
+
     ///<summary>Releases the underlying native instance.</summary>
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
     {
-        var other = obj as Efl.Object;
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-    private readonly object eventLock = new object();
-    private Dictionary<string, int> event_cb_count = new Dictionary<string, int>();
+
     ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
     ///<param name="lib">The name of the native library definining the event.</param>
     ///<param name="key">The name of the native event.</param>
-    ///<param name="evt_delegate">The delegate to be called on event raising.</param>
-    ///<returns>True if the delegate was successfully registered.</returns>
-    private bool AddNativeEventHandler(string lib, string key, Efl.EventCb evt_delegate) {
-        int event_count = 0;
-        if (!event_cb_count.TryGetValue(key, out event_count))
-            event_cb_count[key] = event_count;
-        if (event_count == 0) {
-            IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-            if (desc == IntPtr.Zero) {
-                Eina.Log.Error($"Failed to get native event {key}");
-                return false;
-            }
-             bool result = Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evt_delegate, System.IntPtr.Zero);
-            if (!result) {
-                Eina.Log.Error($"Failed to add event proxy for event {key}");
-                return false;
-            }
-            Eina.Error.RaiseIfUnhandledException();
-        } 
-        event_cb_count[key]++;
-        return true;
+    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
+    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
+    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
+    {
+        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+        }
+
+        if (eoEvents.ContainsKey((desc, evtDelegate)))
+        {
+            Eina.Log.Warning($"Event proxy for event {key} already registered!");
+            return;
+        }
+
+        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
+        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
+        {
+            Eina.Log.Error($"Failed to add event proxy for event {key}");
+            return;
+        }
+
+        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
+        Eina.Error.RaiseIfUnhandledException();
     }
+
     ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
+    ///<param name="lib">The name of the native library definining the event.</param>
     ///<param name="key">The name of the native event.</param>
-    ///<param name="evt_delegate">The delegate to be removed.</param>
-    ///<returns>True if the delegate was successfully registered.</returns>
-    private bool RemoveNativeEventHandler(string key, Efl.EventCb evt_delegate) {
-        int event_count = 0;
-        if (!event_cb_count.TryGetValue(key, out event_count))
-            event_cb_count[key] = event_count;
-        if (event_count == 1) {
-            IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-            if (desc == IntPtr.Zero) {
-                Eina.Log.Error($"Failed to get native event {key}");
-                return false;
-            }
-            bool result = Efl.Eo.Globals.efl_event_callback_del(handle, desc, evt_delegate, System.IntPtr.Zero);
-            if (!result) {
+    ///<param name="evtDelegate">The delegate to be removed.</param>
+    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
+    {
+        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        var evtPair = (desc, evtDelegate);
+        if (eoEvents.TryGetValue(evtPair, out var caller))
+        {
+            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
+            {
                 Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return false;
+                return;
             }
+
+            eoEvents.Remove(evtPair);
             Eina.Error.RaiseIfUnhandledException();
-        } else if (event_count == 0) {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when there is nothing registered.");
-            return false;
-        } 
-        event_cb_count[key]--;
-        return true;
+        }
+        else
+        {
+            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
+        }
     }
-private static object PropertyChangedEvtKey = new object();
+
     /// <summary>Called when property has changed</summary>
     public event EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> PropertyChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
+                        args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_PropertyChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(PropertyChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_PropertyChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(PropertyChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event PropertyChangedEvt.</summary>
-    public void On_PropertyChangedEvt(Efl.Access.IObjectPropertyChangedEvt_Args e)
+    public void OnPropertyChangedEvt(Efl.Access.IObjectPropertyChangedEvt_Args e)
     {
-        EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args>)eventHandlers[PropertyChangedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_PropertyChangedEvt_delegate;
-    private void on_PropertyChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
-      args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
-        try {
-            On_PropertyChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ChildrenChangedEvtKey = new object();
+        IntPtr info = Eina.StringConversion.ManagedStringToNativeUtf8Alloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Eina.MemoryNative.Free(info);
+        }
+    }
     /// <summary>Called when children have changed</summary>
     public event EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args> ChildrenChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_ChildrenChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(ChildrenChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_ChildrenChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ChildrenChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event ChildrenChangedEvt.</summary>
-    public void On_ChildrenChangedEvt(Efl.Access.IObjectChildrenChangedEvt_Args e)
+    public void OnChildrenChangedEvt(Efl.Access.IObjectChildrenChangedEvt_Args e)
     {
-        EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args>)eventHandlers[ChildrenChangedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ChildrenChangedEvt_delegate;
-    private void on_ChildrenChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
-      args.arg =  evt.Info;;
-        try {
-            On_ChildrenChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object StateChangedEvtKey = new object();
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
     /// <summary>Called when state has changed</summary>
     public event EventHandler<Efl.Access.IObjectStateChangedEvt_Args> StateChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_StateChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(StateChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_StateChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(StateChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event StateChangedEvt.</summary>
-    public void On_StateChangedEvt(Efl.Access.IObjectStateChangedEvt_Args e)
+    public void OnStateChangedEvt(Efl.Access.IObjectStateChangedEvt_Args e)
     {
-        EventHandler<Efl.Access.IObjectStateChangedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Access.IObjectStateChangedEvt_Args>)eventHandlers[StateChangedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_StateChangedEvt_delegate;
-    private void on_StateChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
-      args.arg =  evt.Info;;
-        try {
-            On_StateChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object BoundsChangedEvtKey = new object();
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
     /// <summary>Called when boundaries have changed</summary>
     public event EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args> BoundsChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_BoundsChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(BoundsChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_BoundsChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(BoundsChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event BoundsChangedEvt.</summary>
-    public void On_BoundsChangedEvt(Efl.Access.IObjectBoundsChangedEvt_Args e)
+    public void OnBoundsChangedEvt(Efl.Access.IObjectBoundsChangedEvt_Args e)
     {
-        EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args>)eventHandlers[BoundsChangedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_BoundsChangedEvt_delegate;
-    private void on_BoundsChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
-      args.arg =  evt.Info;;
-        try {
-            On_BoundsChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object VisibleDataChangedEvtKey = new object();
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
     /// <summary>Called when visibility has changed</summary>
     public event EventHandler VisibleDataChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_VisibleDataChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(VisibleDataChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_VisibleDataChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(VisibleDataChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event VisibleDataChangedEvt.</summary>
-    public void On_VisibleDataChangedEvt(EventArgs e)
+    public void OnVisibleDataChangedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[VisibleDataChangedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_VisibleDataChangedEvt_delegate;
-    private void on_VisibleDataChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_VisibleDataChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ActiveDescendantChangedEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when active state of descendant has changed</summary>
     public event EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args> ActiveDescendantChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_ActiveDescendantChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(ActiveDescendantChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_ActiveDescendantChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ActiveDescendantChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event ActiveDescendantChangedEvt.</summary>
-    public void On_ActiveDescendantChangedEvt(Efl.Access.IObjectActiveDescendantChangedEvt_Args e)
+    public void OnActiveDescendantChangedEvt(Efl.Access.IObjectActiveDescendantChangedEvt_Args e)
     {
-        EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args>)eventHandlers[ActiveDescendantChangedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ActiveDescendantChangedEvt_delegate;
-    private void on_ActiveDescendantChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_ActiveDescendantChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object AddedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when item is added</summary>
     public event EventHandler AddedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_AddedEvt_delegate)) {
-                    eventHandlers.AddHandler(AddedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
-                if (RemoveNativeEventHandler(key, this.evt_AddedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(AddedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event AddedEvt.</summary>
-    public void On_AddedEvt(EventArgs e)
+    public void OnAddedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[AddedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_AddedEvt_delegate;
-    private void on_AddedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_AddedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object RemovedEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when item is removed</summary>
     public event EventHandler RemovedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_RemovedEvt_delegate)) {
-                    eventHandlers.AddHandler(RemovedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
-                if (RemoveNativeEventHandler(key, this.evt_RemovedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(RemovedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event RemovedEvt.</summary>
-    public void On_RemovedEvt(EventArgs e)
+    public void OnRemovedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[RemovedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_RemovedEvt_delegate;
-    private void on_RemovedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_RemovedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object MoveOutedEvtKey = new object();
-    /// <summary></summary>
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     public event EventHandler MoveOutedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_MoveOutedEvt_delegate)) {
-                    eventHandlers.AddHandler(MoveOutedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
-                if (RemoveNativeEventHandler(key, this.evt_MoveOutedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(MoveOutedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event MoveOutedEvt.</summary>
-    public void On_MoveOutedEvt(EventArgs e)
+    public void OnMoveOutedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[MoveOutedEvtKey];
+        var key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_MoveOutedEvt_delegate;
-    private void on_MoveOutedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_MoveOutedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-     void RegisterEventProxies()
-    {
-        evt_PropertyChangedEvt_delegate = new Efl.EventCb(on_PropertyChangedEvt_NativeCallback);
-        evt_ChildrenChangedEvt_delegate = new Efl.EventCb(on_ChildrenChangedEvt_NativeCallback);
-        evt_StateChangedEvt_delegate = new Efl.EventCb(on_StateChangedEvt_NativeCallback);
-        evt_BoundsChangedEvt_delegate = new Efl.EventCb(on_BoundsChangedEvt_NativeCallback);
-        evt_VisibleDataChangedEvt_delegate = new Efl.EventCb(on_VisibleDataChangedEvt_NativeCallback);
-        evt_ActiveDescendantChangedEvt_delegate = new Efl.EventCb(on_ActiveDescendantChangedEvt_NativeCallback);
-        evt_AddedEvt_delegate = new Efl.EventCb(on_AddedEvt_NativeCallback);
-        evt_RemovedEvt_delegate = new Efl.EventCb(on_RemovedEvt_NativeCallback);
-        evt_MoveOutedEvt_delegate = new Efl.EventCb(on_MoveOutedEvt_NativeCallback);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Gets an localized string describing accessible object role name.</summary>
     /// <returns>Localized accessible object role name</returns>
     public System.String GetLocalizedRoleName() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_localized_role_name_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Accessible name of the object.</summary>
     /// <returns>Accessible name</returns>
     public System.String GetI18nName() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_i18n_name_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Accessible name of the object.</summary>
     /// <param name="i18n_name">Accessible name</param>
-    /// <returns></returns>
-    public void SetI18nName( System.String i18n_name) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_i18n_name_set_ptr.Value.Delegate(this.NativeHandle, i18n_name);
+    public void SetI18nName(System.String i18n_name) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate(this.NativeHandle,i18n_name);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets name information callback about widget.
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="name_cb">reading information callback</param>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public void SetNameCb( Efl.Access.ReadingInfoCb name_cb,  System.IntPtr data) {
-                                                         Efl.Access.IObjectNativeInherit.efl_access_object_name_cb_set_ptr.Value.Delegate(this.NativeHandle, name_cb,  data);
+    public void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data) {
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate(this.NativeHandle,name_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
     /// <returns>Accessible relation set</returns>
     public Efl.Access.RelationSet GetRelationSet() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_relation_set_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The role of the object in accessibility domain.</summary>
     /// <returns>Accessible role</returns>
     public Efl.Access.Role GetRole() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_role_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the role of the object in accessibility domain.</summary>
     /// <param name="role">Accessible role</param>
-    /// <returns></returns>
-    public void SetRole( Efl.Access.Role role) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_role_set_ptr.Value.Delegate(this.NativeHandle, role);
+    public void SetRole(Efl.Access.Role role) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate(this.NativeHandle,role);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <returns>Accessible parent</returns>
     public Efl.Access.IObject GetAccessParent() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_access_parent_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <param name="parent">Accessible parent</param>
-    /// <returns></returns>
-    public void SetAccessParent( Efl.Access.IObject parent) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_access_parent_set_ptr.Value.Delegate(this.NativeHandle, parent);
+    public void SetAccessParent(Efl.Access.IObject parent) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_set_ptr.Value.Delegate(this.NativeHandle,parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets contextual information callback about widget.
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="description_cb">The function called to provide the accessible description.</param>
     /// <param name="data">The data passed to @c description_cb.</param>
-    /// <returns></returns>
-    public void SetDescriptionCb( Efl.Access.ReadingInfoCb description_cb,  System.IntPtr data) {
-                                                         Efl.Access.IObjectNativeInherit.efl_access_object_description_cb_set_ptr.Value.Delegate(this.NativeHandle, description_cb,  data);
+    public void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data) {
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate(this.NativeHandle,description_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets gesture callback to give widget.
     /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
     /// 
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
-    /// <param name="gesture_cb"></param>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public void SetGestureCb( Efl.Access.GestureCb gesture_cb,  System.IntPtr data) {
-                                                         Efl.Access.IObjectNativeInherit.efl_access_object_gesture_cb_set_ptr.Value.Delegate(this.NativeHandle, gesture_cb,  data);
+    public void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data) {
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate(this.NativeHandle,gesture_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets object&apos;s accessible children.</summary>
     /// <returns>List of widget&apos;s children</returns>
     public Eina.List<Efl.Access.IObject> GetAccessChildren() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_access_children_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.IObject>(_ret_var, true, false);
  }
     /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
     /// <returns>Accessible role name</returns>
     public System.String GetRoleName() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_role_name_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
     /// <returns>List of object attributes, Must be freed by the user</returns>
     public Eina.List<Efl.Access.Attribute> GetAttributes() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_attributes_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.Attribute>(_ret_var, true, true);
  }
@@ -956,43 +1103,41 @@ private static object MoveOutedEvtKey = new object();
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <returns>Reading information types</returns>
     public Efl.Access.ReadingInfoTypeMask GetReadingInfoType() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_reading_info_type_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets reading information of an accessible object. If set as 0, existing reading info will be deleted and by default all four reading information types like name, role, state and description will be read on object highlight
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="reading_info">Reading information types</param>
-    /// <returns></returns>
-    public void SetReadingInfoType( Efl.Access.ReadingInfoTypeMask reading_info) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_reading_info_type_set_ptr.Value.Delegate(this.NativeHandle, reading_info);
+    public void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate(this.NativeHandle,reading_info);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets index of the child in parent&apos;s children list.</summary>
     /// <returns>Index in children list</returns>
     public int GetIndexInParent() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_index_in_parent_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets contextual information about object.</summary>
     /// <returns>Accessible contextual information</returns>
     public System.String GetDescription() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_description_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets widget contextual information.</summary>
     /// <param name="description">Accessible contextual information</param>
-    /// <returns></returns>
-    public void SetDescription( System.String description) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_description_set_ptr.Value.Delegate(this.NativeHandle, description);
+    public void SetDescription(System.String description) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate(this.NativeHandle,description);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets set describing object accessible states.</summary>
     /// <returns>Accessible state set</returns>
     public Efl.Access.StateSet GetStateSet() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_state_set_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1000,16 +1145,15 @@ private static object MoveOutedEvtKey = new object();
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <returns>If @c true, the object is highlightable.</returns>
     public bool GetCanHighlight() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_can_highlight_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets highlightable to given widget.
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="can_highlight">If @c true, the object is highlightable.</param>
-    /// <returns></returns>
-    public void SetCanHighlight( bool can_highlight) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_can_highlight_set_ptr.Value.Delegate(this.NativeHandle, can_highlight);
+    public void SetCanHighlight(bool can_highlight) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate(this.NativeHandle,can_highlight);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
@@ -1020,7 +1164,7 @@ private static object MoveOutedEvtKey = new object();
     /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
     /// <returns>Translation domain</returns>
     public System.String GetTranslationDomain() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_translation_domain_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1031,24 +1175,21 @@ private static object MoveOutedEvtKey = new object();
     /// 
     /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
     /// <param name="domain">Translation domain</param>
-    /// <returns></returns>
-    public void SetTranslationDomain( System.String domain) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_translation_domain_set_ptr.Value.Delegate(this.NativeHandle, domain);
+    public void SetTranslationDomain(System.String domain) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate(this.NativeHandle,domain);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get root object of accessible object hierarchy</summary>
     /// <returns>Root object</returns>
     public static Efl.Object GetAccessRoot() {
-         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_access_root_get_ptr.Value.Delegate();
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_root_get_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Handles gesture on given widget.</summary>
-    /// <param name="gesture_info"></param>
-    /// <returns></returns>
-    public bool GestureDo( Efl.Access.GestureInfo gesture_info) {
+    public bool GestureDo(Efl.Access.GestureInfo gesture_info) {
          Efl.Access.GestureInfo.NativeStruct _in_gesture_info = gesture_info;
-                        var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_gesture_do_ptr.Value.Delegate(this.NativeHandle, _in_gesture_info);
+                        var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_do_ptr.Value.Delegate(this.NativeHandle,_in_gesture_info);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1056,48 +1197,43 @@ private static object MoveOutedEvtKey = new object();
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="key">The string key to give extra information</param>
     /// <param name="value">The string value to give extra information</param>
-    /// <returns></returns>
-    public void AppendAttribute( System.String key,  System.String value) {
-                                                         Efl.Access.IObjectNativeInherit.efl_access_object_attribute_append_ptr.Value.Delegate(this.NativeHandle, key,  value);
+    public void AppendAttribute(System.String key, System.String value) {
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_append_ptr.Value.Delegate(this.NativeHandle,key, value);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>delete key-value pair identifying object extra attributes when key is given</summary>
     /// <param name="key">The string key to identify the key-value pair</param>
-    /// <returns></returns>
-    public void DelAttribute( System.String key) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_attribute_del_ptr.Value.Delegate(this.NativeHandle, key);
+    public void DelAttribute(System.String key) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_del_ptr.Value.Delegate(this.NativeHandle,key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Removes all attributes in accessible object.</summary>
-    /// <returns></returns>
     public void ClearAttributes() {
-         Efl.Access.IObjectNativeInherit.efl_access_object_attributes_clear_ptr.Value.Delegate(this.NativeHandle);
+         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Register accessibility event listener</summary>
     /// <param name="cb">Callback</param>
     /// <param name="data">Data</param>
     /// <returns>Event handler</returns>
-    public static Efl.Access.Event.Handler AddEventHandler( Efl.EventCb cb,  System.IntPtr data) {
-                                                         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_event_handler_add_ptr.Value.Delegate( cb,  data);
+    public static Efl.Access.Event.Handler AddEventHandler(Efl.EventCb cb, System.IntPtr data) {
+                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_handler_add_ptr.Value.Delegate(cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Deregister accessibility event listener</summary>
     /// <param name="handler">Event handler</param>
-    /// <returns></returns>
-    public static void DelEventHandler( Efl.Access.Event.Handler handler) {
-                                 Efl.Access.IObjectNativeInherit.efl_access_object_event_handler_del_ptr.Value.Delegate( handler);
+    public static void DelEventHandler(Efl.Access.Event.Handler handler) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_handler_del_ptr.Value.Delegate(handler);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Emit event</summary>
     /// <param name="accessible">Accessibility object.</param>
     /// <param name="kw_event">Accessibility event type.</param>
     /// <param name="event_info">Accessibility event details.</param>
-    /// <returns></returns>
-    public static void EmitEvent( Efl.Access.IObject accessible,  Efl.EventDescription kw_event,  System.IntPtr event_info) {
+    public static void EmitEvent(Efl.Access.IObject accessible, Efl.EventDescription kw_event, System.IntPtr event_info) {
                  var _in_kw_event = Eina.PrimitiveConversion.ManagedToPointerAlloc(kw_event);
-                                                                Efl.Access.IObjectNativeInherit.efl_access_object_event_emit_ptr.Value.Delegate( accessible,  _in_kw_event,  event_info);
+                                                                Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_emit_ptr.Value.Delegate(accessible, _in_kw_event, event_info);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Defines the relationship between two accessible objects.
@@ -1109,8 +1245,8 @@ private static object MoveOutedEvtKey = new object();
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to relate to</param>
     /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
-    public bool AppendRelationship( Efl.Access.RelationType type,  Efl.Access.IObject relation_object) {
-                                                         var _ret_var = Efl.Access.IObjectNativeInherit.efl_access_object_relationship_append_ptr.Value.Delegate(this.NativeHandle, type,  relation_object);
+    public bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
+                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_append_ptr.Value.Delegate(this.NativeHandle,type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -1118,26 +1254,21 @@ private static object MoveOutedEvtKey = new object();
     /// If relation_object is NULL function removes all relations of the given type.</summary>
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to remove relation from</param>
-    /// <returns></returns>
-    public void RelationshipRemove( Efl.Access.RelationType type,  Efl.Access.IObject relation_object) {
-                                                         Efl.Access.IObjectNativeInherit.efl_access_object_relationship_remove_ptr.Value.Delegate(this.NativeHandle, type,  relation_object);
+    public void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate(this.NativeHandle,type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Removes all relationships in accessible object.</summary>
-    /// <returns></returns>
     public void ClearRelationships() {
-         Efl.Access.IObjectNativeInherit.efl_access_object_relationships_clear_ptr.Value.Delegate(this.NativeHandle);
+         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Notifies accessibility clients about current state of the accessible object.
     /// Function limits information broadcast to clients to types specified by state_types_mask parameter.
     /// 
     /// if recursive parameter is set, function will traverse all accessible children and call state_notify function on them.</summary>
-    /// <param name="state_types_mask"></param>
-    /// <param name="recursive"></param>
-    /// <returns></returns>
-    public void StateNotify( Efl.Access.StateSet state_types_mask,  bool recursive) {
-                                                         Efl.Access.IObjectNativeInherit.efl_access_object_state_notify_ptr.Value.Delegate(this.NativeHandle, state_types_mask,  recursive);
+    public void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive) {
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate(this.NativeHandle,state_types_mask, recursive);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets an localized string describing accessible object role name.</summary>
@@ -1149,7 +1280,7 @@ private static object MoveOutedEvtKey = new object();
 /// <value>Accessible name</value>
     public System.String I18nName {
         get { return GetI18nName(); }
-        set { SetI18nName( value); }
+        set { SetI18nName(value); }
     }
     /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
 /// <value>Accessible relation set</value>
@@ -1160,13 +1291,13 @@ private static object MoveOutedEvtKey = new object();
 /// <value>Accessible role</value>
     public Efl.Access.Role Role {
         get { return GetRole(); }
-        set { SetRole( value); }
+        set { SetRole(value); }
     }
     /// <summary>Gets object&apos;s accessible parent.</summary>
 /// <value>Accessible parent</value>
     public Efl.Access.IObject AccessParent {
         get { return GetAccessParent(); }
-        set { SetAccessParent( value); }
+        set { SetAccessParent(value); }
     }
     /// <summary>Gets object&apos;s accessible children.</summary>
 /// <value>List of widget&apos;s children</value>
@@ -1188,7 +1319,7 @@ private static object MoveOutedEvtKey = new object();
 /// <value>Reading information types</value>
     public Efl.Access.ReadingInfoTypeMask ReadingInfoType {
         get { return GetReadingInfoType(); }
-        set { SetReadingInfoType( value); }
+        set { SetReadingInfoType(value); }
     }
     /// <summary>Gets index of the child in parent&apos;s children list.</summary>
 /// <value>Index in children list</value>
@@ -1199,7 +1330,7 @@ private static object MoveOutedEvtKey = new object();
 /// <value>Accessible contextual information</value>
     public System.String Description {
         get { return GetDescription(); }
-        set { SetDescription( value); }
+        set { SetDescription(value); }
     }
     /// <summary>Gets set describing object accessible states.</summary>
 /// <value>Accessible state set</value>
@@ -1211,7 +1342,7 @@ private static object MoveOutedEvtKey = new object();
 /// <value>If @c true, the object is highlightable.</value>
     public bool CanHighlight {
         get { return GetCanHighlight(); }
-        set { SetCanHighlight( value); }
+        set { SetCanHighlight(value); }
     }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
 /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
@@ -1222,7 +1353,7 @@ private static object MoveOutedEvtKey = new object();
 /// <value>Translation domain</value>
     public System.String TranslationDomain {
         get { return GetTranslationDomain(); }
-        set { SetTranslationDomain( value); }
+        set { SetTranslationDomain(value); }
     }
     /// <summary>Get root object of accessible object hierarchy</summary>
 /// <value>Root object</value>
@@ -1233,1034 +1364,1633 @@ private static object MoveOutedEvtKey = new object();
     {
         return Efl.Access.IObjectConcrete.efl_access_object_mixin_get();
     }
-}
-public class IObjectNativeInherit  : Efl.Eo.NativeClass{
-    public  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public class NativeMethods  : Efl.Eo.NativeClass
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        if (efl_access_object_localized_role_name_get_static_delegate == null)
-            efl_access_object_localized_role_name_get_static_delegate = new efl_access_object_localized_role_name_get_delegate(localized_role_name_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetLocalizedRoleName") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_localized_role_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_localized_role_name_get_static_delegate)});
-        if (efl_access_object_i18n_name_get_static_delegate == null)
-            efl_access_object_i18n_name_get_static_delegate = new efl_access_object_i18n_name_get_delegate(i18n_name_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetI18nName") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_i18n_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_i18n_name_get_static_delegate)});
-        if (efl_access_object_i18n_name_set_static_delegate == null)
-            efl_access_object_i18n_name_set_static_delegate = new efl_access_object_i18n_name_set_delegate(i18n_name_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetI18nName") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_i18n_name_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_i18n_name_set_static_delegate)});
-        if (efl_access_object_name_cb_set_static_delegate == null)
-            efl_access_object_name_cb_set_static_delegate = new efl_access_object_name_cb_set_delegate(name_cb_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetNameCb") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_name_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_name_cb_set_static_delegate)});
-        if (efl_access_object_relation_set_get_static_delegate == null)
-            efl_access_object_relation_set_get_static_delegate = new efl_access_object_relation_set_get_delegate(relation_set_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetRelationSet") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_relation_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relation_set_get_static_delegate)});
-        if (efl_access_object_role_get_static_delegate == null)
-            efl_access_object_role_get_static_delegate = new efl_access_object_role_get_delegate(role_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetRole") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_role_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_get_static_delegate)});
-        if (efl_access_object_role_set_static_delegate == null)
-            efl_access_object_role_set_static_delegate = new efl_access_object_role_set_delegate(role_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetRole") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_role_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_set_static_delegate)});
-        if (efl_access_object_access_parent_get_static_delegate == null)
-            efl_access_object_access_parent_get_static_delegate = new efl_access_object_access_parent_get_delegate(access_parent_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAccessParent") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_access_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_parent_get_static_delegate)});
-        if (efl_access_object_access_parent_set_static_delegate == null)
-            efl_access_object_access_parent_set_static_delegate = new efl_access_object_access_parent_set_delegate(access_parent_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetAccessParent") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_access_parent_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_parent_set_static_delegate)});
-        if (efl_access_object_description_cb_set_static_delegate == null)
-            efl_access_object_description_cb_set_static_delegate = new efl_access_object_description_cb_set_delegate(description_cb_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetDescriptionCb") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_description_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_cb_set_static_delegate)});
-        if (efl_access_object_gesture_cb_set_static_delegate == null)
-            efl_access_object_gesture_cb_set_static_delegate = new efl_access_object_gesture_cb_set_delegate(gesture_cb_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetGestureCb") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_gesture_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_cb_set_static_delegate)});
-        if (efl_access_object_access_children_get_static_delegate == null)
-            efl_access_object_access_children_get_static_delegate = new efl_access_object_access_children_get_delegate(access_children_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAccessChildren") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_access_children_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_children_get_static_delegate)});
-        if (efl_access_object_role_name_get_static_delegate == null)
-            efl_access_object_role_name_get_static_delegate = new efl_access_object_role_name_get_delegate(role_name_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetRoleName") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_role_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_name_get_static_delegate)});
-        if (efl_access_object_attributes_get_static_delegate == null)
-            efl_access_object_attributes_get_static_delegate = new efl_access_object_attributes_get_delegate(attributes_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAttributes") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_attributes_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attributes_get_static_delegate)});
-        if (efl_access_object_reading_info_type_get_static_delegate == null)
-            efl_access_object_reading_info_type_get_static_delegate = new efl_access_object_reading_info_type_get_delegate(reading_info_type_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetReadingInfoType") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_reading_info_type_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_reading_info_type_get_static_delegate)});
-        if (efl_access_object_reading_info_type_set_static_delegate == null)
-            efl_access_object_reading_info_type_set_static_delegate = new efl_access_object_reading_info_type_set_delegate(reading_info_type_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetReadingInfoType") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_reading_info_type_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_reading_info_type_set_static_delegate)});
-        if (efl_access_object_index_in_parent_get_static_delegate == null)
-            efl_access_object_index_in_parent_get_static_delegate = new efl_access_object_index_in_parent_get_delegate(index_in_parent_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetIndexInParent") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_index_in_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_index_in_parent_get_static_delegate)});
-        if (efl_access_object_description_get_static_delegate == null)
-            efl_access_object_description_get_static_delegate = new efl_access_object_description_get_delegate(description_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetDescription") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_description_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_get_static_delegate)});
-        if (efl_access_object_description_set_static_delegate == null)
-            efl_access_object_description_set_static_delegate = new efl_access_object_description_set_delegate(description_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetDescription") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_description_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_set_static_delegate)});
-        if (efl_access_object_state_set_get_static_delegate == null)
-            efl_access_object_state_set_get_static_delegate = new efl_access_object_state_set_get_delegate(state_set_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetStateSet") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_state_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_set_get_static_delegate)});
-        if (efl_access_object_can_highlight_get_static_delegate == null)
-            efl_access_object_can_highlight_get_static_delegate = new efl_access_object_can_highlight_get_delegate(can_highlight_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetCanHighlight") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_can_highlight_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_get_static_delegate)});
-        if (efl_access_object_can_highlight_set_static_delegate == null)
-            efl_access_object_can_highlight_set_static_delegate = new efl_access_object_can_highlight_set_delegate(can_highlight_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetCanHighlight") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_can_highlight_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_set_static_delegate)});
-        if (efl_access_object_translation_domain_get_static_delegate == null)
-            efl_access_object_translation_domain_get_static_delegate = new efl_access_object_translation_domain_get_delegate(translation_domain_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetTranslationDomain") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_translation_domain_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_get_static_delegate)});
-        if (efl_access_object_translation_domain_set_static_delegate == null)
-            efl_access_object_translation_domain_set_static_delegate = new efl_access_object_translation_domain_set_delegate(translation_domain_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetTranslationDomain") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_translation_domain_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_set_static_delegate)});
-        if (efl_access_object_gesture_do_static_delegate == null)
-            efl_access_object_gesture_do_static_delegate = new efl_access_object_gesture_do_delegate(gesture_do);
-        if (methods.FirstOrDefault(m => m.Name == "GestureDo") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_gesture_do"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_do_static_delegate)});
-        if (efl_access_object_attribute_append_static_delegate == null)
-            efl_access_object_attribute_append_static_delegate = new efl_access_object_attribute_append_delegate(attribute_append);
-        if (methods.FirstOrDefault(m => m.Name == "AppendAttribute") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_attribute_append"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attribute_append_static_delegate)});
-        if (efl_access_object_attribute_del_static_delegate == null)
-            efl_access_object_attribute_del_static_delegate = new efl_access_object_attribute_del_delegate(attribute_del);
-        if (methods.FirstOrDefault(m => m.Name == "DelAttribute") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_attribute_del"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attribute_del_static_delegate)});
-        if (efl_access_object_attributes_clear_static_delegate == null)
-            efl_access_object_attributes_clear_static_delegate = new efl_access_object_attributes_clear_delegate(attributes_clear);
-        if (methods.FirstOrDefault(m => m.Name == "ClearAttributes") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_attributes_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attributes_clear_static_delegate)});
-        if (efl_access_object_relationship_append_static_delegate == null)
-            efl_access_object_relationship_append_static_delegate = new efl_access_object_relationship_append_delegate(relationship_append);
-        if (methods.FirstOrDefault(m => m.Name == "AppendRelationship") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_relationship_append"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationship_append_static_delegate)});
-        if (efl_access_object_relationship_remove_static_delegate == null)
-            efl_access_object_relationship_remove_static_delegate = new efl_access_object_relationship_remove_delegate(relationship_remove);
-        if (methods.FirstOrDefault(m => m.Name == "RelationshipRemove") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_relationship_remove"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationship_remove_static_delegate)});
-        if (efl_access_object_relationships_clear_static_delegate == null)
-            efl_access_object_relationships_clear_static_delegate = new efl_access_object_relationships_clear_delegate(relationships_clear);
-        if (methods.FirstOrDefault(m => m.Name == "ClearRelationships") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_relationships_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationships_clear_static_delegate)});
-        if (efl_access_object_state_notify_static_delegate == null)
-            efl_access_object_state_notify_static_delegate = new efl_access_object_state_notify_delegate(state_notify);
-        if (methods.FirstOrDefault(m => m.Name == "StateNotify") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_access_object_state_notify"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_notify_static_delegate)});
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.Access.IObjectConcrete.efl_access_object_mixin_get();
-    }
-    public static  IntPtr GetEflClassStatic()
-    {
-        return Efl.Access.IObjectConcrete.efl_access_object_mixin_get();
-    }
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
 
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_access_object_localized_role_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_access_object_localized_role_name_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_localized_role_name_get_api_delegate> efl_access_object_localized_role_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_localized_role_name_get_api_delegate>(_Module, "efl_access_object_localized_role_name_get");
-     private static System.String localized_role_name_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_localized_role_name_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetLocalizedRoleName();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            if (efl_access_object_localized_role_name_get_static_delegate == null)
+            {
+                efl_access_object_localized_role_name_get_static_delegate = new efl_access_object_localized_role_name_get_delegate(localized_role_name_get);
             }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetLocalizedRoleName") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_localized_role_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_localized_role_name_get_static_delegate) });
+            }
+
+            if (efl_access_object_i18n_name_get_static_delegate == null)
+            {
+                efl_access_object_i18n_name_get_static_delegate = new efl_access_object_i18n_name_get_delegate(i18n_name_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetI18nName") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_i18n_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_i18n_name_get_static_delegate) });
+            }
+
+            if (efl_access_object_i18n_name_set_static_delegate == null)
+            {
+                efl_access_object_i18n_name_set_static_delegate = new efl_access_object_i18n_name_set_delegate(i18n_name_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetI18nName") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_i18n_name_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_i18n_name_set_static_delegate) });
+            }
+
+            if (efl_access_object_name_cb_set_static_delegate == null)
+            {
+                efl_access_object_name_cb_set_static_delegate = new efl_access_object_name_cb_set_delegate(name_cb_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetNameCb") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_name_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_name_cb_set_static_delegate) });
+            }
+
+            if (efl_access_object_relation_set_get_static_delegate == null)
+            {
+                efl_access_object_relation_set_get_static_delegate = new efl_access_object_relation_set_get_delegate(relation_set_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetRelationSet") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relation_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relation_set_get_static_delegate) });
+            }
+
+            if (efl_access_object_role_get_static_delegate == null)
+            {
+                efl_access_object_role_get_static_delegate = new efl_access_object_role_get_delegate(role_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetRole") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_role_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_get_static_delegate) });
+            }
+
+            if (efl_access_object_role_set_static_delegate == null)
+            {
+                efl_access_object_role_set_static_delegate = new efl_access_object_role_set_delegate(role_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetRole") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_role_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_set_static_delegate) });
+            }
+
+            if (efl_access_object_access_parent_get_static_delegate == null)
+            {
+                efl_access_object_access_parent_get_static_delegate = new efl_access_object_access_parent_get_delegate(access_parent_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAccessParent") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_access_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_parent_get_static_delegate) });
+            }
+
+            if (efl_access_object_access_parent_set_static_delegate == null)
+            {
+                efl_access_object_access_parent_set_static_delegate = new efl_access_object_access_parent_set_delegate(access_parent_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetAccessParent") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_access_parent_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_parent_set_static_delegate) });
+            }
+
+            if (efl_access_object_description_cb_set_static_delegate == null)
+            {
+                efl_access_object_description_cb_set_static_delegate = new efl_access_object_description_cb_set_delegate(description_cb_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetDescriptionCb") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_description_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_cb_set_static_delegate) });
+            }
+
+            if (efl_access_object_gesture_cb_set_static_delegate == null)
+            {
+                efl_access_object_gesture_cb_set_static_delegate = new efl_access_object_gesture_cb_set_delegate(gesture_cb_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetGestureCb") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_gesture_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_cb_set_static_delegate) });
+            }
+
+            if (efl_access_object_access_children_get_static_delegate == null)
+            {
+                efl_access_object_access_children_get_static_delegate = new efl_access_object_access_children_get_delegate(access_children_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAccessChildren") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_access_children_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_children_get_static_delegate) });
+            }
+
+            if (efl_access_object_role_name_get_static_delegate == null)
+            {
+                efl_access_object_role_name_get_static_delegate = new efl_access_object_role_name_get_delegate(role_name_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetRoleName") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_role_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_name_get_static_delegate) });
+            }
+
+            if (efl_access_object_attributes_get_static_delegate == null)
+            {
+                efl_access_object_attributes_get_static_delegate = new efl_access_object_attributes_get_delegate(attributes_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAttributes") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attributes_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attributes_get_static_delegate) });
+            }
+
+            if (efl_access_object_reading_info_type_get_static_delegate == null)
+            {
+                efl_access_object_reading_info_type_get_static_delegate = new efl_access_object_reading_info_type_get_delegate(reading_info_type_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetReadingInfoType") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_reading_info_type_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_reading_info_type_get_static_delegate) });
+            }
+
+            if (efl_access_object_reading_info_type_set_static_delegate == null)
+            {
+                efl_access_object_reading_info_type_set_static_delegate = new efl_access_object_reading_info_type_set_delegate(reading_info_type_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetReadingInfoType") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_reading_info_type_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_reading_info_type_set_static_delegate) });
+            }
+
+            if (efl_access_object_index_in_parent_get_static_delegate == null)
+            {
+                efl_access_object_index_in_parent_get_static_delegate = new efl_access_object_index_in_parent_get_delegate(index_in_parent_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetIndexInParent") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_index_in_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_index_in_parent_get_static_delegate) });
+            }
+
+            if (efl_access_object_description_get_static_delegate == null)
+            {
+                efl_access_object_description_get_static_delegate = new efl_access_object_description_get_delegate(description_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetDescription") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_description_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_get_static_delegate) });
+            }
+
+            if (efl_access_object_description_set_static_delegate == null)
+            {
+                efl_access_object_description_set_static_delegate = new efl_access_object_description_set_delegate(description_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetDescription") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_description_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_set_static_delegate) });
+            }
+
+            if (efl_access_object_state_set_get_static_delegate == null)
+            {
+                efl_access_object_state_set_get_static_delegate = new efl_access_object_state_set_get_delegate(state_set_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetStateSet") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_state_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_set_get_static_delegate) });
+            }
+
+            if (efl_access_object_can_highlight_get_static_delegate == null)
+            {
+                efl_access_object_can_highlight_get_static_delegate = new efl_access_object_can_highlight_get_delegate(can_highlight_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCanHighlight") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_get_static_delegate) });
+            }
+
+            if (efl_access_object_can_highlight_set_static_delegate == null)
+            {
+                efl_access_object_can_highlight_set_static_delegate = new efl_access_object_can_highlight_set_delegate(can_highlight_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCanHighlight") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_set_static_delegate) });
+            }
+
+            if (efl_access_object_translation_domain_get_static_delegate == null)
+            {
+                efl_access_object_translation_domain_get_static_delegate = new efl_access_object_translation_domain_get_delegate(translation_domain_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetTranslationDomain") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_translation_domain_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_get_static_delegate) });
+            }
+
+            if (efl_access_object_translation_domain_set_static_delegate == null)
+            {
+                efl_access_object_translation_domain_set_static_delegate = new efl_access_object_translation_domain_set_delegate(translation_domain_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetTranslationDomain") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_translation_domain_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_set_static_delegate) });
+            }
+
+            if (efl_access_object_gesture_do_static_delegate == null)
+            {
+                efl_access_object_gesture_do_static_delegate = new efl_access_object_gesture_do_delegate(gesture_do);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GestureDo") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_gesture_do"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_do_static_delegate) });
+            }
+
+            if (efl_access_object_attribute_append_static_delegate == null)
+            {
+                efl_access_object_attribute_append_static_delegate = new efl_access_object_attribute_append_delegate(attribute_append);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "AppendAttribute") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attribute_append"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attribute_append_static_delegate) });
+            }
+
+            if (efl_access_object_attribute_del_static_delegate == null)
+            {
+                efl_access_object_attribute_del_static_delegate = new efl_access_object_attribute_del_delegate(attribute_del);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "DelAttribute") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attribute_del"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attribute_del_static_delegate) });
+            }
+
+            if (efl_access_object_attributes_clear_static_delegate == null)
+            {
+                efl_access_object_attributes_clear_static_delegate = new efl_access_object_attributes_clear_delegate(attributes_clear);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ClearAttributes") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attributes_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attributes_clear_static_delegate) });
+            }
+
+            if (efl_access_object_relationship_append_static_delegate == null)
+            {
+                efl_access_object_relationship_append_static_delegate = new efl_access_object_relationship_append_delegate(relationship_append);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "AppendRelationship") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationship_append"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationship_append_static_delegate) });
+            }
+
+            if (efl_access_object_relationship_remove_static_delegate == null)
+            {
+                efl_access_object_relationship_remove_static_delegate = new efl_access_object_relationship_remove_delegate(relationship_remove);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "RelationshipRemove") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationship_remove"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationship_remove_static_delegate) });
+            }
+
+            if (efl_access_object_relationships_clear_static_delegate == null)
+            {
+                efl_access_object_relationships_clear_static_delegate = new efl_access_object_relationships_clear_delegate(relationships_clear);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ClearRelationships") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationships_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationships_clear_static_delegate) });
+            }
+
+            if (efl_access_object_state_notify_static_delegate == null)
+            {
+                efl_access_object_state_notify_static_delegate = new efl_access_object_state_notify_delegate(state_notify);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "StateNotify") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_state_notify"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_notify_static_delegate) });
+            }
+
+            return descs;
+        }
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.Access.IObjectConcrete.efl_access_object_mixin_get();
+        }
+
+        #pragma warning disable CA1707, SA1300, SA1600
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_access_object_localized_role_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_access_object_localized_role_name_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_localized_role_name_get_api_delegate> efl_access_object_localized_role_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_localized_role_name_get_api_delegate>(Module, "efl_access_object_localized_role_name_get");
+
+        private static System.String localized_role_name_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_localized_role_name_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetLocalizedRoleName();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_localized_role_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_localized_role_name_get_delegate efl_access_object_localized_role_name_get_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_access_object_i18n_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_access_object_i18n_name_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_get_api_delegate> efl_access_object_i18n_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_get_api_delegate>(_Module, "efl_access_object_i18n_name_get");
-     private static System.String i18n_name_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_i18n_name_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetI18nName();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_access_object_localized_role_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_localized_role_name_get_delegate efl_access_object_localized_role_name_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_access_object_i18n_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_access_object_i18n_name_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_get_api_delegate> efl_access_object_i18n_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_get_api_delegate>(Module, "efl_access_object_i18n_name_get");
+
+        private static System.String i18n_name_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_i18n_name_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetI18nName();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_i18n_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_i18n_name_get_delegate efl_access_object_i18n_name_get_static_delegate;
 
-
-     private delegate void efl_access_object_i18n_name_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String i18n_name);
-
-
-     public delegate void efl_access_object_i18n_name_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String i18n_name);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_set_api_delegate> efl_access_object_i18n_name_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_set_api_delegate>(_Module, "efl_access_object_i18n_name_set");
-     private static void i18n_name_set(System.IntPtr obj, System.IntPtr pd,  System.String i18n_name)
-    {
-        Eina.Log.Debug("function efl_access_object_i18n_name_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).SetI18nName( i18n_name);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_i18n_name_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  i18n_name);
-        }
-    }
-    private static efl_access_object_i18n_name_set_delegate efl_access_object_i18n_name_set_static_delegate;
-
-
-     private delegate void efl_access_object_name_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.ReadingInfoCb name_cb,   System.IntPtr data);
-
-
-     public delegate void efl_access_object_name_cb_set_api_delegate(System.IntPtr obj,   Efl.Access.ReadingInfoCb name_cb,   System.IntPtr data);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_name_cb_set_api_delegate> efl_access_object_name_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_name_cb_set_api_delegate>(_Module, "efl_access_object_name_cb_set");
-     private static void name_cb_set(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoCb name_cb,  System.IntPtr data)
-    {
-        Eina.Log.Debug("function efl_access_object_name_cb_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((IObjectConcrete)wrapper).SetNameCb( name_cb,  data);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_i18n_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
-                                                } else {
-            efl_access_object_name_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  name_cb,  data);
         }
-    }
-    private static efl_access_object_name_cb_set_delegate efl_access_object_name_cb_set_static_delegate;
 
+        private static efl_access_object_i18n_name_get_delegate efl_access_object_i18n_name_get_static_delegate;
 
-     private delegate Efl.Access.RelationSet efl_access_object_relation_set_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        
+        private delegate void efl_access_object_i18n_name_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String i18n_name);
 
+        
+        public delegate void efl_access_object_i18n_name_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String i18n_name);
 
-     public delegate Efl.Access.RelationSet efl_access_object_relation_set_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_relation_set_get_api_delegate> efl_access_object_relation_set_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relation_set_get_api_delegate>(_Module, "efl_access_object_relation_set_get");
-     private static Efl.Access.RelationSet relation_set_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_relation_set_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetRelationSet();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_set_api_delegate> efl_access_object_i18n_name_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_set_api_delegate>(Module, "efl_access_object_i18n_name_set");
+
+        private static void i18n_name_set(System.IntPtr obj, System.IntPtr pd, System.String i18n_name)
+        {
+            Eina.Log.Debug("function efl_access_object_i18n_name_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetI18nName(i18n_name);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
             }
+            else
+            {
+                efl_access_object_i18n_name_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), i18n_name);
+            }
+        }
+
+        private static efl_access_object_i18n_name_set_delegate efl_access_object_i18n_name_set_static_delegate;
+
+        
+        private delegate void efl_access_object_name_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoCb name_cb,  System.IntPtr data);
+
+        
+        public delegate void efl_access_object_name_cb_set_api_delegate(System.IntPtr obj,  Efl.Access.ReadingInfoCb name_cb,  System.IntPtr data);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_name_cb_set_api_delegate> efl_access_object_name_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_name_cb_set_api_delegate>(Module, "efl_access_object_name_cb_set");
+
+        private static void name_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb name_cb, System.IntPtr data)
+        {
+            Eina.Log.Debug("function efl_access_object_name_cb_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetNameCb(name_cb, data);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_access_object_name_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), name_cb, data);
+            }
+        }
+
+        private static efl_access_object_name_cb_set_delegate efl_access_object_name_cb_set_static_delegate;
+
+        
+        private delegate Efl.Access.RelationSet efl_access_object_relation_set_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Efl.Access.RelationSet efl_access_object_relation_set_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_relation_set_get_api_delegate> efl_access_object_relation_set_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relation_set_get_api_delegate>(Module, "efl_access_object_relation_set_get");
+
+        private static Efl.Access.RelationSet relation_set_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_relation_set_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetRelationSet();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_relation_set_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_relation_set_get_delegate efl_access_object_relation_set_get_static_delegate;
 
-
-     private delegate Efl.Access.Role efl_access_object_role_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate Efl.Access.Role efl_access_object_role_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_role_get_api_delegate> efl_access_object_role_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_get_api_delegate>(_Module, "efl_access_object_role_get");
-     private static Efl.Access.Role role_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_role_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Access.Role _ret_var = default(Efl.Access.Role);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetRole();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_access_object_relation_set_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_relation_set_get_delegate efl_access_object_relation_set_get_static_delegate;
+
+        
+        private delegate Efl.Access.Role efl_access_object_role_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Efl.Access.Role efl_access_object_role_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_role_get_api_delegate> efl_access_object_role_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_get_api_delegate>(Module, "efl_access_object_role_get");
+
+        private static Efl.Access.Role role_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_role_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Access.Role _ret_var = default(Efl.Access.Role);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetRole();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_role_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_role_get_delegate efl_access_object_role_get_static_delegate;
 
-
-     private delegate void efl_access_object_role_set_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.Role role);
-
-
-     public delegate void efl_access_object_role_set_api_delegate(System.IntPtr obj,   Efl.Access.Role role);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_role_set_api_delegate> efl_access_object_role_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_set_api_delegate>(_Module, "efl_access_object_role_set");
-     private static void role_set(System.IntPtr obj, System.IntPtr pd,  Efl.Access.Role role)
-    {
-        Eina.Log.Debug("function efl_access_object_role_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).SetRole( role);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_role_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  role);
-        }
-    }
-    private static efl_access_object_role_set_delegate efl_access_object_role_set_static_delegate;
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))] private delegate Efl.Access.IObject efl_access_object_access_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))] public delegate Efl.Access.IObject efl_access_object_access_parent_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_access_parent_get_api_delegate> efl_access_object_access_parent_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_parent_get_api_delegate>(_Module, "efl_access_object_access_parent_get");
-     private static Efl.Access.IObject access_parent_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_access_parent_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetAccessParent();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_role_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_access_object_role_get_delegate efl_access_object_role_get_static_delegate;
+
+        
+        private delegate void efl_access_object_role_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.Role role);
+
+        
+        public delegate void efl_access_object_role_set_api_delegate(System.IntPtr obj,  Efl.Access.Role role);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_role_set_api_delegate> efl_access_object_role_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_set_api_delegate>(Module, "efl_access_object_role_set");
+
+        private static void role_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.Role role)
+        {
+            Eina.Log.Debug("function efl_access_object_role_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetRole(role);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_access_object_role_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), role);
+            }
+        }
+
+        private static efl_access_object_role_set_delegate efl_access_object_role_set_static_delegate;
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.Access.IObject efl_access_object_access_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.Access.IObject efl_access_object_access_parent_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_access_parent_get_api_delegate> efl_access_object_access_parent_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_parent_get_api_delegate>(Module, "efl_access_object_access_parent_get");
+
+        private static Efl.Access.IObject access_parent_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_access_parent_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetAccessParent();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_access_parent_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_access_parent_get_delegate efl_access_object_access_parent_get_static_delegate;
 
-
-     private delegate void efl_access_object_access_parent_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject parent);
-
-
-     public delegate void efl_access_object_access_parent_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject parent);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_access_parent_set_api_delegate> efl_access_object_access_parent_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_parent_set_api_delegate>(_Module, "efl_access_object_access_parent_set");
-     private static void access_parent_set(System.IntPtr obj, System.IntPtr pd,  Efl.Access.IObject parent)
-    {
-        Eina.Log.Debug("function efl_access_object_access_parent_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).SetAccessParent( parent);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_access_parent_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  parent);
-        }
-    }
-    private static efl_access_object_access_parent_set_delegate efl_access_object_access_parent_set_static_delegate;
-
-
-     private delegate void efl_access_object_description_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.ReadingInfoCb description_cb,   System.IntPtr data);
-
-
-     public delegate void efl_access_object_description_cb_set_api_delegate(System.IntPtr obj,   Efl.Access.ReadingInfoCb description_cb,   System.IntPtr data);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_description_cb_set_api_delegate> efl_access_object_description_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_cb_set_api_delegate>(_Module, "efl_access_object_description_cb_set");
-     private static void description_cb_set(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoCb description_cb,  System.IntPtr data)
-    {
-        Eina.Log.Debug("function efl_access_object_description_cb_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((IObjectConcrete)wrapper).SetDescriptionCb( description_cb,  data);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_access_parent_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
-                                                } else {
-            efl_access_object_description_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  description_cb,  data);
         }
-    }
-    private static efl_access_object_description_cb_set_delegate efl_access_object_description_cb_set_static_delegate;
 
+        private static efl_access_object_access_parent_get_delegate efl_access_object_access_parent_get_static_delegate;
 
-     private delegate void efl_access_object_gesture_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.GestureCb gesture_cb,   System.IntPtr data);
+        
+        private delegate void efl_access_object_access_parent_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject parent);
 
+        
+        public delegate void efl_access_object_access_parent_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject parent);
 
-     public delegate void efl_access_object_gesture_cb_set_api_delegate(System.IntPtr obj,   Efl.Access.GestureCb gesture_cb,   System.IntPtr data);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_gesture_cb_set_api_delegate> efl_access_object_gesture_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_gesture_cb_set_api_delegate>(_Module, "efl_access_object_gesture_cb_set");
-     private static void gesture_cb_set(System.IntPtr obj, System.IntPtr pd,  Efl.Access.GestureCb gesture_cb,  System.IntPtr data)
-    {
-        Eina.Log.Debug("function efl_access_object_gesture_cb_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((IObjectConcrete)wrapper).SetGestureCb( gesture_cb,  data);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_access_object_access_parent_set_api_delegate> efl_access_object_access_parent_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_parent_set_api_delegate>(Module, "efl_access_object_access_parent_set");
+
+        private static void access_parent_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject parent)
+        {
+            Eina.Log.Debug("function efl_access_object_access_parent_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetAccessParent(parent);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
             }
-                                                } else {
-            efl_access_object_gesture_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  gesture_cb,  data);
+            else
+            {
+                efl_access_object_access_parent_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), parent);
+            }
         }
-    }
-    private static efl_access_object_gesture_cb_set_delegate efl_access_object_gesture_cb_set_static_delegate;
 
+        private static efl_access_object_access_parent_set_delegate efl_access_object_access_parent_set_static_delegate;
 
-     private delegate System.IntPtr efl_access_object_access_children_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        
+        private delegate void efl_access_object_description_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoCb description_cb,  System.IntPtr data);
 
+        
+        public delegate void efl_access_object_description_cb_set_api_delegate(System.IntPtr obj,  Efl.Access.ReadingInfoCb description_cb,  System.IntPtr data);
 
-     public delegate System.IntPtr efl_access_object_access_children_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_access_children_get_api_delegate> efl_access_object_access_children_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_children_get_api_delegate>(_Module, "efl_access_object_access_children_get");
-     private static System.IntPtr access_children_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_access_children_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetAccessChildren();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_access_object_description_cb_set_api_delegate> efl_access_object_description_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_cb_set_api_delegate>(Module, "efl_access_object_description_cb_set");
+
+        private static void description_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb description_cb, System.IntPtr data)
+        {
+            Eina.Log.Debug("function efl_access_object_description_cb_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetDescriptionCb(description_cb, data);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
             }
+            else
+            {
+                efl_access_object_description_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), description_cb, data);
+            }
+        }
+
+        private static efl_access_object_description_cb_set_delegate efl_access_object_description_cb_set_static_delegate;
+
+        
+        private delegate void efl_access_object_gesture_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.GestureCb gesture_cb,  System.IntPtr data);
+
+        
+        public delegate void efl_access_object_gesture_cb_set_api_delegate(System.IntPtr obj,  Efl.Access.GestureCb gesture_cb,  System.IntPtr data);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_gesture_cb_set_api_delegate> efl_access_object_gesture_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_gesture_cb_set_api_delegate>(Module, "efl_access_object_gesture_cb_set");
+
+        private static void gesture_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureCb gesture_cb, System.IntPtr data)
+        {
+            Eina.Log.Debug("function efl_access_object_gesture_cb_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetGestureCb(gesture_cb, data);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_access_object_gesture_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), gesture_cb, data);
+            }
+        }
+
+        private static efl_access_object_gesture_cb_set_delegate efl_access_object_gesture_cb_set_static_delegate;
+
+        
+        private delegate System.IntPtr efl_access_object_access_children_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_access_object_access_children_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_access_children_get_api_delegate> efl_access_object_access_children_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_children_get_api_delegate>(Module, "efl_access_object_access_children_get");
+
+        private static System.IntPtr access_children_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_access_children_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetAccessChildren();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         _ret_var.Own = false; return _ret_var.Handle;
-        } else {
-            return efl_access_object_access_children_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_access_children_get_delegate efl_access_object_access_children_get_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_access_object_role_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_access_object_role_name_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_role_name_get_api_delegate> efl_access_object_role_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_name_get_api_delegate>(_Module, "efl_access_object_role_name_get");
-     private static System.String role_name_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_role_name_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetRoleName();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_access_object_access_children_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_access_children_get_delegate efl_access_object_access_children_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_access_object_role_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_access_object_role_name_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_role_name_get_api_delegate> efl_access_object_role_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_name_get_api_delegate>(Module, "efl_access_object_role_name_get");
+
+        private static System.String role_name_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_role_name_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetRoleName();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_role_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_role_name_get_delegate efl_access_object_role_name_get_static_delegate;
 
-
-     private delegate System.IntPtr efl_access_object_attributes_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate System.IntPtr efl_access_object_attributes_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_attributes_get_api_delegate> efl_access_object_attributes_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attributes_get_api_delegate>(_Module, "efl_access_object_attributes_get");
-     private static System.IntPtr attributes_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_attributes_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetAttributes();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_access_object_role_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_role_name_get_delegate efl_access_object_role_name_get_static_delegate;
+
+        
+        private delegate System.IntPtr efl_access_object_attributes_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_access_object_attributes_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_attributes_get_api_delegate> efl_access_object_attributes_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attributes_get_api_delegate>(Module, "efl_access_object_attributes_get");
+
+        private static System.IntPtr attributes_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_attributes_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetAttributes();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         _ret_var.Own = false; _ret_var.OwnContent = false; return _ret_var.Handle;
-        } else {
-            return efl_access_object_attributes_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_attributes_get_delegate efl_access_object_attributes_get_static_delegate;
 
-
-     private delegate Efl.Access.ReadingInfoTypeMask efl_access_object_reading_info_type_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate Efl.Access.ReadingInfoTypeMask efl_access_object_reading_info_type_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_get_api_delegate> efl_access_object_reading_info_type_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_get_api_delegate>(_Module, "efl_access_object_reading_info_type_get");
-     private static Efl.Access.ReadingInfoTypeMask reading_info_type_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_reading_info_type_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetReadingInfoType();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_access_object_attributes_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_attributes_get_delegate efl_access_object_attributes_get_static_delegate;
+
+        
+        private delegate Efl.Access.ReadingInfoTypeMask efl_access_object_reading_info_type_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Efl.Access.ReadingInfoTypeMask efl_access_object_reading_info_type_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_get_api_delegate> efl_access_object_reading_info_type_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_get_api_delegate>(Module, "efl_access_object_reading_info_type_get");
+
+        private static Efl.Access.ReadingInfoTypeMask reading_info_type_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_reading_info_type_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetReadingInfoType();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_reading_info_type_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_reading_info_type_get_delegate efl_access_object_reading_info_type_get_static_delegate;
 
-
-     private delegate void efl_access_object_reading_info_type_set_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.ReadingInfoTypeMask reading_info);
-
-
-     public delegate void efl_access_object_reading_info_type_set_api_delegate(System.IntPtr obj,   Efl.Access.ReadingInfoTypeMask reading_info);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_set_api_delegate> efl_access_object_reading_info_type_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_set_api_delegate>(_Module, "efl_access_object_reading_info_type_set");
-     private static void reading_info_type_set(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoTypeMask reading_info)
-    {
-        Eina.Log.Debug("function efl_access_object_reading_info_type_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).SetReadingInfoType( reading_info);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_reading_info_type_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  reading_info);
-        }
-    }
-    private static efl_access_object_reading_info_type_set_delegate efl_access_object_reading_info_type_set_static_delegate;
-
-
-     private delegate int efl_access_object_index_in_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate int efl_access_object_index_in_parent_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_index_in_parent_get_api_delegate> efl_access_object_index_in_parent_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_index_in_parent_get_api_delegate>(_Module, "efl_access_object_index_in_parent_get");
-     private static int index_in_parent_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_index_in_parent_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        int _ret_var = default(int);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetIndexInParent();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_reading_info_type_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_access_object_reading_info_type_get_delegate efl_access_object_reading_info_type_get_static_delegate;
+
+        
+        private delegate void efl_access_object_reading_info_type_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoTypeMask reading_info);
+
+        
+        public delegate void efl_access_object_reading_info_type_set_api_delegate(System.IntPtr obj,  Efl.Access.ReadingInfoTypeMask reading_info);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_set_api_delegate> efl_access_object_reading_info_type_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_set_api_delegate>(Module, "efl_access_object_reading_info_type_set");
+
+        private static void reading_info_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoTypeMask reading_info)
+        {
+            Eina.Log.Debug("function efl_access_object_reading_info_type_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetReadingInfoType(reading_info);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_access_object_reading_info_type_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), reading_info);
+            }
+        }
+
+        private static efl_access_object_reading_info_type_set_delegate efl_access_object_reading_info_type_set_static_delegate;
+
+        
+        private delegate int efl_access_object_index_in_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate int efl_access_object_index_in_parent_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_index_in_parent_get_api_delegate> efl_access_object_index_in_parent_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_index_in_parent_get_api_delegate>(Module, "efl_access_object_index_in_parent_get");
+
+        private static int index_in_parent_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_index_in_parent_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            int _ret_var = default(int);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetIndexInParent();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_index_in_parent_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_index_in_parent_get_delegate efl_access_object_index_in_parent_get_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_access_object_description_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_access_object_description_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_description_get_api_delegate> efl_access_object_description_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_get_api_delegate>(_Module, "efl_access_object_description_get");
-     private static System.String description_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_description_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetDescription();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_access_object_index_in_parent_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_index_in_parent_get_delegate efl_access_object_index_in_parent_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_access_object_description_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_access_object_description_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_description_get_api_delegate> efl_access_object_description_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_get_api_delegate>(Module, "efl_access_object_description_get");
+
+        private static System.String description_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_description_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetDescription();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_description_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_description_get_delegate efl_access_object_description_get_static_delegate;
 
-
-     private delegate void efl_access_object_description_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String description);
-
-
-     public delegate void efl_access_object_description_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String description);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_description_set_api_delegate> efl_access_object_description_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_set_api_delegate>(_Module, "efl_access_object_description_set");
-     private static void description_set(System.IntPtr obj, System.IntPtr pd,  System.String description)
-    {
-        Eina.Log.Debug("function efl_access_object_description_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).SetDescription( description);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_description_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  description);
-        }
-    }
-    private static efl_access_object_description_set_delegate efl_access_object_description_set_static_delegate;
-
-
-     private delegate Efl.Access.StateSet efl_access_object_state_set_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate Efl.Access.StateSet efl_access_object_state_set_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_state_set_get_api_delegate> efl_access_object_state_set_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_state_set_get_api_delegate>(_Module, "efl_access_object_state_set_get");
-     private static Efl.Access.StateSet state_set_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_state_set_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetStateSet();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_description_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_access_object_description_get_delegate efl_access_object_description_get_static_delegate;
+
+        
+        private delegate void efl_access_object_description_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String description);
+
+        
+        public delegate void efl_access_object_description_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String description);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_description_set_api_delegate> efl_access_object_description_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_set_api_delegate>(Module, "efl_access_object_description_set");
+
+        private static void description_set(System.IntPtr obj, System.IntPtr pd, System.String description)
+        {
+            Eina.Log.Debug("function efl_access_object_description_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetDescription(description);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_access_object_description_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), description);
+            }
+        }
+
+        private static efl_access_object_description_set_delegate efl_access_object_description_set_static_delegate;
+
+        
+        private delegate Efl.Access.StateSet efl_access_object_state_set_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Efl.Access.StateSet efl_access_object_state_set_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_state_set_get_api_delegate> efl_access_object_state_set_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_state_set_get_api_delegate>(Module, "efl_access_object_state_set_get");
+
+        private static Efl.Access.StateSet state_set_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_state_set_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetStateSet();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_state_set_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_state_set_get_delegate efl_access_object_state_set_get_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_access_object_can_highlight_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_access_object_can_highlight_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate> efl_access_object_can_highlight_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate>(_Module, "efl_access_object_can_highlight_get");
-     private static bool can_highlight_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_can_highlight_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        bool _ret_var = default(bool);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetCanHighlight();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_access_object_state_set_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_state_set_get_delegate efl_access_object_state_set_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_access_object_can_highlight_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_access_object_can_highlight_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate> efl_access_object_can_highlight_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate>(Module, "efl_access_object_can_highlight_get");
+
+        private static bool can_highlight_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_can_highlight_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetCanHighlight();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_can_highlight_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_can_highlight_get_delegate efl_access_object_can_highlight_get_static_delegate;
 
-
-     private delegate void efl_access_object_can_highlight_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.U1)]  bool can_highlight);
-
-
-     public delegate void efl_access_object_can_highlight_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.U1)]  bool can_highlight);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate> efl_access_object_can_highlight_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate>(_Module, "efl_access_object_can_highlight_set");
-     private static void can_highlight_set(System.IntPtr obj, System.IntPtr pd,  bool can_highlight)
-    {
-        Eina.Log.Debug("function efl_access_object_can_highlight_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).SetCanHighlight( can_highlight);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_can_highlight_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  can_highlight);
-        }
-    }
-    private static efl_access_object_can_highlight_set_delegate efl_access_object_can_highlight_set_static_delegate;
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_access_object_translation_domain_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_access_object_translation_domain_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_get_api_delegate> efl_access_object_translation_domain_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_get_api_delegate>(_Module, "efl_access_object_translation_domain_get");
-     private static System.String translation_domain_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_translation_domain_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GetTranslationDomain();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_can_highlight_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_access_object_can_highlight_get_delegate efl_access_object_can_highlight_get_static_delegate;
+
+        
+        private delegate void efl_access_object_can_highlight_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool can_highlight);
+
+        
+        public delegate void efl_access_object_can_highlight_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool can_highlight);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate> efl_access_object_can_highlight_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate>(Module, "efl_access_object_can_highlight_set");
+
+        private static void can_highlight_set(System.IntPtr obj, System.IntPtr pd, bool can_highlight)
+        {
+            Eina.Log.Debug("function efl_access_object_can_highlight_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetCanHighlight(can_highlight);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_access_object_can_highlight_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), can_highlight);
+            }
+        }
+
+        private static efl_access_object_can_highlight_set_delegate efl_access_object_can_highlight_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_access_object_translation_domain_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_access_object_translation_domain_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_get_api_delegate> efl_access_object_translation_domain_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_get_api_delegate>(Module, "efl_access_object_translation_domain_get");
+
+        private static System.String translation_domain_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_translation_domain_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GetTranslationDomain();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_translation_domain_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_access_object_translation_domain_get_delegate efl_access_object_translation_domain_get_static_delegate;
 
-
-     private delegate void efl_access_object_translation_domain_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String domain);
-
-
-     public delegate void efl_access_object_translation_domain_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String domain);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_set_api_delegate> efl_access_object_translation_domain_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_set_api_delegate>(_Module, "efl_access_object_translation_domain_set");
-     private static void translation_domain_set(System.IntPtr obj, System.IntPtr pd,  System.String domain)
-    {
-        Eina.Log.Debug("function efl_access_object_translation_domain_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).SetTranslationDomain( domain);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_translation_domain_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  domain);
-        }
-    }
-    private static efl_access_object_translation_domain_set_delegate efl_access_object_translation_domain_set_static_delegate;
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Object, Efl.Eo.NonOwnTag>))] private delegate Efl.Object efl_access_object_access_root_get_delegate();
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Object, Efl.Eo.NonOwnTag>))] public delegate Efl.Object efl_access_object_access_root_get_api_delegate();
-     public static Efl.Eo.FunctionWrapper<efl_access_object_access_root_get_api_delegate> efl_access_object_access_root_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_root_get_api_delegate>(_Module, "efl_access_object_access_root_get");
-     private static Efl.Object access_root_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_access_root_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Object _ret_var = default(Efl.Object);
-            try {
-                _ret_var = IObjectConcrete.GetAccessRoot();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_translation_domain_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_access_object_translation_domain_get_delegate efl_access_object_translation_domain_get_static_delegate;
+
+        
+        private delegate void efl_access_object_translation_domain_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String domain);
+
+        
+        public delegate void efl_access_object_translation_domain_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String domain);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_set_api_delegate> efl_access_object_translation_domain_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_set_api_delegate>(Module, "efl_access_object_translation_domain_set");
+
+        private static void translation_domain_set(System.IntPtr obj, System.IntPtr pd, System.String domain)
+        {
+            Eina.Log.Debug("function efl_access_object_translation_domain_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).SetTranslationDomain(domain);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_access_object_translation_domain_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), domain);
+            }
+        }
+
+        private static efl_access_object_translation_domain_set_delegate efl_access_object_translation_domain_set_static_delegate;
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.Object efl_access_object_access_root_get_delegate();
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.Object efl_access_object_access_root_get_api_delegate();
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_access_root_get_api_delegate> efl_access_object_access_root_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_root_get_api_delegate>(Module, "efl_access_object_access_root_get");
+
+        private static Efl.Object access_root_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_access_root_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Object _ret_var = default(Efl.Object);
+                try
+                {
+                    _ret_var = IObjectConcrete.GetAccessRoot();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_access_object_access_root_get_ptr.Value.Delegate();
+
+            }
+            else
+            {
+                return efl_access_object_access_root_get_ptr.Value.Delegate();
+            }
         }
-    }
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_access_object_gesture_do_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.GestureInfo.NativeStruct gesture_info);
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_access_object_gesture_do_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.GestureInfo.NativeStruct gesture_info);
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_access_object_gesture_do_api_delegate(System.IntPtr obj,  Efl.Access.GestureInfo.NativeStruct gesture_info);
 
+        public static Efl.Eo.FunctionWrapper<efl_access_object_gesture_do_api_delegate> efl_access_object_gesture_do_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_gesture_do_api_delegate>(Module, "efl_access_object_gesture_do");
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_access_object_gesture_do_api_delegate(System.IntPtr obj,   Efl.Access.GestureInfo.NativeStruct gesture_info);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_gesture_do_api_delegate> efl_access_object_gesture_do_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_gesture_do_api_delegate>(_Module, "efl_access_object_gesture_do");
-     private static bool gesture_do(System.IntPtr obj, System.IntPtr pd,  Efl.Access.GestureInfo.NativeStruct gesture_info)
-    {
-        Eina.Log.Debug("function efl_access_object_gesture_do was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                    Efl.Access.GestureInfo _in_gesture_info = gesture_info;
+        private static bool gesture_do(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureInfo.NativeStruct gesture_info)
+        {
+            Eina.Log.Debug("function efl_access_object_gesture_do was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+        Efl.Access.GestureInfo _in_gesture_info = gesture_info;
                             bool _ret_var = default(bool);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).GestureDo( _in_gesture_info);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).GestureDo(_in_gesture_info);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         return _ret_var;
-        } else {
-            return efl_access_object_gesture_do_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  gesture_info);
-        }
-    }
-    private static efl_access_object_gesture_do_delegate efl_access_object_gesture_do_static_delegate;
 
-
-     private delegate void efl_access_object_attribute_append_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String value);
-
-
-     public delegate void efl_access_object_attribute_append_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String value);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_attribute_append_api_delegate> efl_access_object_attribute_append_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attribute_append_api_delegate>(_Module, "efl_access_object_attribute_append");
-     private static void attribute_append(System.IntPtr obj, System.IntPtr pd,  System.String key,  System.String value)
-    {
-        Eina.Log.Debug("function efl_access_object_attribute_append was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((IObjectConcrete)wrapper).AppendAttribute( key,  value);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                                } else {
-            efl_access_object_attribute_append_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key,  value);
-        }
-    }
-    private static efl_access_object_attribute_append_delegate efl_access_object_attribute_append_static_delegate;
-
-
-     private delegate void efl_access_object_attribute_del_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key);
-
-
-     public delegate void efl_access_object_attribute_del_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_attribute_del_api_delegate> efl_access_object_attribute_del_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attribute_del_api_delegate>(_Module, "efl_access_object_attribute_del");
-     private static void attribute_del(System.IntPtr obj, System.IntPtr pd,  System.String key)
-    {
-        Eina.Log.Debug("function efl_access_object_attribute_del was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((IObjectConcrete)wrapper).DelAttribute( key);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_gesture_do_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), gesture_info);
             }
-                                } else {
-            efl_access_object_attribute_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key);
         }
-    }
-    private static efl_access_object_attribute_del_delegate efl_access_object_attribute_del_static_delegate;
 
+        private static efl_access_object_gesture_do_delegate efl_access_object_gesture_do_static_delegate;
 
-     private delegate void efl_access_object_attributes_clear_delegate(System.IntPtr obj, System.IntPtr pd);
+        
+        private delegate void efl_access_object_attribute_append_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
 
+        
+        public delegate void efl_access_object_attribute_append_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
 
-     public delegate void efl_access_object_attributes_clear_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_attributes_clear_api_delegate> efl_access_object_attributes_clear_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attributes_clear_api_delegate>(_Module, "efl_access_object_attributes_clear");
-     private static void attributes_clear(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_attributes_clear was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
+        public static Efl.Eo.FunctionWrapper<efl_access_object_attribute_append_api_delegate> efl_access_object_attribute_append_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attribute_append_api_delegate>(Module, "efl_access_object_attribute_append");
+
+        private static void attribute_append(System.IntPtr obj, System.IntPtr pd, System.String key, System.String value)
+        {
+            Eina.Log.Debug("function efl_access_object_attribute_append was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((IObjectConcrete)wrapper).AppendAttribute(key, value);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_access_object_attribute_append_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, value);
+            }
+        }
+
+        private static efl_access_object_attribute_append_delegate efl_access_object_attribute_append_static_delegate;
+
+        
+        private delegate void efl_access_object_attribute_del_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
+
+        
+        public delegate void efl_access_object_attribute_del_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_attribute_del_api_delegate> efl_access_object_attribute_del_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attribute_del_api_delegate>(Module, "efl_access_object_attribute_del");
+
+        private static void attribute_del(System.IntPtr obj, System.IntPtr pd, System.String key)
+        {
+            Eina.Log.Debug("function efl_access_object_attribute_del was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((IObjectConcrete)wrapper).DelAttribute(key);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         
-            try {
-                ((IObjectConcrete)wrapper).ClearAttributes();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                } else {
-            efl_access_object_attributes_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            else
+            {
+                efl_access_object_attribute_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key);
+            }
         }
-    }
-    private static efl_access_object_attributes_clear_delegate efl_access_object_attributes_clear_static_delegate;
 
+        private static efl_access_object_attribute_del_delegate efl_access_object_attribute_del_static_delegate;
 
-     private delegate Efl.Access.Event.Handler efl_access_object_event_handler_add_delegate(  Efl.EventCb cb,   System.IntPtr data);
+        
+        private delegate void efl_access_object_attributes_clear_delegate(System.IntPtr obj, System.IntPtr pd);
 
+        
+        public delegate void efl_access_object_attributes_clear_api_delegate(System.IntPtr obj);
 
-     public delegate Efl.Access.Event.Handler efl_access_object_event_handler_add_api_delegate(  Efl.EventCb cb,   System.IntPtr data);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_event_handler_add_api_delegate> efl_access_object_event_handler_add_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_handler_add_api_delegate>(_Module, "efl_access_object_event_handler_add");
-     private static Efl.Access.Event.Handler event_handler_add(System.IntPtr obj, System.IntPtr pd,  Efl.EventCb cb,  System.IntPtr data)
-    {
-        Eina.Log.Debug("function efl_access_object_event_handler_add was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        Efl.Access.Event.Handler _ret_var = default(Efl.Access.Event.Handler);
-            try {
-                _ret_var = IObjectConcrete.AddEventHandler( cb,  data);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_access_object_attributes_clear_api_delegate> efl_access_object_attributes_clear_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attributes_clear_api_delegate>(Module, "efl_access_object_attributes_clear");
+
+        private static void attributes_clear(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_attributes_clear was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            
+                try
+                {
+                    ((IObjectConcrete)wrapper).ClearAttributes();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        
             }
+            else
+            {
+                efl_access_object_attributes_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_attributes_clear_delegate efl_access_object_attributes_clear_static_delegate;
+
+        
+        private delegate Efl.Access.Event.Handler efl_access_object_event_handler_add_delegate( Efl.EventCb cb,  System.IntPtr data);
+
+        
+        public delegate Efl.Access.Event.Handler efl_access_object_event_handler_add_api_delegate( Efl.EventCb cb,  System.IntPtr data);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_event_handler_add_api_delegate> efl_access_object_event_handler_add_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_handler_add_api_delegate>(Module, "efl_access_object_event_handler_add");
+
+        private static Efl.Access.Event.Handler event_handler_add(System.IntPtr obj, System.IntPtr pd, Efl.EventCb cb, System.IntPtr data)
+        {
+            Eina.Log.Debug("function efl_access_object_event_handler_add was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            Efl.Access.Event.Handler _ret_var = default(Efl.Access.Event.Handler);
+                try
+                {
+                    _ret_var = IObjectConcrete.AddEventHandler(cb, data);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                                         return _ret_var;
-        } else {
-            return efl_access_object_event_handler_add_ptr.Value.Delegate( cb,  data);
-        }
-    }
 
-
-     private delegate void efl_access_object_event_handler_del_delegate(  Efl.Access.Event.Handler handler);
-
-
-     public delegate void efl_access_object_event_handler_del_api_delegate(  Efl.Access.Event.Handler handler);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_event_handler_del_api_delegate> efl_access_object_event_handler_del_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_handler_del_api_delegate>(_Module, "efl_access_object_event_handler_del");
-     private static void event_handler_del(System.IntPtr obj, System.IntPtr pd,  Efl.Access.Event.Handler handler)
-    {
-        Eina.Log.Debug("function efl_access_object_event_handler_del was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                IObjectConcrete.DelEventHandler( handler);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_access_object_event_handler_del_ptr.Value.Delegate( handler);
+            else
+            {
+                return efl_access_object_event_handler_add_ptr.Value.Delegate(cb, data);
+            }
         }
-    }
 
+        
+        private delegate void efl_access_object_event_handler_del_delegate( Efl.Access.Event.Handler handler);
 
-     private delegate void efl_access_object_event_emit_delegate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject accessible,   System.IntPtr kw_event,   System.IntPtr event_info);
+        
+        public delegate void efl_access_object_event_handler_del_api_delegate( Efl.Access.Event.Handler handler);
 
+        public static Efl.Eo.FunctionWrapper<efl_access_object_event_handler_del_api_delegate> efl_access_object_event_handler_del_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_handler_del_api_delegate>(Module, "efl_access_object_event_handler_del");
 
-     public delegate void efl_access_object_event_emit_api_delegate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject accessible,   System.IntPtr kw_event,   System.IntPtr event_info);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_event_emit_api_delegate> efl_access_object_event_emit_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_emit_api_delegate>(_Module, "efl_access_object_event_emit");
-     private static void event_emit(System.IntPtr obj, System.IntPtr pd,  Efl.Access.IObject accessible,  System.IntPtr kw_event,  System.IntPtr event_info)
-    {
-        Eina.Log.Debug("function efl_access_object_event_emit was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                            var _in_kw_event = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(kw_event);
+        private static void event_handler_del(System.IntPtr obj, System.IntPtr pd, Efl.Access.Event.Handler handler)
+        {
+            Eina.Log.Debug("function efl_access_object_event_handler_del was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    IObjectConcrete.DelEventHandler(handler);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_access_object_event_handler_del_ptr.Value.Delegate(handler);
+            }
+        }
+
+        
+        private delegate void efl_access_object_event_emit_delegate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject accessible,  System.IntPtr kw_event,  System.IntPtr event_info);
+
+        
+        public delegate void efl_access_object_event_emit_api_delegate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject accessible,  System.IntPtr kw_event,  System.IntPtr event_info);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_event_emit_api_delegate> efl_access_object_event_emit_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_emit_api_delegate>(Module, "efl_access_object_event_emit");
+
+        private static void event_emit(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject accessible, System.IntPtr kw_event, System.IntPtr event_info)
+        {
+            Eina.Log.Debug("function efl_access_object_event_emit was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                var _in_kw_event = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(kw_event);
                                                                     
-            try {
-                IObjectConcrete.EmitEvent( accessible,  _in_kw_event,  event_info);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                try
+                {
+                    IObjectConcrete.EmitEvent(accessible, _in_kw_event, event_info);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                                        
             }
-                                                                } else {
-            efl_access_object_event_emit_ptr.Value.Delegate( accessible,  kw_event,  event_info);
+            else
+            {
+                efl_access_object_event_emit_ptr.Value.Delegate(accessible, kw_event, event_info);
+            }
         }
-    }
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_access_object_relationship_append_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_access_object_relationship_append_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject relation_object);
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_access_object_relationship_append_api_delegate(System.IntPtr obj,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
 
+        public static Efl.Eo.FunctionWrapper<efl_access_object_relationship_append_api_delegate> efl_access_object_relationship_append_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationship_append_api_delegate>(Module, "efl_access_object_relationship_append");
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_access_object_relationship_append_api_delegate(System.IntPtr obj,   Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject relation_object);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_relationship_append_api_delegate> efl_access_object_relationship_append_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationship_append_api_delegate>(_Module, "efl_access_object_relationship_append");
-     private static bool relationship_append(System.IntPtr obj, System.IntPtr pd,  Efl.Access.RelationType type,  Efl.Access.IObject relation_object)
-    {
-        Eina.Log.Debug("function efl_access_object_relationship_append was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        bool _ret_var = default(bool);
-            try {
-                _ret_var = ((IObjectConcrete)wrapper).AppendRelationship( type,  relation_object);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+        private static bool relationship_append(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
+        {
+            Eina.Log.Debug("function efl_access_object_relationship_append was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((IObjectConcrete)wrapper).AppendRelationship(type, relation_object);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                                         return _ret_var;
-        } else {
-            return efl_access_object_relationship_append_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  type,  relation_object);
-        }
-    }
-    private static efl_access_object_relationship_append_delegate efl_access_object_relationship_append_static_delegate;
 
-
-     private delegate void efl_access_object_relationship_remove_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject relation_object);
-
-
-     public delegate void efl_access_object_relationship_remove_api_delegate(System.IntPtr obj,   Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Access.IObjectConcrete, Efl.Eo.NonOwnTag>))]  Efl.Access.IObject relation_object);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_relationship_remove_api_delegate> efl_access_object_relationship_remove_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationship_remove_api_delegate>(_Module, "efl_access_object_relationship_remove");
-     private static void relationship_remove(System.IntPtr obj, System.IntPtr pd,  Efl.Access.RelationType type,  Efl.Access.IObject relation_object)
-    {
-        Eina.Log.Debug("function efl_access_object_relationship_remove was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((IObjectConcrete)wrapper).RelationshipRemove( type,  relation_object);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                                } else {
-            efl_access_object_relationship_remove_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  type,  relation_object);
-        }
-    }
-    private static efl_access_object_relationship_remove_delegate efl_access_object_relationship_remove_static_delegate;
-
-
-     private delegate void efl_access_object_relationships_clear_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate void efl_access_object_relationships_clear_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_relationships_clear_api_delegate> efl_access_object_relationships_clear_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationships_clear_api_delegate>(_Module, "efl_access_object_relationships_clear");
-     private static void relationships_clear(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_access_object_relationships_clear was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        
-            try {
-                ((IObjectConcrete)wrapper).ClearRelationships();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_access_object_relationship_append_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, relation_object);
             }
-                } else {
-            efl_access_object_relationships_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
         }
-    }
-    private static efl_access_object_relationships_clear_delegate efl_access_object_relationships_clear_static_delegate;
 
+        private static efl_access_object_relationship_append_delegate efl_access_object_relationship_append_static_delegate;
 
-     private delegate void efl_access_object_state_notify_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Access.StateSet state_types_mask,  [MarshalAs(UnmanagedType.U1)]  bool recursive);
+        
+        private delegate void efl_access_object_relationship_remove_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
 
+        
+        public delegate void efl_access_object_relationship_remove_api_delegate(System.IntPtr obj,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
 
-     public delegate void efl_access_object_state_notify_api_delegate(System.IntPtr obj,   Efl.Access.StateSet state_types_mask,  [MarshalAs(UnmanagedType.U1)]  bool recursive);
-     public static Efl.Eo.FunctionWrapper<efl_access_object_state_notify_api_delegate> efl_access_object_state_notify_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_state_notify_api_delegate>(_Module, "efl_access_object_state_notify");
-     private static void state_notify(System.IntPtr obj, System.IntPtr pd,  Efl.Access.StateSet state_types_mask,  bool recursive)
-    {
-        Eina.Log.Debug("function efl_access_object_state_notify was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((IObjectConcrete)wrapper).StateNotify( state_types_mask,  recursive);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_access_object_relationship_remove_api_delegate> efl_access_object_relationship_remove_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationship_remove_api_delegate>(Module, "efl_access_object_relationship_remove");
+
+        private static void relationship_remove(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
+        {
+            Eina.Log.Debug("function efl_access_object_relationship_remove was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((IObjectConcrete)wrapper).RelationshipRemove(type, relation_object);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
             }
-                                                } else {
-            efl_access_object_state_notify_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  state_types_mask,  recursive);
+            else
+            {
+                efl_access_object_relationship_remove_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, relation_object);
+            }
         }
-    }
-    private static efl_access_object_state_notify_delegate efl_access_object_state_notify_static_delegate;
+
+        private static efl_access_object_relationship_remove_delegate efl_access_object_relationship_remove_static_delegate;
+
+        
+        private delegate void efl_access_object_relationships_clear_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate void efl_access_object_relationships_clear_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_relationships_clear_api_delegate> efl_access_object_relationships_clear_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationships_clear_api_delegate>(Module, "efl_access_object_relationships_clear");
+
+        private static void relationships_clear(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_relationships_clear was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            
+                try
+                {
+                    ((IObjectConcrete)wrapper).ClearRelationships();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        
+            }
+            else
+            {
+                efl_access_object_relationships_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_relationships_clear_delegate efl_access_object_relationships_clear_static_delegate;
+
+        
+        private delegate void efl_access_object_state_notify_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.StateSet state_types_mask, [MarshalAs(UnmanagedType.U1)] bool recursive);
+
+        
+        public delegate void efl_access_object_state_notify_api_delegate(System.IntPtr obj,  Efl.Access.StateSet state_types_mask, [MarshalAs(UnmanagedType.U1)] bool recursive);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_state_notify_api_delegate> efl_access_object_state_notify_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_state_notify_api_delegate>(Module, "efl_access_object_state_notify");
+
+        private static void state_notify(System.IntPtr obj, System.IntPtr pd, Efl.Access.StateSet state_types_mask, bool recursive)
+        {
+            Eina.Log.Debug("function efl_access_object_state_notify was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((IObjectConcrete)wrapper).StateNotify(state_types_mask, recursive);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_access_object_state_notify_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), state_types_mask, recursive);
+            }
+        }
+
+        private static efl_access_object_state_notify_delegate efl_access_object_state_notify_static_delegate;
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} } 
-namespace Efl { namespace Access { 
+}
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Type of accessibility object</summary>
 public enum Type
 {
@@ -2271,8 +3001,15 @@ Disabled = 1,
 /// <summary>skip object in accessibility hierarchy</summary>
 Skipped = 2,
 }
-} } 
-namespace Efl { namespace Access { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Describes the role of an object visible to Accessibility Clients.</summary>
 public enum Role
 {
@@ -2485,8 +3222,15 @@ InfoBar = 102,
 /// <summary>Last enum entry sentinel</summary>
 LastDefined = 103,
 }
-} } 
-namespace Efl { namespace Access { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Describes the possible states for an object visible to accessibility clients.</summary>
 public enum StateType
 {
@@ -2585,8 +3329,15 @@ Highlightable = 45,
 /// <summary>Last enum entry sentinel</summary>
 LastDefined = 46,
 }
-} } 
-namespace Efl { namespace Access { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Describes the relationship between two objects.</summary>
 public enum RelationType
 {
@@ -2631,8 +3382,19 @@ DescribedBy = 18,
 /// <summary>Last enum entry sentinel</summary>
 LastDefined = 19,
 }
-} } 
-namespace Efl { namespace Access { namespace Reading { namespace Info { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
+namespace Reading {
+
+namespace Info {
+
 /// <summary>The accessible Reading information type that can be read.</summary>
 public enum Type
 {
@@ -2645,100 +3407,85 @@ Description = 4,
 /// <summary>State should be read.</summary>
 State = 8,
 }
-} } } } 
-namespace Efl { namespace Access { 
-/// <summary></summary>
+
+}
+
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 public enum Gesture
 {
-/// <summary></summary>
 OneFingerHover = 0,
-/// <summary></summary>
 TwoFingersHover = 1,
-/// <summary></summary>
 ThreeFingersHover = 2,
-/// <summary></summary>
 OneFingerFlickLeft = 3,
-/// <summary></summary>
 OneFingerFlickRight = 4,
-/// <summary></summary>
 OneFingerFlickUp = 5,
-/// <summary></summary>
 OneFingerFlickDown = 6,
-/// <summary></summary>
 TwoFingersFlickLeft = 7,
-/// <summary></summary>
 TwoFingersFlickRight = 8,
-/// <summary></summary>
 TwoFingersFlickUp = 9,
-/// <summary></summary>
 TwoFingersFlickDown = 10,
-/// <summary></summary>
 ThreeFingersFlickLeft = 11,
-/// <summary></summary>
 ThreeFingersFlickRight = 12,
-/// <summary></summary>
 ThreeFingersFlickUp = 13,
-/// <summary></summary>
 ThreeFingersFlickDown = 14,
-/// <summary></summary>
 OneFingerSingleTap = 15,
-/// <summary></summary>
 OneFingerDoubleTap = 16,
-/// <summary></summary>
 OneFingerTripleTap = 17,
-/// <summary></summary>
 TwoFingersSingleTap = 18,
-/// <summary></summary>
 TwoFingersDoubleTap = 19,
-/// <summary></summary>
 TwoFingersTripleTap = 20,
-/// <summary></summary>
 ThreeFingersSingleTap = 21,
-/// <summary></summary>
 ThreeFingersDoubleTap = 22,
-/// <summary></summary>
 ThreeFingersTripleTap = 23,
-/// <summary></summary>
 OneFingerFlickLeftReturn = 24,
-/// <summary></summary>
 OneFingerFlickRightReturn = 25,
-/// <summary></summary>
 OneFingerFlickUpReturn = 26,
-/// <summary></summary>
 OneFingerFlickDownReturn = 27,
-/// <summary></summary>
 TwoFingersFlickLeftReturn = 28,
-/// <summary></summary>
 TwoFingersFlickRightReturn = 29,
-/// <summary></summary>
 TwoFingersFlickUpReturn = 30,
-/// <summary></summary>
 TwoFingersFlickDownReturn = 31,
-/// <summary></summary>
 ThreeFingersFlickLeftReturn = 32,
-/// <summary></summary>
 ThreeFingersFlickRightReturn = 33,
-/// <summary></summary>
 ThreeFingersFlickUpReturn = 34,
-/// <summary></summary>
 ThreeFingersFlickDownReturn = 35,
 }
-} } 
-namespace Efl { namespace Access { 
-/// <summary></summary>
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 public enum GestureState
 {
-/// <summary></summary>
 Start = 0,
-/// <summary></summary>
 Move = 1,
-/// <summary></summary>
 End = 2,
-/// <summary></summary>
 Abort = 3,
 }
-} } 
-namespace Efl { namespace Access { namespace Event { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
+namespace Event {
+
 /// <summary>Accessibility event listener</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Handler
@@ -2774,8 +3521,20 @@ public struct Handler
 
 }
 
-} } } 
-namespace Efl { namespace Access { namespace Event { namespace StateChanged { 
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
+namespace Event {
+
+namespace StateChanged {
+
 /// <summary>Accessibility state changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Data
@@ -2786,8 +3545,8 @@ public struct Data
     public bool New_value;
     ///<summary>Constructor for Data.</summary>
     public Data(
-        Efl.Access.StateType Type=default(Efl.Access.StateType),
-        bool New_value=default(bool)    )
+        Efl.Access.StateType Type = default(Efl.Access.StateType),
+        bool New_value = default(bool)    )
     {
         this.Type = Type;
         this.New_value = New_value;
@@ -2829,8 +3588,22 @@ public struct Data
 
 }
 
-} } } } 
-namespace Efl { namespace Access { namespace Event { namespace GeometryChanged { 
+}
+
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
+namespace Event {
+
+namespace GeometryChanged {
+
 /// <summary>Accessibility geometry changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Data
@@ -2845,10 +3618,10 @@ public struct Data
     public int Height;
     ///<summary>Constructor for Data.</summary>
     public Data(
-        int X=default(int),
-        int Y=default(int),
-        int Width=default(int),
-        int Height=default(int)    )
+        int X = default(int),
+        int Y = default(int),
+        int Width = default(int),
+        int Height = default(int)    )
     {
         this.X = X;
         this.Y = Y;
@@ -2900,8 +3673,22 @@ public struct Data
 
 }
 
-} } } } 
-namespace Efl { namespace Access { namespace Event { namespace ChildrenChanged { 
+}
+
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
+namespace Event {
+
+namespace ChildrenChanged {
+
 /// <summary>Accessibility children changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Data
@@ -2912,8 +3699,8 @@ public struct Data
     public Efl.Object Child;
     ///<summary>Constructor for Data.</summary>
     public Data(
-        bool Is_added=default(bool),
-        Efl.Object Child=default(Efl.Object)    )
+        bool Is_added = default(bool),
+        Efl.Object Child = default(Efl.Object)    )
     {
         this.Is_added = Is_added;
         this.Child = Child;
@@ -2956,8 +3743,18 @@ public struct Data
 
 }
 
-} } } } 
-namespace Efl { namespace Access { 
+}
+
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Accessibility Attribute</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Attribute
@@ -2968,8 +3765,8 @@ public struct Attribute
     public System.String Value;
     ///<summary>Constructor for Attribute.</summary>
     public Attribute(
-        System.String Key=default(System.String),
-        System.String Value=default(System.String)    )
+        System.String Key = default(System.String),
+        System.String Value = default(System.String)    )
     {
         this.Key = Key;
         this.Value = Value;
@@ -3011,8 +3808,14 @@ public struct Attribute
 
 }
 
-} } 
-namespace Efl { namespace Access { 
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Accessibility Relation</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Relation
@@ -3023,8 +3826,8 @@ public struct Relation
     public Eina.List<Efl.Object> Objects;
     ///<summary>Constructor for Relation.</summary>
     public Relation(
-        Efl.Access.RelationType Type=default(Efl.Access.RelationType),
-        Eina.List<Efl.Object> Objects=default(Eina.List<Efl.Object>)    )
+        Efl.Access.RelationType Type = default(Efl.Access.RelationType),
+        Eina.List<Efl.Object> Objects = default(Eina.List<Efl.Object>)    )
     {
         this.Type = Type;
         this.Objects = Objects;
@@ -3066,9 +3869,14 @@ public struct Relation
 
 }
 
-} } 
-namespace Efl { namespace Access { 
-/// <summary></summary>
+}
+
+}
+
+namespace Efl {
+
+namespace Access {
+
 [StructLayout(LayoutKind.Sequential)]
 public struct GestureInfo
 {
@@ -3088,13 +3896,13 @@ public struct GestureInfo
     public uint Event_time;
     ///<summary>Constructor for GestureInfo.</summary>
     public GestureInfo(
-        Efl.Access.Gesture Type=default(Efl.Access.Gesture),
-        int X_beg=default(int),
-        int Y_beg=default(int),
-        int X_end=default(int),
-        int Y_end=default(int),
-        Efl.Access.GestureState State=default(Efl.Access.GestureState),
-        uint Event_time=default(uint)    )
+        Efl.Access.Gesture Type = default(Efl.Access.Gesture),
+        int X_beg = default(int),
+        int Y_beg = default(int),
+        int X_end = default(int),
+        int Y_end = default(int),
+        Efl.Access.GestureState State = default(Efl.Access.GestureState),
+        uint Event_time = default(uint)    )
     {
         this.Type = Type;
         this.X_beg = X_beg;
@@ -3161,4 +3969,7 @@ public struct GestureInfo
 
 }
 
-} } 
+}
+
+}
+

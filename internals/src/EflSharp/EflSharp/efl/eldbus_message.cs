@@ -230,7 +230,14 @@ public class Message : IDisposable
 
         if (Own)
         {
-            eldbus_message_unref(h);
+            if (disposing)
+            {
+                eldbus_message_unref(h);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eldbus_message_unref, h);
+            }
         }
     }
 

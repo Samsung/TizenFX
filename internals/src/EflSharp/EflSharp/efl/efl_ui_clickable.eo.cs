@@ -3,10 +3,14 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Ui { 
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Efl UI clickable interface</summary>
-[IClickableNativeInherit]
+[Efl.Ui.IClickableConcrete.NativeMethods]
 public interface IClickable : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -54,507 +58,633 @@ IClickable
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (IClickableConcrete))
-                return Efl.Ui.IClickableNativeInherit.GetEflClassStatic();
+    public System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(IClickableConcrete))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
-    private EventHandlerList eventHandlers = new EventHandlerList();
+
+    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
+    private readonly object eventLock = new object();
     private  System.IntPtr handle;
     ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle {
+    public System.IntPtr NativeHandle
+    {
         get { return handle; }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_ui_clickable_interface_get();
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <summary>Initializes a new instance of the <see cref="IClickable"/> class.
+    /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     private IClickableConcrete(System.IntPtr raw)
     {
         handle = raw;
-        RegisterEventProxies();
     }
     ///<summary>Destructor.</summary>
     ~IClickableConcrete()
     {
         Dispose(false);
     }
+
     ///<summary>Releases the underlying native instance.</summary>
-    void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
-        if (handle != System.IntPtr.Zero) {
-            Efl.Eo.Globals.efl_unref(handle);
-            handle = System.IntPtr.Zero;
+        if (handle != System.IntPtr.Zero)
+        {
+            IntPtr h = handle;
+            handle = IntPtr.Zero;
+
+            IntPtr gcHandlePtr = IntPtr.Zero;
+            if (eoEvents.Count != 0)
+            {
+                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
+                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
+            }
+
+            if (disposing)
+            {
+                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
+            }
+            else
+            {
+                Monitor.Enter(Efl.All.InitLock);
+                if (Efl.All.MainLoopInitialized)
+                {
+                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
+                }
+
+                Monitor.Exit(Efl.All.InitLock);
+            }
         }
+
     }
+
     ///<summary>Releases the underlying native instance.</summary>
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
     {
-        var other = obj as Efl.Object;
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-    private readonly object eventLock = new object();
-    private Dictionary<string, int> event_cb_count = new Dictionary<string, int>();
+
     ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
     ///<param name="lib">The name of the native library definining the event.</param>
     ///<param name="key">The name of the native event.</param>
-    ///<param name="evt_delegate">The delegate to be called on event raising.</param>
-    ///<returns>True if the delegate was successfully registered.</returns>
-    private bool AddNativeEventHandler(string lib, string key, Efl.EventCb evt_delegate) {
-        int event_count = 0;
-        if (!event_cb_count.TryGetValue(key, out event_count))
-            event_cb_count[key] = event_count;
-        if (event_count == 0) {
-            IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-            if (desc == IntPtr.Zero) {
-                Eina.Log.Error($"Failed to get native event {key}");
-                return false;
-            }
-             bool result = Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evt_delegate, System.IntPtr.Zero);
-            if (!result) {
-                Eina.Log.Error($"Failed to add event proxy for event {key}");
-                return false;
-            }
-            Eina.Error.RaiseIfUnhandledException();
-        } 
-        event_cb_count[key]++;
-        return true;
+    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
+    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
+    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
+    {
+        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+        }
+
+        if (eoEvents.ContainsKey((desc, evtDelegate)))
+        {
+            Eina.Log.Warning($"Event proxy for event {key} already registered!");
+            return;
+        }
+
+        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
+        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
+        {
+            Eina.Log.Error($"Failed to add event proxy for event {key}");
+            return;
+        }
+
+        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
+        Eina.Error.RaiseIfUnhandledException();
     }
+
     ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
+    ///<param name="lib">The name of the native library definining the event.</param>
     ///<param name="key">The name of the native event.</param>
-    ///<param name="evt_delegate">The delegate to be removed.</param>
-    ///<returns>True if the delegate was successfully registered.</returns>
-    private bool RemoveNativeEventHandler(string key, Efl.EventCb evt_delegate) {
-        int event_count = 0;
-        if (!event_cb_count.TryGetValue(key, out event_count))
-            event_cb_count[key] = event_count;
-        if (event_count == 1) {
-            IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-            if (desc == IntPtr.Zero) {
-                Eina.Log.Error($"Failed to get native event {key}");
-                return false;
-            }
-            bool result = Efl.Eo.Globals.efl_event_callback_del(handle, desc, evt_delegate, System.IntPtr.Zero);
-            if (!result) {
+    ///<param name="evtDelegate">The delegate to be removed.</param>
+    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
+    {
+        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        var evtPair = (desc, evtDelegate);
+        if (eoEvents.TryGetValue(evtPair, out var caller))
+        {
+            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
+            {
                 Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return false;
+                return;
             }
+
+            eoEvents.Remove(evtPair);
             Eina.Error.RaiseIfUnhandledException();
-        } else if (event_count == 0) {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when there is nothing registered.");
-            return false;
-        } 
-        event_cb_count[key]--;
-        return true;
+        }
+        else
+        {
+            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
+        }
     }
-private static object ClickedEvtKey = new object();
+
     /// <summary>Called when object is clicked</summary>
     public event EventHandler ClickedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedEvt.</summary>
-    public void On_ClickedEvt(EventArgs e)
+    public void OnClickedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ClickedEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedEvt_delegate;
-    private void on_ClickedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ClickedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ClickedDoubleEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when object receives a double click</summary>
     public event EventHandler ClickedDoubleEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedDoubleEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedDoubleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedDoubleEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedDoubleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedDoubleEvt.</summary>
-    public void On_ClickedDoubleEvt(EventArgs e)
+    public void OnClickedDoubleEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ClickedDoubleEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedDoubleEvt_delegate;
-    private void on_ClickedDoubleEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ClickedDoubleEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ClickedTripleEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when object receives a triple click</summary>
     public event EventHandler ClickedTripleEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedTripleEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedTripleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedTripleEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedTripleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedTripleEvt.</summary>
-    public void On_ClickedTripleEvt(EventArgs e)
+    public void OnClickedTripleEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ClickedTripleEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedTripleEvt_delegate;
-    private void on_ClickedTripleEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ClickedTripleEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ClickedRightEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when object receives a right click</summary>
     public event EventHandler<Efl.Ui.IClickableClickedRightEvt_Args> ClickedRightEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickableClickedRightEvt_Args args = new Efl.Ui.IClickableClickedRightEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedRightEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedRightEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedRightEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedRightEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedRightEvt.</summary>
-    public void On_ClickedRightEvt(Efl.Ui.IClickableClickedRightEvt_Args e)
+    public void OnClickedRightEvt(Efl.Ui.IClickableClickedRightEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickableClickedRightEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickableClickedRightEvt_Args>)eventHandlers[ClickedRightEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED_RIGHT";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedRightEvt_delegate;
-    private void on_ClickedRightEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickableClickedRightEvt_Args args = new Efl.Ui.IClickableClickedRightEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_ClickedRightEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object PressedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object is pressed</summary>
     public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_PRESSED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_PressedEvt_delegate)) {
-                    eventHandlers.AddHandler(PressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_PRESSED";
-                if (RemoveNativeEventHandler(key, this.evt_PressedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(PressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event PressedEvt.</summary>
-    public void On_PressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
+    public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickablePressedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickablePressedEvt_Args>)eventHandlers[PressedEvtKey];
+        var key = "_EFL_UI_EVENT_PRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_PressedEvt_delegate;
-    private void on_PressedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_PressedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object UnpressedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object is no longer pressed</summary>
     public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_UNPRESSED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_UnpressedEvt_delegate)) {
-                    eventHandlers.AddHandler(UnpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_UNPRESSED";
-                if (RemoveNativeEventHandler(key, this.evt_UnpressedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(UnpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event UnpressedEvt.</summary>
-    public void On_UnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
+    public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickableUnpressedEvt_Args>)eventHandlers[UnpressedEvtKey];
+        var key = "_EFL_UI_EVENT_UNPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_UnpressedEvt_delegate;
-    private void on_UnpressedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_UnpressedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object LongpressedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object receives a long press</summary>
     public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_LongpressedEvt_delegate)) {
-                    eventHandlers.AddHandler(LongpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
-                if (RemoveNativeEventHandler(key, this.evt_LongpressedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(LongpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event LongpressedEvt.</summary>
-    public void On_LongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
+    public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickableLongpressedEvt_Args>)eventHandlers[LongpressedEvtKey];
+        var key = "_EFL_UI_EVENT_LONGPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_LongpressedEvt_delegate;
-    private void on_LongpressedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_LongpressedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object RepeatedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object receives repeated presses/clicks</summary>
     public event EventHandler RepeatedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_REPEATED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_RepeatedEvt_delegate)) {
-                    eventHandlers.AddHandler(RepeatedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_REPEATED";
-                if (RemoveNativeEventHandler(key, this.evt_RepeatedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(RepeatedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event RepeatedEvt.</summary>
-    public void On_RepeatedEvt(EventArgs e)
+    public void OnRepeatedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[RepeatedEvtKey];
+        var key = "_EFL_UI_EVENT_REPEATED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_RepeatedEvt_delegate;
-    private void on_RepeatedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_RepeatedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-     void RegisterEventProxies()
-    {
-        evt_ClickedEvt_delegate = new Efl.EventCb(on_ClickedEvt_NativeCallback);
-        evt_ClickedDoubleEvt_delegate = new Efl.EventCb(on_ClickedDoubleEvt_NativeCallback);
-        evt_ClickedTripleEvt_delegate = new Efl.EventCb(on_ClickedTripleEvt_NativeCallback);
-        evt_ClickedRightEvt_delegate = new Efl.EventCb(on_ClickedRightEvt_NativeCallback);
-        evt_PressedEvt_delegate = new Efl.EventCb(on_PressedEvt_NativeCallback);
-        evt_UnpressedEvt_delegate = new Efl.EventCb(on_UnpressedEvt_NativeCallback);
-        evt_LongpressedEvt_delegate = new Efl.EventCb(on_LongpressedEvt_NativeCallback);
-        evt_RepeatedEvt_delegate = new Efl.EventCb(on_RepeatedEvt_NativeCallback);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.IClickableConcrete.efl_ui_clickable_interface_get();
     }
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public class NativeMethods  : Efl.Eo.NativeClass
+    {
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            return descs;
+        }
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.Ui.IClickableConcrete.efl_ui_clickable_interface_get();
+        }
+
+        #pragma warning disable CA1707, SA1300, SA1600
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-public class IClickableNativeInherit  : Efl.Eo.NativeClass{
-    public  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
-    {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.Ui.IClickableConcrete.efl_ui_clickable_interface_get();
-    }
-    public static  IntPtr GetEflClassStatic()
-    {
-        return Efl.Ui.IClickableConcrete.efl_ui_clickable_interface_get();
-    }
 }
-} } 
+}
+
+}
+

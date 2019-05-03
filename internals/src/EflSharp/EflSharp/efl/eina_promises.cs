@@ -28,6 +28,9 @@ static internal class PromiseNativeMethods
     [DllImport(efl.Libs.Eina)]
     internal static extern void eina_promise_reject(IntPtr scheduler, Eina.Error reason);
 
+    [DllImport(efl.Libs.CustomExports)]
+    internal static extern void efl_mono_thread_safe_promise_reject(IntPtr scheduler, Eina.Error reason);
+
     [DllImport(efl.Libs.Eina)]
     internal static extern IntPtr eina_future_new(IntPtr promise);
 
@@ -148,7 +151,14 @@ public class Promise : IDisposable
     {
         if (Handle != IntPtr.Zero)
         {
-            eina_promise_reject(Handle, Eina.Error.ECANCELED);
+            if (disposing)
+            {
+                eina_promise_reject(Handle, Eina.Error.ECANCELED);
+            }
+            else
+            {
+                efl_mono_thread_safe_promise_reject(Handle, Eina.Error.ECANCELED);
+            }
             Handle = IntPtr.Zero;
         }
     }
