@@ -17,6 +17,8 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace Tizen.NUI
@@ -79,9 +81,8 @@ namespace Tizen.NUI
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
 
             RegistryCurrentThreadCheck();
-
-            WeakReference removeTarget;
-            if (Instance._controlMap.TryRemove(refCptr, out removeTarget) != true)
+            WeakReference refe;
+            if (Instance._controlMap.TryRemove(refCptr, out refe) != true)
             {
                 NUILog.Debug("something wrong when removing refCptr!");
             }
@@ -100,7 +101,7 @@ namespace Tizen.NUI
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(IntPtr cPtr)
         {
-            IntPtr refObjectPtr = NDalicPINVOKE.GetRefObjectPtr(cPtr);
+            IntPtr refObjectPtr = Interop.RefObject.GetRefObjectPtr(cPtr);
 
             // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
             return GetManagedBaseHandleFromRefObject(refObjectPtr);
@@ -154,10 +155,11 @@ namespace Tizen.NUI
 
         private static void RegistryCurrentThreadCheck()
         {
+            
             if (savedApplicationThread == null)
             {
                 Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process\n");
-                return;
+                throw new global::System.ApplicationException("Error! maybe main thread is created by other process");
             }
             int currentId = Thread.CurrentThread.ManagedThreadId;
             int mainThreadId = savedApplicationThread.ManagedThreadId;

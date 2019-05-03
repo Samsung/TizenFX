@@ -24,12 +24,12 @@ namespace Tizen.NUI
     /// [Draft] A MeasureSpecification is used during the Measure pass by a LayoutGroup to inform it's children how to be measured.
     /// For instance, it may measure a child with an exact width and an unspecified height in order to determine height for width.
     /// </summary>
-    internal class MeasureSpecification
+    internal struct MeasureSpecification
     {
         /// <summary>
         /// MeasureSpecification Size value.
         /// </summary>
-        public LayoutLengthEx Size;
+        public LayoutLength Size;
 
         /// <summary>
         /// MeasureSpecification Mode.
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="size">size value.</param>
         /// <param name="mode">mode vaue.</param>
-        public MeasureSpecification(LayoutLengthEx size, MeasureSpecification.ModeType mode)
+        public MeasureSpecification(LayoutLength size, MeasureSpecification.ModeType mode)
         {
             Size = size;
             Mode = mode;
