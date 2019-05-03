@@ -50,8 +50,10 @@ namespace Tizen.Network.Stc
     internal class StcManagerImpl
     {
         private static StcManagerImpl _instance;
-        private Interop.Stc.StatsInfoCallback _getStatsCb;
-        private Interop.Stc.GetAllStatsFinishedCallback _getAllStatsCb;
+        private Dictionary<IntPtr, Interop.Stc.StatsInfoCallback> _getStatsCb_map = new Dictionary<IntPtr, Interop.Stc.StatsInfoCallback>();
+        private Dictionary<IntPtr, Interop.Stc.GetAllStatsFinishedCallback> _getAllStatsCb_map = new Dictionary<IntPtr, Interop.Stc.GetAllStatsFinishedCallback>();
+        private int _requestId = 0;
+        private int _requestAllId = 0;
 
         private StcManagerImpl()
         {
@@ -102,28 +104,38 @@ namespace Tizen.Network.Stc
             }
 
             TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
+            IntPtr id;
 
-            _getStatsCb = (int result, Interop.Stc.SafeStatsHandle info, IntPtr userData) =>
+            lock (_getStatsCb_map)
             {
-                if(result != (int)StcError.None)
+                id = (IntPtr)_requestId++;
+                _getStatsCb_map[id] = (int result, Interop.Stc.SafeStatsHandle info, IntPtr key) =>
                 {
-                    Log.Error(Globals.LogTag, "GetStats failed, Error - " + (StcError)result);
-                    task.SetException(new InvalidOperationException("Error occurs during GetStats(), " + (StcError)result));
-                }
+                    if(result != (int)StcError.None)
+                    {
+                        Log.Error(Globals.LogTag, "GetStats failed, Error - " + (StcError)result);
+                        task.SetException(new InvalidOperationException("Error occurs during GetStats(), " + (StcError)result));
+                    }
 
-                Interop.Stc.SafeStatsHandle cloned;
-                int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
-                if (retValue != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
-                    task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
-                }
+                    Interop.Stc.SafeStatsHandle cloned;
+                    int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
+                    if (retValue != (int)StcError.None)
+                    {
+                        Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
+                        task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
+                    }
 
-                task.SetResult(new NetworkStatistics(cloned));
-                return CallbackRet.Continue;
-            };
+                    task.SetResult(new NetworkStatistics(cloned));
+                    lock (_getStatsCb_map)
+                    {
+                        _getStatsCb_map.Remove(key);
+                    }
 
-            int ret = Interop.Stc.GetStats(GetSafeHandle(), rule._ruleHandle, _getStatsCb, IntPtr.Zero);
+                    return CallbackRet.Continue;
+                };
+            }
+
+            int ret = Interop.Stc.GetStats(GetSafeHandle(), rule._ruleHandle, _getStatsCb_map[id], id);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
@@ -141,48 +153,57 @@ namespace Tizen.Network.Stc
             }
 
             TaskCompletionSource<IEnumerable<NetworkStatistics>> task = new TaskCompletionSource<IEnumerable<NetworkStatistics>>();
+            IntPtr id;
 
-            _getAllStatsCb = (int result, IntPtr infoList, IntPtr userData) =>
+            lock (_getAllStatsCb_map)
             {
-                if(result != (int)StcError.None)
+                id = (IntPtr)_requestAllId++;
+                _getAllStatsCb_map[id] = (int result, IntPtr infoList, IntPtr key) =>
                 {
-                    Log.Error(Globals.LogTag, "GetAllStats failed, Error - " + (StcError)result);
-                    task.SetException(new InvalidOperationException("Error occurs during GetAllStats(), " + (StcError)result));
-                }
-
-                List<NetworkStatistics> statsList = new List<NetworkStatistics>();
-
-                Interop.Stc.StatsInfoCallback foreachAllStatsCb = (int resultTemp, Interop.Stc.SafeStatsHandle info, IntPtr userDataTemp) =>
-                {
-                    if(resultTemp != (int)StcError.None)
+                    if(result != (int)StcError.None)
                     {
-                        Log.Error(Globals.LogTag, "ForeachAllStats failed, Error - " + (StcError)resultTemp);
-                        task.SetException(new InvalidOperationException("Error occurs during ForeachAllStats(), " + (StcError)resultTemp));
+                        Log.Error(Globals.LogTag, "GetAllStats failed, Error - " + (StcError)result);
+                        task.SetException(new InvalidOperationException("Error occurs during GetAllStats(), " + (StcError)result));
                     }
 
-                    Interop.Stc.SafeStatsHandle cloned;
-                    int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
-                    if (retValue != (int)StcError.None)
+                    List<NetworkStatistics> statsList = new List<NetworkStatistics>();
+
+                    Interop.Stc.StatsInfoCallback foreachAllStatsCb = (int resultTemp, Interop.Stc.SafeStatsHandle info, IntPtr userDataTemp) =>
                     {
-                        Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
-                        task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
+                        if(resultTemp != (int)StcError.None)
+                        {
+                            Log.Error(Globals.LogTag, "ForeachAllStats failed, Error - " + (StcError)resultTemp);
+                            task.SetException(new InvalidOperationException("Error occurs during ForeachAllStats(), " + (StcError)resultTemp));
+                        }
+
+                        Interop.Stc.SafeStatsHandle cloned;
+                        int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
+                        if (retValue != (int)StcError.None)
+                        {
+                            Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
+                            task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
+                        }
+
+                        statsList.Add(new NetworkStatistics(cloned));
+                        return CallbackRet.Continue;
+                    };
+
+                    int retTemp = Interop.Stc.ForeachAllStats(infoList, foreachAllStatsCb, IntPtr.Zero);
+                    if(retTemp != (int)StcError.None)
+                    {
+                        Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
+                        StcErrorFactory.ThrowStcException(retTemp);
                     }
 
-                    statsList.Add(new NetworkStatistics(cloned));
-                    return CallbackRet.Continue;
+                    task.SetResult(statsList);
+                    lock (_getAllStatsCb_map)
+                    {
+                        _getAllStatsCb_map.Remove(key);
+                    }
                 };
+            }
 
-                int retTemp = Interop.Stc.ForeachAllStats(infoList, foreachAllStatsCb, IntPtr.Zero);
-                if(retTemp != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
-                    StcErrorFactory.ThrowStcException(retTemp);
-                }
-
-                task.SetResult(statsList);
-            };
-
-            int ret = Interop.Stc.GetAllStats(GetSafeHandle(), rule._ruleHandle, _getAllStatsCb, IntPtr.Zero);
+            int ret = Interop.Stc.GetAllStats(GetSafeHandle(), rule._ruleHandle, _getAllStatsCb_map[id], id);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
