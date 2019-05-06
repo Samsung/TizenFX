@@ -216,7 +216,7 @@ namespace Tizen.Network.Stc
                 {
                     throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
                 }
-                int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, (NativeNetworkInterface)(value == null ? NativeNetworkInterface.Unknown : value));
+                int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, (value == null ? NativeNetworkInterface.Unknown : (NativeNetworkInterface)value));
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set Interface type, Error - " + (StcError)ret);
@@ -258,7 +258,7 @@ namespace Tizen.Network.Stc
                 {
                     throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
                 }
-                int ret = Interop.Stc.Rule.SetTimePeriod(_ruleHandle, (NativeTimePeriodType)(value == null ? NativeTimePeriodType.Unknown : value));
+                int ret = Interop.Stc.Rule.SetTimePeriod(_ruleHandle, (value == null ? NativeTimePeriodType.Unknown : (NativeTimePeriodType)value));
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set Time period, Error - " + (StcError)ret);
