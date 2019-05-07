@@ -45,6 +45,8 @@ public static class ListNativeFunctions
         eina_list_move_list(ref IntPtr to, ref IntPtr from, IntPtr data);
     [DllImport(efl.Libs.Eina)] public static extern IntPtr
         eina_list_free(IntPtr list);
+    [DllImport(efl.Libs.CustomExports)] public static extern void
+        efl_mono_thread_safe_eina_list_free(IntPtr list);
     [DllImport(efl.Libs.Eina)] public static extern IntPtr
         eina_list_nth(IntPtr list, uint n);
     [DllImport(efl.Libs.Eina)] public static extern IntPtr
@@ -190,7 +192,14 @@ public class List<T> : IEnumerable<T>, IDisposable
 
         if (Own)
         {
-            eina_list_free(h);
+            if (disposing)
+            {
+                eina_list_free(h);
+            }
+            else
+            {
+                efl_mono_thread_safe_eina_list_free(h);
+            }
         }
     }
 

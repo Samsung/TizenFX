@@ -3,8 +3,10 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { 
+namespace Efl {
+
 /// <summary>This type is a alias for struct tm. It is intended to be a standard way to reference it in .eo files.
 /// (Since EFL 1.18)</summary>
 [StructLayout(LayoutKind.Sequential)]
@@ -30,15 +32,15 @@ public struct Time
     public int Tm_isdst;
     ///<summary>Constructor for Time.</summary>
     public Time(
-        int Tm_sec=default(int),
-        int Tm_min=default(int),
-        int Tm_hour=default(int),
-        int Tm_mday=default(int),
-        int Tm_mon=default(int),
-        int Tm_year=default(int),
-        int Tm_wday=default(int),
-        int Tm_yday=default(int),
-        int Tm_isdst=default(int)    )
+        int Tm_sec = default(int),
+        int Tm_min = default(int),
+        int Tm_hour = default(int),
+        int Tm_mday = default(int),
+        int Tm_mon = default(int),
+        int Tm_year = default(int),
+        int Tm_wday = default(int),
+        int Tm_yday = default(int),
+        int Tm_isdst = default(int)    )
     {
         this.Tm_sec = Tm_sec;
         this.Tm_min = Tm_min;
@@ -115,8 +117,10 @@ public struct Time
 
 }
 
-} 
-namespace Efl { 
+}
+
+namespace Efl {
+
 /// <summary>This type describes the version of EFL with an optional variant.
 /// This may be used to query the current running version of EFL. Or it can be passed by applications at startup time to inform EFL of the version a certain application was built for.
 /// (Since EFL 1.18)</summary>
@@ -137,12 +141,12 @@ public struct Version
     public System.String Build_id;
     ///<summary>Constructor for Version.</summary>
     public Version(
-        int Major=default(int),
-        int Minor=default(int),
-        int Micro=default(int),
-        int Revision=default(int),
-        System.String Flavor=default(System.String),
-        System.String Build_id=default(System.String)    )
+        int Major = default(int),
+        int Minor = default(int),
+        int Micro = default(int),
+        int Revision = default(int),
+        System.String Flavor = default(System.String),
+        System.String Build_id = default(System.String)    )
     {
         this.Major = Major;
         this.Minor = Minor;
@@ -204,4 +208,5 @@ public struct Version
 
 }
 
-} 
+}
+

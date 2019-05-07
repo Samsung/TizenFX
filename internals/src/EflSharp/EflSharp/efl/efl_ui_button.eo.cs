@@ -3,498 +3,604 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Ui { 
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Push-button widget
 /// Press it and run some function. It can contain a simple label and icon object and it also has an autorepeat feature.</summary>
-[ButtonNativeInherit]
+[Efl.Ui.Button.NativeMethods]
 public class Button : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.IText,Efl.Ui.IAutorepeat,Efl.Ui.IClickable
 {
     ///<summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (Button))
-                return Efl.Ui.ButtonNativeInherit.GetEflClassStatic();
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(Button))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_button_class_get();
-    ///<summary>Creates a new instance.</summary>
-    ///<param name="parent">Parent instance.</param>
-    ///<param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <summary>Initializes a new instance of the <see cref="Button"/> class.</summary>
+    /// <param name="parent">Parent instance.</param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
     public Button(Efl.Object parent
-            , System.String style = null) :
-        base(efl_ui_button_class_get(), typeof(Button), parent)
+            , System.String style = null) : base(efl_ui_button_class_get(), typeof(Button), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
+        {
             SetStyle(Efl.Eo.Globals.GetParamHelper(style));
+        }
+
         FinishInstantiation();
     }
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+
+    /// <summary>Initializes a new instance of the <see cref="Button"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="raw">The native pointer to be wrapped.</param>
     protected Button(System.IntPtr raw) : base(raw)
     {
-                RegisterEventProxies();
-    }
-    ///<summary>Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
-    protected Button(IntPtr base_klass, System.Type managed_type, Efl.Object parent) : base(base_klass, managed_type, parent) {}
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+            }
+
+    /// <summary>Initializes a new instance of the <see cref="Button"/> class.
+    /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
+    /// <param name="baseKlass">The pointer to the base native Eo class.</param>
+    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
+    /// <param name="parent">The Efl.Object parent of this instance.</param>
+    protected Button(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-        var other = obj as Efl.Object;
+    }
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
+    {
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-private static object ContentChangedEvtKey = new object();
+
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ContentChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(ContentChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_ContentChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ContentChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ContentChangedEvt.</summary>
-    public void On_ContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
+    public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
-        EventHandler<Efl.IContentContentChangedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.IContentContentChangedEvt_Args>)eventHandlers[ContentChangedEvtKey];
+        var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ContentChangedEvt_delegate;
-    private void on_ContentChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
-        try {
-            On_ContentChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ClickedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when object is clicked</summary>
     public event EventHandler ClickedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedEvt.</summary>
-    public void On_ClickedEvt(EventArgs e)
+    public void OnClickedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ClickedEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedEvt_delegate;
-    private void on_ClickedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ClickedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ClickedDoubleEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when object receives a double click</summary>
     public event EventHandler ClickedDoubleEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedDoubleEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedDoubleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedDoubleEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedDoubleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedDoubleEvt.</summary>
-    public void On_ClickedDoubleEvt(EventArgs e)
+    public void OnClickedDoubleEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ClickedDoubleEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedDoubleEvt_delegate;
-    private void on_ClickedDoubleEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ClickedDoubleEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ClickedTripleEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when object receives a triple click</summary>
     public event EventHandler ClickedTripleEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedTripleEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedTripleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedTripleEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedTripleEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedTripleEvt.</summary>
-    public void On_ClickedTripleEvt(EventArgs e)
+    public void OnClickedTripleEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ClickedTripleEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedTripleEvt_delegate;
-    private void on_ClickedTripleEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ClickedTripleEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ClickedRightEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Called when object receives a right click</summary>
     public event EventHandler<Efl.Ui.IClickableClickedRightEvt_Args> ClickedRightEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickableClickedRightEvt_Args args = new Efl.Ui.IClickableClickedRightEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ClickedRightEvt_delegate)) {
-                    eventHandlers.AddHandler(ClickedRightEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                if (RemoveNativeEventHandler(key, this.evt_ClickedRightEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ClickedRightEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedRightEvt.</summary>
-    public void On_ClickedRightEvt(Efl.Ui.IClickableClickedRightEvt_Args e)
+    public void OnClickedRightEvt(Efl.Ui.IClickableClickedRightEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickableClickedRightEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickableClickedRightEvt_Args>)eventHandlers[ClickedRightEvtKey];
+        var key = "_EFL_UI_EVENT_CLICKED_RIGHT";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ClickedRightEvt_delegate;
-    private void on_ClickedRightEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickableClickedRightEvt_Args args = new Efl.Ui.IClickableClickedRightEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_ClickedRightEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object PressedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object is pressed</summary>
     public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_PRESSED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_PressedEvt_delegate)) {
-                    eventHandlers.AddHandler(PressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_PRESSED";
-                if (RemoveNativeEventHandler(key, this.evt_PressedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(PressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event PressedEvt.</summary>
-    public void On_PressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
+    public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickablePressedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickablePressedEvt_Args>)eventHandlers[PressedEvtKey];
+        var key = "_EFL_UI_EVENT_PRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_PressedEvt_delegate;
-    private void on_PressedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_PressedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object UnpressedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object is no longer pressed</summary>
     public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_UNPRESSED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_UnpressedEvt_delegate)) {
-                    eventHandlers.AddHandler(UnpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_UNPRESSED";
-                if (RemoveNativeEventHandler(key, this.evt_UnpressedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(UnpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event UnpressedEvt.</summary>
-    public void On_UnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
+    public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickableUnpressedEvt_Args>)eventHandlers[UnpressedEvtKey];
+        var key = "_EFL_UI_EVENT_UNPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_UnpressedEvt_delegate;
-    private void on_UnpressedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_UnpressedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object LongpressedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object receives a long press</summary>
     public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_LongpressedEvt_delegate)) {
-                    eventHandlers.AddHandler(LongpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
-                if (RemoveNativeEventHandler(key, this.evt_LongpressedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(LongpressedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event LongpressedEvt.</summary>
-    public void On_LongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
+    public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
     {
-        EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Ui.IClickableLongpressedEvt_Args>)eventHandlers[LongpressedEvtKey];
+        var key = "_EFL_UI_EVENT_LONGPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_LongpressedEvt_delegate;
-    private void on_LongpressedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-        try {
-            On_LongpressedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object RepeatedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Called when the object receives repeated presses/clicks</summary>
     public event EventHandler RepeatedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_EVENT_REPEATED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_RepeatedEvt_delegate)) {
-                    eventHandlers.AddHandler(RepeatedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_EVENT_REPEATED";
-                if (RemoveNativeEventHandler(key, this.evt_RepeatedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(RepeatedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event RepeatedEvt.</summary>
-    public void On_RepeatedEvt(EventArgs e)
+    public void OnRepeatedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[RepeatedEvtKey];
+        var key = "_EFL_UI_EVENT_REPEATED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_RepeatedEvt_delegate;
-    private void on_RepeatedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_RepeatedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-    protected override void RegisterEventProxies()
-    {
-        base.RegisterEventProxies();
-        evt_ContentChangedEvt_delegate = new Efl.EventCb(on_ContentChangedEvt_NativeCallback);
-        evt_ClickedEvt_delegate = new Efl.EventCb(on_ClickedEvt_NativeCallback);
-        evt_ClickedDoubleEvt_delegate = new Efl.EventCb(on_ClickedDoubleEvt_NativeCallback);
-        evt_ClickedTripleEvt_delegate = new Efl.EventCb(on_ClickedTripleEvt_NativeCallback);
-        evt_ClickedRightEvt_delegate = new Efl.EventCb(on_ClickedRightEvt_NativeCallback);
-        evt_PressedEvt_delegate = new Efl.EventCb(on_PressedEvt_NativeCallback);
-        evt_UnpressedEvt_delegate = new Efl.EventCb(on_UnpressedEvt_NativeCallback);
-        evt_LongpressedEvt_delegate = new Efl.EventCb(on_LongpressedEvt_NativeCallback);
-        evt_RepeatedEvt_delegate = new Efl.EventCb(on_RepeatedEvt_NativeCallback);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Swallowed sub-object contained in this object.
+    /// <summary>Sub-object currently set as this object&apos;s single content.
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
     /// (Since EFL 1.22)</summary>
-    /// <returns>The object to swallow.</returns>
+    /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentNativeInherit.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Swallowed sub-object contained in this object.
+    /// <summary>Sub-object currently set as this object&apos;s single content.
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
     /// (Since EFL 1.22)</summary>
-    /// <param name="content">The object to swallow.</param>
-    /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool SetContent( Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentNativeInherit.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), content);
+    /// <param name="content">The sub-object.</param>
+    /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
+    virtual public bool SetContent(Efl.Gfx.IEntity content) {
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Unswallow the object in the current container and return it.
+    /// <summary>Remove the sub-object currently set as content of this object and return it. This object becomes empty.
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentNativeInherit.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -505,7 +611,7 @@ private static object RepeatedEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextNativeInherit.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -513,9 +619,8 @@ private static object RepeatedEvtKey = new object();
     /// See also <see cref="Efl.IText.GetText"/>.
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
-    /// <returns></returns>
-    virtual public void SetText( System.String text) {
-                                 Efl.ITextNativeInherit.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), text);
+    virtual public void SetText(System.String text) {
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The initial timeout before the autorepeat event is generated
@@ -524,7 +629,7 @@ private static object RepeatedEvtKey = new object();
     /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
     /// <returns>Timeout in seconds</returns>
     virtual public double GetAutorepeatInitialTimeout() {
-         var _ret_var = Efl.Ui.IAutorepeatNativeInherit.efl_ui_autorepeat_initial_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -533,9 +638,8 @@ private static object RepeatedEvtKey = new object();
     /// 
     /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
     /// <param name="t">Timeout in seconds</param>
-    /// <returns></returns>
-    virtual public void SetAutorepeatInitialTimeout( double t) {
-                                 Efl.Ui.IAutorepeatNativeInherit.efl_ui_autorepeat_initial_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), t);
+    virtual public void SetAutorepeatInitialTimeout(double t) {
+                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),t);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The interval between each generated autorepeat event
@@ -544,7 +648,7 @@ private static object RepeatedEvtKey = new object();
     /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
     /// <returns>Interval in seconds</returns>
     virtual public double GetAutorepeatGapTimeout() {
-         var _ret_var = Efl.Ui.IAutorepeatNativeInherit.efl_ui_autorepeat_gap_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -553,9 +657,8 @@ private static object RepeatedEvtKey = new object();
     /// 
     /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
     /// <param name="t">Interval in seconds</param>
-    /// <returns></returns>
-    virtual public void SetAutorepeatGapTimeout( double t) {
-                                 Efl.Ui.IAutorepeatNativeInherit.efl_ui_autorepeat_gap_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), t);
+    virtual public void SetAutorepeatGapTimeout(double t) {
+                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),t);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
@@ -564,7 +667,7 @@ private static object RepeatedEvtKey = new object();
     /// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
     /// <returns>A bool to turn on/off the event</returns>
     virtual public bool GetAutorepeatEnabled() {
-         var _ret_var = Efl.Ui.IAutorepeatNativeInherit.efl_ui_autorepeat_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -573,24 +676,24 @@ private static object RepeatedEvtKey = new object();
     /// 
     /// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
     /// <param name="on">A bool to turn on/off the event</param>
-    /// <returns></returns>
-    virtual public void SetAutorepeatEnabled( bool on) {
-                                 Efl.Ui.IAutorepeatNativeInherit.efl_ui_autorepeat_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), on);
+    virtual public void SetAutorepeatEnabled(bool on) {
+                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),on);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether the button supports autorepeat.</summary>
     /// <returns><c>true</c> if autorepeat is supported, <c>false</c> otherwise</returns>
     virtual public bool GetAutorepeatSupported() {
-         var _ret_var = Efl.Ui.IAutorepeatNativeInherit.efl_ui_autorepeat_supported_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_supported_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Swallowed sub-object contained in this object.
+    /// <summary>Sub-object currently set as this object&apos;s single content.
+/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
 /// (Since EFL 1.22)</summary>
-/// <value>The object to swallow.</value>
+/// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
-        set { SetContent( value); }
+        set { SetContent(value); }
     }
     /// <summary>The initial timeout before the autorepeat event is generated
 /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
@@ -599,7 +702,7 @@ private static object RepeatedEvtKey = new object();
 /// <value>Timeout in seconds</value>
     public double AutorepeatInitialTimeout {
         get { return GetAutorepeatInitialTimeout(); }
-        set { SetAutorepeatInitialTimeout( value); }
+        set { SetAutorepeatInitialTimeout(value); }
     }
     /// <summary>The interval between each generated autorepeat event
 /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
@@ -608,7 +711,7 @@ private static object RepeatedEvtKey = new object();
 /// <value>Interval in seconds</value>
     public double AutorepeatGapTimeout {
         get { return GetAutorepeatGapTimeout(); }
-        set { SetAutorepeatGapTimeout( value); }
+        set { SetAutorepeatGapTimeout(value); }
     }
     /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
 /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> signal when they are clicked.
@@ -617,7 +720,7 @@ private static object RepeatedEvtKey = new object();
 /// <value>A bool to turn on/off the event</value>
     public bool AutorepeatEnabled {
         get { return GetAutorepeatEnabled(); }
-        set { SetAutorepeatEnabled( value); }
+        set { SetAutorepeatEnabled(value); }
     }
     /// <summary>Whether the button supports autorepeat.</summary>
 /// <value><c>true</c> if autorepeat is supported, <c>false</c> otherwise</value>
@@ -628,367 +731,583 @@ private static object RepeatedEvtKey = new object();
     {
         return Efl.Ui.Button.efl_ui_button_class_get();
     }
-}
-public class ButtonNativeInherit : Efl.Ui.LayoutBaseNativeInherit{
-    public new  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public new class NativeMethods : Efl.Ui.LayoutBase.NativeMethods
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        if (efl_content_get_static_delegate == null)
-            efl_content_get_static_delegate = new efl_content_get_delegate(content_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetContent") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_content_get"), func = Marshal.GetFunctionPointerForDelegate(efl_content_get_static_delegate)});
-        if (efl_content_set_static_delegate == null)
-            efl_content_set_static_delegate = new efl_content_set_delegate(content_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetContent") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_content_set"), func = Marshal.GetFunctionPointerForDelegate(efl_content_set_static_delegate)});
-        if (efl_content_unset_static_delegate == null)
-            efl_content_unset_static_delegate = new efl_content_unset_delegate(content_unset);
-        if (methods.FirstOrDefault(m => m.Name == "UnsetContent") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_content_unset"), func = Marshal.GetFunctionPointerForDelegate(efl_content_unset_static_delegate)});
-        if (efl_text_get_static_delegate == null)
-            efl_text_get_static_delegate = new efl_text_get_delegate(text_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetText") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_text_get"), func = Marshal.GetFunctionPointerForDelegate(efl_text_get_static_delegate)});
-        if (efl_text_set_static_delegate == null)
-            efl_text_set_static_delegate = new efl_text_set_delegate(text_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetText") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_set_static_delegate)});
-        if (efl_ui_autorepeat_initial_timeout_get_static_delegate == null)
-            efl_ui_autorepeat_initial_timeout_get_static_delegate = new efl_ui_autorepeat_initial_timeout_get_delegate(autorepeat_initial_timeout_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatInitialTimeout") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_autorepeat_initial_timeout_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_initial_timeout_get_static_delegate)});
-        if (efl_ui_autorepeat_initial_timeout_set_static_delegate == null)
-            efl_ui_autorepeat_initial_timeout_set_static_delegate = new efl_ui_autorepeat_initial_timeout_set_delegate(autorepeat_initial_timeout_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetAutorepeatInitialTimeout") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_autorepeat_initial_timeout_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_initial_timeout_set_static_delegate)});
-        if (efl_ui_autorepeat_gap_timeout_get_static_delegate == null)
-            efl_ui_autorepeat_gap_timeout_get_static_delegate = new efl_ui_autorepeat_gap_timeout_get_delegate(autorepeat_gap_timeout_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatGapTimeout") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_autorepeat_gap_timeout_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_gap_timeout_get_static_delegate)});
-        if (efl_ui_autorepeat_gap_timeout_set_static_delegate == null)
-            efl_ui_autorepeat_gap_timeout_set_static_delegate = new efl_ui_autorepeat_gap_timeout_set_delegate(autorepeat_gap_timeout_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetAutorepeatGapTimeout") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_autorepeat_gap_timeout_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_gap_timeout_set_static_delegate)});
-        if (efl_ui_autorepeat_enabled_get_static_delegate == null)
-            efl_ui_autorepeat_enabled_get_static_delegate = new efl_ui_autorepeat_enabled_get_delegate(autorepeat_enabled_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatEnabled") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_autorepeat_enabled_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_enabled_get_static_delegate)});
-        if (efl_ui_autorepeat_enabled_set_static_delegate == null)
-            efl_ui_autorepeat_enabled_set_static_delegate = new efl_ui_autorepeat_enabled_set_delegate(autorepeat_enabled_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetAutorepeatEnabled") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_autorepeat_enabled_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_enabled_set_static_delegate)});
-        if (efl_ui_autorepeat_supported_get_static_delegate == null)
-            efl_ui_autorepeat_supported_get_static_delegate = new efl_ui_autorepeat_supported_get_delegate(autorepeat_supported_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatSupported") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_autorepeat_supported_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_supported_get_static_delegate)});
-        descs.AddRange(base.GetEoOps(type));
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.Ui.Button.efl_ui_button_class_get();
-    }
-    public static new  IntPtr GetEflClassStatic()
-    {
-        return Efl.Ui.Button.efl_ui_button_class_get();
-    }
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
 
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Gfx.IEntityConcrete, Efl.Eo.NonOwnTag>))] private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Gfx.IEntityConcrete, Efl.Eo.NonOwnTag>))] public delegate Efl.Gfx.IEntity efl_content_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_content_get_api_delegate> efl_content_get_ptr = new Efl.Eo.FunctionWrapper<efl_content_get_api_delegate>(_Module, "efl_content_get");
-     private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_content_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
-            try {
-                _ret_var = ((Button)wrapper).GetContent();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            if (efl_content_get_static_delegate == null)
+            {
+                efl_content_get_static_delegate = new efl_content_get_delegate(content_get);
             }
-        return _ret_var;
-        } else {
-            return efl_content_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+
+            if (methods.FirstOrDefault(m => m.Name == "GetContent") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_get"), func = Marshal.GetFunctionPointerForDelegate(efl_content_get_static_delegate) });
+            }
+
+            if (efl_content_set_static_delegate == null)
+            {
+                efl_content_set_static_delegate = new efl_content_set_delegate(content_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetContent") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_set"), func = Marshal.GetFunctionPointerForDelegate(efl_content_set_static_delegate) });
+            }
+
+            if (efl_content_unset_static_delegate == null)
+            {
+                efl_content_unset_static_delegate = new efl_content_unset_delegate(content_unset);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "UnsetContent") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_unset"), func = Marshal.GetFunctionPointerForDelegate(efl_content_unset_static_delegate) });
+            }
+
+            if (efl_text_get_static_delegate == null)
+            {
+                efl_text_get_static_delegate = new efl_text_get_delegate(text_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetText") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_get"), func = Marshal.GetFunctionPointerForDelegate(efl_text_get_static_delegate) });
+            }
+
+            if (efl_text_set_static_delegate == null)
+            {
+                efl_text_set_static_delegate = new efl_text_set_delegate(text_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetText") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_set_static_delegate) });
+            }
+
+            if (efl_ui_autorepeat_initial_timeout_get_static_delegate == null)
+            {
+                efl_ui_autorepeat_initial_timeout_get_static_delegate = new efl_ui_autorepeat_initial_timeout_get_delegate(autorepeat_initial_timeout_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatInitialTimeout") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_initial_timeout_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_initial_timeout_get_static_delegate) });
+            }
+
+            if (efl_ui_autorepeat_initial_timeout_set_static_delegate == null)
+            {
+                efl_ui_autorepeat_initial_timeout_set_static_delegate = new efl_ui_autorepeat_initial_timeout_set_delegate(autorepeat_initial_timeout_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetAutorepeatInitialTimeout") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_initial_timeout_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_initial_timeout_set_static_delegate) });
+            }
+
+            if (efl_ui_autorepeat_gap_timeout_get_static_delegate == null)
+            {
+                efl_ui_autorepeat_gap_timeout_get_static_delegate = new efl_ui_autorepeat_gap_timeout_get_delegate(autorepeat_gap_timeout_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatGapTimeout") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_gap_timeout_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_gap_timeout_get_static_delegate) });
+            }
+
+            if (efl_ui_autorepeat_gap_timeout_set_static_delegate == null)
+            {
+                efl_ui_autorepeat_gap_timeout_set_static_delegate = new efl_ui_autorepeat_gap_timeout_set_delegate(autorepeat_gap_timeout_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetAutorepeatGapTimeout") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_gap_timeout_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_gap_timeout_set_static_delegate) });
+            }
+
+            if (efl_ui_autorepeat_enabled_get_static_delegate == null)
+            {
+                efl_ui_autorepeat_enabled_get_static_delegate = new efl_ui_autorepeat_enabled_get_delegate(autorepeat_enabled_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatEnabled") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_enabled_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_enabled_get_static_delegate) });
+            }
+
+            if (efl_ui_autorepeat_enabled_set_static_delegate == null)
+            {
+                efl_ui_autorepeat_enabled_set_static_delegate = new efl_ui_autorepeat_enabled_set_delegate(autorepeat_enabled_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetAutorepeatEnabled") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_enabled_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_enabled_set_static_delegate) });
+            }
+
+            if (efl_ui_autorepeat_supported_get_static_delegate == null)
+            {
+                efl_ui_autorepeat_supported_get_static_delegate = new efl_ui_autorepeat_supported_get_delegate(autorepeat_supported_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatSupported") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_supported_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_supported_get_static_delegate) });
+            }
+
+            descs.AddRange(base.GetEoOps(type));
+            return descs;
         }
-    }
-    private static efl_content_get_delegate efl_content_get_static_delegate;
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.Ui.Button.efl_ui_button_class_get();
+        }
 
+        #pragma warning disable CA1707, SA1300, SA1600
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_content_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Gfx.IEntityConcrete, Efl.Eo.NonOwnTag>))]  Efl.Gfx.IEntity content);
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.Gfx.IEntity efl_content_get_api_delegate(System.IntPtr obj);
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_content_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Gfx.IEntityConcrete, Efl.Eo.NonOwnTag>))]  Efl.Gfx.IEntity content);
-     public static Efl.Eo.FunctionWrapper<efl_content_set_api_delegate> efl_content_set_ptr = new Efl.Eo.FunctionWrapper<efl_content_set_api_delegate>(_Module, "efl_content_set");
-     private static bool content_set(System.IntPtr obj, System.IntPtr pd,  Efl.Gfx.IEntity content)
-    {
-        Eina.Log.Debug("function efl_content_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                bool _ret_var = default(bool);
-            try {
-                _ret_var = ((Button)wrapper).SetContent( content);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_content_get_api_delegate> efl_content_get_ptr = new Efl.Eo.FunctionWrapper<efl_content_get_api_delegate>(Module, "efl_content_get");
+
+        private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_content_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
+                try
+                {
+                    _ret_var = ((Button)wrapper).GetContent();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
             }
+            else
+            {
+                return efl_content_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_content_get_delegate efl_content_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_content_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity content);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_content_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity content);
+
+        public static Efl.Eo.FunctionWrapper<efl_content_set_api_delegate> efl_content_set_ptr = new Efl.Eo.FunctionWrapper<efl_content_set_api_delegate>(Module, "efl_content_set");
+
+        private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
+        {
+            Eina.Log.Debug("function efl_content_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Button)wrapper).SetContent(content);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         return _ret_var;
-        } else {
-            return efl_content_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  content);
-        }
-    }
-    private static efl_content_set_delegate efl_content_set_static_delegate;
 
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Gfx.IEntityConcrete, Efl.Eo.NonOwnTag>))] private delegate Efl.Gfx.IEntity efl_content_unset_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Gfx.IEntityConcrete, Efl.Eo.NonOwnTag>))] public delegate Efl.Gfx.IEntity efl_content_unset_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_content_unset_api_delegate> efl_content_unset_ptr = new Efl.Eo.FunctionWrapper<efl_content_unset_api_delegate>(_Module, "efl_content_unset");
-     private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_content_unset was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
-            try {
-                _ret_var = ((Button)wrapper).UnsetContent();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_content_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), content);
+            }
+        }
+
+        private static efl_content_set_delegate efl_content_set_static_delegate;
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.Gfx.IEntity efl_content_unset_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.Gfx.IEntity efl_content_unset_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_content_unset_api_delegate> efl_content_unset_ptr = new Efl.Eo.FunctionWrapper<efl_content_unset_api_delegate>(Module, "efl_content_unset");
+
+        private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_content_unset was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
+                try
+                {
+                    _ret_var = ((Button)wrapper).UnsetContent();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_content_unset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_content_unset_delegate efl_content_unset_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_text_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_text_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_text_get_api_delegate> efl_text_get_ptr = new Efl.Eo.FunctionWrapper<efl_text_get_api_delegate>(_Module, "efl_text_get");
-     private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_text_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((Button)wrapper).GetText();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_content_unset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_content_unset_delegate efl_content_unset_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_text_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_text_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_text_get_api_delegate> efl_text_get_ptr = new Efl.Eo.FunctionWrapper<efl_text_get_api_delegate>(Module, "efl_text_get");
+
+        private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_text_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((Button)wrapper).GetText();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_text_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_text_get_delegate efl_text_get_static_delegate;
 
-
-     private delegate void efl_text_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String text);
-
-
-     public delegate void efl_text_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String text);
-     public static Efl.Eo.FunctionWrapper<efl_text_set_api_delegate> efl_text_set_ptr = new Efl.Eo.FunctionWrapper<efl_text_set_api_delegate>(_Module, "efl_text_set");
-     private static void text_set(System.IntPtr obj, System.IntPtr pd,  System.String text)
-    {
-        Eina.Log.Debug("function efl_text_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((Button)wrapper).SetText( text);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_text_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  text);
-        }
-    }
-    private static efl_text_set_delegate efl_text_set_static_delegate;
-
-
-     private delegate double efl_ui_autorepeat_initial_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate double efl_ui_autorepeat_initial_timeout_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_get_api_delegate> efl_ui_autorepeat_initial_timeout_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_get_api_delegate>(_Module, "efl_ui_autorepeat_initial_timeout_get");
-     private static double autorepeat_initial_timeout_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_ui_autorepeat_initial_timeout_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        double _ret_var = default(double);
-            try {
-                _ret_var = ((Button)wrapper).GetAutorepeatInitialTimeout();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_text_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_text_get_delegate efl_text_get_static_delegate;
+
+        
+        private delegate void efl_text_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text);
+
+        
+        public delegate void efl_text_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text);
+
+        public static Efl.Eo.FunctionWrapper<efl_text_set_api_delegate> efl_text_set_ptr = new Efl.Eo.FunctionWrapper<efl_text_set_api_delegate>(Module, "efl_text_set");
+
+        private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
+        {
+            Eina.Log.Debug("function efl_text_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((Button)wrapper).SetText(text);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_text_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), text);
+            }
+        }
+
+        private static efl_text_set_delegate efl_text_set_static_delegate;
+
+        
+        private delegate double efl_ui_autorepeat_initial_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate double efl_ui_autorepeat_initial_timeout_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_get_api_delegate> efl_ui_autorepeat_initial_timeout_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_get_api_delegate>(Module, "efl_ui_autorepeat_initial_timeout_get");
+
+        private static double autorepeat_initial_timeout_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_autorepeat_initial_timeout_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            double _ret_var = default(double);
+                try
+                {
+                    _ret_var = ((Button)wrapper).GetAutorepeatInitialTimeout();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_ui_autorepeat_initial_timeout_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_ui_autorepeat_initial_timeout_get_delegate efl_ui_autorepeat_initial_timeout_get_static_delegate;
 
-
-     private delegate void efl_ui_autorepeat_initial_timeout_set_delegate(System.IntPtr obj, System.IntPtr pd,   double t);
-
-
-     public delegate void efl_ui_autorepeat_initial_timeout_set_api_delegate(System.IntPtr obj,   double t);
-     public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_set_api_delegate> efl_ui_autorepeat_initial_timeout_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_set_api_delegate>(_Module, "efl_ui_autorepeat_initial_timeout_set");
-     private static void autorepeat_initial_timeout_set(System.IntPtr obj, System.IntPtr pd,  double t)
-    {
-        Eina.Log.Debug("function efl_ui_autorepeat_initial_timeout_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((Button)wrapper).SetAutorepeatInitialTimeout( t);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_ui_autorepeat_initial_timeout_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  t);
-        }
-    }
-    private static efl_ui_autorepeat_initial_timeout_set_delegate efl_ui_autorepeat_initial_timeout_set_static_delegate;
-
-
-     private delegate double efl_ui_autorepeat_gap_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate double efl_ui_autorepeat_gap_timeout_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_get_api_delegate> efl_ui_autorepeat_gap_timeout_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_get_api_delegate>(_Module, "efl_ui_autorepeat_gap_timeout_get");
-     private static double autorepeat_gap_timeout_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_ui_autorepeat_gap_timeout_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        double _ret_var = default(double);
-            try {
-                _ret_var = ((Button)wrapper).GetAutorepeatGapTimeout();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_ui_autorepeat_initial_timeout_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_ui_autorepeat_initial_timeout_get_delegate efl_ui_autorepeat_initial_timeout_get_static_delegate;
+
+        
+        private delegate void efl_ui_autorepeat_initial_timeout_set_delegate(System.IntPtr obj, System.IntPtr pd,  double t);
+
+        
+        public delegate void efl_ui_autorepeat_initial_timeout_set_api_delegate(System.IntPtr obj,  double t);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_set_api_delegate> efl_ui_autorepeat_initial_timeout_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_initial_timeout_set_api_delegate>(Module, "efl_ui_autorepeat_initial_timeout_set");
+
+        private static void autorepeat_initial_timeout_set(System.IntPtr obj, System.IntPtr pd, double t)
+        {
+            Eina.Log.Debug("function efl_ui_autorepeat_initial_timeout_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((Button)wrapper).SetAutorepeatInitialTimeout(t);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_autorepeat_initial_timeout_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), t);
+            }
+        }
+
+        private static efl_ui_autorepeat_initial_timeout_set_delegate efl_ui_autorepeat_initial_timeout_set_static_delegate;
+
+        
+        private delegate double efl_ui_autorepeat_gap_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate double efl_ui_autorepeat_gap_timeout_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_get_api_delegate> efl_ui_autorepeat_gap_timeout_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_get_api_delegate>(Module, "efl_ui_autorepeat_gap_timeout_get");
+
+        private static double autorepeat_gap_timeout_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_autorepeat_gap_timeout_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            double _ret_var = default(double);
+                try
+                {
+                    _ret_var = ((Button)wrapper).GetAutorepeatGapTimeout();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_ui_autorepeat_gap_timeout_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_ui_autorepeat_gap_timeout_get_delegate efl_ui_autorepeat_gap_timeout_get_static_delegate;
 
-
-     private delegate void efl_ui_autorepeat_gap_timeout_set_delegate(System.IntPtr obj, System.IntPtr pd,   double t);
-
-
-     public delegate void efl_ui_autorepeat_gap_timeout_set_api_delegate(System.IntPtr obj,   double t);
-     public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_set_api_delegate> efl_ui_autorepeat_gap_timeout_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_set_api_delegate>(_Module, "efl_ui_autorepeat_gap_timeout_set");
-     private static void autorepeat_gap_timeout_set(System.IntPtr obj, System.IntPtr pd,  double t)
-    {
-        Eina.Log.Debug("function efl_ui_autorepeat_gap_timeout_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((Button)wrapper).SetAutorepeatGapTimeout( t);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_ui_autorepeat_gap_timeout_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  t);
-        }
-    }
-    private static efl_ui_autorepeat_gap_timeout_set_delegate efl_ui_autorepeat_gap_timeout_set_static_delegate;
-
-
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_ui_autorepeat_enabled_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_ui_autorepeat_enabled_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_get_api_delegate> efl_ui_autorepeat_enabled_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_get_api_delegate>(_Module, "efl_ui_autorepeat_enabled_get");
-     private static bool autorepeat_enabled_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_ui_autorepeat_enabled_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        bool _ret_var = default(bool);
-            try {
-                _ret_var = ((Button)wrapper).GetAutorepeatEnabled();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_ui_autorepeat_gap_timeout_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_ui_autorepeat_gap_timeout_get_delegate efl_ui_autorepeat_gap_timeout_get_static_delegate;
+
+        
+        private delegate void efl_ui_autorepeat_gap_timeout_set_delegate(System.IntPtr obj, System.IntPtr pd,  double t);
+
+        
+        public delegate void efl_ui_autorepeat_gap_timeout_set_api_delegate(System.IntPtr obj,  double t);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_set_api_delegate> efl_ui_autorepeat_gap_timeout_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_gap_timeout_set_api_delegate>(Module, "efl_ui_autorepeat_gap_timeout_set");
+
+        private static void autorepeat_gap_timeout_set(System.IntPtr obj, System.IntPtr pd, double t)
+        {
+            Eina.Log.Debug("function efl_ui_autorepeat_gap_timeout_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((Button)wrapper).SetAutorepeatGapTimeout(t);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_autorepeat_gap_timeout_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), t);
+            }
+        }
+
+        private static efl_ui_autorepeat_gap_timeout_set_delegate efl_ui_autorepeat_gap_timeout_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_autorepeat_enabled_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_autorepeat_enabled_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_get_api_delegate> efl_ui_autorepeat_enabled_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_get_api_delegate>(Module, "efl_ui_autorepeat_enabled_get");
+
+        private static bool autorepeat_enabled_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_autorepeat_enabled_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Button)wrapper).GetAutorepeatEnabled();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_ui_autorepeat_enabled_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_ui_autorepeat_enabled_get_delegate efl_ui_autorepeat_enabled_get_static_delegate;
 
-
-     private delegate void efl_ui_autorepeat_enabled_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.U1)]  bool on);
-
-
-     public delegate void efl_ui_autorepeat_enabled_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.U1)]  bool on);
-     public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_set_api_delegate> efl_ui_autorepeat_enabled_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_set_api_delegate>(_Module, "efl_ui_autorepeat_enabled_set");
-     private static void autorepeat_enabled_set(System.IntPtr obj, System.IntPtr pd,  bool on)
-    {
-        Eina.Log.Debug("function efl_ui_autorepeat_enabled_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((Button)wrapper).SetAutorepeatEnabled( on);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_ui_autorepeat_enabled_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  on);
-        }
-    }
-    private static efl_ui_autorepeat_enabled_set_delegate efl_ui_autorepeat_enabled_set_static_delegate;
-
-
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_ui_autorepeat_supported_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_ui_autorepeat_supported_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_supported_get_api_delegate> efl_ui_autorepeat_supported_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_supported_get_api_delegate>(_Module, "efl_ui_autorepeat_supported_get");
-     private static bool autorepeat_supported_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_ui_autorepeat_supported_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        bool _ret_var = default(bool);
-            try {
-                _ret_var = ((Button)wrapper).GetAutorepeatSupported();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_ui_autorepeat_enabled_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
+        }
+
+        private static efl_ui_autorepeat_enabled_get_delegate efl_ui_autorepeat_enabled_get_static_delegate;
+
+        
+        private delegate void efl_ui_autorepeat_enabled_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool on);
+
+        
+        public delegate void efl_ui_autorepeat_enabled_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool on);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_set_api_delegate> efl_ui_autorepeat_enabled_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_enabled_set_api_delegate>(Module, "efl_ui_autorepeat_enabled_set");
+
+        private static void autorepeat_enabled_set(System.IntPtr obj, System.IntPtr pd, bool on)
+        {
+            Eina.Log.Debug("function efl_ui_autorepeat_enabled_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((Button)wrapper).SetAutorepeatEnabled(on);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_autorepeat_enabled_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), on);
+            }
+        }
+
+        private static efl_ui_autorepeat_enabled_set_delegate efl_ui_autorepeat_enabled_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_autorepeat_supported_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_autorepeat_supported_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_supported_get_api_delegate> efl_ui_autorepeat_supported_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_supported_get_api_delegate>(Module, "efl_ui_autorepeat_supported_get");
+
+        private static bool autorepeat_supported_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_autorepeat_supported_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Button)wrapper).GetAutorepeatSupported();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_ui_autorepeat_supported_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+
+            }
+            else
+            {
+                return efl_ui_autorepeat_supported_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
         }
-    }
-    private static efl_ui_autorepeat_supported_get_delegate efl_ui_autorepeat_supported_get_static_delegate;
+
+        private static efl_ui_autorepeat_supported_get_delegate efl_ui_autorepeat_supported_get_static_delegate;
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} } 
+}
+}
+
+}
+

@@ -3,8 +3,12 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Canvas { 
+namespace Efl {
+
+namespace Canvas {
+
 /// <summary>This enum type describes the state of a touch event.</summary>
 public enum GestureTouchState
 {
@@ -17,8 +21,15 @@ Update = 2,
 /// <summary>Last fingure touch up</summary>
 End = 3,
 }
-} } 
-namespace Efl { namespace Canvas { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Canvas {
+
 /// <summary>This enum type describes the state of a gesture.</summary>
 public enum GestureState
 {
@@ -33,8 +44,15 @@ Finished = 3,
 /// <summary>A gesture was canceled.</summary>
 Canceled = 4,
 }
-} } 
-namespace Efl { namespace Canvas { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Canvas {
+
 /// <summary>This enum type describes the state of a gesture recognizer.</summary>
 public enum GestureRecognizerResult
 {
@@ -51,4 +69,8 @@ Cancel = 16,
 /// <summary>The gesture result mask</summary>
 ResultMask = 255,
 }
-} } 
+
+}
+
+}
+

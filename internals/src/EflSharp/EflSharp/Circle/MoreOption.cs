@@ -26,6 +26,8 @@ namespace Efl
                 const string ItemSelectedEventName = "item,selected";
                 const string ItemClickedEventName = "item,clicked";
 
+                readonly List<MoreOptionItem> Items = new List<MoreOptionItem>();
+
                 /// <summary>
                 /// Clicked will be triggered when the user selects the already selected item again or selects a selector.
                 /// </summary>
@@ -50,20 +52,63 @@ namespace Efl
                 {
                     smartClicked = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
-                        MoreOptionItem clickedItem = new MoreOptionItem();
-                        clickedItem._handle = e;
-                        Clicked?.Invoke(this, new MoreOptionItemEventArgs { item = clickedItem });
+                        MoreOptionItem clickedItem = FindItemByNativeHandle(e);
+                        if (clickedItem != null)
+                            Clicked?.Invoke(this, new MoreOptionItemEventArgs { item = clickedItem });
                     });
 
                     smartSelected = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
-                        MoreOptionItem selectedItem = new MoreOptionItem();
-                        selectedItem._handle = e;
-                        Selected?.Invoke(this, new MoreOptionItemEventArgs { item = selectedItem });
+                        MoreOptionItem selectedItem = FindItemByNativeHandle(e);
+                        if (selectedItem != null)
+                            Selected?.Invoke(this, new MoreOptionItemEventArgs { item = selectedItem });
                     });
 
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemClickedEventName, smartClicked, IntPtr.Zero);
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemSelectedEventName, smartSelected, IntPtr.Zero);
+                }
+
+                private MoreOptionItem FindItemByNativeHandle(IntPtr handle)
+                {
+                    foreach (MoreOptionItem item in Items)
+                    {
+                        if (item.NativeHandle == handle)
+                            return item;
+                    }
+
+                    return null;
+                }
+
+                /// <summary>
+                /// Sets or gets the edit mode of more option.
+                /// </summary>
+                /// <since_tizen> 6 </since_tizen>
+                public bool EditMode
+                {
+                    get
+                    {
+                        return Interop.Eext.eext_more_option_editing_enabled_get(this.NativeHandle);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_more_option_editing_enabled_set(this.NativeHandle, value);
+                    }
+                }
+
+                /// <summary>
+                /// Sets or gets the add item mode of more option.
+                /// </summary>
+                /// <since_tizen> 6 </since_tizen>
+                public bool AddItemMode
+                {
+                    get
+                    {
+                        return Interop.Eext.eext_more_option_add_item_enabled_get(this.NativeHandle);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_more_option_add_item_enabled_set(this.NativeHandle, value);
+                    }
                 }
 
                 /// <summary>
@@ -73,7 +118,10 @@ namespace Efl
                 public void Append(MoreOptionItem item)
                 {
                     if (item.NativeHandle != null)
-                      item.NativeHandle = Interop.Eext.eext_more_option_item_append(this.NativeHandle);
+                    {
+                        Items.Add(item);
+                        item.NativeHandle = Interop.Eext.eext_more_option_item_append(this.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -83,7 +131,10 @@ namespace Efl
                 public void PrependItem(MoreOptionItem item)
                 {
                     if (item.NativeHandle != null)
-                      item.NativeHandle = Interop.Eext.eext_more_option_item_prepend(this.NativeHandle);
+                    {
+                        Items.Insert(0, item);
+                        item.NativeHandle = Interop.Eext.eext_more_option_item_prepend(this.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -92,8 +143,12 @@ namespace Efl
                 /// <since_tizen> 6 </since_tizen>
                 public void InsertAfter(MoreOptionItem targetItem, MoreOptionItem item)
                 {
-                    if (item.NativeHandle != null)
-                      item.NativeHandle = Interop.Eext.eext_more_option_item_insert_after(this.NativeHandle, targetItem.NativeHandle);
+                    if (item.NativeHandle != null && targetItem != null)
+                    {
+                        if (!Items.Contains(targetItem)) return;
+                        Items.Insert(Items.IndexOf(targetItem) + 1, item);
+                        item.NativeHandle = Interop.Eext.eext_more_option_item_insert_after(this.NativeHandle, targetItem.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -102,8 +157,12 @@ namespace Efl
                 /// <since_tizen> 6 </since_tizen>
                 public void InsertBefore(MoreOptionItem targetItem, MoreOptionItem item)
                 {
-                    if (item.NativeHandle != null)
-                      item.NativeHandle = Interop.Eext.eext_more_option_item_insert_before(this.NativeHandle, targetItem.NativeHandle);
+                    if (item.NativeHandle != null && targetItem != null)
+                    {
+                        if (!Items.Contains(targetItem)) return;
+                        Items.Insert(Items.IndexOf(targetItem), item);
+                        item.NativeHandle = Interop.Eext.eext_more_option_item_insert_before(this.NativeHandle, targetItem.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -113,7 +172,11 @@ namespace Efl
                 public void DeleteItem(MoreOptionItem item)
                 {
                     if (item.NativeHandle != null)
-                      Interop.Eext.eext_more_option_item_del(item.NativeHandle);
+                    {
+                        if (!Items.Contains(item)) return;
+                        Items.Remove(item);
+                        Interop.Eext.eext_more_option_item_del(item.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -123,7 +186,10 @@ namespace Efl
                 public void ClearItems()
                 {
                     if (this.NativeHandle != null)
-                      Interop.Eext.eext_more_option_items_clear(this.NativeHandle);
+                    {
+                        Items.Clear();
+                        Interop.Eext.eext_more_option_items_clear(this.NativeHandle);
+                    }
                 }
 
                 /// <summary>

@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
@@ -66,6 +67,17 @@ public class Globals
         efl_ref_count_delegate(IntPtr eo);
     [DllImport(efl.Libs.Eo)] public static extern int
         efl_ref_count(IntPtr eo);
+    [DllImport(efl.Libs.CustomExports)] public static extern void
+        efl_mono_gchandle_callbacks_set(Efl.FreeGCHandleCb freeGCHandleCb, Efl.RemoveEventsCb removeEventsCb);
+    [DllImport(efl.Libs.CustomExports)] public static extern void
+        efl_mono_native_dispose(IntPtr eo, IntPtr gcHandle);
+    [DllImport(efl.Libs.CustomExports)] public static extern void
+        efl_mono_thread_safe_native_dispose(IntPtr eo, IntPtr gcHandle);
+    [DllImport(efl.Libs.CustomExports)] public static extern void
+        efl_mono_thread_safe_efl_unref(IntPtr eo);
+
+    [DllImport(efl.Libs.CustomExports)] public static extern void
+        efl_mono_thread_safe_free_cb_exec(IntPtr free_cb, IntPtr cb_data);
 
     [DllImport(efl.Libs.Eo)] public static extern IntPtr
         efl_class_name_get(IntPtr eo);
@@ -180,28 +192,14 @@ public class Globals
     public delegate  IntPtr dlerror_delegate();
     [DllImport(efl.Libs.Evil)] public static extern IntPtr dlerror();
 
-    public delegate  bool efl_event_callback_priority_add_delegate(
-        System.IntPtr obj,
-        IntPtr desc,
-        short priority,
-        Efl.EventCb cb,
-        System.IntPtr data);
-    [DllImport(efl.Libs.Eo)] public static extern bool efl_event_callback_priority_add(
-        System.IntPtr obj,
-        IntPtr desc,
-        short priority,
-        Efl.EventCb cb,
-        System.IntPtr data);
-    public delegate  bool efl_event_callback_del_delegate(
-        System.IntPtr obj,
-        IntPtr desc,
-        Efl.EventCb cb,
-        System.IntPtr data);
-    [DllImport(efl.Libs.Eo)] public static extern bool efl_event_callback_del(
-        System.IntPtr obj,
-        IntPtr desc,
-        Efl.EventCb cb,
-        System.IntPtr data);
+    [DllImport(efl.Libs.Eo)] [return: MarshalAs(UnmanagedType.U1)] public static extern bool
+        efl_event_callback_priority_add(IntPtr obj, IntPtr desc, short priority, IntPtr cb, IntPtr data);
+
+    [DllImport(efl.Libs.Eo)] [return: MarshalAs(UnmanagedType.U1)] public static extern bool
+        efl_event_callback_del(IntPtr obj, IntPtr desc, IntPtr cb, IntPtr data);
+
+    [DllImport(efl.Libs.Eo)] [return: MarshalAs(UnmanagedType.U1)] public static extern bool
+        efl_event_callback_call(IntPtr obj, IntPtr desc, IntPtr event_info);
 
     public const int RTLD_NOW = 2;
 
@@ -444,7 +442,9 @@ public class Globals
         }
     }
 
-    public static IntPtr instantiate_start(IntPtr klass, Efl.Object parent)
+    public static IntPtr instantiate_start(IntPtr klass, Efl.Object parent,
+                                           [CallerFilePath] string file = null,
+                                           [CallerLineNumber] int line = 0)
     {
         Eina.Log.Debug($"Instantiating from klass 0x{klass.ToInt64():x}");
         System.IntPtr parent_ptr = System.IntPtr.Zero;
@@ -453,7 +453,7 @@ public class Globals
             parent_ptr = parent.NativeHandle;
         }
 
-        System.IntPtr eo = Efl.Eo.Globals._efl_add_internal_start("file", 0, klass, parent_ptr, 1, 0);
+        System.IntPtr eo = Efl.Eo.Globals._efl_add_internal_start(file, line, klass, parent_ptr, 1, 0);
         if (eo == System.IntPtr.Zero)
         {
             throw new Exception("Instantiation failed");
@@ -652,13 +652,84 @@ public class Globals
 
         return ret;
     }
+
+    private static Efl.FreeGCHandleCb FreeGCHandleCallbackDelegate = new Efl.FreeGCHandleCb(FreeGCHandleCallback);
+    public static void FreeGCHandleCallback(IntPtr gcHandlePtr)
+    {
+        try
+        {
+            GCHandle gcHandle = GCHandle.FromIntPtr(gcHandlePtr);
+            gcHandle.Free();
+        }
+        catch (Exception e)
+        {
+            Eina.Log.Error(e.ToString());
+            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        }
+    }
+
+    private static Efl.RemoveEventsCb RemoveEventsCallbackDelegate = new Efl.RemoveEventsCb(RemoveEventsCallback);
+    public static void RemoveEventsCallback(IntPtr obj, IntPtr gcHandlePtr)
+    {
+        try
+        {
+            GCHandle gcHandle = GCHandle.FromIntPtr(gcHandlePtr);
+            var eoEvents = gcHandle.Target as Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>;
+            if (eoEvents == null)
+            {
+                Eina.Log.Error($"Invalid event dictionary [GCHandle pointer: {gcHandlePtr}]");
+                return;
+            }
+
+            foreach (var item in eoEvents)
+            {
+                if (!efl_event_callback_del(obj, item.Key.desc, item.Value.evtCallerPtr, IntPtr.Zero))
+                {
+                    Eina.Log.Error($"Failed to remove event proxy for event {item.Key.desc} [cb: {item.Value.evtCallerPtr}]");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Eina.Log.Error(e.ToString());
+            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        }
+    }
+
+    public static void SetNativeDisposeCallbacks()
+    {
+        efl_mono_gchandle_callbacks_set(FreeGCHandleCallbackDelegate, RemoveEventsCallbackDelegate);
+    }
+
+    public static void ThreadSafeFreeCbExec(EinaFreeCb cbFreeCb, IntPtr cbData)
+    {
+        EinaFreeCb cb = (IntPtr gcHandlePtr) => {
+            cbFreeCb(cbData);
+            GCHandle gcHandle = GCHandle.FromIntPtr(gcHandlePtr);
+            gcHandle.Free();
+        };
+
+        Monitor.Enter(Efl.All.InitLock);
+        if (Efl.All.MainLoopInitialized)
+        {
+            IntPtr cbPtr = Marshal.GetFunctionPointerForDelegate(cb);
+            var handle = GCHandle.Alloc(cb);
+            var handlePtr = GCHandle.ToIntPtr(handle);
+
+            efl_mono_thread_safe_free_cb_exec(cbPtr, handlePtr);
+        }
+        Monitor.Exit(Efl.All.InitLock);
+    }
+
 } // Globals
 
 public static class Config
 {
+
     public static void Init()
     {
         Globals.efl_object_init();
+        Globals.SetNativeDisposeCallbacks();
     }
 
     public static void Shutdown()
@@ -900,37 +971,37 @@ public class NonOwnTag : IOwnershipTag
 {
 }
 
-public class MarshalTest<T, U> : ICustomMarshaler
+public class MarshalEo<U> : ICustomMarshaler
     where U : IOwnershipTag
 {
     public static ICustomMarshaler GetInstance(string cookie)
     {
-        Eina.Log.Debug("MarshalTest.GetInstace cookie " + cookie);
-        return new MarshalTest<T, U>();
+        Eina.Log.Debug("MarshalEo.GetInstace cookie " + cookie);
+        return new MarshalEo<U>();
     }
 
     public void CleanUpManagedData(object ManagedObj)
     {
-        //Eina.Log.Warning("MarshalTest.CleanUpManagedData not implemented");
+        //Eina.Log.Warning("MarshalEo.CleanUpManagedData not implemented");
         //throw new NotImplementedException();
     }
 
     public void CleanUpNativeData(IntPtr pNativeData)
     {
-        //Eina.Log.Warning("MarshalTest.CleanUpNativeData not implemented");
+        //Eina.Log.Warning("MarshalEo.CleanUpNativeData not implemented");
         //throw new NotImplementedException();
     }
 
     public int GetNativeDataSize()
     {
-        Eina.Log.Debug("MarshalTest.GetNativeDataSize");
+        Eina.Log.Debug("MarshalEo.GetNativeDataSize");
         return 0;
         //return 8;
     }
 
     public IntPtr MarshalManagedToNative(object ManagedObj)
     {
-        Eina.Log.Debug("MarshalTest.MarshallManagedToNative");
+        Eina.Log.Debug("MarshalEo.MarshallManagedToNative");
 
         if (ManagedObj == null)
         {
@@ -957,7 +1028,7 @@ public class MarshalEflClass : ICustomMarshaler
 {
     public static ICustomMarshaler GetInstance(string cookie)
     {
-        Eina.Log.Debug("MarshalTest.GetInstance cookie " + cookie);
+        Eina.Log.Debug("MarshalEflClass.GetInstance cookie " + cookie);
         return new MarshalEflClass();
     }
 
@@ -971,13 +1042,13 @@ public class MarshalEflClass : ICustomMarshaler
 
     public int GetNativeDataSize()
     {
-        Eina.Log.Debug("MarshalTest.GetNativeDataSize");
+        Eina.Log.Debug("MarshalEflClass.GetNativeDataSize");
         return 0;
     }
 
     public IntPtr MarshalManagedToNative(object ManagedObj)
     {
-        Eina.Log.Debug("MarshalTest.MarshallManagedToNative");
+        Eina.Log.Debug("MarshalEflClass.MarshallManagedToNative");
         if (ManagedObj == null)
         {
             return IntPtr.Zero;
@@ -989,7 +1060,7 @@ public class MarshalEflClass : ICustomMarshaler
 
     public object MarshalNativeToManaged(IntPtr pNativeData)
     {
-        Eina.Log.Debug("MarshalTest.MarshalNativeToManaged");
+        Eina.Log.Debug("MarshalEflClass.MarshalNativeToManaged");
         if (pNativeData == IntPtr.Zero)
         {
             return null;

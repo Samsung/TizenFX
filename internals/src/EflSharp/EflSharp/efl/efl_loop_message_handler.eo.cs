@@ -3,137 +3,166 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { 
+namespace Efl {
+
 ///<summary>Event argument wrapper for event <see cref="Efl.LoopMessageHandler.MessageEvt"/>.</summary>
 public class LoopMessageHandlerMessageEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.LoopMessage arg { get; set; }
 }
 /// <summary>Message handlers represent a single message type on the Efl.Loop parent object. These message handlers can be used to listen for that message type by listening to the message event for the generic case or a class specific event type to get specific message object typing correct.</summary>
-[LoopMessageHandlerNativeInherit]
+[Efl.LoopMessageHandler.NativeMethods]
 public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
 {
     ///<summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (LoopMessageHandler))
-                return Efl.LoopMessageHandlerNativeInherit.GetEflClassStatic();
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(LoopMessageHandler))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_loop_message_handler_class_get();
-    ///<summary>Creates a new instance.</summary>
-    ///<param name="parent">Parent instance.</param>
+    /// <summary>Initializes a new instance of the <see cref="LoopMessageHandler"/> class.</summary>
+    /// <param name="parent">Parent instance.</param>
     public LoopMessageHandler(Efl.Object parent= null
-            ) :
-        base(efl_loop_message_handler_class_get(), typeof(LoopMessageHandler), parent)
+            ) : base(efl_loop_message_handler_class_get(), typeof(LoopMessageHandler), parent)
     {
         FinishInstantiation();
     }
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+
+    /// <summary>Initializes a new instance of the <see cref="LoopMessageHandler"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="raw">The native pointer to be wrapped.</param>
     protected LoopMessageHandler(System.IntPtr raw) : base(raw)
     {
-                RegisterEventProxies();
-    }
-    ///<summary>Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
-    protected LoopMessageHandler(IntPtr base_klass, System.Type managed_type, Efl.Object parent) : base(base_klass, managed_type, parent) {}
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+            }
+
+    /// <summary>Initializes a new instance of the <see cref="LoopMessageHandler"/> class.
+    /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
+    /// <param name="baseKlass">The pointer to the base native Eo class.</param>
+    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
+    /// <param name="parent">The Efl.Object parent of this instance.</param>
+    protected LoopMessageHandler(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-        var other = obj as Efl.Object;
+    }
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
+    {
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-private static object MessageEvtKey = new object();
+
     /// <summary>The message payload data</summary>
     public event EventHandler<Efl.LoopMessageHandlerMessageEvt_Args> MessageEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.LoopMessageHandlerMessageEvt_Args args = new Efl.LoopMessageHandlerMessageEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessage);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_LOOP_MESSAGE_HANDLER_EVENT_MESSAGE";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_MessageEvt_delegate)) {
-                    eventHandlers.AddHandler(MessageEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_LOOP_MESSAGE_HANDLER_EVENT_MESSAGE";
-                if (RemoveNativeEventHandler(key, this.evt_MessageEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(MessageEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event MessageEvt.</summary>
-    public void On_MessageEvt(Efl.LoopMessageHandlerMessageEvt_Args e)
+    public void OnMessageEvt(Efl.LoopMessageHandlerMessageEvt_Args e)
     {
-        EventHandler<Efl.LoopMessageHandlerMessageEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.LoopMessageHandlerMessageEvt_Args>)eventHandlers[MessageEvtKey];
+        var key = "_EFL_LOOP_MESSAGE_HANDLER_EVENT_MESSAGE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_MessageEvt_delegate;
-    private void on_MessageEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.LoopMessageHandlerMessageEvt_Args args = new Efl.LoopMessageHandlerMessageEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessage);
-        try {
-            On_MessageEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-    protected override void RegisterEventProxies()
-    {
-        base.RegisterEventProxies();
-        evt_MessageEvt_delegate = new Efl.EventCb(on_MessageEvt_NativeCallback);
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Creates a new message object of the correct type for this message type.</summary>
     /// <returns>The new message payload object.</returns>
     virtual public Efl.LoopMessage AddMessage() {
-         var _ret_var = Efl.LoopMessageHandlerNativeInherit.efl_loop_message_handler_message_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Place the message on the queue to be called later when message_process() is called on the loop object.</summary>
     /// <param name="message">The message to place on the queue.</param>
-    /// <returns></returns>
-    virtual public void MessageSend( Efl.LoopMessage message) {
-                                 Efl.LoopMessageHandlerNativeInherit.efl_loop_message_handler_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), message);
+    virtual public void MessageSend(Efl.LoopMessage message) {
+                                 Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),message);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Overide me (implement) then call super after calling the right callback type if you specialize the message type.</summary>
     /// <param name="message">Generic message event type</param>
-    /// <returns></returns>
-    virtual public void CallMessage( Efl.LoopMessage message) {
-                                 Efl.LoopMessageHandlerNativeInherit.efl_loop_message_handler_message_call_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), message);
+    virtual public void CallMessage(Efl.LoopMessage message) {
+                                 Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_call_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),message);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Delete all queued messages belonging to this message handler that are pending on the queue so they are not processed later.</summary>
     /// <returns>True if any messages of this type were cleared.</returns>
     virtual public bool ClearMessage() {
-         var _ret_var = Efl.LoopMessageHandlerNativeInherit.efl_loop_message_handler_message_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -141,137 +170,215 @@ private static object MessageEvtKey = new object();
     {
         return Efl.LoopMessageHandler.efl_loop_message_handler_class_get();
     }
-}
-public class LoopMessageHandlerNativeInherit : Efl.ObjectNativeInherit{
-    public new  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public new class NativeMethods : Efl.Object.NativeMethods
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        if (efl_loop_message_handler_message_add_static_delegate == null)
-            efl_loop_message_handler_message_add_static_delegate = new efl_loop_message_handler_message_add_delegate(message_add);
-        if (methods.FirstOrDefault(m => m.Name == "AddMessage") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_loop_message_handler_message_add"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_add_static_delegate)});
-        if (efl_loop_message_handler_message_send_static_delegate == null)
-            efl_loop_message_handler_message_send_static_delegate = new efl_loop_message_handler_message_send_delegate(message_send);
-        if (methods.FirstOrDefault(m => m.Name == "MessageSend") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_loop_message_handler_message_send"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_send_static_delegate)});
-        if (efl_loop_message_handler_message_call_static_delegate == null)
-            efl_loop_message_handler_message_call_static_delegate = new efl_loop_message_handler_message_call_delegate(message_call);
-        if (methods.FirstOrDefault(m => m.Name == "CallMessage") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_loop_message_handler_message_call"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_call_static_delegate)});
-        if (efl_loop_message_handler_message_clear_static_delegate == null)
-            efl_loop_message_handler_message_clear_static_delegate = new efl_loop_message_handler_message_clear_delegate(message_clear);
-        if (methods.FirstOrDefault(m => m.Name == "ClearMessage") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_loop_message_handler_message_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_clear_static_delegate)});
-        descs.AddRange(base.GetEoOps(type));
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.LoopMessageHandler.efl_loop_message_handler_class_get();
-    }
-    public static new  IntPtr GetEflClassStatic()
-    {
-        return Efl.LoopMessageHandler.efl_loop_message_handler_class_get();
-    }
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
 
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.LoopMessage, Efl.Eo.NonOwnTag>))] private delegate Efl.LoopMessage efl_loop_message_handler_message_add_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-    [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.LoopMessage, Efl.Eo.NonOwnTag>))] public delegate Efl.LoopMessage efl_loop_message_handler_message_add_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_add_api_delegate> efl_loop_message_handler_message_add_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_add_api_delegate>(_Module, "efl_loop_message_handler_message_add");
-     private static Efl.LoopMessage message_add(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_loop_message_handler_message_add was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Efl.LoopMessage _ret_var = default(Efl.LoopMessage);
-            try {
-                _ret_var = ((LoopMessageHandler)wrapper).AddMessage();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            if (efl_loop_message_handler_message_add_static_delegate == null)
+            {
+                efl_loop_message_handler_message_add_static_delegate = new efl_loop_message_handler_message_add_delegate(message_add);
             }
+
+            if (methods.FirstOrDefault(m => m.Name == "AddMessage") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_message_handler_message_add"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_add_static_delegate) });
+            }
+
+            if (efl_loop_message_handler_message_send_static_delegate == null)
+            {
+                efl_loop_message_handler_message_send_static_delegate = new efl_loop_message_handler_message_send_delegate(message_send);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "MessageSend") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_message_handler_message_send"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_send_static_delegate) });
+            }
+
+            if (efl_loop_message_handler_message_call_static_delegate == null)
+            {
+                efl_loop_message_handler_message_call_static_delegate = new efl_loop_message_handler_message_call_delegate(message_call);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "CallMessage") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_message_handler_message_call"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_call_static_delegate) });
+            }
+
+            if (efl_loop_message_handler_message_clear_static_delegate == null)
+            {
+                efl_loop_message_handler_message_clear_static_delegate = new efl_loop_message_handler_message_clear_delegate(message_clear);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ClearMessage") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_message_handler_message_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_handler_message_clear_static_delegate) });
+            }
+
+            descs.AddRange(base.GetEoOps(type));
+            return descs;
+        }
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.LoopMessageHandler.efl_loop_message_handler_class_get();
+        }
+
+        #pragma warning disable CA1707, SA1300, SA1600
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.LoopMessage efl_loop_message_handler_message_add_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.LoopMessage efl_loop_message_handler_message_add_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_add_api_delegate> efl_loop_message_handler_message_add_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_add_api_delegate>(Module, "efl_loop_message_handler_message_add");
+
+        private static Efl.LoopMessage message_add(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_loop_message_handler_message_add was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Efl.LoopMessage _ret_var = default(Efl.LoopMessage);
+                try
+                {
+                    _ret_var = ((LoopMessageHandler)wrapper).AddMessage();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_loop_message_handler_message_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_loop_message_handler_message_add_delegate efl_loop_message_handler_message_add_static_delegate;
 
-
-     private delegate void efl_loop_message_handler_message_send_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.LoopMessage, Efl.Eo.NonOwnTag>))]  Efl.LoopMessage message);
-
-
-     public delegate void efl_loop_message_handler_message_send_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.LoopMessage, Efl.Eo.NonOwnTag>))]  Efl.LoopMessage message);
-     public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_send_api_delegate> efl_loop_message_handler_message_send_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_send_api_delegate>(_Module, "efl_loop_message_handler_message_send");
-     private static void message_send(System.IntPtr obj, System.IntPtr pd,  Efl.LoopMessage message)
-    {
-        Eina.Log.Debug("function efl_loop_message_handler_message_send was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((LoopMessageHandler)wrapper).MessageSend( message);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_loop_message_handler_message_send_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  message);
-        }
-    }
-    private static efl_loop_message_handler_message_send_delegate efl_loop_message_handler_message_send_static_delegate;
-
-
-     private delegate void efl_loop_message_handler_message_call_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.LoopMessage, Efl.Eo.NonOwnTag>))]  Efl.LoopMessage message);
-
-
-     public delegate void efl_loop_message_handler_message_call_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.LoopMessage, Efl.Eo.NonOwnTag>))]  Efl.LoopMessage message);
-     public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_call_api_delegate> efl_loop_message_handler_message_call_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_call_api_delegate>(_Module, "efl_loop_message_handler_message_call");
-     private static void message_call(System.IntPtr obj, System.IntPtr pd,  Efl.LoopMessage message)
-    {
-        Eina.Log.Debug("function efl_loop_message_handler_message_call was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((LoopMessageHandler)wrapper).CallMessage( message);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_loop_message_handler_message_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
-                                } else {
-            efl_loop_message_handler_message_call_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  message);
         }
-    }
-    private static efl_loop_message_handler_message_call_delegate efl_loop_message_handler_message_call_static_delegate;
 
+        private static efl_loop_message_handler_message_add_delegate efl_loop_message_handler_message_add_static_delegate;
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_loop_message_handler_message_clear_delegate(System.IntPtr obj, System.IntPtr pd);
+        
+        private delegate void efl_loop_message_handler_message_send_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.LoopMessage message);
 
+        
+        public delegate void efl_loop_message_handler_message_send_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.LoopMessage message);
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_loop_message_handler_message_clear_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_clear_api_delegate> efl_loop_message_handler_message_clear_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_clear_api_delegate>(_Module, "efl_loop_message_handler_message_clear");
-     private static bool message_clear(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_loop_message_handler_message_clear was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        bool _ret_var = default(bool);
-            try {
-                _ret_var = ((LoopMessageHandler)wrapper).ClearMessage();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_send_api_delegate> efl_loop_message_handler_message_send_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_send_api_delegate>(Module, "efl_loop_message_handler_message_send");
+
+        private static void message_send(System.IntPtr obj, System.IntPtr pd, Efl.LoopMessage message)
+        {
+            Eina.Log.Debug("function efl_loop_message_handler_message_send was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((LoopMessageHandler)wrapper).MessageSend(message);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
             }
+            else
+            {
+                efl_loop_message_handler_message_send_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), message);
+            }
+        }
+
+        private static efl_loop_message_handler_message_send_delegate efl_loop_message_handler_message_send_static_delegate;
+
+        
+        private delegate void efl_loop_message_handler_message_call_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.LoopMessage message);
+
+        
+        public delegate void efl_loop_message_handler_message_call_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.LoopMessage message);
+
+        public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_call_api_delegate> efl_loop_message_handler_message_call_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_call_api_delegate>(Module, "efl_loop_message_handler_message_call");
+
+        private static void message_call(System.IntPtr obj, System.IntPtr pd, Efl.LoopMessage message)
+        {
+            Eina.Log.Debug("function efl_loop_message_handler_message_call was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((LoopMessageHandler)wrapper).CallMessage(message);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_loop_message_handler_message_call_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), message);
+            }
+        }
+
+        private static efl_loop_message_handler_message_call_delegate efl_loop_message_handler_message_call_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_loop_message_handler_message_clear_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_loop_message_handler_message_clear_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_clear_api_delegate> efl_loop_message_handler_message_clear_ptr = new Efl.Eo.FunctionWrapper<efl_loop_message_handler_message_clear_api_delegate>(Module, "efl_loop_message_handler_message_clear");
+
+        private static bool message_clear(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_loop_message_handler_message_clear was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((LoopMessageHandler)wrapper).ClearMessage();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_loop_message_handler_message_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+
+            }
+            else
+            {
+                return efl_loop_message_handler_message_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
         }
-    }
-    private static efl_loop_message_handler_message_clear_delegate efl_loop_message_handler_message_clear_static_delegate;
+
+        private static efl_loop_message_handler_message_clear_delegate efl_loop_message_handler_message_clear_static_delegate;
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} 
+}
+}
+

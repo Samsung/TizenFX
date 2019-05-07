@@ -115,6 +115,8 @@ public struct EventDescription
 };
 
 public delegate void EventCb(System.IntPtr data, ref Event.NativeStruct evt);
+public delegate void FreeGCHandleCb(System.IntPtr gcHandle);
+public delegate void RemoveEventsCb(System.IntPtr obj, System.IntPtr gcHandle);
 
 [StructLayout(LayoutKind.Sequential)]
 public struct TextCursorCursor

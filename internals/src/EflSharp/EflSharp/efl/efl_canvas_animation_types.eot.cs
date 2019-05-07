@@ -3,8 +3,12 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Canvas { 
+namespace Efl {
+
+namespace Canvas {
+
 /// <summary>Animation repeat mode</summary>
 public enum AnimationRepeatMode
 {
@@ -13,8 +17,15 @@ Restart = 0,
 /// <summary>Reverse animation when the animation ends.</summary>
 Reverse = 1,
 }
-} } 
-namespace Efl { namespace Canvas { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Canvas {
+
 /// <summary>Information of event running</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct AnimationPlayerEventRunning
@@ -50,4 +61,7 @@ public struct AnimationPlayerEventRunning
 
 }
 
-} } 
+}
+
+}
+
