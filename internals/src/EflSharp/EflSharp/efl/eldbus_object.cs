@@ -152,7 +152,14 @@ public class Object : System.IDisposable
 
         if (Own)
         {
-            eldbus_object_unref(h);
+            if (disposing)
+            {
+                eldbus_object_unref(h);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eldbus_object_unref, h);
+            }
         }
     }
 

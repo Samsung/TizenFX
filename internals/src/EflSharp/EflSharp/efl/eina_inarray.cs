@@ -141,7 +141,14 @@ public class Inarray<T> : IEnumerable<T>, IDisposable
 
         if (Own)
         {
-            eina_inarray_free(h);
+            if (disposing)
+            {
+                eina_inarray_free(h);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eina_inarray_free, h);
+            }
         }
     }
 

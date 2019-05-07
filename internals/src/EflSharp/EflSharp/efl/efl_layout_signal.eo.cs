@@ -3,16 +3,14 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-
-/// <summary></summary>
 /// <param name="kw_object">The object the callback is being triggered from.</param>
 /// <param name="emission">The name component of the signal.</param>
 /// <param name="source">The source of a signal used as context.</param>
-/// <returns></returns>
-public delegate void EflLayoutSignalCb( Efl.Layout.ISignal kw_object,  System.String emission,  System.String source);
-public delegate void EflLayoutSignalCbInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Layout.ISignalConcrete, Efl.Eo.NonOwnTag>))]  Efl.Layout.ISignal kw_object,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source);
-internal class EflLayoutSignalCbWrapper
+public delegate void EflLayoutSignalCb(Efl.Layout.ISignal kw_object, System.String emission, System.String source);
+public delegate void EflLayoutSignalCbInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Layout.ISignal kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source);
+internal class EflLayoutSignalCbWrapper : IDisposable
 {
 
     private EflLayoutSignalCbInternal _cb;
@@ -28,23 +26,46 @@ internal class EflLayoutSignalCbWrapper
 
     ~EflLayoutSignalCbWrapper()
     {
-        if (this._cb_free_cb != null)
-            this._cb_free_cb(this._cb_data);
+        Dispose(false);
     }
 
-    internal void ManagedCb( Efl.Layout.ISignal kw_object, System.String emission, System.String source)
+    protected virtual void Dispose(bool disposing)
     {
-                                                                                _cb(_cb_data,  kw_object,  emission,  source);
+        if (this._cb_free_cb != null)
+        {
+            if (disposing)
+            {
+                this._cb_free_cb(this._cb_data);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(this._cb_free_cb, this._cb_data);
+            }
+            this._cb_free_cb = null;
+            this._cb_data = IntPtr.Zero;
+            this._cb = null;
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    internal void ManagedCb(Efl.Layout.ISignal kw_object,System.String emission,System.String source)
+    {
+                                                                                _cb(_cb_data, kw_object, emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                                             }
 
-        internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Layout.ISignalConcrete, Efl.Eo.NonOwnTag>))]  Efl.Layout.ISignal kw_object,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source)
+        internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Layout.ISignal kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         EflLayoutSignalCb cb = (EflLayoutSignalCb)handle.Target;
                                                                                     
         try {
-            cb( kw_object,  emission,  source);
+            cb(kw_object, emission, source);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
@@ -52,10 +73,14 @@ internal class EflLayoutSignalCbWrapper
                                                             }
 }
 
-namespace Efl { namespace Layout { 
+
+namespace Efl {
+
+namespace Layout {
+
 /// <summary>Layouts asynchronous messaging and signaling interface.
 /// (Since EFL 1.22)</summary>
-[ISignalNativeInherit]
+[Efl.Layout.ISignalConcrete.NativeMethods]
 public interface ISignal : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -68,8 +93,7 @@ public interface ISignal :
 /// (Since EFL 1.22)</summary>
 /// <param name="id">A identification number for the message to be sent</param>
 /// <param name="msg">The message&apos;s payload</param>
-/// <returns></returns>
-void MessageSend( int id,  Eina.Value msg);
+void MessageSend(int id, Eina.Value msg);
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
 /// Edje signals are one of the communication interfaces between code and a given Edje object&apos;s theme. With signals, one can communicate two string values at a time, which are: - &quot;emission&quot; value: the name of the signal, in general - &quot;source&quot; value: a name for the signal&apos;s context, in general
 /// 
@@ -91,7 +115,7 @@ void MessageSend( int id,  Eina.Value msg);
 /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
 /// <param name="func">The callback function to be executed when the signal is emitted.</param>
 /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-bool AddSignalCallback( System.String emission,  System.String source,  EflLayoutSignalCb func);
+bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func);
     /// <summary>Removes a signal-triggered callback from an object.
 /// This function removes a callback, previously attached to the emission of a signal, from the object  obj. The parameters emission, source and func must match exactly those passed to a previous call to <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.
 /// 
@@ -101,7 +125,7 @@ bool AddSignalCallback( System.String emission,  System.String source,  EflLayou
 /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
 /// <param name="func">The callback function to be executed when the signal is emitted.</param>
 /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-bool DelSignalCallback( System.String emission,  System.String source,  EflLayoutSignalCb func);
+bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func);
     /// <summary>Sends/emits an Edje signal to this layout.
 /// This function sends a signal to the object. An Edje program, at the EDC specification level, can respond to a signal by having declared matching &quot;signal&quot; and &quot;source&quot; fields on its block.
 /// 
@@ -111,16 +135,14 @@ bool DelSignalCallback( System.String emission,  System.String source,  EflLayou
 /// (Since EFL 1.22)</summary>
 /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
 /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
-/// <returns></returns>
-void EmitSignal( System.String emission,  System.String source);
+void EmitSignal(System.String emission, System.String source);
     /// <summary>Processes an object&apos;s messages and signals queue.
 /// This function goes through the object message queue processing the pending messages for this specific Edje object. Normally they&apos;d be processed only at idle time.
 /// 
 /// If <c>recurse</c> is <c>true</c>, this function will be called recursively on all subobjects.
 /// (Since EFL 1.22)</summary>
 /// <param name="recurse">Whether to process messages on children objects.</param>
-/// <returns></returns>
-void SignalProcess( bool recurse);
+void SignalProcess(bool recurse);
                     }
 /// <summary>Layouts asynchronous messaging and signaling interface.
 /// (Since EFL 1.22)</summary>
@@ -130,68 +152,103 @@ ISignal
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (ISignalConcrete))
-                return Efl.Layout.ISignalNativeInherit.GetEflClassStatic();
+    public System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(ISignalConcrete))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     private  System.IntPtr handle;
     ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle {
+    public System.IntPtr NativeHandle
+    {
         get { return handle; }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
         efl_layout_signal_interface_get();
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <summary>Initializes a new instance of the <see cref="ISignal"/> class.
+    /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     private ISignalConcrete(System.IntPtr raw)
     {
         handle = raw;
-        RegisterEventProxies();
     }
     ///<summary>Destructor.</summary>
     ~ISignalConcrete()
     {
         Dispose(false);
     }
+
     ///<summary>Releases the underlying native instance.</summary>
-    void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
-        if (handle != System.IntPtr.Zero) {
-            Efl.Eo.Globals.efl_unref(handle);
-            handle = System.IntPtr.Zero;
+        if (handle != System.IntPtr.Zero)
+        {
+            IntPtr h = handle;
+            handle = IntPtr.Zero;
+
+            IntPtr gcHandlePtr = IntPtr.Zero;
+            if (disposing)
+            {
+                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
+            }
+            else
+            {
+                Monitor.Enter(Efl.All.InitLock);
+                if (Efl.All.MainLoopInitialized)
+                {
+                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
+                }
+
+                Monitor.Exit(Efl.All.InitLock);
+            }
         }
+
     }
+
     ///<summary>Releases the underlying native instance.</summary>
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
     {
-        var other = obj as Efl.Object;
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-     void RegisterEventProxies()
-    {
-    }
+
     /// <summary>Sends an (Edje) message to a given Edje object
     /// This function sends an Edje message to obj and to all of its child objects, if it has any (swallowed objects are one kind of child object). Only a few types are supported: - int, - float/double, - string/stringshare, - arrays of int, float, double or strings.
     /// 
@@ -201,9 +258,8 @@ ISignal
     /// (Since EFL 1.22)</summary>
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
-    /// <returns></returns>
-    public void MessageSend( int id,  Eina.Value msg) {
-                                                         Efl.Layout.ISignalNativeInherit.efl_layout_signal_message_send_ptr.Value.Delegate(this.NativeHandle, id,  msg);
+    public void MessageSend(int id, Eina.Value msg) {
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate(this.NativeHandle,id, msg);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
@@ -227,9 +283,9 @@ ISignal
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     /// <param name="func">The callback function to be executed when the signal is emitted.</param>
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-    public bool AddSignalCallback( System.String emission,  System.String source,  EflLayoutSignalCb func) {
+    public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalNativeInherit.efl_layout_signal_callback_add_ptr.Value.Delegate(this.NativeHandle, emission,  source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -242,9 +298,9 @@ ISignal
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     /// <param name="func">The callback function to be executed when the signal is emitted.</param>
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-    public bool DelSignalCallback( System.String emission,  System.String source,  EflLayoutSignalCb func) {
+    public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalNativeInherit.efl_layout_signal_callback_del_ptr.Value.Delegate(this.NativeHandle, emission,  source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -257,9 +313,8 @@ ISignal
     /// (Since EFL 1.22)</summary>
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
-    /// <returns></returns>
-    public void EmitSignal( System.String emission,  System.String source) {
-                                                         Efl.Layout.ISignalNativeInherit.efl_layout_signal_emit_ptr.Value.Delegate(this.NativeHandle, emission,  source);
+    public void EmitSignal(System.String emission, System.String source) {
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate(this.NativeHandle,emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Processes an object&apos;s messages and signals queue.
@@ -268,175 +323,271 @@ ISignal
     /// If <c>recurse</c> is <c>true</c>, this function will be called recursively on all subobjects.
     /// (Since EFL 1.22)</summary>
     /// <param name="recurse">Whether to process messages on children objects.</param>
-    /// <returns></returns>
-    public void SignalProcess( bool recurse) {
-                                 Efl.Layout.ISignalNativeInherit.efl_layout_signal_process_ptr.Value.Delegate(this.NativeHandle, recurse);
+    public void SignalProcess(bool recurse) {
+                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate(this.NativeHandle,recurse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
     }
-}
-public class ISignalNativeInherit  : Efl.Eo.NativeClass{
-    public  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Edje);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public class NativeMethods  : Efl.Eo.NativeClass
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        if (efl_layout_signal_message_send_static_delegate == null)
-            efl_layout_signal_message_send_static_delegate = new efl_layout_signal_message_send_delegate(message_send);
-        if (methods.FirstOrDefault(m => m.Name == "MessageSend") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_message_send"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_message_send_static_delegate)});
-        if (efl_layout_signal_callback_add_static_delegate == null)
-            efl_layout_signal_callback_add_static_delegate = new efl_layout_signal_callback_add_delegate(signal_callback_add);
-        if (methods.FirstOrDefault(m => m.Name == "AddSignalCallback") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_callback_add"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_add_static_delegate)});
-        if (efl_layout_signal_callback_del_static_delegate == null)
-            efl_layout_signal_callback_del_static_delegate = new efl_layout_signal_callback_del_delegate(signal_callback_del);
-        if (methods.FirstOrDefault(m => m.Name == "DelSignalCallback") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_callback_del"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_del_static_delegate)});
-        if (efl_layout_signal_emit_static_delegate == null)
-            efl_layout_signal_emit_static_delegate = new efl_layout_signal_emit_delegate(signal_emit);
-        if (methods.FirstOrDefault(m => m.Name == "EmitSignal") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_emit"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_emit_static_delegate)});
-        if (efl_layout_signal_process_static_delegate == null)
-            efl_layout_signal_process_static_delegate = new efl_layout_signal_process_delegate(signal_process);
-        if (methods.FirstOrDefault(m => m.Name == "SignalProcess") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate)});
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
-    }
-    public static  IntPtr GetEflClassStatic()
-    {
-        return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
-    }
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
 
-
-     private delegate void efl_layout_signal_message_send_delegate(System.IntPtr obj, System.IntPtr pd,   int id,   Eina.ValueNative msg);
-
-
-     public delegate void efl_layout_signal_message_send_api_delegate(System.IntPtr obj,   int id,   Eina.ValueNative msg);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate> efl_layout_signal_message_send_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate>(_Module, "efl_layout_signal_message_send");
-     private static void message_send(System.IntPtr obj, System.IntPtr pd,  int id,  Eina.ValueNative msg)
-    {
-        Eina.Log.Debug("function efl_layout_signal_message_send was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((ISignal)wrapper).MessageSend( id,  msg);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            if (efl_layout_signal_message_send_static_delegate == null)
+            {
+                efl_layout_signal_message_send_static_delegate = new efl_layout_signal_message_send_delegate(message_send);
             }
-                                                } else {
-            efl_layout_signal_message_send_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  id,  msg);
+
+            if (methods.FirstOrDefault(m => m.Name == "MessageSend") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_message_send"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_message_send_static_delegate) });
+            }
+
+            if (efl_layout_signal_callback_add_static_delegate == null)
+            {
+                efl_layout_signal_callback_add_static_delegate = new efl_layout_signal_callback_add_delegate(signal_callback_add);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "AddSignalCallback") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_callback_add"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_add_static_delegate) });
+            }
+
+            if (efl_layout_signal_callback_del_static_delegate == null)
+            {
+                efl_layout_signal_callback_del_static_delegate = new efl_layout_signal_callback_del_delegate(signal_callback_del);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "DelSignalCallback") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_callback_del"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_del_static_delegate) });
+            }
+
+            if (efl_layout_signal_emit_static_delegate == null)
+            {
+                efl_layout_signal_emit_static_delegate = new efl_layout_signal_emit_delegate(signal_emit);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "EmitSignal") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_emit"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_emit_static_delegate) });
+            }
+
+            if (efl_layout_signal_process_static_delegate == null)
+            {
+                efl_layout_signal_process_static_delegate = new efl_layout_signal_process_delegate(signal_process);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SignalProcess") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate) });
+            }
+
+            return descs;
         }
-    }
-    private static efl_layout_signal_message_send_delegate efl_layout_signal_message_send_static_delegate;
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
+        }
 
+        #pragma warning disable CA1707, SA1300, SA1600
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_layout_signal_callback_add_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+        
+        private delegate void efl_layout_signal_message_send_delegate(System.IntPtr obj, System.IntPtr pd,  int id,  Eina.ValueNative msg);
 
+        
+        public delegate void efl_layout_signal_message_send_api_delegate(System.IntPtr obj,  int id,  Eina.ValueNative msg);
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_layout_signal_callback_add_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate> efl_layout_signal_callback_add_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate>(_Module, "efl_layout_signal_callback_add");
-     private static bool signal_callback_add(System.IntPtr obj, System.IntPtr pd,  System.String emission,  System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
-    {
-        Eina.Log.Debug("function efl_layout_signal_callback_add was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                                        EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate> efl_layout_signal_message_send_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate>(Module, "efl_layout_signal_message_send");
+
+        private static void message_send(System.IntPtr obj, System.IntPtr pd, int id, Eina.ValueNative msg)
+        {
+            Eina.Log.Debug("function efl_layout_signal_message_send was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((ISignal)wrapper).MessageSend(id, msg);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_layout_signal_message_send_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), id, msg);
+            }
+        }
+
+        private static efl_layout_signal_message_send_delegate efl_layout_signal_message_send_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_layout_signal_callback_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_layout_signal_callback_add_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate> efl_layout_signal_callback_add_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate>(Module, "efl_layout_signal_callback_add");
+
+        private static bool signal_callback_add(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
+        {
+            Eina.Log.Debug("function efl_layout_signal_callback_add was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                                            EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
-            try {
-                _ret_var = ((ISignal)wrapper).AddSignalCallback( emission,  source,  func_wrapper.ManagedCb);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+                try
+                {
+                    _ret_var = ((ISignal)wrapper).AddSignalCallback(emission, source, func_wrapper.ManagedCb);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                                                         return _ret_var;
-        } else {
-            return efl_layout_signal_callback_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  emission,  source, func_data, func, func_free_cb);
+
+            }
+            else
+            {
+                return efl_layout_signal_callback_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), emission, source, func_data, func, func_free_cb);
+            }
         }
-    }
-    private static efl_layout_signal_callback_add_delegate efl_layout_signal_callback_add_static_delegate;
 
+        private static efl_layout_signal_callback_add_delegate efl_layout_signal_callback_add_static_delegate;
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_layout_signal_callback_del_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_layout_signal_callback_del_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_layout_signal_callback_del_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_layout_signal_callback_del_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate> efl_layout_signal_callback_del_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate>(_Module, "efl_layout_signal_callback_del");
-     private static bool signal_callback_del(System.IntPtr obj, System.IntPtr pd,  System.String emission,  System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
-    {
-        Eina.Log.Debug("function efl_layout_signal_callback_del was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                                        EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate> efl_layout_signal_callback_del_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate>(Module, "efl_layout_signal_callback_del");
+
+        private static bool signal_callback_del(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
+        {
+            Eina.Log.Debug("function efl_layout_signal_callback_del was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                                            EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
-            try {
-                _ret_var = ((ISignal)wrapper).DelSignalCallback( emission,  source,  func_wrapper.ManagedCb);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+                try
+                {
+                    _ret_var = ((ISignal)wrapper).DelSignalCallback(emission, source, func_wrapper.ManagedCb);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                                                         return _ret_var;
-        } else {
-            return efl_layout_signal_callback_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  emission,  source, func_data, func, func_free_cb);
-        }
-    }
-    private static efl_layout_signal_callback_del_delegate efl_layout_signal_callback_del_static_delegate;
 
-
-     private delegate void efl_layout_signal_emit_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source);
-
-
-     public delegate void efl_layout_signal_emit_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate> efl_layout_signal_emit_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate>(_Module, "efl_layout_signal_emit");
-     private static void signal_emit(System.IntPtr obj, System.IntPtr pd,  System.String emission,  System.String source)
-    {
-        Eina.Log.Debug("function efl_layout_signal_emit was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((ISignal)wrapper).EmitSignal( emission,  source);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                                } else {
-            efl_layout_signal_emit_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  emission,  source);
-        }
-    }
-    private static efl_layout_signal_emit_delegate efl_layout_signal_emit_static_delegate;
-
-
-     private delegate void efl_layout_signal_process_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.U1)]  bool recurse);
-
-
-     public delegate void efl_layout_signal_process_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.U1)]  bool recurse);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate> efl_layout_signal_process_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate>(_Module, "efl_layout_signal_process");
-     private static void signal_process(System.IntPtr obj, System.IntPtr pd,  bool recurse)
-    {
-        Eina.Log.Debug("function efl_layout_signal_process was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((ISignal)wrapper).SignalProcess( recurse);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_layout_signal_callback_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), emission, source, func_data, func, func_free_cb);
             }
-                                } else {
-            efl_layout_signal_process_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  recurse);
         }
-    }
-    private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
+
+        private static efl_layout_signal_callback_del_delegate efl_layout_signal_callback_del_static_delegate;
+
+        
+        private delegate void efl_layout_signal_emit_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source);
+
+        
+        public delegate void efl_layout_signal_emit_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate> efl_layout_signal_emit_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate>(Module, "efl_layout_signal_emit");
+
+        private static void signal_emit(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source)
+        {
+            Eina.Log.Debug("function efl_layout_signal_emit was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((ISignal)wrapper).EmitSignal(emission, source);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_layout_signal_emit_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), emission, source);
+            }
+        }
+
+        private static efl_layout_signal_emit_delegate efl_layout_signal_emit_static_delegate;
+
+        
+        private delegate void efl_layout_signal_process_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool recurse);
+
+        
+        public delegate void efl_layout_signal_process_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool recurse);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate> efl_layout_signal_process_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate>(Module, "efl_layout_signal_process");
+
+        private static void signal_process(System.IntPtr obj, System.IntPtr pd, bool recurse)
+        {
+            Eina.Log.Debug("function efl_layout_signal_process was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((ISignal)wrapper).SignalProcess(recurse);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_layout_signal_process_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), recurse);
+            }
+        }
+
+        private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} } 
+}
+}
+
+}
+

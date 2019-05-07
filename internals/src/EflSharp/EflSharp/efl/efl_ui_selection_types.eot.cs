@@ -3,15 +3,17 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Ui { 
-/// <summary></summary>
+namespace Efl {
+
+namespace Ui {
+
 /// <param name="obj">Object which requested for the selection</param>
 /// <param name="seldata">Selection data</param>
-/// <returns></returns>
-public delegate void SelectionDataReady( Efl.Object obj,  ref Efl.Ui.SelectionData seldata);
-public delegate void SelectionDataReadyInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Object, Efl.Eo.NonOwnTag>))]  Efl.Object obj,   ref Efl.Ui.SelectionData.NativeStruct seldata);
-internal class SelectionDataReadyWrapper
+public delegate void SelectionDataReady(Efl.Object obj, ref Efl.Ui.SelectionData seldata);
+public delegate void SelectionDataReadyInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object obj,  ref Efl.Ui.SelectionData.NativeStruct seldata);
+internal class SelectionDataReadyWrapper : IDisposable
 {
 
     private SelectionDataReadyInternal _cb;
@@ -27,26 +29,49 @@ internal class SelectionDataReadyWrapper
 
     ~SelectionDataReadyWrapper()
     {
-        if (this._cb_free_cb != null)
-            this._cb_free_cb(this._cb_data);
+        Dispose(false);
     }
 
-    internal void ManagedCb( Efl.Object obj, ref Efl.Ui.SelectionData seldata)
+    protected virtual void Dispose(bool disposing)
+    {
+        if (this._cb_free_cb != null)
+        {
+            if (disposing)
+            {
+                this._cb_free_cb(this._cb_data);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(this._cb_free_cb, this._cb_data);
+            }
+            this._cb_free_cb = null;
+            this._cb_data = IntPtr.Zero;
+            this._cb = null;
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    internal void ManagedCb(Efl.Object obj,ref Efl.Ui.SelectionData seldata)
     {
                 Efl.Ui.SelectionData.NativeStruct _in_seldata = seldata;
-                                        _cb(_cb_data,  obj,  ref _in_seldata);
+                                        _cb(_cb_data, obj, ref _in_seldata);
         Eina.Error.RaiseIfUnhandledException();
                                 seldata = _in_seldata;
             }
 
-        internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Object, Efl.Eo.NonOwnTag>))]  Efl.Object obj,   ref Efl.Ui.SelectionData.NativeStruct seldata)
+        internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object obj,  ref Efl.Ui.SelectionData.NativeStruct seldata)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         SelectionDataReady cb = (SelectionDataReady)handle.Target;
                 Efl.Ui.SelectionData _in_seldata = seldata;
                                             
         try {
-            cb( obj,  ref _in_seldata);
+            cb(obj, ref _in_seldata);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
@@ -54,8 +79,14 @@ internal class SelectionDataReadyWrapper
                                 seldata = _in_seldata;
             }
 }
-} } 
-namespace Efl { namespace Ui { 
+}
+
+}
+
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Selection type</summary>
 public enum SelectionType
 {
@@ -68,8 +99,15 @@ Dnd = 2,
 /// <summary>Clipboard selection (ctrl+C)</summary>
 Clipboard = 3,
 }
-} } 
-namespace Efl { namespace Ui { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Selection format</summary>
 public enum SelectionFormat
 {
@@ -88,8 +126,15 @@ Vcard = 8,
 /// <summary>Raw HTML-like data (eg. webkit)</summary>
 Html = 16,
 }
-} } 
-namespace Efl { namespace Ui { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Defines the kind of action associated with the drop data</summary>
 public enum SelectionAction
 {
@@ -110,8 +155,15 @@ Link = 6,
 /// <summary>Describe the data</summary>
 Description = 7,
 }
-} } 
-namespace Efl { namespace Ui { 
+
+}
+
+}
+
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Structure holding the info about selected data</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct SelectionData
@@ -128,11 +180,11 @@ public struct SelectionData
     public Efl.Object Item;
     ///<summary>Constructor for SelectionData.</summary>
     public SelectionData(
-        Eina.Position2D Pos=default(Eina.Position2D),
-        Efl.Ui.SelectionFormat Format=default(Efl.Ui.SelectionFormat),
-        Eina.Slice Content=default(Eina.Slice),
-        Efl.Ui.SelectionAction Action=default(Efl.Ui.SelectionAction),
-        Efl.Object Item=default(Efl.Object)    )
+        Eina.Position2D Pos = default(Eina.Position2D),
+        Efl.Ui.SelectionFormat Format = default(Efl.Ui.SelectionFormat),
+        Eina.Slice Content = default(Eina.Slice),
+        Efl.Ui.SelectionAction Action = default(Efl.Ui.SelectionAction),
+        Efl.Object Item = default(Efl.Object)    )
     {
         this.Pos = Pos;
         this.Format = Format;
@@ -194,9 +246,14 @@ public struct SelectionData
 
 }
 
-} } 
-namespace Efl { namespace Ui { 
-/// <summary></summary>
+}
+
+}
+
+namespace Efl {
+
+namespace Ui {
+
 [StructLayout(LayoutKind.Sequential)]
 public struct SelectionChanged
 {
@@ -210,10 +267,10 @@ public struct SelectionChanged
     public bool Exist;
     ///<summary>Constructor for SelectionChanged.</summary>
     public SelectionChanged(
-        Efl.Ui.SelectionType Type=default(Efl.Ui.SelectionType),
-        int Seat=default(int),
-        System.IntPtr Display=default(System.IntPtr),
-        bool Exist=default(bool)    )
+        Efl.Ui.SelectionType Type = default(Efl.Ui.SelectionType),
+        int Seat = default(int),
+        System.IntPtr Display = default(System.IntPtr),
+        bool Exist = default(bool)    )
     {
         this.Type = Type;
         this.Seat = Seat;
@@ -265,4 +322,7 @@ public struct SelectionChanged
 
 }
 
-} } 
+}
+
+}
+

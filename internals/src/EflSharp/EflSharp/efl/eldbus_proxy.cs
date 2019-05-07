@@ -111,7 +111,14 @@ public class Proxy : IDisposable
 
         if (Own)
         {
-            eldbus_proxy_unref(h);
+            if (disposing)
+            {
+                eldbus_proxy_unref(h);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eldbus_proxy_unref, h);
+            }
         }
     }
 

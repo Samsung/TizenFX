@@ -73,7 +73,14 @@ public class Iterator<T> : IEnumerable<T>, IDisposable
 
         if (Own)
         {
-            eina_iterator_free(h);
+            if (disposing)
+            {
+                eina_iterator_free(h);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eina_iterator_free, h);
+            }
         }
     }
 

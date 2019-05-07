@@ -20,7 +20,6 @@ public class Libs {
 
     public const string Libdl = "libdl.so.2";
     public const string Kernel32 = "kernel32.dll";
-
     public const string Eext = "libefl-extension.so.0";
 
     public static Efl.Eo.NativeModule EflModule = new Efl.Eo.NativeModule(Efl);

@@ -61,5 +61,14 @@ internal static partial class Interop
 
         [DllImport(efl.Libs.Eext)]
         internal static extern void eext_more_option_item_part_text_set(IntPtr item, string part_name, string text);
+
+        [DllImport(efl.Libs.Eext)]
+        internal static extern void eext_more_option_editing_enabled_set(IntPtr obj, bool enabled);
+        [DllImport(efl.Libs.Eext)]
+        internal static extern bool eext_more_option_editing_enabled_get(IntPtr obj);
+        [DllImport(efl.Libs.Eext)]
+        internal static extern void eext_more_option_add_item_enabled_set(IntPtr obj, bool enabled);
+        [DllImport(efl.Libs.Eext)]
+        internal static extern bool eext_more_option_add_item_enabled_get(IntPtr obj);
     }
 }

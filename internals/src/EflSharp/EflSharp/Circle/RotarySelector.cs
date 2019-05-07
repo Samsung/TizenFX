@@ -34,6 +34,8 @@ namespace Efl
 
                 Image _normalBgImage;
 
+                readonly List<RotarySelectorItem> Items = new List<RotarySelectorItem>();
+
                 /// <summary>
                 /// Clicked will be triggered when selecting again the already selected item or selecting a selector.
                 /// </summary>
@@ -58,18 +60,63 @@ namespace Efl
                 {
                     smartClicked = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
-                        RotarySelectorItem clickedItem = new RotarySelectorItem();
-                        clickedItem._handle = e;
-                        Clicked?.Invoke(this, new RotarySelectorItemEventArgs { item = clickedItem});
+                        RotarySelectorItem clickedItem = FindItemByNativeHandle(e);
+                        if (clickedItem != null)
+                            Clicked?.Invoke(this, new RotarySelectorItemEventArgs { item = clickedItem});
                     });
 
                     smartSelected = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
-                        Selected?.Invoke(this, new RotarySelectorItemEventArgs { item = this.SelectedItem });
+                        RotarySelectorItem selectedItem = FindItemByNativeHandle(e);
+                        if (selectedItem != null)
+                            Selected.Invoke(this, new RotarySelectorItemEventArgs { item = selectedItem });
                     });
 
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemClickedEventName, smartClicked, IntPtr.Zero);
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemSelectedEventName, smartSelected, IntPtr.Zero);
+                }
+
+                private RotarySelectorItem FindItemByNativeHandle(IntPtr handle)
+                {
+                    foreach(RotarySelectorItem item in Items)
+                    {
+                        if (item.NativeHandle == handle)
+                            return item;
+                    }
+
+                    return null;
+                }
+
+                /// <summary>
+                /// Sets or gets the edit mode of rotary selector.
+                /// </summary>
+                /// <since_tizen> 6 </since_tizen>
+                public bool EditMode
+                {
+                    get
+                    {
+                        return Interop.Eext.eext_rotary_selector_editing_enabled_get(this.NativeHandle);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_rotary_selector_editing_enabled_set(this.NativeHandle, value);
+                    }
+                }
+
+                /// <summary>
+                /// Sets or gets the add item mode of rotary selector.
+                /// </summary>
+                /// <since_tizen> 6 </since_tizen>
+                public bool AddItemMode
+                {
+                    get
+                    {
+                        return Interop.Eext.eext_rotary_selector_add_item_enabled_get(this.NativeHandle);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_rotary_selector_add_item_enabled_set(this.NativeHandle, value);
+                    }
                 }
 
                 /// <summary>
@@ -79,7 +126,10 @@ namespace Efl
                 public void Append(RotarySelectorItem item)
                 {
                     if (item.NativeHandle != null)
-                      item.NativeHandle = Interop.Eext.eext_rotary_selector_item_append(this.NativeHandle);
+                    {
+                        Items.Add(item);
+                        item.NativeHandle = Interop.Eext.eext_rotary_selector_item_append(this.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -89,7 +139,10 @@ namespace Efl
                 public void Prepend(RotarySelectorItem item)
                 {
                     if (item.NativeHandle != null)
-                      item.NativeHandle = Interop.Eext.eext_rotary_selector_item_prepend(this.NativeHandle);
+                    {
+                        Items.Insert(0, item);
+                        item.NativeHandle = Interop.Eext.eext_rotary_selector_item_prepend(this.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -98,8 +151,12 @@ namespace Efl
                 /// <since_tizen> 6 </since_tizen>
                 public void InsertAfter(RotarySelectorItem targetItem, RotarySelectorItem item)
                 {
-                    if (item.NativeHandle != null)
-                    item.NativeHandle = Interop.Eext.eext_rotary_selector_item_insert_after(this.NativeHandle, targetItem.NativeHandle);
+                    if (item.NativeHandle != null && targetItem != null)
+                    {
+                        if (!Items.Contains(targetItem)) return;
+                        Items.Insert(Items.IndexOf(targetItem) + 1, item);
+                        item.NativeHandle = Interop.Eext.eext_rotary_selector_item_insert_after(this.NativeHandle, targetItem.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -108,8 +165,12 @@ namespace Efl
                 /// <since_tizen> 6 </since_tizen>
                 public void InsertBefore(RotarySelectorItem targetItem, RotarySelectorItem item)
                 {
-                    if (item.NativeHandle != null)
-                      item.NativeHandle = Interop.Eext.eext_rotary_selector_item_insert_before(this.NativeHandle, targetItem.NativeHandle);
+                    if (item.NativeHandle != null && targetItem != null)
+                    {
+                        if (!Items.Contains(targetItem)) return;
+                        Items.Insert(Items.IndexOf(targetItem), item);
+                        item.NativeHandle = Interop.Eext.eext_rotary_selector_item_insert_before(this.NativeHandle, targetItem.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -119,7 +180,11 @@ namespace Efl
                 public void DeleteItem(RotarySelectorItem item)
                 {
                     if (item.NativeHandle != null)
-                      Interop.Eext.eext_rotary_selector_item_del(item.NativeHandle);
+                    {
+                        if (!Items.Contains(item)) return;
+                        Items.Remove(item);
+                        Interop.Eext.eext_rotary_selector_item_del(item.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -129,7 +194,10 @@ namespace Efl
                 public void ClearItems()
                 {
                     if (this.NativeHandle != null)
-                      Interop.Eext.eext_rotary_selector_items_clear(this.NativeHandle);
+                    {
+                        Items.Clear();
+                        Interop.Eext.eext_rotary_selector_items_clear(this.NativeHandle);
+                    }
                 }
 
                 /// <summary>
@@ -140,8 +208,8 @@ namespace Efl
                 {
                     get
                     {
-                        RotarySelectorItem item = new RotarySelectorItem();
-                        item.NativeHandle = Interop.Eext.eext_rotary_selector_selected_item_get(this.NativeHandle);
+                        IntPtr nativeHandle = Interop.Eext.eext_rotary_selector_selected_item_get(this.NativeHandle);
+                        RotarySelectorItem item = FindItemByNativeHandle(nativeHandle);
                         return item;
                     }
                     set

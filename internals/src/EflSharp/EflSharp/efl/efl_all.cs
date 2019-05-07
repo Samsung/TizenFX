@@ -30,7 +30,7 @@ static class UnsafeNativeMethods
 
     static UnsafeNativeMethods()
     {
-        _evas_init = new Efl.Eo.FunctionWrapper<init_func_delegate>("evas", "evas_init");
+        _evas_init = new Efl.Eo.FunctionWrapper<init_func_delegate>(efl.Libs.Evas, "evas_init");
     }
 
     public static void evas_init()
@@ -42,6 +42,13 @@ static class UnsafeNativeMethods
 public static class All
 {
     private static bool InitializedUi = false;
+
+    public static bool MainLoopInitialized {
+        get;
+        private set;
+    }
+
+    public static readonly object InitLock = new object();
 
     public static void Init(Efl.Csharp.Components components = Efl.Csharp.Components.Basic)
     {
@@ -56,24 +63,38 @@ public static class All
             Efl.Ui.Config.Init();
             InitializedUi = true;
         }
+        Monitor.Enter(InitLock);
+        MainLoopInitialized = true;
+        Monitor.Exit(InitLock);
     }
 
     /// <summary>Shutdowns all EFL subsystems.</summary>
     public static void Shutdown()
     {
         // Try to cleanup everything before actually shutting down.
+        Eina.Log.Debug("Calling GC before shutdown");
         System.GC.Collect();
         System.GC.WaitForPendingFinalizers();
 
+        Monitor.Enter(InitLock);
+        MainLoopInitialized = false;
+        Monitor.Exit(InitLock);
+
         if (InitializedUi)
         {
+            Eina.Log.Debug("Shutting down Elementary");
             Efl.Ui.Config.Shutdown();
         }
 
+        Eina.Log.Debug("Shutting down Eldbus");
         eldbus.Config.Shutdown();
+        Eina.Log.Debug("Shutting down Evas");
         evas_shutdown();
+        Eina.Log.Debug("Shutting down Ecore");
         ecore_shutdown();
+        Eina.Log.Debug("Shutting down Eo");
         Efl.Eo.Config.Shutdown();
+        Eina.Log.Debug("Shutting down Eina");
         Eina.Config.Shutdown();
     }
 }
@@ -97,6 +118,10 @@ public static class Config
         elm_init(0, IntPtr.Zero);
 
         elm_policy_set((int)Elm.Policy.Quit, (int)Elm.PolicyQuit.LastWindowHidden);
+
+        // TIZEN_ONLY(20190425) Use efl-sharp-theme.edj on EflSharp
+        Efl.Ui.Theme.GetDefault().AddOverlay("/usr/share/efl-sharp/efl-sharp-theme.edj");
+        //
     }
 
     public static void Shutdown()
