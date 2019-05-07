@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -8097,37 +8097,6 @@ namespace Tizen.NUI
         public static extern global::System.IntPtr Timer_TickSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_DragAndDropDetector")]
-        public static extern global::System.IntPtr new_DragAndDropDetector();
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_DragAndDropDetector")]
-        public static extern void delete_DragAndDropDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_GetContent")]
-        public static extern string DragAndDropDetector_GetContent(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_GetCurrentScreenPosition")]
-        public static extern global::System.IntPtr DragAndDropDetector_GetCurrentScreenPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_EnteredSignal")]
-        public static extern global::System.IntPtr DragAndDropDetector_EnteredSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_ExitedSignal")]
-        public static extern global::System.IntPtr DragAndDropDetector_ExitedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_MovedSignal")]
-        public static extern global::System.IntPtr DragAndDropDetector_MovedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_DroppedSignal")]
-        public static extern global::System.IntPtr DragAndDropDetector_DroppedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_New__SWIG_0")]
         public static extern global::System.IntPtr Window_New__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
 
@@ -8202,10 +8171,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_GetPreferredOrientation")]
         public static extern int Window_GetPreferredOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_GetDragAndDropDetector")]
-        public static extern global::System.IntPtr Window_GetDragAndDropDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_GetNativeHandle")]
@@ -14772,10 +14737,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Timer_SWIGUpcast")]
         public static extern global::System.IntPtr Timer_SWIGUpcast(global::System.IntPtr jarg1);
-
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_DragAndDropDetector_SWIGUpcast")]
-        public static extern global::System.IntPtr DragAndDropDetector_SWIGUpcast(global::System.IntPtr jarg1);
 
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Window_SWIGUpcast")]

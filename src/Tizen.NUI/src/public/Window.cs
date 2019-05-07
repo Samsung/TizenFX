@@ -1219,13 +1219,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal DragAndDropDetector GetDragAndDropDetector()
-        {
-            DragAndDropDetector ret = new DragAndDropDetector(NDalicPINVOKE.Window_GetDragAndDropDetector(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal Any GetNativeHandle()
         {
             Any ret = new Any(NDalicPINVOKE.Window_GetNativeHandle(swigCPtr), true);
