@@ -33,8 +33,9 @@ namespace Tizen.NUI
         private const float defaultDpi = 160.0f;
 
         /// <summary>
+        /// Converts script to px
         /// </summary>
-        /// <returns>Convert script to px</returns>
+        /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertScriptToPixel(string scriptValue)
@@ -60,8 +61,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converts other type to px
         /// </summary>
-        /// <returns>Convert other type to px</returns>
+        /// <returns>Pixel value that is converted by the the display matric</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertToPixel(float value)
@@ -70,8 +72,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converts px to other type
         /// </summary>
-        /// <returns>Convert px to other type</returns>
+        /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertFromPixel(float value)
