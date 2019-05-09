@@ -15,9 +15,12 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -5740,6 +5743,56 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+
+        private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Transition GetTransition(string transitionName)
+        {
+            Transition trans = null;
+            transDictionary.TryGetValue(transitionName, out trans);
+            return trans;
+        }
+
+        private void LoadTransitions()
+        {
+            foreach (string str in transitionNames)
+            {
+                string resourceName = str + ".xaml";
+                Transition trans = null;
+
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+                string likelyResourcePath = resource + "animation/" + resourceName;
+
+                if (File.Exists(likelyResourcePath))
+                {
+                    trans = Extensions.LoadObject<Transition>(likelyResourcePath);
+                }
+                if (trans)
+                {
+                    transDictionary.Add(trans.Name, trans);
+                }
+            }
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string[] TransitionNames
+        {
+            get
+            {
+                return transitionNames;
+            }
+            set
+            {
+                transitionNames = value;
+                LoadTransitions();
+            }
+        }
+        private string[] transitionNames;
 
         internal class BackgroundResourceLoadedEventArgs : EventArgs
         {

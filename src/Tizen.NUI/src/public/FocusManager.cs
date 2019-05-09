@@ -405,11 +405,19 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetCustomAlgorithm(ICustomFocusAlgorithm arg0)
         {
-            _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
-            _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
+            if(arg0 != null)
+            {
+                _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
+                _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
 
-            Interop.NDalic.SetCustomAlgorithm(swigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.NDalic.SetCustomAlgorithm(swigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            else
+            {
+                Interop.NDalic.SetCustomAlgorithm(swigCPtr, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FocusManager obj)
