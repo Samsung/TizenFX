@@ -99,9 +99,6 @@ namespace Tizen.NUI
                 rowHeight = (availableHeight / numberOfRows);
             }
 
-            Log.Info("NUI", "ColumnWidth[" + columnWidth + "] RowHeight[" +rowHeight + "] NumberOfRows["
-                            + numberOfRows + "] NumberOfColumns[" + numberOfColumns +"]\n");
-
             int  y1 = 0;
             int  y2 = y1 + rowHeight;
 

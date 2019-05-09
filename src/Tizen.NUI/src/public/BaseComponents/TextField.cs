@@ -255,7 +255,40 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_COLOR).Get(temp);
             return temp;
         });
-
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableGrabHandleProperty = BindableProperty.Create(nameof(TextField.EnableGrabHandle), typeof(bool), typeof(TextField), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableGrabHandlePopupProperty = BindableProperty.Create(nameof(TextField.EnableGrabHandlePopup), typeof(bool), typeof(TextField), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE_POPUP, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_GRAB_HANDLE_POPUP).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PrimaryCursorColorProperty = BindableProperty.Create(nameof(TextField.PrimaryCursorColor), typeof(Vector4), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -1918,6 +1951,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The Enable selection property.
+        /// </summary>
+        /// <since_tizen> 5.5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandle
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandleProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Enable selection property.
+        /// </summary>
+        /// <since_tizen> 5.5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandlePopup
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandlePopupProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandlePopupProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
         /// </summary>
@@ -2044,6 +2115,18 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return inputMethodCotext;
+        }
+
+        /// <summary>
+        /// Select the whole text.
+        /// </summary>
+        /// <since_tizen> 5.5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5.5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SelectWholeText()
+        {
+            Interop.TextField.TextField_SelectWholeText(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextField obj)
@@ -2286,6 +2369,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ELLIPSIS = Interop.TextField.TextField_Property_ELLIPSIS_get();
             internal static readonly int ENABLE_SHIFT_SELECTION = Interop.TextField.TextField_Property_ENABLE_SHIFT_SELECTION_get();
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextField.TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
+            internal static readonly int ENABLE_GRAB_HANDLE = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_get();
+            internal static readonly int ENABLE_GRAB_HANDLE_POPUP = Interop.TextField.TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get();
         }
 
         internal class InputStyle

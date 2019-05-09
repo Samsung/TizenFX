@@ -302,6 +302,16 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_get")]
             public static extern int TextField_Property_ELLIPSIS_get();
+
+			
+            [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_TextField_SelectWholeText")]
+            public static extern void TextField_SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
+    		
+            [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get")]
+            public static extern int TextField_Property_ENABLE_GRAB_HANDLE_get();
+    
+            [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get")]
+            public static extern int TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get();
         }
     }
 }

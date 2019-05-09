@@ -48,7 +48,6 @@ namespace Tizen.NUI
 
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            Log.Info("NUI", "Measuring[" + _children.Count + "] child(ren)\n");
             float totalHeight = 0.0f;
             float totalWidth = 0.0f;
 
@@ -85,7 +84,6 @@ namespace Tizen.NUI
                     // Store current width and height needed to contain all children.
                     totalWidth = maxPositionX - minPositionX;
                     totalHeight = maxPositionY - minPositionY;
-                    Log.Info( "NUI" , "AbsoluteLayout::OnMeasure child width(" + childWidth + ") height(" + childHeight + ")\n" );
 
                     if (childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                     {
@@ -98,7 +96,6 @@ namespace Tizen.NUI
                 }
             }
 
-            Log.Info( "NUI" , "AbsoluteLayout::OnMeasure total width(" + totalWidth + ") total height(" + totalHeight + ")\n" );
 
             MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
@@ -131,12 +128,6 @@ namespace Tizen.NUI
 
                     LayoutLength childLeft = new LayoutLength(childPosition.X);
                     LayoutLength childTop = new LayoutLength(childPosition.Y);
-
-                    Log.Info("NUI", "Child View:" + childLayout.Owner.Name
-                                    + " position(" + childLeft.AsRoundedValue() + ", "
-                                    + childTop.AsRoundedValue() + ") width:"
-                                    + childWidth.AsRoundedValue() + " height:"
-                                    + childHeight.AsRoundedValue() + "\n");
 
                     childLayout.Layout( childLeft, childTop, childLeft + childWidth, childTop + childHeight );
                 }

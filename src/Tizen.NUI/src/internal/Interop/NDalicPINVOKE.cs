@@ -241,6 +241,10 @@ namespace Tizen.NUI
             Tizen.Log.Error("NUI", "Create NDalicPINVOKE");
         }
 
+		[global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
+		public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_SWIGUpcast")]
         public static extern global::System.IntPtr Application_SWIGUpcast(global::System.IntPtr jarg1);
 
