@@ -40,11 +40,11 @@ namespace Tizen.Multimedia
         /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback,
         /// when player is internally paused for buffering.
         /// Except 0 and -1, setting at least 1000 milliseconds is recommended to ensure the normal buffering operation.
-        /// 0 : use platform default value which could be different depending on the streaming type and network status. (the initial value)
-        /// -1 : use current value. (since 5.5)
+        /// 0 : use platform default value, which depends on the streaming type and network status. It is set as the initial value of this parameter.
         /// <para>0 means platform default value which could be different depending on the streaming type and network status.
         /// If the player state is <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/>,
-        /// this function will return correct time value instead of 0. (since 5.5)</para></param>
+        /// this function will return correct time value instead of 0. (since 5.5)</para>
+        /// -1 : use current value. (since 5.5)</param>
         /// <since_tizen> 5 </since_tizen>
         public PlayerBufferingTime(int preBufferMillisecond = -1, int reBufferMillisecond = -1)
         {
