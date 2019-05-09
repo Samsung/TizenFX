@@ -17,6 +17,7 @@
 using System;
 using Tizen.System;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace Tizen.Sensor
 {
@@ -29,7 +30,7 @@ namespace Tizen.Sensor
     /// Data from sensor
     /// </summary>
     [StructLayout(LayoutKind.Sequential, Pack = 0)]
-    public struct SensorEventStruct
+    public struct SensorEventStruct : IEquatable<SensorEventStruct>
     {
         /// <summary>
         /// Accuracy of sensor data 
@@ -59,12 +60,12 @@ namespace Tizen.Sensor
         }
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-        private float[] values;
+        private List<float> values;
 
         /// <summary> 
         /// sensor data values
         /// </summary>
-        public float[] Values
+        public List<float> Values
         {
             get { return values; }
             private set { }
@@ -74,12 +75,57 @@ namespace Tizen.Sensor
         /// Gets the hash code for this instance of <see cref="SensorEventStruct"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="SensorEventStruct"/>.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public override int GetHashCode()
         {
             return new { Accuracy, Timestamp, ValueCount, Values }.GetHashCode();
         }
 
+        /// <summary>
+        /// Compares two instances of <see cref="SensorEventStruct"/> for inequality.
+        /// </summary>
+        /// <param name="eventStruct1">A <see cref="SensorEventStruct"/> to compare.</param>
+        /// <param name="eventStruct2">A <see cref="SensorEventStruct"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="SensorEventStruct"/> are equal; otherwise false.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public static bool operator !=(SensorEventStruct eventStruct1, SensorEventStruct eventStruct2)
+        {
+            return !(eventStruct1 == eventStruct2);
+        }
+
+        /// <summary>
+        /// Compares two instances of <see cref="SensorEventStruct"/> for inequality.
+        /// </summary>
+        /// <param name="eventStruct1">A <see cref="SensorEventStruct"/> to compare.</param>
+        /// <param name="eventStruct2">A <see cref="SensorEventStruct"/> to compare.</param>
+        /// <returns>true if the two instances of <see cref="SensorEventStruct"/> are not equal; otherwise false.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public static bool operator ==(SensorEventStruct eventStruct1, SensorEventStruct eventStruct2)
+        {
+            return !(eventStruct1 != eventStruct2);
+        }
+
+        /// <summary>
+        /// Compares an object to an instance of <see cref="SensorEventStruct"/> for equality.
+        /// </summary>
+        /// <param name="obj">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the points are equal; otherwise, false.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public override bool Equals(object obj)
+        {
+            return obj is SensorEventStruct && this == (SensorEventStruct)obj;
+        }
+
+        /// <summary>
+        /// Compares an object to an instance of <see cref="SensorEventStruct"/> for equality.
+        /// </summary>
+        /// <param name="other">A <see cref="Object"/> to compare.</param>
+        /// <returns>true if the points are equal; otherwise, false.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public bool Equals(SensorEventStruct other)
+        {
+            return this == (SensorEventStruct)other;
+        }
     }
 
     /// <summary>
@@ -135,6 +181,9 @@ namespace Tizen.Sensor
             {
                 CreateListener();
                 GetProperty();
+                RecorderCreateOption();
+                RecorderCreateQuery();
+                CreateProvider(_uri);
             }
         }
 
@@ -145,6 +194,9 @@ namespace Tizen.Sensor
             {
                 CreateListener();
                 GetProperty();
+                RecorderCreateOption();
+                RecorderCreateQuery();
+                CreateProvider(uri);
             }
         }
 
@@ -415,6 +467,7 @@ namespace Tizen.Sensor
                 }
                 EventListenStart();
                 _isSensing = true;
+                SetProviderStartCb();
                 Log.Info(Globals.LogTag, "Sensor started");
             }
         }
@@ -438,6 +491,7 @@ namespace Tizen.Sensor
                 }
                 EventListenStop();
                 _isSensing = false;
+                SetProviderStopCb();
                 Log.Info(Globals.LogTag, "Sensor stopped");
             }
         }
@@ -587,6 +641,7 @@ namespace Tizen.Sensor
                         Log.Error(Globals.LogTag, "Error setting sensor interval");
                         throw SensorErrorFactory.CheckAndThrowException(error, "Setting Sensor.SetInterval Failed");
                     }
+                    SetProviderIntervalChangedCb();
                 }
             }
         }
@@ -634,9 +689,58 @@ namespace Tizen.Sensor
             return result;
         }
 
+        private bool CheckProviderHandle()
+        {
+            bool result = false;
+            if (_sensorProviderHandle != IntPtr.Zero)
+            {
+                result = true;
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Sensor Provider handle is null");
+                throw new ArgumentException("Invalid Parameter: Sensor provider handle is null");
+            }
+            return result;
+        }
+
+        private bool CheckRecorderOption()
+        {
+            bool result = false;
+            if (recorderOption != IntPtr.Zero)
+            {
+                result = true;
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Sensor Recorder Option is null");
+                throw new ArgumentException("Invalid Parameter: Sensor Recorder Option is null");
+            }
+            return result;
+        }
+
+        private bool CheckRecorderQuery()
+        {
+            bool result = false;
+            if (recorderQuery != IntPtr.Zero)
+            {
+                result = true;
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Sensor Recorder Query is null");
+                throw new ArgumentException("Invalid Parameter: Sensor Recorder Query is null");
+            }
+            return result;
+        }
+
         private void DestroyHandles()
         {
             Interop.SensorListener.DestroyListener(_listenerHandle);
+            RecorderDestroyOption();
+            RecorderDestroyQuery();
+            DestroyProvider();
+
         }
 
         /// <summary>
@@ -645,11 +749,8 @@ namespace Tizen.Sensor
         /// <param name="uri">
         /// A sensor or a sensor type URI to get the handle of its default sensor.
         /// </param>
-        /// <param name="sensorHandle">
-        /// The default sensor handle.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void GetDefaultSensorByUri(string uri)
+        private void GetDefaultSensorByUri(string uri)
         {
             IntPtr sensorHandle;
             int error = Interop.SensorManager.GetDefaultSensorByUri(uri, out sensorHandle);
@@ -681,7 +782,7 @@ namespace Tizen.Sensor
         /// Creates a recorder option handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderCreateOption()
+        private void RecorderCreateOption()
         {
             int error = Interop.SensorRecoder.RecorderCreateOption(out recorderOption);
             if (error != (int)SensorError.None)
@@ -695,7 +796,7 @@ namespace Tizen.Sensor
         /// Creates a recorder query handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderCreateQuery()
+        private void RecorderCreateQuery()
         {
             int error = Interop.SensorRecoder.RecorderCreateQuery(out recorderQuery);
             if (error != (int)SensorError.None)
@@ -753,13 +854,20 @@ namespace Tizen.Sensor
         /// Destroys a recorder option handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderDestroyOption()
+        private void RecorderDestroyOption()
         {
-            int error = Interop.SensorRecoder.RecorderDestroyOption(recorderOption);
-            if (error != (int)SensorError.None)
+            if (CheckRecorderOption())
             {
-                Log.Error(Globals.LogTag, "Error deleting the sensor recorder option");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDestroyOption Failed");
+                int error = Interop.SensorRecoder.RecorderDestroyOption(recorderOption);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error deleting the sensor recorder option");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDestroyOption Failed");
+                }
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder option is not created");
             }
         }
 
@@ -767,13 +875,20 @@ namespace Tizen.Sensor
         /// Destroys a recorder query handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void RecorderDestroyQuery()
+        private void RecorderDestroyQuery()
         {
-            int error = Interop.SensorRecoder.RecorderDestroyQuery(recorderQuery);
-            if (error != (int)SensorError.None)
+            if (CheckRecorderQuery())
+            { 
+                int error = Interop.SensorRecoder.RecorderDestroyQuery(recorderQuery);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error deleting the sensor recorder query");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDestroyQuery Failed");
+                }
+            }
+            else
             {
-                Log.Error(Globals.LogTag, "Error deleting the sensor recorder query");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDestroyQuery Failed");
+                Log.Error(Globals.LogTag, "Recorder query is not created");
             }
         }
 
@@ -808,11 +923,18 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void RecorderOptionSetInt(int recorderOptionE, int value)
         {
-            int error = Interop.SensorRecoder.RecorderOptionSetInt(recorderOption, recorderOptionE, value);
-            if (error != (int)SensorError.None)
+            if (CheckRecorderOption())
+            { 
+                int error = Interop.SensorRecoder.RecorderOptionSetInt(recorderOption, recorderOptionE, value);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error checking sensor recorder option set int");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderOptionSetInt Failed");
+                }
+            }
+            else
             {
-                Log.Error(Globals.LogTag, "Error checking sensor recorder option set int");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderOptionSetInt Failed");
+                Log.Error(Globals.LogTag, "Recorder option is not created");
             }
         }
 
@@ -828,11 +950,18 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void RecorderQuerySetInt(int recorderQueryE, int value)
         {
-            int error = Interop.SensorRecoder.RecorderQuerySetInt(recorderQuery, recorderQueryE, value);
-            if (error != (int)SensorError.None)
+            if (CheckRecorderQuery())
+            { 
+                int error = Interop.SensorRecoder.RecorderQuerySetInt(recorderQuery, recorderQueryE, value);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set int");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderQuerySetInt Failed");
+                }
+            }
+            else
             {
-                Log.Error(Globals.LogTag, "Error checking sensor recorder query set int");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderQuerySetInt Failed");
+                Log.Error(Globals.LogTag, "Recorder query is not created");
             }
         }
 
@@ -848,11 +977,17 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void RecorderQuerySetTime(int recorderQueryE, int time)
         {
-            int error = Interop.SensorRecoder.RecorderQuerySetTime(recorderQuery, recorderQueryE, time);
-            if (error != (int)SensorError.None)
+            if (CheckRecorderQuery()) { 
+                int error = Interop.SensorRecoder.RecorderQuerySetTime(recorderQuery, recorderQueryE, time);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set time");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderQuerySetTime Failed");
+                }
+            }
+            else
             {
-                Log.Error(Globals.LogTag, "Error checking sensor recorder query set time");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderQuerySetTime Failed");
+                Log.Error(Globals.LogTag, "Recorder query is not created");
             }
         }
 
@@ -865,29 +1000,35 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void RecorderReadSync(int type)
         {
-            _sensorRecorderDataCallBack = (int _type, int data, int remains, int _error, Int64 _userData) =>
+            if (CheckRecorderQuery())
             {
-                RecorderDataEventArgs e = new RecorderDataEventArgs(_type, data, remains, _error, _userData)
+                _sensorRecorderDataCallBack = (int _type, int data, int remains, int _error, Int64 _userData) =>
                 {
+                    RecorderDataEventArgs e = new RecorderDataEventArgs(_type, data, remains, _error, _userData)
+                    {
+                    };
+
+                    if (_error != 0)
+                    {
+                        Log.Error(Globals.LogTag, "Error in Sensor Recorder Data Read Synchronously CallBack");
+                    }
+
+                    RecorderDataReceived?.Invoke(null, e);
+                    Log.Debug(Globals.LogTag, "Recorder data callback recieved");
+                    return true;
                 };
 
-                if (_error != 0)
+                int error = Interop.SensorRecoder.RecorderReadSync(type, recorderQuery, _sensorRecorderDataCallBack, IntPtr.Zero);
+                if (error != (int)SensorError.None)
                 {
-                    Log.Error(Globals.LogTag, "Error in Sensor Recorder Data Read Synchronously CallBack");
+                    Log.Error(Globals.LogTag, "Error in synchronously reading recorder");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
                 }
-
-                RecorderDataReceived?.Invoke(null, e);
-                Log.Debug(Globals.LogTag, "Recorder data callback recieved");
-                return true;
-            };
-
-            int error = Interop.SensorRecoder.RecorderReadSync(type, recorderQuery, _sensorRecorderDataCallBack, IntPtr.Zero);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in synchronously reading recorder");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder query is not created");
+            }
         }
 
         /// <summary>
@@ -899,29 +1040,35 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void RecorderRead(int type)
         {
-            _sensorRecorderDataCallBack = (int _type, int data, int remains, int _error, Int64 _userData) =>
-            {
-                RecorderDataEventArgs e = new RecorderDataEventArgs(_type, data, remains, _error, _userData)
+            if (CheckRecorderQuery())
+            { 
+                _sensorRecorderDataCallBack = (int _type, int data, int remains, int _error, Int64 _userData) =>
                 {
+                    RecorderDataEventArgs e = new RecorderDataEventArgs(_type, data, remains, _error, _userData)
+                    {
+                    };
+
+                    if (_error != 0)
+                    {
+                        Log.Error(Globals.LogTag, "Error in Sensor Recorder Data aynchronously CallBack");
+                    }
+
+                    RecorderDataReceived?.Invoke(null, e);
+                    Log.Debug(Globals.LogTag, "Recorder data callback recieved");
+                    return true;
                 };
 
-                if (_error != 0)
+                int error = Interop.SensorRecoder.RecorderRead(type, recorderQuery, _sensorRecorderDataCallBack, IntPtr.Zero);
+                if (error != (int)SensorError.None)
                 {
-                    Log.Error(Globals.LogTag, "Error in Sensor Recorder Data aynchronously CallBack");
+                    Log.Error(Globals.LogTag, "Error in asynchronously reading recorder");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
                 }
-
-                RecorderDataReceived?.Invoke(null, e);
-                Log.Debug(Globals.LogTag, "Recorder data callback recieved");
-                return true;
-            };
-
-            int error = Interop.SensorRecoder.RecorderRead(type, recorderQuery, _sensorRecorderDataCallBack, IntPtr.Zero);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in asynchronously reading recorder");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder query is not created");
+            }
         }
 
         /// <summary>
@@ -933,13 +1080,18 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void RecorderStart(int type)
         {
-            int error = Interop.SensorRecoder.RecorderStart(type, recorderOption);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in starting recorder");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderStart Failed");
+            if (CheckRecorderOption()) { 
+                int error = Interop.SensorRecoder.RecorderStart(type, recorderOption);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in starting recorder");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderStart Failed");
+                }
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder option is not created");
+            }
         }
 
         /// <summary>
@@ -967,16 +1119,14 @@ namespace Tizen.Sensor
         /// The URI of sensor to be created.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void CreateProvider(string uri)
+        private void CreateProvider(string uri)
         {
-
             int error = Interop.SensorProvider.CreateProvider(uri, out _sensorProviderHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error in creating sensor provider");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.CreateProvider Failed");
             }
-
         }
 
         /// <summary>
@@ -985,13 +1135,17 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void AddProvider()
         {
-            int error = Interop.SensorProvider.AddProvider(_sensorProviderHandle);
-            if (error != (int)SensorError.None)
+            if (CheckProviderHandle())
             {
-                Log.Error(Globals.LogTag, "Error in adding sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.AddProvider Failed");
+                AddSensorAddedCB();
+                int error = Interop.SensorProvider.AddProvider(_sensorProviderHandle);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in adding sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.AddProvider Failed");
+                }
+                RemoveSensorAddedCB();
             }
-
         }
 
         /// <summary>
@@ -1000,20 +1154,24 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void RemoveProvider()
         {
-            int error = Interop.SensorProvider.RemoveProvider(_sensorProviderHandle);
-            if (error != (int)SensorError.None)
+            if (CheckProviderHandle())
             {
-                Log.Error(Globals.LogTag, "Error in removing sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RemoveProvider Failed");
+                AddSensorRemovedCB();
+                int error = Interop.SensorProvider.RemoveProvider(_sensorProviderHandle);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in removing sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RemoveProvider Failed");
+                }
+                RemoveSensorRemovedCB();
             }
-
         }
 
         /// <summary>
         /// Releases all the resources allocated for the sensor provider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void DestroyProvider()
+        private void DestroyProvider()
         {
             int error = Interop.SensorProvider.DestroyProvider(_sensorProviderHandle);
             if (error != (int)SensorError.None)
@@ -1034,13 +1192,18 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void ProviderSetName(string name)
         {
-            int error = Interop.SensorProvider.ProviderSetName(_sensorProviderHandle, name);
-            if (error != (int)SensorError.None)
+            if (CheckProviderHandle())
             {
-                Log.Error(Globals.LogTag, "Error in setting name of sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetName Failed");
+                int error = Interop.SensorProvider.ProviderSetName(_sensorProviderHandle, name);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in setting name of sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetName Failed");
+                }
             }
-
+            else {
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
+            }
         }
 
         /// <summary>
@@ -1052,13 +1215,19 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void ProviderSetVendor(string vendor)
         {
-            int error = Interop.SensorProvider.ProviderSetVendor(_sensorProviderHandle, vendor);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in setting vendor of sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetVendor Failed");
+            if (CheckProviderHandle())
+            { 
+                int error = Interop.SensorProvider.ProviderSetVendor(_sensorProviderHandle, vendor);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in setting vendor of sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetVendor Failed");
+                }
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
+            }
         }
 
         /// <summary>
@@ -1073,13 +1242,19 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void ProviderSetRange(float minRange, float maxRange)
         {
-            int error = Interop.SensorProvider.ProviderSetRange(_sensorProviderHandle, minRange, maxRange);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in setting range of sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetRange Failed");
+            if (CheckProviderHandle())
+            { 
+                int error = Interop.SensorProvider.ProviderSetRange(_sensorProviderHandle, minRange, maxRange);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in setting range of sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetRange Failed");
+                }
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
+            }
         }
 
         /// <summary>
@@ -1091,74 +1266,98 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void ProviderSetResolution(float resolution)
         {
-            int error = Interop.SensorProvider.ProviderSetResolution(_sensorProviderHandle, resolution);
-            if (error != (int)SensorError.None)
+            if (CheckProviderHandle())
             {
-                Log.Error(Globals.LogTag, "Error in setting resolution of sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetResolution Failed");
+                int error = Interop.SensorProvider.ProviderSetResolution(_sensorProviderHandle, resolution);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in setting resolution of sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetResolution Failed");
+                }
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
+            }
         }
 
         /// <summary>
         /// Registers the callback function to be invoked when a listener starts the sensor provider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void SetProviderStartCb()
+        private void SetProviderStartCb()
         {
-            _sensorProviderStartCallBack = (IntPtr _provider, Int64 _userData) =>
+            if (CheckProviderHandle())
             {
-            };
+                _sensorProviderStartCallBack = (IntPtr _provider, Int64 _userData) =>
+                {
+                };
 
-            int error = Interop.SensorProvider.SetProviderStartCb(_sensorProviderHandle, _sensorProviderStartCallBack, IntPtr.Zero);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in setting start callback of sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetStartCb Failed");
+                int error = Interop.SensorProvider.SetProviderStartCb(_sensorProviderHandle, _sensorProviderStartCallBack, IntPtr.Zero);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in setting start callback of sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetStartCb Failed");
+                }
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
+            }
         }
 
         /// <summary>
         /// Registers the callback function to be invoked when a sensor listener stops the sensor provider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void SetProviderStopCb()
+        private void SetProviderStopCb()
         {
-            _sensorProviderStopCallBack = (IntPtr _provider, Int64 _userData) =>
+            if (CheckProviderHandle())
             {
-            };
+                _sensorProviderStopCallBack = (IntPtr _provider, Int64 _userData) =>
+                {
+                };
 
-            int error = Interop.SensorProvider.SetProviderStopCb(_sensorProviderHandle, _sensorProviderStopCallBack, IntPtr.Zero);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in setting stop callback of sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetStopCb Failed");
+                int error = Interop.SensorProvider.SetProviderStopCb(_sensorProviderHandle, _sensorProviderStopCallBack, IntPtr.Zero);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in setting stop callback of sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetStopCb Failed");
+                }
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
+            }
         }
 
         /// <summary>
         /// Registers the callback function to be invoked when the interval is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void SetProviderIntervalChangedCb()
+        private void SetProviderIntervalChangedCb()
         {
-            _sensorProviderIntervalChangedCallBack = (IntPtr _provider, uint IntervalMs, Int64 _userData) =>
-            {
-                ProviderIntervalChangedEventArgs e = new ProviderIntervalChangedEventArgs(_provider, IntervalMs, _userData)
+            if (CheckProviderHandle())
+            { 
+                _sensorProviderIntervalChangedCallBack = (IntPtr _provider, uint IntervalMs, Int64 _userData) =>
                 {
+                    ProviderIntervalChangedEventArgs e = new ProviderIntervalChangedEventArgs(_provider, IntervalMs, _userData)
+                    {
+                    };
+                    ProviderIntervalChanged?.Invoke(null, e);
                 };
-                ProviderIntervalChanged?.Invoke(null, e);
-            };
 
-            int error = Interop.SensorProvider.SetProviderIntervalChangedCb(_sensorProviderHandle, _sensorProviderIntervalChangedCallBack, IntPtr.Zero);
-            if (error != (int)SensorError.None)
-            {
-                Log.Error(Globals.LogTag, "Error in setting interval callback of sensor provider");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetIntervalChangedCb Failed");
+                int error = Interop.SensorProvider.SetProviderIntervalChangedCb(_sensorProviderHandle, _sensorProviderIntervalChangedCallBack, IntPtr.Zero);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in setting interval callback of sensor provider");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetIntervalChangedCb Failed");
+                }
             }
-
+            else
+            {
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
+            }
         }
 
         /// <summary>
@@ -1171,11 +1370,18 @@ namespace Tizen.Sensor
         /// <since_tizen> 6 </since_tizen>
         public void ProviderPublish(SensorEventStruct sensorEventS)
         {
-            int error = Interop.SensorProvider.ProviderPublish(_sensorProviderHandle, sensorEventS);
-            if (error != (int)SensorError.None)
+            if (CheckProviderHandle())
+            { 
+                int error = Interop.SensorProvider.ProviderPublish(_sensorProviderHandle, sensorEventS);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error in sensor provider publish");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderPublish Failed");
+                }
+            }
+            else
             {
-                Log.Error(Globals.LogTag, "Error in sensor provider publish");
-                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderPublish Failed");
+                Log.Error(Globals.LogTag, "Provider handle does not exist");
             }
 
         }
@@ -1184,7 +1390,7 @@ namespace Tizen.Sensor
         /// Adds a callback function to be invoked when a new sensor is added.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void SetSensorAddedCB()
+        private void AddSensorAddedCB()
         {
             _sensorAddedCallBack = (String uri, Int64 _userData) =>
             {
@@ -1203,7 +1409,7 @@ namespace Tizen.Sensor
         /// Adds a callback function to be invoked when a sensor is removed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void SetSensorRemovedCB()
+        private void AddSensorRemovedCB()
         {
             _sensorRemovedCallBack = (String uri, Int64 _userData) =>
             {
@@ -1222,7 +1428,7 @@ namespace Tizen.Sensor
         /// Removes a callback function added using AddSensorRemovedCB()
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void UnsetSensorAddedCB()
+        private void RemoveSensorAddedCB()
         {
             _sensorAddedCallBack = (String uri, Int64 _userData) =>
             {
@@ -1241,7 +1447,7 @@ namespace Tizen.Sensor
         /// Removes a callback function added using AddSensorRemovedCB()
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public void UnsetSensorRemovedCB()
+        private void RemoveSensorRemovedCB()
         {
             _sensorRemovedCallBack = (String uri, Int64 _userData) =>
             {

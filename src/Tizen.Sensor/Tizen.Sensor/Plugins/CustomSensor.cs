@@ -72,7 +72,6 @@ namespace Tizen.Sensor
         /// Initializes a new instance of the <see cref="Tizen.Sensor.CustomSensor"/> class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <feature>http://tizen.org/feature/sensor</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when values can't allocate memory.</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>

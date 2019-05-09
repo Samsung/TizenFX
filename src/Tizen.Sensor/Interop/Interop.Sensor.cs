@@ -170,7 +170,7 @@ internal static partial class Interop
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_read")]
         internal static extern int RecorderRead(int type, IntPtr query, SensorRecorderDataCb cb , IntPtr user_data );
 
-        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_read")]
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_read_sync")]
         internal static extern int RecorderReadSync(int type, IntPtr query, SensorRecorderDataCb cb, IntPtr user_data);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_start")]
