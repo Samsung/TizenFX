@@ -10,7 +10,7 @@ namespace Tizen.NUI.Binding
             // public Rotation(Radian radian(float), Vector3 vector3)
             // Default: <View Orientation="45.0,12,13,0" />
             // Oritation="D:23, 0, 0, 1"
-            // Oritation="R:23, 0, 0, 1" 
+            // Oritation="R:23, 0, 0, 1"
             if (value != null)
             {
                 string[] parts = value.Split(',');
@@ -41,7 +41,7 @@ namespace Tizen.NUI.Binding
 
                     if (useDefault)
                     {
-                        //Default: <View Orientation="45.0,12,13,0" />
+                        // Default: <View Orientation="45.0,12,13,0" />
                         radian = new Radian( Single.Parse( parts[0].Trim(), CultureInfo.InvariantCulture ) );
                     }
 

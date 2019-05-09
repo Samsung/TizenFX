@@ -50,16 +50,52 @@ namespace Tizen.NUI
         private LayoutLength _bottom;
         private LayoutData _layoutData;
 
+        private Extents _padding;
+        private Extents _margin;
+
         /// <summary>
-        /// The View that this Layout has been assigned to.
+        /// [Draft] The View that this Layout has been assigned to.
         /// </summary>
         public View Owner{get; set;}  // Should not keep a View alive.
+
+        /// <summary>
+        /// [Draft] Margin for this LayoutItem
+        /// </summary>
+        public Extents Margin
+        {
+            get
+            {
+                return _margin;
+            }
+            set
+            {
+                _margin = value;
+                RequestLayout();
+            }
+        }
+
+        /// <summary>
+        /// [Draft] Padding for this LayoutItem
+        /// </summary>
+        public Extents Padding
+        {
+            get
+            {
+                return _padding;
+            }
+            set
+            {
+                _padding = value;
+                RequestLayout();
+            }
+        }
 
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
         public LayoutItem()
         {
+            Initialize();
         }
 
         /// <summary>
@@ -69,11 +105,7 @@ namespace Tizen.NUI
         public LayoutItem(View owner)
         {
             Owner = owner;
-            _layoutData = new LayoutData();
-            _left = new LayoutLength(0);
-            _top = new LayoutLength(0);
-            _right = new LayoutLength(0);
-            _bottom = new LayoutLength(0);
+            Initialize();
         }
 
         /// <summary>
@@ -83,7 +115,6 @@ namespace Tizen.NUI
         public void SetParent( ILayoutParent parent)
         {
             Parent = parent as LayoutGroup;
-            Log.Info("NUI", "Setting Parent Layout for:" +  Owner?.Name + " to (Parent):" + (parent == null ? "null":parent.ToString() ) + "\n");
         }
 
         /// <summary>
@@ -102,6 +133,17 @@ namespace Tizen.NUI
 
             // Lastly, clear layout from owning View.
             Owner?.ResetLayout();
+        }
+
+        private void Initialize()
+        {
+            _layoutData = new LayoutData();
+            _left = new LayoutLength(0);
+            _top = new LayoutLength(0);
+            _right = new LayoutLength(0);
+            _bottom = new LayoutLength(0);
+            _padding = new Extents(0,0,0,0);
+            _margin = new Extents(0,0,0,0);
         }
 
         /// <summary>
@@ -151,8 +193,6 @@ namespace Tizen.NUI
             bool needsLayout = specChanged && ( !isSpecExactly || !matchesSpecSize);
             needsLayout = needsLayout || ((Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
 
-            Log.Info("NUI", "Measuring:" + Owner.Name + " needsLayout[" + needsLayout.ToString() + "]\n");
-
             if (needsLayout)
             {
                 OnMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -161,8 +201,6 @@ namespace Tizen.NUI
             }
             OldWidthMeasureSpec = widthMeasureSpec;
             OldHeightMeasureSpec = heightMeasureSpec;
-
-            Log.Info("NUI", "LayoutItem Measure owner:" + Owner.Name + " width:" + widthMeasureSpec.Size.AsRoundedValue() + " height:" +  heightMeasureSpec.Size.AsRoundedValue() + "\n");
         }
 
         /// <summary>
@@ -177,14 +215,11 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Log.Info("NUI", "LayoutItem Layout owner:" + Owner.Name + "\n");
-
             bool changed = SetFrame(left, top, right, bottom);
 
             // Check if Measure needed before Layouting
             if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
             {
-                Log.Info("NUI", "LayoutItem Layout Frame changed or Layout forced\n");
                 OnLayout(changed, left, top, right, bottom);
                 // Clear flag
                 Flags &= ~LayoutFlags.LayoutRequired;
@@ -235,8 +270,6 @@ namespace Tizen.NUI
                 }
             }
 
-            Log.Info("NUI", "DefaultSize :" + result.AsRoundedValue() +  "\n");
-
             return result;
         }
 
@@ -251,7 +284,6 @@ namespace Tizen.NUI
         /// </summary>
         public void RequestLayout()
         {
-            Log.Info("NUI", "RequestLayout on:" + Owner?.Name + "\n");
             Flags = Flags | LayoutFlags.ForceLayout;
             Window.Instance.LayoutController.RequestLayout(this);
         }
@@ -313,7 +345,6 @@ namespace Tizen.NUI
             get
             {
                 int naturalWidth = Owner.NaturalSize2D.Width;
-                Log.Info("NUI", "NaturalWidth for: " + Owner.Name + " :" + naturalWidth +"\n");
                 return new LayoutLength(Math.Max( MinimumWidth.AsDecimal(), naturalWidth ));
             }
         }
@@ -327,7 +358,6 @@ namespace Tizen.NUI
             get
             {
                 int naturalHeight = Owner.NaturalSize2D.Height;
-                Log.Info("NUI", "NaturalHeight for: " + Owner.Name + " :" + naturalHeight +"\n");
                 return new LayoutLength(Math.Max( MinimumHeight.AsDecimal(), naturalHeight ));
             }
         }
@@ -398,9 +428,6 @@ namespace Tizen.NUI
         /// <param name="measuredHeight">The measured height of this layout.</param>
         protected void SetMeasuredDimensions( MeasuredSize measuredWidth, MeasuredSize measuredHeight )
         {
-            Log.Info("NUI", "For " + Owner.Name + " MeasuredWidth:" + measuredWidth.Size.AsRoundedValue()
-                                   + " MeasureHeight:" + measuredHeight.Size.AsRoundedValue() + "\n");
-
             MeasuredWidth = measuredWidth;
             MeasuredHeight = measuredHeight;
             Flags = Flags | LayoutFlags.MeasuredDimensionSet;
@@ -486,10 +513,6 @@ namespace Tizen.NUI
             Owner.SetX(_left.AsRoundedValue());
             Owner.SetY(_top.AsRoundedValue());
             Owner.SetSize((int)newWidth.AsRoundedValue(), (int)newHeight.AsRoundedValue());
-
-            Log.Info("NUI", "Frame set for " + Owner.Name + " to left:" + _left.AsRoundedValue() + " top:"
-                            + _top.AsRoundedValue() + " width: " + newWidth.AsRoundedValue() + " height: "
-                            + newHeight.AsRoundedValue() + "\n");
 
             return changed;
         }

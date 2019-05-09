@@ -18,6 +18,7 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -72,6 +73,8 @@ namespace Tizen.NUI
             /// UI control rendering mode.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use LayerUI property instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Layer2D = LayerUI,
 
             /// <summary>
@@ -242,6 +245,20 @@ namespace Tizen.NUI
             {
                 Interop.Layer.Layer_SetClipping(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                return Application.Current.XamlResources;
+            }
+            set
+            {
+                Application.Current.XamlResources = value;
             }
         }
 
