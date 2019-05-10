@@ -120,6 +120,11 @@ namespace Tizen.NUI.Binding
             { typeof(RelativeVector4), new RelativeVector4TypeConverter() },
         };
 
+        //Modification for NUI XAML : user defined converter for DynamicResource can be added
+        static internal Dictionary<Type, TypeConverter> UserCustomConvertTypes = new Dictionary<Type, TypeConverter>
+        {
+        };
+
         // more or less the encoding of this, without the need to reflect
         // http://msdn.microsoft.com/en-us/library/y5b434w4.aspx
         static readonly Dictionary<Type, Type[]> SimpleConvertTypes = new Dictionary<Type, Type[]>
@@ -529,6 +534,11 @@ namespace Tizen.NUI.Binding
             }
             else if (WellKnownConvertTypes.TryGetValue(type, out typeConverterTo) && typeConverterTo.CanConvertFrom(valueType))
             {
+                value = typeConverterTo.ConvertFromInvariantString(value.ToString());
+            }
+            else if (UserCustomConvertTypes.TryGetValue(type, out typeConverterTo) && typeConverterTo.CanConvertFrom(valueType))
+            {
+                //Modification for NUI XAML : user defined converter for DynamicResource can be added
                 value = typeConverterTo.ConvertFromInvariantString(value.ToString());
             }
             else if (!ReturnTypeInfo.IsAssignableFrom(valueType.GetTypeInfo()))

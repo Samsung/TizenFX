@@ -80,6 +80,7 @@ namespace Tizen.NUI
             }
         }
 
+
         /// <summary>
         /// Destructor which adds LayoutController to the Dispose queue.
         /// </summary>
@@ -139,13 +140,11 @@ namespace Tizen.NUI
                 {
                     if (rootNode.GetType() == typeof(View))
                     {
-                        Log.Info("NUI", "Creating LayoutGroup for " + rootNode.Name  + "\n");
                         rootNode.Layout = new LayoutGroup();
                         AutomaticallyAssignLayouts(rootNode);
                     }
                     else
                     {
-                        Log.Info("NUI", "Creating LayoutItem for " + rootNode.Name  + "\n");
                         rootNode.Layout = new LayoutItem();
                     }
                 }
@@ -196,8 +195,6 @@ namespace Tizen.NUI
                     // Parent not a View so assume it's a Layer which is the size of the window.
                     rootSize = new Size2D(_window.Size.Width, _window.Size.Height);
                 }
-
-                Log.Info("NUI", "Root parent size(" + rootSize.Width + "," + rootSize.Height + ")\n");
 
                 // Determine measure specification for root.
                 // The root layout policy could be an exact size, be match parent or wrap children.
@@ -254,14 +251,13 @@ namespace Tizen.NUI
         /// </summary>
         private void Process(int id)
         {
-            Log.Info("NUI", "LayoutController Process id:" + id + "\n");
-
             Layer defaultLayer = _window.GetDefaultLayer();
             for (uint i = 0; i < defaultLayer.ChildCount; i++)
             {
                 View view = defaultLayer.GetChildAt(i);
                 FindRootLayouts(view);
             }
+
         }
 
         /// <summary>

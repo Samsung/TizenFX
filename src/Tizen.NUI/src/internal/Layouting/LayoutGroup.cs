@@ -51,7 +51,6 @@ namespace Tizen.NUI
         /// </summary>
         public virtual void Add(LayoutItem childLayout)
         {
-            Log.Info("NUI","Add Layout:" + childLayout.Owner.Name + " to Layout:" + Owner.Name + "\n");
             _children.Add(childLayout);
             childLayout.SetParent(this);
             OnChildAdd(childLayout);
@@ -63,7 +62,6 @@ namespace Tizen.NUI
         /// </summary>
         public void RemoveAll()
         {
-            Log.Info("NUI","Removing:" + _children.Count + "\n");
             foreach( LayoutItem childLayout in _children )
             {
                 childLayout.Owner = null;
@@ -91,8 +89,6 @@ namespace Tizen.NUI
 
         private void AddChildToLayoutGroup(View child)
         {
-            Log.Info("NUI", "Adding child View:" + child.Name + " to Layout:" + Owner?.Name + "\n");
-
             // Only give children a layout if their parent is an explicit container or a pure View.
             // Pure View meaning not derived from a View, e.g a Legacy container.
             // layoutSet flag is true when the View became a layout using the set Layout API opposed to automatically due to it's parent.
@@ -104,19 +100,16 @@ namespace Tizen.NUI
                 // Only wrap View with a Layout if a child a pure View or Layout explicitly set on this Layout
                 if ((true == Owner.layoutSet || GetType() == typeof(View)))
                 {
-                    Log.Info("NUI", "Parent[" + Owner.Name + "] Layout set[" + Owner.layoutSet.ToString() + "] Pure View[" + (!Owner.layoutSet).ToString() + "]\n");
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
                     if (child.GetType() == typeof(View))
                     {
-                        Log.Info("NUI", "Creating LayoutGroup for " + child.Name +  "]\n");
                         child.Layout = new LayoutGroup();
                     }
                     else
                     {
                         // Adding child as a leaf, layouting will not propagate past this child.
                         // Legacy containers will be a LayoutItems too and layout their children how they wish.
-                        Log.Info("NUI", "Creating LayoutItem for " + child.Name + "\n");
                         child.Layout = new LayoutItem();
                     }
                 }
@@ -137,8 +130,6 @@ namespace Tizen.NUI
         /// <param name="child">Child to remove.true</param>
         private void RemoveChildFromLayoutGroup(View child)
         {
-            Log.Info("NUI", "Removing child View:" + child.Name + " from Layout:" + Owner?.Name + "\n");
-
             if(child.Layout != null)
             {
                 Remove(child.Layout);
@@ -256,8 +247,6 @@ namespace Tizen.NUI
                 }
             } // switch
 
-            Log.Info("NUI", "MeasureSpecification resultSize:" + resultSize.AsRoundedValue()
-                            + " resultMode:" + resultMode + "\n");
             return new MeasureSpecification( resultSize, resultMode );
         }
 
@@ -271,7 +260,6 @@ namespace Tizen.NUI
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            Log.Info("NUI", "OnMeasure\n");
             LayoutLength measuredWidth = new LayoutLength(0.0f);
             LayoutLength measuredHeight = new LayoutLength(0.0f);
 
@@ -283,7 +271,8 @@ namespace Tizen.NUI
                     MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
                     LayoutLength childWidth = new LayoutLength(childLayout.MeasuredWidth.Size);
                     LayoutLength childHeight = new LayoutLength( childLayout.MeasuredHeight.Size);
-                    Extents childMargin = childLayout.Owner.Margin;
+
+                    Extents childMargin = childLayout.Margin;
                     measuredWidth = new LayoutLength(Math.Max( measuredWidth.AsDecimal(), childWidth.AsDecimal() + childMargin.Start + childMargin.End));
                     measuredHeight = new LayoutLength(Math.Max( measuredHeight.AsDecimal(), childHeight.AsDecimal() + childMargin.Top + childMargin.Bottom));
                 }
@@ -311,7 +300,6 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Log.Info("NUI", "OnLayout\n");
             foreach( LayoutItem childLayout in _children )
             {
                 if( childLayout !=null )
@@ -327,8 +315,8 @@ namespace Tizen.NUI
                         // Margin and Padding only supported when child anchor point is TOP_LEFT.
                         if ( owner.PivotPoint == PivotPoint.TopLeft || ( owner.PositionUsesPivotPoint == false ) )
                         {
-                            childLeft = childLeft + owner.Padding.Start + childLayout.Owner.Margin.Start;
-                            childTop = childTop + owner.Padding.Top + childLayout.Owner.Margin.Top;
+                            childLeft = childLeft + owner.Padding.Start + childLayout.Margin.Start;
+                            childTop = childTop + owner.Padding.Top + childLayout.Margin.Top;
                         }
                     }
                     childLayout.Layout( childLeft, childTop, childLeft + childLayout.MeasuredWidth.Size, childTop + childLayout.MeasuredHeight.Size );
@@ -351,7 +339,6 @@ namespace Tizen.NUI
         /// </summary>
         protected override void OnAttachedToOwner()
         {
-            Log.Info("NUI", "Attaching to Owner:" + Owner.Name + "\n");
             // Layout takes ownership of it's owner's children.
             foreach (View view in Owner.Children)
             {
@@ -408,11 +395,8 @@ namespace Tizen.NUI
         protected virtual void MeasureChild(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
         {
             View childOwner = child.Owner;
-            Log.Info("NUI", "LayoutGroup MeasureChild:" + childOwner.Name
-                          + " child widthSpecification policy:" + childOwner.WidthSpecification
-                          + " child heightSpecification policy:" + childOwner.HeightSpecification + "\n");
 
-            Extents padding = childOwner.Padding; // Padding of this layout's owner, not of the child being measured.
+            Extents padding = child.Padding; // Padding of this layout's owner, not of the child being measured.
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
                                                                                        new LayoutLength(padding.Start + padding.End ),
@@ -442,7 +426,7 @@ namespace Tizen.NUI
             int desiredWidth = childOwner.WidthSpecification;
             int desiredHeight = childOwner.HeightSpecification;
 
-            Extents padding = childOwner.Padding; // Padding of this layout's owner, not of the child being measured.
+            Extents padding = child.Padding; // Padding of this layout's owner, not of the child being measured.
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
                                                                                        new LayoutLength( padding.Start + padding.End ) +
