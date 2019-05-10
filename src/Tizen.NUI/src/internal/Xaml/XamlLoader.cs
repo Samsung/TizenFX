@@ -138,6 +138,11 @@ namespace Tizen.NUI.Xaml
                         continue;
                     }
 
+                    if (view is Element)
+                    {
+                        (view as Element).IsCreateByXaml = true;
+                    }
+
                     var rootnode = new RuntimeRootNode (new XmlType (reader.NamespaceURI, reader.Name, null), view, (IXmlNamespaceResolver)reader);
                     XamlParser.ParseXaml (rootnode, reader);
                     Visit (rootnode, new HydrationContext {
