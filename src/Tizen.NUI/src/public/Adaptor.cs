@@ -383,16 +383,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Sets the minimum distance in pixels that the fingers must move towards or away from each other in order to trigger a pinch gesture.
-        /// </summary>
-        /// <param name="distance">The minimum pinch distance in pixels.</param>
-        internal void SetMinimumPinchDistance(float distance)
-        {
-            NDalicManualPINVOKE.Adaptor_SetMinimumPinchDistance(swigCPtr, distance);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void FeedTouchPoint(TouchPoint point, int timeStamp)
         {
             NDalicManualPINVOKE.Adaptor_FeedTouchPoint(swigCPtr, TouchPoint.getCPtr(point), timeStamp);
