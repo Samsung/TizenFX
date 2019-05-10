@@ -381,6 +381,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View FindChildByName(string viewName)
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = Interop.Actor.Actor_FindChildByName(swigCPtr, viewName);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// Increments the depth of the layer.
         /// </summary>
