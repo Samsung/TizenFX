@@ -257,20 +257,21 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                    if (_stateChanged == null)
                     {
-                        StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                        _stateChanged?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                        {
+                            StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
+                            _stateChanged?.Invoke(this, args);
+                        };
+
+                        TtsError error = TtsSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        }
                     }
-                    else
-                    {
-                        _stateChanged += value;
-                    }
+                    _stateChanged += value;
                 }
 
             }
@@ -279,13 +280,15 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetStateChangedCB(_handle);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
-                    }
-
                     _stateChanged -= value;
+                    if (_stateChanged == null)
+                    {
+                        TtsError error = TtsUnsetStateChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
 
@@ -301,20 +304,21 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    _utteranceStartedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                    if (_utteranceStarted == null)
                     {
-                        UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-                        _utteranceStarted?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetUtteranceStartedCB(_handle, _utteranceStartedResultDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add UtteranceStarted Failed with error " + error);
+                        _utteranceStartedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                        {
+                            UtteranceEventArgs args = new UtteranceEventArgs(uttId);
+                            _utteranceStarted?.Invoke(this, args);
+                        };
+
+                        TtsError error = TtsSetUtteranceStartedCB(_handle, _utteranceStartedResultDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add UtteranceStarted Failed with error " + error);
+                        }
                     }
-                    else
-                    {
-                        _utteranceStarted += value;
-                    }
+                    _utteranceStarted += value;
                 }
             }
 
@@ -322,13 +326,15 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetUtteranceStartedCB(_handle);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Remove UtteranceStarted Failed with error " + error);
-                    }
-
                     _utteranceStarted -= value;
+                    if (_utteranceStarted == null)
+                    {
+                        TtsError error = TtsUnsetUtteranceStartedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove UtteranceStarted Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
@@ -343,20 +349,21 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    _utteranceCompletedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                    if (_utteranceCompleted == null)
                     {
-                        UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-                        _utteranceCompleted?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetUtteranceCompletedCB(_handle, _utteranceCompletedResultDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add UtteranceCompleted Failed with error " + error);
+                        _utteranceCompletedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                        {
+                            UtteranceEventArgs args = new UtteranceEventArgs(uttId);
+                            _utteranceCompleted?.Invoke(this, args);
+                        };
+
+                        TtsError error = TtsSetUtteranceCompletedCB(_handle, _utteranceCompletedResultDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add UtteranceCompleted Failed with error " + error);
+                        }
                     }
-                    else
-                    {
-                        _utteranceCompleted += value;
-                    }
+                    _utteranceCompleted += value;
                 }
             }
 
@@ -364,13 +371,15 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetUtteranceCompletedCB(_handle);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Remove UtteranceCompleted Failed with error " + error);
-                    }
-
                     _utteranceCompleted -= value;
+                    if (_utteranceCompleted == null)
+                    {
+                        TtsError error = TtsUnsetUtteranceCompletedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove UtteranceCompleted Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
@@ -385,21 +394,21 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    _errorDelegate = (IntPtr handle, int uttId, TtsError reason, IntPtr userData) =>
+                    if (_errorOccurred == null)
                     {
-                        ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, uttId, reason);
-                        _errorOccurred?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
-                    }
+                        _errorDelegate = (IntPtr handle, int uttId, TtsError reason, IntPtr userData) =>
+                        {
+                            ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, uttId, reason);
+                            _errorOccurred?.Invoke(this, args);
+                        };
 
-                    else
-                    {
-                        _errorOccurred += value;
+                        TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                        }
                     }
+                    _errorOccurred += value;
                 }
             }
 
@@ -407,13 +416,15 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetErrorCB(_handle);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
-                    }
-
                     _errorOccurred -= value;
+                    if (_errorOccurred == null)
+                    {
+                        TtsError error = TtsUnsetErrorCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
@@ -428,23 +439,23 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    _voiceChangedDelegate = (IntPtr handle, IntPtr previousLanguage, int previousVoiceType, IntPtr currentLanguage, int currentVoiceType, IntPtr userData) =>
+                    if (_defaultVoiceChanged == null)
                     {
-                        string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
-                        string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
-                        DefaultVoiceChangedEventArgs args = new DefaultVoiceChangedEventArgs(previousLanguageString, previousVoiceType, currentLanguageString, currentVoiceType);
-                        _defaultVoiceChanged?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetDefaultVoiceChangedCB(_handle, _voiceChangedDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add DefaultVoiceChanged Failed with error " + error);
-                    }
+                        _voiceChangedDelegate = (IntPtr handle, IntPtr previousLanguage, int previousVoiceType, IntPtr currentLanguage, int currentVoiceType, IntPtr userData) =>
+                        {
+                            string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
+                            string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
+                            DefaultVoiceChangedEventArgs args = new DefaultVoiceChangedEventArgs(previousLanguageString, previousVoiceType, currentLanguageString, currentVoiceType);
+                            _defaultVoiceChanged?.Invoke(this, args);
+                        };
 
-                    else
-                    {
-                        _defaultVoiceChanged += value;
+                        TtsError error = TtsSetDefaultVoiceChangedCB(_handle, _voiceChangedDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add DefaultVoiceChanged Failed with error " + error);
+                        }
                     }
+                    _defaultVoiceChanged += value;
                 }
 
             }
@@ -453,13 +464,15 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetDefaultVoiceChangedCB(_handle);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Remove DefaultVoiceChanged Failed with error " + error);
-                    }
-
                     _defaultVoiceChanged -= value;
+                    if (_defaultVoiceChanged == null)
+					{
+                        TtsError error = TtsUnsetDefaultVoiceChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove DefaultVoiceChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
@@ -474,22 +487,22 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, int voiceType, bool needCredential, IntPtr userData) =>
+                    if (_engineChanged == null)
                     {
-                        string engineIdString = Marshal.PtrToStringAnsi(engineId);
-                        string languageString = Marshal.PtrToStringAnsi(language);
-                        EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, voiceType, needCredential);
-                        _engineChanged?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                        _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, int voiceType, bool needCredential, IntPtr userData) =>
+                        {
+                            string engineIdString = Marshal.PtrToStringAnsi(engineId);
+                            string languageString = Marshal.PtrToStringAnsi(language);
+                            EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, voiceType, needCredential);
+                            _engineChanged?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                        }
                     }
-                    else
-                    {
-                        _engineChanged += value;
-                    }
+                    _engineChanged += value;
                 }
             }
 
@@ -497,13 +510,15 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetEngineChangedCB(_handle);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
-                    }
-
                     _engineChanged -= value;
+                    if (_engineChanged == null)
+                    {
+                        TtsError error = TtsUnsetEngineChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                        }
+                    }
                 }
             }
         }
