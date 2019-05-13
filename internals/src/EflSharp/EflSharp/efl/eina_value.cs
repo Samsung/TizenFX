@@ -1405,7 +1405,14 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
         if (!Disposed && (Handle != IntPtr.Zero))
         {
             // No need to call flush as eina_value_free already calls it for us.
-            Free(this.Handle);
+            if (disposing)
+            {
+                Free(this.Handle);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eina_value_free, this.Handle);
+            }
         }
 
         Disposed = true;

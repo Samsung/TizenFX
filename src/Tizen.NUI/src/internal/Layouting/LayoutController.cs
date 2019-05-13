@@ -45,13 +45,13 @@ namespace Tizen.NUI
         /// </summary>
         public LayoutController(Window window)
         {
-            global::System.IntPtr cPtr = LayoutPINVOKE.LayoutController_New();
+            global::System.IntPtr cPtr = Interop.LayoutController.LayoutController_New();
             _window = window;
             // Wrap cPtr in a managed handle.
             unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             mInstance = new Callback(Process);
-            LayoutPINVOKE.LayoutController_SetCallback(unmanagedLayoutController, mInstance);
+            Interop.LayoutController.LayoutController_SetCallback(unmanagedLayoutController, mInstance);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// </summary>
         public int GetId()
         {
-            return LayoutPINVOKE.LayoutController_GetId(unmanagedLayoutController);
+            return Interop.LayoutController.LayoutController_GetId(unmanagedLayoutController);
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Tizen.NUI
 
             if (unmanagedLayoutController.Handle != global::System.IntPtr.Zero)
             {
-                LayoutPINVOKE.delete_LayoutController(unmanagedLayoutController);
+                Interop.LayoutController.delete_LayoutController(unmanagedLayoutController);
                 unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
@@ -256,6 +256,7 @@ namespace Tizen.NUI
                 View view = defaultLayer.GetChildAt(i);
                 FindRootLayouts(view);
             }
+
         }
 
         /// <summary>

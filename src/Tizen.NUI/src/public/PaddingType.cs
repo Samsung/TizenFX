@@ -46,7 +46,7 @@ namespace Tizen.NUI
         /// Creates an uninitialized PaddingType.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PaddingType() : this(NDalicPINVOKE.new_PaddingType__SWIG_0(), true)
+        public PaddingType() : this(Interop.PaddingType.new_PaddingType__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <param name="top">Top padding or Height</param>
         /// <param name="bottom">Bottom padding or Width</param>
         /// <since_tizen> 3 </since_tizen>
-        public PaddingType(float start, float end, float top, float bottom) : this(NDalicPINVOKE.new_PaddingType__SWIG_1(start, end, top, bottom), true)
+        public PaddingType(float start, float end, float top, float bottom) : this(Interop.PaddingType.new_PaddingType__SWIG_1(start, end, top, bottom), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -151,12 +151,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PaddingType_left_set(swigCPtr, value);
+                Interop.PaddingType.PaddingType_left_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_left_get(swigCPtr);
+                float ret = Interop.PaddingType.PaddingType_left_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -166,12 +166,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PaddingType_start_set(swigCPtr, value);
+                Interop.PaddingType.PaddingType_start_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_start_get(swigCPtr);
+                float ret = Interop.PaddingType.PaddingType_start_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -181,12 +181,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PaddingType_right_set(swigCPtr, value);
+                Interop.PaddingType.PaddingType_right_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_right_get(swigCPtr);
+                float ret = Interop.PaddingType.PaddingType_right_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -196,12 +196,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PaddingType_end_set(swigCPtr, value);
+                Interop.PaddingType.PaddingType_end_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_end_get(swigCPtr);
+                float ret = Interop.PaddingType.PaddingType_end_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -211,12 +211,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PaddingType_top_set(swigCPtr, value);
+                Interop.PaddingType.PaddingType_top_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_top_get(swigCPtr);
+                float ret = Interop.PaddingType.PaddingType_top_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -226,12 +226,12 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PaddingType_bottom_set(swigCPtr, value);
+                Interop.PaddingType.PaddingType_bottom_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PaddingType_bottom_get(swigCPtr);
+                float ret = Interop.PaddingType.PaddingType_bottom_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -346,7 +346,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Set(float newStart, float newEnd, float newTop, float newBottom)
         {
-            NDalicPINVOKE.PaddingType_Set(swigCPtr, newStart, newEnd, newTop, newBottom);
+            Interop.PaddingType.PaddingType_Set(swigCPtr, newStart, newEnd, newTop, newBottom);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -383,7 +383,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PaddingType(swigCPtr);
+                    Interop.PaddingType.delete_PaddingType(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

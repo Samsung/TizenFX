@@ -3,40 +3,56 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Ui { 
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Elementary layout abstract
 /// (Since EFL 1.22)</summary>
-[LayoutBaseNativeInherit]
+[Efl.Ui.LayoutBase.NativeMethods]
 public abstract class LayoutBase : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IContainer,Efl.Layout.ICalc,Efl.Layout.IGroup,Efl.Layout.ISignal,Efl.Ui.IFactoryBind
 {
     ///<summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (LayoutBase))
-                return Efl.Ui.LayoutBaseNativeInherit.GetEflClassStatic();
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(LayoutBase))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_layout_base_class_get();
-    ///<summary>Creates a new instance.</summary>
-    ///<param name="parent">Parent instance.</param>
-    ///<param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <summary>Initializes a new instance of the <see cref="LayoutBase"/> class.</summary>
+    /// <param name="parent">Parent instance.</param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
     public LayoutBase(Efl.Object parent
-            , System.String style = null) :
-        base(efl_ui_layout_base_class_get(), typeof(LayoutBase), parent)
+            , System.String style = null) : base(efl_ui_layout_base_class_get(), typeof(LayoutBase), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
+        {
             SetStyle(Efl.Eo.Globals.GetParamHelper(style));
+        }
+
         FinishInstantiation();
     }
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+
+    /// <summary>Initializes a new instance of the <see cref="LayoutBase"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="raw">The native pointer to be wrapped.</param>
     protected LayoutBase(System.IntPtr raw) : base(raw)
     {
-                RegisterEventProxies();
-    }
+            }
+
     [Efl.Eo.PrivateNativeClass]
     private class LayoutBaseRealized : LayoutBase
     {
@@ -44,263 +60,317 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IContainer
         {
         }
     }
-    ///<summary>Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
-    protected LayoutBase(IntPtr base_klass, System.Type managed_type, Efl.Object parent) : base(base_klass, managed_type, parent) {}
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+    /// <summary>Initializes a new instance of the <see cref="LayoutBase"/> class.
+    /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
+    /// <param name="baseKlass">The pointer to the base native Eo class.</param>
+    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
+    /// <param name="parent">The Efl.Object parent of this instance.</param>
+    protected LayoutBase(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-        var other = obj as Efl.Object;
+    }
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
+    {
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-private static object ThemeChangedEvtKey = new object();
+
     /// <summary>Called when theme changed
     /// (Since EFL 1.22)</summary>
     public event EventHandler ThemeChangedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_UI_LAYOUT_EVENT_THEME_CHANGED";
-                if (AddNativeEventHandler(efl.Libs.Elementary, key, this.evt_ThemeChangedEvt_delegate)) {
-                    eventHandlers.AddHandler(ThemeChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_UI_LAYOUT_EVENT_THEME_CHANGED";
-                if (RemoveNativeEventHandler(key, this.evt_ThemeChangedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ThemeChangedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event ThemeChangedEvt.</summary>
-    public void On_ThemeChangedEvt(EventArgs e)
+    public void OnThemeChangedEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[ThemeChangedEvtKey];
+        var key = "_EFL_UI_LAYOUT_EVENT_THEME_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ThemeChangedEvt_delegate;
-    private void on_ThemeChangedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_ThemeChangedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ContentAddedEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>Sent after a new item was added.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ContentAddedEvt_delegate)) {
-                    eventHandlers.AddHandler(ContentAddedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                if (RemoveNativeEventHandler(key, this.evt_ContentAddedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ContentAddedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ContentAddedEvt.</summary>
-    public void On_ContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
+    public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
-        EventHandler<Efl.IContainerContentAddedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.IContainerContentAddedEvt_Args>)eventHandlers[ContentAddedEvtKey];
+        var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ContentAddedEvt_delegate;
-    private void on_ContentAddedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
-        try {
-            On_ContentAddedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object ContentRemovedEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>Sent after an item was removed, before unref.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                if (AddNativeEventHandler(efl.Libs.Efl, key, this.evt_ContentRemovedEvt_delegate)) {
-                    eventHandlers.AddHandler(ContentRemovedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                if (RemoveNativeEventHandler(key, this.evt_ContentRemovedEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(ContentRemovedEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
     ///<summary>Method to raise event ContentRemovedEvt.</summary>
-    public void On_ContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
+    public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
-        EventHandler<Efl.IContainerContentRemovedEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.IContainerContentRemovedEvt_Args>)eventHandlers[ContentRemovedEvtKey];
+        var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_ContentRemovedEvt_delegate;
-    private void on_ContentRemovedEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
-        try {
-            On_ContentRemovedEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object RecalcEvtKey = new object();
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
     /// <summary>The layout was recalculated.
     /// (Since EFL 1.22)</summary>
     public event EventHandler RecalcEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
-                if (AddNativeEventHandler(efl.Libs.Edje, key, this.evt_RecalcEvt_delegate)) {
-                    eventHandlers.AddHandler(RecalcEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
-                if (RemoveNativeEventHandler(key, this.evt_RecalcEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(RecalcEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
     ///<summary>Method to raise event RecalcEvt.</summary>
-    public void On_RecalcEvt(EventArgs e)
+    public void OnRecalcEvt(EventArgs e)
     {
-        EventHandler evt;
-        lock (eventLock) {
-        evt = (EventHandler)eventHandlers[RecalcEvtKey];
+        var key = "_EFL_LAYOUT_EVENT_RECALC";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_RecalcEvt_delegate;
-    private void on_RecalcEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        EventArgs args = EventArgs.Empty;
-        try {
-            On_RecalcEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-private static object CircularDependencyEvtKey = new object();
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.Layout.ICalcCircularDependencyEvt_Args args = new Efl.Layout.ICalcCircularDependencyEvt_Args();
+                        args.arg = new Eina.Array<System.String>(evt.Info, false, false);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
-                if (AddNativeEventHandler(efl.Libs.Edje, key, this.evt_CircularDependencyEvt_delegate)) {
-                    eventHandlers.AddHandler(CircularDependencyEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
-                if (RemoveNativeEventHandler(key, this.evt_CircularDependencyEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(CircularDependencyEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
     ///<summary>Method to raise event CircularDependencyEvt.</summary>
-    public void On_CircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
+    public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
     {
-        EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args>)eventHandlers[CircularDependencyEvtKey];
+        var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_CircularDependencyEvt_delegate;
-    private void on_CircularDependencyEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.Layout.ICalcCircularDependencyEvt_Args args = new Efl.Layout.ICalcCircularDependencyEvt_Args();
-      args.arg = new Eina.Array<System.String>(evt.Info, false, false);
-        try {
-            On_CircularDependencyEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-    protected override void RegisterEventProxies()
-    {
-        base.RegisterEventProxies();
-        evt_ThemeChangedEvt_delegate = new Efl.EventCb(on_ThemeChangedEvt_NativeCallback);
-        evt_ContentAddedEvt_delegate = new Efl.EventCb(on_ContentAddedEvt_NativeCallback);
-        evt_ContentRemovedEvt_delegate = new Efl.EventCb(on_ContentRemovedEvt_NativeCallback);
-        evt_RecalcEvt_delegate = new Efl.EventCb(on_RecalcEvt_NativeCallback);
-        evt_CircularDependencyEvt_delegate = new Efl.EventCb(on_CircularDependencyEvt_NativeCallback);
+        IntPtr info = e.arg.Handle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>The theme of this widget, defines which edje group will be used.
     /// Based on the type of widget (<c>klass</c>), a given <c>group</c> and a <c>style</c> (usually &quot;default&quot;), the edje group name will be formed for this object.
@@ -314,9 +384,8 @@ private static object CircularDependencyEvtKey = new object();
     /// <param name="klass">The class of the group, eg. &quot;button&quot;.</param>
     /// <param name="group">The group, eg. &quot;base&quot;.</param>
     /// <param name="style">The style to use, eg &quot;default&quot;.</param>
-    /// <returns></returns>
-    virtual public void GetTheme( out System.String klass,  out System.String group,  out System.String style) {
-                                                                                 Efl.Ui.LayoutBaseNativeInherit.efl_ui_layout_theme_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), out klass,  out group,  out style);
+    virtual public void GetTheme(out System.String klass, out System.String group, out System.String style) {
+                                                                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out klass, out group, out style);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The theme of this widget, defines which edje group will be used.
@@ -332,8 +401,8 @@ private static object CircularDependencyEvtKey = new object();
     /// <param name="group">The group, eg. &quot;base&quot;.</param>
     /// <param name="style">The style to use, eg &quot;default&quot;.</param>
     /// <returns>Whether the theme was successfully applied or not, see the Efl.Ui.Theme.Apply_Error subset of <see cref="Eina.Error"/> for more information.</returns>
-    virtual public Eina.Error SetTheme( System.String klass,  System.String group,  System.String style) {
-                                                                                 var _ret_var = Efl.Ui.LayoutBaseNativeInherit.efl_ui_layout_theme_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), klass,  group,  style);
+    virtual public Eina.Error SetTheme(System.String klass, System.String group, System.String style) {
+                                                                                 var _ret_var = Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),klass, group, style);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -341,31 +410,29 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</returns>
     virtual public bool GetAutomaticThemeRotation() {
-         var _ret_var = Efl.Ui.LayoutBaseNativeInherit.efl_ui_layout_automatic_theme_rotation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This flag tells if this object will automatically mirror the rotation changes of the window to this object.
     /// (Since EFL 1.22)</summary>
     /// <param name="automatic"><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</param>
-    /// <returns></returns>
-    virtual public void SetAutomaticThemeRotation( bool automatic) {
-                                 Efl.Ui.LayoutBaseNativeInherit.efl_ui_layout_automatic_theme_rotation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), automatic);
+    virtual public void SetAutomaticThemeRotation(bool automatic) {
+                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),automatic);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Apply a new rotation value to this object.
     /// (Since EFL 1.22)</summary>
     /// <param name="orientation">The new rotation value.</param>
-    /// <returns></returns>
-    virtual public void ThemeRotationApply( Efl.Orient orientation) {
-                                 Efl.Ui.LayoutBaseNativeInherit.efl_ui_layout_theme_rotation_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), orientation);
+    virtual public void ThemeRotationApply(Efl.Orient orientation) {
+                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_rotation_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),orientation);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator to object content</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerNativeInherit.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
  }
@@ -373,7 +440,7 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of packed UI elements</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerNativeInherit.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -381,16 +448,15 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether or not update the size hints.</returns>
     virtual public bool GetCalcAutoUpdateHints() {
-         var _ret_var = Efl.Layout.ICalcNativeInherit.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Enable or disable auto-update of size hints.
     /// (Since EFL 1.22)</summary>
     /// <param name="update">Whether or not update the size hints.</param>
-    /// <returns></returns>
-    virtual public void SetCalcAutoUpdateHints( bool update) {
-                                 Efl.Layout.ICalcNativeInherit.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), update);
+    virtual public void SetCalcAutoUpdateHints(bool update) {
+                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),update);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Calculates the minimum required size for a given layout object.
@@ -402,9 +468,9 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <param name="restricted">The minimum size constraint as input, the returned size can not be lower than this (in both directions).</param>
     /// <returns>The minimum required size.</returns>
-    virtual public Eina.Size2D CalcSizeMin( Eina.Size2D restricted) {
+    virtual public Eina.Size2D CalcSizeMin(Eina.Size2D restricted) {
          Eina.Size2D.NativeStruct _in_restricted = restricted;
-                        var _ret_var = Efl.Layout.ICalcNativeInherit.efl_layout_calc_size_min_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), _in_restricted);
+                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_restricted);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -415,7 +481,7 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>The calculated region.</returns>
     virtual public Eina.Rect CalcPartsExtends() {
-         var _ret_var = Efl.Layout.ICalcNativeInherit.efl_layout_calc_parts_extends_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -426,7 +492,7 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 on error</returns>
     virtual public int FreezeCalc() {
-         var _ret_var = Efl.Layout.ICalcNativeInherit.efl_layout_calc_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -439,7 +505,7 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
     virtual public int ThawCalc() {
-         var _ret_var = Efl.Layout.ICalcNativeInherit.efl_layout_calc_thaw_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -448,9 +514,8 @@ private static object CircularDependencyEvtKey = new object();
     /// 
     /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
     /// (Since EFL 1.22)</summary>
-    /// <returns></returns>
     virtual public void CalcForce() {
-         Efl.Layout.ICalcNativeInherit.efl_layout_calc_force_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
@@ -464,7 +529,7 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>The minimum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMin() {
-         var _ret_var = Efl.Layout.IGroupNativeInherit.efl_layout_group_size_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -479,7 +544,7 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <returns>The maximum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMax() {
-         var _ret_var = Efl.Layout.IGroupNativeInherit.efl_layout_group_size_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -494,8 +559,8 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The data field&apos;s key string</param>
     /// <returns>The data&apos;s value string.</returns>
-    virtual public System.String GetGroupData( System.String key) {
-                                 var _ret_var = Efl.Layout.IGroupNativeInherit.efl_layout_group_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), key);
+    virtual public System.String GetGroupData(System.String key) {
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -503,8 +568,8 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <param name="part">The part name to check.</param>
     /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
-    virtual public bool GetPartExist( System.String part) {
-                                 var _ret_var = Efl.Layout.IGroupNativeInherit.efl_layout_group_part_exist_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), part);
+    virtual public bool GetPartExist(System.String part) {
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -517,9 +582,8 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
-    /// <returns></returns>
-    virtual public void MessageSend( int id,  Eina.Value msg) {
-                                                         Efl.Layout.ISignalNativeInherit.efl_layout_signal_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), id,  msg);
+    virtual public void MessageSend(int id, Eina.Value msg) {
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id, msg);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
@@ -543,9 +607,9 @@ private static object CircularDependencyEvtKey = new object();
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     /// <param name="func">The callback function to be executed when the signal is emitted.</param>
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-    virtual public bool AddSignalCallback( System.String emission,  System.String source,  EflLayoutSignalCb func) {
+    virtual public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalNativeInherit.efl_layout_signal_callback_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), emission,  source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -558,9 +622,9 @@ private static object CircularDependencyEvtKey = new object();
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     /// <param name="func">The callback function to be executed when the signal is emitted.</param>
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-    virtual public bool DelSignalCallback( System.String emission,  System.String source,  EflLayoutSignalCb func) {
+    virtual public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalNativeInherit.efl_layout_signal_callback_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), emission,  source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -573,9 +637,8 @@ private static object CircularDependencyEvtKey = new object();
     /// (Since EFL 1.22)</summary>
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
-    /// <returns></returns>
-    virtual public void EmitSignal( System.String emission,  System.String source) {
-                                                         Efl.Layout.ISignalNativeInherit.efl_layout_signal_emit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), emission,  source);
+    virtual public void EmitSignal(System.String emission, System.String source) {
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Processes an object&apos;s messages and signals queue.
@@ -584,17 +647,15 @@ private static object CircularDependencyEvtKey = new object();
     /// If <c>recurse</c> is <c>true</c>, this function will be called recursively on all subobjects.
     /// (Since EFL 1.22)</summary>
     /// <param name="recurse">Whether to process messages on children objects.</param>
-    /// <returns></returns>
-    virtual public void SignalProcess( bool recurse) {
-                                 Efl.Layout.ISignalNativeInherit.efl_layout_signal_process_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), recurse);
+    virtual public void SignalProcess(bool recurse) {
+                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recurse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>bind the factory with the given key string. when the data is ready or changed, factory create the object and bind the data to the key action and process promised work. Note: the input <see cref="Efl.Ui.IFactory"/> need to be <see cref="Efl.Ui.IPropertyBind.PropertyBind"/> at least once.</summary>
     /// <param name="key">Key string for bind model property data</param>
     /// <param name="factory"><see cref="Efl.Ui.IFactory"/> for create and bind model property data</param>
-    /// <returns></returns>
-    virtual public void FactoryBind( System.String key,  Efl.Ui.IFactory factory) {
-                                                         Efl.Ui.IFactoryBindNativeInherit.efl_ui_factory_bind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), key,  factory);
+    virtual public void FactoryBind(System.String key, Efl.Ui.IFactory factory) {
+                                                         Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, factory);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>This flag tells if this object will automatically mirror the rotation changes of the window to this object.
@@ -602,7 +663,7 @@ private static object CircularDependencyEvtKey = new object();
 /// <value><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</value>
     public bool AutomaticThemeRotation {
         get { return GetAutomaticThemeRotation(); }
-        set { SetAutomaticThemeRotation( value); }
+        set { SetAutomaticThemeRotation(value); }
     }
     /// <summary>Whether this object updates its size hints automatically.
 /// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
@@ -612,7 +673,7 @@ private static object CircularDependencyEvtKey = new object();
 /// <value>Whether or not update the size hints.</value>
     public bool CalcAutoUpdateHints {
         get { return GetCalcAutoUpdateHints(); }
-        set { SetCalcAutoUpdateHints( value); }
+        set { SetCalcAutoUpdateHints(value); }
     }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
 /// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
@@ -644,719 +705,1139 @@ private static object CircularDependencyEvtKey = new object();
     {
         return Efl.Ui.LayoutBase.efl_ui_layout_base_class_get();
     }
-}
-public class LayoutBaseNativeInherit : Efl.Ui.WidgetNativeInherit{
-    public new  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public new class NativeMethods : Efl.Ui.Widget.NativeMethods
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        if (efl_ui_layout_theme_get_static_delegate == null)
-            efl_ui_layout_theme_get_static_delegate = new efl_ui_layout_theme_get_delegate(theme_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetTheme") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_layout_theme_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_theme_get_static_delegate)});
-        if (efl_ui_layout_theme_set_static_delegate == null)
-            efl_ui_layout_theme_set_static_delegate = new efl_ui_layout_theme_set_delegate(theme_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetTheme") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_layout_theme_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_theme_set_static_delegate)});
-        if (efl_ui_layout_automatic_theme_rotation_get_static_delegate == null)
-            efl_ui_layout_automatic_theme_rotation_get_static_delegate = new efl_ui_layout_automatic_theme_rotation_get_delegate(automatic_theme_rotation_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetAutomaticThemeRotation") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_layout_automatic_theme_rotation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_automatic_theme_rotation_get_static_delegate)});
-        if (efl_ui_layout_automatic_theme_rotation_set_static_delegate == null)
-            efl_ui_layout_automatic_theme_rotation_set_static_delegate = new efl_ui_layout_automatic_theme_rotation_set_delegate(automatic_theme_rotation_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetAutomaticThemeRotation") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_layout_automatic_theme_rotation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_automatic_theme_rotation_set_static_delegate)});
-        if (efl_ui_layout_theme_rotation_apply_static_delegate == null)
-            efl_ui_layout_theme_rotation_apply_static_delegate = new efl_ui_layout_theme_rotation_apply_delegate(theme_rotation_apply);
-        if (methods.FirstOrDefault(m => m.Name == "ThemeRotationApply") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_layout_theme_rotation_apply"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_theme_rotation_apply_static_delegate)});
-        if (efl_content_iterate_static_delegate == null)
-            efl_content_iterate_static_delegate = new efl_content_iterate_delegate(content_iterate);
-        if (methods.FirstOrDefault(m => m.Name == "ContentIterate") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_content_iterate"), func = Marshal.GetFunctionPointerForDelegate(efl_content_iterate_static_delegate)});
-        if (efl_content_count_static_delegate == null)
-            efl_content_count_static_delegate = new efl_content_count_delegate(content_count);
-        if (methods.FirstOrDefault(m => m.Name == "ContentCount") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_content_count"), func = Marshal.GetFunctionPointerForDelegate(efl_content_count_static_delegate)});
-        if (efl_layout_calc_auto_update_hints_get_static_delegate == null)
-            efl_layout_calc_auto_update_hints_get_static_delegate = new efl_layout_calc_auto_update_hints_get_delegate(calc_auto_update_hints_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetCalcAutoUpdateHints") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_calc_auto_update_hints_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_auto_update_hints_get_static_delegate)});
-        if (efl_layout_calc_auto_update_hints_set_static_delegate == null)
-            efl_layout_calc_auto_update_hints_set_static_delegate = new efl_layout_calc_auto_update_hints_set_delegate(calc_auto_update_hints_set);
-        if (methods.FirstOrDefault(m => m.Name == "SetCalcAutoUpdateHints") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_calc_auto_update_hints_set"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_auto_update_hints_set_static_delegate)});
-        if (efl_layout_calc_size_min_static_delegate == null)
-            efl_layout_calc_size_min_static_delegate = new efl_layout_calc_size_min_delegate(calc_size_min);
-        if (methods.FirstOrDefault(m => m.Name == "CalcSizeMin") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_calc_size_min"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_size_min_static_delegate)});
-        if (efl_layout_calc_parts_extends_static_delegate == null)
-            efl_layout_calc_parts_extends_static_delegate = new efl_layout_calc_parts_extends_delegate(calc_parts_extends);
-        if (methods.FirstOrDefault(m => m.Name == "CalcPartsExtends") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_calc_parts_extends"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_parts_extends_static_delegate)});
-        if (efl_layout_calc_freeze_static_delegate == null)
-            efl_layout_calc_freeze_static_delegate = new efl_layout_calc_freeze_delegate(calc_freeze);
-        if (methods.FirstOrDefault(m => m.Name == "FreezeCalc") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_calc_freeze"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_freeze_static_delegate)});
-        if (efl_layout_calc_thaw_static_delegate == null)
-            efl_layout_calc_thaw_static_delegate = new efl_layout_calc_thaw_delegate(calc_thaw);
-        if (methods.FirstOrDefault(m => m.Name == "ThawCalc") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_calc_thaw"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_thaw_static_delegate)});
-        if (efl_layout_calc_force_static_delegate == null)
-            efl_layout_calc_force_static_delegate = new efl_layout_calc_force_delegate(calc_force);
-        if (methods.FirstOrDefault(m => m.Name == "CalcForce") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_calc_force"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_force_static_delegate)});
-        if (efl_layout_group_size_min_get_static_delegate == null)
-            efl_layout_group_size_min_get_static_delegate = new efl_layout_group_size_min_get_delegate(group_size_min_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetGroupSizeMin") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_group_size_min_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_size_min_get_static_delegate)});
-        if (efl_layout_group_size_max_get_static_delegate == null)
-            efl_layout_group_size_max_get_static_delegate = new efl_layout_group_size_max_get_delegate(group_size_max_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetGroupSizeMax") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_group_size_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_size_max_get_static_delegate)});
-        if (efl_layout_group_data_get_static_delegate == null)
-            efl_layout_group_data_get_static_delegate = new efl_layout_group_data_get_delegate(group_data_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetGroupData") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_group_data_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_data_get_static_delegate)});
-        if (efl_layout_group_part_exist_get_static_delegate == null)
-            efl_layout_group_part_exist_get_static_delegate = new efl_layout_group_part_exist_get_delegate(part_exist_get);
-        if (methods.FirstOrDefault(m => m.Name == "GetPartExist") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_group_part_exist_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_part_exist_get_static_delegate)});
-        if (efl_layout_signal_message_send_static_delegate == null)
-            efl_layout_signal_message_send_static_delegate = new efl_layout_signal_message_send_delegate(message_send);
-        if (methods.FirstOrDefault(m => m.Name == "MessageSend") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_message_send"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_message_send_static_delegate)});
-        if (efl_layout_signal_callback_add_static_delegate == null)
-            efl_layout_signal_callback_add_static_delegate = new efl_layout_signal_callback_add_delegate(signal_callback_add);
-        if (methods.FirstOrDefault(m => m.Name == "AddSignalCallback") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_callback_add"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_add_static_delegate)});
-        if (efl_layout_signal_callback_del_static_delegate == null)
-            efl_layout_signal_callback_del_static_delegate = new efl_layout_signal_callback_del_delegate(signal_callback_del);
-        if (methods.FirstOrDefault(m => m.Name == "DelSignalCallback") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_callback_del"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_del_static_delegate)});
-        if (efl_layout_signal_emit_static_delegate == null)
-            efl_layout_signal_emit_static_delegate = new efl_layout_signal_emit_delegate(signal_emit);
-        if (methods.FirstOrDefault(m => m.Name == "EmitSignal") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_emit"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_emit_static_delegate)});
-        if (efl_layout_signal_process_static_delegate == null)
-            efl_layout_signal_process_static_delegate = new efl_layout_signal_process_delegate(signal_process);
-        if (methods.FirstOrDefault(m => m.Name == "SignalProcess") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate)});
-        if (efl_ui_factory_bind_static_delegate == null)
-            efl_ui_factory_bind_static_delegate = new efl_ui_factory_bind_delegate(factory_bind);
-        if (methods.FirstOrDefault(m => m.Name == "FactoryBind") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_ui_factory_bind"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_factory_bind_static_delegate)});
-        descs.AddRange(base.GetEoOps(type));
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.Ui.LayoutBase.efl_ui_layout_base_class_get();
-    }
-    public static new  IntPtr GetEflClassStatic()
-    {
-        return Efl.Ui.LayoutBase.efl_ui_layout_base_class_get();
-    }
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
 
+            if (efl_ui_layout_theme_get_static_delegate == null)
+            {
+                efl_ui_layout_theme_get_static_delegate = new efl_ui_layout_theme_get_delegate(theme_get);
+            }
 
-     private delegate void efl_ui_layout_theme_get_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  out System.String klass,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  out System.String group,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  out System.String style);
+            if (methods.FirstOrDefault(m => m.Name == "GetTheme") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_theme_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_theme_get_static_delegate) });
+            }
 
+            if (efl_ui_layout_theme_set_static_delegate == null)
+            {
+                efl_ui_layout_theme_set_static_delegate = new efl_ui_layout_theme_set_delegate(theme_set);
+            }
 
-     public delegate void efl_ui_layout_theme_get_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  out System.String klass,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  out System.String group,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  out System.String style);
-     public static Efl.Eo.FunctionWrapper<efl_ui_layout_theme_get_api_delegate> efl_ui_layout_theme_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_theme_get_api_delegate>(_Module, "efl_ui_layout_theme_get");
-     private static void theme_get(System.IntPtr obj, System.IntPtr pd,  out System.String klass,  out System.String group,  out System.String style)
-    {
-        Eina.Log.Debug("function efl_ui_layout_theme_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                            System.String _out_klass = default(System.String);
+            if (methods.FirstOrDefault(m => m.Name == "SetTheme") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_theme_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_theme_set_static_delegate) });
+            }
+
+            if (efl_ui_layout_automatic_theme_rotation_get_static_delegate == null)
+            {
+                efl_ui_layout_automatic_theme_rotation_get_static_delegate = new efl_ui_layout_automatic_theme_rotation_get_delegate(automatic_theme_rotation_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetAutomaticThemeRotation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_automatic_theme_rotation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_automatic_theme_rotation_get_static_delegate) });
+            }
+
+            if (efl_ui_layout_automatic_theme_rotation_set_static_delegate == null)
+            {
+                efl_ui_layout_automatic_theme_rotation_set_static_delegate = new efl_ui_layout_automatic_theme_rotation_set_delegate(automatic_theme_rotation_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetAutomaticThemeRotation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_automatic_theme_rotation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_automatic_theme_rotation_set_static_delegate) });
+            }
+
+            if (efl_ui_layout_theme_rotation_apply_static_delegate == null)
+            {
+                efl_ui_layout_theme_rotation_apply_static_delegate = new efl_ui_layout_theme_rotation_apply_delegate(theme_rotation_apply);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ThemeRotationApply") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_theme_rotation_apply"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_theme_rotation_apply_static_delegate) });
+            }
+
+            if (efl_content_iterate_static_delegate == null)
+            {
+                efl_content_iterate_static_delegate = new efl_content_iterate_delegate(content_iterate);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ContentIterate") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_iterate"), func = Marshal.GetFunctionPointerForDelegate(efl_content_iterate_static_delegate) });
+            }
+
+            if (efl_content_count_static_delegate == null)
+            {
+                efl_content_count_static_delegate = new efl_content_count_delegate(content_count);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ContentCount") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_count"), func = Marshal.GetFunctionPointerForDelegate(efl_content_count_static_delegate) });
+            }
+
+            if (efl_layout_calc_auto_update_hints_get_static_delegate == null)
+            {
+                efl_layout_calc_auto_update_hints_get_static_delegate = new efl_layout_calc_auto_update_hints_get_delegate(calc_auto_update_hints_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCalcAutoUpdateHints") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_auto_update_hints_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_auto_update_hints_get_static_delegate) });
+            }
+
+            if (efl_layout_calc_auto_update_hints_set_static_delegate == null)
+            {
+                efl_layout_calc_auto_update_hints_set_static_delegate = new efl_layout_calc_auto_update_hints_set_delegate(calc_auto_update_hints_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCalcAutoUpdateHints") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_auto_update_hints_set"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_auto_update_hints_set_static_delegate) });
+            }
+
+            if (efl_layout_calc_size_min_static_delegate == null)
+            {
+                efl_layout_calc_size_min_static_delegate = new efl_layout_calc_size_min_delegate(calc_size_min);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "CalcSizeMin") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_size_min"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_size_min_static_delegate) });
+            }
+
+            if (efl_layout_calc_parts_extends_static_delegate == null)
+            {
+                efl_layout_calc_parts_extends_static_delegate = new efl_layout_calc_parts_extends_delegate(calc_parts_extends);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "CalcPartsExtends") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_parts_extends"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_parts_extends_static_delegate) });
+            }
+
+            if (efl_layout_calc_freeze_static_delegate == null)
+            {
+                efl_layout_calc_freeze_static_delegate = new efl_layout_calc_freeze_delegate(calc_freeze);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "FreezeCalc") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_freeze"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_freeze_static_delegate) });
+            }
+
+            if (efl_layout_calc_thaw_static_delegate == null)
+            {
+                efl_layout_calc_thaw_static_delegate = new efl_layout_calc_thaw_delegate(calc_thaw);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ThawCalc") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_thaw"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_thaw_static_delegate) });
+            }
+
+            if (efl_layout_calc_force_static_delegate == null)
+            {
+                efl_layout_calc_force_static_delegate = new efl_layout_calc_force_delegate(calc_force);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "CalcForce") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_force"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_force_static_delegate) });
+            }
+
+            if (efl_layout_group_size_min_get_static_delegate == null)
+            {
+                efl_layout_group_size_min_get_static_delegate = new efl_layout_group_size_min_get_delegate(group_size_min_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetGroupSizeMin") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_group_size_min_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_size_min_get_static_delegate) });
+            }
+
+            if (efl_layout_group_size_max_get_static_delegate == null)
+            {
+                efl_layout_group_size_max_get_static_delegate = new efl_layout_group_size_max_get_delegate(group_size_max_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetGroupSizeMax") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_group_size_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_size_max_get_static_delegate) });
+            }
+
+            if (efl_layout_group_data_get_static_delegate == null)
+            {
+                efl_layout_group_data_get_static_delegate = new efl_layout_group_data_get_delegate(group_data_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetGroupData") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_group_data_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_data_get_static_delegate) });
+            }
+
+            if (efl_layout_group_part_exist_get_static_delegate == null)
+            {
+                efl_layout_group_part_exist_get_static_delegate = new efl_layout_group_part_exist_get_delegate(part_exist_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetPartExist") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_group_part_exist_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_part_exist_get_static_delegate) });
+            }
+
+            if (efl_layout_signal_message_send_static_delegate == null)
+            {
+                efl_layout_signal_message_send_static_delegate = new efl_layout_signal_message_send_delegate(message_send);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "MessageSend") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_message_send"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_message_send_static_delegate) });
+            }
+
+            if (efl_layout_signal_callback_add_static_delegate == null)
+            {
+                efl_layout_signal_callback_add_static_delegate = new efl_layout_signal_callback_add_delegate(signal_callback_add);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "AddSignalCallback") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_callback_add"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_add_static_delegate) });
+            }
+
+            if (efl_layout_signal_callback_del_static_delegate == null)
+            {
+                efl_layout_signal_callback_del_static_delegate = new efl_layout_signal_callback_del_delegate(signal_callback_del);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "DelSignalCallback") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_callback_del"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_callback_del_static_delegate) });
+            }
+
+            if (efl_layout_signal_emit_static_delegate == null)
+            {
+                efl_layout_signal_emit_static_delegate = new efl_layout_signal_emit_delegate(signal_emit);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "EmitSignal") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_emit"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_emit_static_delegate) });
+            }
+
+            if (efl_layout_signal_process_static_delegate == null)
+            {
+                efl_layout_signal_process_static_delegate = new efl_layout_signal_process_delegate(signal_process);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SignalProcess") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate) });
+            }
+
+            if (efl_ui_factory_bind_static_delegate == null)
+            {
+                efl_ui_factory_bind_static_delegate = new efl_ui_factory_bind_delegate(factory_bind);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "FactoryBind") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_factory_bind"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_factory_bind_static_delegate) });
+            }
+
+            descs.AddRange(base.GetEoOps(type));
+            return descs;
+        }
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.Ui.LayoutBase.efl_ui_layout_base_class_get();
+        }
+
+        #pragma warning disable CA1707, SA1300, SA1600
+
+        
+        private delegate void efl_ui_layout_theme_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String group, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String style);
+
+        
+        public delegate void efl_ui_layout_theme_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String group, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String style);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_theme_get_api_delegate> efl_ui_layout_theme_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_theme_get_api_delegate>(Module, "efl_ui_layout_theme_get");
+
+        private static void theme_get(System.IntPtr obj, System.IntPtr pd, out System.String klass, out System.String group, out System.String style)
+        {
+            Eina.Log.Debug("function efl_ui_layout_theme_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                System.String _out_klass = default(System.String);
         System.String _out_group = default(System.String);
         System.String _out_style = default(System.String);
                                     
-            try {
-                ((LayoutBase)wrapper).GetTheme( out _out_klass,  out _out_group,  out _out_style);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+                try
+                {
+                    ((LayoutBase)wrapper).GetTheme(out _out_klass, out _out_group, out _out_style);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         klass = _out_klass;
         group = _out_group;
         style = _out_style;
-                                        } else {
-            efl_ui_layout_theme_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  out klass,  out group,  out style);
-        }
-    }
-    private static efl_ui_layout_theme_get_delegate efl_ui_layout_theme_get_static_delegate;
-
-
-     private delegate Eina.Error efl_ui_layout_theme_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String klass,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String group,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String style);
-
-
-     public delegate Eina.Error efl_ui_layout_theme_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String klass,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String group,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String style);
-     public static Efl.Eo.FunctionWrapper<efl_ui_layout_theme_set_api_delegate> efl_ui_layout_theme_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_theme_set_api_delegate>(_Module, "efl_ui_layout_theme_set");
-     private static Eina.Error theme_set(System.IntPtr obj, System.IntPtr pd,  System.String klass,  System.String group,  System.String style)
-    {
-        Eina.Log.Debug("function efl_ui_layout_theme_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                                                Eina.Error _ret_var = default(Eina.Error);
-            try {
-                _ret_var = ((LayoutBase)wrapper).SetTheme( klass,  group,  style);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                                
             }
+            else
+            {
+                efl_ui_layout_theme_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out klass, out group, out style);
+            }
+        }
+
+        private static efl_ui_layout_theme_get_delegate efl_ui_layout_theme_get_static_delegate;
+
+        
+        private delegate Eina.Error efl_ui_layout_theme_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String group, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String style);
+
+        
+        public delegate Eina.Error efl_ui_layout_theme_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String group, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String style);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_theme_set_api_delegate> efl_ui_layout_theme_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_theme_set_api_delegate>(Module, "efl_ui_layout_theme_set");
+
+        private static Eina.Error theme_set(System.IntPtr obj, System.IntPtr pd, System.String klass, System.String group, System.String style)
+        {
+            Eina.Log.Debug("function efl_ui_layout_theme_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                                                    Eina.Error _ret_var = default(Eina.Error);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).SetTheme(klass, group, style);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                                                         return _ret_var;
-        } else {
-            return efl_ui_layout_theme_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  klass,  group,  style);
-        }
-    }
-    private static efl_ui_layout_theme_set_delegate efl_ui_layout_theme_set_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_ui_layout_automatic_theme_rotation_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_ui_layout_automatic_theme_rotation_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_get_api_delegate> efl_ui_layout_automatic_theme_rotation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_get_api_delegate>(_Module, "efl_ui_layout_automatic_theme_rotation_get");
-     private static bool automatic_theme_rotation_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_ui_layout_automatic_theme_rotation_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        bool _ret_var = default(bool);
-            try {
-                _ret_var = ((LayoutBase)wrapper).GetAutomaticThemeRotation();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_ui_layout_theme_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), klass, group, style);
+            }
+        }
+
+        private static efl_ui_layout_theme_set_delegate efl_ui_layout_theme_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_layout_automatic_theme_rotation_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_layout_automatic_theme_rotation_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_get_api_delegate> efl_ui_layout_automatic_theme_rotation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_get_api_delegate>(Module, "efl_ui_layout_automatic_theme_rotation_get");
+
+        private static bool automatic_theme_rotation_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_layout_automatic_theme_rotation_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).GetAutomaticThemeRotation();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_ui_layout_automatic_theme_rotation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_ui_layout_automatic_theme_rotation_get_delegate efl_ui_layout_automatic_theme_rotation_get_static_delegate;
 
-
-     private delegate void efl_ui_layout_automatic_theme_rotation_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.U1)]  bool automatic);
-
-
-     public delegate void efl_ui_layout_automatic_theme_rotation_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.U1)]  bool automatic);
-     public static Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_set_api_delegate> efl_ui_layout_automatic_theme_rotation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_set_api_delegate>(_Module, "efl_ui_layout_automatic_theme_rotation_set");
-     private static void automatic_theme_rotation_set(System.IntPtr obj, System.IntPtr pd,  bool automatic)
-    {
-        Eina.Log.Debug("function efl_ui_layout_automatic_theme_rotation_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((LayoutBase)wrapper).SetAutomaticThemeRotation( automatic);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                } else {
-            efl_ui_layout_automatic_theme_rotation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  automatic);
-        }
-    }
-    private static efl_ui_layout_automatic_theme_rotation_set_delegate efl_ui_layout_automatic_theme_rotation_set_static_delegate;
-
-
-     private delegate void efl_ui_layout_theme_rotation_apply_delegate(System.IntPtr obj, System.IntPtr pd,   Efl.Orient orientation);
-
-
-     public delegate void efl_ui_layout_theme_rotation_apply_api_delegate(System.IntPtr obj,   Efl.Orient orientation);
-     public static Efl.Eo.FunctionWrapper<efl_ui_layout_theme_rotation_apply_api_delegate> efl_ui_layout_theme_rotation_apply_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_theme_rotation_apply_api_delegate>(_Module, "efl_ui_layout_theme_rotation_apply");
-     private static void theme_rotation_apply(System.IntPtr obj, System.IntPtr pd,  Efl.Orient orientation)
-    {
-        Eina.Log.Debug("function efl_ui_layout_theme_rotation_apply was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((LayoutBase)wrapper).ThemeRotationApply( orientation);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_ui_layout_automatic_theme_rotation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
-                                } else {
-            efl_ui_layout_theme_rotation_apply_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  orientation);
         }
-    }
-    private static efl_ui_layout_theme_rotation_apply_delegate efl_ui_layout_theme_rotation_apply_static_delegate;
 
+        private static efl_ui_layout_automatic_theme_rotation_get_delegate efl_ui_layout_automatic_theme_rotation_get_static_delegate;
 
-     private delegate System.IntPtr efl_content_iterate_delegate(System.IntPtr obj, System.IntPtr pd);
+        
+        private delegate void efl_ui_layout_automatic_theme_rotation_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool automatic);
 
+        
+        public delegate void efl_ui_layout_automatic_theme_rotation_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool automatic);
 
-     public delegate System.IntPtr efl_content_iterate_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_content_iterate_api_delegate> efl_content_iterate_ptr = new Efl.Eo.FunctionWrapper<efl_content_iterate_api_delegate>(_Module, "efl_content_iterate");
-     private static System.IntPtr content_iterate(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_content_iterate was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
-            try {
-                _ret_var = ((LayoutBase)wrapper).ContentIterate();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-        _ret_var.Own = false; return _ret_var.Handle;
-        } else {
-            return efl_content_iterate_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_content_iterate_delegate efl_content_iterate_static_delegate;
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_set_api_delegate> efl_ui_layout_automatic_theme_rotation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_automatic_theme_rotation_set_api_delegate>(Module, "efl_ui_layout_automatic_theme_rotation_set");
 
+        private static void automatic_theme_rotation_set(System.IntPtr obj, System.IntPtr pd, bool automatic)
+        {
+            Eina.Log.Debug("function efl_ui_layout_automatic_theme_rotation_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((LayoutBase)wrapper).SetAutomaticThemeRotation(automatic);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
 
-     private delegate int efl_content_count_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate int efl_content_count_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_content_count_api_delegate> efl_content_count_ptr = new Efl.Eo.FunctionWrapper<efl_content_count_api_delegate>(_Module, "efl_content_count");
-     private static int content_count(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_content_count was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        int _ret_var = default(int);
-            try {
-                _ret_var = ((LayoutBase)wrapper).ContentCount();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-        return _ret_var;
-        } else {
-            return efl_content_count_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_content_count_delegate efl_content_count_static_delegate;
-
-
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_layout_calc_auto_update_hints_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_layout_calc_auto_update_hints_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_get_api_delegate> efl_layout_calc_auto_update_hints_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_get_api_delegate>(_Module, "efl_layout_calc_auto_update_hints_get");
-     private static bool calc_auto_update_hints_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_layout_calc_auto_update_hints_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        bool _ret_var = default(bool);
-            try {
-                _ret_var = ((LayoutBase)wrapper).GetCalcAutoUpdateHints();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-        return _ret_var;
-        } else {
-            return efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_layout_calc_auto_update_hints_get_delegate efl_layout_calc_auto_update_hints_get_static_delegate;
-
-
-     private delegate void efl_layout_calc_auto_update_hints_set_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.U1)]  bool update);
-
-
-     public delegate void efl_layout_calc_auto_update_hints_set_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.U1)]  bool update);
-     public static Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_set_api_delegate> efl_layout_calc_auto_update_hints_set_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_set_api_delegate>(_Module, "efl_layout_calc_auto_update_hints_set");
-     private static void calc_auto_update_hints_set(System.IntPtr obj, System.IntPtr pd,  bool update)
-    {
-        Eina.Log.Debug("function efl_layout_calc_auto_update_hints_set was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((LayoutBase)wrapper).SetCalcAutoUpdateHints( update);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-                                } else {
-            efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  update);
-        }
-    }
-    private static efl_layout_calc_auto_update_hints_set_delegate efl_layout_calc_auto_update_hints_set_static_delegate;
-
-
-     private delegate Eina.Size2D.NativeStruct efl_layout_calc_size_min_delegate(System.IntPtr obj, System.IntPtr pd,   Eina.Size2D.NativeStruct restricted);
-
-
-     public delegate Eina.Size2D.NativeStruct efl_layout_calc_size_min_api_delegate(System.IntPtr obj,   Eina.Size2D.NativeStruct restricted);
-     public static Efl.Eo.FunctionWrapper<efl_layout_calc_size_min_api_delegate> efl_layout_calc_size_min_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_size_min_api_delegate>(_Module, "efl_layout_calc_size_min");
-     private static Eina.Size2D.NativeStruct calc_size_min(System.IntPtr obj, System.IntPtr pd,  Eina.Size2D.NativeStruct restricted)
-    {
-        Eina.Log.Debug("function efl_layout_calc_size_min was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                    Eina.Size2D _in_restricted = restricted;
-                            Eina.Size2D _ret_var = default(Eina.Size2D);
-            try {
-                _ret_var = ((LayoutBase)wrapper).CalcSizeMin( _in_restricted);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-                        return _ret_var;
-        } else {
-            return efl_layout_calc_size_min_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  restricted);
-        }
-    }
-    private static efl_layout_calc_size_min_delegate efl_layout_calc_size_min_static_delegate;
-
-
-     private delegate Eina.Rect.NativeStruct efl_layout_calc_parts_extends_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate Eina.Rect.NativeStruct efl_layout_calc_parts_extends_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_layout_calc_parts_extends_api_delegate> efl_layout_calc_parts_extends_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_parts_extends_api_delegate>(_Module, "efl_layout_calc_parts_extends");
-     private static Eina.Rect.NativeStruct calc_parts_extends(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_layout_calc_parts_extends was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.Rect _ret_var = default(Eina.Rect);
-            try {
-                _ret_var = ((LayoutBase)wrapper).CalcPartsExtends();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-        return _ret_var;
-        } else {
-            return efl_layout_calc_parts_extends_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_layout_calc_parts_extends_delegate efl_layout_calc_parts_extends_static_delegate;
-
-
-     private delegate int efl_layout_calc_freeze_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate int efl_layout_calc_freeze_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_layout_calc_freeze_api_delegate> efl_layout_calc_freeze_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_freeze_api_delegate>(_Module, "efl_layout_calc_freeze");
-     private static int calc_freeze(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_layout_calc_freeze was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        int _ret_var = default(int);
-            try {
-                _ret_var = ((LayoutBase)wrapper).FreezeCalc();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-        return _ret_var;
-        } else {
-            return efl_layout_calc_freeze_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_layout_calc_freeze_delegate efl_layout_calc_freeze_static_delegate;
-
-
-     private delegate int efl_layout_calc_thaw_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate int efl_layout_calc_thaw_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_layout_calc_thaw_api_delegate> efl_layout_calc_thaw_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_thaw_api_delegate>(_Module, "efl_layout_calc_thaw");
-     private static int calc_thaw(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_layout_calc_thaw was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        int _ret_var = default(int);
-            try {
-                _ret_var = ((LayoutBase)wrapper).ThawCalc();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-        return _ret_var;
-        } else {
-            return efl_layout_calc_thaw_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_layout_calc_thaw_delegate efl_layout_calc_thaw_static_delegate;
-
-
-     private delegate void efl_layout_calc_force_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate void efl_layout_calc_force_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate> efl_layout_calc_force_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate>(_Module, "efl_layout_calc_force");
-     private static void calc_force(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_layout_calc_force was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
                         
-            try {
-                ((LayoutBase)wrapper).CalcForce();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                } else {
-            efl_layout_calc_force_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            else
+            {
+                efl_ui_layout_automatic_theme_rotation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), automatic);
+            }
         }
-    }
-    private static efl_layout_calc_force_delegate efl_layout_calc_force_static_delegate;
 
+        private static efl_ui_layout_automatic_theme_rotation_set_delegate efl_ui_layout_automatic_theme_rotation_set_static_delegate;
 
-     private delegate Eina.Size2D.NativeStruct efl_layout_group_size_min_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        
+        private delegate void efl_ui_layout_theme_rotation_apply_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Orient orientation);
 
+        
+        public delegate void efl_ui_layout_theme_rotation_apply_api_delegate(System.IntPtr obj,  Efl.Orient orientation);
 
-     public delegate Eina.Size2D.NativeStruct efl_layout_group_size_min_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_layout_group_size_min_get_api_delegate> efl_layout_group_size_min_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_size_min_get_api_delegate>(_Module, "efl_layout_group_size_min_get");
-     private static Eina.Size2D.NativeStruct group_size_min_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_layout_group_size_min_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.Size2D _ret_var = default(Eina.Size2D);
-            try {
-                _ret_var = ((LayoutBase)wrapper).GetGroupSizeMin();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_theme_rotation_apply_api_delegate> efl_ui_layout_theme_rotation_apply_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_theme_rotation_apply_api_delegate>(Module, "efl_ui_layout_theme_rotation_apply");
+
+        private static void theme_rotation_apply(System.IntPtr obj, System.IntPtr pd, Efl.Orient orientation)
+        {
+            Eina.Log.Debug("function efl_ui_layout_theme_rotation_apply was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((LayoutBase)wrapper).ThemeRotationApply(orientation);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
             }
+            else
+            {
+                efl_ui_layout_theme_rotation_apply_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), orientation);
+            }
+        }
+
+        private static efl_ui_layout_theme_rotation_apply_delegate efl_ui_layout_theme_rotation_apply_static_delegate;
+
+        
+        private delegate System.IntPtr efl_content_iterate_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_content_iterate_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_content_iterate_api_delegate> efl_content_iterate_ptr = new Efl.Eo.FunctionWrapper<efl_content_iterate_api_delegate>(Module, "efl_content_iterate");
+
+        private static System.IntPtr content_iterate(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_content_iterate was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).ContentIterate();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        _ret_var.Own = false; return _ret_var.Handle;
+
+            }
+            else
+            {
+                return efl_content_iterate_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_content_iterate_delegate efl_content_iterate_static_delegate;
+
+        
+        private delegate int efl_content_count_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate int efl_content_count_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_content_count_api_delegate> efl_content_count_ptr = new Efl.Eo.FunctionWrapper<efl_content_count_api_delegate>(Module, "efl_content_count");
+
+        private static int content_count(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_content_count was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            int _ret_var = default(int);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).ContentCount();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_layout_group_size_min_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_layout_group_size_min_get_delegate efl_layout_group_size_min_get_static_delegate;
 
-
-     private delegate Eina.Size2D.NativeStruct efl_layout_group_size_max_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate Eina.Size2D.NativeStruct efl_layout_group_size_max_get_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_layout_group_size_max_get_api_delegate> efl_layout_group_size_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_size_max_get_api_delegate>(_Module, "efl_layout_group_size_max_get");
-     private static Eina.Size2D.NativeStruct group_size_max_get(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_layout_group_size_max_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.Size2D _ret_var = default(Eina.Size2D);
-            try {
-                _ret_var = ((LayoutBase)wrapper).GetGroupSizeMax();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_content_count_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_content_count_delegate efl_content_count_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_layout_calc_auto_update_hints_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_layout_calc_auto_update_hints_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_get_api_delegate> efl_layout_calc_auto_update_hints_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_get_api_delegate>(Module, "efl_layout_calc_auto_update_hints_get");
+
+        private static bool calc_auto_update_hints_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_layout_calc_auto_update_hints_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).GetCalcAutoUpdateHints();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         return _ret_var;
-        } else {
-            return efl_layout_group_size_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-        }
-    }
-    private static efl_layout_group_size_max_get_delegate efl_layout_group_size_max_get_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] private delegate System.String efl_layout_group_data_get_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key);
-
-
-     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] public delegate System.String efl_layout_group_data_get_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key);
-     public static Efl.Eo.FunctionWrapper<efl_layout_group_data_get_api_delegate> efl_layout_group_data_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_data_get_api_delegate>(_Module, "efl_layout_group_data_get");
-     private static System.String group_data_get(System.IntPtr obj, System.IntPtr pd,  System.String key)
-    {
-        Eina.Log.Debug("function efl_layout_group_data_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                System.String _ret_var = default(System.String);
-            try {
-                _ret_var = ((LayoutBase)wrapper).GetGroupData( key);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_layout_calc_auto_update_hints_get_delegate efl_layout_calc_auto_update_hints_get_static_delegate;
+
+        
+        private delegate void efl_layout_calc_auto_update_hints_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool update);
+
+        
+        public delegate void efl_layout_calc_auto_update_hints_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool update);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_set_api_delegate> efl_layout_calc_auto_update_hints_set_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_auto_update_hints_set_api_delegate>(Module, "efl_layout_calc_auto_update_hints_set");
+
+        private static void calc_auto_update_hints_set(System.IntPtr obj, System.IntPtr pd, bool update)
+        {
+            Eina.Log.Debug("function efl_layout_calc_auto_update_hints_set was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((LayoutBase)wrapper).SetCalcAutoUpdateHints(update);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), update);
+            }
+        }
+
+        private static efl_layout_calc_auto_update_hints_set_delegate efl_layout_calc_auto_update_hints_set_static_delegate;
+
+        
+        private delegate Eina.Size2D.NativeStruct efl_layout_calc_size_min_delegate(System.IntPtr obj, System.IntPtr pd,  Eina.Size2D.NativeStruct restricted);
+
+        
+        public delegate Eina.Size2D.NativeStruct efl_layout_calc_size_min_api_delegate(System.IntPtr obj,  Eina.Size2D.NativeStruct restricted);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_calc_size_min_api_delegate> efl_layout_calc_size_min_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_size_min_api_delegate>(Module, "efl_layout_calc_size_min");
+
+        private static Eina.Size2D.NativeStruct calc_size_min(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct restricted)
+        {
+            Eina.Log.Debug("function efl_layout_calc_size_min was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+        Eina.Size2D _in_restricted = restricted;
+                            Eina.Size2D _ret_var = default(Eina.Size2D);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).CalcSizeMin(_in_restricted);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         return _ret_var;
-        } else {
-            return efl_layout_group_data_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key);
-        }
-    }
-    private static efl_layout_group_data_get_delegate efl_layout_group_data_get_static_delegate;
 
-
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_layout_group_part_exist_get_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String part);
-
-
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_layout_group_part_exist_get_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String part);
-     public static Efl.Eo.FunctionWrapper<efl_layout_group_part_exist_get_api_delegate> efl_layout_group_part_exist_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_part_exist_get_api_delegate>(_Module, "efl_layout_group_part_exist_get");
-     private static bool part_exist_get(System.IntPtr obj, System.IntPtr pd,  System.String part)
-    {
-        Eina.Log.Debug("function efl_layout_group_part_exist_get was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                bool _ret_var = default(bool);
-            try {
-                _ret_var = ((LayoutBase)wrapper).GetPartExist( part);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
+            else
+            {
+                return efl_layout_calc_size_min_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), restricted);
+            }
+        }
+
+        private static efl_layout_calc_size_min_delegate efl_layout_calc_size_min_static_delegate;
+
+        
+        private delegate Eina.Rect.NativeStruct efl_layout_calc_parts_extends_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Rect.NativeStruct efl_layout_calc_parts_extends_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_calc_parts_extends_api_delegate> efl_layout_calc_parts_extends_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_parts_extends_api_delegate>(Module, "efl_layout_calc_parts_extends");
+
+        private static Eina.Rect.NativeStruct calc_parts_extends(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_layout_calc_parts_extends was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.Rect _ret_var = default(Eina.Rect);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).CalcPartsExtends();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_layout_calc_parts_extends_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_layout_calc_parts_extends_delegate efl_layout_calc_parts_extends_static_delegate;
+
+        
+        private delegate int efl_layout_calc_freeze_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate int efl_layout_calc_freeze_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_calc_freeze_api_delegate> efl_layout_calc_freeze_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_freeze_api_delegate>(Module, "efl_layout_calc_freeze");
+
+        private static int calc_freeze(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_layout_calc_freeze was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            int _ret_var = default(int);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).FreezeCalc();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_layout_calc_freeze_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_layout_calc_freeze_delegate efl_layout_calc_freeze_static_delegate;
+
+        
+        private delegate int efl_layout_calc_thaw_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate int efl_layout_calc_thaw_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_calc_thaw_api_delegate> efl_layout_calc_thaw_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_thaw_api_delegate>(Module, "efl_layout_calc_thaw");
+
+        private static int calc_thaw(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_layout_calc_thaw was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            int _ret_var = default(int);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).ThawCalc();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_layout_calc_thaw_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_layout_calc_thaw_delegate efl_layout_calc_thaw_static_delegate;
+
+        
+        private delegate void efl_layout_calc_force_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate void efl_layout_calc_force_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate> efl_layout_calc_force_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate>(Module, "efl_layout_calc_force");
+
+        private static void calc_force(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_layout_calc_force was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            
+                try
+                {
+                    ((LayoutBase)wrapper).CalcForce();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        
+            }
+            else
+            {
+                efl_layout_calc_force_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_layout_calc_force_delegate efl_layout_calc_force_static_delegate;
+
+        
+        private delegate Eina.Size2D.NativeStruct efl_layout_group_size_min_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Size2D.NativeStruct efl_layout_group_size_min_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_group_size_min_get_api_delegate> efl_layout_group_size_min_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_size_min_get_api_delegate>(Module, "efl_layout_group_size_min_get");
+
+        private static Eina.Size2D.NativeStruct group_size_min_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_layout_group_size_min_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.Size2D _ret_var = default(Eina.Size2D);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).GetGroupSizeMin();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_layout_group_size_min_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_layout_group_size_min_get_delegate efl_layout_group_size_min_get_static_delegate;
+
+        
+        private delegate Eina.Size2D.NativeStruct efl_layout_group_size_max_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Size2D.NativeStruct efl_layout_group_size_max_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_group_size_max_get_api_delegate> efl_layout_group_size_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_size_max_get_api_delegate>(Module, "efl_layout_group_size_max_get");
+
+        private static Eina.Size2D.NativeStruct group_size_max_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_layout_group_size_max_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.Size2D _ret_var = default(Eina.Size2D);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).GetGroupSizeMax();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_layout_group_size_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_layout_group_size_max_get_delegate efl_layout_group_size_max_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_layout_group_data_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_layout_group_data_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_group_data_get_api_delegate> efl_layout_group_data_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_data_get_api_delegate>(Module, "efl_layout_group_data_get");
+
+        private static System.String group_data_get(System.IntPtr obj, System.IntPtr pd, System.String key)
+        {
+            Eina.Log.Debug("function efl_layout_group_data_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).GetGroupData(key);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         return _ret_var;
-        } else {
-            return efl_layout_group_part_exist_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  part);
-        }
-    }
-    private static efl_layout_group_part_exist_get_delegate efl_layout_group_part_exist_get_static_delegate;
 
-
-     private delegate void efl_layout_signal_message_send_delegate(System.IntPtr obj, System.IntPtr pd,   int id,   Eina.ValueNative msg);
-
-
-     public delegate void efl_layout_signal_message_send_api_delegate(System.IntPtr obj,   int id,   Eina.ValueNative msg);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate> efl_layout_signal_message_send_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate>(_Module, "efl_layout_signal_message_send");
-     private static void message_send(System.IntPtr obj, System.IntPtr pd,  int id,  Eina.ValueNative msg)
-    {
-        Eina.Log.Debug("function efl_layout_signal_message_send was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((LayoutBase)wrapper).MessageSend( id,  msg);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                                } else {
-            efl_layout_signal_message_send_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  id,  msg);
+            else
+            {
+                return efl_layout_group_data_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key);
+            }
         }
-    }
-    private static efl_layout_signal_message_send_delegate efl_layout_signal_message_send_static_delegate;
 
+        private static efl_layout_group_data_get_delegate efl_layout_group_data_get_static_delegate;
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_layout_signal_callback_add_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_layout_group_part_exist_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String part);
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_layout_group_part_exist_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String part);
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_layout_signal_callback_add_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate> efl_layout_signal_callback_add_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate>(_Module, "efl_layout_signal_callback_add");
-     private static bool signal_callback_add(System.IntPtr obj, System.IntPtr pd,  System.String emission,  System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
-    {
-        Eina.Log.Debug("function efl_layout_signal_callback_add was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                                        EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
+        public static Efl.Eo.FunctionWrapper<efl_layout_group_part_exist_get_api_delegate> efl_layout_group_part_exist_get_ptr = new Efl.Eo.FunctionWrapper<efl_layout_group_part_exist_get_api_delegate>(Module, "efl_layout_group_part_exist_get");
+
+        private static bool part_exist_get(System.IntPtr obj, System.IntPtr pd, System.String part)
+        {
+            Eina.Log.Debug("function efl_layout_group_part_exist_get was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).GetPartExist(part);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_layout_group_part_exist_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), part);
+            }
+        }
+
+        private static efl_layout_group_part_exist_get_delegate efl_layout_group_part_exist_get_static_delegate;
+
+        
+        private delegate void efl_layout_signal_message_send_delegate(System.IntPtr obj, System.IntPtr pd,  int id,  Eina.ValueNative msg);
+
+        
+        public delegate void efl_layout_signal_message_send_api_delegate(System.IntPtr obj,  int id,  Eina.ValueNative msg);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate> efl_layout_signal_message_send_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_message_send_api_delegate>(Module, "efl_layout_signal_message_send");
+
+        private static void message_send(System.IntPtr obj, System.IntPtr pd, int id, Eina.ValueNative msg)
+        {
+            Eina.Log.Debug("function efl_layout_signal_message_send was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((LayoutBase)wrapper).MessageSend(id, msg);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_layout_signal_message_send_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), id, msg);
+            }
+        }
+
+        private static efl_layout_signal_message_send_delegate efl_layout_signal_message_send_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_layout_signal_callback_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_layout_signal_callback_add_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate> efl_layout_signal_callback_add_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_add_api_delegate>(Module, "efl_layout_signal_callback_add");
+
+        private static bool signal_callback_add(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
+        {
+            Eina.Log.Debug("function efl_layout_signal_callback_add was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                                            EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
-            try {
-                _ret_var = ((LayoutBase)wrapper).AddSignalCallback( emission,  source,  func_wrapper.ManagedCb);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).AddSignalCallback(emission, source, func_wrapper.ManagedCb);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                                                         return _ret_var;
-        } else {
-            return efl_layout_signal_callback_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  emission,  source, func_data, func, func_free_cb);
+
+            }
+            else
+            {
+                return efl_layout_signal_callback_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), emission, source, func_data, func, func_free_cb);
+            }
         }
-    }
-    private static efl_layout_signal_callback_add_delegate efl_layout_signal_callback_add_static_delegate;
 
+        private static efl_layout_signal_callback_add_delegate efl_layout_signal_callback_add_static_delegate;
 
-     [return: MarshalAs(UnmanagedType.U1)] private delegate bool efl_layout_signal_callback_del_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_layout_signal_callback_del_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_layout_signal_callback_del_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
 
-     [return: MarshalAs(UnmanagedType.U1)] public delegate bool efl_layout_signal_callback_del_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source,  IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate> efl_layout_signal_callback_del_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate>(_Module, "efl_layout_signal_callback_del");
-     private static bool signal_callback_del(System.IntPtr obj, System.IntPtr pd,  System.String emission,  System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
-    {
-        Eina.Log.Debug("function efl_layout_signal_callback_del was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                                        EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate> efl_layout_signal_callback_del_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_callback_del_api_delegate>(Module, "efl_layout_signal_callback_del");
+
+        private static bool signal_callback_del(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
+        {
+            Eina.Log.Debug("function efl_layout_signal_callback_del was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                                            EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
-            try {
-                _ret_var = ((LayoutBase)wrapper).DelSignalCallback( emission,  source,  func_wrapper.ManagedCb);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
+                try
+                {
+                    _ret_var = ((LayoutBase)wrapper).DelSignalCallback(emission, source, func_wrapper.ManagedCb);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                                                         return _ret_var;
-        } else {
-            return efl_layout_signal_callback_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  emission,  source, func_data, func, func_free_cb);
-        }
-    }
-    private static efl_layout_signal_callback_del_delegate efl_layout_signal_callback_del_static_delegate;
 
-
-     private delegate void efl_layout_signal_emit_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source);
-
-
-     public delegate void efl_layout_signal_emit_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String emission,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String source);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate> efl_layout_signal_emit_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate>(_Module, "efl_layout_signal_emit");
-     private static void signal_emit(System.IntPtr obj, System.IntPtr pd,  System.String emission,  System.String source)
-    {
-        Eina.Log.Debug("function efl_layout_signal_emit was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((LayoutBase)wrapper).EmitSignal( emission,  source);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                                } else {
-            efl_layout_signal_emit_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  emission,  source);
-        }
-    }
-    private static efl_layout_signal_emit_delegate efl_layout_signal_emit_static_delegate;
-
-
-     private delegate void efl_layout_signal_process_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.U1)]  bool recurse);
-
-
-     public delegate void efl_layout_signal_process_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.U1)]  bool recurse);
-     public static Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate> efl_layout_signal_process_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate>(_Module, "efl_layout_signal_process");
-     private static void signal_process(System.IntPtr obj, System.IntPtr pd,  bool recurse)
-    {
-        Eina.Log.Debug("function efl_layout_signal_process was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((LayoutBase)wrapper).SignalProcess( recurse);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_layout_signal_callback_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), emission, source, func_data, func, func_free_cb);
             }
-                                } else {
-            efl_layout_signal_process_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  recurse);
         }
-    }
-    private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
 
+        private static efl_layout_signal_callback_del_delegate efl_layout_signal_callback_del_static_delegate;
 
-     private delegate void efl_ui_factory_bind_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Ui.IFactoryConcrete, Efl.Eo.NonOwnTag>))]  Efl.Ui.IFactory factory);
+        
+        private delegate void efl_layout_signal_emit_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source);
 
+        
+        public delegate void efl_layout_signal_emit_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source);
 
-     public delegate void efl_ui_factory_bind_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.Ui.IFactoryConcrete, Efl.Eo.NonOwnTag>))]  Efl.Ui.IFactory factory);
-     public static Efl.Eo.FunctionWrapper<efl_ui_factory_bind_api_delegate> efl_ui_factory_bind_ptr = new Efl.Eo.FunctionWrapper<efl_ui_factory_bind_api_delegate>(_Module, "efl_ui_factory_bind");
-     private static void factory_bind(System.IntPtr obj, System.IntPtr pd,  System.String key,  Efl.Ui.IFactory factory)
-    {
-        Eina.Log.Debug("function efl_ui_factory_bind was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((LayoutBase)wrapper).FactoryBind( key,  factory);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate> efl_layout_signal_emit_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_emit_api_delegate>(Module, "efl_layout_signal_emit");
+
+        private static void signal_emit(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source)
+        {
+            Eina.Log.Debug("function efl_layout_signal_emit was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((LayoutBase)wrapper).EmitSignal(emission, source);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
             }
-                                                } else {
-            efl_ui_factory_bind_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key,  factory);
+            else
+            {
+                efl_layout_signal_emit_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), emission, source);
+            }
         }
-    }
-    private static efl_ui_factory_bind_delegate efl_ui_factory_bind_static_delegate;
+
+        private static efl_layout_signal_emit_delegate efl_layout_signal_emit_static_delegate;
+
+        
+        private delegate void efl_layout_signal_process_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool recurse);
+
+        
+        public delegate void efl_layout_signal_process_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool recurse);
+
+        public static Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate> efl_layout_signal_process_ptr = new Efl.Eo.FunctionWrapper<efl_layout_signal_process_api_delegate>(Module, "efl_layout_signal_process");
+
+        private static void signal_process(System.IntPtr obj, System.IntPtr pd, bool recurse)
+        {
+            Eina.Log.Debug("function efl_layout_signal_process was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((LayoutBase)wrapper).SignalProcess(recurse);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_layout_signal_process_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), recurse);
+            }
+        }
+
+        private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
+
+        
+        private delegate void efl_ui_factory_bind_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.IFactory factory);
+
+        
+        public delegate void efl_ui_factory_bind_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.IFactory factory);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_factory_bind_api_delegate> efl_ui_factory_bind_ptr = new Efl.Eo.FunctionWrapper<efl_ui_factory_bind_api_delegate>(Module, "efl_ui_factory_bind");
+
+        private static void factory_bind(System.IntPtr obj, System.IntPtr pd, System.String key, Efl.Ui.IFactory factory)
+        {
+            Eina.Log.Debug("function efl_ui_factory_bind was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((LayoutBase)wrapper).FactoryBind(key, factory);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_ui_factory_bind_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, factory);
+            }
+        }
+
+        private static efl_ui_factory_bind_delegate efl_ui_factory_bind_static_delegate;
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} } 
+}
+}
+
+}
+

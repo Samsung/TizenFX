@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// Creates TypeInfo object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TypeInfo() : this(NDalicPINVOKE.new_TypeInfo__SWIG_0(), true)
+        public TypeInfo() : this(Interop.TypeInfo.new_TypeInfo__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -40,12 +40,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">This copy constructor is required for (smart) pointer semantics.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TypeInfo(TypeInfo handle) : this(NDalicPINVOKE.new_TypeInfo__SWIG_1(TypeInfo.getCPtr(handle)), true)
+        public TypeInfo(TypeInfo handle) : this(Interop.TypeInfo.new_TypeInfo__SWIG_1(TypeInfo.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TypeInfo_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TypeInfo.TypeInfo_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -57,7 +57,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetName()
         {
-            string ret = NDalicPINVOKE.TypeInfo_GetName(swigCPtr);
+            string ret = Interop.TypeInfo.TypeInfo_GetName(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetBaseName()
         {
-            string ret = NDalicPINVOKE.TypeInfo_GetBaseName(swigCPtr);
+            string ret = Interop.TypeInfo.TypeInfo_GetBaseName(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public BaseHandle CreateInstance()
         {
-            BaseHandle ret = new BaseHandle(NDalicPINVOKE.TypeInfo_CreateInstance(swigCPtr), true);
+            BaseHandle ret = new BaseHandle(Interop.TypeInfo.TypeInfo_CreateInstance(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -94,7 +94,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetPropertyCount()
         {
-            uint ret = NDalicPINVOKE.TypeInfo_GetPropertyCount(swigCPtr);
+            uint ret = Interop.TypeInfo.TypeInfo_GetPropertyCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -107,7 +107,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetPropertyName(int index)
         {
-            string ret = NDalicPINVOKE.TypeInfo_GetPropertyName(swigCPtr, index);
+            string ret = Interop.TypeInfo.TypeInfo_GetPropertyName(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -146,7 +146,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TypeInfo(swigCPtr);
+                    Interop.TypeInfo.delete_TypeInfo(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

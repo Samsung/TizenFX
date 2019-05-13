@@ -3,8 +3,12 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Canvas { 
+namespace Efl {
+
+namespace Canvas {
+
 /// <summary>Type of a part in an Efl.Canvas.Layout object (edje object).</summary>
 public enum LayoutPartType
 {
@@ -50,8 +54,13 @@ Vector = 17,
 /// <summary>Last type value.</summary>
 Last = 18,
 }
-} } 
-namespace Edje { 
+
+}
+
+}
+
+namespace Edje {
+
 /// <summary>All available cursor states</summary>
 public enum Cursor
 {
@@ -70,8 +79,13 @@ User = 5,
 /// <summary>User extra cursor state</summary>
 UserExtra = 6,
 }
-} 
-namespace Edje { namespace Text { 
+
+}
+
+namespace Edje {
+
+namespace Text {
+
 /// <summary>All Text auto capital mode type values</summary>
 public enum AutocapitalType
 {
@@ -84,8 +98,13 @@ Sentence = 2,
 /// <summary>All characters mode value</summary>
 Allcharacter = 3,
 }
-} } 
-namespace Edje { 
+
+}
+
+}
+
+namespace Edje {
+
 /// <summary>Input hints</summary>
 public enum InputHints
 {
@@ -99,8 +118,13 @@ AutoComplete = 1,
 /// (Since EFL 1.12)</summary>
 SensitiveData = 2,
 }
-} 
-namespace Edje { namespace InputPanel { 
+
+}
+
+namespace Edje {
+
+namespace InputPanel {
+
 /// <summary>Input panel language</summary>
 public enum Lang
 {
@@ -111,8 +135,15 @@ Automatic = 0,
 /// (Since EFL 1.2)</summary>
 Alphabet = 1,
 }
-} } 
-namespace Edje { namespace InputPanel { 
+
+}
+
+}
+
+namespace Edje {
+
+namespace InputPanel {
+
 /// <summary>Input panel return key types</summary>
 public enum ReturnKeyType
 {
@@ -144,8 +175,15 @@ Send = 7,
 /// (Since EFL 1.8)</summary>
 Signin = 8,
 }
-} } 
-namespace Edje { namespace InputPanel { 
+
+}
+
+}
+
+namespace Edje {
+
+namespace InputPanel {
+
 /// <summary>Input panel layout</summary>
 public enum Layout
 {
@@ -186,8 +224,13 @@ Emoticon = 13,
 /// (Since EFL 1.19)</summary>
 Voice = 14,
 }
-} } 
-namespace Edje { 
+
+}
+
+}
+
+namespace Edje {
+
 /// <summary>Perspective info for maps inside edje objects</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Perspective
@@ -223,4 +266,5 @@ public struct Perspective
 
 }
 
-} 
+}
+

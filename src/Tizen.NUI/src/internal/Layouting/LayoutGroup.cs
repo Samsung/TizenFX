@@ -271,6 +271,7 @@ namespace Tizen.NUI
                     MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
                     LayoutLength childWidth = new LayoutLength(childLayout.MeasuredWidth.Size);
                     LayoutLength childHeight = new LayoutLength( childLayout.MeasuredHeight.Size);
+
                     Extents childMargin = childLayout.Margin;
                     measuredWidth = new LayoutLength(Math.Max( measuredWidth.AsDecimal(), childWidth.AsDecimal() + childMargin.Start + childMargin.End));
                     measuredHeight = new LayoutLength(Math.Max( measuredHeight.AsDecimal(), childHeight.AsDecimal() + childMargin.Top + childMargin.Bottom));

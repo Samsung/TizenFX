@@ -3,133 +3,171 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { 
+namespace Efl {
+
 ///<summary>Event argument wrapper for event <see cref="Efl.LoopMessage.MessageEvt"/>.</summary>
 public class LoopMessageMessageEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.LoopMessage arg { get; set; }
 }
 /// <summary>Base message payload object class. Inherit this and extend for specific message types.</summary>
-[LoopMessageNativeInherit]
+[Efl.LoopMessage.NativeMethods]
 public class LoopMessage : Efl.Object, Efl.Eo.IWrapper
 {
     ///<summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (LoopMessage))
-                return Efl.LoopMessageNativeInherit.GetEflClassStatic();
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(LoopMessage))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_loop_message_class_get();
-    ///<summary>Creates a new instance.</summary>
-    ///<param name="parent">Parent instance.</param>
+    /// <summary>Initializes a new instance of the <see cref="LoopMessage"/> class.</summary>
+    /// <param name="parent">Parent instance.</param>
     public LoopMessage(Efl.Object parent= null
-            ) :
-        base(efl_loop_message_class_get(), typeof(LoopMessage), parent)
+            ) : base(efl_loop_message_class_get(), typeof(LoopMessage), parent)
     {
         FinishInstantiation();
     }
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+
+    /// <summary>Initializes a new instance of the <see cref="LoopMessage"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="raw">The native pointer to be wrapped.</param>
     protected LoopMessage(System.IntPtr raw) : base(raw)
     {
-                RegisterEventProxies();
-    }
-    ///<summary>Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
-    protected LoopMessage(IntPtr base_klass, System.Type managed_type, Efl.Object parent) : base(base_klass, managed_type, parent) {}
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+            }
+
+    /// <summary>Initializes a new instance of the <see cref="LoopMessage"/> class.
+    /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
+    /// <param name="baseKlass">The pointer to the base native Eo class.</param>
+    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
+    /// <param name="parent">The Efl.Object parent of this instance.</param>
+    protected LoopMessage(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-        var other = obj as Efl.Object;
+    }
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
+    {
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-private static object MessageEvtKey = new object();
+
     /// <summary>The message payload data</summary>
     public event EventHandler<Efl.LoopMessageMessageEvt_Args> MessageEvt
     {
-        add {
-            lock (eventLock) {
+        add
+        {
+            lock (eventLock)
+            {
+                var wRef = new WeakReference(this);
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    if (obj != null)
+                    {
+                                                Efl.LoopMessageMessageEvt_Args args = new Efl.LoopMessageMessageEvt_Args();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessage);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
                 string key = "_EFL_LOOP_MESSAGE_EVENT_MESSAGE";
-                if (AddNativeEventHandler(efl.Libs.Ecore, key, this.evt_MessageEvt_delegate)) {
-                    eventHandlers.AddHandler(MessageEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error adding proxy for event {key}");
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
-        remove {
-            lock (eventLock) {
+
+        remove
+        {
+            lock (eventLock)
+            {
                 string key = "_EFL_LOOP_MESSAGE_EVENT_MESSAGE";
-                if (RemoveNativeEventHandler(key, this.evt_MessageEvt_delegate)) { 
-                    eventHandlers.RemoveHandler(MessageEvtKey , value);
-                } else
-                    Eina.Log.Error($"Error removing proxy for event {key}");
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
     ///<summary>Method to raise event MessageEvt.</summary>
-    public void On_MessageEvt(Efl.LoopMessageMessageEvt_Args e)
+    public void OnMessageEvt(Efl.LoopMessageMessageEvt_Args e)
     {
-        EventHandler<Efl.LoopMessageMessageEvt_Args> evt;
-        lock (eventLock) {
-        evt = (EventHandler<Efl.LoopMessageMessageEvt_Args>)eventHandlers[MessageEvtKey];
+        var key = "_EFL_LOOP_MESSAGE_EVENT_MESSAGE";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
         }
-        evt?.Invoke(this, e);
-    }
-    Efl.EventCb evt_MessageEvt_delegate;
-    private void on_MessageEvt_NativeCallback(System.IntPtr data, ref Efl.Event.NativeStruct evt)
-    {
-        Efl.LoopMessageMessageEvt_Args args = new Efl.LoopMessageMessageEvt_Args();
-      args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessage);
-        try {
-            On_MessageEvt(args);
-        } catch (Exception e) {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
 
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-    protected override void RegisterEventProxies()
-    {
-        base.RegisterEventProxies();
-        evt_MessageEvt_delegate = new Efl.EventCb(on_MessageEvt_NativeCallback);
+        IntPtr info = e.arg.NativeHandle;
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.LoopMessage.efl_loop_message_class_get();
     }
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public new class NativeMethods : Efl.Object.NativeMethods
+    {
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            descs.AddRange(base.GetEoOps(type));
+            return descs;
+        }
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.LoopMessage.efl_loop_message_class_get();
+        }
+
+        #pragma warning disable CA1707, SA1300, SA1600
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-public class LoopMessageNativeInherit : Efl.ObjectNativeInherit{
-    public new  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
-    {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        descs.AddRange(base.GetEoOps(type));
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.LoopMessage.efl_loop_message_class_get();
-    }
-    public static new  IntPtr GetEflClassStatic()
-    {
-        return Efl.LoopMessage.efl_loop_message_class_get();
-    }
 }
-} 
+}
+

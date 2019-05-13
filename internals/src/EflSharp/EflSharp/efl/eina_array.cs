@@ -149,7 +149,14 @@ public class Array<T> : IEnumerable<T>, IDisposable
 
         if (Own)
         {
-            eina_array_free(h);
+            if (disposing)
+            {
+                eina_array_free(h);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eina_array_free, h);
+            }
         }
     }
 

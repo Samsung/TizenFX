@@ -103,35 +103,35 @@ namespace Tizen.NUI
 
         public uint Count()
         {
-            uint ret = NDalicPINVOKE.VectorBase_Count(swigCPtr);
+            uint ret = Interop.VectorBase.VectorBase_Count(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint Size()
         {
-            uint ret = NDalicPINVOKE.VectorBase_Size(swigCPtr);
+            uint ret = Interop.VectorBase.VectorBase_Size(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public bool Empty()
         {
-            bool ret = NDalicPINVOKE.VectorBase_Empty(swigCPtr);
+            bool ret = Interop.VectorBase.VectorBase_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint Capacity()
         {
-            uint ret = NDalicPINVOKE.VectorBase_Capacity(swigCPtr);
+            uint ret = Interop.VectorBase.VectorBase_Capacity(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Release()
         {
-            NDalicPINVOKE.VectorBase_Release(swigCPtr);
+            Interop.VectorBase.VectorBase_Release(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

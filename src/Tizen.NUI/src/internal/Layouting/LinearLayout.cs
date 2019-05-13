@@ -317,7 +317,6 @@ namespace Tizen.NUI
             // to accumulate total used space in mTotalLength based on measured sizes and margins.
             // Weighted children are not measured at this phase.
             // Available space for weighted children will be calculated in the phase 2 based on mTotalLength value.
-
             uint index = 0;
             foreach( LayoutItem childLayout in _children )
             {

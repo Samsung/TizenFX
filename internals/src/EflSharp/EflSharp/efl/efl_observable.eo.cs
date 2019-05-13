@@ -3,106 +3,124 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { 
+namespace Efl {
+
 /// <summary>Efl observable class</summary>
-[ObservableNativeInherit]
+[Efl.Observable.NativeMethods]
 public class Observable : Efl.Object, Efl.Eo.IWrapper
 {
     ///<summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass {
-        get {
-            if (((object)this).GetType() == typeof (Observable))
-                return Efl.ObservableNativeInherit.GetEflClassStatic();
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(Observable))
+            {
+                return GetEflClassStatic();
+            }
             else
+            {
                 return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
         }
     }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_observable_class_get();
-    ///<summary>Creates a new instance.</summary>
-    ///<param name="parent">Parent instance.</param>
+    /// <summary>Initializes a new instance of the <see cref="Observable"/> class.</summary>
+    /// <param name="parent">Parent instance.</param>
     public Observable(Efl.Object parent= null
-            ) :
-        base(efl_observable_class_get(), typeof(Observable), parent)
+            ) : base(efl_observable_class_get(), typeof(Observable), parent)
     {
         FinishInstantiation();
     }
-    ///<summary>Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+
+    /// <summary>Initializes a new instance of the <see cref="Observable"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="raw">The native pointer to be wrapped.</param>
     protected Observable(System.IntPtr raw) : base(raw)
     {
-                RegisterEventProxies();
-    }
-    ///<summary>Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
-    protected Observable(IntPtr base_klass, System.Type managed_type, Efl.Object parent) : base(base_klass, managed_type, parent) {}
-    ///<summary>Verifies if the given object is equal to this one.</summary>
-    public override bool Equals(object obj)
+            }
+
+    /// <summary>Initializes a new instance of the <see cref="Observable"/> class.
+    /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
+    /// <param name="baseKlass">The pointer to the base native Eo class.</param>
+    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
+    /// <param name="parent">The Efl.Object parent of this instance.</param>
+    protected Observable(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-        var other = obj as Efl.Object;
+    }
+
+    /// <summary>Verifies if the given object is equal to this one.</summary>
+    /// <param name="instance">The object to compare to.</param>
+    /// <returns>True if both objects point to the same native object.</returns>
+    public override bool Equals(object instance)
+    {
+        var other = instance as Efl.Object;
         if (other == null)
+        {
             return false;
+        }
         return this.NativeHandle == other.NativeHandle;
     }
-    ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+
+    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
     public override int GetHashCode()
     {
         return this.NativeHandle.ToInt32();
     }
-    ///<summary>Turns the native pointer into a string representation.</summary>
+
+    /// <summary>Turns the native pointer into a string representation.</summary>
+    /// <returns>A string with the type and the native pointer for this object.</returns>
     public override String ToString()
     {
         return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
-    ///<summary>Register the Eo event wrappers making the bridge to C# events. Internal usage only.</summary>
-    protected override void RegisterEventProxies()
-    {
-        base.RegisterEventProxies();
-    }
+
     /// <summary>Add an observer to a group of observers.
     /// Note: Observers that observe this observable are grouped by the <c>key</c> and an observer can belong to multiple groups at the same time.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="obs">An observer object</param>
-    /// <returns></returns>
-    virtual public void AddObserver( System.String key,  Efl.IObserver obs) {
-                                                         Efl.ObservableNativeInherit.efl_observable_observer_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), key,  obs);
+    virtual public void AddObserver(System.String key, Efl.IObserver obs) {
+                                                         Efl.Observable.NativeMethods.efl_observable_observer_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, obs);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Delete an observer from a group of observers.
     /// See also <see cref="Efl.Observable.AddObserver"/>.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="obs">An observer object</param>
-    /// <returns></returns>
-    virtual public void DelObserver( System.String key,  Efl.IObserver obs) {
-                                                         Efl.ObservableNativeInherit.efl_observable_observer_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), key,  obs);
+    virtual public void DelObserver(System.String key, Efl.IObserver obs) {
+                                                         Efl.Observable.NativeMethods.efl_observable_observer_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, obs);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Clear an observer from all groups of observers.</summary>
     /// <param name="obs">An observer object</param>
-    /// <returns></returns>
-    virtual public void ObserverClean( Efl.IObserver obs) {
-                                 Efl.ObservableNativeInherit.efl_observable_observer_clean_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), obs);
+    virtual public void ObserverClean(Efl.IObserver obs) {
+                                 Efl.Observable.NativeMethods.efl_observable_observer_clean_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),obs);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Return a new iterator associated with a group of observers.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <returns>Iterator for observers group</returns>
-    virtual public Eina.Iterator<Efl.IObserver> NewObserversIterator( System.String key) {
-                                 var _ret_var = Efl.ObservableNativeInherit.efl_observable_observers_iterator_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), key);
+    virtual public Eina.Iterator<Efl.IObserver> NewObserversIterator(System.String key) {
+                                 var _ret_var = Efl.Observable.NativeMethods.efl_observable_observers_iterator_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
         Eina.Error.RaiseIfUnhandledException();
                         return new Eina.Iterator<Efl.IObserver>(_ret_var, true, false);
  }
     /// <summary>Update all observers in a group by calling their update() method.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="data">Required data to update observer</param>
-    /// <returns></returns>
-    virtual public void UpdateObservers( System.String key,  System.IntPtr data) {
-                                                         Efl.ObservableNativeInherit.efl_observable_observers_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle), key,  data);
+    virtual public void UpdateObservers(System.String key, System.IntPtr data) {
+                                                         Efl.Observable.NativeMethods.efl_observable_observers_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Return a new iterator associated to this observable.</summary>
     /// <returns>Iterator for observer</returns>
     virtual public Eina.Iterator<Efl.ObservableTuple> NewIteratorTuple() {
-         var _ret_var = Efl.ObservableNativeInherit.efl_observable_iterator_tuple_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Observable.NativeMethods.efl_observable_iterator_tuple_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.ObservableTuple>(_ret_var, true, false);
  }
@@ -110,197 +128,310 @@ public class Observable : Efl.Object, Efl.Eo.IWrapper
     {
         return Efl.Observable.efl_observable_class_get();
     }
-}
-public class ObservableNativeInherit : Efl.ObjectNativeInherit{
-    public new  static Efl.Eo.NativeModule _Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public new class NativeMethods : Efl.Object.NativeMethods
     {
-        var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-        var methods = Efl.Eo.Globals.GetUserMethods(type);
-        if (efl_observable_observer_add_static_delegate == null)
-            efl_observable_observer_add_static_delegate = new efl_observable_observer_add_delegate(observer_add);
-        if (methods.FirstOrDefault(m => m.Name == "AddObserver") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_observable_observer_add"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observer_add_static_delegate)});
-        if (efl_observable_observer_del_static_delegate == null)
-            efl_observable_observer_del_static_delegate = new efl_observable_observer_del_delegate(observer_del);
-        if (methods.FirstOrDefault(m => m.Name == "DelObserver") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_observable_observer_del"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observer_del_static_delegate)});
-        if (efl_observable_observer_clean_static_delegate == null)
-            efl_observable_observer_clean_static_delegate = new efl_observable_observer_clean_delegate(observer_clean);
-        if (methods.FirstOrDefault(m => m.Name == "ObserverClean") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_observable_observer_clean"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observer_clean_static_delegate)});
-        if (efl_observable_observers_iterator_new_static_delegate == null)
-            efl_observable_observers_iterator_new_static_delegate = new efl_observable_observers_iterator_new_delegate(observers_iterator_new);
-        if (methods.FirstOrDefault(m => m.Name == "NewObserversIterator") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_observable_observers_iterator_new"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observers_iterator_new_static_delegate)});
-        if (efl_observable_observers_update_static_delegate == null)
-            efl_observable_observers_update_static_delegate = new efl_observable_observers_update_delegate(observers_update);
-        if (methods.FirstOrDefault(m => m.Name == "UpdateObservers") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_observable_observers_update"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observers_update_static_delegate)});
-        if (efl_observable_iterator_tuple_new_static_delegate == null)
-            efl_observable_iterator_tuple_new_static_delegate = new efl_observable_iterator_tuple_new_delegate(iterator_tuple_new);
-        if (methods.FirstOrDefault(m => m.Name == "NewIteratorTuple") != null)
-            descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(_Module.Module, "efl_observable_iterator_tuple_new"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_iterator_tuple_new_static_delegate)});
-        descs.AddRange(base.GetEoOps(type));
-        return descs;
-    }
-    public override IntPtr GetEflClass()
-    {
-        return Efl.Observable.efl_observable_class_get();
-    }
-    public static new  IntPtr GetEflClassStatic()
-    {
-        return Efl.Observable.efl_observable_class_get();
-    }
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
 
-
-     private delegate void efl_observable_observer_add_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.IObserverConcrete, Efl.Eo.NonOwnTag>))]  Efl.IObserver obs);
-
-
-     public delegate void efl_observable_observer_add_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.IObserverConcrete, Efl.Eo.NonOwnTag>))]  Efl.IObserver obs);
-     public static Efl.Eo.FunctionWrapper<efl_observable_observer_add_api_delegate> efl_observable_observer_add_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observer_add_api_delegate>(_Module, "efl_observable_observer_add");
-     private static void observer_add(System.IntPtr obj, System.IntPtr pd,  System.String key,  Efl.IObserver obs)
-    {
-        Eina.Log.Debug("function efl_observable_observer_add was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((Observable)wrapper).AddObserver( key,  obs);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            if (efl_observable_observer_add_static_delegate == null)
+            {
+                efl_observable_observer_add_static_delegate = new efl_observable_observer_add_delegate(observer_add);
             }
-                                                } else {
-            efl_observable_observer_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key,  obs);
+
+            if (methods.FirstOrDefault(m => m.Name == "AddObserver") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observable_observer_add"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observer_add_static_delegate) });
+            }
+
+            if (efl_observable_observer_del_static_delegate == null)
+            {
+                efl_observable_observer_del_static_delegate = new efl_observable_observer_del_delegate(observer_del);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "DelObserver") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observable_observer_del"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observer_del_static_delegate) });
+            }
+
+            if (efl_observable_observer_clean_static_delegate == null)
+            {
+                efl_observable_observer_clean_static_delegate = new efl_observable_observer_clean_delegate(observer_clean);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ObserverClean") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observable_observer_clean"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observer_clean_static_delegate) });
+            }
+
+            if (efl_observable_observers_iterator_new_static_delegate == null)
+            {
+                efl_observable_observers_iterator_new_static_delegate = new efl_observable_observers_iterator_new_delegate(observers_iterator_new);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "NewObserversIterator") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observable_observers_iterator_new"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observers_iterator_new_static_delegate) });
+            }
+
+            if (efl_observable_observers_update_static_delegate == null)
+            {
+                efl_observable_observers_update_static_delegate = new efl_observable_observers_update_delegate(observers_update);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "UpdateObservers") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observable_observers_update"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_observers_update_static_delegate) });
+            }
+
+            if (efl_observable_iterator_tuple_new_static_delegate == null)
+            {
+                efl_observable_iterator_tuple_new_static_delegate = new efl_observable_iterator_tuple_new_delegate(iterator_tuple_new);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "NewIteratorTuple") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observable_iterator_tuple_new"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_iterator_tuple_new_static_delegate) });
+            }
+
+            descs.AddRange(base.GetEoOps(type));
+            return descs;
         }
-    }
-    private static efl_observable_observer_add_delegate efl_observable_observer_add_static_delegate;
-
-
-     private delegate void efl_observable_observer_del_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.IObserverConcrete, Efl.Eo.NonOwnTag>))]  Efl.IObserver obs);
-
-
-     public delegate void efl_observable_observer_del_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.IObserverConcrete, Efl.Eo.NonOwnTag>))]  Efl.IObserver obs);
-     public static Efl.Eo.FunctionWrapper<efl_observable_observer_del_api_delegate> efl_observable_observer_del_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observer_del_api_delegate>(_Module, "efl_observable_observer_del");
-     private static void observer_del(System.IntPtr obj, System.IntPtr pd,  System.String key,  Efl.IObserver obs)
-    {
-        Eina.Log.Debug("function efl_observable_observer_del was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((Observable)wrapper).DelObserver( key,  obs);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-            }
-                                                } else {
-            efl_observable_observer_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key,  obs);
+        /// <summary>Returns the Eo class for the native methods of this class.</summary>
+        /// <returns>The native class pointer.</returns>
+        public override IntPtr GetEflClass()
+        {
+            return Efl.Observable.efl_observable_class_get();
         }
-    }
-    private static efl_observable_observer_del_delegate efl_observable_observer_del_static_delegate;
 
+        #pragma warning disable CA1707, SA1300, SA1600
 
-     private delegate void efl_observable_observer_clean_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.IObserverConcrete, Efl.Eo.NonOwnTag>))]  Efl.IObserver obs);
+        
+        private delegate void efl_observable_observer_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IObserver obs);
 
+        
+        public delegate void efl_observable_observer_add_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IObserver obs);
 
-     public delegate void efl_observable_observer_clean_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalTest<Efl.IObserverConcrete, Efl.Eo.NonOwnTag>))]  Efl.IObserver obs);
-     public static Efl.Eo.FunctionWrapper<efl_observable_observer_clean_api_delegate> efl_observable_observer_clean_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observer_clean_api_delegate>(_Module, "efl_observable_observer_clean");
-     private static void observer_clean(System.IntPtr obj, System.IntPtr pd,  Efl.IObserver obs)
-    {
-        Eina.Log.Debug("function efl_observable_observer_clean was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                
-            try {
-                ((Observable)wrapper).ObserverClean( obs);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_observable_observer_add_api_delegate> efl_observable_observer_add_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observer_add_api_delegate>(Module, "efl_observable_observer_add");
+
+        private static void observer_add(System.IntPtr obj, System.IntPtr pd, System.String key, Efl.IObserver obs)
+        {
+            Eina.Log.Debug("function efl_observable_observer_add was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((Observable)wrapper).AddObserver(key, obs);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
             }
-                                } else {
-            efl_observable_observer_clean_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  obs);
+            else
+            {
+                efl_observable_observer_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, obs);
+            }
         }
-    }
-    private static efl_observable_observer_clean_delegate efl_observable_observer_clean_static_delegate;
 
+        private static efl_observable_observer_add_delegate efl_observable_observer_add_static_delegate;
 
-     private delegate System.IntPtr efl_observable_observers_iterator_new_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key);
+        
+        private delegate void efl_observable_observer_del_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IObserver obs);
 
+        
+        public delegate void efl_observable_observer_del_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IObserver obs);
 
-     public delegate System.IntPtr efl_observable_observers_iterator_new_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key);
-     public static Efl.Eo.FunctionWrapper<efl_observable_observers_iterator_new_api_delegate> efl_observable_observers_iterator_new_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observers_iterator_new_api_delegate>(_Module, "efl_observable_observers_iterator_new");
-     private static System.IntPtr observers_iterator_new(System.IntPtr obj, System.IntPtr pd,  System.String key)
-    {
-        Eina.Log.Debug("function efl_observable_observers_iterator_new was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                Eina.Iterator<Efl.IObserver> _ret_var = default(Eina.Iterator<Efl.IObserver>);
-            try {
-                _ret_var = ((Observable)wrapper).NewObserversIterator( key);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+        public static Efl.Eo.FunctionWrapper<efl_observable_observer_del_api_delegate> efl_observable_observer_del_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observer_del_api_delegate>(Module, "efl_observable_observer_del");
+
+        private static void observer_del(System.IntPtr obj, System.IntPtr pd, System.String key, Efl.IObserver obs)
+        {
+            Eina.Log.Debug("function efl_observable_observer_del was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((Observable)wrapper).DelObserver(key, obs);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
             }
+            else
+            {
+                efl_observable_observer_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, obs);
+            }
+        }
+
+        private static efl_observable_observer_del_delegate efl_observable_observer_del_static_delegate;
+
+        
+        private delegate void efl_observable_observer_clean_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IObserver obs);
+
+        
+        public delegate void efl_observable_observer_clean_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IObserver obs);
+
+        public static Efl.Eo.FunctionWrapper<efl_observable_observer_clean_api_delegate> efl_observable_observer_clean_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observer_clean_api_delegate>(Module, "efl_observable_observer_clean");
+
+        private static void observer_clean(System.IntPtr obj, System.IntPtr pd, Efl.IObserver obs)
+        {
+            Eina.Log.Debug("function efl_observable_observer_clean was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    
+                try
+                {
+                    ((Observable)wrapper).ObserverClean(obs);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_observable_observer_clean_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), obs);
+            }
+        }
+
+        private static efl_observable_observer_clean_delegate efl_observable_observer_clean_static_delegate;
+
+        
+        private delegate System.IntPtr efl_observable_observers_iterator_new_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
+
+        
+        public delegate System.IntPtr efl_observable_observers_iterator_new_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
+
+        public static Efl.Eo.FunctionWrapper<efl_observable_observers_iterator_new_api_delegate> efl_observable_observers_iterator_new_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observers_iterator_new_api_delegate>(Module, "efl_observable_observers_iterator_new");
+
+        private static System.IntPtr observers_iterator_new(System.IntPtr obj, System.IntPtr pd, System.String key)
+        {
+            Eina.Log.Debug("function efl_observable_observers_iterator_new was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                    Eina.Iterator<Efl.IObserver> _ret_var = default(Eina.Iterator<Efl.IObserver>);
+                try
+                {
+                    _ret_var = ((Observable)wrapper).NewObserversIterator(key);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
                         _ret_var.Own = false; return _ret_var.Handle;
-        } else {
-            return efl_observable_observers_iterator_new_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key);
-        }
-    }
-    private static efl_observable_observers_iterator_new_delegate efl_observable_observers_iterator_new_static_delegate;
 
-
-     private delegate void efl_observable_observers_update_delegate(System.IntPtr obj, System.IntPtr pd,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key,   System.IntPtr data);
-
-
-     public delegate void efl_observable_observers_update_api_delegate(System.IntPtr obj,  [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]  System.String key,   System.IntPtr data);
-     public static Efl.Eo.FunctionWrapper<efl_observable_observers_update_api_delegate> efl_observable_observers_update_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observers_update_api_delegate>(_Module, "efl_observable_observers_update");
-     private static void observers_update(System.IntPtr obj, System.IntPtr pd,  System.String key,  System.IntPtr data)
-    {
-        Eina.Log.Debug("function efl_observable_observers_update was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                                                                        
-            try {
-                ((Observable)wrapper).UpdateObservers( key,  data);
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
             }
-                                                } else {
-            efl_observable_observers_update_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)),  key,  data);
-        }
-    }
-    private static efl_observable_observers_update_delegate efl_observable_observers_update_static_delegate;
-
-
-     private delegate System.IntPtr efl_observable_iterator_tuple_new_delegate(System.IntPtr obj, System.IntPtr pd);
-
-
-     public delegate System.IntPtr efl_observable_iterator_tuple_new_api_delegate(System.IntPtr obj);
-     public static Efl.Eo.FunctionWrapper<efl_observable_iterator_tuple_new_api_delegate> efl_observable_iterator_tuple_new_ptr = new Efl.Eo.FunctionWrapper<efl_observable_iterator_tuple_new_api_delegate>(_Module, "efl_observable_iterator_tuple_new");
-     private static System.IntPtr iterator_tuple_new(System.IntPtr obj, System.IntPtr pd)
-    {
-        Eina.Log.Debug("function efl_observable_iterator_tuple_new was called");
-        Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-        if(wrapper != null) {
-                        Eina.Iterator<Efl.ObservableTuple> _ret_var = default(Eina.Iterator<Efl.ObservableTuple>);
-            try {
-                _ret_var = ((Observable)wrapper).NewIteratorTuple();
-            } catch (Exception e) {
-                Eina.Log.Warning($"Callback error: {e.ToString()}");
-                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+            else
+            {
+                return efl_observable_observers_iterator_new_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key);
             }
+        }
+
+        private static efl_observable_observers_iterator_new_delegate efl_observable_observers_iterator_new_static_delegate;
+
+        
+        private delegate void efl_observable_observers_update_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key,  System.IntPtr data);
+
+        
+        public delegate void efl_observable_observers_update_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key,  System.IntPtr data);
+
+        public static Efl.Eo.FunctionWrapper<efl_observable_observers_update_api_delegate> efl_observable_observers_update_ptr = new Efl.Eo.FunctionWrapper<efl_observable_observers_update_api_delegate>(Module, "efl_observable_observers_update");
+
+        private static void observers_update(System.IntPtr obj, System.IntPtr pd, System.String key, System.IntPtr data)
+        {
+            Eina.Log.Debug("function efl_observable_observers_update was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+                                                            
+                try
+                {
+                    ((Observable)wrapper).UpdateObservers(key, data);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_observable_observers_update_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, data);
+            }
+        }
+
+        private static efl_observable_observers_update_delegate efl_observable_observers_update_static_delegate;
+
+        
+        private delegate System.IntPtr efl_observable_iterator_tuple_new_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_observable_iterator_tuple_new_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_observable_iterator_tuple_new_api_delegate> efl_observable_iterator_tuple_new_ptr = new Efl.Eo.FunctionWrapper<efl_observable_iterator_tuple_new_api_delegate>(Module, "efl_observable_iterator_tuple_new");
+
+        private static System.IntPtr iterator_tuple_new(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_observable_iterator_tuple_new was called");
+            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
+            if (wrapper != null)
+            {
+            Eina.Iterator<Efl.ObservableTuple> _ret_var = default(Eina.Iterator<Efl.ObservableTuple>);
+                try
+                {
+                    _ret_var = ((Observable)wrapper).NewIteratorTuple();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
         _ret_var.Own = false; return _ret_var.Handle;
-        } else {
-            return efl_observable_iterator_tuple_new_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+
+            }
+            else
+            {
+                return efl_observable_iterator_tuple_new_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
         }
-    }
-    private static efl_observable_iterator_tuple_new_delegate efl_observable_iterator_tuple_new_static_delegate;
+
+        private static efl_observable_iterator_tuple_new_delegate efl_observable_iterator_tuple_new_static_delegate;
+
+        #pragma warning restore CA1707, SA1300, SA1600
+
 }
-} 
-namespace Efl { 
+}
+}
+
+namespace Efl {
+
 /// <summary>This type describes an observable touple</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct ObservableTuple
@@ -311,8 +442,8 @@ public struct ObservableTuple
     public Eina.Iterator<Efl.IObserver> Data;
     ///<summary>Constructor for ObservableTuple.</summary>
     public ObservableTuple(
-        System.String Key=default(System.String),
-        Eina.Iterator<Efl.IObserver> Data=default(Eina.Iterator<Efl.IObserver>)    )
+        System.String Key = default(System.String),
+        Eina.Iterator<Efl.IObserver> Data = default(Eina.Iterator<Efl.IObserver>)    )
     {
         this.Key = Key;
         this.Data = Data;
@@ -354,4 +485,5 @@ public struct ObservableTuple
 
 }
 
-} 
+}
+

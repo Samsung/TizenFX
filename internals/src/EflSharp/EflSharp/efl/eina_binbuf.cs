@@ -103,7 +103,14 @@ public class Binbuf : IDisposable
         Handle = IntPtr.Zero;
         if (Own && h != IntPtr.Zero)
         {
-            eina_binbuf_free(Handle);
+            if (disposing)
+            {
+                eina_binbuf_free(Handle);
+            }
+            else
+            {
+                Efl.Eo.Globals.ThreadSafeFreeCbExec(eina_binbuf_free, Handle);
+            }
         }
     }
 

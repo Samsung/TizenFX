@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Tizen.NUI.StyleSheets;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
@@ -85,7 +86,9 @@ namespace Tizen.NUI.Binding
 
         public IList<Setter> Setters { get; }
 
-        internal IList<TriggerBase> Triggers
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<TriggerBase> Triggers
         {
             get { return _triggers ?? (_triggers = new AttachedCollection<TriggerBase>()); }
         }

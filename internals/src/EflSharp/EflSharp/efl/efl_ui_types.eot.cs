@@ -3,8 +3,12 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Ui { 
+namespace Efl {
+
+namespace Ui {
+
 /// <summary>Permitted directions for dragging objects.</summary>
 public enum DragDir
 {
@@ -17,4 +21,8 @@ Y = 2,
 /// <summary>Draggable in both directions.</summary>
 Xy = 3,
 }
-} } 
+
+}
+
+}
+

@@ -3,21 +3,31 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Eina { 
-public struct Unicode {
+namespace Eina {
+
+public struct Unicode
+{
     private uint payload;
     public static implicit operator Unicode(uint x)
     {
         return new Unicode{payload=x};
     }
+
     public static implicit operator uint(Unicode x)
     {
         return x.payload;
     }
+
 }
-} 
-namespace Eina { namespace Xattr { 
+
+}
+
+namespace Eina {
+
+namespace Xattr {
+
 /// <summary>Eina file extended attributes flags</summary>
 public enum Flags
 {
@@ -28,8 +38,13 @@ Replace = 1,
 /// <summary>This will only succeed if the extended attribute wasn&apos;t previously set</summary>
 Created = 2,
 }
-} } 
-namespace Eina { 
+
+}
+
+}
+
+namespace Eina {
+
 /// <summary>A rectangle in pixel dimensions.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Rect
@@ -44,10 +59,10 @@ public struct Rect
     public int H;
     ///<summary>Constructor for Rect.</summary>
     public Rect(
-        int X=default(int),
-        int Y=default(int),
-        int W=default(int),
-        int H=default(int)    )
+        int X = default(int),
+        int Y = default(int),
+        int W = default(int),
+        int H = default(int)    )
     {
         this.X = X;
         this.Y = Y;
@@ -99,8 +114,10 @@ public struct Rect
 
 }
 
-} 
-namespace Eina { 
+}
+
+namespace Eina {
+
 /// <summary>A 2D location in pixels.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Position2D
@@ -111,8 +128,8 @@ public struct Position2D
     public int Y;
     ///<summary>Constructor for Position2D.</summary>
     public Position2D(
-        int X=default(int),
-        int Y=default(int)    )
+        int X = default(int),
+        int Y = default(int)    )
     {
         this.X = X;
         this.Y = Y;
@@ -154,8 +171,10 @@ public struct Position2D
 
 }
 
-} 
-namespace Eina { 
+}
+
+namespace Eina {
+
 /// <summary>A 2D size in pixels.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Size2D
@@ -166,8 +185,8 @@ public struct Size2D
     public int H;
     ///<summary>Constructor for Size2D.</summary>
     public Size2D(
-        int W=default(int),
-        int H=default(int)    )
+        int W = default(int),
+        int H = default(int)    )
     {
         this.W = W;
         this.H = H;
@@ -209,8 +228,10 @@ public struct Size2D
 
 }
 
-} 
-namespace Eina { 
+}
+
+namespace Eina {
+
 /// <summary>Eina file data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct File
@@ -246,8 +267,10 @@ public struct File
 
 }
 
-} 
-namespace Eina { 
+}
+
+namespace Eina {
+
 /// <summary>A simple 2D vector type using floating point values.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Vector2
@@ -258,8 +281,8 @@ public struct Vector2
     public double Y;
     ///<summary>Constructor for Vector2.</summary>
     public Vector2(
-        double X=default(double),
-        double Y=default(double)    )
+        double X = default(double),
+        double Y = default(double)    )
     {
         this.X = X;
         this.Y = Y;
@@ -301,8 +324,10 @@ public struct Vector2
 
 }
 
-} 
-namespace Eina { 
+}
+
+namespace Eina {
+
 /// <summary>Eina 3x3 Matrix</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Matrix3
@@ -327,15 +352,15 @@ public struct Matrix3
     public double Zz;
     ///<summary>Constructor for Matrix3.</summary>
     public Matrix3(
-        double Xx=default(double),
-        double Xy=default(double),
-        double Xz=default(double),
-        double Yx=default(double),
-        double Yy=default(double),
-        double Yz=default(double),
-        double Zx=default(double),
-        double Zy=default(double),
-        double Zz=default(double)    )
+        double Xx = default(double),
+        double Xy = default(double),
+        double Xz = default(double),
+        double Yx = default(double),
+        double Yy = default(double),
+        double Yz = default(double),
+        double Zx = default(double),
+        double Zy = default(double),
+        double Zz = default(double)    )
     {
         this.Xx = Xx;
         this.Xy = Xy;
@@ -412,8 +437,10 @@ public struct Matrix3
 
 }
 
-} 
-namespace Eina { 
+}
+
+namespace Eina {
+
 /// <summary>Eina file direct information data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct FileDirectInfo
@@ -449,8 +476,10 @@ public struct FileDirectInfo
 
 }
 
-} 
-namespace Eina { 
+}
+
+namespace Eina {
+
 /// <summary>The structure to store some file statistics.</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct Stat
@@ -489,22 +518,22 @@ public struct Stat
     public uint Ctimensec;
     ///<summary>Constructor for Stat.</summary>
     public Stat(
-        uint Dev=default(uint),
-        uint Ino=default(uint),
-        uint Mode=default(uint),
-        uint Nlink=default(uint),
-        uint Uid=default(uint),
-        uint Gid=default(uint),
-        uint Rdev=default(uint),
-        uint Size=default(uint),
-        uint Blksize=default(uint),
-        uint Blocks=default(uint),
-        uint Atime=default(uint),
-        uint Atimensec=default(uint),
-        uint Mtime=default(uint),
-        uint Mtimensec=default(uint),
-        uint Ctime=default(uint),
-        uint Ctimensec=default(uint)    )
+        uint Dev = default(uint),
+        uint Ino = default(uint),
+        uint Mode = default(uint),
+        uint Nlink = default(uint),
+        uint Uid = default(uint),
+        uint Gid = default(uint),
+        uint Rdev = default(uint),
+        uint Size = default(uint),
+        uint Blksize = default(uint),
+        uint Blocks = default(uint),
+        uint Atime = default(uint),
+        uint Atimensec = default(uint),
+        uint Mtime = default(uint),
+        uint Mtimensec = default(uint),
+        uint Ctime = default(uint),
+        uint Ctimensec = default(uint)    )
     {
         this.Dev = Dev;
         this.Ino = Ino;
@@ -616,4 +645,5 @@ public struct Stat
 
 }
 
-} 
+}
+

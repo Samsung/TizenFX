@@ -159,9 +159,9 @@ namespace Tizen.Multimedia.Remoting
             set => EncodedResolution = EncodeResolution(value.Width, value.Height);
         }
 
-        // Native CAPI used only encoded string to gets or sets Season, Episode, Resolution.
-        // But encoded string is not useful for user, so we don't offer as it is.
-        // It'll be used internally.
+        // Developers who use Tizen Native API must encode strings to set or get metadata of media
+        // such as season, episode, and resolution. It is inconvenient.
+        // TizenFX supports for using normal strings and using encoded strings internally.
         internal string EncodedSeason { get; private set; }
 
         internal string EncodedEpisode { get; private set; }
@@ -243,7 +243,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="SeriesInformation"/> class.
         /// </summary>
-        /// <param name="number">The number of this video of all series.</param>
+        /// <param name="number">The order of this video in entire series.</param>
         /// <param name="title">The title.</param>
         /// <since_tizen> 6 </since_tizen>
         public SeriesInformation(int number, string title)
@@ -253,7 +253,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets or sets the number of this video of all series.
+        /// Gets or sets the order of this video in entire series.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public int Number { get; }

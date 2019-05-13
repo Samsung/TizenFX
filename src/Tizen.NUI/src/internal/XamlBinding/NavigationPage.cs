@@ -241,7 +241,6 @@ namespace Tizen.NUI
         /// </summary>
         public event EventHandler<NavigationEventArgs> Popped;
 
-
         /// <summary>
         /// Pops all but the root Page off the navigation stack.
         /// </summary>

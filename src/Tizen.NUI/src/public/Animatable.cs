@@ -32,13 +32,13 @@ namespace Tizen.NUI
         /// Create an instance of animatable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Animatable() : this(NDalicPINVOKE.Handle_New(), true)
+        public Animatable() : this(Interop.Handle.Handle_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
 
-        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Handle_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Handle.Handle_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -65,7 +65,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetPropertyName(int index)
         {
-            string ret = NDalicPINVOKE.Handle_GetPropertyName(swigCPtr, index);
+            string ret = Interop.Handle.Handle_GetPropertyName(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -83,7 +83,7 @@ namespace Tizen.NUI
             sb[0] = (char)(sb[0] | 0x20);
             string str = sb.ToString();
 
-            int ret = NDalicPINVOKE.Handle_GetPropertyIndex(swigCPtr, str);
+            int ret = Interop.Handle.Handle_GetPropertyIndex(swigCPtr, str);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -96,7 +96,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsPropertyWritable(int index)
         {
-            bool ret = NDalicPINVOKE.Handle_IsPropertyWritable(swigCPtr, index);
+            bool ret = Interop.Handle.Handle_IsPropertyWritable(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -109,7 +109,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsPropertyAnimatable(int index)
         {
-            bool ret = NDalicPINVOKE.Handle_IsPropertyAnimatable(swigCPtr, index);
+            bool ret = Interop.Handle.Handle_IsPropertyAnimatable(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -122,7 +122,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyType GetPropertyType(int index)
         {
-            PropertyType ret = (PropertyType)NDalicPINVOKE.Handle_GetPropertyType(swigCPtr, index);
+            PropertyType ret = (PropertyType)Interop.Handle.Handle_GetPropertyType(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -147,7 +147,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int RegisterProperty(string name, PropertyValue propertyValue)
         {
-            int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_0(swigCPtr, name, PropertyValue.getCPtr(propertyValue));
+            int ret = Interop.Handle.Handle_RegisterProperty__SWIG_0(swigCPtr, name, PropertyValue.getCPtr(propertyValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -162,7 +162,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int RegisterProperty(string name, PropertyValue propertyValue, PropertyAccessMode accessMode)
         {
-            int ret = NDalicPINVOKE.Handle_RegisterProperty__SWIG_1(swigCPtr, name, PropertyValue.getCPtr(propertyValue), (int)accessMode);
+            int ret = Interop.Handle.Handle_RegisterProperty__SWIG_1(swigCPtr, name, PropertyValue.getCPtr(propertyValue), (int)accessMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -188,7 +188,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)
         {
-            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_0(swigCPtr, PropertyHelper.GetPropertyFromString(this, property).propertyIndex, PropertyCondition.getCPtr(condition)), true);
+            PropertyNotification ret = new PropertyNotification(Interop.Handle.Handle_AddPropertyNotification__SWIG_0(swigCPtr, PropertyHelper.GetPropertyFromString(this, property).propertyIndex, PropertyCondition.getCPtr(condition)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -200,7 +200,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void RemovePropertyNotification(PropertyNotification propertyNotification)
         {
-            NDalicPINVOKE.Handle_RemovePropertyNotification(swigCPtr, PropertyNotification.getCPtr(propertyNotification));
+            Interop.Handle.Handle_RemovePropertyNotification(swigCPtr, PropertyNotification.getCPtr(propertyNotification));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -210,7 +210,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public void RemovePropertyNotifications()
         {
-            NDalicPINVOKE.Handle_RemovePropertyNotifications(swigCPtr);
+            Interop.Handle.Handle_RemovePropertyNotifications(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -221,27 +221,27 @@ namespace Tizen.NUI
 
         internal uint GetPropertyCount()
         {
-            uint ret = NDalicPINVOKE.Handle_GetPropertyCount(swigCPtr);
+            uint ret = Interop.HandleInternal.Handle_GetPropertyCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal PropertyNotification AddPropertyNotification(int index, int componentIndex, PropertyCondition condition)
         {
-            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_1(swigCPtr, index, componentIndex, PropertyCondition.getCPtr(condition)), true);
+            PropertyNotification ret = new PropertyNotification(Interop.Handle.Handle_AddPropertyNotification__SWIG_1(swigCPtr, index, componentIndex, PropertyCondition.getCPtr(condition)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void RemoveConstraints()
         {
-            NDalicPINVOKE.Handle_RemoveConstraints__SWIG_0(swigCPtr);
+            Interop.HandleInternal.Handle_RemoveConstraints__SWIG_0(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void RemoveConstraints(uint tag)
         {
-            NDalicPINVOKE.Handle_RemoveConstraints__SWIG_1(swigCPtr, tag);
+            Interop.HandleInternal.Handle_RemoveConstraints__SWIG_1(swigCPtr, tag);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -273,7 +273,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Handle(swigCPtr);
+                    Interop.Handle.delete_Handle(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

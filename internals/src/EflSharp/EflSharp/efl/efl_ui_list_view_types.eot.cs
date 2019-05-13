@@ -3,38 +3,33 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.ComponentModel;
-namespace Efl { namespace Ui { 
-/// <summary></summary>
+namespace Efl {
+
+namespace Ui {
+
 [StructLayout(LayoutKind.Sequential)]
 public struct ListViewLayoutItem
 {
-    /// <summary></summary>
-    public Efl.Ui.Layout Layout;
-    /// <summary></summary>
-    public  Eina.Future Layout_request;
-    /// <summary></summary>
-    public Efl.IModel Children;
-    /// <summary></summary>
-    public int Index_offset;
-    /// <summary></summary>
-    public System.IntPtr Tree_node;
-    /// <summary></summary>
-    public Eina.Size2D Min;
-    /// <summary></summary>
-    public Eina.Size2D Size;
-    /// <summary></summary>
-    public Eina.Position2D Pos;
+        public Efl.Ui.Layout Layout;
+        public  Eina.Future Layout_request;
+        public Efl.IModel Children;
+        public int Index_offset;
+        public System.IntPtr Tree_node;
+        public Eina.Size2D Min;
+        public Eina.Size2D Size;
+        public Eina.Position2D Pos;
     ///<summary>Constructor for ListViewLayoutItem.</summary>
     public ListViewLayoutItem(
-        Efl.Ui.Layout Layout=default(Efl.Ui.Layout),
-         Eina.Future Layout_request=default( Eina.Future),
-        Efl.IModel Children=default(Efl.IModel),
-        int Index_offset=default(int),
-        System.IntPtr Tree_node=default(System.IntPtr),
-        Eina.Size2D Min=default(Eina.Size2D),
-        Eina.Size2D Size=default(Eina.Size2D),
-        Eina.Position2D Pos=default(Eina.Position2D)    )
+        Efl.Ui.Layout Layout = default(Efl.Ui.Layout),
+         Eina.Future Layout_request = default( Eina.Future),
+        Efl.IModel Children = default(Efl.IModel),
+        int Index_offset = default(int),
+        System.IntPtr Tree_node = default(System.IntPtr),
+        Eina.Size2D Min = default(Eina.Size2D),
+        Eina.Size2D Size = default(Eina.Size2D),
+        Eina.Position2D Pos = default(Eina.Position2D)    )
     {
         this.Layout = Layout;
         this.Layout_request = Layout_request;
@@ -108,9 +103,10 @@ public struct ListViewLayoutItem
 
 }
 
-} } 
+}
 
-/// <summary></summary>
+}
+
 [StructLayout(LayoutKind.Sequential)]
 public struct EflUiListViewSegArray
 {
@@ -144,5 +140,6 @@ public struct EflUiListViewSegArray
     }
 
 }
+
 
 

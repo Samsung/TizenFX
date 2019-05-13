@@ -382,7 +382,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BackendType Backend = BackendType.Gles;
 
-        internal const string GlesCSharpBinder = "libdali-csharp-binder.so";
+        internal const string GlesCSharpBinder = NDalicPINVOKE.Lib;
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
     }
 

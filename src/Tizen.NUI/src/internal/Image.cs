@@ -26,7 +26,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Image(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Image_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Image(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Image.Image_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -60,7 +60,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Image(swigCPtr);
+                    Interop.Image.delete_Image(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -160,19 +160,19 @@ namespace Tizen.NUI
         }
 
 
-        public Image() : this(NDalicPINVOKE.new_Image__SWIG_0(), true)
+        public Image() : this(Interop.Image.new_Image__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Image(Image handle) : this(NDalicPINVOKE.new_Image__SWIG_1(Image.getCPtr(handle)), true)
+        public Image(Image handle) : this(Interop.Image.new_Image__SWIG_1(Image.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Image Assign(Image rhs)
         {
-            Image ret = new Image(NDalicPINVOKE.Image_Assign(swigCPtr, Image.getCPtr(rhs)), false);
+            Image ret = new Image(Interop.Image.Image_Assign(swigCPtr, Image.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -186,21 +186,21 @@ namespace Tizen.NUI
 
         public uint GetWidth()
         {
-            uint ret = NDalicPINVOKE.Image_GetWidth(swigCPtr);
+            uint ret = Interop.Image.Image_GetWidth(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public uint GetHeight()
         {
-            uint ret = NDalicPINVOKE.Image_GetHeight(swigCPtr);
+            uint ret = Interop.Image.Image_GetHeight(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public ImageSignal UploadedSignal()
         {
-            ImageSignal ret = new ImageSignal(NDalicPINVOKE.Image_UploadedSignal(swigCPtr), false);
+            ImageSignal ret = new ImageSignal(Interop.Image.Image_UploadedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

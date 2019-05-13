@@ -54,9 +54,10 @@ namespace Tizen.NUI.Binding
                 parts = value.Split(',');
                 if (parts.Length == 3)
                 {
-                    return new Position(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
-                                    Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
-                                    Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
+                    int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
+                    int y = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[1].Trim());
+                    int z = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[2].Trim());
+                    return new Position(x, y, z);
                 }
             }
 
