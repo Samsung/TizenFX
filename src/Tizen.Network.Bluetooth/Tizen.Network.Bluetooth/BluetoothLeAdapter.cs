@@ -112,7 +112,7 @@ namespace Tizen.Network.Bluetooth {
 
     /// <summary>
     /// This is the BluetoothLeDevice class.
-    /// It handles the LE device operations like getting data from the scan result information.
+    /// It handles the LE device operations like getting data from the scan result.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class BluetoothLeDevice
@@ -261,7 +261,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the service UUIDs list from the LE scan result information.
+        /// Gets the service UUIDs list from the LE scan result.
         /// </summary>
         /// <value> Gets the list of the string service UUIDs.</value>
         /// <remarks>
@@ -280,12 +280,12 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the service UUIDs list from the LE scan result information.
+        /// Gets the service UUIDs list from the LE scan result.
         /// </summary>
         /// <value> Gets the list of the string service UUIDs.</value>
         /// <remarks>The Bluetooth must be enabled.</remarks>
         /// <param name="packetType"> The enumeration for BLE packet type.</param>
-        /// <returns>The service uuid value</returns>
+        /// <returns>The service UUID value</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
@@ -296,7 +296,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the device name from the LE scan result information.
+        /// Gets the device name from the LE scan result.
         /// </summary>
         /// <value> Gets the device name.</value>
         /// <remarks>
@@ -315,7 +315,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the device name from the LE scan result information.
+        /// Gets the device name from the LE scan result.
         /// </summary>
         /// <value> Gets the device name.</value>
         /// <remarks>The Bluetooth must be enabled.</remarks>
@@ -331,7 +331,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the transmission power level from the LE scan result information.
+        /// Gets the transmission power level from the LE scan result.
         /// </summary>
         /// <value> Gets the transmission power level in dB.</value>
         /// <remarks>
@@ -350,7 +350,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the transmission power level from the LE scan result information.
+        /// Gets the transmission power level from the LE scan result.
         /// </summary>
         /// <value> Gets the transmission power level in dB.</value>
         /// <remarks>The Bluetooth must be enabled.</remarks>
@@ -366,7 +366,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the service solicitation UUID list from the scan result information.
+        /// Gets the service solicitation UUID list from the scan result.
         /// </summary>
         /// <value> Gets the list of the service solicitation UUIDs.</value>
         /// <remarks>
@@ -385,12 +385,12 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the service solicitation UUID list from the scan result information.
+        /// Gets the service solicitation UUID list from the scan result.
         /// </summary>
         /// <value> Gets the list of the service solicitation UUIDs.</value>
         /// <remarks>The Bluetooth must be enabled.</remarks>
         /// <param name="packetType"> The enumeration for BLE packet type.</param>
-        /// <returns>The service solicitation uuid value</returns>
+        /// <returns>The service solicitation UUID value</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
@@ -401,7 +401,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the manufacturer data from the scan result information.
+        /// Gets the manufacturer data from the scan result.
         /// </summary>
         /// <value> Gets the appearance value.</value>
         /// <remarks>
@@ -420,7 +420,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the manufacturer data from the scan result information.
+        /// Gets the manufacturer data from the scan result.
         /// </summary>
         /// <value> Gets the appearance value.</value>
         /// <remarks>The Bluetooth must be enabled.</remarks>
@@ -436,7 +436,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the manufacturer data from the scan result information.
+        /// Gets the manufacturer data from the scan result.
         /// </summary>
         /// <value> Gets the manufacturer data containing the manucturer data and ID information.</value>
         /// <remarks>
@@ -455,7 +455,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the manufacturer data from the scan result information.
+        /// Gets the manufacturer data from the scan result.
         /// </summary>
         /// <value> Gets the manufacturer data containing the manucturer data and ID information.</value>
         /// <remarks>The Bluetooth must be enabled.</remarks>
@@ -471,7 +471,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the service data list from the scan result information.
+        /// Gets the service data list from the scan result.
         /// </summary>
         /// <remarks>
         /// The Bluetooth must be enabled.
@@ -487,7 +487,7 @@ namespace Tizen.Network.Bluetooth {
         }
 
         /// <summary>
-        /// Gets the service data list from the scan result information.
+        /// Gets the service data list from the scan result.
         /// </summary>
         /// <remarks>The Bluetooth must be enabled.</remarks>
         /// <param name="packetType"> The packet type.</param>
