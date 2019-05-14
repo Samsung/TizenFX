@@ -2818,4 +2818,44 @@ namespace Tizen.NUI
             }
         }
     }
+
+    /// <summary>
+    /// Enumeration for setting cache model of a WebView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum CacheModel
+    {
+        /// <summary>
+        /// Use the smallest cache capacity.
+        /// </summary>
+        DocumentViewer,
+        /// <summary>
+        /// Use the bigger cache capacity than DocumentBrowser.
+        /// </summary>
+        DocumentBrowser,
+        /// <summary>
+        /// Use the biggest cache capacity.
+        /// </summary>
+        PrimaryWebBrowser
+    }
+
+    /// <summary>
+    /// Enumeration for setting cache model of a WebView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum CookieAcceptPolicy
+    {
+        /// <summary>
+        /// Accepts every cookie sent from any page.
+        /// </summary>
+        Always,
+        /// <summary>
+        /// Rejects all the cookies.
+        /// </summary>
+        Never,
+        /// <summary>
+        /// Accepts only cookies set by the main document that is loaded.
+        /// </summary>
+        NoThirdParty
+    }
 }
