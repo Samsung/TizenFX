@@ -24,20 +24,20 @@ namespace Tizen.NUI.BaseComponents
     using tizenlog = Tizen.Log;
 
     /// <summary>
-    /// VectorAnimationView renders an animated vector image
+    /// AnimatedVectorImageView renders an animated vector image
     /// </summary>
     /// <since_tizen> none </since_tizen>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class VectorAnimationView : ImageView
+    public class AnimatedVectorImageView : ImageView
     {
         /// <summary>
-        /// VectorAnimationView constructor
+        /// AnimatedVectorImageView constructor
         /// </summary>
         /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VectorAnimationView()
+        public AnimatedVectorImageView()
         {
         }
 
@@ -146,7 +146,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The number of times the VectorAnimationView will be looped
+        /// The number of times the AnimatedVectorImageView will be looped
         /// </summary>
         /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -308,7 +308,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Play VectorAnimationView
+        /// Play AnimatedVectorImageView
         /// </summary>
         /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -320,7 +320,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Pause VectorAnimationView
+        /// Pause AnimatedVectorImageView
         /// </summary>
         /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -332,7 +332,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Stop VectorAnimationView
+        /// Stop AnimatedVectorImageView
         /// </summary>
         /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -516,7 +516,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-    } // VectorAnimationView : ImageView
+    } // AnimatedVectorImageView : ImageView
 } // namespace Tizen.NUI.BaseComponents
 
 namespace Tizen.NUI
