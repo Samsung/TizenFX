@@ -346,6 +346,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The url to load.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Url
         {
             get
@@ -362,6 +363,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The cache model of the current WebView.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CacheModel CacheModel
         {
             get
@@ -378,6 +380,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The cookie acceptance policy.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CookieAcceptPolicy CookieAcceptPolicy
         {
             get
@@ -394,6 +397,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The user agent string.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserAgent
         {
             get
@@ -410,6 +414,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Whether JavaScript is enabled.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableJavaScript
         {
             get
@@ -426,6 +431,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Whether images can be loaded automatically.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadImagesAutomatically
         {
             get
@@ -443,6 +449,7 @@ namespace Tizen.NUI
         /// The default text encoding name.<br />
         /// e.g. "UTF-8"<br />
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string DefaultTextEncodingName
         {
             get
@@ -459,6 +466,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default font size in pixel.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int DefaultFontSize
         {
             get
