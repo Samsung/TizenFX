@@ -41,6 +41,7 @@ namespace Tizen.Applications
         private static event EventHandler<PackageManagerEventArgs> s_moveEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
 
+        private static readonly object s_pkgEventLock = new object();
         private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
 
         private static Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback> s_totalSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback>();
@@ -71,15 +72,21 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Install);
-                RegisterPackageManagerEventIfNeeded();
-                s_installEventHandler += value;
+                lock (s_pkgEventLock)
+                {
+                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Install);
+                    RegisterPackageManagerEventIfNeeded();
+                    s_installEventHandler += value;
+                }
             }
             remove
             {
-                s_installEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded();
-                UnsetPackageManagerEventStatus();
+                lock (s_pkgEventLock)
+                {
+                    s_installEventHandler -= value;
+                    UnregisterPackageManagerEventIfNeeded();
+                    UnsetPackageManagerEventStatus();
+                }
             }
         }
 
@@ -91,16 +98,22 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Uninstall);
-                RegisterPackageManagerEventIfNeeded();
-                s_uninstallEventHandler += value;
+                lock (s_pkgEventLock)
+                {
+                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Uninstall);
+                    RegisterPackageManagerEventIfNeeded();
+                    s_uninstallEventHandler += value;
+                }
             }
             remove
             {
-                s_uninstallEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded();
-                UnsetPackageManagerEventStatus();
-            }
+                lock (s_pkgEventLock)
+                {
+                    s_uninstallEventHandler -= value;
+                    UnregisterPackageManagerEventIfNeeded();
+                    UnsetPackageManagerEventStatus();
+                }
+           }
         }
 
         /// <summary>
@@ -111,15 +124,21 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Upgrade);
-                RegisterPackageManagerEventIfNeeded();
-                s_updateEventHandler += value;
+                lock (s_pkgEventLock)
+                {
+                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Upgrade);
+                    RegisterPackageManagerEventIfNeeded();
+                    s_updateEventHandler += value;
+                }
             }
             remove
             {
-                s_updateEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded();
-                UnsetPackageManagerEventStatus();
+                lock (s_pkgEventLock)
+                {
+                    s_updateEventHandler -= value;
+                    UnregisterPackageManagerEventIfNeeded();
+                    UnsetPackageManagerEventStatus();
+                }
             }
         }
 
@@ -131,15 +150,21 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Move);
-                RegisterPackageManagerEventIfNeeded();
-                s_moveEventHandler += value;
+                lock (s_pkgEventLock)
+                {
+                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Move);
+                    RegisterPackageManagerEventIfNeeded();
+                    s_moveEventHandler += value;
+                }
             }
             remove
             {
-                s_moveEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded();
-                UnsetPackageManagerEventStatus();
+                lock (s_pkgEventLock)
+                {
+                    s_moveEventHandler -= value;
+                    UnregisterPackageManagerEventIfNeeded();
+                    UnsetPackageManagerEventStatus();
+                }
             }
         }
 
@@ -151,15 +176,21 @@ namespace Tizen.Applications
         {
             add
             {
-                SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearData);
-                RegisterPackageManagerEventIfNeeded();
-                s_clearDataEventHandler += value;
+                lock (s_pkgEventLock)
+                {
+                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearData);
+                    RegisterPackageManagerEventIfNeeded();
+                    s_clearDataEventHandler += value;
+                }
             }
             remove
             {
-                s_clearDataEventHandler -= value;
-                UnregisterPackageManagerEventIfNeeded();
-                UnsetPackageManagerEventStatus();
+                lock (s_pkgEventLock)
+                {
+                    s_clearDataEventHandler -= value;
+                    UnregisterPackageManagerEventIfNeeded();
+                    UnsetPackageManagerEventStatus();
+                }
             }
         }
 
