@@ -2284,6 +2284,9 @@ namespace Tizen.NUI.BaseComponents
                 // All Views are currently Layouts.
                 MeasureSpecificationWidth = new MeasureSpecification(new LayoutLength(value.Width), MeasureSpecification.ModeType.Exactly);
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
+                _widthPolicy = value.Width;
+                _heightPolicy = value.Height;
+                _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
         }
