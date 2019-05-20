@@ -481,7 +481,7 @@ namespace Tizen.NUI
                     }
 
                     bool matchWidthLocally = false;
-                    if( widthMode != MeasureSpecification.ModeType.Exactly && desiredWidth == (int)ChildLayoutData.MatchParent )
+                    if( widthMode != MeasureSpecification.ModeType.Exactly && desiredWidth == (int)LayoutParamPolicies.MatchParent )
                     {
                         // Will have to re-measure at least this child when we know exact height.
                         matchWidth = true;
@@ -491,7 +491,7 @@ namespace Tizen.NUI
                     float marginWidth = childMargin.Start + childMargin.End;
                     float childWidth = childLayout.MeasuredWidth.Size.AsDecimal() + marginWidth;
                     maxWidth = Math.Max( maxWidth, childWidth );
-                    allFillParent = allFillParent && desiredWidth == (int)ChildLayoutData.MatchParent;
+                    allFillParent = allFillParent && desiredWidth == (int)LayoutParamPolicies.MatchParent;
 
 
                     alternativeMaxWidth = Math.Max( alternativeMaxWidth, matchWidthLocally ? marginWidth : childWidth );

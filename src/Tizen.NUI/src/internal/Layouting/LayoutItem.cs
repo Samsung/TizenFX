@@ -366,9 +366,9 @@ namespace Tizen.NUI
         /// Sets the minimum width of the layout.<br />
         /// It is not guaranteed the layout will be able to achieve this minimum width (for example, if its parent
         /// layout constrains it with less available width).<br />
-        /// 1. if the owner's View.LayoutWidthSpecification has exact value, then that value overrides the minimum size.<br />
-        /// 2. If the owner's View.LayoutWidthSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
-        /// 3. If the owner's View.LayoutWidthSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent width takes precedence over the minimum width.<br />
+        /// 1. if the owner's View.WidthSpecification has exact value, then that value overrides the minimum size.<br />
+        /// 2. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
+        /// 3. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent width takes precedence over the minimum width.<br />
         /// </summary>
         public LayoutLength MinimumWidth {get; set;}
 
@@ -376,9 +376,9 @@ namespace Tizen.NUI
         /// Sets the minimum height of the layout.<br />
         /// It is not guaranteed the layout will be able to achieve this minimum height (for example, if its parent
         /// layout constrains it with less available height).<br />
-        /// 1. if the owner's View.LayoutHeightSpecification has exact value, then that value overrides the minimum size.<br />
-        /// 2. If the owner's View.LayoutHeightSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
-        /// 3. If the owner's View.LayoutHeightSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent height takes precedence over the minimum height.<br />
+        /// 1. if the owner's View.HeightSpecification has exact value, then that value overrides the minimum size.<br />
+        /// 2. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
+        /// 3. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent height takes precedence over the minimum height.<br />
         /// </summary>
         public LayoutLength MinimumHeight {get; set;}
 
