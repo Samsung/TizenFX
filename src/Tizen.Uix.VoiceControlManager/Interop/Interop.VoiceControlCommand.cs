@@ -96,18 +96,13 @@ internal static partial class Interop
 
         internal sealed class SafeCommandListHandle : SafeHandle
         {
-            internal bool _ownership;
-
             public SafeCommandListHandle(IntPtr handle)
                 : base(handle, true)
             {
-                _ownership = true;
             }
-
             public SafeCommandListHandle()
                 : base(IntPtr.Zero, true)
             {
-                _ownership = true;
             }
 
             public override bool IsInvalid
@@ -117,7 +112,7 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                if (_ownership && !IsInvalid)
+                if (!IsInvalid)
                 {
                     Interop.VoiceControlManager.ErrorCode error = VcCmdListDestroy(this.handle, false);
                     if (error != Interop.VoiceControlManager.ErrorCode.None)
@@ -132,18 +127,13 @@ internal static partial class Interop
 
         internal sealed class SafeCommandHandle : SafeHandle
         {
-            internal bool _ownership;
-
             public SafeCommandHandle(IntPtr handle)
                 : base(handle, true)
             {
-                _ownership = true;
             }
-
             public SafeCommandHandle()
                 : base(IntPtr.Zero, true)
             {
-                _ownership = true;
             }
 
             public override bool IsInvalid
@@ -154,7 +144,7 @@ internal static partial class Interop
             protected override bool ReleaseHandle()
             {
                 Interop.VoiceControlManager.ErrorCode error = VoiceControlManager.ErrorCode.None;
-                if (_ownership && !IsInvalid)
+                if (!IsInvalid)
                 {
                     error = VcCmdDestroy(this.handle);
                     if (error != Interop.VoiceControlManager.ErrorCode.None)

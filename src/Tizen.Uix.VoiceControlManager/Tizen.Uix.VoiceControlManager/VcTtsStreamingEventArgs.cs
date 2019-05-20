@@ -14,51 +14,28 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
     /// This Class contains the vc client sends audio streaming for TTS feedback.
     /// </summary>
-    public class VcTtsStreamingEventArgs
+    public class VcTtsStreamingEventArgs : EventArgs
     {
-        internal VcTtsStreamingEventArgs(int pid, int uttId, FeedbackEventType evt, string buffer, int len)
+        internal VcTtsStreamingEventArgs(string appId, int uttId, FeedbackType type, byte[] buffer)
         {
-            Pid = pid;
-            UttId = uttId;
-            Evt = evt;
+            AppId = appId;
+            UtteranceId = uttId;
+            FeedbackType = type;
             Buffer = buffer;
-            Length = len;
         }
 
         /// <summary>
-        /// Enumeration for TTS feedback events
+        /// The application id of the vc client
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public enum FeedbackEventType
-        {
-            /// <summary>
-            /// Failed
-            /// </summary>
-            Fail = -1,
-            /// <summary>
-            /// Start event
-            /// </summary>
-            Start = 1,
-            /// <summary>
-            /// Continue event
-            /// </summary>
-            Continue = 2,
-            /// <summary>
-            /// Finish event
-            /// </summary>
-            Finish = 3
-        }
-
-        /// <summary>
-        /// The process id of the vc client
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int Pid
+        public string AppId
         {
             get;
             private set;
@@ -68,17 +45,17 @@ namespace Tizen.Uix.VoiceControlManager
         /// The utterance id
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public int UttId
+        public int UtteranceId
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// TTS feedback event
+        /// TTS feedback event which knows current status, app should receive until finish events comes up.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public FeedbackEventType Evt
+        public FeedbackType FeedbackType
         {
             get;
             private set;
@@ -88,17 +65,7 @@ namespace Tizen.Uix.VoiceControlManager
         /// Audio streaming data
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Buffer
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Length of the audio streaming data
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int Length
+        public byte[] Buffer
         {
             get;
             private set;

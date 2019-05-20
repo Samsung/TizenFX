@@ -14,14 +14,16 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
     /// This Class contains sets private data to manager client.
     /// </summary>
-    public class PrivateDataSetEventArgs
+    public class PrivateDataUpdatedEventArgs : EventArgs
     {
-        internal PrivateDataSetEventArgs(string key, string data)
+        internal PrivateDataUpdatedEventArgs(string key, string data)
         {
             Key = key;
             Data = data;

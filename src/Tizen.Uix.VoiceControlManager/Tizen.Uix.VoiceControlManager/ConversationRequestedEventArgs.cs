@@ -14,60 +14,58 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
-    /// This Class contains the recognition results from vc-daemon.
+    /// This Class contains the requests conversation from vc-daemon.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public class SetAllResultEventArgs
+    public class ConversationRequestedEventArgs : EventArgs
     {
-        internal SetAllResultEventArgs(ResultEvent evt, VoiceCommandList cmdList, string resultString, string msgString)
+        internal ConversationRequestedEventArgs(string appId, string dispTextString, string uttTextString, bool continuous)
         {
-            ResultEvent = evt;
-            CommandList = cmdList;
-            Result = resultString;
-            Message = msgString;
+            AppId = appId;
+            DisplayText = dispTextString;
+            UtterenceText = uttTextString;
+            IsContinuous = continuous;
         }
 
         /// <summary>
-        /// The result event
+        /// The application id of VC client to request dialog
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ResultEvent ResultEvent
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Command list
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public VoiceCommandList CommandList
+        public string AppId
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// Command text
+        /// The display text requested to be displayed
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Result
+        public string DisplayText
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// Engine message, it can be one of the below:
-        /// 1. "vc.result.message.none"
-        /// 2. "vc.result.message.asr.result.consumed"
-        /// 3. "vc.result.message.error.too.loud"
+        /// The utterence text requested to be spoken
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Message
+        public string UtterenceText
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// If true, VoiceControlManager still has a conversation to deal with. And Start() should be called again.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsContinuous
         {
             get;
             private set;

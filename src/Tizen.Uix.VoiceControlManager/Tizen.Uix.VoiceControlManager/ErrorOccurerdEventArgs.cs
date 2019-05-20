@@ -23,136 +23,20 @@ namespace Tizen.Uix.VoiceControlManager
     /// This class holds information related to the VoiceControl ErrorOccurred event.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class ErrorOccurredEventArgs
+    public class ErrorOccurredEventArgs : EventArgs
     {
-        internal ErrorOccurredEventArgs(ErrorCode error)
+        internal ErrorOccurredEventArgs(Exception error)
         {
-            switch (error)
-            {
-                case ErrorCode.None:
-                    {
-                        ErrorValue = Error.None;
-                        break;
-                    }
-
-                case ErrorCode.OutOfMemory:
-                    {
-                        ErrorValue = Error.OutOfMemory;
-                        break;
-                    }
-
-                case ErrorCode.IoError:
-                    {
-                        ErrorValue = Error.IoError;
-                        break;
-                    }
-
-                case ErrorCode.InvalidParameter:
-                    {
-                        ErrorValue = Error.InvalidParameter;
-                        break;
-                    }
-
-                case ErrorCode.TimedOut:
-                    {
-                        ErrorValue = Error.TimedOut;
-                        break;
-                    }
-
-                case ErrorCode.RecorderBusy:
-                    {
-                        ErrorValue = Error.RecorderBusy;
-                        break;
-                    }
-
-                case ErrorCode.PermissionDenied:
-                    {
-                        ErrorValue = Error.PermissionDenied;
-                        break;
-                    }
-
-                case ErrorCode.NotSupported:
-                    {
-                        ErrorValue = Error.NotSupported;
-                        break;
-                    }
-
-                case ErrorCode.InvalidState:
-                    {
-                        ErrorValue = Error.InvalidState;
-                        break;
-                    }
-
-                case ErrorCode.InvalidLanguage:
-                    {
-                        ErrorValue = Error.InvalidLanguage;
-                        break;
-                    }
-
-                case ErrorCode.EngineNotFound:
-                    {
-                        ErrorValue = Error.EngineNotFound;
-                        break;
-                    }
-
-                case ErrorCode.OperationFailed:
-                    {
-                        ErrorValue = Error.OperationFailed;
-                        break;
-                    }
-
-                case ErrorCode.OperationRejected:
-                    {
-                        ErrorValue = Error.OperationRejected;
-                        break;
-                    }
-
-                case ErrorCode.IterationEnd:
-                    {
-                        ErrorValue = Error.IterationEnd;
-                        break;
-                    }
-
-                case ErrorCode.Empty:
-                    {
-                        ErrorValue = Error.Empty;
-                        break;
-                    }
-
-                case ErrorCode.InProgressToReady:
-                    {
-                        ErrorValue = Error.InProgressToReady;
-                        break;
-                    }
-
-                case ErrorCode.InProgressToRecording:
-                    {
-                        ErrorValue = Error.InProgressToRecording;
-                        break;
-                    }
-
-                case ErrorCode.InProgressToProcessing:
-                    {
-                        ErrorValue = Error.InProgressToProcessing;
-                        break;
-                    }
-
-                case ErrorCode.ServiceReset:
-                    {
-                        ErrorValue = Error.ServiceReset;
-                        break;
-                    }
-            }
+            Why = error;
         }
 
         /// <summary>
-        /// The error value.
+        /// The VoiceControlManager exception.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Error ErrorValue
-        {
+        public Exception Why {
             get;
-            internal set;
+            private set;
         }
     }
 }

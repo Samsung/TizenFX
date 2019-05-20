@@ -14,13 +14,15 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
     /// This class holds information about the CurrentLanguageChanged event.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class CurrentLanguageChangedEventArgs
+    public class CurrentLanguageChangedEventArgs : EventArgs
     {
         internal CurrentLanguageChangedEventArgs(string previous, string current)
         {
@@ -35,7 +37,7 @@ namespace Tizen.Uix.VoiceControlManager
         public string PreviousLanguage
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace Tizen.Uix.VoiceControlManager
         public string CurrentLanguage
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

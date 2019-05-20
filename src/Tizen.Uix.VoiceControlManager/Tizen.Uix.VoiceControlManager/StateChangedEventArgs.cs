@@ -14,13 +14,15 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
     /// This class holds information related to the VoiceControl client StateChanged event.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class StateChangedEventArgs
+    public class StateChangedEventArgs : EventArgs
     {
         internal StateChangedEventArgs(State previous, State current)
         {
@@ -35,7 +37,7 @@ namespace Tizen.Uix.VoiceControlManager
         public State Previous
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -45,7 +47,7 @@ namespace Tizen.Uix.VoiceControlManager
         public State Current
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

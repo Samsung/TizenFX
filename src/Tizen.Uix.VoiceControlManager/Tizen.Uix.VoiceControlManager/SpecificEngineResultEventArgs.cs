@@ -26,12 +26,12 @@ namespace Tizen.Uix.VoiceControlManager
     /// This Class contains the gets specific engine's result from vc-service.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class SpecificEngineResultEventArgs
+    public class SpecificEngineResultEventArgs : EventArgs
     {
         internal SpecificEngineResultEventArgs(string engineAppId, string evt, string result)
         {
             EngineAppId = engineAppId;
-            Evt = evt;
+            EngineEventType = evt;
             Result = result;
         }
 
@@ -49,7 +49,7 @@ namespace Tizen.Uix.VoiceControlManager
         /// The specific engine event type
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Evt
+        public string EngineEventType
         {
             get;
             private set;

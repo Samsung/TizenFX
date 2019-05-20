@@ -14,49 +14,26 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
     /// This Class contains the pre recognition results(partial ASR) from vc-daemon.
     /// </summary>
-    public class FeedbackStreamingEventArgs
+    public class FeedbackStreamingEventArgs : EventArgs
     {
-        internal FeedbackStreamingEventArgs(FeedbackEventType evt, string buffer, int len)
+        internal FeedbackStreamingEventArgs(FeedbackType type, byte[] buffer)
         {
-            Evt = evt;
+            FeedbackType = type;
             Buffer = buffer;
-            Length = len;
         }
 
         /// <summary>
-        /// Enumeration for TTS feedback events
+        /// TTS feedback type
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public enum FeedbackEventType
-        {
-            /// <summary>
-            /// Failed
-            /// </summary>
-            Fail = -1,
-            /// <summary>
-            /// Start event
-            /// </summary>
-            Start = 1,
-            /// <summary>
-            /// Continue event
-            /// </summary>
-            Continue = 2,
-            /// <summary>
-            /// Finish event
-            /// </summary>
-            Finish = 3
-        }
-
-        /// <summary>
-        /// TTS feedback event
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public FeedbackEventType Evt
+        public FeedbackType FeedbackType
         {
             get;
             private set;
@@ -66,17 +43,7 @@ namespace Tizen.Uix.VoiceControlManager
         /// Audio streaming data
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Buffer
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Length of the audio streaming data
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int Length
+        public byte[] Buffer
         {
             get;
             private set;

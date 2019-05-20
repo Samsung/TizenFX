@@ -24,125 +24,63 @@ namespace Tizen.Uix.VoiceControlManager
         internal static Exception CreateException(ErrorCode err)
         {
             Tizen.Log.Error(LogTag, "Error " + err);
-            Exception exp;
             switch (err)
             {
                 case ErrorCode.OutOfMemory:
-                    {
-                        exp = new OutOfMemoryException("Out Of Memory");
-                        break;
-                    }
+                    return new InvalidOperationException("Out Of Memory");
 
                 case ErrorCode.IoError:
-                    {
-                        exp = new InvalidOperationException("I/O Error Occurred");
-                        break;
-                    }
+                    return new InvalidOperationException("I/O Error Occurred");
 
                 case ErrorCode.InvalidParameter:
-                    {
-                        exp = new ArgumentException("Invalid Parameters Provided");
-                        break;
-                    }
+                    return new ArgumentException("Invalid Parameters Provided");
 
                 case ErrorCode.TimedOut:
-                    {
-                        exp = new TimeoutException("No answer from service");
-                        break;
-                    }
+                    return new TimeoutException("No answer from service");
 
                 case ErrorCode.RecorderBusy:
-                    {
-                        exp = new InvalidOperationException("Recorder is Busy ");
-                        break;
-                    }
+                    return new InvalidOperationException("Recorder is Busy ");
 
                 case ErrorCode.PermissionDenied:
-                    {
-                        exp = new UnauthorizedAccessException("Permission Denied");
-                        break;
-                    }
+                    return new UnauthorizedAccessException("Permission Denied");
 
                 case ErrorCode.NotSupported:
-                    {
-                        exp = new NotSupportedException("VC NOT supported");
-                        break;
-                    }
+                    return new NotSupportedException("VC NOT supported");
 
                 case ErrorCode.InvalidState:
-                    {
-                        exp = new InvalidOperationException("Invalid state");
-                        break;
-                    }
+                    return new InvalidOperationException("Invalid state");
 
                 case ErrorCode.InvalidLanguage:
-                    {
-                        exp = new InvalidOperationException("Invalid language");
-                        break;
-                    }
+                    return new InvalidOperationException("Invalid language");
 
                 case ErrorCode.EngineNotFound:
-                    {
-                        exp = new InvalidOperationException("No available engine");
-                        break;
-                    }
+                    return new InvalidOperationException("No available engine");
 
                 case ErrorCode.OperationFailed:
-                    {
-                        exp = new InvalidOperationException("Operation Failed");
-                        break;
-                    }
+                    return new InvalidOperationException("Operation Failed");
 
                 case ErrorCode.OperationRejected:
-                    {
-                        exp = new InvalidOperationException("Operation Rejected");
-                        break;
-                    }
+                    return new InvalidOperationException("Operation Rejected");
 
                 case ErrorCode.IterationEnd:
-                    {
-                        exp = new InvalidOperationException("List Reached End");
-                        break;
-                    }
+                    return new InvalidOperationException("List Reached End");
 
                 case ErrorCode.Empty:
-                    {
-                        exp = new InvalidOperationException("List Empty");
-                        break;
-                    }
+                    return new InvalidOperationException("List Empty");
 
                 case ErrorCode.InProgressToReady:
-                    {
-                        exp = new InvalidOperationException("Progress to ready is not finished");
-                        break;
-                    }
+                    return new InvalidOperationException("Progress to ready is not finished");
 
                 case ErrorCode.InProgressToRecording:
-                    {
-                        exp = new InvalidOperationException("Progress to recording is not finished");
-                        break;
-                    }
+                    return new InvalidOperationException("Progress to recording is not finished");
 
                 case ErrorCode.InProgressToProcessing:
-                    {
-                        exp = new InvalidOperationException("Progress to processing is not finished");
-                        break;
-                    }
+                    return new InvalidOperationException("Progress to processing is not finished");
 
                 case ErrorCode.ServiceReset:
-                    {
-                        exp = new InvalidOperationException("Service reset");
-                        break;
-                    }
-
-                default:
-                    {
-                        exp = new Exception("");
-                        break;
-                    }
+                    return new InvalidOperationException("Service reset");
             }
-
-            return exp;
+            return new InvalidOperationException("Unknown error : {err.ToString()}");
         }
     }
 }

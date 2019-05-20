@@ -14,56 +14,36 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
-    /// This Class contains the requests dialog from vc-daemon.
+    /// This Class contains the pre recognition results(partial ASR) from vc-daemon.
     /// </summary>
-    public class DialogRequestedEventArgs
+    public class PreRecognitionResultUpdatedEventArgs : EventArgs
     {
-        internal DialogRequestedEventArgs(int pid, string dispTextString, string uttTextString, bool continous)
+        internal PreRecognitionResultUpdatedEventArgs(PreResultEventType evt, string resultString)
         {
-            Pid = pid;
-            DisplayText = dispTextString;
-            UtterenceText = uttTextString;
-            IsContinous = continous;
+            ResultEvent = evt;
+            Result = resultString;
         }
 
         /// <summary>
-        /// The PID
+        /// The pre result event
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public int Pid
+        public PreResultEventType ResultEvent
         {
             get;
             private set;
         }
 
         /// <summary>
-        /// The display text
+        /// Result ASR text
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string DisplayText
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// The utterence text
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public string UtterenceText
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Continous value
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public bool IsContinous
+        public string Result
         {
             get;
             private set;

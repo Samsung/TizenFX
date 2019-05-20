@@ -14,36 +14,42 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
-    /// This Class contains the requests private data from manager client.
+    /// This class contains the all recognition results from vc-daemon.
     /// </summary>
-    public class PrivateDataRequestedEventArgs
+    /// <since_tizen> 6 </since_tizen>
+    public class AllRecognitionResultEventArgs : EventArgs
     {
-        internal PrivateDataRequestedEventArgs(string key)
+        internal AllRecognitionResultEventArgs(RecognizedResult result, string recognizedText, string msg)
         {
-            Key = key;
+            Result = result;
+            RecognizedText = recognizedText;
+            Message = msg;
         }
 
         /// <summary>
-        /// Private key
+        /// The result of recognizing a VoiceCommand.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Key
-        {
-            get;
-            private set;
-        }
+        public RecognizedResult Result { get;  }
 
         /// <summary>
-        /// Private data
+        /// The recognized text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Data
-        {
-            get;
-            set;
-        }
+        public string RecognizedText { get; }
+
+        /// <summary>
+        /// Engine message, it can be one of the below:
+        /// 1. "vc.result.message.none"
+        /// 2. "vc.result.message.asr.result.consumed"
+        /// 3. "vc.result.message.error.too.loud"
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Message { get; }
     }
 }

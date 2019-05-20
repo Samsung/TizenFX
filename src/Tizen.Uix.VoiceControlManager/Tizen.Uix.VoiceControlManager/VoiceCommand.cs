@@ -64,18 +64,22 @@ namespace Tizen.Uix.VoiceControlManager
     /// This class represents a voice command.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class VoiceCommand
+    public class VoiceCommand : IDisposable
     {
         internal SafeCommandHandle _handle;
+        private bool _disposed = false;
 
         /// <summary>
         /// The public constructor.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
-        /// <exception cref="OutOfMemoryException">This exception can be due to out Of memory.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) This exception can be due to an invalid state.
+        /// 2) This exception can be due to out of memory.
+        /// </exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
-        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public VoiceCommand()
         {
             SafeCommandHandle handle;
@@ -94,6 +98,15 @@ namespace Tizen.Uix.VoiceControlManager
         }
 
         /// <summary>
+        /// The destructor of the VoiceCommand class.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        ~VoiceCommand()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets the unfixed command.
         /// This property should be used for commands which have non-fixed format.
         /// An empty string will be returned in case of some internal error.
@@ -108,7 +121,7 @@ namespace Tizen.Uix.VoiceControlManager
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "UnfixedCommand Failed with error " + error);
-                    return "";
+                    return string.Empty;
                 }
 
                 return unfixedCommand;
@@ -121,8 +134,8 @@ namespace Tizen.Uix.VoiceControlManager
         /// <since_tizen> 6 </since_tizen>
         /// <remarks>If you do not set the command type, the default value is undefined. You should set the type if the command is valid.</remarks>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
-        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
-        public CommandType Type
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        public CommandType CommandType
         {
             get
             {
@@ -158,7 +171,7 @@ namespace Tizen.Uix.VoiceControlManager
         /// <since_tizen> 6 </since_tizen>
         /// <remarks>The default format is Fixed.</remarks>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
-        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public CommandFormat Format
         {
             get
@@ -189,7 +202,7 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
-        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public string Command
         {
             get
@@ -199,7 +212,7 @@ namespace Tizen.Uix.VoiceControlManager
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetCommand Failed with error " + error);
-                    return "";
+                    return string.Empty;
                 }
 
                 return command;
@@ -212,6 +225,37 @@ namespace Tizen.Uix.VoiceControlManager
                     Log.Error(LogTag, "SetCommand Failed with error " + error);
                 }
             }
+        }
+
+        /// <summary>
+        /// Release any unmanaged resources used by this object.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Release any unmanaged resources used by this object.
+        /// </summary>
+        /// <param name="disposing">
+        /// If true, disposes any disposable objects. If false, does not dispose disposable objects.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                _handle?.Dispose();
+                _handle = null;
+            }
+
+            _disposed = true;
         }
     }
 }

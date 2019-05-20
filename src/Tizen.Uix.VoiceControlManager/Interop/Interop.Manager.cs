@@ -79,9 +79,6 @@ internal static partial class Interop
         [DllImport(Libraries.VoiceControlManager, EntryPoint = "vc_mgr_set_command_list_from_file")]
         internal static extern ErrorCode VcMgrSetCommandListFromFile(string filePath, CommandType type);
 
-        [DllImport(Libraries.VoiceControlManager, EntryPoint = "vc_mgr_set_preloaded_commands_from_file")]
-        internal static extern ErrorCode VcMgrSetPreloadedCommandsFromFile(string filePath);
-
         [DllImport(Libraries.VoiceControlManager, EntryPoint = "vc_mgr_get_current_commands")]
         internal static extern ErrorCode VcMgrGetCurrentCommands(out IntPtr vcCmdList);
 
@@ -230,10 +227,10 @@ internal static partial class Interop
         internal static extern ErrorCode VcMgrUnsetVcTtsStreamingCb();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool VcMgrAllResultCallback(ResultEvent evt, IntPtr vcCmdList, IntPtr result, IntPtr msg, IntPtr userData);
+        internal delegate bool VcMgrAllResultCallback(RecognizedResult result, IntPtr vcCmdList, IntPtr recognizedText, IntPtr msg, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void VcMgrPreResultCallback(PreResultEventArgs.PreResultEventType evt, IntPtr result, IntPtr userData);
+        internal delegate void VcMgrPreResultCallback(PreResultEventType evt, IntPtr result, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void VcMgrSpecificEngineResultCallback(IntPtr engineAppId, IntPtr evt, IntPtr result, IntPtr userData);
@@ -248,19 +245,19 @@ internal static partial class Interop
         internal delegate int VcMgrPrivateDataSetCallback(IntPtr key, IntPtr data, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate int VcMgrPrivateDataRequestedCallback([MarshalAs(UnmanagedType.LPStr)]string key, [MarshalAs(UnmanagedType.LPStr)]out string data, IntPtr userData);
+        internal delegate VoiceError VcMgrPrivateDataRequestedCallback(string key, out string data, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void VcMgrFeedbackAudioFormatCallback(int rate, FeedbackAudioFormatEventArgs.AudioChanelType channel, FeedbackAudioFormatEventArgs.AudioType audioType, IntPtr userData);
+        internal delegate void VcMgrFeedbackAudioFormatCallback(int rate, AudioChanelType channel, AudioType audioType, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void VcMgrFeedbackStreamingCallback(FeedbackStreamingEventArgs.FeedbackEventType evt, IntPtr buffer, int len, IntPtr userData);
+        internal delegate void VcMgrFeedbackStreamingCallback(FeedbackType type, IntPtr buffer, int len, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void VcMgrVcTtsStreamingCallback(int pid, int uttId, VcTtsStreamingEventArgs.FeedbackEventType evt, IntPtr buffer, int len, IntPtr userData);
+        internal delegate void VcMgrVcTtsStreamingCallback(int pid, int uttId, FeedbackType type, IntPtr buffer, int len, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void VcMgrResultCallback(ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData);
+        internal delegate void VcMgrResultCallback(RecognizedResult result, IntPtr cmdList, IntPtr recognizedText, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void VcMgrCurrentLanguageChangedCallback(IntPtr previous, IntPtr current, IntPtr userData);

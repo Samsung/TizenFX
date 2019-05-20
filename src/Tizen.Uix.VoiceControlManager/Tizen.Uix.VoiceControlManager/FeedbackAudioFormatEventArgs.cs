@@ -14,12 +14,14 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.VoiceControlManager
 {
     /// <summary>
     /// This Class contains audio formats necessary for playing TTS feedback.
     /// </summary>
-    public class FeedbackAudioFormatEventArgs
+    public class FeedbackAudioFormatEventArgs : EventArgs
     {
         internal FeedbackAudioFormatEventArgs(int rate, AudioChanelType channel, AudioType audioType)
         {
@@ -27,38 +29,6 @@ namespace Tizen.Uix.VoiceControlManager
             Channel = channel;
             Audio = audioType;
         }
-
-        /// <summary>
-        /// Enumerations for audio channels
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public enum AudioChanelType
-        {
-            /// <summary>
-            /// 1 channel, mono
-            /// </summary>
-            Mono = 0,
-            /// <summary>
-            /// 2 channels, stereo
-            /// </summary>
-            Stereo
-        }
-
-        /// <summary>
-        /// Enumerations of audio types
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public enum AudioType
-        {
-            /// <summary>
-            /// Signed 16bit audio type, Little endian
-            /// </summary>
-            PcmS16Le = 0,
-            /// <summary>
-            /// Unsigned 8bit audio type
-            /// </summary>
-            PcmU8
-        } 
 
         /// <summary>
         /// Audio sampling rate
