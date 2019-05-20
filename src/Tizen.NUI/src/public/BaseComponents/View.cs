@@ -2536,8 +2536,16 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool HasFocus()
         {
-            bool ret = NDalicPINVOKE.View_HasKeyInputFocus(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = false;
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                ret = NDalicPINVOKE.View_HasKeyInputFocus(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            else
+            {
+                Tizen.Log.Error("NUI", "swigCPtr of view is aleady disposed.");
+            }
             return ret;
         }
 
