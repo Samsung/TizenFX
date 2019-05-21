@@ -96,7 +96,7 @@ namespace Tizen.Network.Stc
             return handle;
         }
 
-        internal Task<NetworkStatistics> GetStatisticsAsync(StcRule rule)
+        internal Task<NetworkStatistics> GetStatisticsAsync(string appId, StcRule rule)
         {
             if (rule._disposed)
             {
@@ -135,6 +135,7 @@ namespace Tizen.Network.Stc
                 };
             }
 
+            rule.AppId = appId;
             int ret = Interop.Stc.GetStats(GetSafeHandle(), rule._ruleHandle, _getStatsCb_map[id], id);
             if (ret != (int)StcError.None)
             {
@@ -203,6 +204,7 @@ namespace Tizen.Network.Stc
                 };
             }
 
+            rule.AppId = null;
             int ret = Interop.Stc.GetAllStats(GetSafeHandle(), rule._ruleHandle, _getAllStatsCb_map[id], id);
             if (ret != (int)StcError.None)
             {

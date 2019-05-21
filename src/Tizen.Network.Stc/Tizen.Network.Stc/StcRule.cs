@@ -85,27 +85,8 @@ namespace Tizen.Network.Stc
             _disposed = true;
         }
 
-        /// <summary>
-        /// A property for Application ID for statistics rule.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <value>AppId.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown while setting this value, when the object instance is disposed or released.</exception>
-        public string AppId
+        internal string AppId
         {
-            get
-            {
-                string appId;
-                int ret = Interop.Stc.Rule.GetAppId(_ruleHandle, out appId);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get AppId, Error - " + (StcError)ret);
-                    return string.Empty;
-                }
-                return appId;
-            }
             set
             {
                 if (_disposed)

@@ -77,9 +77,10 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Gets the statistics information of an application, which matched the rule, asynchronously. The rule must contain an Application ID.
+        /// Gets the statistics information of an application, which matched the rule, asynchronously. Application ID must be provided.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <param name="appId"> Application's appId for which statistics information is required.</param>
         /// <param name="rule"> The StcRule object.</param>
         /// <returns>The Statistics information of the application that used network in between timestamps specified.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -87,9 +88,9 @@ namespace Tizen.Network.Stc
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
-        public static Task<NetworkStatistics> GetStatisticsAsync(StcRule rule)
+        public static Task<NetworkStatistics> GetStatisticsAsync(string appId, StcRule rule)
         {
-            return StcManagerImpl.Instance.GetStatisticsAsync(rule);
+            return StcManagerImpl.Instance.GetStatisticsAsync(appId, rule);
         }
 
         /// <summary>

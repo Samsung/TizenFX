@@ -56,8 +56,6 @@ internal static partial class Interop
             internal static extern int Destroy(IntPtr rule);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_app_id")]
             internal static extern int SetAppId(SafeRuleHandle rule, string appId);
-            [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_app_id")]
-            internal static extern int GetAppId(SafeRuleHandle rule, out string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
             internal static extern int SetTimeInterval(SafeRuleHandle rule, DateTime from, DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_interval")]
