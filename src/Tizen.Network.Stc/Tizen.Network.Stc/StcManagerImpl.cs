@@ -98,11 +98,6 @@ namespace Tizen.Network.Stc
 
         internal Task<NetworkStatistics> GetStatisticsAsync(string appId, StcRule rule)
         {
-            if (rule._disposed)
-            {
-                throw new ArgumentException("Invalid StcRule object (Object may have been disposed or released).");
-            }
-
             TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
             IntPtr id;
 
@@ -135,8 +130,7 @@ namespace Tizen.Network.Stc
                 };
             }
 
-            rule.AppId = appId;
-            int ret = Interop.Stc.GetStats(GetSafeHandle(), rule._ruleHandle, _getStatsCb_map[id], id);
+            int ret = Interop.Stc.GetStats(GetSafeHandle(), rule.ConvertToNativeRule(appId), _getStatsCb_map[id], id);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
@@ -148,11 +142,6 @@ namespace Tizen.Network.Stc
 
         internal Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StcRule rule)
         {
-            if (rule._disposed)
-            {
-                throw new ArgumentException("Invalid StcRule object (Object may have been disposed or released).");
-            }
-
             TaskCompletionSource<IEnumerable<NetworkStatistics>> task = new TaskCompletionSource<IEnumerable<NetworkStatistics>>();
             IntPtr id;
 
@@ -193,7 +182,7 @@ namespace Tizen.Network.Stc
                     if(retTemp != (int)StcError.None)
                     {
                         Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
-                        StcErrorFactory.ThrowStcException(retTemp);
+                        task.SetException(new InvalidOperationException("Error occurs during foreachAllStatus(), " + (StcError)retTemp));
                     }
 
                     task.SetResult(statsList);
@@ -204,8 +193,7 @@ namespace Tizen.Network.Stc
                 };
             }
 
-            rule.AppId = null;
-            int ret = Interop.Stc.GetAllStats(GetSafeHandle(), rule._ruleHandle, _getAllStatsCb_map[id], id);
+            int ret = Interop.Stc.GetAllStats(GetSafeHandle(), rule.ConvertToNativeRule(null), _getAllStatsCb_map[id], id);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);

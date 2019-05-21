@@ -58,16 +58,10 @@ internal static partial class Interop
             internal static extern int SetAppId(SafeRuleHandle rule, string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
             internal static extern int SetTimeInterval(SafeRuleHandle rule, DateTime from, DateTime to);
-            [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_interval")]
-            internal static extern int GetTimeInterval(SafeRuleHandle rule, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
             internal static extern int SetInterfaceType(SafeRuleHandle rule, NativeNetworkInterface ifaceType);
-            [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_iface_type")]
-            internal static extern int GetInterfaceType(SafeRuleHandle rule, out NativeNetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
             internal static extern int SetTimePeriod(SafeRuleHandle rule, NativeTimePeriodType timePeriod);
-            [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_period")]
-            internal static extern int GetTimePeriod(SafeRuleHandle rule, out NativeTimePeriodType timePeriod);
         }
 
         internal static class Info {

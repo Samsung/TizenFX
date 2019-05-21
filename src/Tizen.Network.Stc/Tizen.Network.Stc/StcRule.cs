@@ -24,228 +24,55 @@ namespace Tizen.Network.Stc
     /// A class for managing the Stc Rules to match applications.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class StcRule : IDisposable
+    public class StcRule
     {
-        internal Interop.Stc.SafeRuleHandle _ruleHandle;
-        internal bool _disposed;
-
         /// <summary>
-        /// Creates a StcRule object.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public StcRule()
-        {
-            Log.Debug(Globals.LogTag, "New StcRule.");
-            int ret = Interop.Stc.Rule.Create(StcManagerImpl.Instance.GetSafeHandle(), out _ruleHandle);
-            if(ret != (int)StcError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to create Rule handle, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
-            }
-        }
-
-        /// <summary>
-        /// Destroy the StcRule object
-        /// </summary>
-        ~StcRule()
-        {
-            Dispose(false);
-        }
-
-        /// <summary>
-        /// A method to destroy the managed StcRule objects.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Releases the resources used by the StcRule.
-        /// </summary>
-        /// <param name="disposing">True to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
-        protected void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if(disposing)
-            {
-                _ruleHandle.Dispose();
-                _ruleHandle = null;
-            }
-
-            _disposed = true;
-        }
-
-        internal string AppId
-        {
-            set
-            {
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
-                }
-                int ret = Interop.Stc.Rule.SetAppId(_ruleHandle, value);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to set AppId, Error - " + (StcError)ret);
-                    StcErrorFactory.ThrowStcException(ret);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Set the time range (interval) for statistics rule.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <param name="from">The beginning of the time interval.</param>
-        /// <param name="to">The end of the time interval.</param>
-        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
-        public void SetTimeInterval(DateTime from, DateTime to)
-        {
-            if (_disposed)
-            {
-                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
-            }
-            int ret = Interop.Stc.Rule.SetTimeInterval(_ruleHandle, from, to);
-            if (ret != (int)StcError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to set time interval, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
-            }
-        }
-
-        /// <summary>
-        /// A property to get "from" value(start) of time interval for statistics rule.
+        /// A property for "from" value of time interval for statistics rule.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>from(start) of time interval.</value>
-        public DateTime From
-        {
-            get
-            {
-                DateTime from;
-                DateTime to;
-                int ret = Interop.Stc.Rule.GetTimeInterval(_ruleHandle, out from, out to);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get time interval(from value) for rule, Error - " + (StcError)ret);
-                }
-                return from;
-            }
-        }
+        public DateTime? From { get; set; }
 
         /// <summary>
-        /// A property to get "to" value(end) of time interval for statistics rule.
+        /// A property for "to" value of time interval for statistics rule.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>to(end) of time interval.</value>
-        public DateTime To
-        {
-            get
-            {
-                DateTime from;
-                DateTime to;
-                int ret = Interop.Stc.Rule.GetTimeInterval(_ruleHandle, out from, out to);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get time interval(to value) for rule, Error - " + (StcError)ret);
-                }
-                return to;
-            }
-        }
+        public DateTime? To { get; set; }
 
         /// <summary>
         /// A property for Interface type for statistics rule.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Interface type.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown while setting this value, when the object instance is disposed or released.</exception>
-        public NetworkInterface? InterfaceType
-        {
-            get
-            {
-                NativeNetworkInterface ifaceType;
-                int ret = Interop.Stc.Rule.GetInterfaceType(_ruleHandle, out ifaceType);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get Interface type, Error - " + (StcError)ret);
-                    return null;
-                }
-                if (ifaceType == NativeNetworkInterface.Unknown)
-                {
-                    Log.Debug(Globals.LogTag, "Interface Type in Rule is Unknown(default), i.e. user didn't set it.");
-                    return null;
-                }
-                return (NetworkInterface)ifaceType;
-            }
-            set
-            {
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
-                }
-                int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, (value == null ? NativeNetworkInterface.Unknown : (NativeNetworkInterface)value));
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to set Interface type, Error - " + (StcError)ret);
-                    StcErrorFactory.ThrowStcException(ret);
-                }
-            }
-        }
-
+        public NetworkInterface? InterfaceType { get; set; }
 
         /// <summary>
         /// A property for Time period for statistics rule. This is used to granulate the statistics data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Time period.</value>
-        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        /// <exception cref="ObjectDisposedException">Thrown while setting this value, when the object instance is disposed or released.</exception>
-        public TimePeriodType? TimePeriod
+        public TimePeriodType? TimePeriod { get; set; }
+
+        internal Interop.Stc.SafeRuleHandle ConvertToNativeRule(string appId)
         {
-            get
+            Interop.Stc.SafeRuleHandle handle;
+            Interop.Stc.Rule.Create(StcManagerImpl.Instance.GetSafeHandle(), out handle);
+
+            Interop.Stc.Rule.SetAppId(handle, appId);
+            if (From.HasValue && To.HasValue)
             {
-                NativeTimePeriodType timePeriod;
-                int ret = Interop.Stc.Rule.GetTimePeriod(_ruleHandle, out timePeriod);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get Time period, Error - " + (StcError)ret);
-                    return null;
-                }
-                if (timePeriod == NativeTimePeriodType.Unknown)
-                {
-                    Log.Debug(Globals.LogTag, "Time period in Rule is Unknown(default), i.e. user didn't set it.");
-                    return null;
-                }
-                return (TimePeriodType)timePeriod;
+                Interop.Stc.Rule.SetTimeInterval(handle, From.Value, To.Value);
             }
-            set
+            if (InterfaceType.HasValue)
             {
-                if (_disposed)
-                {
-                    throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
-                }
-                int ret = Interop.Stc.Rule.SetTimePeriod(_ruleHandle, (value == null ? NativeTimePeriodType.Unknown : (NativeTimePeriodType)value));
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to set Time period, Error - " + (StcError)ret);
-                    StcErrorFactory.ThrowStcException(ret);
-                }
+                Interop.Stc.Rule.SetInterfaceType(handle, (NativeNetworkInterface)InterfaceType.Value);
             }
+            if (TimePeriod.HasValue)
+            {
+                Interop.Stc.Rule.SetTimePeriod(handle, (NativeTimePeriodType)TimePeriod.Value);
+            }
+            return handle;
         }
     }
 }
