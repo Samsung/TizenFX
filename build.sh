@@ -14,7 +14,6 @@ usage() {
   echo "Commands:"
   echo "    build [module]     Build a specific module"
   echo "    full               Build all modules in src/ directory"
-  echo "    dummy              Generate dummy assemblies of all modules"
   echo "    pack [version]     Make a NuGet package with build artifacts"
   echo "    install [target]   Install assemblies to the target device"
   echo "    clean              Clean all artifacts"
@@ -41,9 +40,6 @@ cmd_full_build() {
   $RUN_BUILD /t:clean
   $RUN_BUILD /t:restore $NUGET_SOURCE_OPT $@
   $RUN_BUILD /t:build /fl $@
-}
-
-cmd_dummy_build() {
   $RUN_BUILD /t:dummy
 }
 
@@ -103,7 +99,6 @@ cmd=$1; shift;
 case "$cmd" in
   build|--build|-b) cmd_build $@ ;;
   full |--full |-f) cmd_full_build $@ ;;
-  dummy|--dummy|-d) cmd_dummy_build $@ ;;
   pack |--pack |-p) cmd_pack $@ ;;
   install |--install |-i) cmd_install $@ ;;
   clean|--clean|-c) cmd_clean $@ ;;

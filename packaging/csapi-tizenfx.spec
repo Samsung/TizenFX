@@ -121,7 +121,6 @@ export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 
 %define build_cmd ./tools/scripts/retry.sh ./tools/scripts/timeout.sh -t 600 ./build.sh
 %{build_cmd} --full
-%{build_cmd} --dummy
 %{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
 
 GetFileList() {
