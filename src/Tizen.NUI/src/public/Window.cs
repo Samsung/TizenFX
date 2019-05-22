@@ -66,22 +66,62 @@ namespace Tizen.NUI
             }
         }
 
-        internal Window(Rectangle windowPosition, string name, bool isTransparent) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
+        /// <summary>
+        /// Creates a new Window.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window.</param>
+        /// <param name="name">The Window title.</param>
+        /// <param name="isTransparent">Whether Window is transparent.</param>
+        /// <returns>A new Window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(Rectangle windowPosition, string name, bool isTransparent) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Window(Rectangle windowPosition, string name) : this(Interop.Window.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
+        /// <summary>
+        /// Creates a new Window.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window.</param>
+        /// <param name="name">The Window title.</param>
+        /// <returns>A new Window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(Rectangle windowPosition, string name) : this(Interop.Window.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(Interop.Window.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
+        /// <summary>
+        /// Creates a new Window.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window.</param>
+        /// <param name="name">The Window title.</param>
+        /// <param name="className">The Window class name.</param>
+        /// <param name="isTransparent">Whether Window is transparent.</param>
+        /// <returns>A new Window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(Interop.Window.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Window(Rectangle windowPosition, string name, string className) : this(Interop.Window.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
+        /// <summary>
+        /// Creates a new Window.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window.</param>
+        /// <param name="name">The Window title.</param>
+        /// <param name="className">The Window class name.</param>
+        /// <returns>A new Window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(Rectangle windowPosition, string name, string className) : this(Interop.Window.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1109,10 +1149,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddLayer(Layer layer)
         {
-            Interop.Stage.Stage_Add(stageCPtr, Layer.getCPtr(layer));
+            Interop.Window.Add(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             LayersChildren?.Add(layer);
+            layer.SetWindow(this);
         }
 
         /// <summary>
@@ -1122,10 +1163,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
-            Interop.Stage.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
+            Interop.Window.Remove(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             LayersChildren?.Remove(layer);
+            layer.SetWindow(null);
         }
 
         /// <summary>
@@ -1235,23 +1277,25 @@ namespace Tizen.NUI
 
         internal void Add(Layer layer)
         {
-            Interop.Stage.Stage_Add(stageCPtr, Layer.getCPtr(layer));
+            Interop.Window.Add(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             LayersChildren?.Add(layer);
+            layer.SetWindow(this);
         }
 
         internal void Remove(Layer layer)
         {
-            Interop.Stage.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
+            Interop.Window.Remove(swigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             LayersChildren?.Remove(layer);
+            layer.SetWindow(null);
         }
 
         internal Vector2 GetSize()
         {
-            Vector2 ret = new Vector2(Interop.Stage.Stage_GetSize(stageCPtr), true);
+            Vector2 ret = new Vector2(Interop.Window.GetSize(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1282,22 +1326,23 @@ namespace Tizen.NUI
             // Core has been initialized, not when Stage is ready.
             if (_rootLayer == null && Window.IsInstalled())
             {
-                _rootLayer = new Layer(Interop.Stage.Stage_GetRootLayer(stageCPtr), true);
+                _rootLayer = new Layer(Interop.Window.GetRootLayer(swigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 LayersChildren?.Add(_rootLayer);
+                _rootLayer.SetWindow(this);
             }
             return _rootLayer;
         }
 
         internal void SetBackgroundColor(Vector4 color)
         {
-            Interop.Stage.Stage_SetBackgroundColor(stageCPtr, Vector4.getCPtr(color));
+            Interop.Window.SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Vector4 GetBackgroundColor()
         {
-            Vector4 ret = new Vector4(Interop.Stage.Stage_GetBackgroundColor(stageCPtr), true);
+            Vector4 ret = new Vector4(Interop.Window.GetBackgroundColor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1332,7 +1377,7 @@ namespace Tizen.NUI
 
         internal KeyEventSignal KeyEventSignal()
         {
-            KeyEventSignal ret = new KeyEventSignal(Interop.StageSignal.Stage_KeyEventSignal(stageCPtr), false);
+            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1346,7 +1391,7 @@ namespace Tizen.NUI
 
         internal TouchSignal TouchSignal()
         {
-            TouchSignal ret = new TouchSignal(Interop.StageSignal.Stage_TouchSignal(stageCPtr), false);
+            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1447,6 +1492,44 @@ namespace Tizen.NUI
 
             // Setting transparency of the window should request a relayout of the tree in the case the window changes from fully transparent.
 
+        }
+
+        /// <summary>
+        /// Dispose for Window
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            this.DisconnectNativeSignals();
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.Window.delete_Window(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
         internal System.IntPtr GetNativeWindowHandler()
