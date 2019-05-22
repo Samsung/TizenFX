@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ArtifactsDirectory>$(OutputBaseDir)bin\design\</ArtifactsDirectory>
   </PropertyGroup>
-
 
   <ItemGroup>
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
