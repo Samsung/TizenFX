@@ -15,7 +15,6 @@
  *
  */
 using System;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,7 +23,6 @@ namespace Tizen.NUI
     /// A three-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(Vector3TypeConverter))]
     public class Vector3 : global::System.IDisposable
     {
         /// <summary>

@@ -21,8 +21,6 @@ using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
@@ -214,7 +212,6 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static void RegisterAssembly(Assembly assembly)
         {
-            XamlParser.s_assemblies.Add(assembly);
         }
 
         /// <summary>
@@ -341,16 +338,6 @@ namespace Tizen.NUI
                 Log.Info("NUI", "CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
             }
             base.OnAppControlReceived(e);
-        }
-
-        /// <summary>
-        /// Overrides this method if you want to handle behavior.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            Device.PlatformServices = new TizenPlatformServices();
         }
     }
 

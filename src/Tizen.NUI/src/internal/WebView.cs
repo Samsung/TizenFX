@@ -20,7 +20,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
+using Tizen.NUI.Bindable;
 
 namespace Tizen.NUI
 {
