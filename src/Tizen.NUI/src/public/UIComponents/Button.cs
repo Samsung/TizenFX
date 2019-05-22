@@ -18,7 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
+using Tizen.NUI.Bindable;
 
 namespace Tizen.NUI.UIComponents
 {
@@ -863,7 +863,7 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the label.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Tizen.NUI.PropertyMap Label
+        public PropertyMap Label
         {
             get
             {

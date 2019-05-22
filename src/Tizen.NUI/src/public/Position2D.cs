@@ -16,7 +16,6 @@
  */
 using System;
 using System.Globalization;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -25,7 +24,6 @@ namespace Tizen.NUI
     /// Position2D is a two-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
     public class Position2D : global::System.IDisposable
     {
         /// <summary>
