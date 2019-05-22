@@ -316,14 +316,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
-            if (_windowSize2D != null)
-            {
-                Window.Instance.WindowSize = _windowSize2D;
-            }
-            if (_windowPosition2D != null)
-            {
-                Window.Instance.WindowPosition = _windowPosition2D;
-            }
         }
 
         /// <summary>
