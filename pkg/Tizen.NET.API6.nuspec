@@ -13,7 +13,31 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   </metadata>
   <files>
-    <file src="Artifacts\bin\public\ref\*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\ElmSharp*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Account*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Applications*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Content*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Location*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Messaging*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Multimedia*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Network*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Pims*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Security*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.System*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Uix*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Maps.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Nlp.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.PhonenumberUtils.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Sensor.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Telephony.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Tracer.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.WebView.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Context.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.Log.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.NUI.Wearable.dll"  target="ref\netstandard2.0" />
     <file src="Artifacts\bin\public\*.xml"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.NUI.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\public\Tizen.NUI.Design.dll" target="ref\netstandard2.0\Design" />
   </files>
 </package>
