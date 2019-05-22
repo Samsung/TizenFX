@@ -36,20 +36,7 @@ namespace Tizen.Account.OAuth2
 
         }
 
-        /// <summary>
-        /// Retrieves authorization code asynchronously. The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.1.1
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <param name="request">The authorization request <see cref="CodeGrantAuthorizationRequest"/></param>
-        /// <returns>The response containing authorization code.</returns>
-        /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
-        /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
-        public override async Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
-        {
-            IntPtr requestHandle = GetRequestHandle(request as CodeGrantAuthorizationRequest);
-            return await Task.Run(() => GetAuthorizationResponse(requestHandle));
-        }
+
 
         /// <summary>
         /// Retrieves access token by exchanging authorization code received using <see cref="AuthorizeAsync(AuthorizationRequest)"/>.
@@ -61,41 +48,12 @@ namespace Tizen.Account.OAuth2
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
         /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
-        public override async Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
+        public  async Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
             IntPtr requestHandle = GetRequestHandle(request as CodeGrantTokenRequest);
             return await Task.Run(() => GetAccessTokenByCode(requestHandle) );
         }
 
-        /// <summary>
-        /// Clears the cookies
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void ClearCookies()
-        {
-            int ret = (int)OAuth2Error.None;
-            ret = Interop.Manager.ClearCookies(_managerHandle);
-            if (ret != (int)OAuth2Error.None)
-            {
-                Log.Error(ErrorFactory.LogTag, "Interop failed");
-                throw ErrorFactory.GetException(ret);
-            }
-        }
-
-        /// <summary>
-        /// Clear the cache
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void ClearCache()
-        {
-            int ret = (int)OAuth2Error.None;
-            ret = Interop.Manager.ClearCache(_managerHandle);
-            if (ret != (int)OAuth2Error.None)
-            {
-                Log.Error(ErrorFactory.LogTag, "Interop failed");
-                throw ErrorFactory.GetException(ret);
-            }
-        }
 
         // Fill device request handle for Authorization code grant
         private IntPtr GetRequestHandle(CodeGrantAuthorizationRequest request)
