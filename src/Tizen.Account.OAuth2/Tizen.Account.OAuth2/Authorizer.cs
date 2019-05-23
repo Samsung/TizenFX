@@ -68,6 +68,33 @@ namespace Tizen.Account.OAuth2
             }
         }
 
+        /// <summary>
+        /// Authorizes the client with access toekn / authorizaion code in Implicit and Authorization Code grant flows respectively.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <see cref="CodeGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
+        /// <see cref="ImplicitGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
+        /// <param name="request">An authorization request</param>
+        /// <returns> The authorization response from server</returns>
+        [Obsolete("This function is deprecated")]
+        public virtual Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the access token in OAuth2 supported grant flows except Implicit Grant flow.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// <see cref="CodeGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
+        /// <see cref="ImplicitGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
+        /// <param name="request">A token request</param>
+        /// <returns>The response from server</returns>
+        [Obsolete("This function is deprecated")]
+        public virtual Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object.
