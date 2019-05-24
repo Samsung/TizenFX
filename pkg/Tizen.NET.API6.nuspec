@@ -13,8 +13,8 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   </metadata>
   <files>
-    <file src="Artifacts\bin\public\ref\*.dll"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\dummy\*.dll"  target="ref\netstandard2.0" />
     <file src="Artifacts\bin\public\*.xml"  target="ref\netstandard2.0" />
-    <file src="Artifacts\bin\design\*.dll" target="lib\netstandard2.0\Design" />
+    <file src="Artifacts\bin\design\Tizen.NUI.Design.dll" target="ref\netstandard2.0\Design" />
   </files>
 </package>
