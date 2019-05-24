@@ -18,7 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Binding;
+using Tizen.NUI.Bindable;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -265,7 +265,6 @@ namespace Tizen.NUI.BaseComponents
                 NotifyPropertyChanged();
             }
         }
-
 
         /// <summary>
         /// Adds a child to the table.<br />

@@ -20,7 +20,7 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
+using Tizen.NUI.Bindable;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1275,9 +1275,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Invoked whenever the binding context of the textlabel changes. Implement this method to add class handling for this event.
         /// </summary>
-        protected override void OnBindingContextChanged()
+        /// Deprecated. Do not use.
+        protected void OnBindingContextChanged()
         {
-            base.OnBindingContextChanged();
+
         }
 
         private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
