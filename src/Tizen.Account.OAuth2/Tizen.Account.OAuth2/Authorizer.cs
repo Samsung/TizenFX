@@ -76,7 +76,7 @@ namespace Tizen.Account.OAuth2
         /// <see cref="ImplicitGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
         /// <param name="request">An authorization request</param>
         /// <returns> The authorization response from server</returns>
-        [Obsolete("This function is deprecated")]
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public virtual Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
         {
             throw new NotImplementedException();
@@ -90,7 +90,7 @@ namespace Tizen.Account.OAuth2
         /// <see cref="ImplicitGrantAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>
         /// <param name="request">A token request</param>
         /// <returns>The response from server</returns>
-        [Obsolete("This function is deprecated")]
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public virtual Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
             throw new NotImplementedException();
