@@ -46,6 +46,7 @@ namespace Tizen.Account.OAuth2
         /// The authroization code.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public string Code { get; internal set; }
 
         /// <summary>
@@ -55,6 +56,7 @@ namespace Tizen.Account.OAuth2
         /// <remarks>
         /// The value can be null depending on the server specifications.
         /// </remarks>
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public string State { get; internal set; }
 
         /// <summary>
@@ -64,6 +66,7 @@ namespace Tizen.Account.OAuth2
         /// <remarks>
         /// The return value can be null depending on the server specifications.
         /// </remarks>
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public string GetCustomValue(string key)
         {
             IntPtr value = IntPtr.Zero;

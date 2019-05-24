@@ -45,6 +45,7 @@ namespace Tizen.Account.OAuth2
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
         /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public new virtual async Task<TokenResponse> AuthorizeAsync(AuthorizationRequest request)
         {
             IntPtr requestHandle = GetRequestHandle(request as ImplicitGrantAuthorizationRequest);

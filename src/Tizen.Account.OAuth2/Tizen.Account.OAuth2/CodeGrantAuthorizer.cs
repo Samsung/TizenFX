@@ -45,6 +45,7 @@ namespace Tizen.Account.OAuth2
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
         /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public override async Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
         {
             IntPtr requestHandle = GetRequestHandle(request as CodeGrantAuthorizationRequest);
@@ -71,6 +72,7 @@ namespace Tizen.Account.OAuth2
         /// Clears the cookies
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public void ClearCookies()
         {
             int ret = (int)OAuth2Error.None;
@@ -86,6 +88,7 @@ namespace Tizen.Account.OAuth2
         /// Clear the cache
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("This API is deprecated since API Level 5, no longer supported")]
         public void ClearCache()
         {
             int ret = (int)OAuth2Error.None;
