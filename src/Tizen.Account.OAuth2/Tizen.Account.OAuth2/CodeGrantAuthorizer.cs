@@ -39,7 +39,7 @@ namespace Tizen.Account.OAuth2
 
 
         /// <summary>
-        /// Retrieves access token by exchanging authorization code received using AuthorizeAsync(AuthorizationRequest).
+        /// Retrieves access token by exchanging authorization code received using <see cref="ClientCredentialsAuthorizer.AuthorizeAsync(AuthorizationRequest)"/>.
         /// The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.1.3
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
