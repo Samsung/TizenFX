@@ -148,7 +148,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        public int MinimunLength
+        public int MinimumLength
         {
             get
             {

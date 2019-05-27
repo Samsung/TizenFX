@@ -34,10 +34,18 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the PlayerBufferingTime struct.
         /// </summary>
         /// <param name="preBufferMillisecond">A duration of buffering data that must be prerolled to start playback.</param>
-        /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback
-        /// if player is paused for buffering internally.</param>
+        /// Except 0 and -1, setting at least 1000 milliseconds is recommended to ensure the normal buffering operation.
+        /// 0 : use platform default value which could be different depending on the streaming type and network status. (the initial value)
+        /// -1 : use current value. (since 5.5)
+        /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback,
+        /// when player is internally paused for buffering.
+        /// Except 0 and -1, setting at least 1000 milliseconds is recommended to ensure the normal buffering operation.
+        /// 0 : use platform default value, which depends on the streaming type and network status. It is set as the initial value of this parameter.
+        /// If the player state is <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/>,
+        /// this function will return correct time value instead of 0. (since 5.5)
+        /// -1 : use current value. (since 5.5)</param>
         /// <since_tizen> 5 </since_tizen>
-        public PlayerBufferingTime(int preBufferMillisecond, int reBufferMillisecond)
+        public PlayerBufferingTime(int preBufferMillisecond = -1, int reBufferMillisecond = -1)
         {
             PreBufferMillisecond = preBufferMillisecond;
             ReBufferMillisecond = reBufferMillisecond;
@@ -85,6 +93,7 @@ namespace Tizen.Multimedia
         #region Network configuration
         private string _cookie = "";
         private string _userAgent = "";
+        private const int MinBufferingTime = -1;
 
         /// <summary>
         /// Gets or sets the cookie for streaming playback.
@@ -153,10 +162,11 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="PreBufferMillisecond"/> is less than 0.<br/>
+        ///     <pramref name="PreBufferMillisecond"/> is less than -1.<br/>
         ///     -or-<br/>
-        ///     <pramref name="ReBufferMillisecond"/> is less than 0.<br/>
+        ///     <pramref name="ReBufferMillisecond"/> is less than -1.<br/>
         /// </exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <seealso cref="PlayerBufferingTime"/>
         /// <since_tizen> 5 </since_tizen>
         public PlayerBufferingTime BufferingTime
@@ -174,9 +184,10 @@ namespace Tizen.Multimedia
             {
                 ValidatePlayerState(PlayerState.Idle);
 
-                if (value.PreBufferMillisecond < 0 || value.ReBufferMillisecond < 0)
+                if (value.PreBufferMillisecond < MinBufferingTime || value.ReBufferMillisecond < MinBufferingTime)
                 {
-                    throw new ArgumentOutOfRangeException("invalid range");
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"invalid range, got { value.PreBufferMillisecond }, { value.ReBufferMillisecond }.");
                 }
 
                 NativePlayer.SetStreamingBufferingTime(Handle, value.PreBufferMillisecond, value.ReBufferMillisecond).
@@ -545,6 +556,86 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
                 NativePlayer.SetReplayGain(Handle, value).
                     ThrowIfFailed(this, "Failed to set the replaygain of the player");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the audio pitch.
+        /// </summary>
+        /// <value>The value indicating whether or not AudioPitch is enabled. The default is false.</value>
+        /// <remarks>This function is used for audio content only.
+        /// To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <seealso cref="AudioPitch"/>
+        /// <since_tizen> 6 </since_tizen>
+        public bool AudioPitchEnabled
+        {
+            get
+            {
+                ValidateNotDisposed();
+                NativePlayer.IsAudioPitchEnabled(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get whether the audio pitch is enabled or not");
+                return value;
+            }
+
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Idle);
+
+                NativePlayer.SetAudioPitchEnabled(Handle, value).
+                    ThrowIfFailed(this, "Failed to enable the audio pitch of the player");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the audio pitch value.
+        /// </summary>
+        /// <value>The audio stream pitch value. The default is 1.</value>
+        /// <remarks>Enabling pitch control could increase the CPU usage on some devices.
+        /// This function is used for audio content only.</remarks>
+        /// <exception cref="InvalidOperationException">A pitch is not enabled.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     value is less than 0.5.
+        ///     -or-<br/>
+        ///     value is greater than 2.0.<br/>
+        /// </exception>
+        /// <seealso cref="AudioPitchEnabled"/>
+        /// <since_tizen> 6 </since_tizen>
+        public float AudioPitch
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                if (AudioPitchEnabled == false)
+                {
+                    throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
+
+                NativePlayer.GetAudioPitch(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio pitch");
+
+                return value;
+            }
+
+            set
+            {
+                ValidateNotDisposed();
+
+                if (AudioPitchEnabled == false)
+                {
+                    throw new InvalidOperationException("An audio pitch is not enabled.");
+                }
+
+                if (value < 0.5F || 2.0F < value)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Valid value is 0.5 to 2.0");
+                }
+
+                NativePlayer.SetAudioPitch(Handle, value).ThrowIfFailed(this, "Failed to set the audio pitch");
             }
         }
 

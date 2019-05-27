@@ -9,7 +9,7 @@ using Tizen.NUI.Xaml;
 namespace Tizen.NUI.Binding
 {
     [ContentProperty("Value")]
-    // [ProvideCompiled("Tizen.NUI.Core.XamlC.SetterValueProvider")]
+    [ProvideCompiled("Tizen.NUI.Core.XamlC.SetterValueProvider")]
     internal sealed class Setter : IValueProvider
     {
         readonly ConditionalWeakTable<BindableObject, object> _originalValues = new ConditionalWeakTable<BindableObject, object>();

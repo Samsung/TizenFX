@@ -25,37 +25,27 @@ namespace ElmSharp.Test
         public override string TestName => "AnimationViewTest1";
         public override string TestDescription => "To test basic operation of AnimationView";
 
-        private enum AnimationState
+        void UpdateAnimationViewStateLabel(AnimationView aniview, Label _stateLabel)
         {
-            NotReady,
-            Play,
-            ReversePlay,
-            Pause,
-            Stop,
-        }
+            AnimationViewState _state = aniview.State;
 
-        private AnimationState _state;
-        private bool _isPlayingReverse;
-
-        void UpdateAnimationViewStateLabel(Label _stateLabel)
-        {
-            if (_state == AnimationState.NotReady)
+            if (_state == AnimationViewState.NotReady)
             {
                 _stateLabel.Text = "<font_size=32>State = Not Ready</font_size>";
             }
-            else if (_state == AnimationState.Play)
+            else if (_state == AnimationViewState.Play)
             {
                 _stateLabel.Text = "<font_size=32>State = Playing</font_size>";
             }
-            else if (_state == AnimationState.ReversePlay)
+            else if (_state == AnimationViewState.ReversedPlay)
             {
                 _stateLabel.Text = "<font_size=32>State = Reverse Playing</font_size>";
             }
-            else if (_state == AnimationState.Pause)
+            else if (_state == AnimationViewState.Pause)
             {
                 _stateLabel.Text = "<font_size=32>State = Paused</font_size>";
             }
-            else if (_state == AnimationState.Stop)
+            else if (_state == AnimationViewState.Stop)
             {
                 _stateLabel.Text = "<font_size=32>State = Stopped</font_size>";
             }
@@ -125,7 +115,28 @@ namespace ElmSharp.Test
             };
             aniview.SetAnimation(Path.Combine(TestRunner.ResourceDir, "a_mountain.json"));
             aniview.Show();
-            box.PackEnd(aniview);
+
+            Box box1 = new Box(box)
+            {
+                WeightX = 1,
+                WeightY = 0,
+                AlignmentX = -1,
+                AlignmentY = 1,
+                IsHorizontal = true,
+            };
+            box1.Show();
+            box.PackEnd(box1);
+
+            Label label1 = new Label(box)
+            {
+                WeightX = 1,
+                WeightY = 0,
+                AlignmentX = 0.0,
+                AlignmentY = 0.5,
+                Text = "Default Size = (" + aniview.DefaultSize.Width + "," + aniview.DefaultSize.Height + ")",
+            };
+            label1.Show();
+            box1.PackEnd(label1);
 
             Label label2 = new Label(box)
             {
@@ -133,10 +144,23 @@ namespace ElmSharp.Test
                 WeightY = 0,
                 AlignmentX = 1.0,
                 AlignmentY = 0.5,
-                Text = "Duration : " + (Math.Round(Convert.ToDouble(aniview.DurationTime), 2)).ToString(),
+                Text = "FrameCount : " + (aniview.FrameCount).ToString(),
             };
             label2.Show();
-            box.PackEnd(label2);
+            box1.PackEnd(label2);
+
+            Label label3 = new Label(box)
+            {
+                WeightX = 1,
+                WeightY = 0,
+                AlignmentX = 1.0,
+                AlignmentY = 0.5,
+                Text = "Duration : " + (Math.Round(Convert.ToDouble(aniview.DurationTime), 2)).ToString(),
+            };
+            label3.Show();
+            box.PackEnd(label3);
+
+            box.PackEnd(aniview);
 
             Box box2 = new Box(box)
             {
@@ -204,7 +228,7 @@ namespace ElmSharp.Test
 
             slider.ValueChanged += (s, e) =>
             {
-                aniview.KeyFrame = slider.Value;
+                aniview.Progress = slider.Value;
             };
 
             Box box3 = new Box(box)
@@ -218,63 +242,27 @@ namespace ElmSharp.Test
             box3.Show();
             box.PackEnd(box3);
 
-            Button btn1 = new Button(box3)
+            Label label4 = new Label(box)
             {
                 WeightX = 1,
                 WeightY = 0,
-                AlignmentX = -1,
-                AlignmentY = -1,
-                Text = "Play",
+                AlignmentX = 0.0,
+                AlignmentY = 0.5,
+                Text = (aniview.MinFrame).ToString() + " / " + (aniview.MaxFrame).ToString(),
             };
-            btn1.Show();
-            box3.PackEnd(btn1);
+            label4.Show();
+            box3.PackEnd(label4);
 
-            btn1.Clicked += (s, e) =>
-            {
-                _isPlayingReverse = false;
-                if (_state == AnimationState.ReversePlay)
-                {
-                    UpdateAnimationViewStateLabel(label);
-                }
-                aniview.Play();
-            };
-
-            Button btn2 = new Button(box3)
+            Label label5 = new Label(box)
             {
                 WeightX = 1,
                 WeightY = 0,
-                AlignmentX = -1,
-                AlignmentY = -1,
-                Text = "Reverse",
+                AlignmentX = 1.0,
+                AlignmentY = 0.5,
+                Text = (aniview.MinProgress).ToString() + " / " + (aniview.MaxProgress).ToString(),
             };
-            btn2.Show();
-            box3.PackEnd(btn2);
-
-            btn2.Clicked += (s, e) =>
-            {
-                _isPlayingReverse = true;
-                if (_state == AnimationState.Play)
-                {
-                    UpdateAnimationViewStateLabel(label);
-                }
-                aniview.Play(true);
-            };
-
-            Button btn3 = new Button(box3)
-            {
-                WeightX = 1,
-                WeightY = 0,
-                AlignmentX = -1,
-                AlignmentY = -1,
-                Text = "Stop",
-            };
-            btn3.Show();
-            box3.PackEnd(btn3);
-
-            btn3.Clicked += (s, e) =>
-            {
-                aniview.Stop();
-            };
+            label5.Show();
+            box3.PackEnd(label5);
 
             Box box4 = new Box(box)
             {
@@ -287,7 +275,68 @@ namespace ElmSharp.Test
             box4.Show();
             box.PackEnd(box4);
 
-            Button btn4 = new Button(box3)
+            Button btn1 = new Button(box4)
+            {
+                WeightX = 1,
+                WeightY = 0,
+                AlignmentX = -1,
+                AlignmentY = -1,
+                Text = "Play",
+            };
+            btn1.Show();
+            box4.PackEnd(btn1);
+
+            btn1.Clicked += (s, e) =>
+            {
+                aniview.Play();
+                UpdateAnimationViewStateLabel(aniview, label);
+            };
+
+            Button btn2 = new Button(box4)
+            {
+                WeightX = 1,
+                WeightY = 0,
+                AlignmentX = -1,
+                AlignmentY = -1,
+                Text = "Reverse",
+            };
+            btn2.Show();
+            box4.PackEnd(btn2);
+
+            btn2.Clicked += (s, e) =>
+            {
+                aniview.Play(true);
+                UpdateAnimationViewStateLabel(aniview, label);
+            };
+
+            Button btn3 = new Button(box4)
+            {
+                WeightX = 1,
+                WeightY = 0,
+                AlignmentX = -1,
+                AlignmentY = -1,
+                Text = "Stop",
+            };
+            btn3.Show();
+            box4.PackEnd(btn3);
+
+            btn3.Clicked += (s, e) =>
+            {
+                aniview.Stop();
+            };
+
+            Box box5 = new Box(box)
+            {
+                WeightX = 1,
+                WeightY = 0,
+                AlignmentX = -1,
+                AlignmentY = 1,
+                IsHorizontal = true,
+            };
+            box5.Show();
+            box.PackEnd(box5);
+
+            Button btn4 = new Button(box5)
             {
                 WeightX = 1,
                 WeightY = 0,
@@ -296,14 +345,14 @@ namespace ElmSharp.Test
                 Text = "Pause",
             };
             btn4.Show();
-            box4.PackEnd(btn4);
+            box5.PackEnd(btn4);
 
             btn4.Clicked += (s, e) =>
             {
                 aniview.Pause();
             };
 
-            Button btn5 = new Button(box3)
+            Button btn5 = new Button(box5)
             {
                 WeightX = 1,
                 WeightY = 0,
@@ -312,7 +361,7 @@ namespace ElmSharp.Test
                 Text = "Resume",
             };
             btn5.Show();
-            box4.PackEnd(btn5);
+            box5.PackEnd(btn5);
 
             btn5.Clicked += (s, e) =>
             {
@@ -321,51 +370,35 @@ namespace ElmSharp.Test
 
             aniview.Started += (s, e) =>
             {
-                if (!_isPlayingReverse)
-                {
-                    _state = AnimationState.Play;
-                }
-                else
-                {
-                    _state = AnimationState.ReversePlay;
-                }
-                UpdateAnimationViewStateLabel(label);
+                UpdateAnimationViewStateLabel(aniview, label);
             };
 
             aniview.Stopped += (s, e) =>
             {
-                _state = AnimationState.Stop;
-                UpdateAnimationViewStateLabel(label);
-
+                UpdateAnimationViewStateLabel(aniview, label);
+                label4.Text = "0 / " + (aniview.MaxFrame).ToString();
+                label5.Text = "0 / " + (aniview.MaxProgress).ToString();
                 slider.Value = 0;
             };
 
             aniview.Paused += (s, e) =>
             {
-                _state = AnimationState.Pause;
-                UpdateAnimationViewStateLabel(label);
+                UpdateAnimationViewStateLabel(aniview, label);
             };
 
             aniview.Resumed += (s, e) =>
             {
-                if (!_isPlayingReverse)
-                {
-                    _state = AnimationState.Play;
-                }
-                else
-                {
-                    _state = AnimationState.ReversePlay;
-                }
-                UpdateAnimationViewStateLabel(label);
+                UpdateAnimationViewStateLabel(aniview, label);
             };
 
             aniview.Updated += (s, e) =>
             {
-                slider.Value = aniview.KeyFrame;
+                slider.Value = aniview.Progress;
+                label4.Text = (aniview.Frame).ToString() + " / " + (aniview.MaxFrame).ToString();
+                label5.Text = (Math.Round(Convert.ToDouble(aniview.Progress), 2)).ToString() + " / " + (aniview.MaxProgress).ToString();
             };
 
-            _state = AnimationState.NotReady;
-            UpdateAnimationViewStateLabel(label);
+            UpdateAnimationViewStateLabel(aniview, label);
 
             navi.Push(layout, "AnimationView Test");
         }

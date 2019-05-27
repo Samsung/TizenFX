@@ -100,6 +100,10 @@ namespace ElmSharp.Test
             {
                 Console.WriteLine("Panel Toggled!");
             };
+            panel.Scrolled += (s, e) =>
+            {
+                Console.WriteLine("Panel Scrolled! : IsOpen = " + panel.IsOpen);
+            };
         }
 
     }

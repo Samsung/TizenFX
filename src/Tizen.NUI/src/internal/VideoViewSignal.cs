@@ -90,7 +90,7 @@ namespace Tizen.NUI {
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_VideoViewSignal(swigCPtr);
+                    Interop.VideoView.delete_VideoViewSignal(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -100,13 +100,13 @@ namespace Tizen.NUI {
 
 
         public bool Empty() {
-    bool ret = NDalicPINVOKE.VideoViewSignal_Empty(swigCPtr);
+    bool ret = Interop.VideoView.VideoViewSignal_Empty(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public uint GetConnectionCount() {
-    uint ret = NDalicPINVOKE.VideoViewSignal_GetConnectionCount(swigCPtr);
+    uint ret = Interop.VideoView.VideoViewSignal_GetConnectionCount(swigCPtr);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -114,7 +114,7 @@ namespace Tizen.NUI {
   public void Connect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
     {
-      NDalicPINVOKE.VideoViewSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+      Interop.VideoView.VideoViewSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
   }
@@ -122,17 +122,17 @@ System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForD
   public void Disconnect(System.Delegate func) {
 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
     {
-      NDalicPINVOKE.VideoViewSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+      Interop.VideoView.VideoViewSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
       if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     }
   }
 
   public void Emit(VideoView arg) {
-    NDalicPINVOKE.VideoViewSignal_Emit(swigCPtr, VideoView.getCPtr(arg));
+    Interop.VideoView.VideoViewSignal_Emit(swigCPtr, VideoView.getCPtr(arg));
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public VideoViewSignal() : this(NDalicPINVOKE.new_VideoViewSignal(), true) {
+  public VideoViewSignal() : this(Interop.VideoView.new_VideoViewSignal(), true) {
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
   }
 

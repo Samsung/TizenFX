@@ -190,7 +190,7 @@ internal static partial class Interop
         internal static extern ComplicationError ProviderSetLongText(IntPtr sharedData, string longText);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_timestamp")]
-        internal static extern ComplicationError ProviderSetTimestamp(IntPtr sharedData, long timestamp);
+        internal static extern ComplicationError ProviderSetTimestamp(IntPtr sharedData, Int32 timestamp);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_image_path")]
         internal static extern ComplicationError ProviderSetImagePath(IntPtr sharedData, string imagePath);

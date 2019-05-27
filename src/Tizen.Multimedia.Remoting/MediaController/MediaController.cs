@@ -189,12 +189,29 @@ namespace Tizen.Multimedia.Remoting
 
             var playlists = new List<MediaControlPlaylist>();
 
+            Exception caught = null;
+
             NativePlaylist.PlaylistCallback playlistCallback = (handle, _) =>
             {
-                playlists.Add(new MediaControlPlaylist(handle));
+                try
+                {
+                    playlists.Add(new MediaControlPlaylist(handle));
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    caught = e;
+                    return false;
+                }
             };
-            NativePlaylist.ForeachServerPlaylist(Manager.Handle, ServerAppId, playlistCallback, IntPtr.Zero)
-                .ThrowIfError("Failed to get playlist.");
+
+            NativePlaylist.ForeachPlaylist(ServerAppId, playlistCallback, IntPtr.Zero).
+                ThrowIfError("Failed to get playlist.");
+
+            if (caught != null)
+            {
+                throw caught;
+            }
 
             return playlists.AsReadOnly();
         }

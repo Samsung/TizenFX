@@ -5,7 +5,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    // [ProvideCompiled("Tizen.NUI.Core.XamlC.PassthroughValueProvider")]
+    [ProvideCompiled("Tizen.NUI.Core.XamlC.PassthroughValueProvider")]
     [AcceptEmptyServiceProvider]
     internal sealed class XamlPropertyCondition : Condition, IValueProvider
     {
@@ -33,8 +33,8 @@ namespace Tizen.NUI.Binding
                 //convert the value
                 if (_property != null && s_valueConverter != null)
                 {
-                    Func<MemberInfo> minforetriever = () => Property.DeclaringType.GetRuntimeProperty(Property.PropertyName);
-                    Value = s_valueConverter.Convert(Value, Property.ReturnType, minforetriever, null);
+                    Func<MemberInfo> minforetriever = () => _property.DeclaringType.GetRuntimeProperty(_property.PropertyName);
+                    Value = s_valueConverter.Convert(Value, _property.ReturnType, minforetriever, null);
                 }
             }
         }
@@ -52,10 +52,14 @@ namespace Tizen.NUI.Binding
                 //convert the value
                 if (_property != null && s_valueConverter != null)
                 {
-                    Func<MemberInfo> minforetriever = () => Property.DeclaringType.GetRuntimeProperty(Property.PropertyName);
-                    value = s_valueConverter.Convert(value, Property.ReturnType, minforetriever, null);
+                    Func<MemberInfo> minforetriever = () => _property.DeclaringType.GetRuntimeProperty(_property.PropertyName);
+                    _triggerValue = s_valueConverter.Convert(value, _property.ReturnType, minforetriever, null);
                 }
-                _triggerValue = value;
+                else
+                {
+                    _triggerValue = value;
+                }
+                
             }
         }
 

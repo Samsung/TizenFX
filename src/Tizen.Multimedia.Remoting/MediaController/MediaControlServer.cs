@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tizen.Applications;
 using Native = Interop.MediaControllerServer;
+using NativePlaylist = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -30,8 +31,9 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 4 </since_tizen>
     public static partial class MediaControlServer
     {
-        private static IntPtr _handle = IntPtr.Zero;
+        private static IntPtr _handle;
         private static bool? _isRunning;
+        private static string _serverName;
 
         /// <summary>
         /// Gets a value indicating whether the server is running.
@@ -114,6 +116,7 @@ namespace Tizen.Multimedia.Remoting
                 RegisterCommandCompletedEvent();
                 RegisterSearchCommandReceivedEvent();
 
+                _serverName = Application.Current.ApplicationInfo.ApplicationId;
                 _isRunning = true;
             }
             catch
@@ -121,6 +124,7 @@ namespace Tizen.Multimedia.Remoting
                 Native.Destroy(_handle);
                 _playbackCommandCallback = null;
                 _handle = IntPtr.Zero;
+                _serverName = null;
                 throw;
             }
         }
@@ -195,7 +199,10 @@ namespace Tizen.Multimedia.Remoting
 
         private static void SetMetadata(MediaControllerNativeAttribute attribute, string value)
         {
-            Native.SetMetadata(Handle, attribute, value).ThrowIfError($"Failed to set metadata({attribute}).");
+            if (value != null)
+            {
+                Native.SetMetadata(Handle, attribute, value).ThrowIfError($"Failed to set metadata({attribute}).");
+            }
         }
 
         /// <summary>
@@ -227,6 +234,9 @@ namespace Tizen.Multimedia.Remoting
             SetMetadata(MediaControllerNativeAttribute.Description, metadata.Description);
             SetMetadata(MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
             SetMetadata(MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
+            SetMetadata(MediaControllerNativeAttribute.Season, metadata.EncodedSeason);
+            SetMetadata(MediaControllerNativeAttribute.Episode, metadata.EncodedEpisode);
+            SetMetadata(MediaControllerNativeAttribute.Resolution, metadata.EncodedResolution);
 
             Native.UpdateMetadata(Handle).ThrowIfError("Failed to set metadata.");
         }
@@ -352,8 +362,8 @@ namespace Tizen.Multimedia.Remoting
         // Gets the playlist handle by name.
         internal static IntPtr GetPlaylistHandle(string name)
         {
-            Native.GetPlaylistHandle(Handle, name, out IntPtr playlistHandle)
-                .ThrowIfError("Failed to get playlist handle by name");
+            NativePlaylist.GetPlaylistHandle(_serverName, name, out IntPtr playlistHandle).
+                ThrowIfError("Failed to get playlist handle by name");
 
             return playlistHandle;
         }

@@ -17,6 +17,7 @@ namespace Tizen.NUI.Binding
         /// <param name="culture">The culture to use in the converter.</param>
         /// <returns>A converted value. If the method returns null, the valid null value is used.</returns>
         object Convert(object value, Type targetType, object parameter, CultureInfo culture);
+
         /// <summary>
         /// Converts a value.
         /// </summary>

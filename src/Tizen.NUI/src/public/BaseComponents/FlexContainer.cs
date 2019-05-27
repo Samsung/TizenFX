@@ -139,12 +139,12 @@ namespace Tizen.NUI.BaseComponents
         /// Calling member functions with an uninitialized handle is not allowed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public FlexContainer() : this(NDalicPINVOKE.FlexContainer_New(), true)
+        public FlexContainer() : this(Interop.FlexContainer.FlexContainer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.FlexContainer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FlexContainer.FlexContainer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -423,7 +423,7 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_FlexContainer(swigCPtr);
+                    Interop.FlexContainer.delete_FlexContainer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -435,23 +435,21 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildProperty
         {
-            internal static readonly int FLEX = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_get();
-            internal static readonly int ALIGN_SELF = NDalicPINVOKE.FlexContainer_ChildProperty_ALIGN_SELF_get();
-            internal static readonly int FLEX_MARGIN = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_MARGIN_get();
+            internal static readonly int FLEX = Interop.FlexContainer.FlexContainer_ChildProperty_FLEX_get();
+            internal static readonly int ALIGN_SELF = Interop.FlexContainer.FlexContainer_ChildProperty_ALIGN_SELF_get();
+            internal static readonly int FLEX_MARGIN = Interop.FlexContainer.FlexContainer_ChildProperty_FLEX_MARGIN_get();
         }
 
         internal new class Property
         {
-            internal static readonly int CONTENT_DIRECTION = NDalicPINVOKE.FlexContainer_Property_CONTENT_DIRECTION_get();
-            internal static readonly int FLEX_DIRECTION = NDalicPINVOKE.FlexContainer_Property_FLEX_DIRECTION_get();
-            internal static readonly int FLEX_WRAP = NDalicPINVOKE.FlexContainer_Property_FLEX_WRAP_get();
-            internal static readonly int JUSTIFY_CONTENT = NDalicPINVOKE.FlexContainer_Property_JUSTIFY_CONTENT_get();
-            internal static readonly int ALIGN_ITEMS = NDalicPINVOKE.FlexContainer_Property_ALIGN_ITEMS_get();
-            internal static readonly int ALIGN_CONTENT = NDalicPINVOKE.FlexContainer_Property_ALIGN_CONTENT_get();
+            internal static readonly int CONTENT_DIRECTION = Interop.FlexContainer.FlexContainer_Property_CONTENT_DIRECTION_get();
+            internal static readonly int FLEX_DIRECTION = Interop.FlexContainer.FlexContainer_Property_FLEX_DIRECTION_get();
+            internal static readonly int FLEX_WRAP = Interop.FlexContainer.FlexContainer_Property_FLEX_WRAP_get();
+            internal static readonly int JUSTIFY_CONTENT = Interop.FlexContainer.FlexContainer_Property_JUSTIFY_CONTENT_get();
+            internal static readonly int ALIGN_ITEMS = Interop.FlexContainer.FlexContainer_Property_ALIGN_ITEMS_get();
+            internal static readonly int ALIGN_CONTENT = Interop.FlexContainer.FlexContainer_Property_ALIGN_CONTENT_get();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Tizen.NUI.Binding
                 if (_appIndexProvider == null)
                     throw new ArgumentException("No IAppIndexingProvider was provided");
                 if (_appIndexProvider.AppLinks == null)
-                    throw new ArgumentException("No AppLinks implementation was found, if in Android make sure you installed the Xamarin.Forms.AppLinks");
+                    throw new ArgumentException("No AppLinks implementation was found, if in Android make sure you installed the Tizen.NUI.Binding.AppLinks");
                 return _appIndexProvider.AppLinks;
             }
         }

@@ -34,12 +34,12 @@ namespace Tizen.NUI.UIComponents
         /// Creates an initialized CheckBoxButton.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public CheckBoxButton() : this(NDalicPINVOKE.CheckBoxButton_New(), true)
+        public CheckBoxButton() : this(Interop.CheckBoxButton.CheckBoxButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CheckBoxButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CheckBoxButton.CheckBoxButton_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -76,7 +76,7 @@ namespace Tizen.NUI.UIComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_CheckBoxButton(swigCPtr);
+                    Interop.CheckBoxButton.delete_CheckBoxButton(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

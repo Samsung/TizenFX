@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// Actor will use its own color.
         /// </summary>
         UseOwnColor,
-         /// <summary>
+        /// <summary>
         /// Actor will use its parent color.
         /// </summary>
         UseParentColor,
@@ -117,11 +117,14 @@ namespace Tizen.NUI
         /// Draw the actor and its children as an overlay.
         /// </summary>
         Overlay2D = 1,
+
         /// <summary>
         /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer.
         /// </summary>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Deprecated.(API Level 6) Not used.
+        /// </remarks>
+        [Obsolete("Please do not use this DrawModeType.Stencil(Deprecated). This is replaced by ClippingModeType")]
         Stencil = 3
     }
 
@@ -253,6 +256,27 @@ namespace Tizen.NUI
         /// True if the control does not need size negotiation, i.e., it can be skipped in the algorithm.
         /// </summary>
         DisableSizeNegotiation = 1 << 0,
+        /// <summary>
+        /// True if OnTouch() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresTouchEventsSupport = 1 << 1,
+        /// <summary>
+        /// True if OnHover() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresHoverEventsSupport = 1 << 2,
+        /// <summary>
+        /// True if OnWheel() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresWheelEventsSupport = 1 << 3,
         /// <summary>
         /// Use to provide key navigation support.
         /// </summary>
@@ -659,18 +683,18 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public enum ReleasePolicyType
     {
-      /// <summary>
-      /// Image is released when visual detached from scene.
-      /// </summary>
-      Detached = 0,
-      /// <summary>
-      /// Image is only released when visual is destroyed.
-      /// </summary>
-      Destroyed,
-      /// <summary>
-      /// Image is not released.
-      /// </summary>
-      Never
+        /// <summary>
+        /// Image is released when visual detached from scene.
+        /// </summary>
+        Detached = 0,
+        /// <summary>
+        /// Image is only released when visual is destroyed.
+        /// </summary>
+        Destroyed,
+        /// <summary>
+        /// Image is not released.
+        /// </summary>
+        Never
     }
 
     /// <summary>
@@ -680,14 +704,14 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public enum LoadPolicyType
     {
-       /// <summary>
-       /// Load texture once the image source has been provided. Even if not being used yet.
-       /// </summary>
-       Immediate = 0,
-       /// <summary>
-       /// Only load texture once the visual is attached, when the image needs to be shown.
-       /// </summary>
-       Attached
+        /// <summary>
+        /// Load texture once the image source has been provided. Even if not being used yet.
+        /// </summary>
+        Immediate = 0,
+        /// <summary>
+        /// Only load texture once the visual is attached, when the image needs to be shown.
+        /// </summary>
+        Attached
     }
 
     /// <summary>
@@ -1641,122 +1665,180 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
-        /// <summary>
-        /// The URL of the alpha mask image.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
+
         /// <summary>
         /// Fitting options, used when resizing images to fit desired dimensions.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
+
         /// <summary>
         /// Filtering options, used when resizing images to sample original pixels.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
+
         /// <summary>
         /// The desired image width.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
+
         /// <summary>
         /// The desired image height.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
+
         /// <summary>
         /// Whether to load the image synchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
+
         /// <summary>
         /// If true, only draws the borders.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
+
         /// <summary>
         /// The image area to be displayed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
+
         /// <summary>
         /// The wrap mode for u coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
+
         /// <summary>
         /// The wrap mode for v coordinate.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
+
         /// <summary>
         /// The border of the image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
+
         /// <summary>
         /// Whether to use the texture atlas.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int Atlasing = NDalic.IMAGE_VISUAL_BORDER + 1;
+
         /// <summary>
-        /// The scale factor to apply to the content image before masking.
+        /// The URL of the alpha mask image.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
-        /// <summary>
-        /// Whether to crop image to mask or scale mask to fit image
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
+        /// <since_tizen> 3 </since_tizen>
+        public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
+
         /// <summary>
         /// Defines the batch size for pre-loading images in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int BatchSize = NDalic.IMAGE_VISUAL_BATCH_SIZE;
+
         /// <summary>
         /// Defines the cache size for loading images in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int CacheSize = NDalic.IMAGE_VISUAL_CACHE_SIZE;
+
         /// <summary>
         /// The number of milliseconds between each frame in the AnimatedImageVisual
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
+
+        /// <summary>
+        /// The scale factor to apply to the content image before masking.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
+
+        /// <summary>
+        /// Whether to crop image to mask or scale mask to fit image
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
+
+        /// <summary>
+        /// The policy to determine when an image should be loaded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
+
+        /// <summary>
+        /// The policy to determine when an image should no longer be cached.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
+
+        /// <summary>
+        /// Determines if image orientation should be corrected so that the image displays as it was intended.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
+
+        /// <summary>
+        /// Overlays the auxiliary image on top of an NPatch image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int AuxiliaryImageURL = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL;
+
+        /// <summary>
+        /// Alpha value for the auxiliary image, without affecting the underlying NPatch image
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int AuxiliaryImageAlpha = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA;
+
         /// <summary>
         /// The number of times the AnimatedImageVisual will be looped.
         /// The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
+
         /// <summary>
-        /// The policy to determine when an image should no longer be cached.
+        /// The playing range the AnimatedVectorImageVisual will use.
+        /// Animation will play between the values specified. Both values should be between 0-1,
+        /// otherwise they will be ignored. If the range provided is not in proper order ( minimum,maximum ), it will be reordered.
+        /// Type Property::VECTOR2, between 0 and 1
+        /// Default 0 and 1
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int PlayRange = OrientationCorrection + 4;
+
         /// <summary>
-        /// The policy to determine when an image should be loaded.
+        /// The playing state the AnimatedVectorImageVisual will use.
+        /// Type PlayState (Property::INTEGER)
+        /// This property is read-only.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int PlayState = OrientationCorrection + 5;
+
         /// <summary>
-        /// Determines if image orientation should be corrected so that the image displays as it was intended.
+        /// The animation progress the AnimatedVectorImageVisual will use.
+        /// Type Property::FLOAT, between [0, 1] or between the play range if specified
+        /// This property is read-only.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
-        /// <summary>
-        /// Overlays the auxiliary image on top of an NPatch image.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int AuxiliaryImageURL = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL;
-        /// <summary>
-        /// Alpha value for the auxiliary image, without affecting the underlying NPatch image
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static readonly int AuxiliaryImageAlpha = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA;
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int CurrentProgress = OrientationCorrection + 6;
     }
 
     /// <summary>
@@ -2048,7 +2130,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.ParentOriginTop_get();
+                float ret = Interop.NDalicParentOrigin.ParentOriginTop_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2062,7 +2144,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.ParentOriginBottom_get();
+                float ret = Interop.NDalicParentOrigin.ParentOriginBottom_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2076,7 +2158,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.ParentOriginLeft_get();
+                float ret = Interop.NDalicParentOrigin.ParentOriginLeft_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2090,7 +2172,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.ParentOriginRight_get();
+                float ret = Interop.NDalicParentOrigin.ParentOriginRight_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2104,7 +2186,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.ParentOriginMiddle_get();
+                float ret = Interop.NDalicParentOrigin.ParentOriginMiddle_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2118,7 +2200,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2133,7 +2215,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2148,7 +2230,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginTopRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2163,7 +2245,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenterLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2178,7 +2260,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2193,7 +2275,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginCenterRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2208,7 +2290,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2223,7 +2305,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2238,7 +2320,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.ParentOriginBottomRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2260,7 +2342,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointTop_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointTop_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2273,7 +2355,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointBottom_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointBottom_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2286,7 +2368,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointLeft_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointLeft_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2299,7 +2381,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointRight_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointRight_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2312,7 +2394,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointMiddle_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointMiddle_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2325,7 +2407,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2339,7 +2421,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2353,7 +2435,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2367,7 +2449,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2381,7 +2463,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2395,7 +2477,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2409,7 +2491,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2423,7 +2505,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2437,7 +2519,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2458,7 +2540,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_XAXIS_get();
+                global::System.IntPtr cPtr = Interop.Vector3.Vector3_XAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2472,7 +2554,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_YAXIS_get();
+                global::System.IntPtr cPtr = Interop.Vector3.Vector3_YAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2486,7 +2568,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ZAXIS_get();
+                global::System.IntPtr cPtr = Interop.Vector3.Vector3_ZAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2500,7 +2582,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_NEGATIVE_XAXIS_get();
+                global::System.IntPtr cPtr = Interop.Vector3.Vector3_NEGATIVE_XAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2514,7 +2596,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_NEGATIVE_YAXIS_get();
+                global::System.IntPtr cPtr = Interop.Vector3.Vector3_NEGATIVE_YAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2528,7 +2610,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_NEGATIVE_ZAXIS_get();
+                global::System.IntPtr cPtr = Interop.Vector3.Vector3_NEGATIVE_ZAXIS_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2552,7 +2634,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointTop_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointTop_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2565,7 +2647,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointBottom_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointBottom_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2578,7 +2660,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointLeft_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointLeft_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2591,7 +2673,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointRight_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointRight_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2604,7 +2686,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = NDalicPINVOKE.AnchorPointMiddle_get();
+                float ret = Interop.NDalicAnchorPoint.AnchorPointMiddle_get();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -2617,7 +2699,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2631,7 +2713,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2645,7 +2727,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2659,7 +2741,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2673,7 +2755,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2687,7 +2769,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2701,7 +2783,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomLeft_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomLeft_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2715,7 +2797,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomCenter_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomCenter_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
@@ -2729,11 +2811,51 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomRight_get();
+                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomRight_get();
                 Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
+    }
+
+    /// <summary>
+    /// Enumeration for setting cache model of a WebView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum CacheModel
+    {
+        /// <summary>
+        /// Use the smallest cache capacity.
+        /// </summary>
+        DocumentViewer,
+        /// <summary>
+        /// Use the bigger cache capacity than DocumentBrowser.
+        /// </summary>
+        DocumentBrowser,
+        /// <summary>
+        /// Use the biggest cache capacity.
+        /// </summary>
+        PrimaryWebBrowser
+    }
+
+    /// <summary>
+    /// Enumeration for setting cache model of a WebView.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum CookieAcceptPolicy
+    {
+        /// <summary>
+        /// Accepts every cookie sent from any page.
+        /// </summary>
+        Always,
+        /// <summary>
+        /// Rejects all the cookies.
+        /// </summary>
+        Never,
+        /// <summary>
+        /// Accepts only cookies set by the main document that is loaded.
+        /// </summary>
+        NoThirdParty
     }
 }

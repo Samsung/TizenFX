@@ -22,7 +22,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal FrameBufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.FrameBufferImage_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FrameBufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBufferImage.FrameBufferImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -57,7 +57,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_FrameBufferImage(swigCPtr);
+                    Interop.FrameBufferImage.delete_FrameBufferImage(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -66,32 +66,32 @@ namespace Tizen.NUI
         }
 
 
-        public FrameBufferImage(uint width, uint height, PixelFormat pixelFormat, RenderBufferFormat bufferFormat) : this(NDalicPINVOKE.FrameBufferImage_New__SWIG_0(width, height, (int)pixelFormat, (int)bufferFormat), true)
+        public FrameBufferImage(uint width, uint height, PixelFormat pixelFormat, RenderBufferFormat bufferFormat) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_0(width, height, (int)pixelFormat, (int)bufferFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public FrameBufferImage(uint width, uint height, PixelFormat pixelFormat) : this(NDalicPINVOKE.FrameBufferImage_New__SWIG_1(width, height, (int)pixelFormat), true)
+        public FrameBufferImage(uint width, uint height, PixelFormat pixelFormat) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_1(width, height, (int)pixelFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public FrameBufferImage(uint width, uint height) : this(NDalicPINVOKE.FrameBufferImage_New__SWIG_2(width, height), true)
+        public FrameBufferImage(uint width, uint height) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_2(width, height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public FrameBufferImage(uint width) : this(NDalicPINVOKE.FrameBufferImage_New__SWIG_3(width), true)
+        public FrameBufferImage(uint width) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_3(width), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public FrameBufferImage() : this(NDalicPINVOKE.FrameBufferImage_New__SWIG_4(), true)
+        public FrameBufferImage() : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_4(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public FrameBufferImage(NativeImageInterface image) : this(NDalicPINVOKE.FrameBufferImage_New__SWIG_5(NativeImageInterface.getCPtr(image)), true)
+        public FrameBufferImage(NativeImageInterface image) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_5(NativeImageInterface.getCPtr(image)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -103,14 +103,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public FrameBufferImage(FrameBufferImage handle) : this(NDalicPINVOKE.new_FrameBufferImage__SWIG_1(FrameBufferImage.getCPtr(handle)), true)
+        public FrameBufferImage(FrameBufferImage handle) : this(Interop.FrameBufferImage.new_FrameBufferImage__SWIG_1(FrameBufferImage.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public FrameBufferImage Assign(FrameBufferImage rhs)
         {
-            FrameBufferImage ret = new FrameBufferImage(NDalicPINVOKE.FrameBufferImage_Assign(swigCPtr, FrameBufferImage.getCPtr(rhs)), false);
+            FrameBufferImage ret = new FrameBufferImage(Interop.FrameBufferImage.FrameBufferImage_Assign(swigCPtr, FrameBufferImage.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

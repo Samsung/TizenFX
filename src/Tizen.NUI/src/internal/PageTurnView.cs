@@ -26,7 +26,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PageTurnView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PageTurnView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PageTurnView.PageTurnView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -60,7 +60,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PageTurnView(swigCPtr);
+                    Interop.PageTurnView.delete_PageTurnView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -504,7 +504,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        NDalicPINVOKE.delete_PageTurnView_Property(swigCPtr);
+                        Interop.PageTurnView.delete_PageTurnView_Property(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -513,33 +513,33 @@ namespace Tizen.NUI
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public Property() : this(NDalicPINVOKE.new_PageTurnView_Property(), true)
+            public Property() : this(Interop.PageTurnView.new_PageTurnView_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int PAGE_SIZE = NDalicPINVOKE.PageTurnView_Property_PAGE_SIZE_get();
+            public static readonly int PAGE_SIZE = Interop.PageTurnView.PageTurnView_Property_PAGE_SIZE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int CURRENT_PAGE_ID = NDalicPINVOKE.PageTurnView_Property_CURRENT_PAGE_ID_get();
+            public static readonly int CURRENT_PAGE_ID = Interop.PageTurnView.PageTurnView_Property_CURRENT_PAGE_ID_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int SPINE_SHADOW = NDalicPINVOKE.PageTurnView_Property_SPINE_SHADOW_get();
+            public static readonly int SPINE_SHADOW = Interop.PageTurnView.PageTurnView_Property_SPINE_SHADOW_get();
 
         }
 
-        public PageTurnView() : this(NDalicPINVOKE.new_PageTurnView__SWIG_0(), true)
+        public PageTurnView() : this(Interop.PageTurnView.new_PageTurnView__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public PageTurnView(PageTurnView handle) : this(NDalicPINVOKE.new_PageTurnView__SWIG_1(PageTurnView.getCPtr(handle)), true)
+        public PageTurnView(PageTurnView handle) : this(Interop.PageTurnView.new_PageTurnView__SWIG_1(PageTurnView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public PageTurnView Assign(PageTurnView handle)
         {
-            PageTurnView ret = new PageTurnView(NDalicPINVOKE.PageTurnView_Assign(swigCPtr, PageTurnView.getCPtr(handle)), false);
+            PageTurnView ret = new PageTurnView(Interop.PageTurnView.PageTurnView_Assign(swigCPtr, PageTurnView.getCPtr(handle)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -553,28 +553,28 @@ namespace Tizen.NUI
 
         public PageTurnSignal PageTurnStartedSignal()
         {
-            PageTurnSignal ret = new PageTurnSignal(NDalicPINVOKE.PageTurnView_PageTurnStartedSignal(swigCPtr), false);
+            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnView_PageTurnStartedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PageTurnSignal PageTurnFinishedSignal()
         {
-            PageTurnSignal ret = new PageTurnSignal(NDalicPINVOKE.PageTurnView_PageTurnFinishedSignal(swigCPtr), false);
+            PageTurnSignal ret = new PageTurnSignal(Interop.PageTurnView.PageTurnView_PageTurnFinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanStartedSignal()
         {
-            PagePanSignal ret = new PagePanSignal(NDalicPINVOKE.PageTurnView_PagePanStartedSignal(swigCPtr), false);
+            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PageTurnView_PagePanStartedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public PagePanSignal PagePanFinishedSignal()
         {
-            PagePanSignal ret = new PagePanSignal(NDalicPINVOKE.PageTurnView_PagePanFinishedSignal(swigCPtr), false);
+            PagePanSignal ret = new PagePanSignal(Interop.PageTurnView.PageTurnView_PagePanFinishedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

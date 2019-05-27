@@ -513,7 +513,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextLabel control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel() : this(NDalicPINVOKE.TextLabel_New__SWIG_0(), true)
+        public TextLabel() : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -523,17 +523,17 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel(string text) : this(NDalicPINVOKE.TextLabel_New__SWIG_1(text), true)
+        public TextLabel(string text) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextLabel(TextLabel handle) : this(NDalicPINVOKE.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
+        internal TextLabel(TextLabel handle) : this(Interop.TextLabel.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -729,23 +729,27 @@ namespace Tizen.NUI.BaseComponents
         /// The drop shadow offset 0 indicates no shadow.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Shadow instead.
+        /// </remarks>
+        [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
         public Vector2 ShadowOffset
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.SHADOW).Get(map);
                 Vector2 shadowOffset = new Vector2();
-                map.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
+                Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
                 return shadowOffset;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("offset", new PropertyValue(value));
-                SetValue(ShadowProperty, temp);
+
+                PropertyMap shadowMap = Shadow;
+                shadowMap.Merge(temp);
+
+                SetValue(ShadowProperty, shadowMap);
                 NotifyPropertyChanged();
             }
         }
@@ -755,23 +759,27 @@ namespace Tizen.NUI.BaseComponents
         /// The color of a drop shadow.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Shadow instead.
+        /// </remarks>
+        [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.SHADOW).Get(map);
                 Vector4 shadowColor = new Vector4();
-                map.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
+                Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
                 return shadowColor;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("color", new PropertyValue(value));
-                SetValue(ShadowProperty, temp);
+
+                PropertyMap shadowMap = Shadow;
+                shadowMap.Merge(temp);
+
+                SetValue(ShadowProperty, shadowMap);
                 NotifyPropertyChanged();
             }
         }
@@ -781,24 +789,29 @@ namespace Tizen.NUI.BaseComponents
         /// The underline enabled flag.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Underline instead.
+        /// </remarks>
+        [Obsolete("Please do not use this UnderlineEnabled(Deprecated). Please use Underline instead.")]
         public bool UnderlineEnabled
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
                 bool underlineEnabled = false;
-                map.Find(TextLabel.Property.UNDERLINE, "enable")?.Get(out underlineEnabled);
+                Underline.Find(TextLabel.Property.UNDERLINE, "enable")?.Get(out underlineEnabled);
                 return underlineEnabled;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
-                temp.Insert("enable", new PropertyValue(value));
-                SetValue(UnderlineProperty, temp);
+                temp.Add("enable", new PropertyValue(value));
+
+                PropertyMap undelineMap = Underline;
+                undelineMap.Merge(temp);
+
+                SetValue(UnderlineProperty, undelineMap);
                 NotifyPropertyChanged();
+
             }
         }
 
@@ -807,23 +820,27 @@ namespace Tizen.NUI.BaseComponents
         /// Overrides the underline height from font metrics.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Underline instead.
+        /// </remarks>
+        [Obsolete("Please do not use this UnderlineColor(Deprecated). Please use Underline instead.")]
         public Vector4 UnderlineColor
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
                 Vector4 underlineColor = new Vector4();
-                map.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
+                Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
                 return underlineColor;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("color", new PropertyValue(value));
-                SetValue(UnderlineProperty, temp);
+
+                PropertyMap undelineMap = Underline;
+                undelineMap.Merge(temp);
+
+                SetValue(UnderlineProperty, undelineMap);
                 NotifyPropertyChanged();
             }
         }
@@ -833,23 +850,27 @@ namespace Tizen.NUI.BaseComponents
         /// Overrides the underline height from font metrics.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Underline instead.
+        /// </remarks>
+        [Obsolete("Please do not use this UnderlineHeight(Deprecated). Please use Underline instead.")]
         public float UnderlineHeight
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
                 float underlineHeight = 0.0f;
-                map.Find(TextLabel.Property.UNDERLINE, "height")?.Get(out underlineHeight);
+                Underline.Find(TextLabel.Property.UNDERLINE, "height")?.Get(out underlineHeight);
                 return underlineHeight;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("height", new PropertyValue(value));
-                SetValue(UnderlineProperty, temp);
+
+                PropertyMap undelineMap = Underline;
+                undelineMap.Merge(temp);
+
+                SetValue(UnderlineProperty, undelineMap);
                 NotifyPropertyChanged();
             }
         }
@@ -1176,9 +1197,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The text alignment to match the direction of the system language.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public bool MatchSystemLanguageDirection
         {
             get
@@ -1245,7 +1264,7 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TextLabel(swigCPtr);
+                    Interop.TextLabel.delete_TextLabel(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -1268,34 +1287,34 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextLabel_Property_RENDERING_BACKEND_get();
-            internal static readonly int TEXT = NDalicPINVOKE.TextLabel_Property_TEXT_get();
-            internal static readonly int FONT_FAMILY = NDalicPINVOKE.TextLabel_Property_FONT_FAMILY_get();
-            internal static readonly int FONT_STYLE = NDalicPINVOKE.TextLabel_Property_FONT_STYLE_get();
-            internal static readonly int POINT_SIZE = NDalicPINVOKE.TextLabel_Property_POINT_SIZE_get();
-            internal static readonly int MULTI_LINE = NDalicPINVOKE.TextLabel_Property_MULTI_LINE_get();
-            internal static readonly int HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TextLabel_Property_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int VERTICAL_ALIGNMENT = NDalicPINVOKE.TextLabel_Property_VERTICAL_ALIGNMENT_get();
-            internal static readonly int TEXT_COLOR = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_get();
-            internal static readonly int ENABLE_MARKUP = NDalicPINVOKE.TextLabel_Property_ENABLE_MARKUP_get();
-            internal static readonly int ENABLE_AUTO_SCROLL = NDalicPINVOKE.TextLabel_Property_ENABLE_AUTO_SCROLL_get();
-            internal static readonly int AUTO_SCROLL_SPEED = NDalicPINVOKE.TextLabel_Property_AUTO_SCROLL_SPEED_get();
-            internal static readonly int AUTO_SCROLL_LOOP_COUNT = NDalicPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_COUNT_get();
-            internal static readonly int AUTO_SCROLL_GAP = NDalicPINVOKE.TextLabel_Property_AUTO_SCROLL_GAP_get();
-            internal static readonly int LINE_SPACING = NDalicPINVOKE.TextLabel_Property_LINE_SPACING_get();
-            internal static readonly int UNDERLINE = NDalicPINVOKE.TextLabel_Property_UNDERLINE_get();
-            internal static readonly int SHADOW = NDalicPINVOKE.TextLabel_Property_SHADOW_get();
-            internal static readonly int EMBOSS = NDalicPINVOKE.TextLabel_Property_EMBOSS_get();
-            internal static readonly int OUTLINE = NDalicPINVOKE.TextLabel_Property_OUTLINE_get();
-            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextLabel_Property_PIXEL_SIZE_get();
-            internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextLabel_Property_ELLIPSIS_get();
-            internal static readonly int AUTO_SCROLL_STOP_MODE = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
-            internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
-            internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextLabel_Property_LINE_COUNT_get();
-            internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextLabel_Property_LINE_WRAP_MODE_get();
-            internal static readonly int TEXT_DIRECTION = NDalicManualPINVOKE.TextLabel_Property_TEXT_DIRECTION_get();
-            internal static readonly int VERTICAL_LINE_ALIGNMENT = NDalicManualPINVOKE.TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
-            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = NDalicManualPINVOKE.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
+            internal static readonly int RENDERING_BACKEND = Interop.TextLabel.TextLabel_Property_RENDERING_BACKEND_get();
+            internal static readonly int TEXT = Interop.TextLabel.TextLabel_Property_TEXT_get();
+            internal static readonly int FONT_FAMILY = Interop.TextLabel.TextLabel_Property_FONT_FAMILY_get();
+            internal static readonly int FONT_STYLE = Interop.TextLabel.TextLabel_Property_FONT_STYLE_get();
+            internal static readonly int POINT_SIZE = Interop.TextLabel.TextLabel_Property_POINT_SIZE_get();
+            internal static readonly int MULTI_LINE = Interop.TextLabel.TextLabel_Property_MULTI_LINE_get();
+            internal static readonly int HORIZONTAL_ALIGNMENT = Interop.TextLabel.TextLabel_Property_HORIZONTAL_ALIGNMENT_get();
+            internal static readonly int VERTICAL_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_ALIGNMENT_get();
+            internal static readonly int TEXT_COLOR = Interop.TextLabel.TextLabel_Property_TEXT_COLOR_get();
+            internal static readonly int ENABLE_MARKUP = Interop.TextLabel.TextLabel_Property_ENABLE_MARKUP_get();
+            internal static readonly int ENABLE_AUTO_SCROLL = Interop.TextLabel.TextLabel_Property_ENABLE_AUTO_SCROLL_get();
+            internal static readonly int AUTO_SCROLL_SPEED = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_SPEED_get();
+            internal static readonly int AUTO_SCROLL_LOOP_COUNT = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_LOOP_COUNT_get();
+            internal static readonly int AUTO_SCROLL_GAP = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_GAP_get();
+            internal static readonly int LINE_SPACING = Interop.TextLabel.TextLabel_Property_LINE_SPACING_get();
+            internal static readonly int UNDERLINE = Interop.TextLabel.TextLabel_Property_UNDERLINE_get();
+            internal static readonly int SHADOW = Interop.TextLabel.TextLabel_Property_SHADOW_get();
+            internal static readonly int EMBOSS = Interop.TextLabel.TextLabel_Property_EMBOSS_get();
+            internal static readonly int OUTLINE = Interop.TextLabel.TextLabel_Property_OUTLINE_get();
+            internal static readonly int PIXEL_SIZE = Interop.TextLabel.TextLabel_Property_PIXEL_SIZE_get();
+            internal static readonly int ELLIPSIS = Interop.TextLabel.TextLabel_Property_ELLIPSIS_get();
+            internal static readonly int AUTO_SCROLL_STOP_MODE = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
+            internal static readonly int AUTO_SCROLL_LOOP_DELAY = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
+            internal static readonly int LINE_COUNT = Interop.TextLabel.TextLabel_Property_LINE_COUNT_get();
+            internal static readonly int LINE_WRAP_MODE = Interop.TextLabel.TextLabel_Property_LINE_WRAP_MODE_get();
+            internal static readonly int TEXT_DIRECTION = Interop.TextLabel.TextLabel_Property_TEXT_DIRECTION_get();
+            internal static readonly int VERTICAL_LINE_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
+            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextLabel.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
         }
     }
 }

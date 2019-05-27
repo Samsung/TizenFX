@@ -95,6 +95,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The storage ID to restrict storage to search, or null for all storages.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public string StorageId
         {
             get => _storageId;

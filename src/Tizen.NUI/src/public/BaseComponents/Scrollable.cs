@@ -211,12 +211,12 @@ namespace Tizen.NUI.BaseComponents
         /// Create an instance of scrollable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Scrollable() : this(NDalicPINVOKE.new_Scrollable__SWIG_0(), true)
+        public Scrollable() : this(Interop.Scrollable.new_Scrollable__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Scrollable_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Scrollable.Scrollable_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -513,21 +513,21 @@ namespace Tizen.NUI.BaseComponents
 
         internal ScrollableSignal ScrollStartedSignal()
         {
-            ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollStartedSignal(swigCPtr), false);
+            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollStartedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollableSignal ScrollUpdatedSignal()
         {
-            ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollUpdatedSignal(swigCPtr), false);
+            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollUpdatedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollableSignal ScrollCompletedSignal()
         {
-            ScrollableSignal ret = new ScrollableSignal(NDalicPINVOKE.Scrollable_ScrollCompletedSignal(swigCPtr), false);
+            ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollCompletedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -565,7 +565,7 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Scrollable(swigCPtr);
+                    Interop.Scrollable.delete_Scrollable(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -648,39 +648,39 @@ namespace Tizen.NUI.BaseComponents
 
         private bool IsOvershootEnabled()
         {
-            bool ret = NDalicPINVOKE.Scrollable_IsOvershootEnabled(swigCPtr);
+            bool ret = Interop.Scrollable.Scrollable_IsOvershootEnabled(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void SetOvershootEnabled(bool enable)
         {
-            NDalicPINVOKE.Scrollable_SetOvershootEnabled(swigCPtr, enable);
+            Interop.Scrollable.Scrollable_SetOvershootEnabled(swigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private void SetOvershootEffectColor(Vector4 color)
         {
-            NDalicPINVOKE.Scrollable_SetOvershootEffectColor(swigCPtr, Vector4.getCPtr(color));
+            Interop.Scrollable.Scrollable_SetOvershootEffectColor(swigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private Vector4 GetOvershootEffectColor()
         {
-            Vector4 ret = new Vector4(NDalicPINVOKE.Scrollable_GetOvershootEffectColor(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.Scrollable.Scrollable_GetOvershootEffectColor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void SetOvershootAnimationSpeed(float pixelsPerSecond)
         {
-            NDalicPINVOKE.Scrollable_SetOvershootAnimationSpeed(swigCPtr, pixelsPerSecond);
+            Interop.Scrollable.Scrollable_SetOvershootAnimationSpeed(swigCPtr, pixelsPerSecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private float GetOvershootAnimationSpeed()
         {
-            float ret = NDalicPINVOKE.Scrollable_GetOvershootAnimationSpeed(swigCPtr);
+            float ret = Interop.Scrollable.Scrollable_GetOvershootAnimationSpeed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -764,108 +764,78 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the instance of properties belonging to the Scrollable class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public new class Property
         {
             /// <summary>
             /// The color of the overshoot effect.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int OVERSHOOT_EFFECT_COLOR = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
+            public static readonly int OVERSHOOT_EFFECT_COLOR = Interop.Scrollable.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
             /// <summary>
             /// The speed of overshoot animation in pixels per second.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int OVERSHOOT_ANIMATION_SPEED = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
+            public static readonly int OVERSHOOT_ANIMATION_SPEED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
             /// <summary>
             /// Whether to enables or disable scroll overshoot.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int OVERSHOOT_ENABLED = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_ENABLED_get();
+            public static readonly int OVERSHOOT_ENABLED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ENABLED_get();
             /// <summary>
             /// The size of the overshoot.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int OVERSHOOT_SIZE = NDalicPINVOKE.Scrollable_Property_OVERSHOOT_SIZE_get();
+            public static readonly int OVERSHOOT_SIZE = Interop.Scrollable.Scrollable_Property_OVERSHOOT_SIZE_get();
             /// <summary>
             /// scrollToAlphaFunction.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_TO_ALPHA_FUNCTION = NDalicPINVOKE.Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get();
+            public static readonly int SCROLL_TO_ALPHA_FUNCTION = Interop.Scrollable.Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get();
             /// <summary>
             /// scrollRelativePosition
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_RELATIVE_POSITION = NDalicPINVOKE.Scrollable_Property_SCROLL_RELATIVE_POSITION_get();
+            public static readonly int SCROLL_RELATIVE_POSITION = Interop.Scrollable.Scrollable_Property_SCROLL_RELATIVE_POSITION_get();
             /// <summary>
             /// scrollPositionMin
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_POSITION_MIN = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MIN_get();
+            public static readonly int SCROLL_POSITION_MIN = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_get();
             /// <summary>
             /// scrollPositionMinX.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_POSITION_MIN_X = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MIN_X_get();
+            public static readonly int SCROLL_POSITION_MIN_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_X_get();
             /// <summary>
             /// scrollPositionMinY.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_POSITION_MIN_Y = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MIN_Y_get();
+            public static readonly int SCROLL_POSITION_MIN_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_Y_get();
             /// <summary>
             /// scrollPositionMax.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_POSITION_MAX = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MAX_get();
+            public static readonly int SCROLL_POSITION_MAX = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_get();
             /// <summary>
             /// scrollPositionMaxX.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_POSITION_MAX_X = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MAX_X_get();
+            public static readonly int SCROLL_POSITION_MAX_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_X_get();
             /// <summary>
             /// scrollPositionMaxY.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_POSITION_MAX_Y = NDalicPINVOKE.Scrollable_Property_SCROLL_POSITION_MAX_Y_get();
+            public static readonly int SCROLL_POSITION_MAX_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_Y_get();
             /// <summary>
             /// canScrollVertical
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int CAN_SCROLL_VERTICAL = NDalicPINVOKE.Scrollable_Property_CAN_SCROLL_VERTICAL_get();
+            public static readonly int CAN_SCROLL_VERTICAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_VERTICAL_get();
             /// <summary>
             /// canScrollHorizontal.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int CAN_SCROLL_HORIZONTAL = NDalicPINVOKE.Scrollable_Property_CAN_SCROLL_HORIZONTAL_get();
+            public static readonly int CAN_SCROLL_HORIZONTAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_HORIZONTAL_get();
         }
     }
 }

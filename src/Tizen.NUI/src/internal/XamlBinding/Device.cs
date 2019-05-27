@@ -61,7 +61,7 @@ namespace Tizen.NUI.Binding
             get
             {
                 // if (info == null)
-                // 	throw new InvalidOperationException("You MUST call Xamarin.Forms.Init(); prior to using it.");
+                // 	throw new InvalidOperationException("You MUST call Tizen.NUI.Xaml.Init(); prior to using it.");
                 return info;
             }
             set { info = value; }

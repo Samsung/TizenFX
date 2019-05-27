@@ -8,7 +8,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Xaml
 {
     [ContentProperty(nameof(Style))]
-    // [ProvideCompiled("Tizen.NUI.Core.XamlC.StyleSheetProvider")]
+    [ProvideCompiled("Tizen.NUI.Core.XamlC.StyleSheetProvider")]
     internal sealed class StyleSheetExtension : IValueProvider
     {
         public string Style { get; set; }

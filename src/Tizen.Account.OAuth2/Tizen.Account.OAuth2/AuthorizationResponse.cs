@@ -42,39 +42,6 @@ namespace Tizen.Account.OAuth2
             Dispose(false);
         }
 
-        /// <summary>
-        /// The authroization code.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public string Code { get; internal set; }
-
-        /// <summary>
-        /// The state parameter present in authorization request.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <remarks>
-        /// The value can be null depending on the server specifications.
-        /// </remarks>
-        public string State { get; internal set; }
-
-        /// <summary>
-        /// Custom key-value parameter received from service provider
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <remarks>
-        /// The return value can be null depending on the server specifications.
-        /// </remarks>
-        public string GetCustomValue(string key)
-        {
-            IntPtr value = IntPtr.Zero;
-            int ret = Interop.Response.GetCustomData(_responseHandle, key, out value);
-            if (ret != (int)OAuth2Error.None)
-            {
-                Log.Error(ErrorFactory.LogTag, "Interop failed");
-                throw ErrorFactory.GetException(ret);
-            }
-            return Marshal.PtrToStringAnsi(value);
-        }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object.

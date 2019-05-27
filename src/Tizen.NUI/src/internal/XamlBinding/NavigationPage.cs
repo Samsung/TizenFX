@@ -172,7 +172,7 @@ namespace Tizen.NUI
         /// The title of the back button for the specified page.
         /// </summary>
         /// <param name="page">The Page whose back-button's title is being requested.</param>
-        /// <returns>The title of the back button that would be shown if the specified page were the Xamarin.Forms.CurrentPage.</returns>
+        /// <returns>The title of the back button that would be shown if the specified page were the Tizen.NUI.Xaml.CurrentPage.</returns>
         public static string GetBackButtonTitle(BindableObject page)
         {
             return (string)page.GetValue(BackButtonTitleProperty);

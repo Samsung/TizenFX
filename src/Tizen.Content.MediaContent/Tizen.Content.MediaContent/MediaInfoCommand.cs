@@ -20,6 +20,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Tizen.System;
 
 namespace Tizen.Content.MediaContent
 {
@@ -476,8 +477,16 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <param name="mediaId">The media ID to delete.</param>
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
-        /// <remarks>The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.</remarks>
-        /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
+        /// <remarks>
+        /// The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.<br/>
+        /// Since API level 6, If file still exists in file system before calling this method,
+        /// <see cref="InvalidOperationException"/> will be thrown to keep db consistency.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
+        ///     File still exists in file system. (Since API level 6)
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
@@ -496,7 +505,21 @@ namespace Tizen.Content.MediaContent
                 return false;
             }
 
-            CommandHelper.Delete(Interop.MediaInfo.Delete, mediaId);
+            Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).
+                ThrowIfError("Failed to delete MediaInfo.");
+
+            var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
+
+            // If we don't check file existence before calling `ScanFile` method,
+            // The inconsistency between DB and file system could be occurred.
+            if (File.Exists(path))
+            {
+                throw new InvalidOperationException("File still exists in file system. Remove it first.");
+            }
+
+            // Native 'delete' function was deprecated, so we need to use 'scan file' function instead of it.
+            Database.ScanFile(path);
+
             return true;
         }
 
@@ -858,12 +881,15 @@ namespace Tizen.Content.MediaContent
 
             using (handle)
             {
-                if (InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType) == StorageType.ExternalUsb)
-                {
-                    throw new UnsupportedContentException("The media is in external usb storage.");
-                }
-
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
+
+                foreach (var extendedInternal in StorageManager.Storages.Where(s => s.StorageType == StorageArea.ExtendedInternal))
+                {
+                    if (path.Contains(extendedInternal.RootDirectory))
+                    {
+                        throw new UnsupportedContentException("The media is in external usb storage.");
+                    }
+                }
 
                 if (File.Exists(path) == false)
                 {
@@ -954,6 +980,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <remarks>
         ///     Media in the external storage is not supported, with the exception of MMC.
+        ///     Only JPEG, PNG, BMP images are supported.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
@@ -1016,6 +1043,14 @@ namespace Tizen.Content.MediaContent
                 if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
                 {
                     throw new UnsupportedContentException("Only image is supported.");
+                }
+
+                // Native P/Invoke function also check below case, but it returns invalid operation error.
+                // So we check it here to throw more proper exception.
+                string mimeType = InteropHelper.GetString(handle, Interop.MediaInfo.GetMimeType);
+                if (!mimeType.Equals("image/jpeg") && !mimeType.Equals("image/png") && !mimeType.Equals("image/bmp"))
+                {
+                    throw new UnsupportedContentException($"{mimeType} is not supported. Only JPEG, PNG, BMP is supported.");
                 }
 
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);

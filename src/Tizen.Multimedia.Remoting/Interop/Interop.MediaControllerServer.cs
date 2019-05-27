@@ -173,9 +173,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_delete_playlist")]
         internal static extern MediaControllerError DeletePlaylist(IntPtr handle, IntPtr playlist);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_playlist")]
-        internal static extern MediaControllerError ForeachPlaylist(IntPtr handle, PlaylistCallback callback, IntPtr userData);
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_index")]
         internal static extern MediaControllerError SetIndexOfCurrentPlayingMedia(IntPtr handle, string index);
 
@@ -188,10 +185,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_playlist_done")]
         internal static extern MediaControllerError SavePlaylist(IntPtr handle, IntPtr playlist);
-
-        // Playlist API. but this need to server handle so have to be here.
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_get_playlist")]
-        internal static extern MediaControllerError GetPlaylistHandle(IntPtr handle, string name, out IntPtr playbackHandle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_client")]
         internal static extern MediaControllerError ForeachActivatedClient(IntPtr handle, ActivatedClientCallback callback,

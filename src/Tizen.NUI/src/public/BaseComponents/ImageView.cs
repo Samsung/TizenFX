@@ -1,19 +1,19 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
+* Copyright(c) 2018 Samsung Electronics Co., Ltd.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*
+*/
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
@@ -49,12 +49,16 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
+            if(imageView._imageType == ImageType.Normal)
+            {
+                Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
+            }
             return imageView._url;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageProperty = BindableProperty.Create("Image", typeof(PropertyMap), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageProperty = BindableProperty.Create(nameof(ImageView.Image), typeof(PropertyMap), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -96,7 +100,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (imageView._border == null)
                 {
-                    Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
+                    imageView._image = map;
+                    imageView.UpdateImage();
                 }
             }
         },
@@ -114,6 +119,7 @@ namespace Tizen.NUI.BaseComponents
                 return null;
             }
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PreMultipliedAlphaProperty = BindableProperty.Create("PreMultipliedAlpha", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -131,6 +137,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.PRE_MULTIPLIED_ALPHA).Get(out temp);
             return temp;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create("PixelArea", typeof(RelativeVector4), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -149,6 +156,7 @@ namespace Tizen.NUI.BaseComponents
             RelativeVector4 relativeTemp = new RelativeVector4(temp.X, temp.Y, temp.Z, temp.W);
             return relativeTemp;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -165,6 +173,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             return imageView._border;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderOnlyProperty = BindableProperty.Create("BorderOnly", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -181,6 +190,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             return imageView._borderOnly ?? false;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create("SynchronosLoading", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -197,6 +207,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             return imageView._synchronousLoading ?? false;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OrientationCorrectionProperty = BindableProperty.Create("OrientationCorrection", typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -220,19 +231,20 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
         private _resourceLoadedCallbackType _resourceLoadedCallback;
 
-        private Rectangle _border = null;
-        private PropertyMap _nPatchMap = null;
-        private bool? _synchronousLoading = null;
-        private bool? _borderOnly = null;
-        private string _url = null;
-        private bool? _orientationCorrection = null;
-
+        private Rectangle _border;
+        private PropertyMap _nPatchMap;
+        private bool? _synchronousLoading;
+        private bool? _borderOnly;
+        private string _url;
+        private bool? _orientationCorrection;
+        private PropertyMap _image;
+        private ImageType _imageType;
 
         /// <summary>
         /// Creates an initialized ImageView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
+        public ImageView() : this(Interop.ImageView.ImageView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -243,19 +255,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="url">The URL of the image resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
+        public ImageView(string url) : this(Interop.ImageView.ImageView_New__SWIG_2(url), true)
         {
             _url = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal ImageView(string url, Uint16Pair size) : this(NDalicPINVOKE.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
+        internal ImageView(string url, Uint16Pair size) : this(Interop.ImageView.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
         {
             _url = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -355,7 +367,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                _url = (value == null? "" : value);
+                _url = (value == null ? "" : value);
                 SetValue(ResourceUrlProperty, _url);
                 NotifyPropertyChanged();
             }
@@ -539,7 +551,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (ImageView.LoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(swigCPtr, (int)Property.IMAGE);
+                return (ImageView.LoadingStatusType)Interop.View.View_GetVisualResourceStatus(swigCPtr, (int)Property.IMAGE);
             }
         }
 
@@ -550,9 +562,9 @@ namespace Tizen.NUI.BaseComponents
         /// Instead please use as keyword.
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
-            "Like: " +
-            "BaseHandle handle = new ImageView(imagePath); " +
-            "ImageView image = handle as ImageView")]
+        "Like: " +
+        "BaseHandle handle = new ImageView(imagePath); " +
+        "ImageView image = handle as ImageView")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ImageView DownCast(BaseHandle handle)
         {
@@ -570,7 +582,7 @@ namespace Tizen.NUI.BaseComponents
         public void SetImage(string url)
         {
             _url = url;
-            NDalicPINVOKE.ImageView_SetImage__SWIG_1(swigCPtr, url);
+            Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -582,7 +594,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public new bool IsResourceReady()
         {
-            bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
+            bool ret = Interop.View.IsResourceReady(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -632,20 +644,20 @@ namespace Tizen.NUI.BaseComponents
         internal void SetImage(string url, Uint16Pair size)
         {
             _url = url;
-            NDalicPINVOKE.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
+            Interop.ImageView.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ViewResourceReadySignal ResourceReadySignal(View view)
         {
-            ViewResourceReadySignal ret = new ViewResourceReadySignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(view)), false);
+            ViewResourceReadySignal ret = new ViewResourceReadySignal(Interop.View.ResourceReadySignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
         {
-            return (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+            return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
         }
 
         /// <summary>
@@ -669,6 +681,8 @@ namespace Tizen.NUI.BaseComponents
                 _border = null;
                 _nPatchMap?.Dispose();
                 _nPatchMap = null;
+                _image?.Dispose();
+                _image = null;
             }
 
             //Release your own unmanaged resources here.
@@ -680,7 +694,7 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ImageView(swigCPtr);
+                    Interop.ImageView.delete_ImageView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -705,7 +719,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void UpdateImage()
         {
-            if (_url != null)
+            if (_url != null && _url != "")
             {
                 if (_border != null)
                 { // for nine-patch image
@@ -717,6 +731,7 @@ namespace Tizen.NUI.BaseComponents
                     if (_synchronousLoading != null) { _nPatchMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
                     if (_orientationCorrection != null) { _nPatchMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
+                    _imageType = ImageType.Npatch;
                 }
                 else if (_synchronousLoading != null || _orientationCorrection != null)
                 { // for normal image, with synchronous loading property
@@ -726,18 +741,41 @@ namespace Tizen.NUI.BaseComponents
                     if (_synchronousLoading != null) { imageMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
                     if (_orientationCorrection != null) { imageMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
+
+                    _imageType = ImageType.Specific;
                 }
                 else
                 { // just for normal image
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_url));
+                    _imageType = ImageType.Normal;
                 }
+            }
+            else
+            {
+                //Image property is set and used
+                PropertyMap map = new PropertyMap();
+                map.Insert(ImageVisualProperty.URL, new PropertyValue(""));
+                if (_synchronousLoading != null)
+                {
+                    map.Insert(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading));
+                }
+                if (_orientationCorrection != null)
+                {
+                    map.Insert(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection));
+                }
+                if (_image != null)
+                {
+                    map.Merge(_image);
+                }
+                SetProperty(ImageView.Property.IMAGE, new PropertyValue(map));
+                _imageType = ImageType.Normal;
             }
         }
 
         private void OnResourceLoaded(IntPtr view)
         {
             ResourceLoadedEventArgs e = new ResourceLoadedEventArgs();
-            e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+            e.Status = (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
 
             if (_resourceLoadedEventHandler != null)
             {
@@ -788,14 +826,32 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RESOURCE_URL = NDalicPINVOKE.ImageView_Property_RESOURCE_URL_get();
-            internal static readonly int IMAGE = NDalicPINVOKE.ImageView_Property_IMAGE_get();
-            internal static readonly int PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
-            internal static readonly int PIXEL_AREA = NDalicPINVOKE.ImageView_Property_PIXEL_AREA_get();
-            internal static readonly int ACTION_RELOAD = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
-            internal static readonly int ACTION_PLAY = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
-            internal static readonly int ACTION_PAUSE = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
-            internal static readonly int ACTION_STOP = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+            internal static readonly int RESOURCE_URL = Interop.ImageView.ImageView_Property_RESOURCE_URL_get();
+            internal static readonly int IMAGE = Interop.ImageView.ImageView_Property_IMAGE_get();
+            internal static readonly int PRE_MULTIPLIED_ALPHA = Interop.ImageView.ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
+            internal static readonly int PIXEL_AREA = Interop.ImageView.ImageView_Property_PIXEL_AREA_get();
+            internal static readonly int ACTION_RELOAD = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
+            internal static readonly int ACTION_PLAY = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
+            internal static readonly int ACTION_PAUSE = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
+            internal static readonly int ACTION_STOP = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+        }
+
+        private enum ImageType
+        {
+            /// <summary>
+            /// For Normal Image.
+            /// </summary>
+            Normal = 0,
+
+            /// <summary>
+            /// For normal image, with synchronous loading and orientation correction property
+            /// </summary>
+            Specific = 1,
+
+            /// <summary>
+            /// For nine-patch image
+            /// </summary>
+            Npatch = 2,
         }
     }
 }

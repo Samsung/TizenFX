@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Tizen.NUI.StyleSheets;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
     [ContentProperty("Setters")]
     internal sealed class Style : IStyle
     {
-        internal const string StyleClassPrefix = "Xamarin.Forms.StyleClass.";
+        internal const string StyleClassPrefix = "Tizen.NUI.Binding.StyleClass.";
 
         readonly BindableProperty _basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(Style), typeof(Style), default(Style),
             propertyChanged: OnBasedOnResourceChanged);
@@ -74,7 +75,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        public IList<Behavior> Behaviors
+        internal IList<Behavior> Behaviors
         {
             get { return _behaviors ?? (_behaviors = new AttachedCollection<Behavior>()); }
         }
@@ -85,6 +86,8 @@ namespace Tizen.NUI.Binding
 
         public IList<Setter> Setters { get; }
 
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<TriggerBase> Triggers
         {
             get { return _triggers ?? (_triggers = new AttachedCollection<TriggerBase>()); }

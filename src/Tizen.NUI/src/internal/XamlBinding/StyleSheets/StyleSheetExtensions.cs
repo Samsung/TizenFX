@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.StyleSheets

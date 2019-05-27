@@ -325,6 +325,7 @@ namespace Tizen.NUI
 
     internal class Application : BaseHandle, IResourcesProvider, IApplicationController, IElementConfiguration<Application>
     {
+
         static Application s_current;
         Task<IDictionary<string, object>> _propertiesTask;
         readonly Lazy<PlatformConfigurationRegistry<Application>> _platformConfigurationRegistry;
@@ -833,7 +834,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Application(swigCPtr);
+                    Interop.Application.delete_Application(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -1009,8 +1010,10 @@ namespace Tizen.NUI
                 e.Application = this;
                 _applicationTerminateEventHandler.Invoke(this, e);
             }
-
-            Window.Instance.DisconnectNativeSignals();
+            if (Window.Instance)
+            {
+                Window.Instance.DisconnectNativeSignals();
+            }
         }
 
         /**
@@ -1329,12 +1332,12 @@ namespace Tizen.NUI
         {
             lock (this)
             {
-            NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
+                NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
 
-            // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
-            e.BatteryStatus = status;
-            _applicationBatteryLowEventHandler?.Invoke(this, e);
-        }
+                // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
+                e.BatteryStatus = status;
+                _applicationBatteryLowEventHandler?.Invoke(this, e);
+            }
         }
 
         /**
@@ -1377,12 +1380,12 @@ namespace Tizen.NUI
         {
             lock (this)
             {
-            NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
+                NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
 
-            // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
-            e.MemoryStatus = status;
-            _applicationMemoryLowEventHandler?.Invoke(this, e);
-        }
+                // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
+                e.MemoryStatus = status;
+                _applicationMemoryLowEventHandler?.Invoke(this, e);
+            }
         }
 
         /**
@@ -1496,9 +1499,9 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
-            System.IntPtr ip2 = NDalicManualPINVOKE.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+            System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
 
-            bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+            bool ret = Interop.Application.Application_AddIdle(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1509,28 +1512,28 @@ namespace Tizen.NUI
         */
         public static Application New()
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_0(), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_0(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_1(argc), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_1(argc), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_2(argc, stylesheet), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_2(argc, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             ret.SendResume();
             return ret;
@@ -1542,30 +1545,32 @@ namespace Tizen.NUI
             string argvStr = string.Join(" ", args);
 
             Application ret = new Application(NDalicPINVOKE.Application_New__MANUAL_4(argc, argvStr, stylesheet, (int)windowMode), true);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
             return ret;
         }
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            Application ret = new Application(Interop.Application.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true)
+        public Application() : this(Interop.Application.new_Application__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Application(Application application) : this(NDalicPINVOKE.new_Application__SWIG_1(Application.getCPtr(application)), true)
+        public Application(Application application) : this(Interop.Application.new_Application__SWIG_1(Application.getCPtr(application)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Application Assign(Application application)
         {
-            Application ret = new Application(NDalicPINVOKE.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
+            Application ret = new Application(Interop.Application.Application_Assign(swigCPtr, Application.getCPtr(application)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1578,59 +1583,59 @@ namespace Tizen.NUI
 
         internal void MainLoop(SWIGTYPE_p_Configuration__ContextLoss configuration)
         {
-            NDalicPINVOKE.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
+            Interop.Application.Application_MainLoop__SWIG_1(swigCPtr, SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Lower()
         {
-            NDalicPINVOKE.Application_Lower(swigCPtr);
+            Interop.Application.Application_Lower(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Quit()
         {
-            NDalicPINVOKE.Application_Quit(swigCPtr);
+            Interop.Application.Application_Quit(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            bool ret = NDalicPINVOKE.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            bool ret = Interop.Application.Application_AddIdle(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Window GetWindow()
         {
-            Window ret = new Window(NDalicPINVOKE.Application_GetWindow(swigCPtr), true);
+            Window ret = new Window(Interop.Application.Application_GetWindow(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void ReplaceWindow(Rectangle windowPosition, string name)
         {
-            NDalicPINVOKE.Application_ReplaceWindow(swigCPtr, Rectangle.getCPtr(windowPosition), name);
+            Interop.Application.Application_ReplaceWindow(swigCPtr, Rectangle.getCPtr(windowPosition), name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static string GetResourcePath()
         {
-            string ret = NDalicPINVOKE.Application_GetResourcePath();
+            string ret = Interop.Application.Application_GetResourcePath();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetLanguage()
         {
-            string ret = NDalicPINVOKE.Application_GetLanguage(swigCPtr);
+            string ret = Interop.Application.Application_GetLanguage(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetRegion()
         {
-            string ret = NDalicPINVOKE.Application_GetRegion(swigCPtr);
+            string ret = Interop.Application.Application_GetRegion(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
