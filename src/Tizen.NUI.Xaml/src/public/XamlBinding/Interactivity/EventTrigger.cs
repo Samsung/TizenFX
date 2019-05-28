@@ -10,7 +10,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// The class EventTrigger.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Actions")]
     public sealed class EventTrigger : TriggerBase
@@ -23,18 +24,18 @@ namespace Tizen.NUI.Binding
         string _eventname;
         Delegate _handlerdelegate;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public EventTrigger() : base(typeof(BindableObject))
         {
             Actions = new SealedList<TriggerAction>();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<TriggerAction> Actions { get; }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Event
         {

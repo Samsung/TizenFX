@@ -12,7 +12,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// A BindableProperty is a backing store for properties allowing bindings on BindableObject.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [DebuggerDisplay("{PropertyName}")]
     [TypeConverter(typeof(BindablePropertyTypeConverter))]
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -24,6 +25,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="oldValue">The old property value.</param>
         /// <param name="newValue">The new property value.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void BindingPropertyChangedDelegate(BindableObject bindable, object oldValue, object newValue);
 
         /// <summary>
@@ -33,6 +36,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="oldValue">The old property value.</param>
         /// <param name="newValue">The new property value.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void BindingPropertyChangedDelegate<in TPropertyType>(BindableObject bindable, TPropertyType oldValue, TPropertyType newValue);
 
         /// <summary>
@@ -41,6 +46,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="oldValue">The old property value.</param>
         /// <param name="newValue">The new property value.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void BindingPropertyChangingDelegate(BindableObject bindable, object oldValue, object newValue);
 
         /// <summary>
@@ -50,6 +57,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="oldValue">The old property value.</param>
         /// <param name="newValue">The new property value.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void BindingPropertyChangingDelegate<in TPropertyType>(BindableObject bindable, TPropertyType oldValue, TPropertyType newValue);
 
         /// <summary>
@@ -58,6 +67,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="value">The value to coerce.</param>
         /// <returns>System.Object</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate object CoerceValueDelegate(BindableObject bindable, object value);
 
         /// <summary>
@@ -67,6 +78,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="value">The value to coerce.</param>
         /// <returns>TPropertyType</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate TPropertyType CoerceValueDelegate<TPropertyType>(BindableObject bindable, TPropertyType value);
 
         /// <summary>
@@ -74,6 +87,8 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <returns>System.Object</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate object CreateDefaultValueDelegate(BindableObject bindable);
 
         /// <summary>
@@ -83,6 +98,8 @@ namespace Tizen.NUI.Binding
         /// <typeparam name="TPropertyType">The type of the bound property.</typeparam>
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <returns>TPropertyType</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate TPropertyType CreateDefaultValueDelegate<in TDeclarer, out TPropertyType>(TDeclarer bindable);
 
         /// <summary>
@@ -91,6 +108,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="value">The default value.</param>
         /// <returns>System.Boolean</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate bool ValidateValueDelegate(BindableObject bindable, object value);
 
         /// <summary>
@@ -100,6 +119,8 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The bindable object that contains the property.</param>
         /// <param name="value">The default value.</param>
         /// <returns>System.Boolean</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate bool ValidateValueDelegate<in TPropertyType>(BindableObject bindable, TPropertyType value);
 
         static readonly Dictionary<Type, TypeConverter> WellKnownConvertTypes = new  Dictionary<Type,TypeConverter>
@@ -181,31 +202,43 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets the type declaring the BindableProperty.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Type DeclaringType { get; private set; }
 
         /// <summary>
         /// Gets the default BindingMode.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public BindingMode DefaultBindingMode { get; private set; }
 
         /// <summary>
         /// Gets the default value for the BindableProperty.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object DefaultValue { get; }
 
         /// <summary>
         /// Gets a value indicating if the BindableProperty is created form a BindablePropertyKey.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsReadOnly { get; private set; }
 
         /// <summary>
         /// Gets the property name.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string PropertyName { get; }
 
         /// <summary>
         /// Gets the type of the BindableProperty.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Type ReturnType { get; }
 
         internal BindablePropertyBindingChanging BindingChanging { get; private set; }
@@ -236,6 +269,8 @@ namespace Tizen.NUI.Binding
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
         /// <returns>A newly created BindableProperty.</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Create<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
         public static BindableProperty Create<TDeclarer, TPropertyType>(Expression<Func<TDeclarer, TPropertyType>> getter, TPropertyType defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
                                                                         ValidateValueDelegate<TPropertyType> validateValue = null, BindingPropertyChangedDelegate<TPropertyType> propertyChanged = null,
@@ -259,6 +294,8 @@ namespace Tizen.NUI.Binding
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
         /// <returns>A newly created BindableProperty.</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty Create(string propertyName, Type returnType, Type declaringType, object defaultValue = null, BindingMode defaultBindingMode = BindingMode.OneWay,
                                               ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
                                               CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
@@ -280,6 +317,8 @@ namespace Tizen.NUI.Binding
         /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("CreateAttached<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
         public static BindableProperty CreateAttached<TDeclarer, TPropertyType>(Expression<Func<BindableObject, TPropertyType>> staticgetter, TPropertyType defaultValue,
                                                                                 BindingMode defaultBindingMode = BindingMode.OneWay, ValidateValueDelegate<TPropertyType> validateValue = null, BindingPropertyChangedDelegate<TPropertyType> propertyChanged = null,
@@ -303,6 +342,8 @@ namespace Tizen.NUI.Binding
         /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         /// <returns>A newly created BindableProperty.</returns>
         public static BindableProperty CreateAttached(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
                                                       ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
@@ -325,6 +366,8 @@ namespace Tizen.NUI.Binding
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
         /// <returns>A newly created attached read-only BindablePropertyKey.</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("CreateAttachedReadOnly<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
         public static BindablePropertyKey CreateAttachedReadOnly<TDeclarer, TPropertyType>(Expression<Func<BindableObject, TPropertyType>> staticgetter, TPropertyType defaultValue,
                                                                                            BindingMode defaultBindingMode = BindingMode.OneWayToSource, ValidateValueDelegate<TPropertyType> validateValue = null,
@@ -351,6 +394,8 @@ namespace Tizen.NUI.Binding
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
         /// <returns>A newly created attached read-only BindablePropertyKey.</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindablePropertyKey CreateAttachedReadOnly(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWayToSource,
                                                                  ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
                                                                  CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
@@ -374,6 +419,8 @@ namespace Tizen.NUI.Binding
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
         /// <returns>A newly created BindablePropertyKey.</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("CreateReadOnly<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
         public static BindablePropertyKey CreateReadOnly<TDeclarer, TPropertyType>(Expression<Func<TDeclarer, TPropertyType>> getter, TPropertyType defaultValue,
                                                                                    BindingMode defaultBindingMode = BindingMode.OneWayToSource, ValidateValueDelegate<TPropertyType> validateValue = null,
@@ -397,6 +444,8 @@ namespace Tizen.NUI.Binding
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
         /// <returns>A newly created BindablePropertyKey.</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindablePropertyKey CreateReadOnly(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWayToSource,
                                                          ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
                                                          CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)

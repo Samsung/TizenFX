@@ -5,13 +5,13 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Forms.XamlC.ColorTypeConverter")]
     [Xaml.TypeConversion(typeof(Color))]
     public class ColorTypeConverter : TypeConverter
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Binding
             return (j << 4) | j;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Color FromRgba(int r, int g, int b, int a)
         {
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Binding
             return new Color(red, green, blue, alpha);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Color FromRgb(int r, int g, int b)
         {

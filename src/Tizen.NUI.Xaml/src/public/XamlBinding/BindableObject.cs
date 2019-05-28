@@ -11,6 +11,7 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another, by enabling validation, type coercion, and an event system.
     /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
     {
@@ -29,7 +30,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets object that contains the properties that will be targeted by the bound properties that belong to this BindableObject.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object BindingContext
         {
@@ -45,14 +46,14 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Raised when a property has changed.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Raised whenever the BindingContext property changes.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler BindingContextChanged;
 
@@ -102,7 +103,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="property">The BindableProperty for which to get the value.</param>
         /// <returns>The value that is contained the BindableProperty</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object GetValue(BindableProperty property)
         {
@@ -120,7 +121,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Raised when a property is about to change.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event PropertyChangingEventHandler PropertyChanging;
 
@@ -155,7 +156,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="property">The BindableProperty on which to assign a value.</param>
         /// <param name="value">The value to set.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
         {
@@ -166,7 +167,7 @@ namespace Tizen.NUI.Binding
         /// Force notify the listener.
         /// </summary>
         /// <param name="property">The BindableProperty on which to assign a value.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         public void ForceNotify(BindableProperty property)
         {
             BindablePropertyContext context = GetOrCreateContext(property);
@@ -187,7 +188,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="propertyKey">The BindablePropertyKey on which to assign a value.</param>
         /// <param name="value">The value to set.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindablePropertyKey propertyKey, object value)
         {
@@ -202,6 +203,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="bindable">The object on which to set the inherited binding context.</param>
         /// <param name="value">The inherited context to set.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetInheritedBindingContext(BindableObject bindable, object value)
         {
@@ -234,7 +236,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Apply the bindings to BindingContext.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void ApplyBindings()
         {
@@ -244,7 +246,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Override this method to execute an action when the BindingContext changes.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnBindingContextChanged()
         {
@@ -255,7 +257,7 @@ namespace Tizen.NUI.Binding
         /// Call this method from a child class to notify that a change happened on a property.
         /// </summary>
         /// <param name="propertyName">The name of the property that changed.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -264,7 +266,7 @@ namespace Tizen.NUI.Binding
         /// Call this method from a child class to notify that a change is going to happen on a property.
         /// </summary>
         /// <param name="propertyName">The name of the property that is changing.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPropertyChanging([CallerMemberName] string propertyName = null)
             => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
@@ -272,7 +274,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Unapplies all previously set bindings.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UnapplyBindings()
         {
@@ -493,13 +495,6 @@ namespace Tizen.NUI.Binding
             SetValueCore(propertyKey.BindableProperty, value, attributes, SetValuePrivateFlags.None);
         }
 
-        /// <summary>
-        /// For internal use.
-        /// </summary>
-        /// <param name="property">The BindableProperty on which to assign a value.</param>
-        /// <param name="value">The value to set</param>
-        /// <param name="attributes">The set value flag</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes = SetValueFlags.None)
         {
             SetValueCore(property, value, attributes, SetValuePrivateFlags.Default);
@@ -833,6 +828,7 @@ namespace Tizen.NUI.Binding.Internals
     /// <summary>
     /// SetValueFlags. For internal use.
     /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [Flags]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum SetValueFlags
@@ -840,35 +836,35 @@ namespace Tizen.NUI.Binding.Internals
         /// <summary>
         /// None.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         None = 0,
 
         /// <summary>
         /// Clear OneWay bindings.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         ClearOneWayBindings = 1 << 0,
 
         /// <summary>
         /// Clear TwoWay bindings.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         ClearTwoWayBindings = 1 << 1,
 
         /// <summary>
         /// Clear dynamic resource.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         ClearDynamicResource = 1 << 2,
 
         /// <summary>
         /// Raise or equal.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         RaiseOnEqual = 1 << 3
     }

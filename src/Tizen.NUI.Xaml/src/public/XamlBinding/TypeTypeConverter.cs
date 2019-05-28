@@ -5,7 +5,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Forms.XamlC.TypeTypeConverter")]
     [Xaml.TypeConversion(typeof(Type))]
@@ -28,7 +28,7 @@ namespace Tizen.NUI.Binding
             return typeResolver.Resolve(value, serviceProvider);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {

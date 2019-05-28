@@ -10,11 +10,11 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.StyleSheets
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleSheet : IStyle
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         StyleSheet()
         {
@@ -22,7 +22,7 @@ namespace Tizen.NUI.StyleSheets
 
         internal IDictionary<Selector, Style> Styles { get; set; } = new Dictionary<Selector, Style>();
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StyleSheet FromAssemblyResource(Assembly assembly, string resourceId, IXmlLineInfo lineInfo = null)
         {
@@ -45,7 +45,7 @@ namespace Tizen.NUI.StyleSheets
                 return FromReader(reader);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static StyleSheet FromReader(TextReader reader)
         {

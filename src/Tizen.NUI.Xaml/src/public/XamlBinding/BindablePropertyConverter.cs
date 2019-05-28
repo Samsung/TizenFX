@@ -14,7 +14,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// The class to convert bindable property.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Forms.XamlC.BindablePropertyConverter")]
     [Xaml.TypeConversion(typeof(BindableProperty))]
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -83,6 +84,8 @@ namespace Tizen.NUI.Binding
             throw new XamlParseException($"Can't resolve {value}. Syntax is [[prefix:]Type.]PropertyName.", lineinfo);
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if (string.IsNullOrWhiteSpace(value))

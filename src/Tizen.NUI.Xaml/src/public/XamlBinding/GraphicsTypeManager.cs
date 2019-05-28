@@ -24,7 +24,7 @@ namespace Tizen.NUI.Binding
     /// GraphicsTypeManager class to manage various types.
     /// </summary>
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GraphicsTypeManager
     {

@@ -30,13 +30,13 @@ namespace Tizen.NUI.Xaml
     /// </summary>
     [ContentProperty("Content")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ContentPage : TemplatedPage, IResourcesProvider
+    public class ContentPage : TemplatedPage, Tizen.NUI.Binding.IResourcesProvider
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Root {get; internal set;}
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -50,7 +50,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// The contents of ContentPage can be added into it.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Content
         {
@@ -59,12 +59,12 @@ namespace Tizen.NUI.Xaml
         }
 
         ResourceDictionary _resources;
-        bool IResourcesProvider.IsResourcesCreated => _resources != null;
+        bool Tizen.NUI.Binding.IResourcesProvider.IsResourcesCreated => _resources != null;
 
         /// <summary>
         /// Method that is called when the binding content changes.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ResourceDictionary XamlResources
         {
@@ -95,7 +95,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Method that is called when the binding content changes.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnBindingContextChanged()
         {
@@ -126,7 +126,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ContentPage(Window win)
         {
@@ -141,7 +141,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Check whether the content is empty.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsEmpty
         {
@@ -154,7 +154,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Clear all contents from this ContentPage.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearContent()
         {
@@ -180,7 +180,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Clear event.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler ClearEvent
         {
@@ -205,7 +205,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Users can set focus logic codes here.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void SetFocus() { }
     }

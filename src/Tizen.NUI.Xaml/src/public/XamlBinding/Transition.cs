@@ -10,13 +10,13 @@ using Tizen.NUI.Xaml.Internals;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimationBehavior
     {
         private string _key = null;
         
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Key
         {
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Binding
 
         private string _property = null;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Property
         {
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Binding
 
         private string _destValue = null;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string DestValue
         {
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Binding
 
         private int _startTime = -1;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int StartTime
         {
@@ -80,7 +80,7 @@ namespace Tizen.NUI.Binding
 
         private int _endTime = -1;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int EndTime
         {
@@ -95,7 +95,7 @@ namespace Tizen.NUI.Binding
         }
     }
 
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Transition : Tizen.NUI.Xaml.Forms.BaseHandle
     {
@@ -113,13 +113,13 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Transition() : this(new Tizen.NUI.Animation())
         {
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Transition(int durationMilliSeconds) : this(new Tizen.NUI.Animation(durationMilliSeconds))
         {
@@ -130,7 +130,7 @@ namespace Tizen.NUI.Binding
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler Finished
         {
@@ -144,7 +144,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler ProgressReached
         {
@@ -161,7 +161,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the duration in milliseconds of the animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Duration
         {
             set
@@ -177,7 +179,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         ///  Gets or sets the default alpha function for the animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AlphaFunction DefaultAlphaFunction
         {
             set
@@ -193,7 +197,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Queries the state of the animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Animation.States State
         {
             get
@@ -209,7 +215,9 @@ namespace Tizen.NUI.Binding
         /// Get: Gets the loop count. A zero is the same as Looping = true; i.e., repeat forever.<br />
         /// The loop count is initially 1 for play once.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int LoopCount
         {
             set
@@ -227,7 +235,9 @@ namespace Tizen.NUI.Binding
         /// This property resets the loop count and should not be used with the LoopCount property.<br />
         /// Setting this parameter does not cause the animation to Play().<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Looping
         {
             set
@@ -245,7 +255,9 @@ namespace Tizen.NUI.Binding
         /// This action is performed when the animation ends or if it is stopped.<br />
         /// The default end action is cancel.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Animation.EndActions EndAction
         {
             set
@@ -262,7 +274,9 @@ namespace Tizen.NUI.Binding
         /// Gets the current loop count.<br />
         /// A value 0 indicating the current loop count when looping.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int CurrentLoop
         {
             get
@@ -276,7 +290,9 @@ namespace Tizen.NUI.Binding
         /// If any of the animated property owners are disconnected from the stage while the animation is being played, then this action is performed.<br />
         /// The default action is cancel.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Animation.EndActions DisconnectAction
         {
             set
@@ -296,7 +312,9 @@ namespace Tizen.NUI.Binding
         /// The progress must be in the 0-1 interval or in the play range interval if defined<br />
         /// otherwise, it will be ignored.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentProgress
         {
             set
@@ -315,7 +333,9 @@ namespace Tizen.NUI.Binding
         /// Values between [0, 1] will slow down the animation and values above one will speed up the animation.<br />
         /// It is also possible to specify a negative multiplier to play the animation in reverse.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SpeedFactor
         {
             set
@@ -333,7 +353,9 @@ namespace Tizen.NUI.Binding
         /// Animation will play between the values specified. Both values (range.x and range.y ) should be between 0-1,
         /// otherwise they will be ignored. If the range provided is not in proper order (minimum, maximum ), it will be reordered.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RelativeVector2 PlayRange
         {
             set
@@ -352,7 +374,9 @@ namespace Tizen.NUI.Binding
         /// Percentage of animation progress should be greater than 0 and less than 1, for example, 0.3 for 30% <br />
         /// One notification can be set on each animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ProgressNotification
         {
             set
@@ -373,6 +397,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] Properties
         {
             get
@@ -388,6 +414,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] DestValue
         {
             get
@@ -403,6 +431,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] StartTime
         {
             get
@@ -418,6 +448,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] EndTime
         {
             get
@@ -437,7 +469,9 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Transition DownCast(Tizen.NUI.BaseHandle handle)
         {
             return Tizen.NUI.Xaml.Forms.BaseHandle.GetHandle(Tizen.NUI.Animation.DownCast(handle)) as Transition;
@@ -447,7 +481,9 @@ namespace Tizen.NUI.Binding
         /// Stops the animation.
         /// </summary>
         /// <param name="action">The end action can be set.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop(Tizen.NUI.Animation.EndActions action)
         {
             animation.Stop(action);
@@ -456,7 +492,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Plays the animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
             animation.Play();
@@ -465,7 +503,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Pauses the animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
             animation.Pause();
@@ -474,7 +514,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Stops the animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
             animation.Stop();
@@ -484,7 +526,9 @@ namespace Tizen.NUI.Binding
         /// Clears the animation.<br />
         /// This disconnects any objects that were being animated, effectively stopping the animation.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
             animation.Clear();
@@ -492,7 +536,7 @@ namespace Tizen.NUI.Binding
 
         private string name;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
 
         public string Name
@@ -509,6 +553,8 @@ namespace Tizen.NUI.Binding
 
         private Dictionary<string, AnimationBehavior> behaviors = new Dictionary<string, AnimationBehavior>();
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationBehavior[] Behaviors
         {
             set
@@ -523,6 +569,8 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateTo(View instance, string behaviorKey)
         {
             AnimationBehavior behavior = null;
@@ -556,6 +604,8 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateBy(View instance, string behaviorKey)
         {
             AnimationBehavior behavior = null;

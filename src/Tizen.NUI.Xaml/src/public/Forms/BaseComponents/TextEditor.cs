@@ -31,7 +31,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// <summary>
     /// A control which provides a multi-line editable text editor.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TextEditor : View
     {
         private Tizen.NUI.BaseComponents.TextEditor _textEditor;
@@ -51,7 +53,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TextEditor() : this(new Tizen.NUI.BaseComponents.TextEditor())
         {
         }
@@ -61,7 +65,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TextProperty = Binding.BindableProperty.Create(nameof(Text), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -73,7 +77,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.Text;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TextColorProperty = Binding.BindableProperty.Create(nameof(TextColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -85,7 +89,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.TextColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FontFamilyProperty = Binding.BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -97,7 +101,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.FontFamily;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FontStyleProperty = Binding.BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -109,7 +113,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.FontStyle;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PointSizeProperty = Binding.BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -121,7 +125,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.PointSize;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty HorizontalAlignmentProperty = Binding.BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextEditor), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -133,7 +137,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.HorizontalAlignment;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScrollThresholdProperty = Binding.BindableProperty.Create(nameof(ScrollThreshold), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -145,7 +149,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.ScrollThreshold;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScrollSpeedProperty = Binding.BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -157,7 +161,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.ScrollSpeed;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PrimaryCursorColorProperty = Binding.BindableProperty.Create(nameof(PrimaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -169,7 +173,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.PrimaryCursorColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SecondaryCursorColorProperty = Binding.BindableProperty.Create(nameof(SecondaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -181,7 +185,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SecondaryCursorColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty EnableCursorBlinkProperty = Binding.BindableProperty.Create(nameof(EnableCursorBlink), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -193,7 +197,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.EnableCursorBlink;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CursorBlinkIntervalProperty = Binding.BindableProperty.Create(nameof(CursorBlinkInterval), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -205,7 +209,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.CursorBlinkInterval;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CursorBlinkDurationProperty = Binding.BindableProperty.Create(nameof(CursorBlinkDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -217,7 +221,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.CursorBlinkDuration;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CursorWidthProperty = Binding.BindableProperty.Create(nameof(CursorWidth), typeof(int), typeof(TextEditor), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -229,7 +233,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.CursorWidth;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty GrabHandleImageProperty = Binding.BindableProperty.Create(nameof(GrabHandleImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -241,7 +245,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.GrabHandleImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty GrabHandlePressedImageProperty = Binding.BindableProperty.Create(nameof(GrabHandlePressedImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -253,7 +257,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.GrabHandlePressedImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectionHandleImageLeftProperty = Binding.BindableProperty.Create(nameof(SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -265,7 +269,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SelectionHandleImageLeft;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectionHandleImageRightProperty = Binding.BindableProperty.Create(nameof(SelectionHandleImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -277,7 +281,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SelectionHandleImageRight;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectionHandlePressedImageLeftProperty = Binding.BindableProperty.Create(nameof(SelectionHandlePressedImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -289,7 +293,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SelectionHandlePressedImageLeft;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectionHandlePressedImageRightProperty = Binding.BindableProperty.Create(nameof(SelectionHandlePressedImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -301,7 +305,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SelectionHandlePressedImageRight;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectionHandleMarkerImageLeftProperty = Binding.BindableProperty.Create(nameof(SelectionHandleMarkerImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -313,7 +317,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SelectionHandleMarkerImageLeft;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectionHandleMarkerImageRightProperty = Binding.BindableProperty.Create(nameof(SelectionHandleMarkerImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -325,7 +329,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SelectionHandleMarkerImageRight;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectionHighlightColorProperty = Binding.BindableProperty.Create(nameof(SelectionHighlightColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -337,7 +341,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SelectionHighlightColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DecorationBoundingBoxProperty = Binding.BindableProperty.Create(nameof(DecorationBoundingBox), typeof(Rectangle), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -349,7 +353,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.DecorationBoundingBox;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty EnableMarkupProperty = Binding.BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -361,7 +365,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.EnableMarkup;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputColorProperty = Binding.BindableProperty.Create(nameof(InputColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -373,7 +377,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputFontFamilyProperty = Binding.BindableProperty.Create(nameof(InputFontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -385,7 +389,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputFontFamily;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputFontStyleProperty = Binding.BindableProperty.Create(nameof(InputFontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -397,7 +401,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputFontStyle;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputPointSizeProperty = Binding.BindableProperty.Create(nameof(InputPointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -409,7 +413,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputPointSize;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LineSpacingProperty = Binding.BindableProperty.Create(nameof(LineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -421,7 +425,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.LineSpacing;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputLineSpacingProperty = Binding.BindableProperty.Create(nameof(InputLineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -433,7 +437,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputLineSpacing;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty UnderlineProperty = Binding.BindableProperty.Create(nameof(Underline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -445,7 +449,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.Underline;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputUnderlineProperty = Binding.BindableProperty.Create(nameof(InputUnderline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -457,7 +461,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputUnderline;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ShadowProperty = Binding.BindableProperty.Create(nameof(Shadow), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -469,7 +473,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.Shadow;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputShadowProperty = Binding.BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -481,7 +485,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputShadow;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty EmbossProperty = Binding.BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -493,7 +497,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.Emboss;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputEmbossProperty = Binding.BindableProperty.Create(nameof(InputEmboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -505,7 +509,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputEmboss;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty OutlineProperty = Binding.BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -517,7 +521,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.Outline;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InputOutlineProperty = Binding.BindableProperty.Create(nameof(InputOutline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -529,7 +533,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.InputOutline;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SmoothScrollProperty = Binding.BindableProperty.Create(nameof(SmoothScroll), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -541,7 +545,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SmoothScroll;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SmoothScrollDurationProperty = Binding.BindableProperty.Create(nameof(SmoothScrollDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -553,7 +557,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.SmoothScrollDuration;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty EnableScrollBarProperty = Binding.BindableProperty.Create(nameof(EnableScrollBar), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -565,7 +569,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.EnableScrollBar;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScrollBarShowDurationProperty = Binding.BindableProperty.Create(nameof(ScrollBarShowDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -577,7 +581,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.ScrollBarShowDuration;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScrollBarFadeDurationProperty = Binding.BindableProperty.Create(nameof(ScrollBarFadeDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -589,7 +593,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.ScrollBarFadeDuration;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PixelSizeProperty = Binding.BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -601,7 +605,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.PixelSize;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PlaceholderTextProperty = Binding.BindableProperty.Create(nameof(PlaceholderText), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -613,7 +617,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.PlaceholderText;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PlaceholderTextColorProperty = Binding.BindableProperty.Create(nameof(PlaceholderTextColor), typeof(Color), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -625,7 +629,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.PlaceholderTextColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty EnableSelectionProperty = Binding.BindableProperty.Create(nameof(EnableSelection), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -637,7 +641,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.EnableSelection;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PlaceholderProperty = Binding.BindableProperty.Create(nameof(Placeholder), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -649,7 +653,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.Placeholder;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LineWrapModeProperty = Binding.BindableProperty.Create(nameof(LineWrapMode), typeof(LineWrapMode), typeof(TextEditor), LineWrapMode.Word, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -661,7 +665,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.LineWrapMode;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty EnableShiftSelectionProperty = Binding.BindableProperty.Create(nameof(TextEditor.EnableShiftSelection), typeof(bool), typeof(TextEditor), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -673,7 +677,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var textEditor = ((TextEditor)bindable).textEditor;
             return textEditor.EnableShiftSelection;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty MatchSystemLanguageDirectionProperty = Binding.BindableProperty.Create(nameof(TextEditor.MatchSystemLanguageDirection), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -690,7 +694,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
         /// provided by the user. The TextChanged signal is emitted when the text changes.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<TextChangedEventArgs> TextChanged
         {
             add
@@ -707,7 +713,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Event for the ScrollStateChanged signal which can be used to subscribe or unsubscribe the event handler
         /// provided by the user. The ScrollStateChanged signal is emitted when the scroll state changes.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollStateChangedEventArgs> ScrollStateChanged
         {
             add
@@ -724,7 +732,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Get the InputMethodContext instance.
         /// </summary>
         /// <returns>The InputMethodContext instance.</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public InputMethodContext GetInputMethodContext()
         {
             return textEditor.GetInputMethodContext();
@@ -737,7 +747,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
         /// </exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TranslatableText
         {
             get
@@ -749,6 +761,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
                 textEditor.TranslatableText = value;
             }
         }
+
         /// <summary>
         /// The TranslatablePlaceholderText property.<br />
         /// The text can set the SID value.<br />
@@ -756,7 +769,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <exception cref='ArgumentNullException'>
         /// ResourceManager about multilingual is null.
         /// </exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TranslatablePlaceholderText
         {
             get
@@ -772,7 +787,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The Text property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Text
         {
             get
@@ -788,7 +805,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The TextColor property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 TextColor
         {
             get
@@ -804,7 +823,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The FontFamily property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string FontFamily
         {
             get
@@ -820,7 +841,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The FontStyle property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap FontStyle
         {
             get
@@ -836,7 +859,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The PointSize property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PointSize
         {
             get
@@ -852,7 +877,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The HorizontalAlignment property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public HorizontalAlignment HorizontalAlignment
         {
             get
@@ -868,7 +895,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The ScrollThreshold property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollThreshold
         {
             get
@@ -884,7 +913,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The ScrollSpeed property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollSpeed
         {
             get
@@ -900,7 +931,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The PrimaryCursorColor property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 PrimaryCursorColor
         {
             get
@@ -916,7 +949,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SecondaryCursorColor property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 SecondaryCursorColor
         {
             get
@@ -932,7 +967,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The EnableCursorBlink property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableCursorBlink
         {
             get
@@ -948,7 +985,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The CursorBlinkInterval property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float CursorBlinkInterval
         {
             get
@@ -964,7 +1003,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The CursorBlinkDuration property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float CursorBlinkDuration
         {
             get
@@ -980,7 +1021,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The CursorWidth property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int CursorWidth
         {
             get
@@ -996,7 +1039,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The GrabHandleImage property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GrabHandleImage
         {
             get
@@ -1012,7 +1057,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The GrabHandlePressedImage property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GrabHandlePressedImage
         {
             get
@@ -1028,7 +1075,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SelectionHandleImageLeft property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectionHandleImageLeft
         {
             get
@@ -1044,7 +1093,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SelectionHandleImageRight property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectionHandleImageRight
         {
             get
@@ -1060,7 +1111,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SelectionHandlePressedImageLeft property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectionHandlePressedImageLeft
         {
             get
@@ -1076,7 +1129,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SelectionHandlePressedImageRight property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectionHandlePressedImageRight
         {
             get
@@ -1092,7 +1147,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SelectionHandleMarkerImageLeft property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectionHandleMarkerImageLeft
         {
             get
@@ -1108,7 +1165,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SelectionHandleMarkerImageRight property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectionHandleMarkerImageRight
         {
             get
@@ -1124,7 +1183,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SelectionHighlightColor property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 SelectionHighlightColor
         {
             get
@@ -1140,7 +1201,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The DecorationBoundingBox property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle DecorationBoundingBox
         {
             get
@@ -1156,7 +1219,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The EnableMarkup property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableMarkup
         {
             get
@@ -1172,7 +1237,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputColor property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 InputColor
         {
             get
@@ -1188,7 +1255,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputFontFamily property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputFontFamily
         {
             get
@@ -1204,7 +1273,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputFontStyle property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap InputFontStyle
         {
             get
@@ -1220,7 +1291,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputPointSize property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float InputPointSize
         {
             get
@@ -1236,7 +1309,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The LineSpacing property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float LineSpacing
         {
             get
@@ -1252,7 +1327,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputLineSpacing property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float InputLineSpacing
         {
             get
@@ -1268,7 +1345,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The Underline property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Underline
         {
             get
@@ -1284,7 +1363,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputUnderline property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputUnderline
         {
             get
@@ -1300,7 +1381,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The Shadow property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Shadow
         {
             get
@@ -1316,7 +1399,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputShadow property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputShadow
         {
             get
@@ -1332,7 +1417,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The Emboss property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Emboss
         {
             get
@@ -1348,7 +1435,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputEmboss property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputEmboss
         {
             get
@@ -1364,7 +1453,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The Outline property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Outline
         {
             get
@@ -1380,7 +1471,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The InputOutline property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputOutline
         {
             get
@@ -1396,7 +1489,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SmoothScroll property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SmoothScroll
         {
             get
@@ -1412,7 +1507,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The SmoothScrollDuration property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SmoothScrollDuration
         {
             get
@@ -1428,7 +1525,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The EnableScrollBar property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableScrollBar
         {
             get
@@ -1444,7 +1543,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The ScrollBarShowDuration property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollBarShowDuration
         {
             get
@@ -1460,7 +1561,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The ScrollBarFadeDuration property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollBarFadeDuration
         {
             get
@@ -1476,7 +1579,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The PixelSize property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PixelSize
         {
             get
@@ -1492,7 +1597,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The line count of the text.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int LineCount
         {
             get
@@ -1504,7 +1611,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The text to display when the TextEditor is empty and inactive.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string PlaceholderText
         {
             get
@@ -1520,7 +1629,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The Placeholder text color.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color PlaceholderTextColor
         {
             get
@@ -1536,7 +1647,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The EnableSelection property.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableSelection
         {
             get
@@ -1573,7 +1686,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// editor.Placeholder = propertyMap;
         /// </code>
         /// </example>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Placeholder
         {
             get
@@ -1590,7 +1705,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// The LineWrapMode property.<br />
         /// The line wrap mode when the text lines over the layout width.<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LineWrapMode LineWrapMode
         {
             get
@@ -1606,7 +1723,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Enables Text selection using Shift key.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableShiftSelection
@@ -1624,7 +1741,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The text alignment to match the direction of the system language.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool MatchSystemLanguageDirection

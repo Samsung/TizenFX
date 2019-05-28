@@ -25,7 +25,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// <summary>
     /// VideoView is a control for video playback and display.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class VideoView : View
     {
         private Tizen.NUI.BaseComponents.VideoView _videoView;
@@ -45,7 +47,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public VideoView() : this(new Tizen.NUI.BaseComponents.VideoView())
         {
         }
@@ -55,7 +59,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty VideoProperty = Binding.BindableProperty.Create("Video", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -67,7 +71,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var videoView = ((VideoView)bindable).videoView;
             return videoView.Video;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LoopingProperty = Binding.BindableProperty.Create("Looping", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -79,7 +83,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var videoView = ((VideoView)bindable).videoView;
             return videoView.Looping;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty MutedProperty = Binding.BindableProperty.Create("Muted", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -91,7 +95,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var videoView = ((VideoView)bindable).videoView;
             return videoView.Muted;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty VolumeProperty = Binding.BindableProperty.Create("Volume", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -103,7 +107,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var videoView = ((VideoView)bindable).videoView;
             return videoView.Volume;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty UnderlayProperty = Binding.BindableProperty.Create("Underlay", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -115,7 +119,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var videoView = ((VideoView)bindable).videoView;
             return videoView.Underlay;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ResourceUrlProperty = Binding.BindableProperty.Create("ResourceUrl", typeof(string), typeof(VideoView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -132,7 +136,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Event for the finished signal which can be used to subscribe or unsubscribe the event handler
         /// The finished signal is emitted when a video playback has finished.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<FinishedEventArgs> Finished
         {
             add
@@ -148,7 +154,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Starts the video playback.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
             videoView.Play();
@@ -157,7 +165,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Pauses the video playback.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
             videoView.Pause();
@@ -166,7 +176,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Stops the video playback.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
             videoView.Stop();
@@ -176,7 +188,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Seeks forward by the specified number of milliseconds.
         /// </summary>
         /// <param name="millisecond">The position for forward playback.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Forward(int millisecond)
         {
             videoView.Forward(millisecond);
@@ -186,7 +200,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Seeks backward by the specified number of milliseconds.
         /// </summary>
         /// <param name="millisecond">The position for backward playback.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Backward(int millisecond)
         {
             videoView.Backward(millisecond);
@@ -195,7 +211,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Video file setting type of PropertyMap.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Video
         {
             get
@@ -211,7 +229,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The looping status, true or false.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Looping
         {
             get
@@ -227,7 +247,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The mute status, true or false.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Muted
         {
             get
@@ -243,7 +265,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The left and the right volume scalar as float type, PropertyMap with two values ( "left" and "right" ).
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Volume
         {
             get
@@ -260,7 +284,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Video rendering by underlay, true or false.<br />
         /// This shows video composited underneath the window by the system. This means it may ignore rotation of the video-view.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Underlay
         {
             get
@@ -276,7 +302,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Video file URL as string type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ResourceUrl
         {
             get

@@ -8,13 +8,14 @@ namespace Tizen.NUI.StyleSheets
     /// <summary>
     /// The class CssReader.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class CssReader : TextReader
     {
         readonly TextReader _reader;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CssReader(TextReader reader)
         {
@@ -26,7 +27,7 @@ namespace Tizen.NUI.StyleSheets
 
         readonly Queue<char> _cache = new Queue<char>();
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int Peek()
         {
@@ -63,7 +64,7 @@ namespace Tizen.NUI.StyleSheets
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int Read()
         {

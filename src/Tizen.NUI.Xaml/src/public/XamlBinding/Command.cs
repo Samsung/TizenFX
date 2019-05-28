@@ -5,11 +5,11 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class Command<T> : Command
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Command(Action<T> execute)
             : base(o =>
@@ -26,7 +26,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Command(Action<T> execute, Func<T, bool> canExecute)
             : base(o =>
@@ -67,6 +67,7 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Defines an ICommand implementation that wraps a Action.
     /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Command : ICommand
     {
@@ -77,7 +78,7 @@ namespace Tizen.NUI.Binding
         /// Initializes a new instance of the Command class.
         /// </summary>
         /// <param name="execute">An instance to execute when the Command is executed.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Command(Action<object> execute)
         {
@@ -91,7 +92,7 @@ namespace Tizen.NUI.Binding
         /// Initializes a new instance of the Command class.
         /// </summary>
         /// <param name="execute">An Action to execute when the Command is executed.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Command(Action execute) : this(o => execute())
         {
@@ -104,7 +105,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="execute">An Action to execute when the Command is executed.</param>
         /// <param name="canExecute">A instance indicating if the Command can be executed.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Command(Action<object> execute, Func<object, bool> canExecute) : this(execute)
         {
@@ -119,7 +120,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="execute">An Action to execute when the Command is executed.</param>
         /// <param name="canExecute">A instance indicating if the Command can be executed.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Command(Action execute, Func<bool> canExecute) : this(o => execute(), o => canExecute())
         {
@@ -134,7 +135,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="parameter">An Object used as parameter to determine if the Command can be executed.</param>
         /// <returns>true if the Command can be executed, false otherwise.</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CanExecute(object parameter)
         {
@@ -147,7 +148,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Occurs when the target of the Command should reevaluate whether or not the Command can be executed.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler CanExecuteChanged;
 
@@ -155,7 +156,7 @@ namespace Tizen.NUI.Binding
         /// Invokes the execute Action.
         /// </summary>
         /// <param name="parameter">An Object used as parameter for the execute Action.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Execute(object parameter)
         {
@@ -165,7 +166,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Send a CanExecuteChanged.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ChangeCanExecute()
         {

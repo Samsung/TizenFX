@@ -8,7 +8,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// An abstract class that provides a BindingMode and a formatting option.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BindingBase
     {
@@ -26,6 +27,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the mode for this binding.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public BindingMode Mode
         {
             get { return _mode; }
@@ -47,6 +50,7 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the string format for this binding.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string StringFormat
         {
@@ -59,7 +63,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object TargetNullValue
 		{
@@ -70,7 +74,7 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object FallbackValue {
 			get => _fallbackValue;
@@ -90,6 +94,7 @@ namespace Tizen.NUI.Binding
         /// Stops synchronization on the collection.
         /// </summary>
         /// <param name="collection">The collection on which to stop synchronization.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void DisableCollectionSynchronization(IEnumerable collection)
         {
@@ -99,7 +104,7 @@ namespace Tizen.NUI.Binding
             SynchronizedCollections.Remove(collection);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableCollectionSynchronization(IEnumerable collection, object context, CollectionSynchronizationCallback callback)
         {

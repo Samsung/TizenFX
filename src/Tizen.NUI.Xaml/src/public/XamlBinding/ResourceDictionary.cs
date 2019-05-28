@@ -14,7 +14,7 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ResourceDictionary : IResourceDictionary, IDictionary<string, object>
     {
@@ -24,14 +24,14 @@ namespace Tizen.NUI.Binding
         Type _mergedWith;
         Uri _source;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ResourceDictionary()
         {
             DependencyService.Register<IResourcesLoader, ResourcesLoader>();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(TypeTypeConverter))]
         [Obsolete("Use Source")]
@@ -56,7 +56,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(RDSourceTypeConverter))]
         public Uri Source {
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAndLoadSource(Uri value, string resourcePath, Assembly assembly, System.Xml.IXmlLineInfo lineInfo)
         {
@@ -87,7 +87,7 @@ namespace Tizen.NUI.Binding
 
         ICollection<ResourceDictionary> _mergedDictionaries;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICollection<ResourceDictionary> MergedDictionaries {
             get {
@@ -163,7 +163,7 @@ namespace Tizen.NUI.Binding
             OnValuesChanged(item);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
@@ -181,7 +181,7 @@ namespace Tizen.NUI.Binding
             ((ICollection<KeyValuePair<string, object>>)_innerDictionary).CopyTo(array, arrayIndex);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Count
         {
@@ -198,7 +198,7 @@ namespace Tizen.NUI.Binding
             return ((ICollection<KeyValuePair<string, object>>)_innerDictionary).Remove(item);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(string key, object value)
         {
@@ -208,14 +208,14 @@ namespace Tizen.NUI.Binding
             OnValueChanged(key, value);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ContainsKey(string key)
         {
             return _innerDictionary.ContainsKey(key);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [IndexerName("Item")]
         public object this[string index]
@@ -239,21 +239,21 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICollection<string> Keys
         {
             get { return _innerDictionary.Keys; }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Remove(string key)
         {
             return _innerDictionary.Remove(key);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICollection<object> Values
         {
@@ -265,7 +265,7 @@ namespace Tizen.NUI.Binding
             return GetEnumerator();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
@@ -285,7 +285,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TryGetValue(string key, out object value)
         {
@@ -310,7 +310,7 @@ namespace Tizen.NUI.Binding
             remove { ValuesChanged -= value; }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(Style style)
         {
@@ -327,14 +327,14 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(ResourceDictionary mergedResourceDictionary)
         {
             MergedDictionaries.Add(mergedResourceDictionary);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(StyleSheets.StyleSheet styleSheet)
         {
@@ -357,7 +357,7 @@ namespace Tizen.NUI.Binding
 
         event EventHandler<ResourcesChangedEventArgs> ValuesChanged;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Forms.XamlC.RDSourceTypeConverter")]
         public class RDSourceTypeConverter : TypeConverter, IExtendedTypeConverter
@@ -400,7 +400,7 @@ namespace Tizen.NUI.Binding
                 throw new NotImplementedException();
             }
 
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             public override object ConvertFromInvariantString(string value)
             {

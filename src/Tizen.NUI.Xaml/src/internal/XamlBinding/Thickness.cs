@@ -1,6 +1,4 @@
 using System.Diagnostics;
-using System.ComponentModel;
-using Tizen.NUI;
 
 namespace Tizen.NUI.Binding
 {
@@ -9,7 +7,6 @@ namespace Tizen.NUI.Binding
     /// </summary>
     [DebuggerDisplay("Left={Left}, Top={Top}, Right={Right}, Bottom={Bottom}, HorizontalThickness={HorizontalThickness}, VerticalThickness={VerticalThickness}")]
     [TypeConverter(typeof(ThicknessTypeConverter))]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal struct Thickness
     {
         /// <summary>

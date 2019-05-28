@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
@@ -8,7 +7,6 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Base class for DataTemplate and ControlTemplate classes.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class ElementTemplate : IElement, IDataTemplate
     {
         List<Action<object, ResourcesChangedEventArgs>> _changeHandlers;

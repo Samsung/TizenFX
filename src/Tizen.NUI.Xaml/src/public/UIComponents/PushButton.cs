@@ -25,7 +25,9 @@ namespace Tizen.NUI.Xaml.UIComponents
     /// <summary>
     /// The PushButton changes its appearance when it is pressed, and returns to its original when it is released.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PushButton : Button
     {
         private Tizen.NUI.UIComponents.PushButton _pushButton;
@@ -45,7 +47,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Creates the PushButton.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PushButton() : this(new Tizen.NUI.UIComponents.PushButton())
         {
         }
@@ -55,16 +59,16 @@ namespace Tizen.NUI.Xaml.UIComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CommandProperty = Binding.BindableProperty.Create("Command", typeof(ICommand), typeof(PushButton), null,
                 BindingMode.OneWay, null, null, null, null, null as Binding.BindableProperty.CreateDefaultValueDelegate);
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CommandParameterProperty = Binding.BindableProperty.Create("CommandParameter", typeof(object), typeof(PushButton), null,
                 BindingMode.OneWay, null, null, null, null, null as Binding.BindableProperty.CreateDefaultValueDelegate);
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICommand Command
         {
@@ -78,7 +82,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object CommandParameter
         {

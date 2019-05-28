@@ -18,6 +18,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml.Forms.BaseComponents
 {
@@ -38,7 +39,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// _visualView.AddVisual("imageVisual1", imageVisualMap1);
     /// </code>
     /// </example>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class VisualView : CustomView
     {
         private Tizen.NUI.BaseComponents.VisualView _visualView;
@@ -58,7 +61,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
         {
         }
@@ -66,7 +71,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets the total number of visuals which are added by users.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int NumberOfVisuals
         {
             get
@@ -80,7 +87,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="visualName">The name of a visual to add. If a name is added to an existing visual name, the visual will be replaced.</param>
         /// <param name="visualMap">The property map of a visual to create.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddVisual(string visualName, VisualMap visualMap)
         {
             visualView.AddVisual(visualName, visualMap);
@@ -90,7 +99,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Removes a visual by name.
         /// </summary>
         /// <param name="visualName">The name of a visual to remove.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveVisual(string visualName)
         {
             visualView.RemoveVisual(visualName);
@@ -99,7 +110,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Removes all visuals of the visual view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAll()
         {
             visualView.RemoveAll();
@@ -114,7 +127,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <remarks>As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).</remarks>
         /// <param name="size">The allocated size.</param>
         /// <param name="container">The control should add actors to this container that it is not able to allocate a size for.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
             visualView.OnRelayout(size, container);
@@ -131,7 +146,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
         /// <returns>Animation instance</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
             return visualView.AnimateVisual(target, property, destinationValue, startTime, endTime, alphaFunction, initialValue);
@@ -147,7 +164,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="endTime">The end time of visual animation.</param>
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
             visualView.AnimateVisualAdd(target, property, destinationValue, startTime, endTime, alphaFunction, initialValue);
@@ -157,7 +176,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Finishes to add a visual animation (transition) map and creates a transition animation.
         /// </summary>
         /// <returns>Animation instance.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation AnimateVisualAddFinish()
         {
             return visualView.AnimateVisualAddFinish();
@@ -166,7 +187,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// temporary fix to pass TCT.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation VisualAnimate(Tizen.NUI.VisualAnimator visualMap)
         {
             return visualView.VisualAnimate(visualMap);

@@ -27,7 +27,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// FlexContainer has the ability to alter the width and the height of its children (i.e., flex items) to fill the available space in the best possible way on different screen sizes.<br />
     /// FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br />
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class FlexContainer : View
     {
         private Tizen.NUI.BaseComponents.FlexContainer _flexContainer;
@@ -47,7 +48,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexContainer() : this(new Tizen.NUI.BaseComponents.FlexContainer())
         {
         }
@@ -57,7 +59,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ContentDirectionProperty = Binding.BindableProperty.Create("ContentDirection", typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -69,7 +71,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             return flexContainer.ContentDirection;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FlexDirectionProperty = Binding.BindableProperty.Create("FlexDirection", typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -81,7 +83,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             return flexContainer.FlexDirection;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FlexWrapProperty = Binding.BindableProperty.Create("FlexWrap", typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -93,7 +95,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             return flexContainer.FlexWrap;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty JustifyContentProperty = Binding.BindableProperty.Create("JustifyContent", typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -105,7 +107,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             return flexContainer.JustifyContent;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty AlignItemsProperty = Binding.BindableProperty.Create("AlignItems", typeof(Tizen.NUI.BaseComponents.FlexContainer.Alignment), typeof(FlexContainer), Tizen.NUI.BaseComponents.FlexContainer.Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -117,7 +119,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             return flexContainer.AlignItems;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty AlignContentProperty = Binding.BindableProperty.Create("AlignContent", typeof(Tizen.NUI.BaseComponents.FlexContainer.Alignment), typeof(FlexContainer), Tizen.NUI.BaseComponents.FlexContainer.Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -133,7 +135,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The primary direction in which content is ordered.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ContentDirectionType ContentDirection
         {
             get
@@ -149,7 +152,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The direction of the main axis which determines the direction that flex items are laid out.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public FlexDirectionType FlexDirection
         {
             get
@@ -165,7 +169,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Whether the flex items should wrap or not if there is no enough room for them on one flex line.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public WrapType FlexWrap
         {
             get
@@ -181,7 +186,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The alignment of flex items when the items do not use all available space on the main axis.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Justification JustifyContent
         {
             get
@@ -197,7 +203,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The alignment of flex items when the items do not use all available space on the cross axis.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.BaseComponents.FlexContainer.Alignment AlignItems
         {
             get
@@ -213,7 +220,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Similar to "alignItems", but it aligns flex lines; so only works when there are multiple lines.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.BaseComponents.FlexContainer.Alignment AlignContent
         {
             get

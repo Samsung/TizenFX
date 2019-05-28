@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.ComponentModel;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
@@ -8,7 +7,6 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Interface abstracting platform-specific navigation.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal interface INavigation
     {
         /// <summary>

@@ -3,27 +3,33 @@ using System.Xml;
 using System.Reflection;
 using System.Linq;
 using Tizen.NUI.Binding;
-
+using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml
 {
     /// <summary>
     /// The class StaticResourceExtension.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Key")]
     public sealed class StaticResourceExtension : IMarkupExtension
     {
         /// <summary>
         /// Attribute Key
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Key { get; set; }
 
         /// <summary>
         /// Provide value tye service provideer.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if (serviceProvider == null)
@@ -41,7 +47,7 @@ namespace Tizen.NUI.Xaml
             object resource = null;
 
             foreach (var p in valueProvider.ParentObjects) {
-                var irp = p as IResourcesProvider;
+                var irp = p as Tizen.NUI.Binding.IResourcesProvider;
                 var resDict = irp != null && irp.IsResourcesCreated ? irp.XamlResources : p as ResourceDictionary;
                 if (resDict == null)
                     continue;
@@ -100,7 +106,7 @@ namespace Tizen.NUI.Xaml
         internal object GetApplicationLevelResource(string key, IXmlLineInfo xmlLineInfo)
         {
             object resource = null;
-            if (Binding.Application.Current == null || !((IResourcesProvider)Binding.Application.Current).IsResourcesCreated || !Binding.Application.Current.XamlResources.TryGetValue(Key, out resource))
+            if (Binding.Application.Current == null || !((Tizen.NUI.Binding.IResourcesProvider)Binding.Application.Current).IsResourcesCreated || !Binding.Application.Current.XamlResources.TryGetValue(Key, out resource))
                 throw new XamlParseException($"StaticResource not found for key {Key}", xmlLineInfo);
             return resource;
         }

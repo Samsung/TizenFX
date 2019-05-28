@@ -36,7 +36,9 @@ namespace Tizen.NUI.Xaml.UIComponents
     /// The text label is always placed on the top of all images.<br />
     /// When the button is disabled, the background button and the selected visuals are replaced by their disabled visuals.<br />
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Button : Tizen.NUI.Xaml.Forms.BaseComponents.View
     {
         private Tizen.NUI.UIComponents.Button _button;
@@ -56,7 +58,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Creates an uninitialized button.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Button() : this(new Tizen.NUI.UIComponents.Button())
         {
         }
@@ -66,7 +70,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty UnselectedVisualProperty = Binding.BindableProperty.Create("UnselectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -78,7 +82,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.UnselectedVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectedVisualProperty = Binding.BindableProperty.Create("SelectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -90,7 +94,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.SelectedVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DisabledSelectedVisualProperty = Binding.BindableProperty.Create("DisabledSelectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -102,7 +106,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.DisabledSelectedVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DisabledUnselectedVisualProperty = Binding.BindableProperty.Create("DisabledUnselectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -114,7 +118,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.DisabledUnselectedVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty UnselectedBackgroundVisualProperty = Binding.BindableProperty.Create("UnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -126,7 +130,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.UnselectedBackgroundVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectedBackgroundVisualProperty = Binding.BindableProperty.Create("SelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -138,7 +142,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.SelectedBackgroundVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DisabledUnselectedBackgroundVisualProperty = Binding.BindableProperty.Create("DisabledUnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -150,7 +154,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.DisabledUnselectedBackgroundVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DisabledSelectedBackgroundVisualProperty = Binding.BindableProperty.Create("DisabledSelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -162,7 +166,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.DisabledSelectedBackgroundVisual;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LabelRelativeAlignmentProperty = Binding.BindableProperty.Create("LabelRelativeAlignment", typeof(Align), typeof(Button), Align.End, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -174,7 +178,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.LabelRelativeAlignment;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LabelPaddingProperty = Binding.BindableProperty.Create("LabelPadding", typeof(Vector4), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -186,7 +190,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.LabelPadding;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ForegroundVisualPaddingProperty = Binding.BindableProperty.Create("ForegroundVisualPadding", typeof(Vector4), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -198,7 +202,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.ForegroundVisualPadding;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty AutoRepeatingProperty = Binding.BindableProperty.Create("AutoRepeating", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -210,7 +214,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.AutoRepeating;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InitialAutoRepeatingDelayProperty = Binding.BindableProperty.Create("InitialAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -222,7 +226,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.InitialAutoRepeatingDelay;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty NextAutoRepeatingDelayProperty = Binding.BindableProperty.Create("NextAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -234,7 +238,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.NextAutoRepeatingDelay;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TogglableProperty = Binding.BindableProperty.Create("Togglable", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -246,7 +250,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.Togglable;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectedProperty = Binding.BindableProperty.Create("Selected", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -258,7 +262,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.Selected;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty UnselectedColorProperty = Binding.BindableProperty.Create("UnselectedColor", typeof(Color), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -270,7 +274,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.UnselectedColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SelectedColorProperty = Binding.BindableProperty.Create("SelectedColor", typeof(Color), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -282,7 +286,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.SelectedColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LabelProperty = Binding.BindableProperty.Create("Label", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -294,7 +298,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var button = ((Button)bindable).button;
             return button.Label;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LabelTextProperty = Binding.BindableProperty.Create("LabelText", typeof(string), typeof(Button), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -310,7 +314,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The Clicked event will be triggered when the button is touched and the touch point doesn't leave the boundary of the button.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Clicked
         {
             add
@@ -327,7 +333,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The Pressed event will be triggered when the button is touched.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Pressed
         {
             add
@@ -344,7 +352,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The Released event will be triggered when the button is touched and the touch point leaves the boundary of the button.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Released
         {
             add
@@ -361,7 +371,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The StateChanged event will be triggered when the button's state is changed.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> StateChanged
         {
             add
@@ -378,7 +390,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the unselected button foreground or icon visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap UnselectedVisual
         {
             get
@@ -394,7 +408,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the selected button foreground or icon visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectedVisual
         {
             get
@@ -410,7 +426,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the disabled selected state foreground or icon button visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap DisabledSelectedVisual
         {
             get
@@ -426,7 +444,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the disabled unselected state foreground or icon visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap DisabledUnselectedVisual
         {
             get
@@ -442,7 +462,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the disabled unselected state background button visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap UnselectedBackgroundVisual
         {
             get
@@ -458,7 +480,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the selected background button visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectedBackgroundVisual
         {
             get
@@ -474,7 +498,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the disabled while unselected background button visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap DisabledUnselectedBackgroundVisual
         {
             get
@@ -490,7 +516,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the disabled while selected background button visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap DisabledSelectedBackgroundVisual
         {
             get
@@ -506,7 +534,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the position of the the label in relation to the foreground or icon, if both present.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Align LabelRelativeAlignment
         {
             get
@@ -522,7 +552,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the padding around the text.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 LabelPadding
         {
             get
@@ -538,7 +570,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the padding around the foreground visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 ForegroundVisualPadding
         {
             get
@@ -554,7 +588,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// If the autorepeating property is set to true, then the togglable property is set to false.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AutoRepeating
         {
             get
@@ -570,7 +606,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// By default, this value is set to 0.15 seconds.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float InitialAutoRepeatingDelay
         {
             get
@@ -586,7 +624,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// By default, this value is set to 0.05 seconds.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float NextAutoRepeatingDelay
         {
             get
@@ -602,7 +642,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// If the togglable property is set to true, then the autorepeating property is set to false.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Togglable
         {
             get
@@ -618,7 +660,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the togglable button as either selected or unselected, togglable property must be set to true.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Selected
         {
             get
@@ -634,7 +678,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the unselected color.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color UnselectedColor
         {
             get
@@ -650,7 +696,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the selected color.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color SelectedColor
         {
             get
@@ -666,7 +714,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the label.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Label
         {
             get
@@ -682,7 +732,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Gets or sets the text of the label.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string LabelText
         {
             get

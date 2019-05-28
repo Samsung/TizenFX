@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Threading.Tasks;
 using Tizen.NUI.Xaml;
 
@@ -7,7 +6,6 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// For internal use.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class NavigationRequestedEventArgs : NavigationEventArgs
     {
         /// <summary>

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.Xaml
 {
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [Flags]
     public enum XamlCompilationOptions
     {
@@ -11,6 +14,8 @@ namespace Tizen.NUI.Xaml
         Compile = 1 << 1
     }
 
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Module | AttributeTargets.Class, Inherited = false)]
     public sealed class XamlCompilationAttribute : Attribute
     {

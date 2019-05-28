@@ -32,7 +32,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br />
         /// It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new void RelayoutRequest()
         {
             base.RelayoutRequest();
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new float GetHeightForWidthBase(float width)
         {
             return base.GetHeightForWidthBase(width);
@@ -54,7 +54,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new float GetWidthForHeightBase(float height)
         {
             return base.GetWidthForHeightBase(height);
@@ -66,7 +66,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="child">The child view to calculate the size for.</param>
         /// <param name="dimension">The dimension to calculate the size, for example, the width or the height.</param>
         /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public float CalculateChildSizeBase(View child, DimensionType dimension)
         {
             return base.CalculateChildSizeBase(child.ViewInstance, dimension);
@@ -77,7 +77,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="dimension">The dimension(s) to check for.</param>
         /// <returns>Return if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
             return base.RelayoutDependentOnChildrenBase(dimension);
@@ -87,7 +87,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Determines if this view is dependent on it's children for relayout from the base class.
         /// </summary>
         /// <returns>Return if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new bool RelayoutDependentOnChildrenBase()
         {
             return base.RelayoutDependentOnChildrenBase();
@@ -100,7 +100,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new void RegisterVisual(int index, VisualBase visual)
         {
             base.RegisterVisual(index, visual);
@@ -114,7 +114,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
         /// <param name="enabled">False if derived class wants to control when the visual is set on the stage.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new void RegisterVisual(int index, VisualBase visual, bool enabled)
         {
             base.RegisterVisual(index, visual, enabled);
@@ -124,7 +124,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Erases the entry matching the given index from the list of registered visuals.
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new void UnregisterVisual(int index)
         {
             base.UnregisterVisual(index);
@@ -136,7 +136,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <returns>The registered visual if exists, otherwise an empty handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new VisualBase GetVisual(int index)
         {
             return base.GetVisual(index);
@@ -148,7 +148,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual, used to reference visual.</param>
         /// <param name="enable">Flag set to enabled or disabled.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new void EnableVisual(int index, bool enable)
         {
             base.EnableVisual(index, enable);
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual.</param>
         /// <returns>Whether visual is enabled or not.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new bool IsVisualEnabled(int index)
         {
             return base.IsVisualEnabled(index);
@@ -171,7 +171,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="transitionData">The transition data describing the effect to create.</param>
         /// <returns>A handle to an animation defined with the given effect, or an empty handle if no properties match.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new Animation CreateTransition(TransitionData transitionData)
         {
             return base.CreateTransition(transitionData);
@@ -182,7 +182,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Should be called last by the control after it acts on the input focus change.<br />
         /// </summary>
         /// <param name="focusGained">True if gained, false if lost.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public new void EmitFocusSignal(bool focusGained)
         {
             base.EmitFocusSignal(focusGained);
@@ -192,7 +192,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// <summary>
     /// CustomView provides some common functionality required by all views.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class CustomView : View
     {
         private InternalCustomeView _customView;
@@ -212,7 +213,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Creates a new instance of a Xaml CustomView.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CustomView(string typeName, CustomViewBehaviour behaviour) : this(new Tizen.NUI.BaseComponents.CustomView(typeName, behaviour))
         {
         }
@@ -222,7 +224,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FocusNavigationSupportProperty = Binding.BindableProperty.Create("FocusNavigationSupport", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -234,7 +236,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var customView = ((CustomView)bindable).customView;
             return customView.FocusNavigationSupport;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FocusGroupProperty = Binding.BindableProperty.Create("FocusGroup", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -251,7 +253,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Sets the background with a property map.
         /// </summary>
         /// <param name="map">The background property map.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetBackground(PropertyMap map)
         {
             customView.SetBackground(map);
@@ -262,7 +265,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Gesture detection can be enabled one at a time or in a bitwise format.<br />
         /// </summary>
         /// <param name="type">The gesture type(s) to enable.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void EnableGestureDetection(Gesture.GestureType type)
         {
             customView.EnableGestureDetection(type);
@@ -273,7 +277,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// (i.e., whether it knows how to handle the keyboard focus movement between its child views).<br />
         /// The control doesn't support it by default.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool FocusNavigationSupport
         {
             get
@@ -290,7 +295,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Sets or gets whether this control is a focus group for keyboard navigation.
         /// </summary>
         /// <returns>True if this control is set as a focus group for keyboard navigation.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool FocusGroup
         {
             get
@@ -307,7 +313,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// This method is called after the control has been initialized.<br />
         /// Derived classes should do any second phase initialization by overriding this method.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnInitialize()
         {
         }
@@ -319,7 +326,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// When the parent of a set of views is connected to the stage, then all of the children will receive this callback.<br />
         /// </summary>
         /// <param name="depth">The depth in the hierarchy for the view.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnStageConnection(int depth)
         {
         }
@@ -329,7 +337,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br />
         /// When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnStageDisconnection()
         {
         }
@@ -338,7 +347,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Called after a child has been added to the owning view.
         /// </summary>
         /// <param name="view">The child which has been added.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnChildAdd(View view)
         {
         }
@@ -347,7 +357,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Called after the owning view has attempted to remove a child( regardless of whether it succeeded or not ).
         /// </summary>
         /// <param name="view">The child being removed.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnChildRemove(View view)
         {
         }
@@ -357,7 +368,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index that was set.</param>
         /// <param name="propertyValue">The value to set.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnPropertySet(int index, PropertyValue propertyValue)
         {
         }
@@ -366,7 +378,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Called when the owning view's size is set, for example, using View.SetSize().
         /// </summary>
         /// <param name="targetSize">The target size.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnSizeSet(Vector3 targetSize)
         {
         }
@@ -376,7 +389,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="animation">The object which is animating the owning view.</param>
         /// <param name="targetSize">The target size.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnSizeAnimation(Animation animation, Vector3 targetSize)
         {
         }
@@ -387,7 +401,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnTouch(Touch touch)
         {
             return false; // Do not consume
@@ -399,7 +414,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="hover">The hover event.</param>
         /// <returns>True if the hover event should be consumed.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnHover(Hover hover)
         {
             return false; // Do not consume
@@ -410,7 +426,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="key">The key event.</param>
         /// <returns>True if the key event should be consumed.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnKey(Key key)
         {
             return false; // Do not consume
@@ -422,7 +439,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="wheel">The wheel event.</param>
         /// <returns>True if the wheel event should be consumed.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnWheel(Wheel wheel)
         {
             return false; // Do not consume
@@ -436,7 +454,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="size">The allocated size.</param>
         /// <param name="container">The control should add views to this container that it is not able to allocate a size for.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnRelayout(Vector2 size, RelayoutContainer container)
         {
         }
@@ -446,7 +465,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="policy">The policy being set.</param>
         /// <param name="dimension">The policy is being set for.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnSetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
         }
@@ -455,7 +475,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Returns the natural size of the view.
         /// </summary>
         /// <returns>The view's natural size</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual Size2D GetNaturalSize()
         {
             return new Size2D(0, 0);
@@ -467,7 +488,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="child">The child view to calculate the size for.</param>
         /// <param name="dimension">The dimension to calculate the size, for example, the width or the height.</param>
         /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float CalculateChildSize(View child, DimensionType dimension)
         {
             return customView.CalculateChildSize(child.view, dimension);
@@ -479,7 +501,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="width">Width to use</param>
         /// <returns>The height based on the width</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new virtual float GetHeightForWidth(float width)
         {
             return customView.GetHeightForWidth(width);
@@ -491,7 +514,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="height">Height to use</param>
         /// <returns>The width based on the width</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new virtual float GetWidthForHeight(float height)
         {
             return customView.GetWidthForHeight(height);
@@ -502,7 +526,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="dimension">The dimension(s) to check for.</param>
         /// <returns>Return if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool RelayoutDependentOnChildren(DimensionType dimension)
         {
             return customView.RelayoutDependentOnChildren(dimension);
@@ -512,7 +537,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Determines if this view is dependent on it's children for relayout from the base class.
         /// </summary>
         /// <returns>Return true if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool RelayoutDependentOnChildren()
         {
             return customView.RelayoutDependentOnChildren();
@@ -523,7 +549,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// met and the size for this object is about to be calculated for the given dimension.
         /// </summary>
         /// <param name="dimension">The dimension that is about to be calculated.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnCalculateRelayoutSize(DimensionType dimension)
         {
         }
@@ -533,7 +560,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="size">The new size for the given dimension.</param>
         /// <param name="dimension">The dimension that was just negotiated.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnLayoutNegotiated(float size, DimensionType dimension)
         {
         }
@@ -543,7 +571,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="styleManager">The StyleManager object.</param>
         /// <param name="change">Information denoting what has changed.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)
         {
         }
@@ -551,7 +580,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is gained.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnFocusGained()
         {
         }
@@ -559,7 +589,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Called when the control loses key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is lost.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnFocusLost()
         {
         }
@@ -572,7 +603,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="direction">The direction to move the focus towards.</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
         /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual View GetNextFocusableView(View currentFocusedView, Tizen.NUI.BaseComponents.View.FocusDirection direction, bool loopEnabled)
         {
             return new View();
@@ -583,7 +615,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// This allows the application to preform any actions it wishes before the focus is actually moved to the chosen view.<br />
         /// </summary>
         /// <param name="commitedFocusableView">The commited focused view.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnFocusChangeCommitted(View commitedFocusableView)
         {
         }
@@ -593,7 +626,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Derived classes should override this to perform custom actions.<br />
         /// </summary>
         /// <returns>True if this control supported this action.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnKeyboardEnter()
         {
             return false;
@@ -606,7 +640,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Pan detection should be enabled via EnableGestureDetection().<br />
         /// </summary>
         /// <param name="pan">The pan gesture.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnPan(PanGesture pan)
         {
         }
@@ -618,7 +653,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Tap detection should be enabled via EnableGestureDetection().<br />
         /// </summary>
         /// <param name="tap">The tap gesture.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnTap(TapGesture tap)
         {
         }
@@ -629,7 +665,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br />
         /// It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void RelayoutRequest()
         {
             customView.RelayoutRequest();
@@ -640,7 +677,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected float GetHeightForWidthBase(float width)
         {
             return customView.GetHeightForWidthBase(width);
@@ -651,7 +689,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected float GetWidthForHeightBase(float height)
         {
             return customView.GetWidthForHeightBase(height);
@@ -663,7 +702,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="child">The child view to calculate the size for.</param>
         /// <param name="dimension">The dimension to calculate the size, for example, the width or the height.</param>
         /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected float CalculateChildSizeBase(View child, DimensionType dimension)
         {
             return customView.CalculateChildSizeBase(child, dimension);
@@ -674,7 +714,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="dimension">The dimension(s) to check for.</param>
         /// <returns>Return if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
             return customView.RelayoutDependentOnChildrenBase(dimension);
@@ -684,7 +725,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Determines if this view is dependent on it's children for relayout from the base class.
         /// </summary>
         /// <returns>Return if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool RelayoutDependentOnChildrenBase()
         {
             return customView.RelayoutDependentOnChildrenBase();
@@ -697,7 +739,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void RegisterVisual(int index, VisualBase visual)
         {
             customView.RegisterVisual(index, visual);
@@ -711,7 +754,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
         /// <param name="enabled">False if derived class wants to control when the visual is set on the stage.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void RegisterVisual(int index, VisualBase visual, bool enabled)
         {
             customView.RegisterVisual(index, visual, enabled);
@@ -721,7 +765,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Erases the entry matching the given index from the list of registered visuals.
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UnregisterVisual(int index)
         {
             customView.UnregisterVisual(index);
@@ -733,7 +778,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <returns>The registered visual if exists, otherwise an empty handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected VisualBase GetVisual(int index)
         {
             return customView.GetVisual(index);
@@ -745,7 +791,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual, used to reference visual.</param>
         /// <param name="enable">Flag set to enabled or disabled.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void EnableVisual(int index, bool enable)
         {
             customView.EnableVisual(index, enable);
@@ -757,7 +804,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual.</param>
         /// <returns>Whether visual is enabled or not.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool IsVisualEnabled(int index)
         {
             return customView.IsVisualEnabled(index);
@@ -768,7 +816,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="transitionData">The transition data describing the effect to create.</param>
         /// <returns>A handle to an animation defined with the given effect, or an empty handle if no properties match.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected Animation CreateTransition(TransitionData transitionData)
         {
             return customView.CreateTransition(transitionData);
@@ -779,7 +828,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Should be called last by the control after it acts on the input focus change.<br />
         /// </summary>
         /// <param name="focusGained">True if gained, false if lost.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void EmitFocusSignal(bool focusGained)
         {
             customView.EmitFocusSignal(focusGained);

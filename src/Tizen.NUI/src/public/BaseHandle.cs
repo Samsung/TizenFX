@@ -449,6 +449,8 @@ namespace Tizen.NUI
             property.PropertyChanged?.Invoke(this, null, value);
         }
 
+<<<<<<< HEAD
+=======
         /// <summary>
         /// The event args of dispose.
         /// </summary>
@@ -485,6 +487,7 @@ namespace Tizen.NUI
             }
         }
 
+>>>>>>> 879c90160b45de49b52f1b8c1359572feadd8a6b
         /// <summary>
         /// Dispose.
         /// </summary>

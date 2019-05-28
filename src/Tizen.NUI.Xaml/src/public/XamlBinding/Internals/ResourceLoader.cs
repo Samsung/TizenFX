@@ -9,7 +9,9 @@ namespace Tizen.NUI.Binding.Internals
     /// <summary>
     /// The class ResourceLoader.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class ResourceLoader
     {
         static Func<AssemblyName, string, string> resourceProvider = (asmName, path) =>
@@ -22,7 +24,7 @@ namespace Tizen.NUI.Binding.Internals
             //return ret;
         };
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         //takes a resource path, returns string content
         public static Func<AssemblyName, string, string> ResourceProvider123
@@ -35,7 +37,7 @@ namespace Tizen.NUI.Binding.Internals
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         //takes a resource path, returns string content
         public static Func<AssemblyName, string, string> ResourceProvider {

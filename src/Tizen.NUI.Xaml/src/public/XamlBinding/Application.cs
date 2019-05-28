@@ -10,13 +10,13 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Application : Element, IResourcesProvider, IElementConfiguration<Application>
     {
         private NUIApplication application;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Run(string[] args)
         {
@@ -33,7 +33,7 @@ namespace Tizen.NUI.Binding
 
         static SemaphoreSlim SaveSemaphore = new SemaphoreSlim(1, 1);
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Application()
         {
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Binding
             _platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Application>>(() => new PlatformConfigurationRegistry<Application>(this));
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Quit()
         {
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         private static void SetCurrentApplication(Application value) => Current = value;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Application Current
         {
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Page MainPage
         {
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IDictionary<string, object> Properties
         {
@@ -132,7 +132,7 @@ namespace Tizen.NUI.Binding
         ResourceDictionary _resources;
         bool IResourcesProvider.IsResourcesCreated => _resources != null;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ResourceDictionary XamlResources
         {
@@ -172,7 +172,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public async Task SavePropertiesAsync()
         {
@@ -228,7 +228,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Reset current application to null
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ClearCurrent()
         {
@@ -238,7 +239,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Judge wheather element is a application
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsApplicationOrNull(Element element)
         {
@@ -268,7 +270,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Send application's link uri.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendOnAppLinkRequestReceived(Uri uri)
         {
@@ -278,7 +281,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Resume
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendResume()
         {
@@ -289,7 +293,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Sleep
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendSleep()
         {
@@ -300,7 +305,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Sleep asyncly
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Task SendSleepAsync()
         {
@@ -311,7 +317,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Start
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendStart()
         {

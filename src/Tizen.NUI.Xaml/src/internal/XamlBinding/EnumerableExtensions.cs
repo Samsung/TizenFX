@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal static class EnumerableExtensions
     {
         public static IEnumerable<T> GetGesturesFor<T>(this IEnumerable<IGestureRecognizer> gestures, Func<T, bool> predicate = null) where T : GestureRecognizer

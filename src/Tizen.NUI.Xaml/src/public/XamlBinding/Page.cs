@@ -31,28 +31,28 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// A BaseHandle that occupies the entire screen.
     /// </summary>
-    // [RenderWith(typeof(_PageRenderer))]
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Page : Element, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
     {
         /// <summary>
         /// For internal use.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const string BusySetSignalName = "NUI.BusySet";
 
         /// <summary>
         /// For internal use.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const string AlertSignalName = "NUI.SendAlert";
 
         /// <summary>
         /// For internal use.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const string ActionSheetSignalName = "NUI.ShowActionSheet";
 
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Creates a new Page element with default values.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Page()
         {
@@ -111,7 +111,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Identifies the image used as a background for the Page.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string BackgroundImage
         {
@@ -128,7 +128,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Marks the Page as busy. This will cause the platform specific global activity indicator to show a busy state.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsBusy
         {
@@ -158,7 +158,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// The Page's title.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Title
         {
@@ -171,6 +171,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// For internal use.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle ContainerArea
         {
@@ -188,6 +189,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// For internal use.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IgnoresContainerArea
         {
@@ -198,6 +200,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// For internal use.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
 
@@ -207,21 +210,21 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Raised when the layout of the Page has changed.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler LayoutChanged;
 
         /// <summary>
         /// ndicates that the Page is about to appear.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler Appearing;
 
         /// <summary>
         /// Indicates that the Page is about to cease displaying.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler Disappearing;
 
@@ -233,7 +236,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="destruction">Text to be displayed in the 'Destruct' button. Can be null to hide the destructive option.</param>
         /// <param name="buttons">Text labels for additional buttons. Must not be null.</param>
         /// <returns>An awaitable Task that displays an action sheet and returns the Text of the button pressed by the user.</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
         {
@@ -249,7 +252,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="message">The body text of the alert dialog.</param>
         /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
         /// <returns></returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Task DisplayAlert(string title, string message, string cancel)
         {
@@ -264,7 +267,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="accept">Text to be displayed on the 'Accept' button.</param>
         /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
         /// <returns></returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
         {
@@ -279,7 +282,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Forces the Page to perform a layout pass.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ForceLayout()
         {
@@ -290,7 +293,7 @@ namespace Tizen.NUI.Xaml
         /// Calls OnBackButtonPressed().
         /// </summary>
         /// <returns></returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SendBackButtonPressed()
         {
@@ -304,7 +307,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="y">Top of layout area.</param>
         /// <param name="width">Width of layout area.</param>
         /// <param name="height">Height of layout area.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChildren(double x, double y, double width, double height)
         {
@@ -335,7 +338,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// When overridden, allows application developers to customize behavior immediately prior to the Page becoming visible.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnAppearing()
         {
@@ -345,7 +348,7 @@ namespace Tizen.NUI.Xaml
         /// Application developers can override this method to provide behavior when the back button is pressed.
         /// </summary>
         /// <returns>true if consumed</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool OnBackButtonPressed()
         {
@@ -365,7 +368,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Invoked whenever the binding context of the Page changes. Override this method to add class handling for this event.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnBindingContextChanged()
         {
@@ -381,7 +384,7 @@ namespace Tizen.NUI.Xaml
         /// </summary>
         /// <param name="sender">The object that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildMeasureInvalidated(object sender, EventArgs e)
         {
@@ -392,7 +395,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// When overridden, allows the application developer to customize behavior as the Page disappears.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnDisappearing()
         {
@@ -401,7 +404,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Called when the Page's Parent property has changed.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnParentSet()
         {
@@ -423,7 +426,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Requests that the children Elements of the Page update their layouts.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateChildrenLayout()
         {
@@ -453,6 +456,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// For intarnal use.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendAppearing()
         {
@@ -476,6 +480,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// For intarnal use.
         /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendDisappearing()
         {

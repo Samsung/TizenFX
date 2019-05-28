@@ -5,6 +5,7 @@ using System.Threading;
 
 namespace Tizen.NUI
 {
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public interface IPerformanceProvider
 	{
@@ -13,7 +14,8 @@ namespace Tizen.NUI
 		void Start(string reference, string tag, string path, string member);
 	}
 
-	[EditorBrowsable(EditorBrowsableState.Never)]
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
 	public class Performance
 	{
 		static long Reference;

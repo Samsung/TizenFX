@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Binding;
@@ -10,7 +11,9 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// The class to provide xaml service.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class XamlServiceProvider : IServiceProvider
     {
         readonly Dictionary<Type, object> services = new Dictionary<Type, object>();
@@ -44,7 +47,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Create a new XamlServiceProvider.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlServiceProvider()
         {
             IValueConverterProvider = new ValueConverterProvider();
@@ -89,7 +94,8 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Get service.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object GetService(Type serviceType)
         {
             object service;
@@ -99,7 +105,8 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Add service.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(Type type, object service)
         {
             services.Add(type, service);
@@ -152,7 +159,9 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// The class to provide simple value target.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SimpleValueTargetProvider : IProvideParentValues, IProvideValueTarget, IReferenceProvider
     {
         readonly object[] objectAndParents;
@@ -161,7 +170,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Create a new SimpleValueTargetProvider.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("SimpleValueTargetProvider(object[] objectAndParents) is obsolete as of version 2.3.4. Please use SimpleValueTargetProvider(object[] objectAndParents, object targetProperty) instead.")]
         public SimpleValueTargetProvider(object[] objectAndParents) : this (objectAndParents, null)
         {
@@ -170,7 +181,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Create a new SimpleValueTargetProvider.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public SimpleValueTargetProvider(object[] objectAndParents, object targetProperty)
         {
             if (objectAndParents == null)
@@ -200,7 +213,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Find target by name.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object FindByName(string name)
         {
             for (var i = 0; i < objectAndParents.Length; i++)
@@ -220,7 +235,9 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// The class to resolve xaml type.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class XamlTypeResolver : IXamlTypeResolver
     {
         readonly Assembly currentAssembly;
@@ -230,7 +247,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Create a new XamlTypeResolver.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlTypeResolver(IXmlNamespaceResolver namespaceResolver, Assembly currentAssembly)
             : this(namespaceResolver, XamlParser.GetElementType, currentAssembly)
         {
@@ -309,13 +328,17 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// The class to provide xaml root object.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class XamlRootObjectProvider : IRootObjectProvider
     {
         /// <summary>
         /// Create a new XamlRootObjectProvider.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlRootObjectProvider(object rootObject)
         {
             RootObject = rootObject;
@@ -324,20 +347,26 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Attribute RootObject.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object RootObject { get; }
     }
 
     /// <summary>
     /// The class to provide xaml line info.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class XmlLineInfoProvider : IXmlLineInfoProvider
     {
         /// <summary>
         /// Create a new XmlLineInfoProvider.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLineInfoProvider(IXmlLineInfo xmlLineInfo)
         {
             XmlLineInfo = xmlLineInfo;
@@ -346,27 +375,35 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Attribute XmlLineInfo.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IXmlLineInfo XmlLineInfo { get; }
     }
 
     /// <summary>
     /// The class to provide name scope.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class NameScopeProvider : INameScopeProvider
     {
         /// <summary>
         /// Attribute NameScope.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public INameScope NameScope { get; set; }
     }
 
     /// <summary>
     /// The class to resolve xml namespace.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class XmlNamespaceResolver : IXmlNamespaceResolver
     {
         readonly Dictionary<string, string> namespaces = new Dictionary<string, string>();
@@ -374,7 +411,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Get namespace.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
         {
             throw new NotImplementedException();
@@ -383,7 +422,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Look up name space.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string LookupNamespace(string prefix)
         {
             string result;
@@ -395,7 +436,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Look up prefix.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string LookupPrefix(string namespaceName)
         {
             throw new NotImplementedException();
@@ -404,7 +447,9 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Add prefix and ns.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(string prefix, string ns)
         {
             namespaces.Add(prefix, ns);

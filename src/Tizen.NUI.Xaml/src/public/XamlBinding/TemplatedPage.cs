@@ -7,6 +7,7 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// A page that displays full-screen content with a control template, and the base class for ContentPage.
     /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TemplatedPage : Page, IControlTemplated
     {

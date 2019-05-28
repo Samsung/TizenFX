@@ -10,6 +10,8 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class Binding : BindingBase
     {
         internal const string SelfPath = ".";
@@ -21,10 +23,14 @@ namespace Tizen.NUI.Binding
         object _source;
         string _updateSourceEventName;
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Binding()
         {
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Binding(string path, BindingMode mode = BindingMode.Default, IValueConverter converter = null, object converterParameter = null, string stringFormat = null, object source = null)
         {
             if (path == null)
@@ -40,6 +46,8 @@ namespace Tizen.NUI.Binding
             Source = source;
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IValueConverter Converter
         {
             get { return _converter; }
@@ -51,6 +59,8 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object ConverterParameter
         {
             get { return _converterParameter; }
@@ -62,6 +72,8 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Path
         {
             get { return _path; }
@@ -74,6 +86,8 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object Source
         {
             get { return _source; }
@@ -84,6 +98,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UpdateSourceEventName {
             get { return _updateSourceEventName; }
@@ -93,6 +108,8 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete]
         public static Binding Create<TSource>(Expression<Func<TSource, object>> propertyGetter, BindingMode mode = BindingMode.Default, IValueConverter converter = null, object converterParameter = null,
                                               string stringFormat = null)

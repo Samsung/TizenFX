@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI.Xaml.UIComponents
 {
 
@@ -31,7 +33,9 @@ namespace Tizen.NUI.Xaml.UIComponents
     /// <br />
     /// The StateChanged event is emitted when the RadioButton change its state to \e selected or \e unselected.<br />
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class RadioButton : Button
     {
         private Tizen.NUI.UIComponents.RadioButton _radioButton;
@@ -51,7 +55,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Creates an uninitialized RadioButton.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButton() : this(new Tizen.NUI.UIComponents.RadioButton())
         {
         }

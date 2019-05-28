@@ -2,26 +2,33 @@ using System;
 using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Xaml.Internals;
 using Tizen.NUI.Binding;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml
 {
     /// <summary>
     /// The class ReferenceExtension.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Name")]
     public class ReferenceExtension : IMarkupExtension
     {
         /// <summary>
         /// Attribute Name
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name { get; set; }
 
         /// <summary>
         /// Provide value tye service provideer.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if (serviceProvider == null)

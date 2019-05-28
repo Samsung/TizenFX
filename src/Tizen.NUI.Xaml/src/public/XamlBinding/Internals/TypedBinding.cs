@@ -11,8 +11,9 @@ namespace Tizen.NUI.Binding.Internals
     /// <summary>
     /// The class TypedBindingBase.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     //FIXME: need a better name for this, and share with Binding, so we can share more unittests
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class TypedBindingBase : BindingBase
     {
@@ -21,7 +22,7 @@ namespace Tizen.NUI.Binding.Internals
         object _source;
         string _updateSourceEventName;
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IValueConverter Converter {
             get { return _converter; }
@@ -31,7 +32,7 @@ namespace Tizen.NUI.Binding.Internals
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object ConverterParameter {
             get { return _converterParameter; }
@@ -41,7 +42,7 @@ namespace Tizen.NUI.Binding.Internals
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Source {
             get { return _source; }
@@ -64,7 +65,6 @@ namespace Tizen.NUI.Binding.Internals
         }
     }
 
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal sealed class TypedBinding<TSource, TProperty> : TypedBindingBase
     {
         readonly Func<TSource, TProperty> _getter;

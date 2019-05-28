@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding.Internals
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal abstract class Ticker
     {
         static Ticker s_ticker;

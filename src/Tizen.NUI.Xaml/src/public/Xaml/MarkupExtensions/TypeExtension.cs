@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
@@ -6,7 +7,9 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// The class TemplateBindingExtension.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty(nameof(TypeName))]
     [ProvideCompiled("Tizen.NUI.Xaml.Build.Tasks.TypeExtension")]
     public class TypeExtension : IMarkupExtension<Type>
@@ -14,13 +17,17 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Attribute TypeName
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TypeName { get; set; }
 
         /// <summary>
         /// Provide value tye service provideer.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Type ProvideValue(IServiceProvider serviceProvider)
         {
             if (string.IsNullOrEmpty(TypeName))

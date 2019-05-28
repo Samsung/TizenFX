@@ -35,6 +35,7 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// Extension class for View defining Tizen.NUI.Xaml.Extensions.LoadFromXaml{TView} method.
     /// </summary>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class Extensions
     {
@@ -45,7 +46,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="view">The view on which this method operates.</param>
         /// <param name="callingType">The type of the caller.</param>
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType) 
         {
@@ -63,7 +64,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="view">The view on which this method operates.</param>
         /// <param name="callingType">The type of the caller.</param>
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TXaml LoadFromXaml1<TXaml>(this TXaml view, Type callingType)
         {
@@ -81,7 +82,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="view">The view on which this method operates.</param>
         /// <param name="xaml">The XAML that encodes the view state.</param>
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TXaml LoadFromXaml<TXaml>(this TXaml view, string xaml)
         {
@@ -100,7 +101,7 @@ namespace Tizen.NUI.Xaml
             return view;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static T LoadObject<T>(string path)
         {

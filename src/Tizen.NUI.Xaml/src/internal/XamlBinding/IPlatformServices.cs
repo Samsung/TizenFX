@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -8,7 +7,6 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal interface IPlatformServices
     {
         bool IsInvokeRequired { get; }

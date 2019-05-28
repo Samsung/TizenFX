@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Tizen.NUI.Binding
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class ActionSheetArguments
     {
         public ActionSheetArguments(string title, string cancel, string destruction, IEnumerable<string> buttons)

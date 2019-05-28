@@ -28,7 +28,9 @@ namespace Tizen.NUI.Xaml.UIComponents
     /// The ScrollBar is a UI component that can be linked to the scrollable objects
     /// indicating the current scroll position of the scrollable object.<br />
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollBar : View
     {
         private Tizen.NUI.UIComponents.ScrollBar _scrollBar;
@@ -48,7 +50,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Creates an uninitialized scrollbar.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar() : this(new Tizen.NUI.UIComponents.ScrollBar())
         {
         }
@@ -58,7 +62,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScrollDirectionProperty = Binding.BindableProperty.Create("ScrollDirection", typeof(Direction), typeof(ScrollBar), Direction.Vertical, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -70,7 +74,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.ScrollDirection;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty IndicatorHeightPolicyProperty = Binding.BindableProperty.Create("IndicatorHeightPolicy", typeof(IndicatorHeightPolicyType), typeof(ScrollBar), IndicatorHeightPolicyType.Variable, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -82,7 +86,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.IndicatorHeightPolicy;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty IndicatorFixedHeightProperty = Binding.BindableProperty.Create("IndicatorFixedHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -94,7 +98,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.IndicatorFixedHeight;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty IndicatorShowDurationProperty = Binding.BindableProperty.Create("IndicatorShowDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -106,7 +110,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.IndicatorShowDuration;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty IndicatorHideDurationProperty = Binding.BindableProperty.Create("IndicatorHideDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -118,7 +122,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.IndicatorHideDuration;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScrollPositionIntervalsProperty = Binding.BindableProperty.Create("ScrollPositionIntervals", typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -130,7 +134,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.ScrollPositionIntervals;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty IndicatorMinimumHeightProperty = Binding.BindableProperty.Create("IndicatorMinimumHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -142,7 +146,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.IndicatorMinimumHeight;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty IndicatorStartPaddingProperty = Binding.BindableProperty.Create("IndicatorStartPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -154,7 +158,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             return scrollBar.IndicatorStartPadding;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty IndicatorEndPaddingProperty = Binding.BindableProperty.Create("IndicatorEndPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -171,7 +175,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// The event emitted when panning is finished on the scroll indicator.
         /// </summary>
         /// <remarks>Event only emitted when the source of the scroll position properties are set.</remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<PanFinishedEventArgs> PanFinished
         {
             add
@@ -188,7 +194,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// This is the event emitted when the current scroll position of the scrollable content goes above or below the values specified by ScrollPositionIntervals property.
         /// </summary>
         /// <remarks>Event only emitted when the source of the scroll position properties are set.</remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollIntervalEventArgs> ScrollInterval
         {
             add
@@ -210,7 +218,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <param name="propertyMaxScrollPosition">The index of the maximum scroll position property(The maximum scroll position, type float).</param>
         /// <param name="propertyScrollContentSize">The index of the scroll content size property(The size of the scrollable content in actor coordinates, type float).</param>
         /// <remarks>The handle to the object owing the scroll properties has been initialised and the property index must be valid.</remarks>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollPropertySource(Animatable handle, int propertyScrollPosition, int propertyMinScrollPosition, int propertyMaxScrollPosition, int propertyScrollContentSize)
         {
@@ -220,7 +228,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The direction of the scrollbar.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Direction ScrollDirection
         {
             get
@@ -237,7 +247,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The indicator height policy.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IndicatorHeightPolicyType IndicatorHeightPolicy
         {
             get
@@ -253,7 +265,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The fixed height of the scroll indicator.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorFixedHeight
         {
             get
@@ -269,7 +283,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The duration in seconds for the scroll indicator to become fully visible.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorShowDuration
         {
             get
@@ -285,7 +301,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The duration in seconds for the scroll indicator to become fully invisible.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorHideDuration
         {
             get
@@ -301,7 +319,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The list of values to get the notification when the current scroll position of the scrollable object goes above or below any of these values.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyArray ScrollPositionIntervals
         {
             get
@@ -317,7 +337,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The minimum height for a variable size indicator.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorMinimumHeight
         {
             get
@@ -333,7 +355,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The padding at the start of the indicator. For example, the top if the scrollDirection is vertical.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorStartPadding
         {
             get
@@ -349,7 +373,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The padding at the end of the indicator. For example, the bottom if the scrollDirection is vertical.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorEndPadding
         {
             get

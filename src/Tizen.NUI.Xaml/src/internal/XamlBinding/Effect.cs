@@ -1,13 +1,11 @@
 using System;
 using System.ComponentModel;
-using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
     /// <summary>
     /// A collection of styles and properties that can be added to an element at run time.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal abstract class Effect
     {
         internal Effect()

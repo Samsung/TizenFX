@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
 
@@ -7,20 +8,26 @@ namespace Tizen.NUI.Xaml
     /// <summary>
     /// The class DynamicResourceExtension.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Key")]
     public sealed class DynamicResourceExtension : IMarkupExtension<DynamicResource>
     {
         /// <summary>
         /// Attribute Key.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Key { get; set; }
 
         /// <summary>
         /// Provide value tye service provideer.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             return ((IMarkupExtension<DynamicResource>)this).ProvideValue(serviceProvider);

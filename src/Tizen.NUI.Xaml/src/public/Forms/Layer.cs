@@ -24,7 +24,9 @@ namespace Tizen.NUI.Xaml.Forms
     /// <summary>
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Layer : Container
     {
         private Tizen.NUI.Layer _layer;
@@ -44,7 +46,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Creates a Xaml Layer object.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Layer() : this(new Tizen.NUI.Layer())
         {
         }
@@ -57,7 +61,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Layer behavior, type String (Layer.LayerBehavior).
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Layer.LayerBehavior Behavior
         {
             get
@@ -74,7 +80,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// Sets the viewport (in window coordinates), type rectangle.
         /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle Viewport
         {
             get
@@ -90,7 +98,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Retrieves and sets the layer's opacity.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Opacity
         {
             get
@@ -106,7 +116,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Retrieves and sets the layer's visibility.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Visibility
         {
             get
@@ -122,7 +134,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Get the number of children held by the layer.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new uint ChildCount
         {
             get
@@ -134,7 +148,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Gets or sets the layer's name.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name
         {
             get
@@ -151,7 +167,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// Queries the depth of the layer.<br />
         /// 0 is the bottommost layer, higher number is on the top.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Depth
         {
             get
@@ -167,7 +185,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// </summary>
         /// <seealso cref="Container.Add">
         /// </seealso>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Add(View child)
         {
             layer.Add(child.view);
@@ -178,7 +198,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// </summary>
         /// <seealso cref="Container.Remove">
         /// </seealso>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Remove(View child)
         {
             layer.Remove(child.view);
@@ -190,7 +212,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <pre>The view has been initialized.</pre>
         /// <param name="index">The index of the child to retrieve.</param>
         /// <returns>The view for the given index or empty handle if children not initialized.</returns>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override View GetChildAt(uint index)
         {
             Tizen.NUI.BaseComponents.View ret = layer.GetChildAt(index);
@@ -201,7 +225,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// Get parent of the layer.
         /// </summary>
         /// <returns>The view's container</returns>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override Container GetParent()
         {
             return null;
@@ -211,7 +237,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// Get the child count of the layer.
         /// </summary>
         /// <returns>The child count of the layer.</returns>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(layer.Children.Count);
@@ -220,9 +248,10 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Downcasts a handle to layer handle.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Layer DownCast(BaseHandle handle)
@@ -238,7 +267,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <remarks>The actor itself is also considered in the search.</remarks>
         /// <param name="id">The id of the child to find</param>
         /// <returns> A handle to the view if found, or an empty handle if not. </returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View FindChildById(uint id)
         {
             Tizen.NUI.BaseComponents.View ret = layer.FindChildById(id);
@@ -248,7 +279,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Increments the depth of the layer.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Raise()
         {
             layer.Raise();
@@ -257,7 +290,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Decrements the depth of the layer.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Lower()
         {
             layer.Lower();
@@ -266,7 +301,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Raises the layer to the top.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RaiseToTop()
         {
             layer.RaiseToTop();
@@ -275,7 +312,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// <summary>
         /// Lowers the layer to the bottom.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void LowerToBottom()
         {
             layer.LowerToBottom();
@@ -286,7 +325,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// After the call, this layer's depth will be immediately above target.<br />
         /// </summary>
         /// <param name="target">The layer to get on top of.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void MoveAbove(Layer target)
         {
             layer.MoveAbove(target.layer);
@@ -297,7 +338,9 @@ namespace Tizen.NUI.Xaml.Forms
         /// After the call, this layer's depth will be immediately below target.<br />
         /// </summary>
         /// <param name="target">The layer to get below of.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void MoveBelow(Layer target)
         {
             layer.MoveBelow(target.layer);

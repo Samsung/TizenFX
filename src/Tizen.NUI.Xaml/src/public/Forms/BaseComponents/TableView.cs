@@ -29,7 +29,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// The Z position and depth are left intact so that the 3D model actors can also be laid out
     /// in a grid without loosing their depth scaling.<br />
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TableView : View
     {
         private Tizen.NUI.BaseComponents.TableView _tableView;
@@ -49,7 +51,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TableView() : this(new Tizen.NUI.BaseComponents.TableView())
         {
         }
@@ -59,7 +63,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty RowsProperty = Binding.BindableProperty.Create("Rows", typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -71,7 +75,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var tableView = ((TableView)bindable).tableView;
             return tableView.Rows;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ColumnsProperty = Binding.BindableProperty.Create("Columns", typeof(int), typeof(TableView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -83,7 +87,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var tableView = ((TableView)bindable).tableView;
             return tableView.Columns;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CellPaddingProperty = Binding.BindableProperty.Create("CellPadding", typeof(Vector2), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -95,7 +99,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var tableView = ((TableView)bindable).tableView;
             return tableView.CellPadding;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LayoutRowsProperty = Binding.BindableProperty.Create("LayoutRows", typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -107,7 +111,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var tableView = ((TableView)bindable).tableView;
             return tableView.LayoutRows;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LayoutColumnsProperty = Binding.BindableProperty.Create("LayoutColumns", typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -127,7 +131,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="child">The child to add.</param>
         /// <param name="position">The position for the child.</param>
         /// <returns>True if the addition succeeded, and false if the cell is already occupied.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AddChild(View child, Tizen.NUI.BaseComponents.TableView.CellPosition position)
         {
             return tableView.AddChild(child.view, position);
@@ -138,7 +144,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="position">The position in the table.</param>
         /// <returns>Child that was in the cell or an uninitialized handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetChildAt(Tizen.NUI.BaseComponents.TableView.CellPosition position)
         {
             return BaseHandle.GetHandle(tableView.GetChildAt(position)) as View;
@@ -149,7 +157,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="position">The position for the child to remove.</param>
         /// <returns>Child that was removed or an uninitialized handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View RemoveChildAt(Tizen.NUI.BaseComponents.TableView.CellPosition position)
         {
             return BaseHandle.GetHandle(tableView.RemoveChildAt(position)) as View;
@@ -161,7 +171,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="child">The child to search for.</param>
         /// <param name="position">The position for the child.</param>
         /// <returns>True if the child was included in this TableView.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool FindChildPosition(View child, Tizen.NUI.BaseComponents.TableView.CellPosition position)
         {
             return tableView.FindChildPosition(child.view, position);
@@ -171,7 +183,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Inserts a new row to the given index.
         /// </summary>
         /// <param name="rowIndex">The rowIndex of the new row.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void InsertRow(uint rowIndex)
         {
             tableView.InsertRow(rowIndex);
@@ -182,7 +196,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Removed elements are deleted.<br />
         /// </summary>
         /// <param name="rowIndex">The rowIndex of the row to delete.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteRow(uint rowIndex)
         {
             tableView.DeleteRow(rowIndex);
@@ -192,7 +208,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Inserts a new column to the given index.
         /// </summary>
         /// <param name="columnIndex">The columnIndex of the new column.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void InsertColumn(uint columnIndex)
         {
             tableView.InsertColumn(columnIndex);
@@ -203,7 +221,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Removed elements are deleted.<br />
         /// </summary>
         /// <param name="columnIndex">The columnIndex of the column to delete.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteColumn(uint columnIndex)
         {
             tableView.DeleteColumn(columnIndex);
@@ -214,7 +234,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="rows">The rows for the table.</param>
         /// <param name="columns">The columns for the table.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Resize(uint rows, uint columns)
         {
             tableView.Resize(rows, columns);
@@ -224,7 +246,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Sets the horizontal and the vertical padding between cells.
         /// </summary>
         /// <param name="padding">Width and height.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCellPadding(Size2D padding)
         {
             tableView.SetCellPadding(padding);
@@ -234,7 +258,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Gets the current padding as width and height.
         /// </summary>
         /// <returns>The current padding as width and height.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetCellPadding()
         {
             return tableView.GetCellPadding();
@@ -244,7 +270,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Specifies this row as fitting its height to its children.
         /// </summary>
         /// <param name="rowIndex">The row to set.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFitHeight(uint rowIndex)
         {
             tableView.SetFitHeight(rowIndex);
@@ -255,7 +283,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="rowIndex">The row to check.</param>
         /// <returns>True if the row is fit.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsFitHeight(uint rowIndex)
         {
             return tableView.IsFitHeight(rowIndex);
@@ -265,7 +295,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Specifies this column as fitting its width to its children.
         /// </summary>
         /// <param name="columnIndex">The column to set.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFitWidth(uint columnIndex)
         {
             tableView.SetFitWidth(columnIndex);
@@ -276,7 +308,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="columnIndex">The column to check.</param>
         /// <returns>True if the column is fit.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsFitWidth(uint columnIndex)
         {
             return tableView.IsFitWidth(columnIndex);
@@ -288,7 +322,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="rowIndex">The rowIndex for row with a fixed height.</param>
         /// <param name="height">The height in world coordinate units.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFixedHeight(uint rowIndex, float height)
         {
             tableView.SetFixedHeight(rowIndex, height);
@@ -299,7 +335,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="rowIndex">The row index with a fixed height.</param>
         /// <returns>height The height in world coordinate units.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetFixedHeight(uint rowIndex)
         {
             return tableView.GetFixedHeight(rowIndex);
@@ -312,7 +350,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="rowIndex">The rowIndex for row with a relative height.</param>
         /// <param name="heightPercentage">The height percentage between 0.0f and 1.0f.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRelativeHeight(uint rowIndex, float heightPercentage)
         {
             tableView.SetRelativeHeight(rowIndex, heightPercentage);
@@ -323,7 +363,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="rowIndex">The row index with a relative height.</param>
         /// <returns>Height in percentage units, between 0.0f and 1.0f.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetRelativeHeight(uint rowIndex)
         {
             return tableView.GetRelativeHeight(rowIndex);
@@ -335,7 +377,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="columnIndex">The columnIndex for column with a fixed width.</param>
         /// <param name="width">The width in world coordinate units.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFixedWidth(uint columnIndex, float width)
         {
             tableView.SetFixedWidth(columnIndex, width);
@@ -346,7 +390,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="columnIndex">The column index with a fixed width.</param>
         /// <returns>Width in world coordinate units.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetFixedWidth(uint columnIndex)
         {
             return tableView.GetFixedWidth(columnIndex);
@@ -359,7 +405,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="columnIndex">The columnIndex for column with a fixed width.</param>
         /// <param name="widthPercentage">The widthPercentage between 0.0f and 1.0f.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRelativeWidth(uint columnIndex, float widthPercentage)
         {
             tableView.SetRelativeWidth(columnIndex, widthPercentage);
@@ -370,7 +418,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="columnIndex">The column index with a relative width.</param>
         /// <returns>Width in percentage units, between 0.0f and 1.0f.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetRelativeWidth(uint columnIndex)
         {
             return tableView.GetRelativeWidth(columnIndex);
@@ -383,7 +433,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="position">The cell to set alignment on.</param>
         /// <param name="horizontal">The horizontal alignment.</param>
         /// <param name="vertical">The vertical alignment.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCellAlignment(Tizen.NUI.BaseComponents.TableView.CellPosition position, HorizontalAlignmentType horizontal, VerticalAlignmentType vertical)
         {
             tableView.SetCellAlignment(position, horizontal, vertical);
@@ -392,7 +444,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The amount of rows in the table.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Rows
         {
             get
@@ -407,7 +461,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The amount of columns in the table.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Columns
         {
             get
@@ -422,7 +478,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Padding between cells.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 CellPadding
         {
             get
@@ -438,7 +496,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The number of layout rows.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap LayoutRows
         {
             get
@@ -454,7 +514,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The number of layout columns.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap LayoutColumns
         {
             get

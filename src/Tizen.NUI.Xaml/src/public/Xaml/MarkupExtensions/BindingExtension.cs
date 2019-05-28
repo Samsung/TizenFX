@@ -1,75 +1,98 @@
 using System;
 using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Binding;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml
 {
     /// <summary>
     /// The class BindingExtension.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [ContentProperty("Path")]
     [AcceptEmptyServiceProvider]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class BindingExtension : IMarkupExtension<BindingBase>
     {
         /// <summary>
         /// Attribute Path.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-		public string Path { get; set; } = Binding.Binding.SelfPath;
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Path { get; set; } = Binding.Binding.SelfPath;
 
         /// <summary>
         /// Attribute Mode.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-		public BindingMode Mode { get; set; } = BindingMode.Default;
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BindingMode Mode { get; set; } = BindingMode.Default;
 
         /// <summary>
         /// Attribute Converter.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IValueConverter Converter { get; set; }
 
         /// <summary>
         /// Attribute Converterparameter.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object ConverterParameter { get; set; }
 
         /// <summary>
         /// Attribute StringFormat.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string StringFormat { get; set; }
 
         /// <summary>
         /// Attribute Source.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object Source { get; set; }
 
         /// <summary>
         /// Attribute UpdateSourceEventName.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string UpdateSourceEventName { get; set; }
 
         /// <summary>
         /// Attribute TargetNullValue.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object TargetNullValue { get; set; }
 
         /// <summary>
         /// Attribute FallbackValue.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object FallbackValue { get; set; }
 
         /// <summary>
         /// Attribute TypedBinding.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TypedBindingBase TypedBinding { get; set; }
 
         BindingBase IMarkupExtension<BindingBase>.ProvideValue(IServiceProvider serviceProvider)

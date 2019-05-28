@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class NavigationModel
     {
         readonly List<Page> _modalStack = new List<Page>();

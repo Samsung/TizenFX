@@ -27,7 +27,9 @@ namespace Tizen.NUI.Xaml.UIComponents
     /// <summary>
     /// The Popup widget provides a configurable popup dialog with a built-in layout of three main fields.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Popup : Tizen.NUI.Xaml.Forms.BaseComponents.View
     {
         private Tizen.NUI.UIComponents.Popup _popup;
@@ -47,7 +49,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// Creates the popup.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup() : this(new Tizen.NUI.UIComponents.Popup())
         {
         }
@@ -57,7 +61,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TitleProperty = Binding.BindableProperty.Create("Title", typeof(PropertyMap), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -69,7 +73,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.Title;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FooterProperty = Binding.BindableProperty.Create("Footer", typeof(PropertyMap), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -81,7 +85,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.Footer;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DisplayStateProperty = Binding.BindableProperty.Create("DisplayState", typeof(DisplayStateType), typeof(Popup), DisplayStateType.Hidden, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -93,7 +97,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.DisplayState;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TouchTransparentProperty = Binding.BindableProperty.Create("TouchTransparent", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -105,7 +109,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.TouchTransparent;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TailVisibilityProperty = Binding.BindableProperty.Create("TailVisibility", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -117,7 +121,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.TailVisibility;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TailPositionProperty = Binding.BindableProperty.Create("TailPosition", typeof(Vector3), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -129,7 +133,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.TailPosition;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ContextualModeProperty = Binding.BindableProperty.Create("ContextualMode", typeof(ContextualModeType), typeof(Popup), ContextualModeType.Below, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -141,7 +145,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.ContextualMode;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty AnimationDurationProperty = Binding.BindableProperty.Create("AnimationDuration", typeof(float), typeof(Popup), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -153,7 +157,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.AnimationDuration;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty AnimationModeProperty = Binding.BindableProperty.Create("AnimationMode", typeof(AnimationModeType), typeof(Popup), AnimationModeType.Fade, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -165,7 +169,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.AnimationMode;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty EntryAnimationProperty = Binding.BindableProperty.Create("EntryAnimation", typeof(PropertyMap), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -177,7 +181,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.EntryAnimation;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ExitAnimationProperty = Binding.BindableProperty.Create("ExitAnimation", typeof(PropertyMap), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -189,7 +193,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.ExitAnimation;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty AutoHideDelayProperty = Binding.BindableProperty.Create("AutoHideDelay", typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -201,7 +205,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.AutoHideDelay;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty BackingEnabledProperty = Binding.BindableProperty.Create("BackingEnabled", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -213,7 +217,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.BackingEnabled;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty BackingColorProperty = Binding.BindableProperty.Create("BackingColor", typeof(Vector4), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -225,7 +229,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.BackingColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PopupBackgroundImageProperty = Binding.BindableProperty.Create("PopupBackgroundImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -237,7 +241,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.PopupBackgroundImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PopupBackgroundBorderProperty = Binding.BindableProperty.Create("PopupBackgroundBorder", typeof(Rectangle), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -249,7 +253,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.PopupBackgroundBorder;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TailUpImageProperty = Binding.BindableProperty.Create("TailUpImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -261,7 +265,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.TailUpImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TailDownImageProperty = Binding.BindableProperty.Create("TailDownImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -273,7 +277,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.TailDownImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TailLeftImageProperty = Binding.BindableProperty.Create("TailLeftImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -285,7 +289,7 @@ namespace Tizen.NUI.Xaml.UIComponents
             var popup = ((Popup)bindable).popup;
             return popup.TailLeftImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TailRightImageProperty = Binding.BindableProperty.Create("TailRightImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -301,7 +305,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// An event is sent when the user has touched outside the dialog.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<TouchedOutsideEventArgs> TouchedOutside
         {
             add
@@ -317,7 +323,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// An event is sent when the popup starts showing.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ShowingEventArgs> Showing
         {
             add
@@ -333,7 +341,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// An event is sent when the popup has been fully displayed.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ShownEventArgs> Shown
         {
             add
@@ -349,7 +359,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// An event is sent when the popup starts to hide.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<HidingEventArgs> Hiding
         {
             add
@@ -365,7 +377,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// An event is sent when the popup has been completely hidden.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<HiddenEventArgs> Hidden
         {
             add
@@ -382,7 +396,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// Sets the content actor.
         /// </summary>
         /// <param name="content">The actor to use.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContent(Tizen.NUI.Xaml.Forms.BaseComponents.View content)
         {
             popup.SetContent(content.handleInstance as View);
@@ -392,7 +408,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// Sets the content actor.
         /// </summary>
         /// <param name="content">The actor to use.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContent(View content)
         {
             popup.SetContent(content);
@@ -402,7 +420,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// Sets the actor to use for the footer in this popup.
         /// </summary>
         /// <param name="footer">The footer actor to be added to this popup.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFooter(Tizen.NUI.Xaml.Forms.BaseComponents.View footer)
         {
             popup.SetFooter(footer.handleInstance as View);
@@ -412,7 +432,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// Sets the actor to use for the footer in this popup.
         /// </summary>
         /// <param name="footer">The footer actor to be added to this popup.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFooter(View footer)
         {
             popup.SetFooter(footer);
@@ -435,7 +457,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// All 4 states changes cause notifications via 4 respective signals that can be connected to.<br />
         /// </summary>
         /// <param name="displayState">The desired display state to change to.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDisplayState(DisplayStateType displayState)
         {
             popup.SetDisplayState(displayState);
@@ -444,7 +468,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The popup title.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Title
         {
             get
@@ -460,7 +486,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The popup footer.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Footer
         {
             get
@@ -476,7 +504,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The popup display state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DisplayStateType DisplayState
         {
             get
@@ -492,7 +522,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The touch transparent.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TouchTransparent
         {
             get
@@ -508,7 +540,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The popup tail visibility.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TailVisibility
         {
             get
@@ -524,7 +558,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The popup tail position.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 TailPosition
         {
             get
@@ -540,7 +576,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The contextual mode.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ContextualModeType ContextualMode
         {
             get
@@ -556,7 +594,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The animation duration.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float AnimationDuration
         {
             get
@@ -572,7 +612,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The animation mode.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationModeType AnimationMode
         {
             get
@@ -588,7 +630,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The entry animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap EntryAnimation
         {
             get
@@ -604,7 +648,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The exit animation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ExitAnimation
         {
             get
@@ -620,7 +666,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The auto hide delay.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int AutoHideDelay
         {
             get
@@ -636,7 +684,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The backing enabled.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BackingEnabled
         {
             get
@@ -652,7 +702,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The backing color.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 BackingColor
         {
             get
@@ -668,7 +720,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The background image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string PopupBackgroundImage
         {
             get
@@ -684,7 +738,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The background border.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle PopupBackgroundBorder
         {
             get
@@ -700,7 +756,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The tail up image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailUpImage
         {
             get
@@ -716,7 +774,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The tail down image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailDownImage
         {
             get
@@ -732,7 +792,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The tail left image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailLeftImage
         {
             get
@@ -748,7 +810,9 @@ namespace Tizen.NUI.Xaml.UIComponents
         /// <summary>
         /// The tail right image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailRightImage
         {
             get

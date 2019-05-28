@@ -25,9 +25,11 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     [ContentProperty("Content")]
-    public class View : Tizen.NUI.Xaml.Forms.Container, IResourcesProvider
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class View : Tizen.NUI.Xaml.Forms.Container, Tizen.NUI.Binding.IResourcesProvider
     {
         private Tizen.NUI.BaseComponents.View _view;
         internal Tizen.NUI.BaseComponents.View view
@@ -46,11 +48,16 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Creates a new instance of a Xaml View.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View() : this(new Tizen.NUI.BaseComponents.View())
         {
         }
 
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.BaseComponents.View ViewInstance
         {
             get
@@ -65,12 +72,16 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             SetNUIInstance(nuiInstance);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        bool IResourcesProvider.IsResourcesCreated => _resources != null;
+        bool Tizen.NUI.Binding.IResourcesProvider.IsResourcesCreated => _resources != null;
 
         ResourceDictionary _resources;
 
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ResourceDictionary Resources
         {
             get
@@ -96,7 +107,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ResourceDictionary XamlResources
         {
@@ -124,7 +136,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ContentProperty = Binding.BindableProperty.Create("Content", typeof(View), typeof(ContentPage), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -134,302 +147,327 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
                 self.Add((View)newValue);
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty StyleNameProperty = Binding.BindableProperty.Create("StyleName", typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.StyleName = (string)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.StyleName;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty BackgroundColorProperty = Binding.BindableProperty.Create("BackgroundColor", typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.BackgroundColor = (Color)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.BackgroundColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty BackgroundImageProperty = Binding.BindableProperty.Create("BackgroundImage", typeof(string), typeof(View), default(string), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.BackgroundImage = (string)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.BackgroundImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty BackgroundProperty = Binding.BindableProperty.Create("Background", typeof(PropertyMap), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.Background = (PropertyMap)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.Background;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty StateProperty = Binding.BindableProperty.Create("State", typeof(States), typeof(View), States.Normal, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.State = (States)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.State;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SubStateProperty = Binding.BindableProperty.Create("SubState", typeof(States), typeof(View), States.Normal, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.SubState = (States)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.SubState;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty TooltipProperty = Binding.BindableProperty.Create("Tooltip", typeof(PropertyMap), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.Tooltip = (PropertyMap)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.Tooltip;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FlexProperty = Binding.BindableProperty.Create("Flex", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.Flex = (float)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.Flex;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty AlignSelfProperty = Binding.BindableProperty.Create("AlignSelf", typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.AlignSelf = (int)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.AlignSelf;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FlexMarginProperty = Binding.BindableProperty.Create("FlexMargin", typeof(Vector4), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.FlexMargin = (Vector4)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.FlexMargin;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CellIndexProperty = Binding.BindableProperty.Create("CellIndex", typeof(Vector2), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.CellIndex = (Vector2)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.CellIndex;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty RowSpanProperty = Binding.BindableProperty.Create("RowSpan", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.RowSpan = (float)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.RowSpan;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ColumnSpanProperty = Binding.BindableProperty.Create("ColumnSpan", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.ColumnSpan = (float)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.ColumnSpan;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CellHorizontalAlignmentProperty = Binding.BindableProperty.Create("CellHorizontalAlignment", typeof(HorizontalAlignmentType), typeof(View), HorizontalAlignmentType.Left, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.CellHorizontalAlignment = (HorizontalAlignmentType)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.CellHorizontalAlignment;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty CellVerticalAlignmentProperty = Binding.BindableProperty.Create("CellVerticalAlignment", typeof(VerticalAlignmentType), typeof(View), VerticalAlignmentType.Top, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.CellVerticalAlignment = (VerticalAlignmentType)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.CellVerticalAlignment;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LeftFocusableViewProperty = Binding.BindableProperty.Create(nameof(View.LeftFocusableView), typeof(Tizen.NUI.BaseComponents.View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.LeftFocusableView = (Tizen.NUI.BaseComponents.View)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.LeftFocusableView;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty RightFocusableViewProperty = Binding.BindableProperty.Create(nameof(View.RightFocusableView), typeof(Tizen.NUI.BaseComponents.View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.RightFocusableView = (Tizen.NUI.BaseComponents.View)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.RightFocusableView;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty UpFocusableViewProperty = Binding.BindableProperty.Create(nameof(View.UpFocusableView), typeof(Tizen.NUI.BaseComponents.View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.UpFocusableView = (Tizen.NUI.BaseComponents.View)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.UpFocusableView;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DownFocusableViewProperty = Binding.BindableProperty.Create(nameof(View.DownFocusableView), typeof(Tizen.NUI.BaseComponents.View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.DownFocusableView = (Tizen.NUI.BaseComponents.View)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.DownFocusableView;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty FocusableProperty = Binding.BindableProperty.Create("Focusable", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.Focusable = (bool)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.Focusable;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty Size2DProperty = Binding.BindableProperty.Create("Size2D", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.Size2D = (Size2D)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.Size2D;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty OpacityProperty = Binding.BindableProperty.Create("Opacity", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.Opacity = (float)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.Opacity;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty Position2DProperty = Binding.BindableProperty.Create("Position2D", typeof(Position2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.Position2D = (Position2D)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.Position2D;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PositionUsesPivotPointProperty = Binding.BindableProperty.Create("PositionUsesPivotPoint", typeof(bool), typeof(View), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.PositionUsesPivotPoint = (bool)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.PositionUsesPivotPoint;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SiblingOrderProperty = Binding.BindableProperty.Create("SiblingOrder", typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.SiblingOrder = (int)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             var parentChildren = view.GetParent()?.Children;
@@ -444,32 +482,34 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
 
             return 0;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ParentOriginProperty = Binding.BindableProperty.Create("ParentOrigin", typeof(Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.ParentOrigin = (Position)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.ParentOrigin;
-        }
-        );
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        });
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PivotPointProperty = Binding.BindableProperty.Create("PivotPoint", typeof(Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = ((View)bindable).view;
             view.PivotPoint = (Position)newValue;
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var view = ((View)bindable).view;
             return view.PivotPoint;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SizeWidthProperty = Binding.BindableProperty.Create("SizeWidth", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -481,7 +521,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.SizeWidth;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SizeHeightProperty = Binding.BindableProperty.Create("SizeHeight", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -493,7 +534,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.SizeHeight;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PositionProperty = Binding.BindableProperty.Create("Position", typeof(Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -505,7 +547,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Position;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PositionXProperty = Binding.BindableProperty.Create("PositionX", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -517,7 +560,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.PositionX;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PositionYProperty = Binding.BindableProperty.Create("PositionY", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -529,7 +573,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.PositionY;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PositionZProperty = Binding.BindableProperty.Create("PositionZ", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -541,7 +586,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.PositionZ;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty OrientationProperty = Binding.BindableProperty.Create("Orientation", typeof(Rotation), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -553,7 +599,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Orientation;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScaleProperty = Binding.BindableProperty.Create("Scale", typeof(Vector3), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -565,7 +612,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Scale;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScaleXProperty = Binding.BindableProperty.Create("ScaleX", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -577,7 +625,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.ScaleX;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScaleYProperty = Binding.BindableProperty.Create("ScaleY", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -589,7 +638,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.ScaleY;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ScaleZProperty = Binding.BindableProperty.Create("ScaleZ", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -601,7 +651,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.ScaleZ;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty NameProperty = Binding.BindableProperty.Create("Name", typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -613,7 +664,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Name;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SensitiveProperty = Binding.BindableProperty.Create("Sensitive", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -625,7 +677,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Sensitive;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LeaveRequiredProperty = Binding.BindableProperty.Create("LeaveRequired", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -637,7 +690,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.LeaveRequired;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InheritOrientationProperty = Binding.BindableProperty.Create("InheritOrientation", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -649,7 +703,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.InheritOrientation;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InheritScaleProperty = Binding.BindableProperty.Create("InheritScale", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -661,7 +716,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.InheritScale;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty DrawModeProperty = Binding.BindableProperty.Create("DrawMode", typeof(DrawModeType), typeof(View), DrawModeType.Normal, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -673,7 +729,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.DrawMode;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SizeModeFactorProperty = Binding.BindableProperty.Create("SizeModeFactor", typeof(Vector3), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -685,7 +742,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.SizeModeFactor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty WidthResizePolicyProperty = Binding.BindableProperty.Create("WidthResizePolicy", typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -697,7 +755,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.WidthResizePolicy;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty HeightResizePolicyProperty = Binding.BindableProperty.Create("HeightResizePolicy", typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -709,7 +768,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.HeightResizePolicy;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SizeScalePolicyProperty = Binding.BindableProperty.Create("SizeScalePolicy", typeof(SizeScalePolicyType), typeof(View), SizeScalePolicyType.UseSizeSet, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -721,7 +781,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.SizeScalePolicy;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty WidthForHeightProperty = Binding.BindableProperty.Create("WidthForHeight", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -733,7 +794,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.WidthForHeight;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty HeightForWidthProperty = Binding.BindableProperty.Create("HeightForWidth", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -745,7 +807,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.HeightForWidth;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty PaddingProperty = Binding.BindableProperty.Create("Padding", typeof(Extents), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -757,7 +820,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Padding;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty SizeProperty = Binding.BindableProperty.Create("Size", typeof(Size), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -769,7 +833,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Size;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty MinimumSizeProperty = Binding.BindableProperty.Create("MinimumSize", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -781,7 +846,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.MinimumSize;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty MaximumSizeProperty = Binding.BindableProperty.Create("MaximumSize", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -793,7 +859,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.MaximumSize;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InheritPositionProperty = Binding.BindableProperty.Create("InheritPosition", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -805,7 +872,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.InheritPosition;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty ClippingModeProperty = Binding.BindableProperty.Create("ClippingMode", typeof(ClippingModeType), typeof(View), ClippingModeType.Disabled, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -817,7 +885,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.ClippingMode;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty InheritLayoutDirectionProperty = Binding.BindableProperty.Create("InheritLayoutDirection", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -829,7 +898,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.InheritLayoutDirection;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty LayoutDirectionProperty = Binding.BindableProperty.Create("LayoutDirection", typeof(ViewLayoutDirectionType), typeof(View), ViewLayoutDirectionType.LTR, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -841,7 +911,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.LayoutDirection;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty MarginProperty = Binding.BindableProperty.Create("Margin", typeof(Extents), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -853,6 +924,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
             var view = ((View)bindable).view;
             return view.Margin;
         });
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly Binding.BindableProperty StyleProperty = Binding.BindableProperty.Create("Style", typeof(Style), typeof(View), default(Style),
     propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).mergedStyle.Style = (Style)newvalue);
@@ -860,20 +933,26 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Event argument passed through the ChildAdded event.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildAddedEventArgs : EventArgs
         {
             /// <summary>
             /// Added child view at moment.
             /// </summary>
-            /// <since_tizen> 5 </since_tizen>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public View Added { get; set; }
         }
 
         /// <summary>
         /// Event when a child is added.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler<ChildAddedEventArgs> ChildAdded;
 
         // From Container Base class
@@ -881,7 +960,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Adds a child view to this view.
         /// </summary>
         /// <seealso cref="Container.Add" />
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Add(View child)
         {
             (child as IElement).Parent = this;
@@ -900,20 +981,26 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Event argument passed through the ChildRemoved event.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildRemovedEventArgs : EventArgs
         {
             /// <summary>
             /// Removed child view at moment.
             /// </summary>
-            /// <since_tizen> 5 </since_tizen>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public View Removed { get; set; }
         }
 
         /// <summary>
         /// Event when a child is removed.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
 
 
@@ -921,7 +1008,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Removes a child view from this View. If the view was not a child of this view, this is a no-op.
         /// </summary>
         /// <seealso cref="Container.Remove" />
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Remove(View child)
         {
             (child as IElement).Parent = null;
@@ -941,7 +1030,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Retrieves a child view by index.
         /// </summary>
         /// <seealso cref="Container.GetChildAt" />
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override View GetChildAt(uint index)
         {
             if (index < view.Children.Count)
@@ -958,7 +1049,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Retrieves the number of children held by the view.
         /// </summary>
         /// <seealso cref="Container.GetChildCount" />
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(view.Children.Count);
@@ -968,7 +1061,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Gets the views parent.
         /// </summary>
         /// <seealso cref="Container.GetParent()" />
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override Container GetParent()
         {
             return BaseHandle.GetHandle(view.GetParent()) as Container;
@@ -978,7 +1073,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the KeyInputFocusGained signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The KeyInputFocusGained signal is emitted when the control gets the key input focus.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler FocusGained
         {
             add
@@ -996,7 +1093,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the KeyInputFocusLost signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The KeyInputFocusLost signal is emitted when the control loses the key input focus.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler FocusLost
         {
             add
@@ -1014,7 +1113,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the KeyPressed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The KeyPressed signal is emitted when the key event is received.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
         {
             add
@@ -1032,7 +1133,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the OnRelayout signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// The OnRelayout signal is emitted after the size has been set on the view during relayout.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler Relayout
         {
             add
@@ -1050,7 +1153,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The touched signal is emitted when the touch input is received.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> TouchEvent
         {
             add
@@ -1068,7 +1173,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the hovered signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The hovered signal is emitted when the hover input is received.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> HoverEvent
         {
             add
@@ -1086,7 +1193,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the WheelMoved signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The WheelMoved signal is emitted when the wheel event is received.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelEvent
         {
             add
@@ -1104,7 +1213,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the OnWindow signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// The OnWindow signal is emitted after the view has been connected to the window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AddedToWindow
         {
             add
@@ -1122,7 +1233,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the OffWindow signal, which can be used to subscribe or unsubscribe the event handler.<br />
         /// OffWindow signal is emitted after the view has been disconnected from the window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler RemovedFromWindow
         {
             add
@@ -1140,7 +1253,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for visibility change which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when the visible property of this or a parent view is changed.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
         {
             add
@@ -1158,7 +1273,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Event for layout direction change which can be used to subscribe/unsubscribe the event handler.<br />
         /// This signal is emitted when the layout direction property of this or a parent view is changed.<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<LayoutDirectionChangedEventArgs> LayoutDirectionChanged
         {
             add
@@ -1176,7 +1293,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// An event for the ResourcesLoadedSignal signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// This signal is emitted after all resources required by a view are loaded and ready.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler ResourcesLoaded
         {
             add
@@ -1194,7 +1313,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Queries whether the view has a focus.
         /// </summary>
         /// <returns>True if this view has a focus.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HasFocus()
         {
             return view.HasFocus();
@@ -1204,7 +1325,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Sets the name of the style to be applied to the view.
         /// </summary>
         /// <param name="styleName">A string matching a style described in a stylesheet.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetStyleName(string styleName)
         {
             view.SetStyleName(styleName);
@@ -1214,7 +1337,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Retrieves the name of the style to be applied to the view (if any).
         /// </summary>
         /// <returns>A string matching a style, or an empty string.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetStyleName()
         {
             return view.GetStyleName();
@@ -1223,7 +1348,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Clears the background.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearBackground()
         {
             view.ClearBackground();
@@ -1232,7 +1359,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The contents of ContentPage can be added into it.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Content
         {
@@ -1243,7 +1371,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The StyleName, type string.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string StyleName
         {
             get
@@ -1259,7 +1389,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The mutually exclusive with BACKGROUND_IMAGE and BACKGROUND type Vector4.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color BackgroundColor
         {
             get
@@ -1276,7 +1408,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Creates an animation to animate the background color visual. If there is no
         /// background visual, creates one with transparent black as it's mixColor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation AnimateBackgroundColor(object destinationValue,
                                                  int startTime,
                                                  int endTime,
@@ -1289,7 +1423,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Creates an animation to animate the mixColor of the named visual.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
             return view.AnimateColor(targetVisual, destinationColor, startTime, endTime, alphaFunction, initialColor);
@@ -1298,7 +1434,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The mutually exclusive with BACKGROUND_COLOR and BACKGROUND type Map.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string BackgroundImage
         {
             get
@@ -1314,7 +1452,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The background of view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap Background
         {
             get
@@ -1330,7 +1470,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The current state of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public States State
         {
             get
@@ -1346,7 +1488,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The current sub state of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public States SubState
         {
             get
@@ -1362,7 +1506,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Displays a tooltip
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap Tooltip
         {
             get
@@ -1378,7 +1524,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Displays a tooltip as a text.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TooltipText
         {
             set
@@ -1392,7 +1540,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// The proportion of the free space in the container, the flex item will receive.<br />
         /// If all items in the container set this property, their sizes will be proportional to the specified flex factor.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Flex
         {
             get
@@ -1409,7 +1559,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// The Child property of FlexContainer.<br />
         /// The alignment of the flex item along the cross axis, which, if set, overides the default alignment for all items in the container.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int AlignSelf
         {
             get
@@ -1426,7 +1578,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// The Child property of FlexContainer.<br />
         /// The space around the flex item.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 FlexMargin
         {
             get
@@ -1442,7 +1596,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The top-left cell this child occupies, if not set, the first available cell is used.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 CellIndex
         {
             get
@@ -1458,7 +1614,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The number of rows this child occupies, if not set, the default value is 1.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float RowSpan
         {
             get
@@ -1474,7 +1632,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The number of columns this child occupies, if not set, the default value is 1.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ColumnSpan
         {
             get
@@ -1490,7 +1650,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The horizontal alignment of this child inside the cells, if not set, the default value is 'left'.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.HorizontalAlignmentType CellHorizontalAlignment
         {
             get
@@ -1506,7 +1668,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// The vertical alignment of this child inside the cells, if not set, the default value is 'top'.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.VerticalAlignmentType CellVerticalAlignment
         {
             get
@@ -1524,7 +1688,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// This will return null if not set.<br />
         /// This will also return null if the specified left focusable view is not on a window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View LeftFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1543,7 +1709,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// This will return null if not set.<br />
         /// This will also return null if the specified right focusable view is not on a window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View RightFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1562,7 +1730,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// This will return null if not set.<br />
         /// This will also return null if the specified up focusable view is not on a window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View UpFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1581,7 +1751,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// This will return null if not set.<br />
         /// This will also return null if the specified down focusable view is not on a window.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View DownFocusableView
         {
             // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
@@ -1598,7 +1770,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Whether the view should be focusable by keyboard navigation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Focusable
         {
             set
@@ -1615,7 +1789,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         ///  Retrieves the position of the view.<br />
         ///  The coordinates are relative to the view's parent.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position CurrentPosition
         {
             get
@@ -1639,7 +1815,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
         /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D Size2D
         {
             get
@@ -1661,7 +1839,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         ///  Retrieves the size of the view.<br />
         ///  The coordinates are relative to the view's parent.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D CurrentSize
         {
             get
@@ -1673,7 +1853,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Retrieves and sets the view's opacity.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Opacity
         {
             get
@@ -1699,7 +1881,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
         /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position2D Position2D
         {
             get
@@ -1720,7 +1904,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Retrieves the screen postion of the view.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScreenPosition
         {
             get
@@ -1736,7 +1922,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <remarks>If false, then the top-left of the view is used for the position.
         /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the view's position.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesPivotPoint
         {
             get
@@ -1754,7 +1942,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// Please do not use! this will be deprecated!
         /// Instead please use PositionUsesPivotPoint.
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         [Obsolete("Please do not use! This will be deprecated! Please use PositionUsesPivotPoint instead! " +
             "Like: " +
             "View view = new View(); " +
@@ -1777,7 +1965,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Queries whether the view is connected to the stage.<br />
         /// When a view is connected, it will be directly or indirectly parented to the root view.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsOnWindow
         {
             get
@@ -1789,7 +1979,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets the depth in the hierarchy for the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int HierarchyDepth
         {
             get
@@ -1806,7 +1998,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Raise, Lower, RaiseToTop, LowerToBottom, RaiseAbove, and LowerBelow will override the sibling order.
         /// The values set by this property will likely change.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SiblingOrder
         {
             get
@@ -1825,7 +2019,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <remarks>
         /// Deriving classes stipulate the natural size and by default a view has a zero natural size.
         /// </remarks>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 NaturalSize
         {
             get
@@ -1840,7 +2036,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <remarks>
         /// Deriving classes stipulate the natural size and by default a view has a zero natural size.
         /// </remarks>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D NaturalSize2D
         {
             get
@@ -1855,7 +2053,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <remarks>
         /// This is an asynchronous method.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Show()
         {
             view.Show();
@@ -1869,7 +2069,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// If the view is hidden, then the view and its children will not be rendered.
         /// This is regardless of the individual visibility of the children, i.e., the view will only be rendered if all of its parents are shown.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Hide()
         {
             view.Hide();
@@ -1882,7 +2084,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Sibling order of views within the parent will be updated automatically.
         /// Once a raise or lower API is used, that view will then have an exclusive sibling order independent of insertion.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RaiseToTop()
         {
             view.RaiseToTop();
@@ -1895,7 +2099,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// The sibling order of views within the parent will be updated automatically.
         /// Once a raise or lower API is used that view will then have an exclusive sibling order independent of insertion.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void LowerToBottom()
         {
             view.LowerToBottom();
@@ -1906,7 +2112,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <remarks>Most resources are only loaded when the control is placed on the stage.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsResourceReady()
         {
             return view.IsResourceReady();
@@ -1917,7 +2125,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <pre>The view has been initialized. </pre>
         /// <returns>The parent layer of view </returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Layer GetLayer()
         {
             return BaseHandle.GetHandle(view.GetLayer()) as Layer;
@@ -1927,7 +2137,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Removes a view from its parent view or layer. If a view has no parent, this method does nothing.
         /// </summary>
         /// <pre>The (child) view has been initialized. </pre>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Unparent()
         {
             view.GetParent()?.Remove(view);
@@ -1940,7 +2152,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <pre>The view has been initialized.</pre>
         /// <param name="viewName">The name of the view to find.</param>
         /// <returns>A handle to the view if found, or an empty handle if not.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View FindChildByName(string viewName)
         {
             return BaseHandle.GetHandle(view.FindChildByName(viewName)) as View;
@@ -1956,7 +2170,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="screenX">The screen X-coordinate.</param>
         /// <param name="screenY">The screen Y-coordinate.</param>
         /// <returns>True if the conversion succeeded.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ScreenToLocal(out float localX, out float localY, float screenX, float screenY)
         {
             return view.ScreenToLocal(out localX, out localY, screenX, screenY);
@@ -1970,7 +2186,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <pre>The view has been initialized.</pre>
         /// <param name="factor">A Vector3 representing the relative factor to be applied to each axis.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSizeModeFactor(Vector3 factor)
         {
             view.SetSizeModeFactor(factor);
@@ -1983,7 +2201,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetHeightForWidth(float width)
         {
             return view.GetHeightForWidth(width);
@@ -1996,7 +2216,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetWidthForHeight(float height)
         {
             return view.GetWidthForHeight(height);
@@ -2007,7 +2229,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// <param name="dimension">The dimension to retrieve.</param>
         /// <returns>Return the size.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetRelayoutSize(DimensionType dimension)
         {
             return view.GetRelayoutSize(dimension);
@@ -2017,7 +2241,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Set the padding for the view.
         /// </summary>
         /// <param name="padding">Padding for the view.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPadding(PaddingType padding)
         {
             view.SetPadding(padding);
@@ -2027,31 +2253,41 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Return the value of padding for the view.
         /// </summary>
         /// <param name="paddingOut">the value of padding for the view</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void GetPadding(PaddingType paddingOut)
         {
             view.GetPadding(paddingOut);
         }
 
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddRenderer(Renderer renderer)
         {
             return view.AddRenderer(renderer);
         }
 
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Renderer GetRendererAt(uint index)
         {
             return view.GetRendererAt(index);
         }
 
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveRenderer(Renderer renderer)
         {
             view.RemoveRenderer(renderer);
         }
 
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveRenderer(uint index)
         {
             view.RemoveRenderer(index);
@@ -2064,7 +2300,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// A view's position is the distance between this origin and the view's anchor-point.<br />
         /// </summary>
         /// <pre>The view has been initialized.</pre>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position ParentOrigin
         {
             get
@@ -2085,7 +2323,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// A view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br />
         /// <pre>The view has been initialized.</pre>
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position PivotPoint
         {
             get
@@ -2101,7 +2341,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the size width of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SizeWidth
         {
             get
@@ -2117,7 +2359,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the size height of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SizeHeight
         {
             get
@@ -2135,7 +2379,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// By default, sets the position vector between the parent origin and pivot point (default).<br />
         /// If the position inheritance is disabled, sets the world position.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position Position
         {
             get
@@ -2151,7 +2397,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the position X of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PositionX
         {
             get
@@ -2167,7 +2415,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the position Y of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PositionY
         {
             get
@@ -2183,7 +2433,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the position Z of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PositionZ
         {
             get
@@ -2199,7 +2451,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the world position of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 WorldPosition
         {
             get
@@ -2213,7 +2467,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// The view's orientation is the rotation from its default orientation, and the rotation is centered around its anchor-point.<br />
         /// </summary>
         /// <remarks>This is an asynchronous method.</remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation Orientation
         {
             get
@@ -2229,7 +2485,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the world orientation of the view.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation WorldOrientation
         {
             get
@@ -2241,7 +2499,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the scale factor applied to the view.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 Scale
         {
             get
@@ -2257,7 +2517,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the scale X factor applied to the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScaleX
         {
             get
@@ -2273,7 +2535,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the scale Y factor applied to the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScaleY
         {
             get
@@ -2289,7 +2553,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the scale Z factor applied to the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScaleZ
         {
             get
@@ -2305,7 +2571,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets the world scale of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 WorldScale
         {
             get
@@ -2321,7 +2589,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// If the view is not visible, then the view and its children will not be rendered.
         /// This is regardless of the individual visibility values of the children, i.e., the view will only be rendered if all of its parents have visibility set to true.
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Visibility
         {
             get
@@ -2333,7 +2603,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets the view's world color.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 WorldColor
         {
             get
@@ -2345,7 +2617,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the view's name.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name
         {
             get
@@ -2361,7 +2635,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Get the number of children held by the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new uint ChildCount
         {
             get
@@ -2374,7 +2650,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Gets the view's ID.
         /// Readonly
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ID
         {
             get
@@ -2386,7 +2664,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the status of whether the view should emit touch or hover signals.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Sensitive
         {
             get
@@ -2402,7 +2682,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the status of whether the view should receive a notification when touch or hover motion events leave the boundary of the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LeaveRequired
         {
             get
@@ -2418,7 +2700,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the status of whether a child view inherits it's parent's orientation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool InheritOrientation
         {
             get
@@ -2434,7 +2718,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the status of whether a child view inherits it's parent's scale.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool InheritScale
         {
             get
@@ -2455,7 +2741,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Overlay views are drawn in a separate pass, after all non-overlay views within the layer.<br />
         /// For overlay views, the drawing order is with respect to tree levels of views, and depth-testing will not be used.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DrawModeType DrawMode
         {
             get
@@ -2473,7 +2761,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br />
         /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 SizeModeFactor
         {
             get
@@ -2489,7 +2779,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the width resize policy to be used.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ResizePolicyType WidthResizePolicy
         {
             get
@@ -2505,7 +2797,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the height resize policy to be used.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ResizePolicyType HeightResizePolicy
         {
             get
@@ -2522,7 +2816,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Gets or sets the policy to use when setting size with size negotiation.<br />
         /// Defaults to SizeScalePolicyType.UseSizeSet.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public SizeScalePolicyType SizeScalePolicy
         {
             get
@@ -2538,7 +2834,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         ///  Gets or sets the status of whether the width size is dependent on the height size.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool WidthForHeight
         {
             get
@@ -2554,7 +2852,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the status of whether the height size is dependent on the width size.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HeightForWidth
         {
             get
@@ -2570,7 +2870,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the padding for use in layout.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents Padding
         {
             get
@@ -2586,7 +2888,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the minimum size the view can be assigned in size negotiation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D MinimumSize
         {
             get
@@ -2602,7 +2906,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the maximum size the view can be assigned in size negotiation.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D MaximumSize
         {
             get
@@ -2622,7 +2928,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Default is to inherit.<br />
         /// Switching this off means that using position sets the view's world position, i.e., translates from the world origin (0,0,0) to the pivot point of the view.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool InheritPosition
         {
             get
@@ -2638,7 +2946,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets or sets the clipping behavior (mode) of it's children.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ClippingModeType ClippingMode
         {
             get
@@ -2654,7 +2964,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets the number of renderers held by the view.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint RendererCount
         {
             get
@@ -2666,9 +2978,10 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use PivotPoint.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead! " +
             "Like: " +
             "View view = new View(); " +
@@ -2700,7 +3013,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
         /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
         /// </remarks>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size Size
         {
             get
@@ -2716,7 +3031,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("Please do not use! This will be deprecated! Please use 'Container GetParent() for derived class' instead! " +
             "Like: " +
             "Container parent =  view.GetParent(); " +
@@ -2733,7 +3049,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets/Sets whether inherit parent's the layout Direction.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool InheritLayoutDirection
         {
             get
@@ -2749,7 +3067,10 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <summary>
         /// Gets/Sets the layout Direction.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.BaseComponents.ViewLayoutDirectionType LayoutDirection
         {
             get
@@ -2769,7 +3090,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// Margin property is supported by Layout algorithms and containers.
         /// Please Set Layout if you want to use Margin property.
         /// </remarks>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents Margin
         {
             get
@@ -2795,6 +3118,10 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
                 return _mergedStyle;
             }
         }
+
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Style Style
         {
             get
@@ -2812,7 +3139,8 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// </summary>
         /// Please do not use! this will be deprecated!
         /// Instead please use Padding.
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("Please do not use! this will be deprecated, instead please use Padding.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents PaddingEX
@@ -2834,7 +3162,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         /// <param name="propertyIndexOfVisual">The Property index of the visual.</param>
         /// <param name="propertyIndexOfActionId">The action to perform. See Visual to find the supported actions.</param>
         /// <param name="attributes">Optional attributes for the action.</param>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void DoAction(int propertyIndexOfVisual, int propertyIndexOfActionId, PropertyValue attributes)
         {
             view.DoAction(propertyIndexOfVisual, propertyIndexOfActionId, attributes);
