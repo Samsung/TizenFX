@@ -40,7 +40,7 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
-        public override Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
+        public  Task<AuthorizationResponse> AuthorizeAsync(AuthorizationRequest request)
         {
             Log.Error(ErrorFactory.LogTag, "Authorization is not supported in this flow");
             throw new InvalidOperationException();
@@ -67,7 +67,7 @@ namespace Tizen.Account.OAuth2
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
         /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
-        public override async Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
+        public  async Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
             IntPtr requestHandle = GetRequestHandle(request as ClientCredentialsTokenRequest);
             return await Task.Run(() => GetAccessToken(requestHandle));

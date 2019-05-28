@@ -24,13 +24,15 @@
     Target : Clean
     ==============
     Delete all artifacts,
-    including the Artifacts/ directory and the obj/ directories for all projects.
+    including the Artifacts/ directory and the obj and bin directories of all projects.
   -->
   <Target Name="Clean">
 
     <ItemGroup>
-      <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\*" />
-      <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\obj\*" />
+      <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\**" />
+      <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\bin\**" />
+      <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\obj\**" />
+      <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\bin\**" />
       <ProjectIntermediateDir Include="@(ProjectIntermediateAllFiles->'%(RootDir)%(Directory)'->Distinct())" />
     </ItemGroup>
 

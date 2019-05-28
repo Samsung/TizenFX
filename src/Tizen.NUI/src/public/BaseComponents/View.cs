@@ -75,6 +75,7 @@ namespace Tizen.NUI.BaseComponents
     /// View is the base class for all views.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [ContentProperty("Children")]
     public class View : Container, IResourcesProvider
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -4068,8 +4069,16 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public bool HasFocus()
         {
-            bool ret = Interop.View.View_HasKeyInputFocus(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = false;
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                ret = Interop.View.View_HasKeyInputFocus(swigCPtr);
+				if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            else
+            {
+                Tizen.Log.Error("NUI", "swigCPtr of view is aleady disposed.");
+            }
             return ret;
         }
 

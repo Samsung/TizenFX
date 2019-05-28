@@ -37,26 +37,11 @@ namespace Tizen.Account.OAuth2
         }
 
         /// <summary>
-        /// Retrieves access token asynchronously. The authroization request parameters should be as defined in https://tools.ietf.org/html/rfc6749#section-4.2.1
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <param name="request">The authorization request <see cref="ImplicitGrantAuthorizationRequest"/></param>
-        /// <returns>The response containing access token.</returns>
-        /// <privilege>http://tizen.org/privilege/internet</privilege>
-        /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
-        /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
-        public new virtual async Task<TokenResponse> AuthorizeAsync(AuthorizationRequest request)
-        {
-            IntPtr requestHandle = GetRequestHandle(request as ImplicitGrantAuthorizationRequest);
-            return await Task.Run(() => GetAuthorizationResponse(requestHandle));
-        }
-
-        /// <summary>
         /// Access token can be retreived implicitly using <see cref="AuthorizeAsync"/> in this flow.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
-        public override Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
+        public Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
             Log.Error(ErrorFactory.LogTag, "Obtain token directly from authorization grant ");
             throw new InvalidOperationException();

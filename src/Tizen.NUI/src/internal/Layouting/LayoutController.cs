@@ -85,7 +85,6 @@ namespace Tizen.NUI
         /// </summary>
         ~LayoutController()
         {
-            Dispose(DisposeTypes.Explicit);
         }
 
         /// <summary>
@@ -94,7 +93,6 @@ namespace Tizen.NUI
         public void Dispose()
         {
            Dispose(DisposeTypes.Explicit);
-           System.GC.SuppressFinalize(this);
         }
 
         /// <summary>
