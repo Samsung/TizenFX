@@ -182,18 +182,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Adds an keyvalue to the array.
-        /// This function should be first
-        /// </summary>
-        /// <param name="value">The value to add at the end of the array.</param>
-        public PropertyArray Add(KeyValue value)
-        {
-            PropertyArray ret = new PropertyArray(Interop.Property.Property_Array_Add(swigCPtr, PropertyValue.getCPtr(value.TrueValue)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Adds an element to the array.
         /// </summary>
         /// <param name="value">The value to add at the end of the array.</param>
@@ -760,28 +748,6 @@ namespace Tizen.NUI
         {
             PropertyMap ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, key, PropertyValue.getCPtr(value)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Inserts the keyvalue to the map.<br />
-        /// Does not check for duplicates.<br />
-        /// </summary>
-        /// <param name="keyValue">The keyvalue to insert.</param>
-        /// <returns>Returns a reference to this object.</returns>
-        public PropertyMap Add(KeyValue keyValue)
-        {
-            PropertyMap ret = new PropertyMap();
-            if ( keyValue.KeyInt != null )
-            {
-                ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_2(swigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue)), false);
-            }
-            else if ( keyValue.KeyString != null)
-            {
-                ret = new PropertyMap(Interop.PropertyMap.Property_Map_Add__SWIG_0(swigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue)), false);
-            }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
             return ret;
         }
 
@@ -1633,6 +1599,7 @@ namespace Tizen.NUI
         }
     }
 
+<<<<<<< HEAD
     /// <summary>
     /// KeyValue class.
     /// </summary>
@@ -1946,6 +1913,8 @@ namespace Tizen.NUI
         }
     }
 
+=======
+>>>>>>> 879c90160b45de49b52f1b8c1359572feadd8a6b
     internal class Property : global::System.IDisposable
     {
         /// <summary>

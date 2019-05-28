@@ -417,6 +417,7 @@ namespace Tizen.NUI
             }
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
@@ -457,6 +458,8 @@ namespace Tizen.NUI
             set;
         }
 
+=======
+>>>>>>> 879c90160b45de49b52f1b8c1359572feadd8a6b
         private bool DisableAnimation
         {
             get
@@ -610,6 +613,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+<<<<<<< HEAD
         /// Animates one or more properties to a destination value.<br />
         /// </summary>
         /// <param name="target">The target object to animate.</param>
@@ -619,6 +623,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+=======
+>>>>>>> 879c90160b45de49b52f1b8c1359572feadd8a6b
         /// Animates a property to a destination value.<br />
         /// </summary>
         /// <param name="target">The target object to animate.</param>

@@ -1272,6 +1272,7 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Invoked whenever the binding context of the textlabel changes. Implement this method to add class handling for this event.
         /// </summary>
@@ -1281,6 +1282,8 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
+=======
+>>>>>>> 879c90160b45de49b52f1b8c1359572feadd8a6b
         private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));

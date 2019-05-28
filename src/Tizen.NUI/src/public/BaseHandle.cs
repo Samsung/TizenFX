@@ -449,6 +449,45 @@ namespace Tizen.NUI
             property.PropertyChanged?.Invoke(this, null, value);
         }
 
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// The event args of dispose.
+        /// </summary>
+        /// <since_tizen> 5.5 </since_tizen>
+        public class DisposeEventArgs : EventArgs
+        {
+            public DisposeEventArgs(DisposeTypes type)
+            {
+                this.type = type;
+            }
+
+            /// <summary>
+            /// The dispose type.
+            /// </summary>
+            /// <since_tizen> 5.5 </since_tizen>
+            public DisposeTypes type;
+        }
+
+        private event EventHandler<DisposeEventArgs> disposeEvent;
+
+        /// <summary>
+        /// The event of dispose.
+        /// </summary>
+        /// <since_tizen> 5.5 </since_tizen>
+        public event EventHandler<DisposeEventArgs> DisposeEvent
+        {
+            add
+            {
+                disposeEvent += value;
+            }
+            remove
+            {
+                disposeEvent -= value;
+            }
+        }
+
+>>>>>>> 879c90160b45de49b52f1b8c1359572feadd8a6b
         /// <summary>
         /// Dispose.
         /// </summary>
@@ -484,6 +523,8 @@ namespace Tizen.NUI
                 Interop.BaseHandle.delete_BaseHandle(swigCPtr);
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
+
+            disposeEvent?.Invoke(this, new DisposeEventArgs(type));
 
             disposed = true;
         }
