@@ -307,7 +307,6 @@ namespace Tizen.NUI
         }
     }
 
-<<<<<<< HEAD
     /// Deprecated. Do not use.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IResourcesProvider
@@ -335,10 +334,6 @@ namespace Tizen.NUI
 
     internal class Application : BaseHandle
     {
-=======
-    internal class Application : BaseHandle
-    {
->>>>>>> 879c90160b45de49b52f1b8c1359572feadd8a6b
         static SemaphoreSlim SaveSemaphore = new SemaphoreSlim(1, 1);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
