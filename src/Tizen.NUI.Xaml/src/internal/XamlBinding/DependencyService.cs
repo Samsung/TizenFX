@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal static class DependencyService
     {
@@ -78,9 +78,9 @@ namespace Tizen.NUI.Binding
             }
 
             Assembly[] assemblies = Device.GetAssemblies();
-            if (Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies != null)
+            if (Tizen.NUI.XamlBinding.Internals.Registrar.ExtraAssemblies != null)
             {
-                assemblies = assemblies.Union(Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies).ToArray();
+                assemblies = assemblies.Union(Tizen.NUI.XamlBinding.Internals.Registrar.ExtraAssemblies).ToArray();
             }
 
             Initialize(assemblies);

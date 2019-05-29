@@ -4,7 +4,7 @@ using System.Linq;
 using Tizen.NUI.Xaml;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     // Mark as internal until renderers are ready for release after 1.0
     // [RenderWith(typeof(_NavigationMenuRenderer))]

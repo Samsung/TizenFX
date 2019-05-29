@@ -16,7 +16,7 @@
  */
 using System;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
 using Tizen.NUI;
 using System.Collections.Generic;
@@ -30,7 +30,7 @@ namespace Tizen.NUI.Xaml
     /// </summary>
     [ContentProperty("Content")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ContentPage : TemplatedPage, Tizen.NUI.Binding.IResourcesProvider
+    public class ContentPage : TemplatedPage, IResourcesProvider
     {
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Xaml
         }
 
         ResourceDictionary _resources;
-        bool Tizen.NUI.Binding.IResourcesProvider.IsResourcesCreated => _resources != null;
+        bool IResourcesProvider.IsResourcesCreated => _resources != null;
 
         /// <summary>
         /// Method that is called when the binding content changes.

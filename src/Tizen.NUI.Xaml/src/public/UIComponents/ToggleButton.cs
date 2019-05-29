@@ -16,7 +16,7 @@
  */
 using System.ComponentModel;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml.UIComponents
 {
@@ -60,7 +60,7 @@ namespace Tizen.NUI.Xaml.UIComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty StateVisualsProperty = Binding.BindableProperty.Create("StateVisuals", typeof(PropertyArray), typeof(ToggleButton), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StateVisualsProperty = BindableProperty.Create("StateVisuals", typeof(PropertyArray), typeof(ToggleButton), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = ((ToggleButton)bindable).toggleButton;
             toggleButton.StateVisuals = (PropertyArray)newValue;
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TooltipsProperty = Binding.BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TooltipsProperty = BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = ((ToggleButton)bindable).toggleButton;
             toggleButton.Tooltips = (PropertyArray)newValue;
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CurrentStateIndexProperty = Binding.BindableProperty.Create("CurrentStateIndex", typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create("CurrentStateIndex", typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var toggleButton = ((ToggleButton)bindable).toggleButton;
             toggleButton.CurrentStateIndex = (int)newValue;

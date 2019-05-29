@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.ComponentModel;
 
-namespace Tizen.NUI.Bindable
+namespace Tizen.NUI.Binding
 {
     /// <summary>
     /// A BindableProperty is a backing store for properties allowing bindings on BindableObject.

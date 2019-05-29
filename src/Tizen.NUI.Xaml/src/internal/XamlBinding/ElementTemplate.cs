@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// Base class for DataTemplate and ControlTemplate classes.

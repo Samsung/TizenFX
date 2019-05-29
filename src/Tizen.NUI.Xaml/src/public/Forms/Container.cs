@@ -18,7 +18,7 @@
 using System;
 using System.Collections.Generic;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml.Forms

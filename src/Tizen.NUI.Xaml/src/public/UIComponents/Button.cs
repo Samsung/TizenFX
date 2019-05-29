@@ -18,7 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using static Tizen.NUI.UIComponents.Button;
 
 namespace Tizen.NUI.Xaml.UIComponents
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Xaml.UIComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty UnselectedVisualProperty = Binding.BindableProperty.Create("UnselectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnselectedVisualProperty = BindableProperty.Create("UnselectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.UnselectedVisual = (PropertyMap)newValue;
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectedVisualProperty = Binding.BindableProperty.Create("SelectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedVisualProperty = BindableProperty.Create("SelectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.SelectedVisual = (PropertyMap)newValue;
@@ -96,7 +96,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty DisabledSelectedVisualProperty = Binding.BindableProperty.Create("DisabledSelectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledSelectedVisualProperty = BindableProperty.Create("DisabledSelectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.DisabledSelectedVisual = (PropertyMap)newValue;
@@ -108,7 +108,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty DisabledUnselectedVisualProperty = Binding.BindableProperty.Create("DisabledUnselectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledUnselectedVisualProperty = BindableProperty.Create("DisabledUnselectedVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.DisabledUnselectedVisual = (PropertyMap)newValue;
@@ -120,7 +120,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty UnselectedBackgroundVisualProperty = Binding.BindableProperty.Create("UnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnselectedBackgroundVisualProperty = BindableProperty.Create("UnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.UnselectedBackgroundVisual = (PropertyMap)newValue;
@@ -132,7 +132,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectedBackgroundVisualProperty = Binding.BindableProperty.Create("SelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedBackgroundVisualProperty = BindableProperty.Create("SelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.SelectedBackgroundVisual = (PropertyMap)newValue;
@@ -144,7 +144,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty DisabledUnselectedBackgroundVisualProperty = Binding.BindableProperty.Create("DisabledUnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledUnselectedBackgroundVisualProperty = BindableProperty.Create("DisabledUnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.DisabledUnselectedBackgroundVisual = (PropertyMap)newValue;
@@ -156,7 +156,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty DisabledSelectedBackgroundVisualProperty = Binding.BindableProperty.Create("DisabledSelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledSelectedBackgroundVisualProperty = BindableProperty.Create("DisabledSelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.DisabledSelectedBackgroundVisual = (PropertyMap)newValue;
@@ -168,7 +168,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LabelRelativeAlignmentProperty = Binding.BindableProperty.Create("LabelRelativeAlignment", typeof(Align), typeof(Button), Align.End, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelRelativeAlignmentProperty = BindableProperty.Create("LabelRelativeAlignment", typeof(Align), typeof(Button), Align.End, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.LabelRelativeAlignment = (Align)newValue;
@@ -180,7 +180,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LabelPaddingProperty = Binding.BindableProperty.Create("LabelPadding", typeof(Vector4), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelPaddingProperty = BindableProperty.Create("LabelPadding", typeof(Vector4), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.LabelPadding = (Vector4)newValue;
@@ -192,7 +192,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ForegroundVisualPaddingProperty = Binding.BindableProperty.Create("ForegroundVisualPadding", typeof(Vector4), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ForegroundVisualPaddingProperty = BindableProperty.Create("ForegroundVisualPadding", typeof(Vector4), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.ForegroundVisualPadding = (Vector4)newValue;
@@ -204,7 +204,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AutoRepeatingProperty = Binding.BindableProperty.Create("AutoRepeating", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoRepeatingProperty = BindableProperty.Create("AutoRepeating", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.AutoRepeating = (bool)newValue;
@@ -216,7 +216,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InitialAutoRepeatingDelayProperty = Binding.BindableProperty.Create("InitialAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InitialAutoRepeatingDelayProperty = BindableProperty.Create("InitialAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.InitialAutoRepeatingDelay = (float)newValue;
@@ -228,7 +228,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty NextAutoRepeatingDelayProperty = Binding.BindableProperty.Create("NextAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty NextAutoRepeatingDelayProperty = BindableProperty.Create("NextAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.NextAutoRepeatingDelay = (float)newValue;
@@ -240,7 +240,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TogglableProperty = Binding.BindableProperty.Create("Togglable", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TogglableProperty = BindableProperty.Create("Togglable", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.Togglable = (bool)newValue;
@@ -252,7 +252,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectedProperty = Binding.BindableProperty.Create("Selected", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedProperty = BindableProperty.Create("Selected", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.Selected = (bool)newValue;
@@ -264,7 +264,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty UnselectedColorProperty = Binding.BindableProperty.Create("UnselectedColor", typeof(Color), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnselectedColorProperty = BindableProperty.Create("UnselectedColor", typeof(Color), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.UnselectedColor = (Color)newValue;
@@ -276,7 +276,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectedColorProperty = Binding.BindableProperty.Create("SelectedColor", typeof(Color), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create("SelectedColor", typeof(Color), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.SelectedColor = (Color)newValue;
@@ -288,7 +288,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LabelProperty = Binding.BindableProperty.Create("Label", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelProperty = BindableProperty.Create("Label", typeof(PropertyMap), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.Label = (PropertyMap)newValue;
@@ -300,7 +300,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LabelTextProperty = Binding.BindableProperty.Create("LabelText", typeof(string), typeof(Button), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelTextProperty = BindableProperty.Create("LabelText", typeof(string), typeof(Button), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = ((Button)bindable).button;
             button.LabelText = (string)newValue;

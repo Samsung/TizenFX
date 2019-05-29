@@ -7,14 +7,14 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI.StyleSheets;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
-    /// Provides the base class for all Tizen.NUI.Binding hierarchal elements. This class contains all the methods and properties required to represent an element in the Tizen.NUI.Binding hierarchy.
+    /// Provides the base class for all Tizen.NUI.XamlBinding hierarchal elements. This class contains all the methods and properties required to represent an element in the Tizen.NUI.XamlBinding hierarchy.
     /// </summary>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -801,7 +801,7 @@ namespace Tizen.NUI.Binding
             var sheets = new List<StyleSheet>();
             while (parent != null)
             {
-                var resourceProvider = parent as Tizen.NUI.Binding.IResourcesProvider;
+                var resourceProvider = parent as IResourcesProvider;
                 var vpSheets = resourceProvider?.GetStyleSheets();
                 if (vpSheets != null)
                     sheets.AddRange(vpSheets);

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal abstract class DataTemplateSelector : DataTemplate
     {

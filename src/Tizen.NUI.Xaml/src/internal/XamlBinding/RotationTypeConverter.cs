@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Tizen.NUI;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class RotationTypeConverter : TypeConverter
     {

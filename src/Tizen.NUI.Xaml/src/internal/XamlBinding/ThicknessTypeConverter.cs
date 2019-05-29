@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Forms.XamlC.ThicknessTypeConverter")]
     [Xaml.TypeConversion(typeof(Thickness))]

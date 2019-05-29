@@ -1,6 +1,6 @@
 using System;
 using System.Reflection;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml
 {

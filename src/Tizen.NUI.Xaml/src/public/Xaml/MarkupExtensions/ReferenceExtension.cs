@@ -1,7 +1,7 @@
 using System;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI.Xaml.Internals;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml

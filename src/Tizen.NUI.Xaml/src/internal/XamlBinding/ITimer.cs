@@ -1,6 +1,6 @@
 using System;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     //this will go once Timer is included in Pcl profiles
     internal interface ITimer

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// Helper that handles storing and lookup of platform specifics implementations

@@ -32,12 +32,12 @@
 
 using System;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [AttributeUsage(AttributeTargets.All)]
     internal sealed class TypeConverterAttribute : Attribute
     {
-        internal static string[] TypeConvertersType = { "Tizen.NUI.Binding.TypeConverterAttribute", "System.ComponentModel.TypeConverterAttribute" };
+        internal static string[] TypeConvertersType = { "Tizen.NUI.XamlBinding.TypeConverterAttribute", "System.ComponentModel.TypeConverterAttribute" };
 
         public static readonly TypeConverterAttribute Default = new TypeConverterAttribute();
 

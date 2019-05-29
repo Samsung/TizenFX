@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal sealed class MultiCondition : Condition
     {

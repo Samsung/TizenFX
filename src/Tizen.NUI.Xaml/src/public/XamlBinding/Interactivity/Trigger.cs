@@ -5,7 +5,7 @@ using System.Reflection;
 
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// The class Trigger.

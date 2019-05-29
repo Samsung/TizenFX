@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [ProvideCompiled("Tizen.NUI.XamlC.PassthroughValueProvider")]
     [AcceptEmptyServiceProvider]

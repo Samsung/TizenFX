@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.StyleSheets
 {
     internal static class StyleSheetExtensions
     {
-        public static IEnumerable<StyleSheet> GetStyleSheets(this Tizen.NUI.Binding.IResourcesProvider resourcesProvider)
+        public static IEnumerable<StyleSheet> GetStyleSheets(this IResourcesProvider resourcesProvider)
         {
             if (!resourcesProvider.IsResourcesCreated)
                 yield break;

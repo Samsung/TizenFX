@@ -18,7 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Bindable;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.UIComponents
 {

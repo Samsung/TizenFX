@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class ElementCollection<T> : ObservableWrapper<Element, T> where T : Element
     {

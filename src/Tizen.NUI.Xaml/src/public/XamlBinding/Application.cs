@@ -4,12 +4,28 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
+    /// <summary>
+    /// A class to get resources in current application.
+    /// </summary>
+    /// Deprecated. Do not use.
+    public class GetResourcesProvider
+    {
+        /// <summary>
+        /// Get resources in current application.
+        /// </summary>
+        /// Deprecated. Do not use.
+        static public IResourcesProvider Get()
+        {
+            return Application.Current;
+        }
+    }
+
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Application : Element, IResourcesProvider, IElementConfiguration<Application>

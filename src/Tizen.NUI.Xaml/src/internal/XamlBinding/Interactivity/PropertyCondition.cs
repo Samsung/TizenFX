@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml
 {
@@ -9,14 +9,14 @@ namespace Tizen.NUI.Xaml
 	[AcceptEmptyServiceProvider]
 	internal sealed class PropertyCondition : Condition, IValueProvider
 	{
-		readonly Binding.BindableProperty _stateProperty;
+		readonly BindableProperty _stateProperty;
 
-        Binding.BindableProperty _property;
+        BindableProperty _property;
 		object _triggerValue;
 
 		public PropertyCondition()
 		{
-            _stateProperty = Binding.BindableProperty.CreateAttached("State", typeof(bool), typeof(PropertyCondition), false, propertyChanged: this.OnStatePropertyChanged);
+            _stateProperty = BindableProperty.CreateAttached("State", typeof(bool), typeof(PropertyCondition), false, propertyChanged: this.OnStatePropertyChanged);
 		}
 
 		public BindableProperty Property

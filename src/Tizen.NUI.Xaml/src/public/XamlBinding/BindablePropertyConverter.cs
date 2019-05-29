@@ -6,10 +6,10 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// The class to convert bindable property.

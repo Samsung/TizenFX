@@ -1,5 +1,5 @@
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal interface IElementConfiguration<out TElement> where TElement : Element
     {

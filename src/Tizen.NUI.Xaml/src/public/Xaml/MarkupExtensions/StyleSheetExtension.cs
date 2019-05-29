@@ -3,7 +3,7 @@ using System.Xml;
 using Tizen.NUI.StyleSheets;
 using System.Reflection;
 using System.IO;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml

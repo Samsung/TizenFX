@@ -2,7 +2,7 @@ using System;
 using System.Xml;
 using System.Reflection;
 using System.Linq;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml
@@ -47,7 +47,7 @@ namespace Tizen.NUI.Xaml
             object resource = null;
 
             foreach (var p in valueProvider.ParentObjects) {
-                var irp = p as Tizen.NUI.Binding.IResourcesProvider;
+                var irp = p as IResourcesProvider;
                 var resDict = irp != null && irp.IsResourcesCreated ? irp.XamlResources : p as ResourceDictionary;
                 if (resDict == null)
                     continue;
@@ -56,7 +56,7 @@ namespace Tizen.NUI.Xaml
             }
             resource = resource ?? GetApplicationLevelResource(Key, xmlLineInfo);
 
-            var bp = valueProvider.TargetProperty as Binding.BindableProperty;
+            var bp = valueProvider.TargetProperty as BindableProperty;
             var pi = valueProvider.TargetProperty as PropertyInfo;
             var propertyType = bp?.ReturnType ?? pi?.PropertyType;
             if (propertyType == null) {
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Xaml
         internal object GetApplicationLevelResource(string key, IXmlLineInfo xmlLineInfo)
         {
             object resource = null;
-            if (Binding.Application.Current == null || !((Tizen.NUI.Binding.IResourcesProvider)Binding.Application.Current).IsResourcesCreated || !Binding.Application.Current.XamlResources.TryGetValue(Key, out resource))
+            if (Application.Current == null || !((IResourcesProvider)Application.Current).IsResourcesCreated || !Application.Current.XamlResources.TryGetValue(Key, out resource))
                 throw new XamlParseException($"StaticResource not found for key {Key}", xmlLineInfo);
             return resource;
         }

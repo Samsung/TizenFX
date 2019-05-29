@@ -16,7 +16,7 @@
  */
 using System;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using static Tizen.NUI.BaseComponents.FlexContainer;
 
 namespace Tizen.NUI.Xaml.Forms.BaseComponents
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ContentDirectionProperty = Binding.BindableProperty.Create("ContentDirection", typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ContentDirectionProperty = BindableProperty.Create("ContentDirection", typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             flexContainer.ContentDirection = (ContentDirectionType)newValue;
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FlexDirectionProperty = Binding.BindableProperty.Create("FlexDirection", typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create("FlexDirection", typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             flexContainer.FlexDirection = (FlexDirectionType)newValue;
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FlexWrapProperty = Binding.BindableProperty.Create("FlexWrap", typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create("FlexWrap", typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             flexContainer.FlexWrap = (WrapType)newValue;
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty JustifyContentProperty = Binding.BindableProperty.Create("JustifyContent", typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create("JustifyContent", typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             flexContainer.JustifyContent = (Justification)newValue;
@@ -109,7 +109,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AlignItemsProperty = Binding.BindableProperty.Create("AlignItems", typeof(Tizen.NUI.BaseComponents.FlexContainer.Alignment), typeof(FlexContainer), Tizen.NUI.BaseComponents.FlexContainer.Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create("AlignItems", typeof(Tizen.NUI.BaseComponents.FlexContainer.Alignment), typeof(FlexContainer), Tizen.NUI.BaseComponents.FlexContainer.Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             flexContainer.AlignItems = (Tizen.NUI.BaseComponents.FlexContainer.Alignment)newValue;
@@ -121,7 +121,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AlignContentProperty = Binding.BindableProperty.Create("AlignContent", typeof(Tizen.NUI.BaseComponents.FlexContainer.Alignment), typeof(FlexContainer), Tizen.NUI.BaseComponents.FlexContainer.Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlignContentProperty = BindableProperty.Create("AlignContent", typeof(Tizen.NUI.BaseComponents.FlexContainer.Alignment), typeof(FlexContainer), Tizen.NUI.BaseComponents.FlexContainer.Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var flexContainer = ((FlexContainer)bindable).flexContainer;
             flexContainer.AlignContent = (Tizen.NUI.BaseComponents.FlexContainer.Alignment)newValue;

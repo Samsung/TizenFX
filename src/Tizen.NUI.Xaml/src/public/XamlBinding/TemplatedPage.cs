@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml
 {
@@ -14,7 +14,7 @@ namespace Tizen.NUI.Xaml
         /// <summary>
         /// Backing store for the ControlTemplate property.
         /// </summary>
-        internal static readonly Binding.BindableProperty ControlTemplateProperty = Binding.BindableProperty.Create(nameof(ControlTemplate), typeof(ControlTemplate), typeof(TemplatedPage), null,
+        internal static readonly BindableProperty ControlTemplateProperty = BindableProperty.Create(nameof(ControlTemplate), typeof(ControlTemplate), typeof(TemplatedPage), null,
             propertyChanged: TemplateUtilities.OnControlTemplateChanged);
 
         /// <summary>

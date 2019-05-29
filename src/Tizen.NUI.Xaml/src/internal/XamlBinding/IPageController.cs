@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using Tizen.NUI;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal interface IPageController
     {

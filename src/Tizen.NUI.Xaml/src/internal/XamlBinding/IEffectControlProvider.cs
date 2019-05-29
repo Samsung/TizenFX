@@ -1,4 +1,4 @@
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// When implemented in a renderer, registers a platform-specific effect on an element.

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal interface IResourceDictionary : IEnumerable<KeyValuePair<string, object>>
     {

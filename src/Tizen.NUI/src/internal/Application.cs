@@ -307,31 +307,6 @@ namespace Tizen.NUI
         }
     }
 
-    /// Deprecated. Do not use.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public interface IResourcesProvider
-    {
-
-    }
-
-    /// <summary>
-    /// A class to get resources in current application.
-    /// </summary>
-    /// Deprecated. Do not use.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class GetResourcesProvider
-    {
-        /// <summary>
-        /// Get resources in current application.
-        /// </summary>
-        /// Deprecated. Do not use.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        static public IResourcesProvider Get()
-        {
-            return null;
-        }
-    }
-
     internal class Application : BaseHandle
     {
         static SemaphoreSlim SaveSemaphore = new SemaphoreSlim(1, 1);

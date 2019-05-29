@@ -34,8 +34,8 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI;
 
 namespace Tizen.NUI.Xaml.Internals

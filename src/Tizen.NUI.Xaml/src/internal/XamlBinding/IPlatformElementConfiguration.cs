@@ -1,4 +1,4 @@
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// Marker interface for returning platform-specific configuration elements.

@@ -5,7 +5,7 @@ using System.Reflection;
 using Tizen.NUI.StyleSheets;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal sealed class MergedStyle : IStyle
     {
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Binding
                         var classStyleProperty = BindableProperty.Create ("ClassStyle", typeof(IList<Style>), typeof(View), default(IList<Style>),
                             propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).mergedStyle.OnClassStyleChanged());
                         _classStyleProperties.Add (classStyleProperty);
-                        Target.OnSetDynamicResource (classStyleProperty, Tizen.NUI.Binding.Style.StyleClassPrefix + styleClass);
+                        Target.OnSetDynamicResource (classStyleProperty, Tizen.NUI.XamlBinding.Style.StyleClassPrefix + styleClass);
                     }
                 }
             }

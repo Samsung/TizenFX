@@ -17,7 +17,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Bindable;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {

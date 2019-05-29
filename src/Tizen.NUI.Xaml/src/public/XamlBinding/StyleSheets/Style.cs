@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.StyleSheets
 {
@@ -92,7 +92,7 @@ namespace Tizen.NUI.StyleSheets
         }
 
         // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static object Convert(object target, object value, Binding.BindableProperty property)
+        static object Convert(object target, object value, BindableProperty property)
         {
             Func<MemberInfo> minforetriever = () =>    property.DeclaringType.GetRuntimeProperty(property.PropertyName) as MemberInfo
                                                     ?? property.DeclaringType.GetRuntimeMethod("Get" + property.PropertyName, new[] { typeof(BindableObject) }) as MemberInfo;

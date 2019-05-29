@@ -5,10 +5,10 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using System.Runtime.CompilerServices;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class BindingExpression
     {
@@ -533,7 +533,7 @@ namespace Tizen.NUI.Binding
             public BindingExpressionPart(BindingExpression expression, string content, bool isIndexer = false)
             {
                 _expression = expression;
-                IsSelf = content == Tizen.NUI.Binding.Binding.SelfPath;
+                IsSelf = content == Tizen.NUI.XamlBinding.Binding.SelfPath;
                 Content = content;
                 IsIndexer = isIndexer;
 

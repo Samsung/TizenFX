@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal static class DependencyResolver
     {

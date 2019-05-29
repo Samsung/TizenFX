@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal interface IAppLinks
     {

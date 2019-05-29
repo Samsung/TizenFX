@@ -17,7 +17,7 @@
 
 using System.ComponentModel;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
 
     /// <summary>
@@ -28,11 +28,11 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GraphicsTypeManager
     {
-        internal void RegisterCustomConverterForDynamicResourceBinding(global::System.Type type, Tizen.NUI.Binding.TypeConverter userConverter)
+        internal void RegisterCustomConverterForDynamicResourceBinding(global::System.Type type, Tizen.NUI.XamlBinding.TypeConverter userConverter)
         {
-            if (Tizen.NUI.Binding.BindableProperty.UserCustomConvertTypes.ContainsKey(type) == false)
+            if (Tizen.NUI.XamlBinding.BindableProperty.UserCustomConvertTypes.ContainsKey(type) == false)
             {
-                Tizen.NUI.Binding.BindableProperty.UserCustomConvertTypes.Add(type, userConverter);
+                Tizen.NUI.XamlBinding.BindableProperty.UserCustomConvertTypes.Add(type, userConverter);
             }
         }
     }

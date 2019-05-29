@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// Struct defining thickness around the edges of a Rectangle using doubles.

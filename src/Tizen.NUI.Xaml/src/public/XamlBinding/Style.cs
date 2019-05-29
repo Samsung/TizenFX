@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.StyleSheets;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// The class Style.
@@ -15,7 +15,7 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class Style : IStyle
     {
-        internal const string StyleClassPrefix = "Tizen.NUI.Binding.StyleClass.";
+        internal const string StyleClassPrefix = "Tizen.NUI.XamlBinding.StyleClass.";
 
         readonly BindableProperty _basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(Style), typeof(Style), default(Style),
             propertyChanged: OnBasedOnResourceChanged);
