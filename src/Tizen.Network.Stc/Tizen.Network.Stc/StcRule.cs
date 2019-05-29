@@ -21,56 +21,56 @@ using System.Collections.Generic;
 namespace Tizen.Network.Stc
 {
     /// <summary>
-    /// A class for managing the Stc Rules to match applications.
+    /// A class for managing the Statistics Filters to match applications.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class StcRule
+    public class StatisticsFilter
     {
         /// <summary>
-        /// A property for "from" value of time interval for statistics rule.
+        /// A property for "from" value of time interval for statistics filter.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>from(start) of time interval.</value>
         public DateTime? From { get; set; }
 
         /// <summary>
-        /// A property for "to" value of time interval for statistics rule.
+        /// A property for "to" value of time interval for statistics filter.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>to(end) of time interval.</value>
         public DateTime? To { get; set; }
 
         /// <summary>
-        /// A property for Interface type for statistics rule.
+        /// A property for Interface type for statistics filter.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Interface type.</value>
         public NetworkInterface? InterfaceType { get; set; }
 
         /// <summary>
-        /// A property for Time period for statistics rule. This is used to granulate the statistics data.
+        /// A property for Time period for statistics filter. This is used to granulate the statistics data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Time period.</value>
         public TimePeriodType? TimePeriod { get; set; }
 
-        internal Interop.Stc.SafeRuleHandle ConvertToNativeRule(string appId)
+        internal Interop.Stc.SafeFilterHandle ConvertToNativeFilter(string appId)
         {
-            Interop.Stc.SafeRuleHandle handle;
-            Interop.Stc.Rule.Create(StcManagerImpl.Instance.GetSafeHandle(), out handle);
+            Interop.Stc.SafeFilterHandle handle;
+            Interop.Stc.Filter.Create(StcManagerImpl.Instance.GetSafeHandle(), out handle);
 
-            Interop.Stc.Rule.SetAppId(handle, appId);
+            Interop.Stc.Filter.SetAppId(handle, appId);
             if (From.HasValue && To.HasValue)
             {
-                Interop.Stc.Rule.SetTimeInterval(handle, From.Value, To.Value);
+                Interop.Stc.Filter.SetTimeInterval(handle, From.Value, To.Value);
             }
             if (InterfaceType.HasValue)
             {
-                Interop.Stc.Rule.SetInterfaceType(handle, InterfaceType.Value);
+                Interop.Stc.Filter.SetInterfaceType(handle, InterfaceType.Value);
             }
             if (TimePeriod.HasValue)
             {
-                Interop.Stc.Rule.SetTimePeriod(handle, (NativeTimePeriodType)TimePeriod.Value);
+                Interop.Stc.Filter.SetTimePeriod(handle, (NativeTimePeriodType)TimePeriod.Value);
             }
             return handle;
         }

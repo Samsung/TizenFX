@@ -43,25 +43,25 @@ internal static partial class Interop
         internal static extern int Deinitialize(IntPtr stc);
 
         [DllImport(Libraries.Stc,EntryPoint = "stc_get_stats")]
-        internal static extern int GetStats(SafeStcHandle stc, SafeRuleHandle rule, StatsInfoCallback infoCb, IntPtr userData);
+        internal static extern int GetStats(SafeStcHandle stc, SafeFilterHandle filter, StatsInfoCallback infoCb, IntPtr userData);
         [DllImport(Libraries.Stc,EntryPoint = "stc_get_all_stats")]
-        internal static extern int GetAllStats(SafeStcHandle stc, SafeRuleHandle rule, GetAllStatsFinishedCallback infoCb, IntPtr userData);
+        internal static extern int GetAllStats(SafeStcHandle stc, SafeFilterHandle filter, GetAllStatsFinishedCallback infoCb, IntPtr userData);
         [DllImport(Libraries.Stc,EntryPoint = "stc_foreach_all_stats")]
         internal static extern int ForeachAllStats(IntPtr infoList, StatsInfoCallback infoCb, IntPtr userData);
 
-        internal static class Rule {
+        internal static class Filter {
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_create")]
-            internal static extern int Create(SafeStcHandle stc, out SafeRuleHandle rule);
+            internal static extern int Create(SafeStcHandle stc, out SafeFilterHandle filter);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_destroy")]
-            internal static extern int Destroy(IntPtr rule);
+            internal static extern int Destroy(IntPtr filter);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_app_id")]
-            internal static extern int SetAppId(SafeRuleHandle rule, string appId);
+            internal static extern int SetAppId(SafeFilterHandle filter, string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
-            internal static extern int SetTimeInterval(SafeRuleHandle rule, DateTime from, DateTime to);
+            internal static extern int SetTimeInterval(SafeFilterHandle filter, DateTime from, DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
-            internal static extern int SetInterfaceType(SafeRuleHandle rule, NetworkInterface ifaceType);
+            internal static extern int SetInterfaceType(SafeFilterHandle filter, NetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
-            internal static extern int SetTimePeriod(SafeRuleHandle rule, NativeTimePeriodType timePeriod);
+            internal static extern int SetTimePeriod(SafeFilterHandle filter, NativeTimePeriodType timePeriod);
         }
 
         internal static class Info {
@@ -87,13 +87,13 @@ internal static partial class Interop
             internal static extern int GetProcessState(SafeStatsHandle info, out ProcessStateType state);
         }
 
-        internal sealed class SafeRuleHandle : SafeHandle
+        internal sealed class SafeFilterHandle : SafeHandle
         {
-            public SafeRuleHandle() : base(IntPtr.Zero, true)
+            public SafeFilterHandle() : base(IntPtr.Zero, true)
             {
             }
 
-            public SafeRuleHandle(IntPtr handle) : base(handle, true)
+            public SafeFilterHandle(IntPtr handle) : base(handle, true)
             {
             }
 
@@ -107,10 +107,10 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                int ret = Interop.Stc.Rule.Destroy(this.handle);
+                int ret = Interop.Stc.Filter.Destroy(this.handle);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to release Rule handle, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, "Failed to release Filter handle, Error - " + (StcError)ret);
                     return false;
                 }
                 return true;

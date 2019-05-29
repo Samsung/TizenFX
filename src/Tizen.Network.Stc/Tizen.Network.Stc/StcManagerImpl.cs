@@ -96,7 +96,7 @@ namespace Tizen.Network.Stc
             return handle;
         }
 
-        internal Task<NetworkStatistics> GetStatisticsAsync(string appId, StcRule rule)
+        internal Task<NetworkStatistics> GetStatisticsAsync(string appId, StatisticsFilter filter)
         {
             TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
             IntPtr id;
@@ -130,17 +130,19 @@ namespace Tizen.Network.Stc
                 };
             }
 
-            int ret = Interop.Stc.GetStats(GetSafeHandle(), rule.ConvertToNativeRule(appId), _getStatsCb_map[id], id);
-            if (ret != (int)StcError.None)
+            using (var filterHandle = filter.ConvertToNativeFilter(appId))
             {
-                Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                int ret = Interop.Stc.GetStats(GetSafeHandle(), filterHandle, _getStatsCb_map[id], id);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
+                    StcErrorFactory.ThrowStcException(ret);
+                }
             }
-
             return task.Task;
         }
 
-        internal Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StcRule rule)
+        internal Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StatisticsFilter filter)
         {
             TaskCompletionSource<IEnumerable<NetworkStatistics>> task = new TaskCompletionSource<IEnumerable<NetworkStatistics>>();
             IntPtr id;
@@ -184,8 +186,11 @@ namespace Tizen.Network.Stc
                         Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
                         task.SetException(new InvalidOperationException("Error occurs during foreachAllStatus(), " + (StcError)retTemp));
                     }
+                    else
+                    {
+                        task.SetResult(statsList);
+                    }
 
-                    task.SetResult(statsList);
                     lock (_getAllStatsCb_map)
                     {
                         _getAllStatsCb_map.Remove(key);
@@ -193,13 +198,15 @@ namespace Tizen.Network.Stc
                 };
             }
 
-            int ret = Interop.Stc.GetAllStats(GetSafeHandle(), rule.ConvertToNativeRule(null), _getAllStatsCb_map[id], id);
-            if (ret != (int)StcError.None)
+            using (var filterHandle = filter.ConvertToNativeFilter(null))
             {
-                Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                int ret = Interop.Stc.GetAllStats(GetSafeHandle(), filterHandle, _getAllStatsCb_map[id], id);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
+                    StcErrorFactory.ThrowStcException(ret);
+                }
             }
-
             return task.Task;
         }
     }

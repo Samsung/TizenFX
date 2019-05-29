@@ -77,36 +77,36 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Gets the statistics information of an application, which matched the rule, asynchronously. Application ID must be provided.
+        /// Gets the statistics information of an application, which matched the StatisticsFilter, asynchronously. Application ID must be provided.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <param name="appId"> Application's appId for which statistics information is required.</param>
-        /// <param name="rule"> The StcRule object.</param>
+        /// <param name="filter"> The StatisticsFilter object.</param>
         /// <returns>The Statistics information of the application that used network in between timestamps specified.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
-        public static Task<NetworkStatistics> GetStatisticsAsync(string appId, StcRule rule)
+        public static Task<NetworkStatistics> GetStatisticsAsync(string appId, StatisticsFilter filter)
         {
-            return StcManagerImpl.Instance.GetStatisticsAsync(appId, rule);
+            return StcManagerImpl.Instance.GetStatisticsAsync(appId, filter);
         }
 
         /// <summary>
-        /// Gets statistics information of each application that used network in between specified timestamps and matches the given rule, asynchronously.
+        /// Gets statistics information of each application that used network in between specified timestamps and matches the given StatisticsFilter, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <param name="rule"> The StcRule object.</param>
+        /// <param name="filter"> The StatisticsFilter object.</param>
         /// <returns>A list of the NetworkStatistics objects.</returns>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
-        public static Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StcRule rule)
+        public static Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StatisticsFilter filter)
         {
-            return StcManagerImpl.Instance.GetAllStatisticsAsync(rule);
+            return StcManagerImpl.Instance.GetAllStatisticsAsync(filter);
         }
     }
 }
