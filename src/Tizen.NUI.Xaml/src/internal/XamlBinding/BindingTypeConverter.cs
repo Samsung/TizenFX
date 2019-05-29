@@ -1,4 +1,4 @@
-﻿namespace Tizen.NUI.Binding
+﻿namespace Tizen.NUI.XamlBinding
 {
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Forms.XamlC.BindingTypeConverter")]
     [Xaml.TypeConversion(typeof(Binding))]

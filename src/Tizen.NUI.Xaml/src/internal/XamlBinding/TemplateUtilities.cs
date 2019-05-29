@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal static class TemplateUtilities
     {

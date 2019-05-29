@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [TypeConverter(typeof(ImageSourceConverter))]
     internal abstract class ImageSource : Element

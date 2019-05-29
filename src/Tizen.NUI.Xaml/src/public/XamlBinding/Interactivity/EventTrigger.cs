@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// The class EventTrigger.

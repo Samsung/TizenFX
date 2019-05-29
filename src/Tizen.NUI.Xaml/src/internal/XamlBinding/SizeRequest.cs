@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Tizen.NUI;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// Struct that defines minimum and maximum Sizes.

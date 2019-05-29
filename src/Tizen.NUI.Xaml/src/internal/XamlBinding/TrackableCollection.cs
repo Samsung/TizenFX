@@ -1,7 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class TrackableCollection<T> : ObservableCollection<T>
     {

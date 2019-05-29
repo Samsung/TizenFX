@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Xml;
 
-namespace Tizen.NUI.Binding.Internals
+namespace Tizen.NUI.XamlBinding.Internals
 {
     /// <summary>
     /// The interface INameScope.

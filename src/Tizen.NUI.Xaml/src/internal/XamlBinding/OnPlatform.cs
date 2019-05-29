@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [ContentProperty("Platforms")]
     internal class OnPlatform<T>

@@ -18,7 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
 using static Tizen.NUI.UIComponents.ScrollBar;
 
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Xaml.UIComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollDirectionProperty = Binding.BindableProperty.Create("ScrollDirection", typeof(Direction), typeof(ScrollBar), Direction.Vertical, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create("ScrollDirection", typeof(Direction), typeof(ScrollBar), Direction.Vertical, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.ScrollDirection = (Direction)newValue;
@@ -76,7 +76,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndicatorHeightPolicyProperty = Binding.BindableProperty.Create("IndicatorHeightPolicy", typeof(IndicatorHeightPolicyType), typeof(ScrollBar), IndicatorHeightPolicyType.Variable, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorHeightPolicyProperty = BindableProperty.Create("IndicatorHeightPolicy", typeof(IndicatorHeightPolicyType), typeof(ScrollBar), IndicatorHeightPolicyType.Variable, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.IndicatorHeightPolicy = (IndicatorHeightPolicyType)newValue;
@@ -88,7 +88,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndicatorFixedHeightProperty = Binding.BindableProperty.Create("IndicatorFixedHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorFixedHeightProperty = BindableProperty.Create("IndicatorFixedHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.IndicatorFixedHeight = (float)newValue;
@@ -100,7 +100,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndicatorShowDurationProperty = Binding.BindableProperty.Create("IndicatorShowDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorShowDurationProperty = BindableProperty.Create("IndicatorShowDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.IndicatorShowDuration = (float)newValue;
@@ -112,7 +112,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndicatorHideDurationProperty = Binding.BindableProperty.Create("IndicatorHideDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorHideDurationProperty = BindableProperty.Create("IndicatorHideDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.IndicatorHideDuration = (float)newValue;
@@ -124,7 +124,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollPositionIntervalsProperty = Binding.BindableProperty.Create("ScrollPositionIntervals", typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionIntervalsProperty = BindableProperty.Create("ScrollPositionIntervals", typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.ScrollPositionIntervals = (PropertyArray)newValue;
@@ -136,7 +136,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndicatorMinimumHeightProperty = Binding.BindableProperty.Create("IndicatorMinimumHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorMinimumHeightProperty = BindableProperty.Create("IndicatorMinimumHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.IndicatorMinimumHeight = (float)newValue;
@@ -148,7 +148,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndicatorStartPaddingProperty = Binding.BindableProperty.Create("IndicatorStartPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorStartPaddingProperty = BindableProperty.Create("IndicatorStartPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.IndicatorStartPadding = (float)newValue;
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndicatorEndPaddingProperty = Binding.BindableProperty.Create("IndicatorEndPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorEndPaddingProperty = BindableProperty.Create("IndicatorEndPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollBar = ((ScrollBar)bindable).scrollBar;
             scrollBar.IndicatorEndPadding = (float)newValue;

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class ObservableWrapper<TTrack, TRestrict> : IList<TRestrict>, INotifyCollectionChanged where TTrack : Element where TRestrict : TTrack
     {

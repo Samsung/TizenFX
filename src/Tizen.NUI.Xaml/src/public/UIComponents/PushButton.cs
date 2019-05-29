@@ -18,7 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml.UIComponents
 {
@@ -61,12 +61,12 @@ namespace Tizen.NUI.Xaml.UIComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CommandProperty = Binding.BindableProperty.Create("Command", typeof(ICommand), typeof(PushButton), null,
-                BindingMode.OneWay, null, null, null, null, null as Binding.BindableProperty.CreateDefaultValueDelegate);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(PushButton), null,
+                BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CommandParameterProperty = Binding.BindableProperty.Create("CommandParameter", typeof(object), typeof(PushButton), null,
-                BindingMode.OneWay, null, null, null, null, null as Binding.BindableProperty.CreateDefaultValueDelegate);
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(PushButton), null,
+                BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

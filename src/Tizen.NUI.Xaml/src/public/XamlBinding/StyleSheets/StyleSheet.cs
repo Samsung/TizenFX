@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml;
 using Tizen.NUI.Xaml;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.StyleSheets
 {

@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding.Internals
+namespace Tizen.NUI.XamlBinding.Internals
 {
     /// <summary>
     /// The class ResourceLoader.

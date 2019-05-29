@@ -4,8 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
-using Tizen.NUI.Binding.Internals;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding.Internals;
+using Tizen.NUI.XamlBinding;
 
 
 namespace Tizen.NUI.Xaml
@@ -164,7 +164,7 @@ namespace Tizen.NUI.Xaml
             {
                 // Modify the namespace
                 var propname =
-                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")?
+                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.XamlBinding.ParameterAttribute")?
                         .ConstructorArguments.First()
                         .Value as string;
                 if (!node.Properties.ContainsKey(new XmlName("", propname)))

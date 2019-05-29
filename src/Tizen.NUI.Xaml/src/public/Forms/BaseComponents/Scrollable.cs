@@ -16,7 +16,7 @@
  */
 using System.ComponentModel;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using static Tizen.NUI.BaseComponents.Scrollable;
 
 namespace Tizen.NUI.Xaml.Forms.BaseComponents
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty OvershootEffectColorProperty = Binding.BindableProperty.Create("OvershootEffectColor", typeof(Vector4), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootEffectColorProperty = BindableProperty.Create("OvershootEffectColor", typeof(Vector4), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.OvershootEffectColor = (Vector4)newValue;
@@ -71,7 +71,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty OvershootAnimationSpeedProperty = Binding.BindableProperty.Create("OvershootAnimationSpeed", typeof(float), typeof(Scrollable), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootAnimationSpeedProperty = BindableProperty.Create("OvershootAnimationSpeed", typeof(float), typeof(Scrollable), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.OvershootAnimationSpeed = (float)newValue;
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty OvershootEnabledProperty = Binding.BindableProperty.Create("OvershootEnabled", typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootEnabledProperty = BindableProperty.Create("OvershootEnabled", typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.OvershootEnabled = (bool)newValue;
@@ -95,7 +95,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty OvershootSizeProperty = Binding.BindableProperty.Create("OvershootSize", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootSizeProperty = BindableProperty.Create("OvershootSize", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.OvershootSize = (Vector2)newValue;
@@ -107,7 +107,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollToAlphaFunctionProperty = Binding.BindableProperty.Create("ScrollToAlphaFunction", typeof(int), typeof(Scrollable), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollToAlphaFunctionProperty = BindableProperty.Create("ScrollToAlphaFunction", typeof(int), typeof(Scrollable), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.ScrollToAlphaFunction = (int)newValue;
@@ -119,7 +119,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollRelativePositionProperty = Binding.BindableProperty.Create("ScrollRelativePosition", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollRelativePositionProperty = BindableProperty.Create("ScrollRelativePosition", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.ScrollRelativePosition = (Vector2)newValue;
@@ -131,7 +131,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollPositionMinProperty = Binding.BindableProperty.Create("ScrollPositionMin", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionMinProperty = BindableProperty.Create("ScrollPositionMin", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.ScrollPositionMin = (Vector2)newValue;
@@ -143,7 +143,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollPositionMaxProperty = Binding.BindableProperty.Create("ScrollPositionMax", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionMaxProperty = BindableProperty.Create("ScrollPositionMax", typeof(Vector2), typeof(Scrollable), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.ScrollPositionMax = (Vector2)newValue;
@@ -155,7 +155,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CanScrollVerticalProperty = Binding.BindableProperty.Create("CanScrollVertical", typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CanScrollVerticalProperty = BindableProperty.Create("CanScrollVertical", typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.CanScrollVertical = (bool)newValue;
@@ -167,7 +167,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CanScrollHorizontalProperty = Binding.BindableProperty.Create("CanScrollHorizontal", typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CanScrollHorizontalProperty = BindableProperty.Create("CanScrollHorizontal", typeof(bool), typeof(Scrollable), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var scrollable = ((Scrollable)bindable).scrollable;
             scrollable.CanScrollHorizontal = (bool)newValue;

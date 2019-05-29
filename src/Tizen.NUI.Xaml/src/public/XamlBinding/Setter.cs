@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -81,7 +81,7 @@ namespace Tizen.NUI.Binding
                 return;
 
             object actual = target.GetValue(Property);
-            if (!Equals(actual, Value) && !(Value is Tizen.NUI.Binding.Binding) && !(Value is DynamicResource))
+            if (!Equals(actual, Value) && !(Value is Tizen.NUI.XamlBinding.Binding) && !(Value is DynamicResource))
             {
                 //Do not reset default value if the value has been changed
                 _originalValues.Remove(target);

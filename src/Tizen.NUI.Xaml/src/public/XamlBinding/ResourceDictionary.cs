@@ -9,10 +9,10 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]

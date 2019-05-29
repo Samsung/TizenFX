@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
-using Tizen.NUI.Binding.Internals;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding.Internals;
+using Tizen.NUI.XamlBinding;
 using Tizen.NUI.StyleSheets;
 
 using static System.String;
@@ -297,7 +297,7 @@ namespace Tizen.NUI.Xaml
             }
 
             if (exception == null)
-                return bindableFieldInfo.GetValue(null) as Binding.BindableProperty;
+                return bindableFieldInfo.GetValue(null) as BindableProperty;
             if (throwOnError)
                 throw exception;
             return null;
@@ -421,7 +421,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        static bool TrySetDynamicResource(object element, Binding.BindableProperty property, object value, IXmlLineInfo lineInfo, out Exception exception)
+        static bool TrySetDynamicResource(object element, BindableProperty property, object value, IXmlLineInfo lineInfo, out Exception exception)
         {
             exception = null;
 
@@ -441,7 +441,7 @@ namespace Tizen.NUI.Xaml
             return true;
         }
 
-        static bool TrySetBinding(object element, Binding.BindableProperty property, string localName, object value, IXmlLineInfo lineInfo, out Exception exception)
+        static bool TrySetBinding(object element, BindableProperty property, string localName, object value, IXmlLineInfo lineInfo, out Exception exception)
         {
             exception = null;
 
@@ -470,7 +470,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        static bool TrySetValue(object element, Binding.BindableProperty property, bool attached, object value, IXmlLineInfo lineInfo, XamlServiceProvider serviceProvider, out Exception exception)
+        static bool TrySetValue(object element, BindableProperty property, bool attached, object value, IXmlLineInfo lineInfo, XamlServiceProvider serviceProvider, out Exception exception)
         {
             exception = null;
 
@@ -515,7 +515,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        static bool TryGetValue(object element, Binding.BindableProperty property, bool attached, out object value, IXmlLineInfo lineInfo, out Exception exception, out object targetProperty)
+        static bool TryGetValue(object element, BindableProperty property, bool attached, out object value, IXmlLineInfo lineInfo, out Exception exception, out object targetProperty)
         {
             exception = null;
             value = null;
@@ -633,8 +633,8 @@ namespace Tizen.NUI.Xaml
 
             if (xKey != null)
                 resourceDictionary.Add(xKey, value);
-            else if (value is Tizen.NUI.Binding.Style)
-                resourceDictionary.Add((Tizen.NUI.Binding.Style)value);
+            else if (value is Tizen.NUI.XamlBinding.Style)
+                resourceDictionary.Add((Tizen.NUI.XamlBinding.Style)value);
             else if (value is ResourceDictionary)
                 resourceDictionary.Add((ResourceDictionary)value);
             else if (value is StyleSheets.StyleSheet)
@@ -664,7 +664,7 @@ namespace Tizen.NUI.Xaml
             };
         }
 
-        static bool TryAddValue(BindableObject bindable, Binding.BindableProperty property, object value, XamlServiceProvider serviceProvider)
+        static bool TryAddValue(BindableObject bindable, BindableProperty property, object value, XamlServiceProvider serviceProvider)
         {
             if(property?.ReturnTypeInfo?.GenericTypeArguments == null){
                 return false;

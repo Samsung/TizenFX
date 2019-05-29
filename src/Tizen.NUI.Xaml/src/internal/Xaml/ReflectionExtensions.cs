@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace Tizen.NUI.Binding.Internals
+namespace Tizen.NUI.XamlBinding.Internals
 {
     internal static class ReflectionExtensions
     {

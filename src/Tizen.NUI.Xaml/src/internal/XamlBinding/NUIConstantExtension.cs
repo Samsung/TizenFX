@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Tizen.NUI;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal static class VisualExtension
     {

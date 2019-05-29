@@ -7,7 +7,7 @@ using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// A BindableProperty is a backing store for properties allowing bindings on BindableObject.

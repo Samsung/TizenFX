@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [System.ComponentModel.TypeConverter(typeof(AcceleratorTypeConverter))]
     internal class Accelerator

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [TypeConverter(typeof(FileImageSourceConverter))]
     internal sealed class FileImageSource : ImageSource

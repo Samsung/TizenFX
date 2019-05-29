@@ -1,6 +1,6 @@
 using System;
 
-namespace Tizen.NUI.Binding.Internals
+namespace Tizen.NUI.XamlBinding.Internals
 {
     internal interface IDataTemplate
     {

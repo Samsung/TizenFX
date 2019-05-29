@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Xml;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding;
+using Tizen.NUI.XamlBinding.Internals;
 
 namespace Tizen.NUI.Xaml
 {

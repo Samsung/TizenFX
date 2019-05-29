@@ -4,9 +4,9 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Collections.Generic;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
-namespace Tizen.NUI.Binding.Internals
+namespace Tizen.NUI.XamlBinding.Internals
 {
     /// <summary>
     /// The class TypedBindingBase.

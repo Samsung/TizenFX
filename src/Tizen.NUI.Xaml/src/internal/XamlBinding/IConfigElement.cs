@@ -1,4 +1,4 @@
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// This interface is for internal use by platform renderers.

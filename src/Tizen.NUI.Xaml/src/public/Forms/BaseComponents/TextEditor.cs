@@ -22,7 +22,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Globalization;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using static Tizen.NUI.BaseComponents.TextEditor;
 using Tizen.NUI;
 
@@ -67,7 +67,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TextProperty = Binding.BindableProperty.Create(nameof(Text), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.Text = (string)newValue;
@@ -79,7 +79,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TextColorProperty = Binding.BindableProperty.Create(nameof(TextColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.TextColor = (Vector4)newValue;
@@ -91,7 +91,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FontFamilyProperty = Binding.BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.FontFamily = (string)newValue;
@@ -103,7 +103,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FontStyleProperty = Binding.BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.FontStyle = (PropertyMap)newValue;
@@ -115,7 +115,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PointSizeProperty = Binding.BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.PointSize = (float)newValue;
@@ -127,7 +127,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty HorizontalAlignmentProperty = Binding.BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextEditor), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextEditor), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.HorizontalAlignment = (HorizontalAlignment)newValue;
@@ -139,7 +139,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollThresholdProperty = Binding.BindableProperty.Create(nameof(ScrollThreshold), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollThresholdProperty = BindableProperty.Create(nameof(ScrollThreshold), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.ScrollThreshold = (float)newValue;
@@ -151,7 +151,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollSpeedProperty = Binding.BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollSpeedProperty = BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.ScrollSpeed = (float)newValue;
@@ -163,7 +163,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PrimaryCursorColorProperty = Binding.BindableProperty.Create(nameof(PrimaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PrimaryCursorColorProperty = BindableProperty.Create(nameof(PrimaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.PrimaryCursorColor = (Vector4)newValue;
@@ -175,7 +175,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SecondaryCursorColorProperty = Binding.BindableProperty.Create(nameof(SecondaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryCursorColorProperty = BindableProperty.Create(nameof(SecondaryCursorColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SecondaryCursorColor = (Vector4)newValue;
@@ -187,7 +187,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EnableCursorBlinkProperty = Binding.BindableProperty.Create(nameof(EnableCursorBlink), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableCursorBlinkProperty = BindableProperty.Create(nameof(EnableCursorBlink), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.EnableCursorBlink = (bool)newValue;
@@ -199,7 +199,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CursorBlinkIntervalProperty = Binding.BindableProperty.Create(nameof(CursorBlinkInterval), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CursorBlinkIntervalProperty = BindableProperty.Create(nameof(CursorBlinkInterval), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.CursorBlinkInterval = (float)newValue;
@@ -211,7 +211,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CursorBlinkDurationProperty = Binding.BindableProperty.Create(nameof(CursorBlinkDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CursorBlinkDurationProperty = BindableProperty.Create(nameof(CursorBlinkDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.CursorBlinkDuration = (float)newValue;
@@ -223,7 +223,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty CursorWidthProperty = Binding.BindableProperty.Create(nameof(CursorWidth), typeof(int), typeof(TextEditor), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CursorWidthProperty = BindableProperty.Create(nameof(CursorWidth), typeof(int), typeof(TextEditor), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.CursorWidth = (int)newValue;
@@ -235,7 +235,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty GrabHandleImageProperty = Binding.BindableProperty.Create(nameof(GrabHandleImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GrabHandleImageProperty = BindableProperty.Create(nameof(GrabHandleImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.GrabHandleImage = (string)newValue;
@@ -247,7 +247,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty GrabHandlePressedImageProperty = Binding.BindableProperty.Create(nameof(GrabHandlePressedImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GrabHandlePressedImageProperty = BindableProperty.Create(nameof(GrabHandlePressedImage), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.GrabHandlePressedImage = (string)newValue;
@@ -259,7 +259,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectionHandleImageLeftProperty = Binding.BindableProperty.Create(nameof(SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleImageLeftProperty = BindableProperty.Create(nameof(SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SelectionHandleImageLeft = (PropertyMap)newValue;
@@ -271,7 +271,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectionHandleImageRightProperty = Binding.BindableProperty.Create(nameof(SelectionHandleImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create(nameof(SelectionHandleImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SelectionHandleImageRight = (PropertyMap)newValue;
@@ -283,7 +283,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectionHandlePressedImageLeftProperty = Binding.BindableProperty.Create(nameof(SelectionHandlePressedImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandlePressedImageLeftProperty = BindableProperty.Create(nameof(SelectionHandlePressedImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SelectionHandlePressedImageLeft = (PropertyMap)newValue;
@@ -295,7 +295,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectionHandlePressedImageRightProperty = Binding.BindableProperty.Create(nameof(SelectionHandlePressedImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandlePressedImageRightProperty = BindableProperty.Create(nameof(SelectionHandlePressedImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SelectionHandlePressedImageRight = (PropertyMap)newValue;
@@ -307,7 +307,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectionHandleMarkerImageLeftProperty = Binding.BindableProperty.Create(nameof(SelectionHandleMarkerImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleMarkerImageLeftProperty = BindableProperty.Create(nameof(SelectionHandleMarkerImageLeft), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SelectionHandleMarkerImageLeft = (PropertyMap)newValue;
@@ -319,7 +319,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectionHandleMarkerImageRightProperty = Binding.BindableProperty.Create(nameof(SelectionHandleMarkerImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleMarkerImageRightProperty = BindableProperty.Create(nameof(SelectionHandleMarkerImageRight), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SelectionHandleMarkerImageRight = (PropertyMap)newValue;
@@ -331,7 +331,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SelectionHighlightColorProperty = Binding.BindableProperty.Create(nameof(SelectionHighlightColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHighlightColorProperty = BindableProperty.Create(nameof(SelectionHighlightColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SelectionHighlightColor = (Vector4)newValue;
@@ -343,7 +343,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty DecorationBoundingBoxProperty = Binding.BindableProperty.Create(nameof(DecorationBoundingBox), typeof(Rectangle), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DecorationBoundingBoxProperty = BindableProperty.Create(nameof(DecorationBoundingBox), typeof(Rectangle), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.DecorationBoundingBox = (Rectangle)newValue;
@@ -355,7 +355,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EnableMarkupProperty = Binding.BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableMarkupProperty = BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.EnableMarkup = (bool)newValue;
@@ -367,7 +367,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputColorProperty = Binding.BindableProperty.Create(nameof(InputColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputColorProperty = BindableProperty.Create(nameof(InputColor), typeof(Vector4), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputColor = (Vector4)newValue;
@@ -379,7 +379,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputFontFamilyProperty = Binding.BindableProperty.Create(nameof(InputFontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputFontFamilyProperty = BindableProperty.Create(nameof(InputFontFamily), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputFontFamily = (string)newValue;
@@ -391,7 +391,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputFontStyleProperty = Binding.BindableProperty.Create(nameof(InputFontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputFontStyleProperty = BindableProperty.Create(nameof(InputFontStyle), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputFontStyle = (PropertyMap)newValue;
@@ -403,7 +403,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputPointSizeProperty = Binding.BindableProperty.Create(nameof(InputPointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputPointSizeProperty = BindableProperty.Create(nameof(InputPointSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputPointSize = (float)newValue;
@@ -415,7 +415,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LineSpacingProperty = Binding.BindableProperty.Create(nameof(LineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LineSpacingProperty = BindableProperty.Create(nameof(LineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.LineSpacing = (float)newValue;
@@ -427,7 +427,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputLineSpacingProperty = Binding.BindableProperty.Create(nameof(InputLineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputLineSpacingProperty = BindableProperty.Create(nameof(InputLineSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputLineSpacing = (float)newValue;
@@ -439,7 +439,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty UnderlineProperty = Binding.BindableProperty.Create(nameof(Underline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlineProperty = BindableProperty.Create(nameof(Underline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.Underline = (PropertyMap)newValue;
@@ -451,7 +451,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputUnderlineProperty = Binding.BindableProperty.Create(nameof(InputUnderline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputUnderlineProperty = BindableProperty.Create(nameof(InputUnderline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputUnderline = (string)newValue;
@@ -463,7 +463,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ShadowProperty = Binding.BindableProperty.Create(nameof(Shadow), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShadowProperty = BindableProperty.Create(nameof(Shadow), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.Shadow = (PropertyMap)newValue;
@@ -475,7 +475,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputShadowProperty = Binding.BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputShadowProperty = BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputShadow = (string)newValue;
@@ -487,7 +487,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EmbossProperty = Binding.BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.Emboss = (string)newValue;
@@ -499,7 +499,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputEmbossProperty = Binding.BindableProperty.Create(nameof(InputEmboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputEmbossProperty = BindableProperty.Create(nameof(InputEmboss), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputEmboss = (string)newValue;
@@ -511,7 +511,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty OutlineProperty = Binding.BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OutlineProperty = BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.Outline = (PropertyMap)newValue;
@@ -523,7 +523,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty InputOutlineProperty = Binding.BindableProperty.Create(nameof(InputOutline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputOutlineProperty = BindableProperty.Create(nameof(InputOutline), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.InputOutline = (string)newValue;
@@ -535,7 +535,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SmoothScrollProperty = Binding.BindableProperty.Create(nameof(SmoothScroll), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SmoothScrollProperty = BindableProperty.Create(nameof(SmoothScroll), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SmoothScroll = (bool)newValue;
@@ -547,7 +547,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SmoothScrollDurationProperty = Binding.BindableProperty.Create(nameof(SmoothScrollDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SmoothScrollDurationProperty = BindableProperty.Create(nameof(SmoothScrollDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.SmoothScrollDuration = (float)newValue;
@@ -559,7 +559,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EnableScrollBarProperty = Binding.BindableProperty.Create(nameof(EnableScrollBar), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableScrollBarProperty = BindableProperty.Create(nameof(EnableScrollBar), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.EnableScrollBar = (bool)newValue;
@@ -571,7 +571,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollBarShowDurationProperty = Binding.BindableProperty.Create(nameof(ScrollBarShowDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollBarShowDurationProperty = BindableProperty.Create(nameof(ScrollBarShowDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.ScrollBarShowDuration = (float)newValue;
@@ -583,7 +583,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ScrollBarFadeDurationProperty = Binding.BindableProperty.Create(nameof(ScrollBarFadeDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollBarFadeDurationProperty = BindableProperty.Create(nameof(ScrollBarFadeDuration), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.ScrollBarFadeDuration = (float)newValue;
@@ -595,7 +595,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PixelSizeProperty = Binding.BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextEditor), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.PixelSize = (float)newValue;
@@ -607,7 +607,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PlaceholderTextProperty = Binding.BindableProperty.Create(nameof(PlaceholderText), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderTextProperty = BindableProperty.Create(nameof(PlaceholderText), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.PlaceholderText = (string)newValue;
@@ -619,7 +619,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PlaceholderTextColorProperty = Binding.BindableProperty.Create(nameof(PlaceholderTextColor), typeof(Color), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderTextColorProperty = BindableProperty.Create(nameof(PlaceholderTextColor), typeof(Color), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.PlaceholderTextColor = (Color)newValue;
@@ -631,7 +631,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EnableSelectionProperty = Binding.BindableProperty.Create(nameof(EnableSelection), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableSelectionProperty = BindableProperty.Create(nameof(EnableSelection), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.EnableSelection = (bool)newValue;
@@ -643,7 +643,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PlaceholderProperty = Binding.BindableProperty.Create(nameof(Placeholder), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(Placeholder), typeof(PropertyMap), typeof(TextEditor), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.Placeholder = (PropertyMap)newValue;
@@ -655,7 +655,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LineWrapModeProperty = Binding.BindableProperty.Create(nameof(LineWrapMode), typeof(LineWrapMode), typeof(TextEditor), LineWrapMode.Word, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LineWrapModeProperty = BindableProperty.Create(nameof(LineWrapMode), typeof(LineWrapMode), typeof(TextEditor), LineWrapMode.Word, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.LineWrapMode = (LineWrapMode)newValue;
@@ -667,7 +667,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EnableShiftSelectionProperty = Binding.BindableProperty.Create(nameof(TextEditor.EnableShiftSelection), typeof(bool), typeof(TextEditor), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableShiftSelectionProperty = BindableProperty.Create(nameof(TextEditor.EnableShiftSelection), typeof(bool), typeof(TextEditor), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.EnableShiftSelection = (bool)newValue;
@@ -679,7 +679,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty MatchSystemLanguageDirectionProperty = Binding.BindableProperty.Create(nameof(TextEditor.MatchSystemLanguageDirection), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(TextEditor.MatchSystemLanguageDirection), typeof(bool), typeof(TextEditor), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditor = ((TextEditor)bindable).textEditor;
             textEditor.MatchSystemLanguageDirection = (bool)newValue;

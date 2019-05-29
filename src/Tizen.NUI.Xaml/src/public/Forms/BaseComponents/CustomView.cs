@@ -16,7 +16,7 @@
  */
 using System.ComponentModel;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml.Forms.BaseComponents
 {
@@ -226,7 +226,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FocusNavigationSupportProperty = Binding.BindableProperty.Create("FocusNavigationSupport", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusNavigationSupportProperty = BindableProperty.Create("FocusNavigationSupport", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var customView = ((CustomView)bindable).customView;
             customView.FocusNavigationSupport = (bool)newValue;
@@ -238,7 +238,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FocusGroupProperty = Binding.BindableProperty.Create("FocusGroup", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create("FocusGroup", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var customView = ((CustomView)bindable).customView;
             customView.FocusGroup = (bool)newValue;

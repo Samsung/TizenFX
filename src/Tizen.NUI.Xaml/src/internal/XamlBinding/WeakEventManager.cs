@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using static System.String;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class WeakEventManager
     {

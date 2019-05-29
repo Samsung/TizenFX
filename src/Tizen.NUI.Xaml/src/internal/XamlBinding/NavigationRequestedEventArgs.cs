@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// For internal use.

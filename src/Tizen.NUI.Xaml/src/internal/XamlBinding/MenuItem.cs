@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
 
     internal class MenuItem : BaseMenuItem, IMenuItemController

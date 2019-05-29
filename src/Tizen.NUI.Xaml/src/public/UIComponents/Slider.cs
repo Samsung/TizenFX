@@ -18,7 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using Tizen.NUI;
 using static Tizen.NUI.UIComponents.Slider;
 
@@ -70,7 +70,7 @@ namespace Tizen.NUI.Xaml.UIComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LowerBoundProperty = Binding.BindableProperty.Create("LowerBound", typeof(float), typeof(Slider), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LowerBoundProperty = BindableProperty.Create("LowerBound", typeof(float), typeof(Slider), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.LowerBound = (float)newValue;
@@ -82,7 +82,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty UpperBoundProperty = Binding.BindableProperty.Create("UpperBound", typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create("UpperBound", typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.UpperBound = (float)newValue;
@@ -94,7 +94,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ValueProperty = Binding.BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.Value = (float)newValue;
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TrackVisualProperty = Binding.BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.TrackVisual = (PropertyMap)newValue;
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty HandleVisualProperty = Binding.BindableProperty.Create("HandleVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HandleVisualProperty = BindableProperty.Create("HandleVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.HandleVisual = (PropertyMap)newValue;
@@ -130,7 +130,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ProgressVisualProperty = Binding.BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.ProgressVisual = (PropertyMap)newValue;
@@ -142,7 +142,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PopupVisualProperty = Binding.BindableProperty.Create("PopupVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PopupVisualProperty = BindableProperty.Create("PopupVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.PopupVisual = (PropertyMap)newValue;
@@ -154,7 +154,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PopupArrowVisualProperty = Binding.BindableProperty.Create("PopupArrowVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PopupArrowVisualProperty = BindableProperty.Create("PopupArrowVisual", typeof(PropertyMap), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.PopupArrowVisual = (PropertyMap)newValue;
@@ -166,7 +166,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty DisabledColorProperty = Binding.BindableProperty.Create("DisabledColor", typeof(Vector4), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create("DisabledColor", typeof(Vector4), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.DisabledColor = (Vector4)newValue;
@@ -178,7 +178,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ValuePrecisionProperty = Binding.BindableProperty.Create("ValuePrecision", typeof(int), typeof(Slider), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValuePrecisionProperty = BindableProperty.Create("ValuePrecision", typeof(int), typeof(Slider), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.ValuePrecision = (int)newValue;
@@ -190,7 +190,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ShowPopupProperty = Binding.BindableProperty.Create("ShowPopup", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create("ShowPopup", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.ShowPopup = (bool)newValue;
@@ -202,7 +202,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ShowValueProperty = Binding.BindableProperty.Create("ShowValue", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShowValueProperty = BindableProperty.Create("ShowValue", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.ShowValue = (bool)newValue;
@@ -214,7 +214,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty MarksProperty = Binding.BindableProperty.Create("Marks", typeof(PropertyArray), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MarksProperty = BindableProperty.Create("Marks", typeof(PropertyArray), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.Marks = (PropertyArray)newValue;
@@ -226,7 +226,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty MarkToleranceProperty = Binding.BindableProperty.Create("MarkTolerance", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MarkToleranceProperty = BindableProperty.Create("MarkTolerance", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.MarkTolerance = (float)newValue;
@@ -238,7 +238,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SnapToMarksProperty = Binding.BindableProperty.Create("SnapToMarks", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create("SnapToMarks", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = ((Slider)bindable).slider;
             slider.SnapToMarks = (bool)newValue;

@@ -19,7 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Collections.Generic;
-using Tizen.NUI.Bindable;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.UIComponents
 {

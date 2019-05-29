@@ -1,6 +1,6 @@
 using System;
-using Tizen.NUI.Binding.Internals;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding.Internals;
+using Tizen.NUI.XamlBinding;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml
@@ -21,7 +21,7 @@ namespace Tizen.NUI.Xaml
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Path { get; set; } = Binding.Binding.SelfPath;
+        public string Path { get; set; } = Tizen.NUI.XamlBinding.Binding.SelfPath;
 
         /// <summary>
         /// Attribute Mode.
@@ -98,7 +98,7 @@ namespace Tizen.NUI.Xaml
         BindingBase IMarkupExtension<BindingBase>.ProvideValue(IServiceProvider serviceProvider)
         {
             if (TypedBinding == null)
-                return new Tizen.NUI.Binding.Binding(Path, Mode, Converter, ConverterParameter, StringFormat, Source)
+                return new Tizen.NUI.XamlBinding.Binding(Path, Mode, Converter, ConverterParameter, StringFormat, Source)
 				{
 				    UpdateSourceEventName = UpdateSourceEventName,
                     FallbackValue = FallbackValue,

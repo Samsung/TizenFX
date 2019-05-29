@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml
 {
@@ -16,8 +16,8 @@ namespace Tizen.NUI.Xaml
             public const string Focused = "Focused";
         }
 
-        public static readonly Binding.BindableProperty VisualStateGroupsProperty =
-            Binding.BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(Element), 
+        public static readonly BindableProperty VisualStateGroupsProperty =
+            BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(Element), 
                 defaultValue: null, propertyChanged: VisualStateGroupsPropertyChanged, 
                 defaultValueCreator: bindable => new VisualStateGroupList());
 

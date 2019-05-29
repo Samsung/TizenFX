@@ -1,5 +1,5 @@
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class Configuration<TPlatform, TElement> : IPlatformElementConfiguration<TPlatform, TElement>
             where TPlatform : IConfigPlatform

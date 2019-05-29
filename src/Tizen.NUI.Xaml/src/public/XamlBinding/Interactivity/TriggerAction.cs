@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// The class TriggerAction.

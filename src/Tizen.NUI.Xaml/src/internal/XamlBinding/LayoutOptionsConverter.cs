@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Forms.XamlC.LayoutOptionsConverter")]
     [Xaml.TypeConversion(typeof(LayoutOptions))]

@@ -22,8 +22,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Tizen.NUI.Binding.Internals;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding.Internals;
+using Tizen.NUI.XamlBinding;
 using Tizen.NUI;
 
 namespace Tizen.NUI.Xaml
@@ -56,32 +56,32 @@ namespace Tizen.NUI.Xaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const string ActionSheetSignalName = "NUI.ShowActionSheet";
 
-        internal static readonly Binding.BindableProperty IgnoresContainerAreaProperty = Binding.BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
+        internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
 
         /// <summary>
         /// Identifies the BackgroundImage property.
         /// </summary>
-        internal static readonly Binding.BindableProperty BackgroundImageProperty = Binding.BindableProperty.Create("BackgroundImage", typeof(string), typeof(Page), default(string));
+        internal static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(Page), default(string));
 
         /// <summary>
         /// Identifies the IsBusy property.
         /// </summary>
-        internal static readonly Binding.BindableProperty IsBusyProperty = Binding.BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
+        internal static readonly BindableProperty IsBusyProperty = BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
 
         /// <summary>
         /// Identifies the Padding property.
         /// </summary>
-        internal static readonly Binding.BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
+        internal static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
 
         /// <summary>
         /// Identifies the Title property.
         /// </summary>
-        internal static readonly Binding.BindableProperty TitleProperty = Binding.BindableProperty.Create("Title", typeof(string), typeof(Page), null);
+        internal static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(Page), null);
 
         /// <summary>
         /// Identifies the Icon property.
         /// </summary>
-        internal static readonly Binding.BindableProperty IconProperty = Binding.BindableProperty.Create("Icon", typeof(FileImageSource), typeof(Page), default(FileImageSource));
+        internal static readonly BindableProperty IconProperty = BindableProperty.Create("Icon", typeof(FileImageSource), typeof(Page), default(FileImageSource));
 
         readonly Lazy<PlatformConfigurationRegistry<Page>> _platformConfigurationRegistry;
 
@@ -352,7 +352,7 @@ namespace Tizen.NUI.Xaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool OnBackButtonPressed()
         {
-            var application = RealParent as Binding.Application;
+            var application = RealParent as Application;
             // if (application == null || this == application.MainPage)
                 // return false;
 
@@ -501,12 +501,12 @@ namespace Tizen.NUI.Xaml
             //FindApplication(this)?.OnPageDisappearing(this);
         }
 
-        Binding.Application FindApplication(Element element)
+        Application FindApplication(Element element)
         {
             if (element == null)
                 return null;
 
-            return (element.Parent is Binding.Application app) ? app : FindApplication(element.Parent);
+            return (element.Parent is Application app) ? app : FindApplication(element.Parent);
         }
 
         void InternalChildrenOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

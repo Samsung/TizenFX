@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Binding
 {

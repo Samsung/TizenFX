@@ -18,7 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using Tizen.NUI.Xaml.Forms.BaseComponents;
 using static Tizen.NUI.UIComponents.ProgressBar;
 
@@ -63,7 +63,7 @@ namespace Tizen.NUI.Xaml.UIComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ProgressValueProperty = Binding.BindableProperty.Create("ProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressValueProperty = BindableProperty.Create("ProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.ProgressValue = (float)newValue;
@@ -75,7 +75,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SecondaryProgressValueProperty = Binding.BindableProperty.Create("SecondaryProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryProgressValueProperty = BindableProperty.Create("SecondaryProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.SecondaryProgressValue = (float)newValue;
@@ -87,7 +87,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndeterminateProperty = Binding.BindableProperty.Create("Indeterminate", typeof(bool), typeof(ProgressBar), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateProperty = BindableProperty.Create("Indeterminate", typeof(bool), typeof(ProgressBar), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.Indeterminate = (bool)newValue;
@@ -99,7 +99,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TrackVisualProperty = Binding.BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.TrackVisual = (PropertyMap)newValue;
@@ -111,7 +111,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ProgressVisualProperty = Binding.BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.ProgressVisual = (PropertyMap)newValue;
@@ -123,7 +123,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty SecondaryProgressVisualProperty = Binding.BindableProperty.Create("SecondaryProgressVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryProgressVisualProperty = BindableProperty.Create("SecondaryProgressVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.SecondaryProgressVisual = (PropertyMap)newValue;
@@ -135,7 +135,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndeterminateVisualProperty = Binding.BindableProperty.Create("IndeterminateVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateVisualProperty = BindableProperty.Create("IndeterminateVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.IndeterminateVisual = (PropertyMap)newValue;
@@ -147,7 +147,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty IndeterminateVisualAnimationProperty = Binding.BindableProperty.Create("IndeterminateVisualAnimation", typeof(PropertyArray), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndeterminateVisualAnimationProperty = BindableProperty.Create("IndeterminateVisualAnimation", typeof(PropertyArray), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.IndeterminateVisualAnimation = (PropertyArray)newValue;
@@ -159,7 +159,7 @@ namespace Tizen.NUI.Xaml.UIComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LabelVisualProperty = Binding.BindableProperty.Create("LabelVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LabelVisualProperty = BindableProperty.Create("LabelVisual", typeof(PropertyMap), typeof(ProgressBar), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var progressBar = ((ProgressBar)bindable).progressBar;
             progressBar.LabelVisual = (PropertyMap)newValue;

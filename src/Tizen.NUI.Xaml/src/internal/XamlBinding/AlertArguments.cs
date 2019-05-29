@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class AlertArguments
     {

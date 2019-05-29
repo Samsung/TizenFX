@@ -3,7 +3,7 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// An abstract class that provides a BindingMode and a formatting option.

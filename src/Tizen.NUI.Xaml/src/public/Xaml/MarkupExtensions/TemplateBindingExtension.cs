@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml
 {
@@ -17,7 +17,7 @@ namespace Tizen.NUI.Xaml
         internal TemplateBindingExtension()
         {
             Mode = BindingMode.Default;
-            Path = Tizen.NUI.Binding.Binding.SelfPath;
+            Path = Tizen.NUI.XamlBinding.Binding.SelfPath;
         }
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.

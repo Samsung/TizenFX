@@ -30,9 +30,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-// using Tizen.NUI.Binding.Internals;
+// using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI.Xaml.Internals;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml
 {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Xml;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding.Internals;
 
 namespace Tizen.NUI.Xaml
 {

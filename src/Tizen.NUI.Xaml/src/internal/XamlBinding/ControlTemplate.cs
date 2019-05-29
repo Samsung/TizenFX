@@ -1,6 +1,6 @@
 using System;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// Template that specifies a group of styles and effects for controls.

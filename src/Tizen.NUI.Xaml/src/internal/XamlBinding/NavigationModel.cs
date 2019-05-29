@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     internal class NavigationModel
     {

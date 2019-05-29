@@ -19,7 +19,7 @@ extern alias TizenSystemSettings;
 using System;
 using System.ComponentModel;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Xaml.Forms.BaseComponents
 {
@@ -49,7 +49,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TextProperty = Binding.BindableProperty.Create(nameof(Text), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.Text = (string)newValue;
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FontFamilyProperty = Binding.BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.FontFamily = (string)newValue;
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty FontStyleProperty = Binding.BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.FontStyle = (PropertyMap)newValue;
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PointSizeProperty = Binding.BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.PointSize = (float)newValue;
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty MultiLineProperty = Binding.BindableProperty.Create(nameof(MultiLine), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MultiLineProperty = BindableProperty.Create(nameof(MultiLine), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.MultiLine = (bool)newValue;
@@ -109,7 +109,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty HorizontalAlignmentProperty = Binding.BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextLabel), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextLabel), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.HorizontalAlignment = (HorizontalAlignment)newValue;
@@ -121,7 +121,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty VerticalAlignmentProperty = Binding.BindableProperty.Create(nameof(VerticalAlignment), typeof(VerticalAlignment), typeof(TextLabel), VerticalAlignment.Bottom, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.Create(nameof(VerticalAlignment), typeof(VerticalAlignment), typeof(TextLabel), VerticalAlignment.Bottom, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.VerticalAlignment = (VerticalAlignment)newValue;
@@ -133,7 +133,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty TextColorProperty = Binding.BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.TextColor = (Color)newValue;
@@ -145,7 +145,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EnableMarkupProperty = Binding.BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableMarkupProperty = BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.EnableMarkup = (bool)newValue;
@@ -157,7 +157,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EnableAutoScrollProperty = Binding.BindableProperty.Create(nameof(EnableAutoScroll), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableAutoScrollProperty = BindableProperty.Create(nameof(EnableAutoScroll), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.EnableAutoScroll = (bool)newValue;
@@ -169,7 +169,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AutoScrollSpeedProperty = Binding.BindableProperty.Create(nameof(AutoScrollSpeed), typeof(int), typeof(TextLabel), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoScrollSpeedProperty = BindableProperty.Create(nameof(AutoScrollSpeed), typeof(int), typeof(TextLabel), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.AutoScrollSpeed = (int)newValue;
@@ -181,7 +181,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AutoScrollLoopCountProperty = Binding.BindableProperty.Create(nameof(AutoScrollLoopCount), typeof(int), typeof(TextLabel), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoScrollLoopCountProperty = BindableProperty.Create(nameof(AutoScrollLoopCount), typeof(int), typeof(TextLabel), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.AutoScrollLoopCount = (int)newValue;
@@ -193,7 +193,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AutoScrollGapProperty = Binding.BindableProperty.Create(nameof(AutoScrollGap), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoScrollGapProperty = BindableProperty.Create(nameof(AutoScrollGap), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.AutoScrollGap = (float)newValue;
@@ -205,7 +205,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LineSpacingProperty = Binding.BindableProperty.Create(nameof(LineSpacing), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LineSpacingProperty = BindableProperty.Create(nameof(LineSpacing), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.LineSpacing = (float)newValue;
@@ -217,7 +217,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty UnderlineProperty = Binding.BindableProperty.Create(nameof(Underline), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlineProperty = BindableProperty.Create(nameof(Underline), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.Underline = (PropertyMap)newValue;
@@ -229,7 +229,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ShadowProperty = Binding.BindableProperty.Create(nameof(Shadow), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShadowProperty = BindableProperty.Create(nameof(Shadow), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.Shadow = (PropertyMap)newValue;
@@ -241,7 +241,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EmbossProperty = Binding.BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.Emboss = (string)newValue;
@@ -253,7 +253,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty OutlineProperty = Binding.BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OutlineProperty = BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.Outline = (PropertyMap)newValue;
@@ -265,7 +265,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty PixelSizeProperty = Binding.BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.PixelSize = (float)newValue;
@@ -277,7 +277,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty EllipsisProperty = Binding.BindableProperty.Create(nameof(Ellipsis), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EllipsisProperty = BindableProperty.Create(nameof(Ellipsis), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.Ellipsis = (bool)newValue;
@@ -289,7 +289,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AutoScrollLoopDelayProperty = Binding.BindableProperty.Create(nameof(AutoScrollLoopDelay), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoScrollLoopDelayProperty = BindableProperty.Create(nameof(AutoScrollLoopDelay), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.AutoScrollLoopDelay = (float)newValue;
@@ -301,7 +301,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty AutoScrollStopModeProperty = Binding.BindableProperty.Create(nameof(AutoScrollStopMode), typeof(AutoScrollStopMode), typeof(TextLabel), AutoScrollStopMode.FinishLoop, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutoScrollStopModeProperty = BindableProperty.Create(nameof(AutoScrollStopMode), typeof(AutoScrollStopMode), typeof(TextLabel), AutoScrollStopMode.FinishLoop, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.AutoScrollStopMode = (AutoScrollStopMode)newValue;
@@ -313,7 +313,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LineWrapModeProperty = Binding.BindableProperty.Create(nameof(LineWrapMode), typeof(LineWrapMode), typeof(TextLabel), LineWrapMode.Word, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LineWrapModeProperty = BindableProperty.Create(nameof(LineWrapMode), typeof(LineWrapMode), typeof(TextLabel), LineWrapMode.Word, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.LineWrapMode = (LineWrapMode)newValue;
@@ -325,7 +325,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty VerticalLineAlignmentProperty = Binding.BindableProperty.Create(nameof(VerticalLineAlignment), typeof(VerticalLineAlignment), typeof(TextLabel), VerticalLineAlignment.Bottom, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VerticalLineAlignmentProperty = BindableProperty.Create(nameof(VerticalLineAlignment), typeof(VerticalLineAlignment), typeof(TextLabel), VerticalLineAlignment.Bottom, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.VerticalLineAlignment = (VerticalLineAlignment)newValue;
@@ -337,7 +337,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty MatchSystemLanguageDirectionProperty = Binding.BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = ((TextLabel)bindable).textLabel;
             textLabel.MatchSystemLanguageDirection = (bool)newValue;

@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Tizen.NUI.Binding
+namespace Tizen.NUI.XamlBinding
 {
     /// <summary>
     /// The direction of changes propagation for bindings.

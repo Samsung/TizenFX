@@ -17,7 +17,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 using static Tizen.NUI.BaseComponents.VideoView;
 
 namespace Tizen.NUI.Xaml.Forms.BaseComponents
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty VideoProperty = Binding.BindableProperty.Create("Video", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VideoProperty = BindableProperty.Create("Video", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = ((VideoView)bindable).videoView;
             videoView.Video = (PropertyMap)newValue;
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty LoopingProperty = Binding.BindableProperty.Create("Looping", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopingProperty = BindableProperty.Create("Looping", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = ((VideoView)bindable).videoView;
             videoView.Looping = (bool)newValue;
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty MutedProperty = Binding.BindableProperty.Create("Muted", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MutedProperty = BindableProperty.Create("Muted", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = ((VideoView)bindable).videoView;
             videoView.Muted = (bool)newValue;
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty VolumeProperty = Binding.BindableProperty.Create("Volume", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VolumeProperty = BindableProperty.Create("Volume", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = ((VideoView)bindable).videoView;
             videoView.Volume = (PropertyMap)newValue;
@@ -109,7 +109,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty UnderlayProperty = Binding.BindableProperty.Create("Underlay", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlayProperty = BindableProperty.Create("Underlay", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = ((VideoView)bindable).videoView;
             videoView.Underlay = (bool)newValue;
@@ -121,7 +121,7 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
         });
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly Binding.BindableProperty ResourceUrlProperty = Binding.BindableProperty.Create("ResourceUrl", typeof(string), typeof(VideoView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create("ResourceUrl", typeof(string), typeof(VideoView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var videoView = ((VideoView)bindable).videoView;
             videoView.ResourceUrl = (string)newValue;

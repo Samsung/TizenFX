@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Xml;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.XamlBinding;
+using Tizen.NUI.XamlBinding.Internals;
 
 namespace Tizen.NUI.Xaml
 {

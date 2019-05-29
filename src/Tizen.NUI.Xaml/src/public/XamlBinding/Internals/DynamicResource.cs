@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Tizen.NUI.Binding.Internals
+namespace Tizen.NUI.XamlBinding.Internals
 {
     /// <summary>
     /// The class DynamicResource.
