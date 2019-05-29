@@ -5,7 +5,7 @@ namespace Tizen.NUI.StyleSheets
 {
     internal static class StyleSheetExtensions
     {
-        public static IEnumerable<StyleSheet> GetStyleSheets(this IResourcesProvider resourcesProvider)
+        public static IEnumerable<StyleSheet> GetStyleSheets(this Tizen.NUI.Binding.IResourcesProvider resourcesProvider)
         {
             if (!resourcesProvider.IsResourcesCreated)
                 yield break;

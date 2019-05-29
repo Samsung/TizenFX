@@ -801,7 +801,7 @@ namespace Tizen.NUI.XamlBinding
             var sheets = new List<StyleSheet>();
             while (parent != null)
             {
-                var resourceProvider = parent as IResourcesProvider;
+                var resourceProvider = parent as Tizen.NUI.Binding.IResourcesProvider;
                 var vpSheets = resourceProvider?.GetStyleSheets();
                 if (vpSheets != null)
                     sheets.AddRange(vpSheets);

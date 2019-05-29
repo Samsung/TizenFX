@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.XamlBinding
 {

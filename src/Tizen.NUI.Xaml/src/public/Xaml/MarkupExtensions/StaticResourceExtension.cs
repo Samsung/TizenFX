@@ -47,7 +47,7 @@ namespace Tizen.NUI.Xaml
             object resource = null;
 
             foreach (var p in valueProvider.ParentObjects) {
-                var irp = p as IResourcesProvider;
+                var irp = p as Tizen.NUI.Binding.IResourcesProvider;
                 var resDict = irp != null && irp.IsResourcesCreated ? irp.XamlResources : p as ResourceDictionary;
                 if (resDict == null)
                     continue;
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Xaml
         internal object GetApplicationLevelResource(string key, IXmlLineInfo xmlLineInfo)
         {
             object resource = null;
-            if (Application.Current == null || !((IResourcesProvider)Application.Current).IsResourcesCreated || !Application.Current.XamlResources.TryGetValue(Key, out resource))
+            if (Application.Current == null || !((Tizen.NUI.Binding.IResourcesProvider)Application.Current).IsResourcesCreated || !Application.Current.XamlResources.TryGetValue(Key, out resource))
                 throw new XamlParseException($"StaticResource not found for key {Key}", xmlLineInfo);
             return resource;
         }

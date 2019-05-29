@@ -8,7 +8,7 @@ using Tizen.NUI.XamlBinding.Internals;
 using Tizen.NUI;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.XamlBinding
+namespace Tizen.NUI
 {
     /// <summary>
     /// A class to get resources in current application.
@@ -20,15 +20,18 @@ namespace Tizen.NUI.XamlBinding
         /// Get resources in current application.
         /// </summary>
         /// Deprecated. Do not use.
-        static public IResourcesProvider Get()
+        static public Tizen.NUI.Binding.IResourcesProvider Get()
         {
-            return Application.Current;
+            return Tizen.NUI.XamlBinding.Application.Current;
         }
     }
+}
 
+namespace Tizen.NUI.XamlBinding
+{
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Application : Element, IResourcesProvider, IElementConfiguration<Application>
+    public class Application : Element, Tizen.NUI.Binding.IResourcesProvider, IElementConfiguration<Application>
     {
         private NUIApplication application;
 
@@ -146,7 +149,7 @@ namespace Tizen.NUI.XamlBinding
         ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
 
         ResourceDictionary _resources;
-        bool IResourcesProvider.IsResourcesCreated => _resources != null;
+        bool Tizen.NUI.Binding.IResourcesProvider.IsResourcesCreated => _resources != null;
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -265,7 +268,7 @@ namespace Tizen.NUI.XamlBinding
 
         internal override void OnParentResourcesChanged(IEnumerable<KeyValuePair<string, object>> values)
         {
-            if (!((IResourcesProvider)this).IsResourcesCreated || XamlResources.Count == 0)
+            if (!((Tizen.NUI.Binding.IResourcesProvider)this).IsResourcesCreated || XamlResources.Count == 0)
             {
                 base.OnParentResourcesChanged(values);
                 return;
