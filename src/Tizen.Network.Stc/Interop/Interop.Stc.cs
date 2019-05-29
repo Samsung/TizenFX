@@ -59,7 +59,7 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
             internal static extern int SetTimeInterval(SafeRuleHandle rule, DateTime from, DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
-            internal static extern int SetInterfaceType(SafeRuleHandle rule, NativeNetworkInterface ifaceType);
+            internal static extern int SetInterfaceType(SafeRuleHandle rule, NetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
             internal static extern int SetTimePeriod(SafeRuleHandle rule, NativeTimePeriodType timePeriod);
         }
@@ -76,15 +76,15 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_time_interval")]
             internal static extern int GetTimeInterval(SafeStatsHandle info, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_type")]
-            internal static extern int GetInterfaceType(SafeStatsHandle info, out NativeNetworkInterface ifaceType);
+            internal static extern int GetInterfaceType(SafeStatsHandle info, out NetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_counter")]
             internal static extern int GetCounter(SafeStatsHandle info, out long incoming, out long outgoing);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_roaming_type")]
             internal static extern int GetRoaming(SafeStatsHandle info, out RoamingType roaming);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_protocol_type")]
-            internal static extern int GetProtocol(SafeStatsHandle info, out NativeNetworkProtocol protocol);
+            internal static extern int GetProtocol(SafeStatsHandle info, out NetworkProtocol protocol);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_process_state")]
-            internal static extern int GetProcessState(SafeStatsHandle info, out ProcessState state);
+            internal static extern int GetProcessState(SafeStatsHandle info, out ProcessStateType state);
         }
 
         internal sealed class SafeRuleHandle : SafeHandle

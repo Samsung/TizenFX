@@ -66,7 +66,7 @@ namespace Tizen.Network.Stc
             }
             if (InterfaceType.HasValue)
             {
-                Interop.Stc.Rule.SetInterfaceType(handle, (NativeNetworkInterface)InterfaceType.Value);
+                Interop.Stc.Rule.SetInterfaceType(handle, InterfaceType.Value);
             }
             if (TimePeriod.HasValue)
             {

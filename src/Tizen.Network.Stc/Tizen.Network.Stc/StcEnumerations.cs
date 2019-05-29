@@ -70,41 +70,14 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Internal Enumeration for network interface type.
-    /// </summary>
-    internal enum NativeNetworkInterface
-    {
-        /// <summary>
-        /// Network interface type is Unknown.
-        /// </summary>
-        Unknown = 0,
-        /// <summary>
-        /// Network interface type is datacall.
-        /// </summary>
-        Datacall,
-        /// <summary>
-        /// Network interface type is  wifi.
-        /// </summary>
-        Wifi,
-        /// <summary>
-        /// Network interface type is  wired.
-        /// </summary>
-        Wired,
-        /// <summary>
-        /// Network interface type is bluetooth.
-        /// </summary>
-        Bluetooth,
-        /// <summary>
-        /// Type for any network interface.
-        /// </summary>
-        All
-    }
-
-    /// <summary>
     /// Enumeration for network interface type.
     /// </summary>
     public enum NetworkInterface
     {
+        /// <summary>
+        /// Network interface type is uncategorized.
+        /// </summary>
+        Others = 0,
         /// <summary>
         /// Network interface type is datacall. 
         /// </summary>
@@ -143,58 +116,15 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Internal Enumeration for hardware network protocol type.
-    /// </summary>
-    internal enum NativeNetworkProtocol
-    {
-        /// <summary>
-        /// Network unknown.
-        /// </summary>
-        Unknown,
-        /// <summary>
-        /// Network no service.
-        /// </summary>
-        NoService,
-        /// <summary>
-        /// Network emergency.
-        /// </summary>
-        Emergency,
-        /// <summary>
-        /// Network search 1900.
-        /// </summary>
-        Search,
-        /// <summary>
-        /// Network 2G.
-        /// </summary>
-        Datacall_2G,
-        /// <summary>
-        /// Network 2.5G.
-        /// </summary>
-        Datacall_2_5G,
-        /// <summary>
-        /// Network EDGE.
-        /// </summary>
-        Datacall_2_5G_Edge,
-        /// <summary>
-        /// Network UMTS.
-        /// </summary>
-        Datacall_3G,
-        /// <summary>
-        /// Network HSDPA.
-        /// </summary>
-        Hsdpa,
-        /// <summary>
-        /// Network LTE.
-        /// </summary>
-        Lte
-    }
-
-    /// <summary>
     /// Enumeration for hardware network protocol type.
     /// </summary>
     public enum NetworkProtocol
     {
         /// <summary>
+        /// Network protocol uncategorized.
+        /// </summary>
+        Others,
+        /// <summary>
         /// Network no service.
         /// </summary>
         NoService,
@@ -233,14 +163,14 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Internal Enumeration for monitored process state.
+    /// Enumeration for monitored process state.
     /// </summary>
-    internal enum ProcessState
+    public enum ProcessStateType
     {
         /// <summary>
-        /// Unknown state.
+        /// Uncategorized state.
         /// </summary>
-        Unknown,
+        Others,
         /// <summary>
         /// Foreground state.
         /// </summary>

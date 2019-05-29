@@ -155,24 +155,22 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// To get the interface type from statistics information.
+        /// A property to get the interface type from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <returns>Interface type.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation/value.</exception>
-        public NetworkInterface GetInterfaceType()
+        /// <value>Interface type.</value>
+        public NetworkInterface InterfaceType
         {
-            NativeNetworkInterface ifaceType;
-            int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out ifaceType);
-            if (ret != (int)StcError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get Interface type from info, Error - " + (StcError)ret);
+                NetworkInterface ifaceType;
+                int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out ifaceType);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get Interface type from info, Error - " + (StcError)ret);
+                }
+                return ifaceType;
             }
-            if (ifaceType == NativeNetworkInterface.Unknown)
-            {
-                throw new InvalidOperationException("Interface Type is Unknown.");
-            }
-            return (NetworkInterface)ifaceType;
         }
 
         /// <summary>
@@ -236,46 +234,38 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// To get the network protocol type from statistics information.
+        /// A property to get the network protocol type from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <returns>NetworkProtocol type.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation/value.</exception>
-        public NetworkProtocol GetProtocol()
+        /// <value>Network Protocol type.</value>
+        public NetworkProtocol Protocol
         {
-            NativeNetworkProtocol protocol;
-            int ret = Interop.Stc.Info.GetProtocol(_infoHandle, out protocol);
-            if (ret != (int)StcError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get Protocol type from info, Error - " + (StcError)ret);
+                NetworkProtocol protocol;
+                int ret = Interop.Stc.Info.GetProtocol(_infoHandle, out protocol);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get Protocol type from info, Error - " + (StcError)ret);
+                }
+                return protocol;
             }
-            if (protocol == NativeNetworkProtocol.Unknown)
-            {
-                throw new InvalidOperationException("Network protocol is Unknown.");
-            }
-            return (NetworkProtocol)protocol;
         }
 
         /// <summary>
-        /// To get if the app is running as a foreground process, from it's statistics information.
+        /// A property to get the process state of application from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <returns>True, if process state is Foreground, otherwise False.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when method fails due to an invalid operation/value.</exception>
-        public bool IsForegroundProcess()
+        /// <value>Monitored process state.</value>
+        public ProcessStateType ProcessState()
         {
-            ProcessState state;
+            ProcessStateType state;
             int ret = Interop.Stc.Info.GetProcessState(_infoHandle, out state);
             if (ret != (int)StcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get IsForegroundProcess from info, Error - " + (StcError)ret);
+                Log.Error(Globals.LogTag, "Failed to get ProcessState from info, Error - " + (StcError)ret);
             }
-
-            if(state == ProcessState.Unknown)
-            {
-                throw new InvalidOperationException("Process state is Unknown.");
-            }
-            return state == ProcessState.Foreground;
+            return state;
         }
     }
 }
