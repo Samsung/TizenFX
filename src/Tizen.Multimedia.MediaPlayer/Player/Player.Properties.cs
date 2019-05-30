@@ -560,7 +560,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the audio pitch.
+        /// Enables or disables controlling the pitch of audio or gets the status of controlling the pitch of audio.
         /// </summary>
         /// <value>The value indicating whether or not AudioPitch is enabled. The default is false.</value>
         /// <remarks>This function is used for audio content only.
@@ -590,7 +590,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the audio pitch value.
+        /// Gets or sets the pitch of audio.
         /// </summary>
         /// <value>The audio stream pitch value. The default is 1.</value>
         /// <remarks>Enabling pitch control could increase the CPU usage on some devices.
