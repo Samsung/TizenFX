@@ -16,7 +16,6 @@
  */
 
 using System;
-using Tizen.NUI.Binding;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -25,7 +24,6 @@ namespace Tizen.NUI
     /// <summary>
     /// The Color class.
     /// </summary>
-    [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
     public class Color : global::System.IDisposable
     {
 

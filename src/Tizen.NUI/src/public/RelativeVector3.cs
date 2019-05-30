@@ -16,7 +16,6 @@
  */
 
 using System;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -25,7 +24,6 @@ namespace Tizen.NUI
     /// All values (x, y, z and w) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RelativeVector3TypeConverter))]
     public class RelativeVector3 : global::System.IDisposable
     {
         /// <summary>
