@@ -253,19 +253,22 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// A property to get the process state of application from statistics information.
+        /// A property to get the application state from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Monitored process state.</value>
-        public ProcessStateType ProcessState()
+        /// <value>Monitored application state.</value>
+        public ApplicationStateType ApplicationState
         {
-            ProcessStateType state;
-            int ret = Interop.Stc.Info.GetProcessState(_infoHandle, out state);
-            if (ret != (int)StcError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get ProcessState from info, Error - " + (StcError)ret);
+                ApplicationStateType state;
+                int ret = Interop.Stc.Info.GetProcessState(_infoHandle, out state);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get ApplicationState from info, Error - " + (StcError)ret);
+                }
+                return state;
             }
-            return state;
         }
     }
 }

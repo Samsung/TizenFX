@@ -163,9 +163,9 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Enumeration for monitored process state.
+    /// Enumeration for monitored application state.
     /// </summary>
-    public enum ProcessStateType
+    public enum ApplicationStateType
     {
         /// <summary>
         /// Uncategorized state.

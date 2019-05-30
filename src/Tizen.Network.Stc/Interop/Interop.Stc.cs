@@ -84,7 +84,7 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_protocol_type")]
             internal static extern int GetProtocol(SafeStatsHandle info, out NetworkProtocol protocol);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_process_state")]
-            internal static extern int GetProcessState(SafeStatsHandle info, out ProcessStateType state);
+            internal static extern int GetProcessState(SafeStatsHandle info, out ApplicationStateType state);
         }
 
         internal sealed class SafeFilterHandle : SafeHandle
