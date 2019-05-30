@@ -28,6 +28,7 @@ namespace Tizen.Content.MediaContent
     /// <since_tizen> 4 </since_tizen>
     public class Folder
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         internal Folder(IntPtr handle)
         {
             Id = InteropHelper.GetString(handle, Interop.Folder.GetFolderId);
@@ -37,7 +38,7 @@ namespace Tizen.Content.MediaContent
             StorageType = InteropHelper.GetValue<StorageType>(handle, Interop.Folder.GetStorageType);
             StorageId = InteropHelper.GetString(handle, Interop.Folder.GetStorageId);
         }
-
+#pragma warning restore CS0618 // Type or member is obsolete
         internal static Folder FromHandle(IntPtr handle) => new Folder(handle);
 
         /// <summary>
@@ -77,6 +78,7 @@ namespace Tizen.Content.MediaContent
         [Obsolete("Please do not use! this will be deprecated in level 6")]
         public string StorageId { get; }
 
+#pragma warning disable CS0618 // Type or member is obsolete
         /// <summary>
         /// Returns a string representation of the folder.
         /// </summary>
@@ -84,5 +86,6 @@ namespace Tizen.Content.MediaContent
         /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, Name={Name}, Path={Path}, StorageType={StorageType}, StorageId={StorageType}";
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }

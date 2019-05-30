@@ -144,6 +144,7 @@ namespace Tizen.Content.MediaContent
             return handle;
         }
 
+#pragma warning disable CS0618 // Type or member is obsolete
         internal virtual bool IsEmpty()
         {
             return StorageId == null && FilterExpression == null;
@@ -163,6 +164,8 @@ namespace Tizen.Content.MediaContent
                     ThrowIfError("Failed to create filter handle(storage id)"); ;
             }
         }
+#pragma warning restore CS0618 // Type or member is obsolete
+
     }
 
     /// <summary>

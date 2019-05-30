@@ -43,7 +43,6 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The unique ID of the storage.</value>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public string Id { get; }
 
         /// <summary>
@@ -51,7 +50,6 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The path of the storage.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public string Path { get; }
 
         /// <summary>
@@ -59,7 +57,6 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The type of the storage.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public StorageType Type { get; }
 
         /// <summary>
@@ -67,7 +64,6 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>A string representation of the current storage.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
         public override string ToString() =>
             $"Id={Id}, Path={Path}, Type={Type}";
     }
