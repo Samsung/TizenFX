@@ -182,7 +182,6 @@ namespace Tizen.WebView
         public event EventHandler<SmartCallbackArgs> UrlChanged;
 
         /// <summary>
-
         /// Event that occurs when the policy navigation is decided.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -206,6 +205,7 @@ namespace Tizen.WebView
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<ContextMenuItemEventArgs> ContextMenuItemSelected;
 
+        /// <summary>
         /// The delegate is invoked when context menu customization is needed.
         /// </summary>
         /// <param name="menu">The instance of ContextMenu.</param>
