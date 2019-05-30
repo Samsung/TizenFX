@@ -209,3 +209,4 @@ CompilationErrors-*.txt
 
 # exceptional allowed binaries
 !tools/bin/
+!packaging/*.nupkg

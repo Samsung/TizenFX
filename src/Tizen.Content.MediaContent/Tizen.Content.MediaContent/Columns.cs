@@ -260,6 +260,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="AudioInfo.Copyright"/>
         /// <seealso cref="VideoInfo.Copyright"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string Copyright => "MEDIA_COPYRIGHT";
 
         /// <summary>
@@ -283,6 +284,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.Description"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string Description => "MEDIA_DESCRIPTION";
 
         /// <summary>
@@ -295,6 +297,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="AudioInfo.BitRate"/>
         /// <seealso cref="VideoInfo.BitRate"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string BitRate => "MEDIA_BITRATE";
 
         /// <summary>
@@ -306,6 +309,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.BitPerSample"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string BitPerSample => "MEDIA_BITPERSAMPLE";
 
         /// <summary>
@@ -317,6 +321,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.SampleRate"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string SampleRate => "MEDIA_SAMPLERATE";
 
         /// <summary>
@@ -328,6 +333,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.Channels"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string Channels => "MEDIA_CHANNEL";
 
         /// <summary>
@@ -421,6 +427,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="MediaContent.Orientation"/>
         /// <seealso cref="ImageInfo.Orientation"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string Orientation => "MEDIA_ORIENTATION";
 
         /// <summary>
@@ -432,6 +439,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.Rating"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string Rating => "MEDIA_RATING";
 
         /// <summary>
@@ -466,7 +474,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.StorageType"/>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string StorageType => "MEDIA_STORAGE_TYPE";
 
         /// <summary>
@@ -478,6 +486,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="ImageInfo.ExposureTime"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string ExposureTime => "MEDIA_EXPOSURE_TIME";
 
         /// <summary>
@@ -489,6 +498,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="ImageInfo.FNumber"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string FNumber => "MEDIA_FNUMBER";
 
         /// <summary>
@@ -500,6 +510,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="ImageInfo.Iso"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string Iso => "MEDIA_ISO";
 
         /// <summary>
@@ -511,6 +522,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="ImageInfo.Model"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in level 6")]
         public static string Model => "MEDIA_MODEL";
     }
 

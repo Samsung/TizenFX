@@ -30,10 +30,14 @@ namespace Tizen.NUI.Xaml.Forms
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [ContentProperty("Children")]
     public abstract class Container : BaseHandle
     {
+        private Tizen.NUI.Container instance;
+
         internal Container(Tizen.NUI.Container nuiInstance) : base(nuiInstance)
         {
+            instance = nuiInstance;
             SetNUIInstance(nuiInstance);
         }
 
@@ -123,5 +127,23 @@ namespace Tizen.NUI.Xaml.Forms
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract UInt32 GetChildCount();
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<View> Children
+        {
+            get
+            {
+                List<View> children = new List<View>();
+
+                foreach (Tizen.NUI.BaseComponents.View view in instance.Children)
+                {
+                    View realView = BaseHandle.GetHandle(view) as View;
+                    children.Add(realView);
+                }
+
+                return children;
+            }
+        }
     }
 } // namespace Tizen.NUI
