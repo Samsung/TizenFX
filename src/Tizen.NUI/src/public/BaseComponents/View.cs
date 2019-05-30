@@ -3414,6 +3414,9 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, ChildLayoutData enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remarks>
+        /// Previously named LayoutWidthSpecification
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int WidthSpecification
         {
@@ -3437,6 +3440,9 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, ChildLayoutData enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remarks>
+        /// Previously named LayoutHeightSpecification
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int HeightSpecification
         {
