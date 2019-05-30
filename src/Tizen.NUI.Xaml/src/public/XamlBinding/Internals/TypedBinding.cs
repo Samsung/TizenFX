@@ -12,9 +12,9 @@ namespace Tizen.NUI.XamlBinding.Internals
     /// The class TypedBindingBase.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    //FIXME: need a better name for this, and share with Binding, so we can share more unittests
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
+    //FIXME: need a better name for this, and share with Binding, so we can share more unittests
     public abstract class TypedBindingBase : BindingBase
     {
         IValueConverter _converter;

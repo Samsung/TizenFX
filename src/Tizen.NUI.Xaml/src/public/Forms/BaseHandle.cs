@@ -51,13 +51,14 @@ namespace Tizen.NUI.Xaml.Forms
             nuiInstanceToInstanceDict.Remove(nuiInstance);
         }
 
+        private Tizen.NUI.BaseHandle handle;
+
         /// <summary>
         /// Get nui handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private Tizen.NUI.BaseHandle handle;
         public Tizen.NUI.BaseHandle handleInstance
         {
             get
@@ -66,6 +67,8 @@ namespace Tizen.NUI.Xaml.Forms
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void SetNUIInstance(Tizen.NUI.BaseHandle _handle)
         {
             if (handle != _handle)

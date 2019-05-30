@@ -18,8 +18,12 @@ namespace Tizen.NUI.XamlBinding
             AssociatedType = associatedType;
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected Type AssociatedType { get; private set; }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected abstract void Invoke(object sender);
 
         internal virtual void DoInvoke(object sender)

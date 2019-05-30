@@ -413,16 +413,6 @@ namespace Tizen.NUI.Xaml
             base.OnParentSet();
         }
 
-        ///// <summary>
-        ///// Indicates that the Page has been assigned a size.
-        ///// </summary>
-        // protected override void OnSizeAllocated(double width, double height)
-        // {
-        //  _allocatedFlag = true;
-        //  //base.OnSizeAllocated(width, height);
-        //  UpdateChildrenLayout();
-        // }
-
         /// <summary>
         /// Requests that the children Elements of the Page update their layouts.
         /// </summary>
@@ -430,6 +420,16 @@ namespace Tizen.NUI.Xaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateChildrenLayout()
         {
+            if (!ShouldLayoutChildren())
+                return;
+
+            double x = Padding.Left;
+            double y = Padding.Top;
+
+            for (var i = 0; i < LogicalChildren.Count; i++)
+            {
+                LayoutChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         internal virtual void OnChildMeasureInvalidated(Element child, InvalidationTrigger trigger)

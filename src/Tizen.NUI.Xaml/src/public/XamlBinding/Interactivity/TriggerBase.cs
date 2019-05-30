@@ -33,10 +33,16 @@ namespace Tizen.NUI.XamlBinding
             Condition.ConditionChanged = OnConditionChanged;
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<TriggerAction> EnterActions { get; }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<TriggerAction> ExitActions { get; }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsSealed
         {
             get { return _isSealed; }
@@ -51,6 +57,8 @@ namespace Tizen.NUI.XamlBinding
             }
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Type TargetType { get; }
 
         internal Condition Condition { get; }

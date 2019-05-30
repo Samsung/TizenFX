@@ -1393,12 +1393,12 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is removed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
+        public event EventHandler<ChildRemovedEventArgs> ChildRemoved;
         /// <summary>
         /// Event when a child is added.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public new event EventHandler<ChildAddedEventArgs> ChildAdded;
+        public event EventHandler<ChildAddedEventArgs> ChildAdded;
 
         /// <summary>
         /// An event for the KeyInputFocusGained signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />

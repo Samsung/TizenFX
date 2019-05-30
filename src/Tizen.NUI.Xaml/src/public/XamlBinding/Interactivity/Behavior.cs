@@ -19,6 +19,8 @@ namespace Tizen.NUI.XamlBinding
             AssociatedType = associatedType;
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected Type AssociatedType { get; }
 
         void IAttachedObject.AttachTo(BindableObject bindable)
@@ -35,10 +37,14 @@ namespace Tizen.NUI.XamlBinding
             OnDetachingFrom(bindable);
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnAttachedTo(BindableObject bindable)
         {
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnDetachingFrom(BindableObject bindable)
         {
         }

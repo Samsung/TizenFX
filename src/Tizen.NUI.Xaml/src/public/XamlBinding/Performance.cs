@@ -9,9 +9,13 @@ namespace Tizen.NUI
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public interface IPerformanceProvider
 	{
-		void Stop(string reference, string tag, string path, string member);
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void Stop(string reference, string tag, string path, string member);
 
-		void Start(string reference, string tag, string path, string member);
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void Start(string reference, string tag, string path, string member);
 	}
 
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -20,14 +24,20 @@ namespace Tizen.NUI
 	{
 		static long Reference;
 
-		public static IPerformanceProvider Provider { get; private set; }
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static IPerformanceProvider Provider { get; private set; }
 
-		public static void SetProvider(IPerformanceProvider instance)
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetProvider(IPerformanceProvider instance)
 		{
 			Provider = instance;
 		}
 
-		public static void Start(out string reference, string tag = null, [CallerFilePath] string path = null, [CallerMemberName] string member = null)
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Start(out string reference, string tag = null, [CallerFilePath] string path = null, [CallerMemberName] string member = null)
 		{
 			if (Provider == null)
 			{
@@ -39,13 +49,17 @@ namespace Tizen.NUI
 			Provider.Start(reference, tag, path, member);
 		}
 
-		public static void Start(string reference, string tag = null, [CallerFilePath] string path = null,
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Start(string reference, string tag = null, [CallerFilePath] string path = null,
 			[CallerMemberName] string member = null)
 		{
 			Provider?.Start(reference, tag, path, member);
 		}
 
-		public static void Stop(string reference, string tag = null, [CallerFilePath] string path = null, [CallerMemberName] string member = null)
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Stop(string reference, string tag = null, [CallerFilePath] string path = null, [CallerMemberName] string member = null)
 		{
 			Provider?.Stop(reference, tag, path, member);
 		}

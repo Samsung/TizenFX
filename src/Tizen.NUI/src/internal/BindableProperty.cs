@@ -75,11 +75,7 @@ namespace Tizen.NUI.Binding
         /// <param name="returnType">The type of the property.</param>
         /// <param name="declaringType">The type of the declaring object.</param>
         /// <param name="defaultValue">The default value for the property.</param>
-        /// <param name="defaultBindingMode">The BindingMode to use on SetBinding() if no BindingMode is given. This parameter is optional. Default is BindingMode.OneWay.</param>
-        /// <param name="validateValue">A delegate to be run when a value is set. This parameter is optional. Default is null.</param>
         /// <param name="propertyChanged">A delegate to be run when the value has changed. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
-        /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
         /// <returns>A newly created BindableProperty.</returns>
         public static BindableProperty Create(string propertyName, Type returnType, Type declaringType, object defaultValue = null,

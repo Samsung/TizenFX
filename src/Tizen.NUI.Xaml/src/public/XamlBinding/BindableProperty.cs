@@ -342,9 +342,9 @@ namespace Tizen.NUI.XamlBinding
         /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
+        /// <returns>A newly created BindableProperty.</returns>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        /// <returns>A newly created BindableProperty.</returns>
         public static BindableProperty CreateAttached(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
                                                       ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
                                                       CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
