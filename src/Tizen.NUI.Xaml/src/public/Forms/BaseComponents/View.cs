@@ -26,9 +26,9 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
     /// View is the base class for all views.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    [ContentProperty("Content")]
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [ContentProperty("Content")]
     public class View : Tizen.NUI.Xaml.Forms.Container, Tizen.NUI.Binding.IResourcesProvider
     {
         private Tizen.NUI.BaseComponents.View _view;
