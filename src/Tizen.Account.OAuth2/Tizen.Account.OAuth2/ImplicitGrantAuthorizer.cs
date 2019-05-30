@@ -37,7 +37,7 @@ namespace Tizen.Account.OAuth2
         }
 
         /// <summary>
-        /// Access token can be retreived implicitly using <see cref="AuthorizeAsync"/> in this flow.
+        /// Access token can be retreived implicitly using <see cref="ClientCredentialsAuthorizer.AuthorizeAsync"/> in this flow.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
