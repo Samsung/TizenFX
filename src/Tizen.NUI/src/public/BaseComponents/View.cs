@@ -3361,10 +3361,10 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         /// <remarks>
         /// Previously named LayoutWidthSpecification
         /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int WidthSpecification
         {
             get
@@ -3387,10 +3387,10 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         /// <remarks>
         /// Previously named LayoutHeightSpecification
         /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int HeightSpecification
         {
             get
