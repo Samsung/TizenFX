@@ -18,7 +18,6 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -243,20 +242,6 @@ namespace Tizen.NUI
             {
                 Interop.Layer.Layer_SetClipping(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ResourceDictionary XamlResources
-        {
-            get
-            {
-                return Application.Current.XamlResources;
-            }
-            set
-            {
-                Application.Current.XamlResources = value;
             }
         }
 

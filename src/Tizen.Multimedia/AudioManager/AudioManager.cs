@@ -155,6 +155,8 @@ namespace Tizen.Multimedia
         #region DeviceStateChanged event
         private static int _deviceStateChangedCallbackId = -1;
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
         private static Interop.AudioDevice.StateChangedCallback _audioDeviceStateChangedCallback;
         private static EventHandler<AudioDeviceStateChangedEventArgs> _audioDeviceStateChanged;
         private static readonly object _audioDeviceStateLock = new object();
@@ -212,6 +214,8 @@ namespace Tizen.Multimedia
                 _audioDeviceStateChangedCallback, IntPtr.Zero, out _deviceStateChangedCallbackId).
                 ThrowIfError("Failed to add device state changed event");
         }
+
+#pragma warning restore CS0618 // Type or member is obsolete
 
         private static void UnregisterDeviceStateChangedEvent()
         {
