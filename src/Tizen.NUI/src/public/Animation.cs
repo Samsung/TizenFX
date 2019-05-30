@@ -27,10 +27,7 @@ namespace Tizen.NUI
     using System.Linq;
     using System.Reflection;
     using System.Xml;
-    using Tizen.NUI.Binding.Internals;
-    using Tizen.NUI.Binding;
     using System.Globalization;
-    using Tizen.NUI.Xaml.Internals;
 
     /// <summary>
     /// Animation can be used to animate the properties of any number of objects, typically view.<br />
@@ -50,11 +47,6 @@ namespace Tizen.NUI
         private System.IntPtr _finishedCallbackOfNative;
 
         private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
-
-        private string[] _properties = null;
-        private string[] _destValue = null;
-        private int[] _startTime = null;
-        private int[] _endTime = null;
 
         /// <summary>
         /// Creates an initialized animation.<br />
@@ -428,61 +420,41 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
+        /// Deprecated. Do not use.
         public string[] Properties
         {
-            get
-            {
-                return _properties;
-            }
-            set
-            {
-                _properties = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
+        /// Deprecated. Do not use.
         public string[] DestValue
         {
-            get
-            {
-                return _destValue;
-            }
-            set
-            {
-                _destValue = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
+        /// Deprecated. Do not use.
         public int[] StartTime
         {
-            get
-            {
-                return _startTime;
-            }
-            set
-            {
-                _startTime = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
+        /// Deprecated. Do not use.
         public int[] EndTime
         {
-            get
-            {
-                return _endTime;
-            }
-            set
-            {
-                _endTime = value;
-            }
+            get;
+            set;
         }
 
         private bool DisableAnimation
@@ -641,30 +613,9 @@ namespace Tizen.NUI
         /// Animates one or more properties to a destination value.<br />
         /// </summary>
         /// <param name="target">The target object to animate.</param>
+        /// Deprecated. Do not use.
         public void PlayAnimateTo(View target)
         {
-            Clear();
-            if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
-            {
-                int length = _properties.Length;
-                for (int index = 0; index < length; index++)
-                {
-                    //object destinationValue = _destValue[index];
-                    var elementType = target.GetType();
-                    PropertyInfo propertyInfo = elementType.GetProperties().FirstOrDefault(fi => fi.Name == _properties[index]);
-                    //var propertyInfo = elementType.GetRuntimeProperties().FirstOrDefault(p => p.Name == localName);
-                    if (propertyInfo != null)
-                    {
-                        object destinationValue = ConvertTo(_destValue[index], propertyInfo.PropertyType);
-
-                        if (destinationValue != null)
-                        {
-                            AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
-                        }
-                    }
-                }
-                Play();
-            }
         }
 
         /// <summary>
@@ -892,162 +843,6 @@ namespace Tizen.NUI
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animation obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal object ConvertTo(object value, Type toType)
-        {
-            Func<object> getConverter = () =>
-            {
-                string converterTypeName = GetTypeConverterTypeName(toType.GetTypeInfo().CustomAttributes);
-                if (converterTypeName == null)
-                    return null;
-
-                Type convertertype = Type.GetType(converterTypeName);
-                return Activator.CreateInstance(convertertype);
-            };
-
-            return ConvertTo(value, toType, getConverter);
-        }
-
-        internal object ConvertTo(object value, Type toType, Func<object> getConverter)
-        {
-            if (value == null)
-                return null;
-
-            var str = value as string;
-            if (str != null)
-            {
-                //If there's a [TypeConverter], use it
-                object converter = getConverter?.Invoke();
-                var xfTypeConverter = converter as Tizen.NUI.Binding.TypeConverter;
-                if (xfTypeConverter != null)
-                    return value = xfTypeConverter.ConvertFromInvariantString(str);
-                var converterType = converter?.GetType();
-                if (converterType != null)
-                {
-                    var convertFromStringInvariant = converterType.GetRuntimeMethod("ConvertFromInvariantString",
-                        new[] { typeof(string) });
-                    if (convertFromStringInvariant != null)
-                        return value = convertFromStringInvariant.Invoke(converter, new object[] { str });
-                }
-
-                //If the type is nullable, as the value is not null, it's safe to assume we want the built-in conversion
-                if (toType.GetTypeInfo().IsGenericType && toType.GetGenericTypeDefinition() == typeof(Nullable<>))
-                    toType = Nullable.GetUnderlyingType(toType);
-
-                //Obvious Built-in conversions
-                if (toType.GetTypeInfo().IsEnum)
-                    return Enum.Parse(toType, str, true);
-                if (toType == typeof(SByte))
-                    return SByte.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Int16))
-                    return Int16.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Int32))
-                    return Int32.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Int64))
-                    return Int64.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Byte))
-                    return Byte.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(UInt16))
-                    return UInt16.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(UInt32))
-                    return UInt32.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(UInt64))
-                    return UInt64.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Single))
-                    return Single.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Double))
-                    return Double.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Boolean))
-                    return Boolean.Parse(str);
-                if (toType == typeof(TimeSpan))
-                    return TimeSpan.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(DateTime))
-                    return DateTime.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Char))
-                {
-                    char c = '\0';
-                    Char.TryParse(str, out c);
-                    return c;
-                }
-                if (toType == typeof(String) && str.StartsWith("{}", StringComparison.Ordinal))
-                    return str.Substring(2);
-                if (toType == typeof(String))
-                    return value;
-                if (toType == typeof(Decimal))
-                    return Decimal.Parse(str, CultureInfo.InvariantCulture);
-            }
-
-            //if the value is not assignable and there's an implicit conversion, convert
-            if (value != null && !toType.IsAssignableFrom(value.GetType()))
-            {
-                var opImplicit = GetImplicitConversionOperator(value.GetType(), value.GetType(), toType)
-                                 ?? GetImplicitConversionOperator(toType, value.GetType(), toType);
-                //var opImplicit = value.GetType().GetImplicitConversionOperator(fromType: value.GetType(), toType: toType)
-                //                ?? toType.GetImplicitConversionOperator(fromType: value.GetType(), toType: toType);
-
-                if (opImplicit != null)
-                {
-                    value = opImplicit.Invoke(null, new[] { value });
-                    return value;
-                }
-            }
-
-            var nativeValueConverterService = DependencyService.Get<INativeValueConverterService>();
-
-            object nativeValue = null;
-            if (nativeValueConverterService != null && nativeValueConverterService.ConvertTo(value, toType, out nativeValue))
-                return nativeValue;
-
-            return value;
-        }
-
-        internal string GetTypeConverterTypeName(IEnumerable<CustomAttributeData> attributes)
-        {
-            var converterAttribute =
-                attributes.FirstOrDefault(cad => Tizen.NUI.Binding.TypeConverterAttribute.TypeConvertersType.Contains(cad.AttributeType.FullName));
-            if (converterAttribute == null)
-                return null;
-            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(string))
-                return (string)converterAttribute.ConstructorArguments[0].Value;
-            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(Type))
-                return ((Type)converterAttribute.ConstructorArguments[0].Value).AssemblyQualifiedName;
-            return null;
-        }
-
-        internal MethodInfo GetImplicitConversionOperator(Type onType, Type fromType, Type toType)
-        {
-#if NETSTANDARD1_0
-            var mi = onType.GetRuntimeMethod("op_Implicit", new[] { fromType });
-#else
-            var bindingFlags = BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
-            var mi = onType.GetMethod("op_Implicit", bindingFlags, null, new[] { fromType }, null);
-#endif
-            if (mi == null) return null;
-            if (!mi.IsSpecialName) return null;
-            if (!mi.IsPublic) return null;
-            if (!mi.IsStatic) return null;
-            if (!toType.IsAssignableFrom(mi.ReturnType)) return null;
-
-            return mi;
-        }
-
-        internal Animation(float durationSeconds) : this(Interop.Animation.Animation_New(durationSeconds), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        internal Animation(Animation handle) : this(Interop.Animation.new_Animation__SWIG_1(Animation.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Animation Assign(Animation rhs)
-        {
-            Animation ret = new Animation(Interop.Animation.Animation_Assign(swigCPtr, Animation.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal void SetDuration(float seconds)

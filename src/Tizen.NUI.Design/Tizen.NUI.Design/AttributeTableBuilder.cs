@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Microsoft.Windows.Design;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
+using Tizen.NUI.XamlBinding;
 
 namespace Tizen.NUI.Design
 {

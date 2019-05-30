@@ -1087,7 +1087,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValueAndForceSendChangeSignal(TextProperty, value);
+                SetValue(TextProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1994,26 +1994,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(MatchSystemLanguageDirectionProperty, value);
                 NotifyPropertyChanged();
-            }
-        }
-
-        internal override bool IsCreateByXaml
-        {
-            get
-            {
-                return base.IsCreateByXaml;
-            }
-            set
-            {
-                base.IsCreateByXaml = value;
-
-                if (value == true)
-                {
-                    this.TextChanged += (obj, e) =>
-                    {
-                        this.Text = this.Text;
-                    };
-                }
             }
         }
 

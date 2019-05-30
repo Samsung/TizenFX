@@ -55,7 +55,7 @@ namespace Tizen.NUI
         /// <pre>The child container has been initialized.</pre>
         /// <returns>The parent container.</returns>
         /// <since_tizen> 4 </since_tizen>
-        public new Container Parent
+        public Container Parent
         {
             get
             {

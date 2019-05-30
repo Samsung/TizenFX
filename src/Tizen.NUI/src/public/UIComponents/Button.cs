@@ -863,7 +863,7 @@ namespace Tizen.NUI.UIComponents
         /// Gets or sets the label.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Tizen.NUI.PropertyMap Label
+        public PropertyMap Label
         {
             get
             {
