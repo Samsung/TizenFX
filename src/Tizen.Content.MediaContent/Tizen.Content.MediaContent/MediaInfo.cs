@@ -26,6 +26,7 @@ namespace Tizen.Content.MediaContent
     /// <since_tizen> 4 </since_tizen>
     public class MediaInfo
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         internal MediaInfo(Interop.MediaInfoHandle handle)
         {
             Id = InteropHelper.GetString(handle, Interop.MediaInfo.GetMediaId);
@@ -58,6 +59,7 @@ namespace Tizen.Content.MediaContent
 
             StorageType = InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType);
         }
+#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
         /// Gets the ID of media.
