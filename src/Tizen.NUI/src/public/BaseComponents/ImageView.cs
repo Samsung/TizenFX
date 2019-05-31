@@ -332,6 +332,15 @@ namespace Tizen.NUI.BaseComponents
                 _url = (value == null ? "" : value);
                 SetValue(ResourceUrlProperty, _url);
                 NotifyPropertyChanged();
+
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.URL, new PropertyValue(value));
+				
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+				
+                SetValue(ImageProperty, imageMap);
+
             }
         }
 
@@ -596,6 +605,224 @@ namespace Tizen.NUI.BaseComponents
         public void Stop()
         {
             this.DoAction(ImageView.Property.IMAGE, Property.ACTION_STOP, new PropertyValue(0));
+        }
+
+        /// <summary>
+        /// Gets or sets the URL of the alpha mask.<br />
+        /// Optional.
+        /// </summary>
+        /// <since_tizen> 6</since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string AlphaMaskURL
+        {
+            get
+            {
+                string ret = "";
+                Image.Find(ImageVisualProperty.AlphaMaskURL)?.Get(out ret);
+
+                return ret;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    value = "";
+                }
+
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(value));
+
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+				
+				SetValue(ImageProperty, imageMap);
+				NotifyPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        ///  Whether to crop image to mask or scale mask to fit image.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CropToMask
+        {
+            get
+            {
+                bool ret = false;
+                Image.Find(ImageVisualProperty.CropToMask)?.Get(out ret);
+
+                return ret;
+            }
+            set
+            {
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.CropToMask, new PropertyValue(value));
+				
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+
+                SetValue(ImageProperty, imageMap);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets fitting options used when resizing images to fit the desired dimensions.<br />
+        /// If not supplied, the default is FittingModeType.ShrinkToFit.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FittingModeType FittingMode
+        {
+            get
+            {
+                int ret = (int)FittingModeType.ShrinkToFit;
+                Image.Find(ImageVisualProperty.FittingMode)?.Get(out ret);
+
+                return (FittingModeType)ret;
+            }
+            set
+            {
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)value));
+				
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+				
+                SetValue(ImageProperty, imageMap);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Gets or sets the desired image width.<br />
+        /// If not specified, the actual image width is used.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int DesiredWidth
+        {
+            get
+            {
+                int ret = -1;
+                Image.Find(ImageVisualProperty.DesiredWidth)?.Get(out ret);
+
+                return ret;
+            }
+            set
+            {
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(value));
+				
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+				
+                SetValue(ImageProperty, imageMap);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the desired image height.<br />
+        /// If not specified, the actual image height is used.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int DesiredHeight
+        {
+            get
+            {
+                int ret = -1;
+                Image.Find(ImageVisualProperty.DesiredHeight)?.Get(out ret);
+
+                return ret;
+            }
+            set
+            {
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(value));
+				
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+				
+                SetValue(ImageProperty, imageMap);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets the wrap mode for the u coordinate.<br />
+        /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
+        /// If not specified, the default is WrapModeType.Default(CLAMP).<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WrapModeType WrapModeU
+        {
+            get
+            {
+                int ret = (int)WrapModeType.Default;
+                Image.Find(ImageVisualProperty.WrapModeU)?.Get(out ret);
+
+                return (WrapModeType)ret;
+            }
+            set
+            {
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.WrapModeU, new PropertyValue((int)value));
+				
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+				
+                SetValue(ImageProperty, imageMap);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the wrap mode for the v coordinate.<br />
+        /// It decides how the texture should be sampled when the v coordinate exceeds the range of 0.0 to 1.0.<br />
+        /// The first two elements indicate the top-left position of the area, and the last two elements are the areas of the width and the height respectively.<br />
+        /// If not specified, the default is WrapModeType.Default(CLAMP).<br />
+        /// For normal quad images only.
+        /// Optional.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WrapModeType WrapModeV
+        {
+            get
+            {
+                int ret = (int)WrapModeType.Default;
+                Image.Find(ImageVisualProperty.WrapModeV)?.Get(out ret);
+
+                return (WrapModeType)ret;
+            }
+            set
+            {
+                PropertyMap temp = new PropertyMap();
+                temp.Insert(ImageVisualProperty.WrapModeV, new PropertyValue((int)value));
+				
+                PropertyMap imageMap = Image;
+                imageMap.Merge(temp);
+				
+                SetValue(ImageProperty, imageMap);
+                NotifyPropertyChanged();
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImageView obj)
