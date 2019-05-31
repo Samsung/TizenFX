@@ -9,6 +9,21 @@ namespace Tizen.NUI
         internal static partial class Renderer
         {
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Range_BACKGROUND_EFFECT_get")]
+            public static extern int Renderer_Ranges_BACKGROUND_EFFECT_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Range_BACKGROUND_get")]
+            public static extern int Renderer_Ranges_BACKGROUND_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Range_CONTENT_get")]
+            public static extern int Renderer_Ranges_CONTENT_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Range_DECORATION_get")]
+            public static extern int Renderer_Ranges_DECORATION_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Range_FOREGROUND_EFFECT_get")]
+            public static extern int Renderer_Ranges_FOREGROUND_EFFECT_get();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Renderer_Property_DEPTH_INDEX_get")]
             public static extern int Renderer_Property_DEPTH_INDEX_get();
 
