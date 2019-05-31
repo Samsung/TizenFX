@@ -7,6 +7,7 @@
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
+%define DOTNET_TOOLS_PATH /usr/share/dotnet.tizen/tools
 %define DOTNET_NUGET_SOURCE /nuget
 
 Name:       csapi-tizenfx
@@ -36,6 +37,14 @@ AutoReqProv: no
 
 %description nuget
 NuGet package for %{name}
+
+%package tools
+Summary:   Tools for TizenFX
+Group:     Development/Libraries
+AutoReqProv: no
+
+%description tools
+Tools for TizenFX
 
 %package dummy
 Summary:   not used package
@@ -145,6 +154,7 @@ mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
 mkdir -p %{buildroot}%{DOTNET_NUGET_SOURCE}
+mkdir -p %{buildroot}%{DOTNET_TOOLS_PATH}
 
 # Install Runtime Assemblies
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
@@ -167,6 +177,9 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSE
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
+# Install Tools
+install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
+
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
@@ -176,6 +189,10 @@ install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %files nuget
 %{DOTNET_NUGET_SOURCE}/*.nupkg
+
+%files tools
+%manifest %{name}.manifest
+%{DOTNET_TOOLS_PATH}/*
 
 %files dummy
 
