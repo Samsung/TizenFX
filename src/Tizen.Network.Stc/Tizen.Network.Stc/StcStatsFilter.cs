@@ -27,6 +27,13 @@ namespace Tizen.Network.Stc
     public class StatisticsFilter
     {
         /// <summary>
+        /// A property for App Id for statistics filter.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value>Application id.</value>
+        public string AppId{ get; set; }
+
+        /// <summary>
         /// A property for "from" value of time interval for statistics filter.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -54,12 +61,12 @@ namespace Tizen.Network.Stc
         /// <value>Time period.</value>
         public TimePeriodType? TimePeriod { get; set; }
 
-        internal Interop.Stc.SafeFilterHandle ConvertToNativeFilter(string appId)
+        internal Interop.Stc.SafeFilterHandle ConvertToNativeFilter()
         {
             Interop.Stc.SafeFilterHandle handle;
             Interop.Stc.Filter.Create(StcManagerImpl.Instance.GetSafeHandle(), out handle);
 
-            Interop.Stc.Filter.SetAppId(handle, appId);
+            Interop.Stc.Filter.SetAppId(handle, AppId);
             if (From.HasValue && To.HasValue)
             {
                 Interop.Stc.Filter.SetTimeInterval(handle, From.Value, To.Value);

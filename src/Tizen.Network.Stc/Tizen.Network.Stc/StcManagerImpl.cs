@@ -50,9 +50,7 @@ namespace Tizen.Network.Stc
     internal class StcManagerImpl
     {
         private static StcManagerImpl _instance;
-        private Dictionary<IntPtr, Interop.Stc.StatsInfoCallback> _getStatsCb_map = new Dictionary<IntPtr, Interop.Stc.StatsInfoCallback>();
         private Dictionary<IntPtr, Interop.Stc.GetAllStatsFinishedCallback> _getAllStatsCb_map = new Dictionary<IntPtr, Interop.Stc.GetAllStatsFinishedCallback>();
-        private int _requestId = 0;
         private int _requestAllId = 0;
 
         private StcManagerImpl()
@@ -94,52 +92,6 @@ namespace Tizen.Network.Stc
                 StcErrorFactory.ThrowStcException(ret);
             }
             return handle;
-        }
-
-        internal Task<NetworkStatistics> GetStatisticsAsync(string appId, StatisticsFilter filter)
-        {
-            TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
-            IntPtr id;
-
-            lock (_getStatsCb_map)
-            {
-                id = (IntPtr)_requestId++;
-                _getStatsCb_map[id] = (int result, Interop.Stc.SafeStatsHandle info, IntPtr key) =>
-                {
-                    if(result != (int)StcError.None)
-                    {
-                        Log.Error(Globals.LogTag, "GetStats failed, Error - " + (StcError)result);
-                        task.SetException(new InvalidOperationException("Error occurs during GetStats(), " + (StcError)result));
-                    }
-
-                    Interop.Stc.SafeStatsHandle cloned;
-                    int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
-                    if (retValue != (int)StcError.None)
-                    {
-                        Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
-                        task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
-                    }
-
-                    task.SetResult(new NetworkStatistics(cloned));
-                    lock (_getStatsCb_map)
-                    {
-                        _getStatsCb_map.Remove(key);
-                    }
-
-                    return CallbackRet.Continue;
-                };
-            }
-
-            using (var filterHandle = filter.ConvertToNativeFilter(appId))
-            {
-                int ret = Interop.Stc.GetStats(GetSafeHandle(), filterHandle, _getStatsCb_map[id], id);
-                if (ret != (int)StcError.None)
-                {
-                    Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
-                    StcErrorFactory.ThrowStcException(ret);
-                }
-            }
-            return task.Task;
         }
 
         internal Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StatisticsFilter filter)
@@ -198,7 +150,7 @@ namespace Tizen.Network.Stc
                 };
             }
 
-            using (var filterHandle = filter.ConvertToNativeFilter(null))
+            using (var filterHandle = filter.ConvertToNativeFilter())
             {
                 int ret = Interop.Stc.GetAllStats(GetSafeHandle(), filterHandle, _getAllStatsCb_map[id], id);
                 if (ret != (int)StcError.None)

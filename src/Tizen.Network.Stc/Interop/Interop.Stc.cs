@@ -42,8 +42,6 @@ internal static partial class Interop
         [DllImport(Libraries.Stc,EntryPoint = "stc_deinitialize")]
         internal static extern int Deinitialize(IntPtr stc);
 
-        [DllImport(Libraries.Stc,EntryPoint = "stc_get_stats")]
-        internal static extern int GetStats(SafeStcHandle stc, SafeFilterHandle filter, StatsInfoCallback infoCb, IntPtr userData);
         [DllImport(Libraries.Stc,EntryPoint = "stc_get_all_stats")]
         internal static extern int GetAllStats(SafeStcHandle stc, SafeFilterHandle filter, GetAllStatsFinishedCallback infoCb, IntPtr userData);
         [DllImport(Libraries.Stc,EntryPoint = "stc_foreach_all_stats")]
