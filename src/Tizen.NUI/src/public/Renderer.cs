@@ -625,7 +625,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6.0 </since_tizen>
         /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class PropertyRanges
+        public class Ranges
         {
             /// <since_tizen> 6.0 </since_tizen>
             /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.

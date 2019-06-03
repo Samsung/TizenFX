@@ -697,7 +697,7 @@ namespace Tizen.NUI
             }
             set
             {
-                _url = value;
+                _url = (value == null ? "" : value);
                 UpdateVisual();
             }
         }
