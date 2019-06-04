@@ -3611,7 +3611,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _weight = value;
-                _layout.RequestLayout();
+                _layout?.RequestLayout();
             }
         }
 
