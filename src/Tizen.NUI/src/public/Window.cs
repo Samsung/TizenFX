@@ -1295,7 +1295,8 @@ namespace Tizen.NUI
 
         internal Vector2 GetSize()
         {
-            Vector2 ret = new Vector2(Interop.Window.GetSize(swigCPtr), true);
+            var val = new Uint16Pair(Interop.Window.GetSize(swigCPtr), false);
+            Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
