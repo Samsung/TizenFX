@@ -29,7 +29,6 @@ namespace Tizen.NUI
     public class Layer : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private Window window;
 
         /// <summary>
         /// Creates a Layer object.
@@ -137,7 +136,7 @@ namespace Tizen.NUI
                 else
                 {
                     // Clipping not enabled so return the window size
-                    Size2D windowSize = window?.Size;
+                    Size2D windowSize = Window.Instance.Size;
                     Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
                     return ret;
                 }
@@ -389,7 +388,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
-            var parentChildren = window?.LayersChildren;
+            var parentChildren = Window.Instance.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -408,7 +407,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
-            var parentChildren = window?.LayersChildren;
+            var parentChildren = Window.Instance.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -427,7 +426,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
-            var parentChildren = window?.LayersChildren;
+            var parentChildren = Window.Instance.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -445,7 +444,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = window?.LayersChildren;
+            var parentChildren = Window.Instance.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -503,7 +502,7 @@ namespace Tizen.NUI
 
         internal uint GetDepth()
         {
-            var parentChildren = window?.LayersChildren;
+            var parentChildren = Window.Instance.LayersChildren;
             if (parentChildren != null)
             {
                 int idx = parentChildren.IndexOf(this);
@@ -516,7 +515,7 @@ namespace Tizen.NUI
         }
         internal void RaiseAbove(Layer target)
         {
-            var parentChildren = window?.LayersChildren;
+            var parentChildren = Window.Instance.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
@@ -543,7 +542,7 @@ namespace Tizen.NUI
 
         internal void LowerBelow(Layer target)
         {
-            var parentChildren = window?.LayersChildren;
+            var parentChildren = Window.Instance.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -625,11 +624,6 @@ namespace Tizen.NUI
             Interop.Actor.Actor_SetName(swigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetWindow(Window win)
-        {
-            window = win;
         }
 
         /// <summary>
