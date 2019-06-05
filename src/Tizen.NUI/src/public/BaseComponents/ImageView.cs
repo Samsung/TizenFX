@@ -333,14 +333,6 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(ResourceUrlProperty, _url);
                 NotifyPropertyChanged();
 
-                PropertyMap temp = new PropertyMap();
-                temp.Insert(ImageVisualProperty.URL, new PropertyValue(value));
-				
-                PropertyMap imageMap = Image;
-                imageMap.Merge(temp);
-				
-                SetValue(ImageProperty, imageMap);
-
             }
         }
 
@@ -632,7 +624,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap temp = new PropertyMap();
                 temp.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(value));
 
-                PropertyMap imageMap = Image;
+                PropertyMap imageMap = (PropertyMap)GetValue(ImageProperty);
                 imageMap.Merge(temp);
 				
 				SetValue(ImageProperty, imageMap);
@@ -660,7 +652,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap temp = new PropertyMap();
                 temp.Insert(ImageVisualProperty.CropToMask, new PropertyValue(value));
 				
-                PropertyMap imageMap = Image;
+                PropertyMap imageMap = (PropertyMap)GetValue(ImageProperty);
                 imageMap.Merge(temp);
 
                 SetValue(ImageProperty, imageMap);
@@ -691,7 +683,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap temp = new PropertyMap();
                 temp.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)value));
 				
-                PropertyMap imageMap = Image;
+                PropertyMap imageMap = (PropertyMap)GetValue(ImageProperty);
                 imageMap.Merge(temp);
 				
                 SetValue(ImageProperty, imageMap);
@@ -723,7 +715,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap temp = new PropertyMap();
                 temp.Insert(ImageVisualProperty.DesiredWidth, new PropertyValue(value));
 				
-                PropertyMap imageMap = Image;
+                PropertyMap imageMap = (PropertyMap)GetValue(ImageProperty);
                 imageMap.Merge(temp);
 				
                 SetValue(ImageProperty, imageMap);
@@ -753,7 +745,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap temp = new PropertyMap();
                 temp.Insert(ImageVisualProperty.DesiredHeight, new PropertyValue(value));
 				
-                PropertyMap imageMap = Image;
+                PropertyMap imageMap = (PropertyMap)GetValue(ImageProperty);
                 imageMap.Merge(temp);
 				
                 SetValue(ImageProperty, imageMap);
@@ -785,7 +777,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap temp = new PropertyMap();
                 temp.Insert(ImageVisualProperty.WrapModeU, new PropertyValue((int)value));
 				
-                PropertyMap imageMap = Image;
+                PropertyMap imageMap = (PropertyMap)GetValue(ImageProperty);
                 imageMap.Merge(temp);
 				
                 SetValue(ImageProperty, imageMap);
@@ -817,7 +809,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap temp = new PropertyMap();
                 temp.Insert(ImageVisualProperty.WrapModeV, new PropertyValue((int)value));
 				
-                PropertyMap imageMap = Image;
+                PropertyMap imageMap = (PropertyMap)GetValue(ImageProperty);
                 imageMap.Merge(temp);
 				
                 SetValue(ImageProperty, imageMap);
