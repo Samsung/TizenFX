@@ -4611,6 +4611,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal override View FindCurrentChildById(uint id)
+        {
+            return FindChildById(id);
+        }
+
         internal void SetParentOrigin(Vector3 origin)
         {
             Interop.ActorInternal.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));
@@ -5595,19 +5600,7 @@ namespace Tizen.NUI.BaseComponents
 
         private View ConvertIdToView(uint id)
         {
-            View view = null;
-            if (GetParent() is View)
-            {
-                View parentView = GetParent() as View;
-                view = parentView.FindChildById(id);
-            }
-
-            if (!view)
-            {
-                view = Window.Instance.GetRootLayer().FindChildById(id);
-            }
-
-            return view;
+            return GetParent()?.FindCurrentChildById(id);
         }
 
         private void OnBackgroundResourceLoaded(IntPtr view)
