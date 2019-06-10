@@ -88,7 +88,16 @@ namespace Tizen.NUI.Xaml
                     }
                     if (value == null)
                     {
-                        value = Activator.CreateInstance(type);
+                        if (type.GetTypeInfo().DeclaredConstructors.Any(ci => ci.IsPublic && ci.GetParameters().Length == 0))
+                        {
+                            //default constructor
+                            value = Activator.CreateInstance(type);
+                        }
+                        else
+                        {
+                            //constructor with all default parameters
+                            value = Activator.CreateInstance(type, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, new object[] { Type.Missing }, CultureInfo.CurrentCulture);
+                        }
                     }
                 }
                 catch (TargetInvocationException e)
@@ -204,7 +213,7 @@ namespace Tizen.NUI.Xaml
             if (!node.Properties.ContainsKey(XmlName.xFactoryMethod))
             {
                 //non-default ctor
-                return Activator.CreateInstance(nodeType, arguments);
+                return Activator.CreateInstance(nodeType, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, arguments, CultureInfo.CurrentCulture);
             }
 
             var factoryMethod = ((string)((ValueNode)node.Properties[XmlName.xFactoryMethod]).Value);
