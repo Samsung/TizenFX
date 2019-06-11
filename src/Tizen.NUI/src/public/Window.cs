@@ -1385,7 +1385,8 @@ namespace Tizen.NUI
 
         internal KeyEventSignal KeyEventSignal()
         {
-            KeyEventSignal ret = new KeyEventSignal(Interop.Window.KeyEventSignal(swigCPtr), false);
+            KeyEventSignal ret = new KeyEventSignal(Interop.StageSignal.Stage_KeyEventSignal(stageCPtr), false);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1399,7 +1400,8 @@ namespace Tizen.NUI
 
         internal TouchSignal TouchSignal()
         {
-            TouchSignal ret = new TouchSignal(Interop.Window.TouchSignal(swigCPtr), false);
+            TouchSignal ret = new TouchSignal(Interop.StageSignal.Stage_TouchSignal(stageCPtr), false);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
