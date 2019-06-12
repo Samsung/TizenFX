@@ -352,7 +352,7 @@ namespace Tizen.NUI.CommonUI
         /// Method to set current value. The thumb object would move to the corresponding position with animation or not.
         /// </summary>
         /// <param name="currentValue">The special current value.</param>
-        /// <param name="enableAni">Enable move with animation or not, the default value is true.</param>
+        /// <param name="isEnableAni">Enable move with animation or not, the default value is true.</param>
         /// <exception cref="ArgumentOutOfRangeException">Throw when current size is less than the min value, or greater than the max value.</exception>
         /// <example>
         /// <code>
@@ -421,7 +421,7 @@ namespace Tizen.NUI.CommonUI
                     scrollAniPlayer.Dispose();
                     scrollAniPlayer = null;
                 }
-                /// UIDirectionChangedEvent -= OnUIDirectionChangedEvent;
+                // UIDirectionChangedEvent -= OnUIDirectionChangedEvent;
             }
 
             //Release your own unmanaged resources here.

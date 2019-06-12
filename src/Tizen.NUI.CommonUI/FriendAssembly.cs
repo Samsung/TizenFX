@@ -4,22 +4,4 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.CommonUI
 {
-    public class TestPublicClass
-    {
-        public void PublicMethod() {}
-        
-        protected virtual void ProtectedMethod() {}
-
-        internal protected virtual void InternalProtectedMethod() {}
-    }
-
-    internal class TestInternalClass
-    {
-        public void PublicMethod() {}
-        
-        protected virtual void ProtectedMethod() {}
-
-        internal protected virtual void InternalProtectedMethod() {}
-    }
-
 }

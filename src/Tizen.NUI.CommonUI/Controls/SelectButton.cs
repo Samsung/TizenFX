@@ -718,7 +718,7 @@ namespace Tizen.NUI.CommonUI
         {
         }
 
-        private new void Initialize()
+        private void Initialize()
         {
             selectButtonAttributes = attributes as SelectButtonAttributes;
             if (selectButtonAttributes == null)

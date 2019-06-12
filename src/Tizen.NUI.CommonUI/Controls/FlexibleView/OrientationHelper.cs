@@ -20,7 +20,6 @@ namespace Tizen.NUI.CommonUI
 {
     /**
     * Helper class for LayoutManagers to abstract measurements depending on the View's orientation.
-    * <p>
     * It is developed to easily support vertical and horizontal orientations in a LayoutManager but
     * can also be used to abstract calls around view bounds and child measurements with margins and
     * decorations.
@@ -56,7 +55,6 @@ namespace Tizen.NUI.CommonUI
 
         /**
          * Returns the layout space change between the previous layout pass and current layout pass.
-         * <p>
          * Make sure you call {@link #onLayoutComplete()} at the end of your LayoutManager's
          * {@link RecyclerView.LayoutManager#onLayoutChildren(RecyclerView.Recycler,
          * RecyclerView.State)} method.
@@ -71,7 +69,6 @@ namespace Tizen.NUI.CommonUI
 
         /**
          * Returns the start of the view including its decoration and margin.
-         * <p>
          * For example, for the horizontal helper, if a View's left is at pixel 20, has 2px left
          * decoration and 3px left margin, returned value will be 15px.
          *
@@ -83,7 +80,6 @@ namespace Tizen.NUI.CommonUI
 
         /**
          * Returns the end of the view including its decoration and margin.
-         * <p>
          * For example, for the horizontal helper, if a View's right is at pixel 200, has 2px right
          * decoration and 3px right margin, returned value will be 205.
          *

@@ -579,7 +579,6 @@ namespace Tizen.NUI.CommonUI
         /**
          * Finds an anchor child from existing Views. Most of the time, this is the view closest to
          * start or end that has a valid position (e.g. not removed).
-         * <p>
          * If a child has focus, it is given priority.
          */
         private bool UpdateAnchorFromChildren(FlexibleView.Recycler recycler, AnchorInfo anchorInfo)
@@ -657,9 +656,9 @@ namespace Tizen.NUI.CommonUI
                 layoutState.Offset += layoutChunkResult.Consumed * layoutState.LayoutDirection;
                 /**
                  * Consume the available space if:
-                 * * layoutChunk did not request to be ignored
-                 * * OR we are laying out scrap children
-                 * * OR we are not doing pre-layout
+                 * layoutChunk did not request to be ignored
+                 * OR we are laying out scrap children
+                 * OR we are not doing pre-layout
                  */
                 if (!layoutChunkResult.IgnoreConsumed)
                 {

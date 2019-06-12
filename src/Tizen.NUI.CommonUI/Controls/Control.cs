@@ -424,7 +424,7 @@ namespace Tizen.NUI.CommonUI
         /// <summary>
         /// Tap gesture callback.
         /// </summary>
-        /// <param name="sender">The sender</param>
+        /// <param name="source">The sender</param>
         /// <param name="e">The tap gesture event data</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -458,6 +458,8 @@ namespace Tizen.NUI.CommonUI
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

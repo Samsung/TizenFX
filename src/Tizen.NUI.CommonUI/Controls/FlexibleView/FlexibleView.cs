@@ -1046,11 +1046,29 @@ namespace Tizen.NUI.CommonUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract class LayoutManager
         {
+            /// <summary>
+            /// Direction
+            /// </summary>
             public enum Direction
             {
+                /// <summary>
+                /// Left
+                /// </summary>
                 Left,
+
+                /// <summary>
+                /// Right
+                /// </summary>
                 Right,
+
+                /// <summary>
+                /// Up
+                /// </summary>
                 Up,
+
+                /// <summary>
+                /// Down
+                /// </summary>
                 Down
             }
 
@@ -1351,7 +1369,7 @@ namespace Tizen.NUI.CommonUI
             /// <summary>
             /// Finds the view which represents the given adapter position.
             /// </summary>
-            /// <param name="index">adapter index</param>
+            /// <param name="position">adapter position</param>
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1417,7 +1435,7 @@ namespace Tizen.NUI.CommonUI
             /// <summary>
             /// Offset all child views attached to the parent FlexibleView by dy pixels along the vertical axis.
             /// </summary>
-            /// <param name="dx">Pixels to offset by </param>
+            /// <param name="dy">Pixels to offset by </param>
             /// <param name="immediate">specify if the offset need animation</param>
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1535,8 +1553,8 @@ namespace Tizen.NUI.CommonUI
             }
 
             /// <summary>
-            /// Add a view to the currently attached FlexibleView if needed.
-            /// LayoutManagers should use this method to add views obtained from a FlexibleView.Recycler using getViewForPosition(int).
+            /// Add a view to the currently attached FlexibleView if needed.<br />
+            /// LayoutManagers should use this method to add views obtained from a FlexibleView.Recycler using getViewForPosition(int).<br />
             /// </summary>
             /// <param name="holder">view to add</param>
             /// <since_tizen> 6 </since_tizen>
@@ -1548,8 +1566,8 @@ namespace Tizen.NUI.CommonUI
             }
 
             /// <summary>
-            /// Add a view to the currently attached FlexibleView if needed.
-            /// LayoutManagers should use this method to add views obtained from a FlexibleView.Recycler using getViewForPosition(int).
+            /// Add a view to the currently attached FlexibleView if needed.<br />
+            /// LayoutManagers should use this method to add views obtained from a FlexibleView.Recycler using getViewForPosition(int).<br />
             /// </summary>
             /// <param name="holder">view to add</param>
             /// <param name="index">index to add child at</param>
@@ -2007,7 +2025,7 @@ namespace Tizen.NUI.CommonUI
             private List<ViewHolder> mChangedScrap = null;
             //private List<ItemView> mCachedViews = new List<ItemView>();
 
-            private List<ViewHolder> mUnmodifiableAttachedScrap;
+            //private List<ViewHolder> mUnmodifiableAttachedScrap;
 
             private int mCacheSizeMax = 2;
 
@@ -2470,16 +2488,6 @@ namespace Tizen.NUI.CommonUI
                 return true;
             }
 
-        }
-
-        private class InfoRecord
-        {
-            public static readonly int FLAG_DISAPPEARED = 1;
-            public static readonly int FLAG_APPEAR = 1 << 1;
-
-
-            public ItemViewInfo preInfo;
-            public ItemViewInfo postInfo;
         }
 
         private class ItemViewInfo

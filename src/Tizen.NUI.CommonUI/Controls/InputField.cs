@@ -58,7 +58,7 @@ namespace Tizen.NUI.CommonUI
         /// <summary>
         /// Initializes a new instance of the InputField class.
         /// </summary>
-        /// <param name="style">Create Header by special style defined in UX.</param>
+        /// <param name="attributes">Create Header by attributes customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -395,6 +395,9 @@ namespace Tizen.NUI.CommonUI
             }
         }
 
+        /// <summary>
+        /// Gets and Sets Space.
+        /// </summary>
         public int Space
         {
             get
@@ -546,7 +549,7 @@ namespace Tizen.NUI.CommonUI
         /// <summary>
         /// Set the text field X pose
         /// </summary>
-        /// <param name="X">Input Field' X.</param>
+        /// <param name="x">Input Field' X.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

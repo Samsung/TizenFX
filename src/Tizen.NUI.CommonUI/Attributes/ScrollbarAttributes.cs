@@ -40,7 +40,7 @@ namespace Tizen.NUI.CommonUI
         /// <summary>
         /// Creates a new instance of a ScrollBarAttributes with attributes.
         /// </summary>
-        /// <param name="attrs">Create ScrollBarAttributes by attributes customized by user.</param>
+        /// <param name="attributes">Create ScrollBarAttributes by attributes customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

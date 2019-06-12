@@ -30,6 +30,9 @@ namespace Tizen.NUI.CommonUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Toast : Control
     {
+        /// <summary>
+        /// textLabels.
+        /// </summary>
         protected TextLabel[] textLabels = null;
         private ToastAttributes toastAttributes = null;
         private string[] textArray = null;
