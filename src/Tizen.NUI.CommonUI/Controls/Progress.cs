@@ -35,14 +35,15 @@ namespace Tizen.NUI.CommonUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ProgressStatusType state = ProgressStatusType.Indeterminate;
 
+        private const float round = 0.5f;
         private ImageView trackObj = null;
         private ImageView progressObj = null;
         private ImageView bufferObj = null;
         private ImageView loadingObj = null;
-        private int maxValue = 100;
-        private int minValue = 0;
-        private int currentValue = 0;
-        private int bufferValue = 0;
+        private float maxValue = 100;
+        private float minValue = 0;
+        private float currentValue = 0;
+        private float bufferValue = 0;
 
         /// <summary>
         /// The constructor of Progress
@@ -262,7 +263,7 @@ namespace Tizen.NUI.CommonUI
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int MaxValue
+        public float MaxValue
         {
             get
             {
@@ -281,7 +282,7 @@ namespace Tizen.NUI.CommonUI
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int MinValue
+        public float MinValue
         {
             get
             {
@@ -300,7 +301,7 @@ namespace Tizen.NUI.CommonUI
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CurrentValue
+        public float CurrentValue
         {
             get
             {
@@ -323,7 +324,7 @@ namespace Tizen.NUI.CommonUI
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int BufferValue
+        public float BufferValue
         {
             get
             {
@@ -457,9 +458,9 @@ namespace Tizen.NUI.CommonUI
 
             float width = this.SizeWidth;
             float height = this.SizeHeight;
-            float progressRatio = (float)currentValue / (float)(maxValue - minValue);
+            float progressRatio = (float)(currentValue - minValue) / (float)(maxValue - minValue);
             float progressWidth = width * progressRatio;
-            progressObj.Size2D = new Size2D((int)progressWidth, (int)height);
+            progressObj.Size2D = new Size2D((int)(progressWidth + round), (int)height); //Add const round to reach Math.Round function.
             if (null != bufferObj)
             {
                 if (bufferValue < minValue || bufferValue > maxValue)
@@ -467,9 +468,9 @@ namespace Tizen.NUI.CommonUI
                     return;
                 }
 
-                float bufferRatio = (float)bufferValue / (float)(maxValue - minValue);
+                float bufferRatio = (float)(bufferValue - minValue) / (float)(maxValue - minValue);
                 float bufferWidth = width * bufferRatio;
-                bufferObj.Size2D = new Size2D((int)bufferWidth, (int)height);
+                bufferObj.Size2D = new Size2D((int)(bufferWidth + round), (int)height); //Add const round to reach Math.Round function.
             }
         }
 
