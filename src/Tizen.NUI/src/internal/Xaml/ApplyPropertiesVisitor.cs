@@ -129,6 +129,13 @@ namespace Tizen.NUI.Xaml
                     addMethod?.Invoke(source, new[] { value });
                     return;
                 }
+                if (xpe == null && Context.Types[parentElement].GetRuntimeMethods().Any(mi => mi.Name == "Add" && mi.GetParameters().Length == 1))
+                {
+                    //if there are similar parameters in the function, this will exist issue.
+                    var addMethod = Context.Types[parentElement].GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
+                    if (addMethod != null) addMethod.Invoke(source, new[] { value });
+                    return;
+                }
                 if (xpe == null && (contentProperty = GetContentPropertyName(Context.Types[parentElement].GetTypeInfo())) != null) {
                     var name = new XmlName(node.NamespaceURI, contentProperty);
                     if (Skips.Contains(name))
@@ -139,13 +146,7 @@ namespace Tizen.NUI.Xaml
                     SetPropertyValue(source, name, value, Context.RootElement, node, Context, node);
                     return;
                 }
-                if (xpe == null && Context.Types[parentElement].GetRuntimeMethods().Any(mi => mi.Name == "Add" && mi.GetParameters().Length == 1))
-                {
-                    //if there are similar parameters in the function, this will exist issue.
-                    var addMethod =	Context.Types[parentElement].GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
-                    if(addMethod != null) addMethod.Invoke(source, new[] { value });
-                    return;
-                }
+                
                 xpe = xpe ?? new XamlParseException($"Can not set the content of {((IElementNode)parentNode).XmlType.Name} as it doesn't have a ContentPropertyAttribute", node);
                 if (Context.ExceptionHandler != null)
                     Context.ExceptionHandler(xpe);
