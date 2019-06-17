@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="lib\" />
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tizen.NUI.Xaml\Tizen.NUI.Xaml.csproj" />
+    <Folder Include="lib\" />
   </ItemGroup>
 
   <ItemGroup>

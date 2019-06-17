@@ -1275,10 +1275,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Invoked whenever the binding context of the textlabel changes. Implement this method to add class handling for this event.
         /// </summary>
-        /// Deprecated. Do not use.
-        protected void OnBindingContextChanged()
+        protected override void OnBindingContextChanged()
         {
-
+            base.OnBindingContextChanged();
         }
 
         private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)

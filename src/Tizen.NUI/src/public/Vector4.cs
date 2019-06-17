@@ -15,6 +15,7 @@
  *
  */
 using System;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -23,6 +24,7 @@ namespace Tizen.NUI
     /// A four-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [TypeConverter(typeof(Vector4TypeConverter))]
     public class Vector4 : global::System.IDisposable
     {
         /// <summary>
