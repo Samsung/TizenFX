@@ -976,7 +976,6 @@ namespace Tizen.NUI.Xaml.Forms.BaseComponents
                 };
                 ChildAdded(this, e);
             }
-            BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
         }
 
         /// <summary>
