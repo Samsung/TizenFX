@@ -5600,7 +5600,24 @@ namespace Tizen.NUI.BaseComponents
 
         private View ConvertIdToView(uint id)
         {
-            return GetParent()?.FindCurrentChildById(id);
+            View view = GetParent()?.FindCurrentChildById(id);
+
+            //If we can't find the parent's children, find in the top layer.
+            if (!view) 
+            {
+                Container parent = GetParent();
+                while ((parent is View) && (parent != null))
+                {
+                    parent = parent.GetParent();
+                    if (parent is Layer)
+                    {
+                        view = parent.FindCurrentChildById(id);
+                        break;
+                    }
+                }
+            }
+
+            return view;
         }
 
         private void OnBackgroundResourceLoaded(IntPtr view)

@@ -135,10 +135,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        internal virtual View FindCurrentChildById(uint id)
-        {
-            return null;
-        }
+        internal abstract View FindCurrentChildById(uint id);
 
     }
 } // namespace Tizen.NUI
