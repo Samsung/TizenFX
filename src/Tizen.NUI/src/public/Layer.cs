@@ -139,7 +139,7 @@ namespace Tizen.NUI
                 else
                 {
                     // Clipping not enabled so return the window size
-                    Size2D windowSize = window? .Size;
+                    Size2D windowSize = window?.Size;
                     Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
                     return ret;
                 }
@@ -391,7 +391,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
-            var parentChildren = window? .LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -410,7 +410,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
-            var parentChildren = window? .LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -429,7 +429,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
-            var parentChildren = window? .LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -447,7 +447,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = window? .LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -505,7 +505,7 @@ namespace Tizen.NUI
 
         internal uint GetDepth()
         {
-            var parentChildren = window? .LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int idx = parentChildren.IndexOf(this);
@@ -518,7 +518,7 @@ namespace Tizen.NUI
         }
         internal void RaiseAbove(Layer target)
         {
-            var parentChildren = window? .LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
@@ -545,7 +545,7 @@ namespace Tizen.NUI
 
         internal void LowerBelow(Layer target)
         {
-            var parentChildren = window? .LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -631,14 +631,7 @@ namespace Tizen.NUI
 
         internal void SetWindow(Window win)
         {
-            if(window == null)
-            {
-                window = null;
-            }
-            else
-            {
-                window = win;
-            }
+            window = win;
         }
 
         /// <summary>
