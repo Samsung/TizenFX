@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -89,7 +90,8 @@ namespace Tizen.NUI.BaseComponents
     /// View is the base class for all views.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class View : Container
+    [ContentProperty("Children")]
+    public class View : Container, IResourcesProvider
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1272,6 +1274,9 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MARGIN).Get(temp);
             return temp;
         });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty StyleProperty = BindableProperty.Create("Style", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
 
         /// <summary>
         /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
@@ -1289,6 +1294,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool layoutingDisabled{get; set;} = true;
 
+        internal readonly MergedStyle _mergedStyle;
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private LayoutItem _layout; // Exclusive layout assigned to this View.
         private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
@@ -1352,6 +1358,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 PositionUsesPivotPoint = false;
             }
+            _mergedStyle = new MergedStyle(GetType(), this);
 
             _onWindowSendEventCallback = SendViewAddedEventToWindow;
             this.OnWindowSignal().Connect(_onWindowSendEventCallback);
@@ -1393,12 +1400,12 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is removed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<ChildRemovedEventArgs> ChildRemoved;
+        public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
         /// <summary>
         /// Event when a child is added.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<ChildAddedEventArgs> ChildAdded;
+        public new event EventHandler<ChildAddedEventArgs> ChildAdded;
 
         /// <summary>
         /// An event for the KeyInputFocusGained signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -1838,6 +1845,30 @@ namespace Tizen.NUI.BaseComponents
             PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
             CONTROL_PROPERTY_START_INDEX = PROPERTY_START_INDEX,
             CONTROL_PROPERTY_END_INDEX = CONTROL_PROPERTY_START_INDEX + 1000
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsResourcesCreated
+        {
+            get
+            {
+                return Application.Current.IsResourcesCreated;
+            }
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                return Application.Current.XamlResources;
+            }
+            set
+            {
+                Application.Current.XamlResources = value;
+            }
         }
 
         /// <summary>
@@ -3439,6 +3470,18 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal Style Style
+        {
+            get
+            {
+                return (Style)GetValue(StyleProperty);
+            }
+            set
+            {
+                SetValue(StyleProperty, value);
+            }
+        }
+
         /// <summary>
         /// Child property to specify desired width
         /// </summary>
@@ -4568,11 +4611,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal override View FindCurrentChildById(uint id)
-        {
-            return FindChildById(id);
-        }
-
         internal void SetParentOrigin(Vector3 origin)
         {
             Interop.ActorInternal.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));
@@ -5557,7 +5595,19 @@ namespace Tizen.NUI.BaseComponents
 
         private View ConvertIdToView(uint id)
         {
-            return GetParent()?.FindCurrentChildById(id);
+            View view = null;
+            if (GetParent() is View)
+            {
+                View parentView = GetParent() as View;
+                view = parentView.FindChildById(id);
+            }
+
+            if (!view)
+            {
+                view = Window.Instance.GetRootLayer().FindChildById(id);
+            }
+
+            return view;
         }
 
         private void OnBackgroundResourceLoaded(IntPtr view)
@@ -5797,6 +5847,56 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+
+        private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Transition GetTransition(string transitionName)
+        {
+            Transition trans = null;
+            transDictionary.TryGetValue(transitionName, out trans);
+            return trans;
+        }
+
+        private void LoadTransitions()
+        {
+            foreach (string str in transitionNames)
+            {
+                string resourceName = str + ".xaml";
+                Transition trans = null;
+
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+                string likelyResourcePath = resource + "animation/" + resourceName;
+
+                if (File.Exists(likelyResourcePath))
+                {
+                    trans = Extensions.LoadObject<Transition>(likelyResourcePath);
+                }
+                if (trans)
+                {
+                    transDictionary.Add(trans.Name, trans);
+                }
+            }
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string[] TransitionNames
+        {
+            get
+            {
+                return transitionNames;
+            }
+            set
+            {
+                transitionNames = value;
+                LoadTransitions();
+            }
+        }
+        private string[] transitionNames;
 
         internal class BackgroundResourceLoadedEventArgs : EventArgs
         {

@@ -21,7 +21,7 @@ using System.Linq;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the DesignElement class for the watch application.
+    /// Represents the design element for a watch application.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public abstract class DesignElement : IEditable
@@ -34,10 +34,10 @@ namespace Tizen.Applications.WatchfaceComplication
         private int _editableId;
 
         /// <summary>
-        /// Initializes the DesignElement class.
+        /// Initializes a new instance of the DesignElement class.
         /// </summary>
         /// <param name="candidates">The candidates list.</param>
-        /// <param name="currentDataIndex">The currently selected data index of candidate list.</param>
+        /// <param name="currentDataIndex">The index of selected data among candidate list.</param>
         /// <param name="editableName">The design element name.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -174,7 +174,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the editable's currently selected data index of candidate list.
         /// </summary>
-        /// <returns>The currently selected data index of candidate list.</returns>
+        /// <returns>The index of selected data among candidate list.</returns>
         /// <since_tizen> 6 </since_tizen>
         int IEditable.GetCurrentDataIndex()
         {

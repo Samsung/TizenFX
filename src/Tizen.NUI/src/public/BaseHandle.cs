@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI
 {
@@ -28,6 +29,13 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
+        internal static readonly BindablePropertyKey NavigationPropertyKey = BindableProperty.CreateReadOnly("Navigation", typeof(INavigation), typeof(/*VisualElement*/BaseHandle), default(INavigation));
+
+        /// <summary>
+        /// Backing store for the Navigation property.
+        /// </summary>
+        internal static readonly BindableProperty NavigationProperty = NavigationPropertyKey.BindableProperty;
+
         /// <summary>
         /// swigCMemOwn
         /// </summary>
@@ -125,6 +133,23 @@ namespace Tizen.NUI
             {
                 return swigCPtr;
             }
+        }
+
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        internal NavigationProxy NavigationProxy
+        {
+            get { return Navigation as NavigationProxy; }
+        }
+
+        /// <summary>
+        /// Gets the navigation.
+        /// </summary>
+        internal INavigation Navigation
+        {
+            get { return (INavigation)GetValue(NavigationProperty); }
+            set { SetValue(NavigationPropertyKey, value); }
         }
 
         /// <summary>
@@ -437,16 +462,6 @@ namespace Tizen.NUI
             RefObject ret = (cPtr == global::System.IntPtr.Zero) ? null : new RefObject(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal object GetValue(BindableProperty property)
-        {
-            return property.DefaultValueCreator?.Invoke(this);
-        }
-
-        internal void SetValue(BindableProperty property, object value)
-        {
-            property.PropertyChanged?.Invoke(this, null, value);
         }
 
         /// <summary>

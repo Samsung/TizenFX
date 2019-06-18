@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,6 +25,7 @@ namespace Tizen.NUI
     /// A three-dimensional size.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+    [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
     public class Size : global::System.IDisposable
     {
         /// <summary>swigCMemOwn.</summary>

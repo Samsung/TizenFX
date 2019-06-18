@@ -21,6 +21,8 @@ using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
@@ -223,6 +225,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static void RegisterAssembly(Assembly assembly)
         {
+            XamlParser.s_assemblies.Add(assembly);
         }
 
         /// <summary>
@@ -350,6 +353,7 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
+            Device.PlatformServices = new TizenPlatformServices();
         }
     }
 

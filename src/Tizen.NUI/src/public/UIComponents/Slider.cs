@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.UIComponents
 {
@@ -64,7 +65,7 @@ namespace Tizen.NUI.UIComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -437,7 +438,7 @@ namespace Tizen.NUI.UIComponents
             }
             set
             {
-                SetValue(ValueProperty, value);
+                SetValueAndForceSendChangeSignal(ValueProperty, value);
             }
         }
 
@@ -630,6 +631,26 @@ namespace Tizen.NUI.UIComponents
             set
             {
                 SetValue(MarkToleranceProperty, value);
+            }
+        }
+
+        internal override bool IsCreateByXaml
+        {
+            get
+            {
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
+                {
+                    this.ValueChanged += (obj, e) => {
+                        this.Value = e.SlideValue;
+                        return true;
+                    };
+                }
             }
         }
 

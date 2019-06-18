@@ -14,7 +14,8 @@
  * limitations under the License.
  *
  */
-using System;
+ using System;
+ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -23,6 +24,7 @@ namespace Tizen.NUI
     /// Both values (x and y) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [TypeConverter(typeof(RelativeVector2TypeConverter))]
     public class RelativeVector2 : global::System.IDisposable
     {
         /// <summary>
