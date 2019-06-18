@@ -16,6 +16,7 @@
  */
 
 using System;
+using Tizen.NUI.Binding;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -25,6 +26,7 @@ namespace Tizen.NUI
     /// Position is a three-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Tizen.NUI.Binding.TypeConverter(typeof(PositionTypeConverter))]
     public class Position : global::System.IDisposable
     {
         /// <summary>

@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.UIComponents;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {

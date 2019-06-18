@@ -266,6 +266,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+
         /// <summary>
         /// Adds a child to the table.<br />
         /// If the row or column index is outside the table, the table gets resized bigger.<br />
