@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the EditablesContainer class for the watch application.
+    /// Represents the editables container for a watch application.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public abstract class EditablesContainer : IDisposable
@@ -162,10 +162,10 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Checks the editable with editableId is already exists in edit list.
+        /// Checks whether editableId already exists in edit list.
         /// </summary>
         /// <param name="editableId">The target editable Id.</param>
-        /// <returns>true if the editable is already exists in edit list, otherwise false</returns>
+        /// <returns>true if the editable already exists in edit list, otherwise false</returns>
         /// <since_tizen> 6 </since_tizen>
         public bool IsExist(int editableId)
         {
@@ -282,7 +282,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <remarks>
-        /// This API loads editable's last current data which is updated by editor application.
+        /// This method loads the last editable data which is updated by editor application.
         /// </remarks>
         /// <param name="editableId">The id of the editable.</param>
         /// <example>
@@ -324,7 +324,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Releases the unmanaged resources used by the EditablesContainer class specifying whether to perform a normal dispose operation.
+        /// Releases the unmanaged resources used by the EditablesContainer class specifying whether or not to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -338,7 +338,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Releases all resources used by the EditablesContainer class.
+        /// Releases all resources used by the EditablesContainer instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
