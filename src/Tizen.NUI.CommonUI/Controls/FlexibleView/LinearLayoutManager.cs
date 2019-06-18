@@ -207,25 +207,41 @@ namespace Tizen.NUI.CommonUI
                 mAnchorInfo.Valid = true;
             }
 
+            int firstLayoutDirection;
+            if (mAnchorInfo.LayoutFromEnd)
+            {
+                firstLayoutDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_TAIL
+                        : LayoutState.ITEM_DIRECTION_HEAD;
+            }
+            else
+            {
+                firstLayoutDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_HEAD
+                        : LayoutState.ITEM_DIRECTION_TAIL;
+            }
+            EnsureAnchorReady(recycler, mAnchorInfo, firstLayoutDirection);
             ScrapAttachedViews(recycler);
 
             if (mAnchorInfo.LayoutFromEnd == true)
             {
                 UpdateLayoutStateToFillStart(mAnchorInfo.Position, mAnchorInfo.Coordinate);
                 Fill(recycler, mLayoutState, false, true);
+                Cache(recycler, mLayoutState, true);
 
                 UpdateLayoutStateToFillEnd(mAnchorInfo.Position, mAnchorInfo.Coordinate);
                 mLayoutState.CurrentPosition += mLayoutState.ItemDirection;
                 Fill(recycler, mLayoutState, false, true);
+                Cache(recycler, mLayoutState, true);
             }
             else
             {
                 UpdateLayoutStateToFillEnd(mAnchorInfo.Position, mAnchorInfo.Coordinate);
                 Fill(recycler, mLayoutState, false, true);
+                Cache(recycler, mLayoutState, true);
 
                 UpdateLayoutStateToFillStart(mAnchorInfo.Position, mAnchorInfo.Coordinate);
                 mLayoutState.CurrentPosition += mLayoutState.ItemDirection;
                 Fill(recycler, mLayoutState, false, true);
+                Cache(recycler, mLayoutState, true);
             }
 
             OnLayoutCompleted();
@@ -383,6 +399,11 @@ namespace Tizen.NUI.CommonUI
             mPendingScrollPositionOffset = INVALID_OFFSET;
 
             mAnchorInfo.Reset();
+        }
+
+        internal virtual void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, int itemDirection)
+        {
+
         }
 
 
@@ -692,6 +713,38 @@ namespace Tizen.NUI.CommonUI
             return start - layoutState.Available;
         }
 
+        private void Cache(FlexibleView.Recycler recycler, LayoutState layoutState, bool immediate, float scrolled = 0)
+        {
+            if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
+            {
+                // get the first child in the direction we are going
+                FlexibleView.ViewHolder child = GetChildClosestToEnd();
+                //Log.Fatal("TV.FLUX.Component", $"==========> child:{child.LayoutGroupIndex}-{child.LayoutItemIndex} childEnd:{orientationHelper.GetItemEnd(child)} # {orientationHelper.GetEnd()}");
+
+                if (child.ItemView.Focusable == false || mOrientationHelper.GetViewHolderEnd(child) + scrolled < mOrientationHelper.GetEnd())
+                {
+                    layoutState.Available = MAX_SCROLL_FACTOR * mOrientationHelper.GetTotalSpace();
+                    layoutState.Extra = 0;
+                    layoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
+                    layoutState.Recycle = false;
+                    Fill(recycler, layoutState, true, immediate);
+                }
+            }
+            else
+            {
+                FlexibleView.ViewHolder child = GetChildClosestToStart();
+
+                if (child.ItemView.Focusable == false || mOrientationHelper.GetViewHolderStart(child) + scrolled > 0)
+                {
+                    layoutState.Available = MAX_SCROLL_FACTOR * mOrientationHelper.GetTotalSpace();
+                    layoutState.Extra = 0;
+                    layoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
+                    layoutState.Recycle = false;
+                    Fill(recycler, layoutState, true, immediate);
+                }
+            }
+        }
+
         private void RecycleByLayoutState(FlexibleView.Recycler recycler, LayoutState layoutState, bool immediate)
         {
             if (!layoutState.Recycle)
@@ -800,6 +853,8 @@ namespace Tizen.NUI.CommonUI
             }
 
             float scrolled = absDy > consumed ? -layoutDirection * consumed : dy;
+
+            Cache(recycler, mLayoutState, immediate, scrolled);
 
             mOrientationHelper.OffsetChildren(scrolled, immediate);
 
@@ -1107,7 +1162,7 @@ namespace Tizen.NUI.CommonUI
             }
         }
 
-        private class AnchorInfo
+        internal class AnchorInfo
         {
             public int Position;
             public float Coordinate;

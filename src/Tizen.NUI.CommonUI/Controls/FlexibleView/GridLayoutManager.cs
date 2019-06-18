@@ -43,6 +43,42 @@ namespace Tizen.NUI.CommonUI
             mSpanCount = spanCount;
         }
 
+        internal override void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, int itemDirection)
+        {
+            bool layingOutInPrimaryDirection = (itemDirection == LayoutState.ITEM_DIRECTION_TAIL);
+            int span = anchorInfo.Position;
+            if (layingOutInPrimaryDirection)
+            {
+                // choose span 0
+                while (span > 0 && anchorInfo.Position > 0)
+                {
+                    anchorInfo.Position--;
+                    span = anchorInfo.Position;
+                }
+            }
+            else
+            {
+                // choose the max span we can get. hopefully last one
+                int indexLimit = GetChildCount() - 1;
+                int pos = anchorInfo.Position;
+                int bestSpan = span;
+                while (pos < indexLimit)
+                {
+                    int next = (pos + 1);
+                    if (next > bestSpan)
+                    {
+                        pos += 1;
+                        bestSpan = next;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                anchorInfo.Position = pos;
+            }
+        }
+
         /// <summary>
         /// Retrieves a position that neighbor to current position by direction. 
         /// </summary>

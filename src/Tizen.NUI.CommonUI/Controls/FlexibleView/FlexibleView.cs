@@ -667,11 +667,11 @@ namespace Tizen.NUI.CommonUI
             {
                 if (mLayout.CanScrollVertically())
                 {
-                    mLayout.ScrollVerticallyBy(e.PanGesture.Velocity.Y * 300, mRecycler, false);
+                    mLayout.ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600, mRecycler, false);
                 }
                 else if (mLayout.CanScrollHorizontally())
                 {
-                    mLayout.ScrollHorizontallyBy(e.PanGesture.Velocity.X * 300, mRecycler, false);
+                    mLayout.ScrollHorizontallyBy(e.PanGesture.Velocity.X * 600, mRecycler, false);
                 }
                 ShowScrollBar(1200, true);
             }
@@ -1395,20 +1395,16 @@ namespace Tizen.NUI.CommonUI
 
                 if (mScrollAni == null)
                 {
-                    mScrollAni = new Animation(500);
+                    mScrollAni = new Animation();
                     mScrollAni.Finished += OnScrollAnimationFinished;
                 }
                 else if (mScrollAni.State == Animation.States.Playing)
                 {
-                    StopScroll();
-                    mScrollAni.Duration = 100;
-                    mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+                    //StopScroll();
+                    mScrollAni.Stop();
                 }
-                else
-                {
-                    mScrollAni.Duration = 500;
-                    mScrollAni.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
-                }
+                mScrollAni.Duration = 2000;
+                mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
 
                 mScrollAni.Clear();
 
@@ -1449,20 +1445,16 @@ namespace Tizen.NUI.CommonUI
 
                 if (mScrollAni == null)
                 {
-                    mScrollAni = new Animation(500);
+                    mScrollAni = new Animation();
                     mScrollAni.Finished += OnScrollAnimationFinished;
                 }
                 else if (mScrollAni.State == Animation.States.Playing)
                 {
-                    StopScroll();
-                    mScrollAni.Duration = 100;
-                    mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+                    //StopScroll();
+                    mScrollAni.Stop();
                 }
-                else
-                {
-                    mScrollAni.Duration = 500;
-                    mScrollAni.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
-                }
+                mScrollAni.Duration = 2000;
+                mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
 
                 mScrollAni.Clear();
 
@@ -1636,7 +1628,11 @@ namespace Tizen.NUI.CommonUI
                     for (int i = startIndex; i < endIndex; i++)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        mPendingRecycleViews.Add(v);
+                        if (v.PendingRecycle == false)
+                        {
+                            v.PendingRecycle = true;
+                            mPendingRecycleViews.Add(v);
+                        }
                     }
                 }
                 else
@@ -1644,7 +1640,11 @@ namespace Tizen.NUI.CommonUI
                     for (int i = startIndex; i > endIndex; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        mPendingRecycleViews.Add(v);
+                        if (v.PendingRecycle == false)
+                        {
+                            v.PendingRecycle = true;
+                            mPendingRecycleViews.Add(v);
+                        }
                     }
                 }
                 if (immediate == true)
@@ -1752,6 +1752,7 @@ namespace Tizen.NUI.CommonUI
             {
                 foreach(ViewHolder holder in mPendingRecycleViews)
                 {
+                    holder.PendingRecycle = false;
                     recycler.RecycleView(holder);
                     mChildHelper.RemoveView(holder);
                 }
@@ -1947,6 +1948,13 @@ namespace Tizen.NUI.CommonUI
             }
 
             internal Recycler ScrapContainer { get; set; }
+
+            internal bool PendingRecycle
+            {
+                get;
+                set;
+            } = false;
+
 
             internal bool IsScrap()
             {
