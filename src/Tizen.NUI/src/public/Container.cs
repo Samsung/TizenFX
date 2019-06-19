@@ -135,5 +135,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        internal abstract View FindCurrentChildById(uint id);
+
     }
 } // namespace Tizen.NUI

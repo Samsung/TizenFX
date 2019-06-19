@@ -382,6 +382,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal override View FindCurrentChildById(uint id)
+        {
+            return FindChildById(id);
+        }
+
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View FindChildByName(string viewName)
