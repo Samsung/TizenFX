@@ -17,7 +17,7 @@ namespace Tizen.NUI.Binding
 
         internal static T FindByName<T>(this INameScope namescope, string name)
         {
-            return (T)namescope.FindByName(name);
+            return (T)namescope?.FindByName(name);
         }
 
         private static Stack<Element> elementStack = new Stack<Element>();
