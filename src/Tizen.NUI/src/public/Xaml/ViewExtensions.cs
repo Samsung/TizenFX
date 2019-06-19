@@ -74,5 +74,16 @@ namespace Tizen.NUI.Xaml
         {
             return XamlLoader.LoadObject<T>(path);
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TXaml LoadFromXamlFile<TXaml>(this TXaml view, string nameOfXamlFile)
+        {
+            NUILog.Debug($"LoadFromXamlFile(nameOfXamlFile={nameOfXamlFile})");
+
+            string xamlScript = XamlLoader.GetXamlForName(nameOfXamlFile);
+            XamlLoader.Load(view, xamlScript);
+            return view;
+        }
+
     }
 }
