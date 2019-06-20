@@ -68,7 +68,11 @@ namespace Tizen.NUI
             /// <summary>
             /// At the vertical center of the container
             /// </summary>
-            CenterVertical     = 0x20
+            CenterVertical     = 0x20,
+            /// <summary>
+            /// At the vertical and horizontal center of the container
+            /// </summary>
+            Center             = 0x40
         }
 
         struct HeightAndWidthState
@@ -119,7 +123,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the alignment in the layout
         /// </summary>
-        public LinearLayout.Alignment LinearAlignment{ get; set; } = Alignment.CenterVertical;
+        public LinearLayout.Alignment LinearAlignment{ get; set; } = Alignment.Top;
 
         private float _totalLength = 0.0f;
         private Size2D _cellPadding  = new Size2D(0,0);
@@ -646,19 +650,6 @@ namespace Tizen.NUI
 
             switch (LinearAlignment)
             {
-                case Alignment.Begin:
-                default:
-                    // totalLength contains the padding already
-                    // In case of RTL map BEGIN alignment to the right edge
-                    if (isLayoutRtl)
-                    {
-                        childLeft = new LayoutLength(Padding.Start  + right.AsDecimal() - left.AsDecimal() - _totalLength);
-                    }
-                    else
-                    {
-                        childLeft = new LayoutLength(Padding.Start);
-                    }
-                    break;
                 case Alignment.End:
                     // totalLength contains the padding already
                     // In case of RTL map END alignment to the left edge
@@ -671,9 +662,23 @@ namespace Tizen.NUI
                         childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - _totalLength);
                     }
                     break;
-                case Alignment.CenterHorizontal:
+                case Alignment.CenterHorizontal: // FALL THROUGH
+                case Alignment.Center:
                     // totalLength contains the padding already
                     childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - _totalLength) / 2.0f);
+                    break;
+                case Alignment.Begin: // FALL THROUGH (default)
+                default:
+                    // totalLength contains the padding already
+                    // In case of RTL map BEGIN alignment to the right edge
+                    if (isLayoutRtl)
+                    {
+                        childLeft = new LayoutLength(Padding.Start  + right.AsDecimal() - left.AsDecimal() - _totalLength);
+                    }
+                    else
+                    {
+                        childLeft = new LayoutLength(Padding.Start);
+                    }
                     break;
             }
 
@@ -700,15 +705,16 @@ namespace Tizen.NUI
 
                     switch ( LinearAlignment )
                     {
-                        case Alignment.Top:
-                            childTop = new LayoutLength(Padding.Top + childMargin.Top);
-                            break;
                         case Alignment.Bottom:
                             childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
                             break;
-                        case Alignment.CenterVertical: // FALLTHROUGH
-                        default:
+                        case Alignment.CenterVertical:
+                        case Alignment.Center: // FALLTHROUGH
                             childTop = new LayoutLength(Padding.Top + ( ( childSpace - childHeight ).AsDecimal() / 2.0f ) + childMargin.Top - childMargin.Bottom);
+                            break;
+                        case Alignment.Top: // FALLTHROUGH default
+                        default:
+                            childTop = new LayoutLength(Padding.Top + childMargin.Top);
                             break;
                     }
                     childLeft += childMargin.Start;
@@ -733,18 +739,19 @@ namespace Tizen.NUI
 
             switch (LinearAlignment)
             {
-              case Alignment.Top:
-                // totalLength contains the padding already
-                childTop = new LayoutLength( Padding.Top );
-                break;
               case Alignment.Bottom:
                 // totalLength contains the padding already
                 childTop = new LayoutLength( Padding.Top + bottom.AsDecimal() - top.AsDecimal() - _totalLength);
                 break;
-              case Alignment.CenterVertical:
-              default:
+              case Alignment.CenterVertical: // FALL THROUGH
+              case Alignment.Center:
                 // totalLength contains the padding already
                 childTop = new LayoutLength(Padding.Top + ( bottom.AsDecimal() - top.AsDecimal() - _totalLength ) / 2.0f);
+                break;
+              case Alignment.Top:  // FALL THROUGH (default)
+              default:
+                // totalLength contains the padding already
+                childTop = new LayoutLength( Padding.Top );
                 break;
             }
 
@@ -772,6 +779,7 @@ namespace Tizen.NUI
                         break;
                       }
                       case Alignment.CenterHorizontal:
+                      case Alignment.Center: // FALL THROUGH
                       {
                         childLeft = new LayoutLength(Padding.Start + (( childSpace - childWidth ).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
                         break;
