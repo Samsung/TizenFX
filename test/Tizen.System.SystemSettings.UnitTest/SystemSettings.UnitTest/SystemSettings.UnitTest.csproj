@@ -18,10 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="6.0.0.14697">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Tizen.NET" Version="6.1.0" />
+    <PackageReference Include="Tizen.NET.API6" Version="6.1.0" />
+    <PackageReference Include="Tizen.NET.Internals" Version="6.1.0" />
   </ItemGroup>
 
 </Project>
