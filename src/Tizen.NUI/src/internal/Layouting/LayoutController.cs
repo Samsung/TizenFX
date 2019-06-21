@@ -248,11 +248,16 @@ namespace Tizen.NUI
         /// </summary>
         private void Process(int id)
         {
-            Layer defaultLayer = _window.GetDefaultLayer();
-            for (uint i = 0; i < defaultLayer.ChildCount; i++)
+            // First layer in the Window should be the default layer (index 0 )
+            uint numberOfLayers = _window.LayerCount;
+            for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
             {
-                View view = defaultLayer.GetChildAt(i);
-                FindRootLayouts(view);
+                Layer layer = _window.GetLayer(layerIndex);
+                for (uint i = 0; i < layer.ChildCount; i++)
+                {
+                    View view = layer.GetChildAt(i);
+                    FindRootLayouts(view);
+                }
             }
 
         }
