@@ -359,18 +359,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return dropDownAttributes.ButtonAttributes?.IconAttributes?.ResourceURL.All;
+                return dropDownAttributes.ButtonAttributes?.IconAttributes?.ResourceUrl.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateButtonIconAttributes();
-                    if (dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL == null)
+                    if (dropDownAttributes.ButtonAttributes.IconAttributes.ResourceUrl == null)
                     {
-                        dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL = new StringSelector();
+                        dropDownAttributes.ButtonAttributes.IconAttributes.ResourceUrl = new StringSelector();
                     }
-                    dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL.All = value;
+                    dropDownAttributes.ButtonAttributes.IconAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -466,18 +466,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return dropDownAttributes.ListBackgroundImageAttributes?.ResourceURL?.All;
+                return dropDownAttributes.ListBackgroundImageAttributes?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateListBackgroundAttributes();
-                    if (dropDownAttributes.ListBackgroundImageAttributes.ResourceURL == null)
+                    if (dropDownAttributes.ListBackgroundImageAttributes.ResourceUrl == null)
                     {
-                        dropDownAttributes.ListBackgroundImageAttributes.ResourceURL = new StringSelector();
+                        dropDownAttributes.ListBackgroundImageAttributes.ResourceUrl = new StringSelector();
                     }
-                    dropDownAttributes.ListBackgroundImageAttributes.ResourceURL.All = value;
+                    dropDownAttributes.ListBackgroundImageAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -799,7 +799,7 @@ namespace Tizen.NUI.CommonUI
                 }
                 if (dropDownAttributes.ButtonAttributes.IconAttributes != null)
                 {
-                    button.IconURLSelector = dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL;
+                    button.IconURLSelector = dropDownAttributes.ButtonAttributes.IconAttributes.ResourceUrl;
                     int iconWidth = 0;
                     int buttonTextWidth = 0;
                     if (dropDownAttributes.ButtonAttributes.IconAttributes.Size2D != null)
@@ -1368,18 +1368,18 @@ namespace Tizen.NUI.CommonUI
             {
                 get
                 {
-                    return itemDataAttributes.IconAttributes?.ResourceURL?.All;
+                    return itemDataAttributes.IconAttributes?.ResourceUrl?.All;
                 }
                 set
                 {
                     CreateIconAttributes();
-                    if (itemDataAttributes.IconAttributes.ResourceURL == null)
+                    if (itemDataAttributes.IconAttributes.ResourceUrl == null)
                     {
-                        itemDataAttributes.IconAttributes.ResourceURL = new StringSelector { All = value };
+                        itemDataAttributes.IconAttributes.ResourceUrl = new StringSelector { All = value };
                     }
                     else
                     {
-                        itemDataAttributes.IconAttributes.ResourceURL.All = value;
+                        itemDataAttributes.IconAttributes.ResourceUrl.All = value;
                     }
                 }
             }
@@ -1432,18 +1432,18 @@ namespace Tizen.NUI.CommonUI
             {
                 get
                 {
-                    return itemDataAttributes.CheckImageAttributes?.ResourceURL?.All;
+                    return itemDataAttributes.CheckImageAttributes?.ResourceUrl?.All;
                 }
                 set
                 {
                     CreateCheckImageAttributes();
-                    if (itemDataAttributes.CheckImageAttributes.ResourceURL == null)
+                    if (itemDataAttributes.CheckImageAttributes.ResourceUrl == null)
                     {
-                        itemDataAttributes.CheckImageAttributes.ResourceURL = new StringSelector { All = value };
+                        itemDataAttributes.CheckImageAttributes.ResourceUrl = new StringSelector { All = value };
                     }
                     else
                     {
-                        itemDataAttributes.CheckImageAttributes.ResourceURL.All = value;
+                        itemDataAttributes.CheckImageAttributes.ResourceUrl.All = value;
                     }
                 }
             }

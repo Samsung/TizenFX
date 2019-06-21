@@ -162,18 +162,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.BackgroundImageAttributes?.ResourceURL?.All;
+                return buttonAttributes?.BackgroundImageAttributes?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateBackgroundAttributes();
-                    if (buttonAttributes.BackgroundImageAttributes.ResourceURL == null)
+                    if (buttonAttributes.BackgroundImageAttributes.ResourceUrl == null)
                     {
-                        buttonAttributes.BackgroundImageAttributes.ResourceURL = new StringSelector();
+                        buttonAttributes.BackgroundImageAttributes.ResourceUrl = new StringSelector();
                     }
-                    buttonAttributes.BackgroundImageAttributes.ResourceURL.All = value;
+                    buttonAttributes.BackgroundImageAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -214,18 +214,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.ShadowImageAttributes?.ResourceURL?.All;
+                return buttonAttributes?.ShadowImageAttributes?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateShadowAttributes();
-                    if (buttonAttributes.ShadowImageAttributes.ResourceURL == null)
+                    if (buttonAttributes.ShadowImageAttributes.ResourceUrl == null)
                     {
-                        buttonAttributes.ShadowImageAttributes.ResourceURL = new StringSelector();
+                        buttonAttributes.ShadowImageAttributes.ResourceUrl = new StringSelector();
                     }
-                    buttonAttributes.ShadowImageAttributes.ResourceURL.All = value;
+                    buttonAttributes.ShadowImageAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -266,18 +266,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.OverlayImageAttributes?.ResourceURL?.All;
+                return buttonAttributes?.OverlayImageAttributes?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateOverlayAttributes();
-                    if (buttonAttributes.OverlayImageAttributes.ResourceURL == null)
+                    if (buttonAttributes.OverlayImageAttributes.ResourceUrl == null)
                     {
-                        buttonAttributes.OverlayImageAttributes.ResourceURL = new StringSelector();
+                        buttonAttributes.OverlayImageAttributes.ResourceUrl = new StringSelector();
                     }
-                    buttonAttributes.OverlayImageAttributes.ResourceURL.All = value;
+                    buttonAttributes.OverlayImageAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -456,18 +456,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.IconAttributes?.ResourceURL?.All;
+                return buttonAttributes?.IconAttributes?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateIconAttributes();
-                    if (buttonAttributes.IconAttributes.ResourceURL == null)
+                    if (buttonAttributes.IconAttributes.ResourceUrl == null)
                     {
-                        buttonAttributes.IconAttributes.ResourceURL = new StringSelector();
+                        buttonAttributes.IconAttributes.ResourceUrl = new StringSelector();
                     }
-                    buttonAttributes.IconAttributes.ResourceURL.All = value;
+                    buttonAttributes.IconAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -570,14 +570,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.IconAttributes?.ResourceURL;
+                return buttonAttributes?.IconAttributes?.ResourceUrl;
             }
             set
             {
                 if (value != null)
                 {
                     CreateIconAttributes();
-                    buttonAttributes.IconAttributes.ResourceURL = value.Clone() as StringSelector;
+                    buttonAttributes.IconAttributes.ResourceUrl = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -592,14 +592,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.BackgroundImageAttributes?.ResourceURL;
+                return buttonAttributes?.BackgroundImageAttributes?.ResourceUrl;
             }
             set
             {
                 if (value != null)
                 {
                     CreateBackgroundAttributes();
-                    buttonAttributes.BackgroundImageAttributes.ResourceURL = value.Clone() as StringSelector;
+                    buttonAttributes.BackgroundImageAttributes.ResourceUrl = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -636,14 +636,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.ShadowImageAttributes?.ResourceURL;
+                return buttonAttributes?.ShadowImageAttributes?.ResourceUrl;
             }
             set
             {
                 if (value != null)
                 {
                     CreateShadowAttributes();
-                    buttonAttributes.ShadowImageAttributes.ResourceURL = value.Clone() as StringSelector;
+                    buttonAttributes.ShadowImageAttributes.ResourceUrl = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -680,14 +680,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return buttonAttributes?.OverlayImageAttributes?.ResourceURL;
+                return buttonAttributes?.OverlayImageAttributes?.ResourceUrl;
             }
             set
             {
                 if (value != null)
                 {
                     CreateOverlayAttributes();
-                    buttonAttributes.OverlayImageAttributes.ResourceURL = value.Clone() as StringSelector;
+                    buttonAttributes.OverlayImageAttributes.ResourceUrl = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }

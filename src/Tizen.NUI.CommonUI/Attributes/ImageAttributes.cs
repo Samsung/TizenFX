@@ -44,9 +44,9 @@ namespace Tizen.NUI.CommonUI
                 return;
             }
 
-            if (attributes.ResourceURL != null)
+            if (attributes.ResourceUrl != null)
             {
-                ResourceURL = attributes.ResourceURL.Clone() as StringSelector;
+                ResourceUrl = attributes.ResourceUrl.Clone() as StringSelector;
             }
 
             if (attributes.Border != null)
@@ -59,7 +59,7 @@ namespace Tizen.NUI.CommonUI
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public StringSelector ResourceURL
+        public StringSelector ResourceUrl
         {
             get;
             set;

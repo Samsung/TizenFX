@@ -86,18 +86,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return switchAttributes?.SwitchBackgroundImageAttributes?.ResourceURL?.All;
+                return switchAttributes?.SwitchBackgroundImageAttributes?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateSwitchBackgroundImageAttributes();
-                    if (switchAttributes.SwitchBackgroundImageAttributes.ResourceURL == null)
+                    if (switchAttributes.SwitchBackgroundImageAttributes.ResourceUrl == null)
                     {
-                        switchAttributes.SwitchBackgroundImageAttributes.ResourceURL = new StringSelector();
+                        switchAttributes.SwitchBackgroundImageAttributes.ResourceUrl = new StringSelector();
                     }
-                    switchAttributes.SwitchBackgroundImageAttributes.ResourceURL.All = value;
+                    switchAttributes.SwitchBackgroundImageAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -113,14 +113,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return switchAttributes?.SwitchBackgroundImageAttributes?.ResourceURL;
+                return switchAttributes?.SwitchBackgroundImageAttributes?.ResourceUrl;
             }
             set
             {
                 if (value != null)
                 {
                     CreateSwitchBackgroundImageAttributes();
-                    switchAttributes.SwitchBackgroundImageAttributes.ResourceURL = value.Clone() as StringSelector;
+                    switchAttributes.SwitchBackgroundImageAttributes.ResourceUrl = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -136,18 +136,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return switchAttributes?.SwitchHandlerImageAttributes?.ResourceURL?.All;
+                return switchAttributes?.SwitchHandlerImageAttributes?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateSwitchHandlerImageAttributes();
-                    if (switchAttributes.SwitchHandlerImageAttributes.ResourceURL == null)
+                    if (switchAttributes.SwitchHandlerImageAttributes.ResourceUrl == null)
                     {
-                        switchAttributes.SwitchHandlerImageAttributes.ResourceURL = new StringSelector();
+                        switchAttributes.SwitchHandlerImageAttributes.ResourceUrl = new StringSelector();
                     }
-                    switchAttributes.SwitchHandlerImageAttributes.ResourceURL.All = value;
+                    switchAttributes.SwitchHandlerImageAttributes.ResourceUrl.All = value;
                     RelayoutRequest();
                 }
             }
@@ -163,14 +163,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return switchAttributes?.SwitchHandlerImageAttributes?.ResourceURL;
+                return switchAttributes?.SwitchHandlerImageAttributes?.ResourceUrl;
             }
             set
             {
                 if (value != null)
                 {
                     CreateSwitchHandlerImageAttributes();
-                    switchAttributes.SwitchHandlerImageAttributes.ResourceURL = value.Clone() as StringSelector;
+                    switchAttributes.SwitchHandlerImageAttributes.ResourceUrl = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
