@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary layout internal part class</summary>
 [Efl.Ui.LayoutPartText.NativeMethods]
-public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.ITextMarkup,Efl.Ui.IL10n
+public class LayoutPartText : Efl.Ui.LayoutPart, Efl.IText, Efl.ITextMarkup, Efl.Ui.IL10n
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected LayoutPartText(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPartText"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected LayoutPartText(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Retrieves the text string currently being displayed by the given text object.
@@ -141,7 +114,7 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     public System.String Markup {
         get { return GetMarkup(); }
         set { SetMarkup(value); }
@@ -242,7 +215,7 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
             return Efl.Ui.LayoutPartText.efl_ui_layout_part_text_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_text_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -255,13 +228,13 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetText();
+                    _ret_var = ((LayoutPartText)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -291,13 +264,13 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetText(text);
+                    ((LayoutPartText)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -326,13 +299,13 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         private static System.String markup_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_markup_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetMarkup();
+                    _ret_var = ((LayoutPartText)ws.Target).GetMarkup();
                 }
                 catch (Exception e)
                 {
@@ -362,13 +335,13 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         private static void markup_set(System.IntPtr obj, System.IntPtr pd, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetMarkup(markup);
+                    ((LayoutPartText)ws.Target).SetMarkup(markup);
                 }
                 catch (Exception e)
                 {
@@ -397,14 +370,14 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         private static System.String l10n_text_get(System.IntPtr obj, System.IntPtr pd, out System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 System.String _out_domain = default(System.String);
                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetL10nText(out _out_domain);
+                    _ret_var = ((LayoutPartText)ws.Target).GetL10nText(out _out_domain);
                 }
                 catch (Exception e)
                 {
@@ -435,13 +408,13 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         private static void l10n_text_set(System.IntPtr obj, System.IntPtr pd, System.String label, System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetL10nText(label, domain);
+                    ((LayoutPartText)ws.Target).SetL10nText(label, domain);
                 }
                 catch (Exception e)
                 {
@@ -470,13 +443,13 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
         private static void translation_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_l10n_translation_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((LayoutPartText)wrapper).UpdateTranslation();
+                    ((LayoutPartText)ws.Target).UpdateTranslation();
                 }
                 catch (Exception e)
                 {
@@ -494,7 +467,7 @@ public class LayoutPartText : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.I
 
         private static efl_ui_l10n_translation_update_delegate efl_ui_l10n_translation_update_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

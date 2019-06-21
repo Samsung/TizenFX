@@ -327,7 +327,7 @@ namespace Dnd {
 [StructLayout(LayoutKind.Sequential)]
 public struct DragAccept
 {
-        public bool Accepted;
+    public bool Accepted;
     ///<summary>Constructor for DragAccept.</summary>
     public DragAccept(
         bool Accepted = default(bool)    )
@@ -335,11 +335,15 @@ public struct DragAccept
         this.Accepted = Accepted;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator DragAccept(IntPtr ptr)
     {
         var tmp = (DragAccept.NativeStruct)Marshal.PtrToStructure(ptr, typeof(DragAccept.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct DragAccept.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -364,6 +368,8 @@ public struct DragAccept
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -399,11 +405,15 @@ public struct DragPos
         this.Item = Item;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator DragPos(IntPtr ptr)
     {
         var tmp = (DragPos.NativeStruct)Marshal.PtrToStructure(ptr, typeof(DragPos.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct DragPos.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -442,6 +452,8 @@ public struct DragPos
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -472,11 +484,15 @@ public struct DragItemContainerDrop
         this.Pos = Pos;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator DragItemContainerDrop(IntPtr ptr)
     {
         var tmp = (DragItemContainerDrop.NativeStruct)Marshal.PtrToStructure(ptr, typeof(DragItemContainerDrop.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct DragItemContainerDrop.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -510,6 +526,8 @@ public struct DragItemContainerDrop
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

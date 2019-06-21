@@ -287,6 +287,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 

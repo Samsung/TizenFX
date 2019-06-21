@@ -21,7 +21,7 @@ public class ImageZoomableDownloadErrorEvt_Args : EventArgs {
 }
 /// <summary>Elementary Image Zoomable class</summary>
 [Efl.Ui.ImageZoomable.NativeMethods]
-public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Efl.Ui.IScrollableInteractive,Efl.Ui.IScrollbar,Efl.Ui.IZoom
+public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollableInteractive, Efl.Ui.IScrollbar, Efl.Ui.IZoom
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -60,7 +60,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ImageZoomable(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ImageZoomable"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -71,33 +71,6 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when photocam got pressed</summary>
     public event EventHandler PressEvt
     {
@@ -105,10 +78,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -158,10 +130,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -211,10 +182,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -264,10 +234,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -317,10 +286,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -370,10 +338,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -423,13 +390,12 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ImageZoomableDownloadProgressEvt_Args args = new Efl.Ui.ImageZoomableDownloadProgressEvt_Args();
+                        Efl.Ui.ImageZoomableDownloadProgressEvt_Args args = new Efl.Ui.ImageZoomableDownloadProgressEvt_Args();
                         args.arg = default(Elm.Photocam.Progress);
                         try
                         {
@@ -485,10 +451,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -538,13 +503,12 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ImageZoomableDownloadErrorEvt_Args args = new Efl.Ui.ImageZoomableDownloadErrorEvt_Args();
+                        Efl.Ui.ImageZoomableDownloadErrorEvt_Args args = new Efl.Ui.ImageZoomableDownloadErrorEvt_Args();
                         args.arg = default(Elm.Photocam.Error);
                         try
                         {
@@ -600,10 +564,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -653,10 +616,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -706,10 +668,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -759,10 +720,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -812,10 +772,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -865,10 +824,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -918,10 +876,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -971,10 +928,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1024,10 +980,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1077,10 +1032,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1130,10 +1084,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1183,10 +1136,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1236,10 +1188,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1289,10 +1240,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1342,10 +1292,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1395,13 +1344,12 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarPressEvt_Args args = new Efl.Ui.IScrollbarBarPressEvt_Args();
+                        Efl.Ui.IScrollbarBarPressEvt_Args args = new Efl.Ui.IScrollbarBarPressEvt_Args();
                         args.arg = default(Efl.Ui.ScrollbarDirection);
                         try
                         {
@@ -1457,13 +1405,12 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarUnpressEvt_Args args = new Efl.Ui.IScrollbarBarUnpressEvt_Args();
+                        Efl.Ui.IScrollbarBarUnpressEvt_Args args = new Efl.Ui.IScrollbarBarUnpressEvt_Args();
                         args.arg = default(Efl.Ui.ScrollbarDirection);
                         try
                         {
@@ -1519,13 +1466,12 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarDragEvt_Args args = new Efl.Ui.IScrollbarBarDragEvt_Args();
+                        Efl.Ui.IScrollbarBarDragEvt_Args args = new Efl.Ui.IScrollbarBarDragEvt_Args();
                         args.arg = default(Efl.Ui.ScrollbarDirection);
                         try
                         {
@@ -1581,10 +1527,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1634,10 +1579,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1687,13 +1631,12 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarShowEvt_Args args = new Efl.Ui.IScrollbarBarShowEvt_Args();
+                        Efl.Ui.IScrollbarBarShowEvt_Args args = new Efl.Ui.IScrollbarBarShowEvt_Args();
                         args.arg = default(Efl.Ui.ScrollbarDirection);
                         try
                         {
@@ -1749,13 +1692,12 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarHideEvt_Args args = new Efl.Ui.IScrollbarBarHideEvt_Args();
+                        Efl.Ui.IScrollbarBarHideEvt_Args args = new Efl.Ui.IScrollbarBarHideEvt_Args();
                         args.arg = default(Efl.Ui.ScrollbarDirection);
                         try
                         {
@@ -1811,10 +1753,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1864,10 +1805,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1917,10 +1857,9 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2241,77 +2180,77 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the gesture state for photocam.
-/// This gets the current gesture state for the photocam object.</summary>
-/// <value>The gesture state.</value>
+    /// This gets the current gesture state for the photocam object.</summary>
+    /// <value>The gesture state.</value>
     public bool GestureEnabled {
         get { return GetGestureEnabled(); }
         set { SetGestureEnabled(value); }
     }
     /// <summary>Get the region of the image that is currently shown
-/// See also <see cref="Efl.Ui.ImageZoomable.SetImageRegion"/>.</summary>
-/// <value>The region in the original image pixels.</value>
+    /// See also <see cref="Efl.Ui.ImageZoomable.SetImageRegion"/>.</summary>
+    /// <value>The region in the original image pixels.</value>
     public Eina.Rect ImageRegion {
         get { return GetImageRegion(); }
         set { SetImageRegion(value); }
     }
     /// <summary>The content position</summary>
-/// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
+    /// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
     public Eina.Position2D ContentPos {
         get { return GetContentPos(); }
         set { SetContentPos(value); }
     }
     /// <summary>The content size</summary>
-/// <value>The content size in pixels.</value>
+    /// <value>The content size in pixels.</value>
     public Eina.Size2D ContentSize {
         get { return GetContentSize(); }
     }
     /// <summary>The viewport geometry</summary>
-/// <value>It is absolute geometry.</value>
+    /// <value>It is absolute geometry.</value>
     public Eina.Rect ViewportGeometry {
         get { return GetViewportGeometry(); }
     }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
-/// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
     public bool ScrollFreeze {
         get { return GetScrollFreeze(); }
         set { SetScrollFreeze(value); }
     }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
-/// <value><c>true</c> if hold, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if hold, <c>false</c> otherwise</value>
     public bool ScrollHold {
         get { return GetScrollHold(); }
         set { SetScrollHold(value); }
     }
     /// <summary>Blocking of scrolling (per axis)
-/// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
-/// <value>Which axis (or axes) to block</value>
+    /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
+    /// <value>Which axis (or axes) to block</value>
     public Efl.Ui.ScrollBlock MovementBlock {
         get { return GetMovementBlock(); }
         set { SetMovementBlock(value); }
     }
     /// <summary>Control the step size
-/// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
-/// <value>The step size in pixels</value>
+    /// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
+    /// <value>The step size in pixels</value>
     public Eina.Position2D StepSize {
         get { return GetStepSize(); }
         set { SetStepSize(value); }
     }
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
-/// <value>The paused state.</value>
+    /// <value>The paused state.</value>
     public bool ZoomAnimation {
         get { return GetZoomAnimation(); }
         set { SetZoomAnimation(value); }
     }
     /// <summary>Get the zoom level of the photo
-/// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
-/// <value>The zoom level to set</value>
+    /// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
+    /// <value>The zoom level to set</value>
     public double ZoomLevel {
         get { return GetZoomLevel(); }
         set { SetZoomLevel(value); }
     }
     /// <summary>Get the zoom mode
-/// This gets the current zoom mode of the zoomable object.</summary>
-/// <value>The zoom mode.</value>
+    /// This gets the current zoom mode of the zoomable object.</summary>
+    /// <value>The zoom mode.</value>
     public Efl.Ui.ZoomMode ZoomMode {
         get { return GetZoomMode(); }
         set { SetZoomMode(value); }
@@ -2702,7 +2641,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
             return Efl.Ui.ImageZoomable.efl_ui_image_zoomable_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_image_zoomable_gesture_enabled_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -2715,13 +2654,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static bool gesture_enabled_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_image_zoomable_gesture_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetGestureEnabled();
+                    _ret_var = ((ImageZoomable)ws.Target).GetGestureEnabled();
                 }
                 catch (Exception e)
                 {
@@ -2751,13 +2690,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void gesture_enabled_set(System.IntPtr obj, System.IntPtr pd, bool gesture)
         {
             Eina.Log.Debug("function efl_ui_image_zoomable_gesture_enabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).SetGestureEnabled(gesture);
+                    ((ImageZoomable)ws.Target).SetGestureEnabled(gesture);
                 }
                 catch (Exception e)
                 {
@@ -2786,13 +2725,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static Eina.Rect.NativeStruct image_region_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_image_zoomable_image_region_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetImageRegion();
+                    _ret_var = ((ImageZoomable)ws.Target).GetImageRegion();
                 }
                 catch (Exception e)
                 {
@@ -2822,14 +2761,14 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void image_region_set(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct region)
         {
             Eina.Log.Debug("function efl_ui_image_zoomable_image_region_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_region = region;
                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetImageRegion(_in_region);
+                    ((ImageZoomable)ws.Target).SetImageRegion(_in_region);
                 }
                 catch (Exception e)
                 {
@@ -2858,13 +2797,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static Eina.Position2D.NativeStruct content_pos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_pos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetContentPos();
+                    _ret_var = ((ImageZoomable)ws.Target).GetContentPos();
                 }
                 catch (Exception e)
                 {
@@ -2894,14 +2833,14 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void content_pos_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_pos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetContentPos(_in_pos);
+                    ((ImageZoomable)ws.Target).SetContentPos(_in_pos);
                 }
                 catch (Exception e)
                 {
@@ -2930,13 +2869,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static Eina.Size2D.NativeStruct content_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetContentSize();
+                    _ret_var = ((ImageZoomable)ws.Target).GetContentSize();
                 }
                 catch (Exception e)
                 {
@@ -2966,13 +2905,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static Eina.Rect.NativeStruct viewport_geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_viewport_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetViewportGeometry();
+                    _ret_var = ((ImageZoomable)ws.Target).GetViewportGeometry();
                 }
                 catch (Exception e)
                 {
@@ -3002,13 +2941,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bounce_enabled_get(System.IntPtr obj, System.IntPtr pd, out bool horiz, out bool vert)
         {
             Eina.Log.Debug("function efl_ui_scrollable_bounce_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         horiz = default(bool);        vert = default(bool);                            
                 try
                 {
-                    ((ImageZoomable)wrapper).GetBounceEnabled(out horiz, out vert);
+                    ((ImageZoomable)ws.Target).GetBounceEnabled(out horiz, out vert);
                 }
                 catch (Exception e)
                 {
@@ -3037,13 +2976,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bounce_enabled_set(System.IntPtr obj, System.IntPtr pd, bool horiz, bool vert)
         {
             Eina.Log.Debug("function efl_ui_scrollable_bounce_enabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetBounceEnabled(horiz, vert);
+                    ((ImageZoomable)ws.Target).SetBounceEnabled(horiz, vert);
                 }
                 catch (Exception e)
                 {
@@ -3072,13 +3011,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static bool scroll_freeze_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_freeze_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetScrollFreeze();
+                    _ret_var = ((ImageZoomable)ws.Target).GetScrollFreeze();
                 }
                 catch (Exception e)
                 {
@@ -3108,13 +3047,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void scroll_freeze_set(System.IntPtr obj, System.IntPtr pd, bool freeze)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_freeze_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).SetScrollFreeze(freeze);
+                    ((ImageZoomable)ws.Target).SetScrollFreeze(freeze);
                 }
                 catch (Exception e)
                 {
@@ -3143,13 +3082,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static bool scroll_hold_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_hold_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetScrollHold();
+                    _ret_var = ((ImageZoomable)ws.Target).GetScrollHold();
                 }
                 catch (Exception e)
                 {
@@ -3179,13 +3118,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void scroll_hold_set(System.IntPtr obj, System.IntPtr pd, bool hold)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_hold_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).SetScrollHold(hold);
+                    ((ImageZoomable)ws.Target).SetScrollHold(hold);
                 }
                 catch (Exception e)
                 {
@@ -3214,13 +3153,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void looping_get(System.IntPtr obj, System.IntPtr pd, out bool loop_h, out bool loop_v)
         {
             Eina.Log.Debug("function efl_ui_scrollable_looping_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         loop_h = default(bool);        loop_v = default(bool);                            
                 try
                 {
-                    ((ImageZoomable)wrapper).GetLooping(out loop_h, out loop_v);
+                    ((ImageZoomable)ws.Target).GetLooping(out loop_h, out loop_v);
                 }
                 catch (Exception e)
                 {
@@ -3249,13 +3188,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void looping_set(System.IntPtr obj, System.IntPtr pd, bool loop_h, bool loop_v)
         {
             Eina.Log.Debug("function efl_ui_scrollable_looping_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetLooping(loop_h, loop_v);
+                    ((ImageZoomable)ws.Target).SetLooping(loop_h, loop_v);
                 }
                 catch (Exception e)
                 {
@@ -3284,13 +3223,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static Efl.Ui.ScrollBlock movement_block_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_movement_block_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.ScrollBlock _ret_var = default(Efl.Ui.ScrollBlock);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetMovementBlock();
+                    _ret_var = ((ImageZoomable)ws.Target).GetMovementBlock();
                 }
                 catch (Exception e)
                 {
@@ -3320,13 +3259,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void movement_block_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ScrollBlock block)
         {
             Eina.Log.Debug("function efl_ui_scrollable_movement_block_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).SetMovementBlock(block);
+                    ((ImageZoomable)ws.Target).SetMovementBlock(block);
                 }
                 catch (Exception e)
                 {
@@ -3355,13 +3294,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void gravity_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_ui_scrollable_gravity_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((ImageZoomable)wrapper).GetGravity(out x, out y);
+                    ((ImageZoomable)ws.Target).GetGravity(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -3390,13 +3329,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void gravity_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_ui_scrollable_gravity_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetGravity(x, y);
+                    ((ImageZoomable)ws.Target).SetGravity(x, y);
                 }
                 catch (Exception e)
                 {
@@ -3425,13 +3364,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void match_content_set(System.IntPtr obj, System.IntPtr pd, bool w, bool h)
         {
             Eina.Log.Debug("function efl_ui_scrollable_match_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetMatchContent(w, h);
+                    ((ImageZoomable)ws.Target).SetMatchContent(w, h);
                 }
                 catch (Exception e)
                 {
@@ -3460,13 +3399,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static Eina.Position2D.NativeStruct step_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_step_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetStepSize();
+                    _ret_var = ((ImageZoomable)ws.Target).GetStepSize();
                 }
                 catch (Exception e)
                 {
@@ -3496,14 +3435,14 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void step_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct step)
         {
             Eina.Log.Debug("function efl_ui_scrollable_step_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_step = step;
                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetStepSize(_in_step);
+                    ((ImageZoomable)ws.Target).SetStepSize(_in_step);
                 }
                 catch (Exception e)
                 {
@@ -3532,14 +3471,14 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void scroll(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect, bool animation)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).Scroll(_in_rect, animation);
+                    ((ImageZoomable)ws.Target).Scroll(_in_rect, animation);
                 }
                 catch (Exception e)
                 {
@@ -3568,13 +3507,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bar_mode_get(System.IntPtr obj, System.IntPtr pd, out Efl.Ui.ScrollbarMode hbar, out Efl.Ui.ScrollbarMode vbar)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         hbar = default(Efl.Ui.ScrollbarMode);        vbar = default(Efl.Ui.ScrollbarMode);                            
                 try
                 {
-                    ((ImageZoomable)wrapper).GetBarMode(out hbar, out vbar);
+                    ((ImageZoomable)ws.Target).GetBarMode(out hbar, out vbar);
                 }
                 catch (Exception e)
                 {
@@ -3603,13 +3542,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bar_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ScrollbarMode hbar, Efl.Ui.ScrollbarMode vbar)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetBarMode(hbar, vbar);
+                    ((ImageZoomable)ws.Target).SetBarMode(hbar, vbar);
                 }
                 catch (Exception e)
                 {
@@ -3638,13 +3577,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bar_size_get(System.IntPtr obj, System.IntPtr pd, out double width, out double height)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         width = default(double);        height = default(double);                            
                 try
                 {
-                    ((ImageZoomable)wrapper).GetBarSize(out width, out height);
+                    ((ImageZoomable)ws.Target).GetBarSize(out width, out height);
                 }
                 catch (Exception e)
                 {
@@ -3673,13 +3612,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bar_position_get(System.IntPtr obj, System.IntPtr pd, out double posx, out double posy)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         posx = default(double);        posy = default(double);                            
                 try
                 {
-                    ((ImageZoomable)wrapper).GetBarPosition(out posx, out posy);
+                    ((ImageZoomable)ws.Target).GetBarPosition(out posx, out posy);
                 }
                 catch (Exception e)
                 {
@@ -3708,13 +3647,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bar_position_set(System.IntPtr obj, System.IntPtr pd, double posx, double posy)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageZoomable)wrapper).SetBarPosition(posx, posy);
+                    ((ImageZoomable)ws.Target).SetBarPosition(posx, posy);
                 }
                 catch (Exception e)
                 {
@@ -3743,13 +3682,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void bar_visibility_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_visibility_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ImageZoomable)wrapper).UpdateBarVisibility();
+                    ((ImageZoomable)ws.Target).UpdateBarVisibility();
                 }
                 catch (Exception e)
                 {
@@ -3778,13 +3717,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static bool zoom_animation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_zoom_animation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetZoomAnimation();
+                    _ret_var = ((ImageZoomable)ws.Target).GetZoomAnimation();
                 }
                 catch (Exception e)
                 {
@@ -3814,13 +3753,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void zoom_animation_set(System.IntPtr obj, System.IntPtr pd, bool paused)
         {
             Eina.Log.Debug("function efl_ui_zoom_animation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).SetZoomAnimation(paused);
+                    ((ImageZoomable)ws.Target).SetZoomAnimation(paused);
                 }
                 catch (Exception e)
                 {
@@ -3849,13 +3788,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static double zoom_level_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_zoom_level_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetZoomLevel();
+                    _ret_var = ((ImageZoomable)ws.Target).GetZoomLevel();
                 }
                 catch (Exception e)
                 {
@@ -3885,13 +3824,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void zoom_level_set(System.IntPtr obj, System.IntPtr pd, double zoom)
         {
             Eina.Log.Debug("function efl_ui_zoom_level_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).SetZoomLevel(zoom);
+                    ((ImageZoomable)ws.Target).SetZoomLevel(zoom);
                 }
                 catch (Exception e)
                 {
@@ -3920,13 +3859,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static Efl.Ui.ZoomMode zoom_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_zoom_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.ZoomMode _ret_var = default(Efl.Ui.ZoomMode);
                 try
                 {
-                    _ret_var = ((ImageZoomable)wrapper).GetZoomMode();
+                    _ret_var = ((ImageZoomable)ws.Target).GetZoomMode();
                 }
                 catch (Exception e)
                 {
@@ -3956,13 +3895,13 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
         private static void zoom_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ZoomMode mode)
         {
             Eina.Log.Debug("function efl_ui_zoom_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageZoomable)wrapper).SetZoomMode(mode);
+                    ((ImageZoomable)ws.Target).SetZoomMode(mode);
                 }
                 catch (Exception e)
                 {
@@ -3980,7 +3919,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Eo.IWrapper,Efl.Ui.IScrollable,Ef
 
         private static efl_ui_zoom_mode_set_delegate efl_ui_zoom_mode_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -3997,11 +3936,15 @@ public struct Error
 {
     ///<summary>Placeholder field</summary>
     public IntPtr field;
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Error(IntPtr ptr)
     {
         var tmp = (Error.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Error.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Error.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -4024,6 +3967,8 @@ public struct Error
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -4039,11 +3984,15 @@ public struct Progress
 {
     ///<summary>Placeholder field</summary>
     public IntPtr field;
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Progress(IntPtr ptr)
     {
         var tmp = (Progress.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Progress.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Progress.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -4065,6 +4014,8 @@ public struct Progress
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

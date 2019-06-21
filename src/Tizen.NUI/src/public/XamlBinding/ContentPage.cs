@@ -47,6 +47,11 @@ namespace Tizen.NUI
             {
                 self.Root.Add((View)newValue);
             }
+            var newElement = (Element)newValue;
+            if (newElement != null)
+            {
+                BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
+            }
         });
 
         /// <summary>

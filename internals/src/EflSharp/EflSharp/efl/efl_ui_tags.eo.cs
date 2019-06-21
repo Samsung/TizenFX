@@ -41,7 +41,7 @@ public class TagsExpandStateChangedEvt_Args : EventArgs {
 }
 /// <summary>A widget displaying a list of tags. The user can remove tags by clicking on each tag &quot;close&quot; button and add new tags by typing text in the text entry at the end of the list.</summary>
 [Efl.Ui.Tags.NativeMethods]
-public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
+public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -80,7 +80,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Tags(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Tags"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -91,33 +91,6 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when item was selected</summary>
     public event EventHandler<Efl.Ui.TagsItemSelectedEvt_Args> ItemSelectedEvt
     {
@@ -125,13 +98,12 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.TagsItemSelectedEvt_Args args = new Efl.Ui.TagsItemSelectedEvt_Args();
+                        Efl.Ui.TagsItemSelectedEvt_Args args = new Efl.Ui.TagsItemSelectedEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -187,13 +159,12 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.TagsItemAddedEvt_Args args = new Efl.Ui.TagsItemAddedEvt_Args();
+                        Efl.Ui.TagsItemAddedEvt_Args args = new Efl.Ui.TagsItemAddedEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -249,13 +220,12 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.TagsItemDeletedEvt_Args args = new Efl.Ui.TagsItemDeletedEvt_Args();
+                        Efl.Ui.TagsItemDeletedEvt_Args args = new Efl.Ui.TagsItemDeletedEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -311,13 +281,12 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.TagsItemClickedEvt_Args args = new Efl.Ui.TagsItemClickedEvt_Args();
+                        Efl.Ui.TagsItemClickedEvt_Args args = new Efl.Ui.TagsItemClickedEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -373,13 +342,12 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.TagsItemLongpressedEvt_Args args = new Efl.Ui.TagsItemLongpressedEvt_Args();
+                        Efl.Ui.TagsItemLongpressedEvt_Args args = new Efl.Ui.TagsItemLongpressedEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -435,10 +403,9 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -488,10 +455,9 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -541,14 +507,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.TagsExpandStateChangedEvt_Args args = new Efl.Ui.TagsExpandStateChangedEvt_Args();
-                        args.arg = evt.Info.ToInt32();
+                        Efl.Ui.TagsExpandStateChangedEvt_Args args = new Efl.Ui.TagsExpandStateChangedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -684,34 +649,34 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control if the tag list is to be editable by the user or not.</summary>
-/// <value>If <c>true</c>, the user can add/delete tags to the tag list, if not, the tag list is non-editable.</value>
+    /// <value>If <c>true</c>, the user can add/delete tags to the tag list, if not, the tag list is non-editable.</value>
     public bool Editable {
         get { return GetEditable(); }
         set { SetEditable(value); }
     }
     /// <summary>Control whether the tag list is expanded or not.
-/// In the expanded state, all tags will be displayed. Otherwise, only a single line of tags will be displayed with a marker to indicate that there is more content.</summary>
-/// <value>The expanded state. Set this to <c>true</c> to allow multiple lines of tags. Set to <c>false</c> for a single line.</value>
+    /// In the expanded state, all tags will be displayed. Otherwise, only a single line of tags will be displayed with a marker to indicate that there is more content.</summary>
+    /// <value>The expanded state. Set this to <c>true</c> to allow multiple lines of tags. Set to <c>false</c> for a single line.</value>
     public bool Expanded {
         get { return GetExpanded(); }
         set { SetExpanded(value); }
     }
     /// <summary>List of tags in the tag list. Tags can be added and removed by the user using the UI, and by the program by modifying this property.</summary>
-/// <value>The array of items, or NULL if none.</value>
+    /// <value>The array of items, or NULL if none.</value>
     public Eina.Array<System.String> Items {
         get { return GetItems(); }
         set { SetItems(value); }
     }
     /// <summary>Set the format function pointer to format the string.</summary>
-/// <value>The format function callback</value>
+    /// <value>The format function callback</value>
     public Efl.Ui.FormatFuncCb FormatCb {
         set { SetFormatCb(value); }
     }
     /// <summary>Control the format string for a given units label
-/// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-/// 
-/// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-/// <value>The format string for <c>obj</c>&apos;s units label.</value>
+    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
+    /// 
+    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
+    /// <value>The format string for <c>obj</c>&apos;s units label.</value>
     public System.String FormatString {
         get { return GetFormatString(); }
         set { SetFormatString(value); }
@@ -852,7 +817,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
             return Efl.Ui.Tags.efl_ui_tags_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_tags_editable_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -865,13 +830,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static bool editable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_tags_editable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Tags)wrapper).GetEditable();
+                    _ret_var = ((Tags)ws.Target).GetEditable();
                 }
                 catch (Exception e)
                 {
@@ -901,13 +866,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static void editable_set(System.IntPtr obj, System.IntPtr pd, bool editable)
         {
             Eina.Log.Debug("function efl_ui_tags_editable_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Tags)wrapper).SetEditable(editable);
+                    ((Tags)ws.Target).SetEditable(editable);
                 }
                 catch (Exception e)
                 {
@@ -936,13 +901,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static bool expanded_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_tags_expanded_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Tags)wrapper).GetExpanded();
+                    _ret_var = ((Tags)ws.Target).GetExpanded();
                 }
                 catch (Exception e)
                 {
@@ -972,13 +937,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static void expanded_set(System.IntPtr obj, System.IntPtr pd, bool expanded)
         {
             Eina.Log.Debug("function efl_ui_tags_expanded_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Tags)wrapper).SetExpanded(expanded);
+                    ((Tags)ws.Target).SetExpanded(expanded);
                 }
                 catch (Exception e)
                 {
@@ -1007,13 +972,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static System.IntPtr items_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_tags_items_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Array<System.String> _ret_var = default(Eina.Array<System.String>);
                 try
                 {
-                    _ret_var = ((Tags)wrapper).GetItems();
+                    _ret_var = ((Tags)ws.Target).GetItems();
                 }
                 catch (Exception e)
                 {
@@ -1043,14 +1008,14 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static void items_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr items)
         {
             Eina.Log.Debug("function efl_ui_tags_items_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_items = new Eina.Array<System.String>(items, false, false);
                             
                 try
                 {
-                    ((Tags)wrapper).SetItems(_in_items);
+                    ((Tags)ws.Target).SetItems(_in_items);
                 }
                 catch (Exception e)
                 {
@@ -1079,13 +1044,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Tags)wrapper).GetText();
+                    _ret_var = ((Tags)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -1115,13 +1080,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Tags)wrapper).SetText(text);
+                    ((Tags)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -1150,14 +1115,14 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static void format_cb_set(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_ui_format_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                             Efl.Ui.FormatFuncCbWrapper func_wrapper = new Efl.Ui.FormatFuncCbWrapper(func, func_data, func_free_cb);
             
                 try
                 {
-                    ((Tags)wrapper).SetFormatCb(func_wrapper.ManagedCb);
+                    ((Tags)ws.Target).SetFormatCb(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -1186,13 +1151,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static System.String format_string_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_format_string_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Tags)wrapper).GetFormatString();
+                    _ret_var = ((Tags)ws.Target).GetFormatString();
                 }
                 catch (Exception e)
                 {
@@ -1222,13 +1187,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
         private static void format_string_set(System.IntPtr obj, System.IntPtr pd, System.String units)
         {
             Eina.Log.Debug("function efl_ui_format_string_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Tags)wrapper).SetFormatString(units);
+                    ((Tags)ws.Target).SetFormatString(units);
                 }
                 catch (Exception e)
                 {
@@ -1246,7 +1211,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IText,Efl.Ui.IFormat
 
         private static efl_ui_format_string_set_delegate efl_ui_format_string_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

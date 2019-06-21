@@ -12,7 +12,7 @@ namespace Ui {
 /// <summary>An inlined window.
 /// The window is rendered onto an image buffer. No actual window is created, instead the window and all of its contents will be rendered to an image buffer. This allows child windows inside a parent just like any other object.  You can also do other things like apply map effects. This window must have a valid <see cref="Efl.Canvas.Object"/> parent.</summary>
 [Efl.Ui.WinInlined.NativeMethods]
-public class WinInlined : Efl.Ui.Win, Efl.Eo.IWrapper
+public class WinInlined : Efl.Ui.Win
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -69,7 +69,7 @@ public class WinInlined : Efl.Ui.Win, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected WinInlined(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="WinInlined"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -80,33 +80,6 @@ public class WinInlined : Efl.Ui.Win, Efl.Eo.IWrapper
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>This property holds the parent object in the parent canvas.</summary>
     /// <returns>An object in the parent canvas.</returns>
     virtual public Efl.Canvas.Object GetInlinedParent() {
@@ -115,7 +88,7 @@ public class WinInlined : Efl.Ui.Win, Efl.Eo.IWrapper
         return _ret_var;
  }
     /// <summary>This property holds the parent object in the parent canvas.</summary>
-/// <value>An object in the parent canvas.</value>
+    /// <value>An object in the parent canvas.</value>
     public Efl.Canvas.Object InlinedParent {
         get { return GetInlinedParent(); }
     }
@@ -155,7 +128,7 @@ public class WinInlined : Efl.Ui.Win, Efl.Eo.IWrapper
             return Efl.Ui.WinInlined.efl_ui_win_inlined_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Canvas.Object efl_ui_win_inlined_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -168,13 +141,13 @@ public class WinInlined : Efl.Ui.Win, Efl.Eo.IWrapper
         private static Efl.Canvas.Object inlined_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_inlined_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((WinInlined)wrapper).GetInlinedParent();
+                    _ret_var = ((WinInlined)ws.Target).GetInlinedParent();
                 }
                 catch (Exception e)
                 {
@@ -193,7 +166,7 @@ public class WinInlined : Efl.Ui.Win, Efl.Eo.IWrapper
 
         private static efl_ui_win_inlined_parent_get_delegate efl_ui_win_inlined_parent_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

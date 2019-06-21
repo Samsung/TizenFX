@@ -13,7 +13,7 @@ namespace Vg {
 
 /// <summary>Efl vectopr graphics gradient abstract class</summary>
 [Efl.Canvas.Vg.Gradient.NativeMethods]
-public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGradient
+public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -46,7 +46,7 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Gradient(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class GradientRealized : Gradient
@@ -62,33 +62,6 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Gradient(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get the list of color stops.</summary>
@@ -123,7 +96,7 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
-/// <value>Spread type to be used</value>
+    /// <value>Spread type to be used</value>
     public Efl.Gfx.GradientSpread Spread {
         get { return GetSpread(); }
         set { SetSpread(value); }
@@ -194,7 +167,7 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
             return Efl.Canvas.Vg.Gradient.efl_canvas_vg_gradient_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_gradient_stop_get_delegate(System.IntPtr obj, System.IntPtr pd,  out System.IntPtr colors,  out uint length);
@@ -207,14 +180,14 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
         private static void stop_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr colors, out uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
         length = default(uint);                            
                 try
                 {
-                    ((Gradient)wrapper).GetStop(out _out_colors, out length);
+                    ((Gradient)ws.Target).GetStop(out _out_colors, out length);
                 }
                 catch (Exception e)
                 {
@@ -244,14 +217,14 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
         private static void stop_set(System.IntPtr obj, System.IntPtr pd, ref Efl.Gfx.GradientStop.NativeStruct colors, uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Gfx.GradientStop _in_colors = colors;
                                                     
                 try
                 {
-                    ((Gradient)wrapper).SetStop(ref _in_colors, length);
+                    ((Gradient)ws.Target).SetStop(ref _in_colors, length);
                 }
                 catch (Exception e)
                 {
@@ -281,13 +254,13 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
         private static Efl.Gfx.GradientSpread spread_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.GradientSpread _ret_var = default(Efl.Gfx.GradientSpread);
                 try
                 {
-                    _ret_var = ((Gradient)wrapper).GetSpread();
+                    _ret_var = ((Gradient)ws.Target).GetSpread();
                 }
                 catch (Exception e)
                 {
@@ -317,13 +290,13 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
         private static void spread_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.GradientSpread s)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Gradient)wrapper).SetSpread(s);
+                    ((Gradient)ws.Target).SetSpread(s);
                 }
                 catch (Exception e)
                 {
@@ -341,7 +314,7 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IGr
 
         private static efl_gfx_gradient_spread_set_delegate efl_gfx_gradient_spread_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -11,7 +11,7 @@ namespace Canvas {
 
 /// <summary>Efl animation class</summary>
 [Efl.Canvas.Animation.NativeMethods]
-public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
+public class Animation : Efl.Object, Efl.IPlayable
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Animation(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Animation"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Animation(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Keep final state property</summary>
@@ -186,51 +159,51 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         return _ret_var;
  }
     /// <summary>Keep final state property</summary>
-/// <value><c>true</c> to keep final state, <c>false</c> otherwise.</value>
+    /// <value><c>true</c> to keep final state, <c>false</c> otherwise.</value>
     public bool FinalStateKeep {
         get { return GetFinalStateKeep(); }
         set { SetFinalStateKeep(value); }
     }
     /// <summary>Duration property</summary>
-/// <value>Duration value.</value>
+    /// <value>Duration value.</value>
     public double Duration {
         get { return GetDuration(); }
         set { SetDuration(value); }
     }
     /// <summary>Repeat mode property</summary>
-/// <value>Repeat mode. EFL_ANIMATION_REPEAT_MODE_RESTART restarts animation when the animation ends and EFL_ANIMATION_REPEAT_MODE_REVERSE reverses animation when the animation ends.</value>
+    /// <value>Repeat mode. EFL_ANIMATION_REPEAT_MODE_RESTART restarts animation when the animation ends and EFL_ANIMATION_REPEAT_MODE_REVERSE reverses animation when the animation ends.</value>
     public Efl.Canvas.AnimationRepeatMode RepeatMode {
         get { return GetRepeatMode(); }
         set { SetRepeatMode(value); }
     }
     /// <summary>Repeat count property</summary>
-/// <value>Repeat count. EFL_ANIMATION_REPEAT_INFINITE repeats animation infinitely.</value>
+    /// <value>Repeat count. EFL_ANIMATION_REPEAT_INFINITE repeats animation infinitely.</value>
     public int RepeatCount {
         get { return GetRepeatCount(); }
         set { SetRepeatCount(value); }
     }
     /// <summary>Start delay property</summary>
-/// <value>Delay time, in seconds, from when the animation starts until the animation is animated</value>
+    /// <value>Delay time, in seconds, from when the animation starts until the animation is animated</value>
     public double StartDelay {
         get { return GetStartDelay(); }
         set { SetStartDelay(value); }
     }
     /// <summary>Interpolator property</summary>
-/// <value>Interpolator which indicates interpolation function. Efl_Interpolator is required.</value>
+    /// <value>Interpolator which indicates interpolation function. Efl_Interpolator is required.</value>
     public Efl.IInterpolator Interpolator {
         get { return GetInterpolator(); }
         set { SetInterpolator(value); }
     }
     /// <summary>Get the length of play for the media file.</summary>
-/// <value>The length of the stream in seconds.</value>
+    /// <value>The length of the stream in seconds.</value>
     public double Length {
         get { return GetLength(); }
     }
-        public bool Playable {
+    public bool Playable {
         get { return GetPlayable(); }
     }
     /// <summary>Get whether the media file is seekable.</summary>
-/// <value><c>true</c> if seekable.</value>
+    /// <value><c>true</c> if seekable.</value>
     public bool Seekable {
         get { return GetSeekable(); }
     }
@@ -420,7 +393,7 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
             return Efl.Canvas.Animation.efl_canvas_animation_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_animation_final_state_keep_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -433,13 +406,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static bool final_state_keep_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_final_state_keep_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetFinalStateKeep();
+                    _ret_var = ((Animation)ws.Target).GetFinalStateKeep();
                 }
                 catch (Exception e)
                 {
@@ -469,13 +442,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static void final_state_keep_set(System.IntPtr obj, System.IntPtr pd, bool keep)
         {
             Eina.Log.Debug("function efl_animation_final_state_keep_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Animation)wrapper).SetFinalStateKeep(keep);
+                    ((Animation)ws.Target).SetFinalStateKeep(keep);
                 }
                 catch (Exception e)
                 {
@@ -504,13 +477,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static double duration_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_duration_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetDuration();
+                    _ret_var = ((Animation)ws.Target).GetDuration();
                 }
                 catch (Exception e)
                 {
@@ -540,13 +513,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static void duration_set(System.IntPtr obj, System.IntPtr pd, double sec)
         {
             Eina.Log.Debug("function efl_animation_duration_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Animation)wrapper).SetDuration(sec);
+                    ((Animation)ws.Target).SetDuration(sec);
                 }
                 catch (Exception e)
                 {
@@ -575,13 +548,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static Efl.Canvas.AnimationRepeatMode repeat_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_repeat_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.AnimationRepeatMode _ret_var = default(Efl.Canvas.AnimationRepeatMode);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetRepeatMode();
+                    _ret_var = ((Animation)ws.Target).GetRepeatMode();
                 }
                 catch (Exception e)
                 {
@@ -611,13 +584,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static void repeat_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.AnimationRepeatMode mode)
         {
             Eina.Log.Debug("function efl_animation_repeat_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Animation)wrapper).SetRepeatMode(mode);
+                    ((Animation)ws.Target).SetRepeatMode(mode);
                 }
                 catch (Exception e)
                 {
@@ -646,13 +619,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static int repeat_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_repeat_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetRepeatCount();
+                    _ret_var = ((Animation)ws.Target).GetRepeatCount();
                 }
                 catch (Exception e)
                 {
@@ -682,13 +655,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static void repeat_count_set(System.IntPtr obj, System.IntPtr pd, int count)
         {
             Eina.Log.Debug("function efl_animation_repeat_count_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Animation)wrapper).SetRepeatCount(count);
+                    ((Animation)ws.Target).SetRepeatCount(count);
                 }
                 catch (Exception e)
                 {
@@ -717,13 +690,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static double start_delay_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_start_delay_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetStartDelay();
+                    _ret_var = ((Animation)ws.Target).GetStartDelay();
                 }
                 catch (Exception e)
                 {
@@ -753,13 +726,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static void start_delay_set(System.IntPtr obj, System.IntPtr pd, double sec)
         {
             Eina.Log.Debug("function efl_animation_start_delay_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Animation)wrapper).SetStartDelay(sec);
+                    ((Animation)ws.Target).SetStartDelay(sec);
                 }
                 catch (Exception e)
                 {
@@ -788,13 +761,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static Efl.IInterpolator interpolator_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_interpolator_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.IInterpolator _ret_var = default(Efl.IInterpolator);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetInterpolator();
+                    _ret_var = ((Animation)ws.Target).GetInterpolator();
                 }
                 catch (Exception e)
                 {
@@ -824,13 +797,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static void interpolator_set(System.IntPtr obj, System.IntPtr pd, Efl.IInterpolator interpolator)
         {
             Eina.Log.Debug("function efl_animation_interpolator_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Animation)wrapper).SetInterpolator(interpolator);
+                    ((Animation)ws.Target).SetInterpolator(interpolator);
                 }
                 catch (Exception e)
                 {
@@ -859,13 +832,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static double animation_apply(System.IntPtr obj, System.IntPtr pd, double progress, Efl.Canvas.Object target)
         {
             Eina.Log.Debug("function efl_animation_apply was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).AnimationApply(progress, target);
+                    _ret_var = ((Animation)ws.Target).AnimationApply(progress, target);
                 }
                 catch (Exception e)
                 {
@@ -895,13 +868,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static double length_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_playable_length_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetLength();
+                    _ret_var = ((Animation)ws.Target).GetLength();
                 }
                 catch (Exception e)
                 {
@@ -931,13 +904,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static bool playable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_playable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetPlayable();
+                    _ret_var = ((Animation)ws.Target).GetPlayable();
                 }
                 catch (Exception e)
                 {
@@ -967,13 +940,13 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
         private static bool seekable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_playable_seekable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Animation)wrapper).GetSeekable();
+                    _ret_var = ((Animation)ws.Target).GetSeekable();
                 }
                 catch (Exception e)
                 {
@@ -992,7 +965,7 @@ public class Animation : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayable
 
         private static efl_playable_seekable_get_delegate efl_playable_seekable_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

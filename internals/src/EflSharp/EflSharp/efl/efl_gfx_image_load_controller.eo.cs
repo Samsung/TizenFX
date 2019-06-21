@@ -78,53 +78,53 @@ void LoadAsyncCancel();
     /// <summary>Called when an error happened during image loading</summary>
     event EventHandler<Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args> LoadErrorEvt;
     /// <summary>The load size of an image.
-/// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
-/// 
-/// By default, the load size is not specified, so it is 0x0.</summary>
-/// <value>The image load size.</value>
+    /// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
+    /// 
+    /// By default, the load size is not specified, so it is 0x0.</summary>
+    /// <value>The image load size.</value>
     Eina.Size2D LoadSize {
         get ;
         set ;
     }
     /// <summary>Get the DPI resolution of a loaded image object in the canvas.
-/// This function returns the DPI resolution of the given canvas image.</summary>
-/// <value>The DPI resolution.</value>
+    /// This function returns the DPI resolution of the given canvas image.</summary>
+    /// <value>The DPI resolution.</value>
     double LoadDpi {
         get ;
         set ;
     }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
-/// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
     bool LoadRegionSupport {
         get ;
     }
     /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
-/// <value>A region of the image.</value>
+    /// <value>A region of the image.</value>
     Eina.Rect LoadRegion {
         get ;
         set ;
     }
     /// <summary>Defines whether the orientation information in the image file should be honored.
-/// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
-/// <value><c>true</c> means that it should honor the orientation information.</value>
+    /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
+    /// <value><c>true</c> means that it should honor the orientation information.</value>
     bool LoadOrientation {
         get ;
         set ;
     }
     /// <summary>The scale down factor is a divider on the original image size.
-/// Setting the scale down factor can reduce load time and memory usage at the cost of having a scaled down image in memory.
-/// 
-/// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
-/// 
-/// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
-/// <value>The scale down dividing factor.</value>
+    /// Setting the scale down factor can reduce load time and memory usage at the cost of having a scaled down image in memory.
+    /// 
+    /// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
+    /// 
+    /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
+    /// <value>The scale down dividing factor.</value>
     int LoadScaleDown {
         get ;
         set ;
     }
     /// <summary>Initial load should skip header check and leave it all to data load
-/// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
-/// <value>Will be true if header is to be skipped.</value>
+    /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+    /// <value>Will be true if header is to be skipped.</value>
     bool LoadSkipHeader {
         get ;
         set ;
@@ -136,13 +136,13 @@ public class IImageLoadControllerLoadErrorEvt_Args : EventArgs {
     public Eina.Error arg { get; set; }
 }
 /// <summary>Common APIs for all loadable 2D images.</summary>
-sealed public class IImageLoadControllerConcrete : 
-
-IImageLoadController
+sealed public class IImageLoadControllerConcrete :
+    Efl.Eo.EoWrapper
+    , IImageLoadController
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -157,155 +157,12 @@ IImageLoadController
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_gfx_image_load_controller_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IImageLoadController"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IImageLoadControllerConcrete(System.IntPtr raw)
+    private IImageLoadControllerConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IImageLoadControllerConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Called when he image was loaded</summary>
@@ -315,10 +172,9 @@ IImageLoadController
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -368,13 +224,12 @@ IImageLoadController
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args args = new Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args();
+                        Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args args = new Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args();
                         args.arg = (Eina.Error)Marshal.PtrToStructure(evt.Info, typeof(Eina.Error));
                         try
                         {
@@ -537,53 +392,53 @@ IImageLoadController
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The load size of an image.
-/// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
-/// 
-/// By default, the load size is not specified, so it is 0x0.</summary>
-/// <value>The image load size.</value>
+    /// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
+    /// 
+    /// By default, the load size is not specified, so it is 0x0.</summary>
+    /// <value>The image load size.</value>
     public Eina.Size2D LoadSize {
         get { return GetLoadSize(); }
         set { SetLoadSize(value); }
     }
     /// <summary>Get the DPI resolution of a loaded image object in the canvas.
-/// This function returns the DPI resolution of the given canvas image.</summary>
-/// <value>The DPI resolution.</value>
+    /// This function returns the DPI resolution of the given canvas image.</summary>
+    /// <value>The DPI resolution.</value>
     public double LoadDpi {
         get { return GetLoadDpi(); }
         set { SetLoadDpi(value); }
     }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
-/// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
     public bool LoadRegionSupport {
         get { return GetLoadRegionSupport(); }
     }
     /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
-/// <value>A region of the image.</value>
+    /// <value>A region of the image.</value>
     public Eina.Rect LoadRegion {
         get { return GetLoadRegion(); }
         set { SetLoadRegion(value); }
     }
     /// <summary>Defines whether the orientation information in the image file should be honored.
-/// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
-/// <value><c>true</c> means that it should honor the orientation information.</value>
+    /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
+    /// <value><c>true</c> means that it should honor the orientation information.</value>
     public bool LoadOrientation {
         get { return GetLoadOrientation(); }
         set { SetLoadOrientation(value); }
     }
     /// <summary>The scale down factor is a divider on the original image size.
-/// Setting the scale down factor can reduce load time and memory usage at the cost of having a scaled down image in memory.
-/// 
-/// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
-/// 
-/// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
-/// <value>The scale down dividing factor.</value>
+    /// Setting the scale down factor can reduce load time and memory usage at the cost of having a scaled down image in memory.
+    /// 
+    /// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
+    /// 
+    /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
+    /// <value>The scale down dividing factor.</value>
     public int LoadScaleDown {
         get { return GetLoadScaleDown(); }
         set { SetLoadScaleDown(value); }
     }
     /// <summary>Initial load should skip header check and leave it all to data load
-/// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
-/// <value>Will be true if header is to be skipped.</value>
+    /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+    /// <value>Will be true if header is to be skipped.</value>
     public bool LoadSkipHeader {
         get { return GetLoadSkipHeader(); }
         set { SetLoadSkipHeader(value); }
@@ -763,7 +618,7 @@ IImageLoadController
             return Efl.Gfx.IImageLoadControllerConcrete.efl_gfx_image_load_controller_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Size2D.NativeStruct efl_gfx_image_load_controller_load_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -776,13 +631,13 @@ IImageLoadController
         private static Eina.Size2D.NativeStruct load_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IImageLoadController)wrapper).GetLoadSize();
+                    _ret_var = ((IImageLoadController)ws.Target).GetLoadSize();
                 }
                 catch (Exception e)
                 {
@@ -812,14 +667,14 @@ IImageLoadController
         private static void load_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct size)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_size = size;
                             
                 try
                 {
-                    ((IImageLoadController)wrapper).SetLoadSize(_in_size);
+                    ((IImageLoadController)ws.Target).SetLoadSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -848,13 +703,13 @@ IImageLoadController
         private static double load_dpi_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_dpi_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IImageLoadController)wrapper).GetLoadDpi();
+                    _ret_var = ((IImageLoadController)ws.Target).GetLoadDpi();
                 }
                 catch (Exception e)
                 {
@@ -884,13 +739,13 @@ IImageLoadController
         private static void load_dpi_set(System.IntPtr obj, System.IntPtr pd, double dpi)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_dpi_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImageLoadController)wrapper).SetLoadDpi(dpi);
+                    ((IImageLoadController)ws.Target).SetLoadDpi(dpi);
                 }
                 catch (Exception e)
                 {
@@ -919,13 +774,13 @@ IImageLoadController
         private static bool load_region_support_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_region_support_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IImageLoadController)wrapper).GetLoadRegionSupport();
+                    _ret_var = ((IImageLoadController)ws.Target).GetLoadRegionSupport();
                 }
                 catch (Exception e)
                 {
@@ -955,13 +810,13 @@ IImageLoadController
         private static Eina.Rect.NativeStruct load_region_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_region_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IImageLoadController)wrapper).GetLoadRegion();
+                    _ret_var = ((IImageLoadController)ws.Target).GetLoadRegion();
                 }
                 catch (Exception e)
                 {
@@ -991,14 +846,14 @@ IImageLoadController
         private static void load_region_set(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct region)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_region_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_region = region;
                             
                 try
                 {
-                    ((IImageLoadController)wrapper).SetLoadRegion(_in_region);
+                    ((IImageLoadController)ws.Target).SetLoadRegion(_in_region);
                 }
                 catch (Exception e)
                 {
@@ -1027,13 +882,13 @@ IImageLoadController
         private static bool load_orientation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_orientation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IImageLoadController)wrapper).GetLoadOrientation();
+                    _ret_var = ((IImageLoadController)ws.Target).GetLoadOrientation();
                 }
                 catch (Exception e)
                 {
@@ -1063,13 +918,13 @@ IImageLoadController
         private static void load_orientation_set(System.IntPtr obj, System.IntPtr pd, bool enable)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_orientation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImageLoadController)wrapper).SetLoadOrientation(enable);
+                    ((IImageLoadController)ws.Target).SetLoadOrientation(enable);
                 }
                 catch (Exception e)
                 {
@@ -1098,13 +953,13 @@ IImageLoadController
         private static int load_scale_down_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_scale_down_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IImageLoadController)wrapper).GetLoadScaleDown();
+                    _ret_var = ((IImageLoadController)ws.Target).GetLoadScaleDown();
                 }
                 catch (Exception e)
                 {
@@ -1134,13 +989,13 @@ IImageLoadController
         private static void load_scale_down_set(System.IntPtr obj, System.IntPtr pd, int div)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_scale_down_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImageLoadController)wrapper).SetLoadScaleDown(div);
+                    ((IImageLoadController)ws.Target).SetLoadScaleDown(div);
                 }
                 catch (Exception e)
                 {
@@ -1169,13 +1024,13 @@ IImageLoadController
         private static bool load_skip_header_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_skip_header_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IImageLoadController)wrapper).GetLoadSkipHeader();
+                    _ret_var = ((IImageLoadController)ws.Target).GetLoadSkipHeader();
                 }
                 catch (Exception e)
                 {
@@ -1205,13 +1060,13 @@ IImageLoadController
         private static void load_skip_header_set(System.IntPtr obj, System.IntPtr pd, bool skip)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_skip_header_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImageLoadController)wrapper).SetLoadSkipHeader(skip);
+                    ((IImageLoadController)ws.Target).SetLoadSkipHeader(skip);
                 }
                 catch (Exception e)
                 {
@@ -1240,13 +1095,13 @@ IImageLoadController
         private static void load_async_start(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_async_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IImageLoadController)wrapper).LoadAsyncStart();
+                    ((IImageLoadController)ws.Target).LoadAsyncStart();
                 }
                 catch (Exception e)
                 {
@@ -1275,13 +1130,13 @@ IImageLoadController
         private static void load_async_cancel(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_async_cancel was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IImageLoadController)wrapper).LoadAsyncCancel();
+                    ((IImageLoadController)ws.Target).LoadAsyncCancel();
                 }
                 catch (Exception e)
                 {
@@ -1299,7 +1154,7 @@ IImageLoadController
 
         private static efl_gfx_image_load_controller_load_async_cancel_delegate efl_gfx_image_load_controller_load_async_cancel_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

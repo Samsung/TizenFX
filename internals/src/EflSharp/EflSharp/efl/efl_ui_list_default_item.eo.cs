@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>List Default Item class. This class need to be sub object of list widget. text and contents can be appliable by efl_text, efl_content or efl_part APIs.</summary>
 [Efl.Ui.ListDefaultItem.NativeMethods]
-public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl.IText,Efl.ITextMarkup
+public class ListDefaultItem : Efl.Ui.ListItem, Efl.IContent, Efl.IText, Efl.ITextMarkup
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ListDefaultItem(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ListDefaultItem"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -61,33 +61,6 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
@@ -96,13 +69,12 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -143,6 +115,30 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
 
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
+    /// <summary>The extra content part for list default item. extra part is the right-side content of list item.</summary>
+    public Efl.Ui.ItemPartExtra ExtraPart
+    {
+        get
+        {
+            return GetPart("extra") as Efl.Ui.ItemPartExtra;
+        }
+    }
+    /// <summary>The icon content part for list default item. icon part is the left-side content of list item.</summary>
+    public Efl.Ui.ItemPartIcon IconPart
+    {
+        get
+        {
+            return GetPart("icon") as Efl.Ui.ItemPartIcon;
+        }
+    }
+    /// <summary>The text part for list default item.</summary>
+    public Efl.Ui.ItemPartText TextPart
+    {
+        get
+        {
+            return GetPart("text") as Efl.Ui.ItemPartText;
+        }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
     /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
@@ -204,15 +200,15 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     public System.String Markup {
         get { return GetMarkup(); }
         set { SetMarkup(value); }
@@ -313,7 +309,7 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
             return Efl.Ui.ListDefaultItem.efl_ui_list_default_item_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -326,13 +322,13 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((ListDefaultItem)wrapper).GetContent();
+                    _ret_var = ((ListDefaultItem)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -362,13 +358,13 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListDefaultItem)wrapper).SetContent(content);
+                    _ret_var = ((ListDefaultItem)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -398,13 +394,13 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((ListDefaultItem)wrapper).UnsetContent();
+                    _ret_var = ((ListDefaultItem)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -434,13 +430,13 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ListDefaultItem)wrapper).GetText();
+                    _ret_var = ((ListDefaultItem)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -470,13 +466,13 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListDefaultItem)wrapper).SetText(text);
+                    ((ListDefaultItem)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -505,13 +501,13 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static System.String markup_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_markup_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ListDefaultItem)wrapper).GetMarkup();
+                    _ret_var = ((ListDefaultItem)ws.Target).GetMarkup();
                 }
                 catch (Exception e)
                 {
@@ -541,13 +537,13 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static void markup_set(System.IntPtr obj, System.IntPtr pd, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListDefaultItem)wrapper).SetMarkup(markup);
+                    ((ListDefaultItem)ws.Target).SetMarkup(markup);
                 }
                 catch (Exception e)
                 {
@@ -565,7 +561,7 @@ public class ListDefaultItem : Efl.Ui.ListItem, Efl.Eo.IWrapper,Efl.IContent,Efl
 
         private static efl_text_markup_set_delegate efl_text_markup_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

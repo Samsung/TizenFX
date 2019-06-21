@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>EFL UI Text Alert Popup class</summary>
 [Efl.Ui.TextAlertPopup.NativeMethods]
-public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
+public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.IText
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected TextAlertPopup(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="TextAlertPopup"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -59,33 +59,6 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected TextAlertPopup(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Set the expandable of popup.
@@ -116,8 +89,8 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the expandable of popup.
-/// If the contents of the popup has min size, the popup will be increased by min size along the Y axis. If max hint is set it will be increased to the value of max hint and scrolling will occur.</summary>
-/// <value>A 2D max size in pixel units.</value>
+    /// If the contents of the popup has min size, the popup will be increased by min size along the Y axis. If max hint is set it will be increased to the value of max hint and scrolling will occur.</summary>
+    /// <value>A 2D max size in pixel units.</value>
     public Eina.Size2D Expandable {
         set { SetExpandable(value); }
     }
@@ -177,7 +150,7 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
             return Efl.Ui.TextAlertPopup.efl_ui_text_alert_popup_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_ui_text_alert_popup_expandable_set_delegate(System.IntPtr obj, System.IntPtr pd,  Eina.Size2D.NativeStruct max_size);
@@ -190,14 +163,14 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
         private static void expandable_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct max_size)
         {
             Eina.Log.Debug("function efl_ui_text_alert_popup_expandable_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_max_size = max_size;
                             
                 try
                 {
-                    ((TextAlertPopup)wrapper).SetExpandable(_in_max_size);
+                    ((TextAlertPopup)ws.Target).SetExpandable(_in_max_size);
                 }
                 catch (Exception e)
                 {
@@ -226,13 +199,13 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((TextAlertPopup)wrapper).GetText();
+                    _ret_var = ((TextAlertPopup)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -262,13 +235,13 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((TextAlertPopup)wrapper).SetText(text);
+                    ((TextAlertPopup)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -286,7 +259,7 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.Eo.IWrapper,Efl.IText
 
         private static efl_text_set_delegate efl_text_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

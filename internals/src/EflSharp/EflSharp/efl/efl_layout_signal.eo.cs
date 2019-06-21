@@ -146,13 +146,13 @@ void SignalProcess(bool recurse);
                     }
 /// <summary>Layouts asynchronous messaging and signaling interface.
 /// (Since EFL 1.22)</summary>
-sealed public class ISignalConcrete : 
-
-ISignal
+sealed public class ISignalConcrete :
+    Efl.Eo.EoWrapper
+    , ISignal
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -167,86 +167,12 @@ ISignal
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
         efl_layout_signal_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISignal"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISignalConcrete(System.IntPtr raw)
+    private ISignalConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ISignalConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Sends an (Edje) message to a given Edje object
@@ -402,7 +328,7 @@ ISignal
             return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_layout_signal_message_send_delegate(System.IntPtr obj, System.IntPtr pd,  int id,  Eina.ValueNative msg);
@@ -415,13 +341,13 @@ ISignal
         private static void message_send(System.IntPtr obj, System.IntPtr pd, int id, Eina.ValueNative msg)
         {
             Eina.Log.Debug("function efl_layout_signal_message_send was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ISignal)wrapper).MessageSend(id, msg);
+                    ((ISignal)ws.Target).MessageSend(id, msg);
                 }
                 catch (Exception e)
                 {
@@ -450,14 +376,14 @@ ISignal
         private static bool signal_callback_add(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_layout_signal_callback_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                             EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISignal)wrapper).AddSignalCallback(emission, source, func_wrapper.ManagedCb);
+                    _ret_var = ((ISignal)ws.Target).AddSignalCallback(emission, source, func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -487,14 +413,14 @@ ISignal
         private static bool signal_callback_del(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_layout_signal_callback_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                             EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISignal)wrapper).DelSignalCallback(emission, source, func_wrapper.ManagedCb);
+                    _ret_var = ((ISignal)ws.Target).DelSignalCallback(emission, source, func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -524,13 +450,13 @@ ISignal
         private static void signal_emit(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source)
         {
             Eina.Log.Debug("function efl_layout_signal_emit was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ISignal)wrapper).EmitSignal(emission, source);
+                    ((ISignal)ws.Target).EmitSignal(emission, source);
                 }
                 catch (Exception e)
                 {
@@ -559,13 +485,13 @@ ISignal
         private static void signal_process(System.IntPtr obj, System.IntPtr pd, bool recurse)
         {
             Eina.Log.Debug("function efl_layout_signal_process was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ISignal)wrapper).SignalProcess(recurse);
+                    ((ISignal)ws.Target).SignalProcess(recurse);
                 }
                 catch (Exception e)
                 {
@@ -583,7 +509,7 @@ ISignal
 
         private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

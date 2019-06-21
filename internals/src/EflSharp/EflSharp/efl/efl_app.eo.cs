@@ -10,7 +10,7 @@ namespace Efl {
 /// <summary>Object representing the application itself.
 /// (Since EFL 1.22)</summary>
 [Efl.App.NativeMethods]
-public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
+public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -43,7 +43,7 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected App(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class AppRealized : App
@@ -61,33 +61,6 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when the application is not going be displayed or otherwise used by a user for some time
     /// (Since EFL 1.22)</summary>
     public event EventHandler PauseEvt
@@ -96,10 +69,9 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -150,10 +122,9 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -204,10 +175,9 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -258,10 +228,9 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -312,10 +281,9 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -366,10 +334,9 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -420,10 +387,9 @@ public abstract class App : Efl.Loop, Efl.Eo.IWrapper,Efl.Core.ICommandLine
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -538,46 +504,46 @@ array.OwnContent = false;
         return new Eina.Accessor<System.String>(_ret_var, false, false);
  }
     /// <summary>Returns the app object that is representing this process
-/// Note: This function call only works in the main loop thread of the process.
-/// (Since EFL 1.22)</summary>
-/// <value>Application for this process</value>
+    /// Note: This function call only works in the main loop thread of the process.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Application for this process</value>
     public static Efl.App AppMain {
         get { return GetAppMain(); }
     }
     /// <summary>Indicates the version of EFL with which this application was compiled against/for.
-/// This might differ from <see cref="Efl.App.GetEflVersion"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>Efl build version</value>
+    /// This might differ from <see cref="Efl.App.GetEflVersion"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Efl build version</value>
     public Efl.Version BuildEflVersion {
         get { return GetBuildEflVersion(); }
     }
     /// <summary>Indicates the currently running version of EFL.
-/// This might differ from <see cref="Efl.App.GetBuildEflVersion"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>Efl version</value>
+    /// This might differ from <see cref="Efl.App.GetBuildEflVersion"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Efl version</value>
     public Efl.Version EflVersion {
         get { return GetEflVersion(); }
     }
     /// <summary>A commandline that encodes arguments in a command string. This command is unix shell-style, thus whitespace separates arguments unless escaped. Also a semi-colon &apos;;&apos;, ampersand &apos;&amp;&apos;, pipe/bar &apos;|&apos;, hash &apos;#&apos;, bracket, square brace, brace character (&apos;(&apos;, &apos;)&apos;, &apos;[&apos;, &apos;]&apos;, &apos;{&apos;, &apos;}&apos;), exclamation mark &apos;!&apos;,  backquote &apos;`&apos;, greator or less than (&apos;&gt;&apos; &apos;&lt;&apos;) character unless escaped or in quotes would cause args_count/value to not be generated properly, because it would force complex shell interpretation which will not be supported in evaluating the arg_count/value information, but the final shell may interpret this if this is executed via a command-line shell. To not be a complex shell command, it should be simple with paths, options and variable expansions, but nothing more complex involving the above unescaped characters.
-/// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
-/// 
-/// It should not try and use &quot;complex shell features&quot; if you want the arg_count and arg_value set to be correct after setting the command string. For example none of:
-/// 
-/// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
-/// 
-/// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
+    /// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
+    /// 
+    /// It should not try and use &quot;complex shell features&quot; if you want the arg_count and arg_value set to be correct after setting the command string. For example none of:
+    /// 
+    /// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
+    /// 
+    /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
     public System.String Command {
         get { return GetCommand(); }
     }
     /// <summary>Use an array to fill this object
-/// Every element of a string is a argument.</summary>
-/// <value>An array where every array field is an argument</value>
+    /// Every element of a string is a argument.</summary>
+    /// <value>An array where every array field is an argument</value>
     public Eina.Array<System.String> CommandArray {
         set { SetCommandArray(value); }
     }
     /// <summary>Use a string to fill this object
-/// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
-/// <value>A command in form of a string</value>
+    /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
+    /// <value>A command in form of a string</value>
     public System.String CommandString {
         set { SetCommandString(value); }
     }
@@ -667,7 +633,7 @@ array.OwnContent = false;
             return Efl.App.efl_app_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.App efl_app_main_get_delegate();
@@ -680,8 +646,8 @@ array.OwnContent = false;
         private static Efl.App app_main_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_app_main_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.App _ret_var = default(Efl.App);
                 try
@@ -714,13 +680,13 @@ array.OwnContent = false;
         private static System.IntPtr build_efl_version_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_app_build_efl_version_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Version _ret_var = default(Efl.Version);
                 try
                 {
-                    _ret_var = ((App)wrapper).GetBuildEflVersion();
+                    _ret_var = ((App)ws.Target).GetBuildEflVersion();
                 }
                 catch (Exception e)
                 {
@@ -750,13 +716,13 @@ array.OwnContent = false;
         private static System.IntPtr efl_version_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_app_efl_version_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Version _ret_var = default(Efl.Version);
                 try
                 {
-                    _ret_var = ((App)wrapper).GetEflVersion();
+                    _ret_var = ((App)ws.Target).GetEflVersion();
                 }
                 catch (Exception e)
                 {
@@ -786,13 +752,13 @@ array.OwnContent = false;
         private static System.String command_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_core_command_line_command_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((App)wrapper).GetCommand();
+                    _ret_var = ((App)ws.Target).GetCommand();
                 }
                 catch (Exception e)
                 {
@@ -822,14 +788,14 @@ array.OwnContent = false;
         private static bool command_array_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr array)
         {
             Eina.Log.Debug("function efl_core_command_line_command_array_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_array = new Eina.Array<System.String>(array, true, true);
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((App)wrapper).SetCommandArray(_in_array);
+                    _ret_var = ((App)ws.Target).SetCommandArray(_in_array);
                 }
                 catch (Exception e)
                 {
@@ -859,13 +825,13 @@ array.OwnContent = false;
         private static bool command_string_set(System.IntPtr obj, System.IntPtr pd, System.String str)
         {
             Eina.Log.Debug("function efl_core_command_line_command_string_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((App)wrapper).SetCommandString(str);
+                    _ret_var = ((App)ws.Target).SetCommandString(str);
                 }
                 catch (Exception e)
                 {
@@ -895,13 +861,13 @@ array.OwnContent = false;
         private static System.IntPtr command_access(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_core_command_line_command_access was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
                 try
                 {
-                    _ret_var = ((App)wrapper).CommandAccess();
+                    _ret_var = ((App)ws.Target).CommandAccess();
                 }
                 catch (Exception e)
                 {
@@ -920,7 +886,7 @@ array.OwnContent = false;
 
         private static efl_core_command_line_command_access_delegate efl_core_command_line_command_access_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

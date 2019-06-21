@@ -32,7 +32,7 @@ public class StackDeactivatedEvt_Args : EventArgs {
 /// <summary>Stack widget.
 /// Stack widget arranges objects in stack structure by pushing and poping them.</summary>
 [Efl.Ui.Stack.NativeMethods]
-public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
+public class Stack : Efl.Ui.LayoutBase
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -71,7 +71,7 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Stack(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Stack"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -82,33 +82,6 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when content is loaded right before transition.</summary>
     public event EventHandler<Efl.Ui.StackLoadedEvt_Args> LoadedEvt
     {
@@ -116,13 +89,12 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.StackLoadedEvt_Args args = new Efl.Ui.StackLoadedEvt_Args();
+                        Efl.Ui.StackLoadedEvt_Args args = new Efl.Ui.StackLoadedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -179,13 +151,12 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.StackUnloadedEvt_Args args = new Efl.Ui.StackUnloadedEvt_Args();
+                        Efl.Ui.StackUnloadedEvt_Args args = new Efl.Ui.StackUnloadedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -242,13 +213,12 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.StackActivatedEvt_Args args = new Efl.Ui.StackActivatedEvt_Args();
+                        Efl.Ui.StackActivatedEvt_Args args = new Efl.Ui.StackActivatedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -305,13 +275,12 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.StackDeactivatedEvt_Args args = new Efl.Ui.StackDeactivatedEvt_Args();
+                        Efl.Ui.StackDeactivatedEvt_Args args = new Efl.Ui.StackDeactivatedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -556,7 +525,7 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
             return Efl.Ui.Stack.efl_ui_stack_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_ui_stack_push_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object content);
@@ -569,13 +538,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void push(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object content)
         {
             Eina.Log.Debug("function efl_ui_stack_push was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Stack)wrapper).Push(content);
+                    ((Stack)ws.Target).Push(content);
                 }
                 catch (Exception e)
                 {
@@ -604,13 +573,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static Efl.Canvas.Object pop(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_stack_pop was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Stack)wrapper).Pop();
+                    _ret_var = ((Stack)ws.Target).Pop();
                 }
                 catch (Exception e)
                 {
@@ -640,13 +609,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void insert_before(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object base_content, Efl.Canvas.Object content)
         {
             Eina.Log.Debug("function efl_ui_stack_insert_before was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Stack)wrapper).InsertBefore(base_content, content);
+                    ((Stack)ws.Target).InsertBefore(base_content, content);
                 }
                 catch (Exception e)
                 {
@@ -675,13 +644,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void insert_after(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object base_content, Efl.Canvas.Object content)
         {
             Eina.Log.Debug("function efl_ui_stack_insert_after was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Stack)wrapper).InsertAfter(base_content, content);
+                    ((Stack)ws.Target).InsertAfter(base_content, content);
                 }
                 catch (Exception e)
                 {
@@ -710,13 +679,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void insert_at(System.IntPtr obj, System.IntPtr pd, int index, Efl.Canvas.Object content)
         {
             Eina.Log.Debug("function efl_ui_stack_insert_at was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Stack)wrapper).InsertAt(index, content);
+                    ((Stack)ws.Target).InsertAt(index, content);
                 }
                 catch (Exception e)
                 {
@@ -745,13 +714,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void remove(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object content)
         {
             Eina.Log.Debug("function efl_ui_stack_remove was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Stack)wrapper).Remove(content);
+                    ((Stack)ws.Target).Remove(content);
                 }
                 catch (Exception e)
                 {
@@ -780,13 +749,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void remove_at(System.IntPtr obj, System.IntPtr pd, int index)
         {
             Eina.Log.Debug("function efl_ui_stack_remove_at was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Stack)wrapper).RemoveAt(index);
+                    ((Stack)ws.Target).RemoveAt(index);
                 }
                 catch (Exception e)
                 {
@@ -815,13 +784,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static int index_get(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object content)
         {
             Eina.Log.Debug("function efl_ui_stack_index_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Stack)wrapper).GetIndex(content);
+                    _ret_var = ((Stack)ws.Target).GetIndex(content);
                 }
                 catch (Exception e)
                 {
@@ -851,13 +820,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static Efl.Canvas.Object content_get(System.IntPtr obj, System.IntPtr pd, int index)
         {
             Eina.Log.Debug("function efl_ui_stack_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Stack)wrapper).GetContent(index);
+                    _ret_var = ((Stack)ws.Target).GetContent(index);
                 }
                 catch (Exception e)
                 {
@@ -887,13 +856,13 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static Efl.Canvas.Object top(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_stack_top was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Stack)wrapper).Top();
+                    _ret_var = ((Stack)ws.Target).Top();
                 }
                 catch (Exception e)
                 {
@@ -912,7 +881,7 @@ public class Stack : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
 
         private static efl_ui_stack_top_delegate efl_ui_stack_top_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -937,11 +906,15 @@ public struct StackEventLoaded
         this.Content = Content;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StackEventLoaded(IntPtr ptr)
     {
         var tmp = (StackEventLoaded.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StackEventLoaded.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct StackEventLoaded.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -968,6 +941,8 @@ public struct StackEventLoaded
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -991,11 +966,15 @@ public struct StackEventUnloaded
         this.Content = Content;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StackEventUnloaded(IntPtr ptr)
     {
         var tmp = (StackEventUnloaded.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StackEventUnloaded.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct StackEventUnloaded.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1022,6 +1001,8 @@ public struct StackEventUnloaded
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -1045,11 +1026,15 @@ public struct StackEventActivated
         this.Content = Content;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StackEventActivated(IntPtr ptr)
     {
         var tmp = (StackEventActivated.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StackEventActivated.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct StackEventActivated.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1076,6 +1061,8 @@ public struct StackEventActivated
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -1099,11 +1086,15 @@ public struct StackEventDeactivated
         this.Content = Content;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StackEventDeactivated(IntPtr ptr)
     {
         var tmp = (StackEventDeactivated.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StackEventDeactivated.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct StackEventDeactivated.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1129,6 +1120,8 @@ public struct StackEventDeactivated
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

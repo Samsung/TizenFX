@@ -40,13 +40,13 @@ bool SetSizeClass(System.String size_class, int minw, int minh, int maxw, int ma
 void DelSizeClass(System.String size_class);
             }
 /// <summary>Efl Gfx Size Class interface</summary>
-sealed public class ISizeClassConcrete : 
-
-ISizeClass
+sealed public class ISizeClassConcrete :
+    Efl.Eo.EoWrapper
+    , ISizeClass
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -61,86 +61,12 @@ ISizeClass
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_gfx_size_class_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISizeClass"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISizeClassConcrete(System.IntPtr raw)
+    private ISizeClassConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ISizeClassConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get width and height of size class.
@@ -233,7 +159,7 @@ ISizeClass
             return Efl.Gfx.ISizeClassConcrete.efl_gfx_size_class_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_gfx_size_class_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String size_class,  out int minw,  out int minh,  out int maxw,  out int maxh);
@@ -246,13 +172,13 @@ ISizeClass
         private static bool size_class_get(System.IntPtr obj, System.IntPtr pd, System.String size_class, out int minw, out int minh, out int maxw, out int maxh)
         {
             Eina.Log.Debug("function efl_gfx_size_class_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         minw = default(int);        minh = default(int);        maxw = default(int);        maxh = default(int);                                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISizeClass)wrapper).GetSizeClass(size_class, out minw, out minh, out maxw, out maxh);
+                    _ret_var = ((ISizeClass)ws.Target).GetSizeClass(size_class, out minw, out minh, out maxw, out maxh);
                 }
                 catch (Exception e)
                 {
@@ -282,13 +208,13 @@ ISizeClass
         private static bool size_class_set(System.IntPtr obj, System.IntPtr pd, System.String size_class, int minw, int minh, int maxw, int maxh)
         {
             Eina.Log.Debug("function efl_gfx_size_class_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISizeClass)wrapper).SetSizeClass(size_class, minw, minh, maxw, maxh);
+                    _ret_var = ((ISizeClass)ws.Target).SetSizeClass(size_class, minw, minh, maxw, maxh);
                 }
                 catch (Exception e)
                 {
@@ -318,13 +244,13 @@ ISizeClass
         private static void size_class_del(System.IntPtr obj, System.IntPtr pd, System.String size_class)
         {
             Eina.Log.Debug("function efl_gfx_size_class_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ISizeClass)wrapper).DelSizeClass(size_class);
+                    ((ISizeClass)ws.Target).DelSizeClass(size_class);
                 }
                 catch (Exception e)
                 {
@@ -342,7 +268,7 @@ ISizeClass
 
         private static efl_gfx_size_class_del_delegate efl_gfx_size_class_del_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

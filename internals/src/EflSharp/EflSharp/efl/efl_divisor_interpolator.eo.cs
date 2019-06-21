@@ -9,7 +9,7 @@ namespace Efl {
 
 /// <summary>Efl divisor interpolator class</summary>
 [Efl.DivisorInterpolator.NativeMethods]
-public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
+public class DivisorInterpolator : Efl.Object, Efl.IInterpolator
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -42,7 +42,7 @@ public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected DivisorInterpolator(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="DivisorInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -51,33 +51,6 @@ public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected DivisorInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Factors property</summary>
@@ -158,7 +131,7 @@ public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
             return Efl.DivisorInterpolator.efl_divisor_interpolator_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_divisor_interpolator_factors_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double factor1,  out double factor2);
@@ -171,13 +144,13 @@ public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
         private static void factors_get(System.IntPtr obj, System.IntPtr pd, out double factor1, out double factor2)
         {
             Eina.Log.Debug("function efl_divisor_interpolator_factors_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         factor1 = default(double);        factor2 = default(double);                            
                 try
                 {
-                    ((DivisorInterpolator)wrapper).GetFactors(out factor1, out factor2);
+                    ((DivisorInterpolator)ws.Target).GetFactors(out factor1, out factor2);
                 }
                 catch (Exception e)
                 {
@@ -206,13 +179,13 @@ public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
         private static void factors_set(System.IntPtr obj, System.IntPtr pd, double factor1, double factor2)
         {
             Eina.Log.Debug("function efl_divisor_interpolator_factors_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((DivisorInterpolator)wrapper).SetFactors(factor1, factor2);
+                    ((DivisorInterpolator)ws.Target).SetFactors(factor1, factor2);
                 }
                 catch (Exception e)
                 {
@@ -241,13 +214,13 @@ public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
         private static double interpolate(System.IntPtr obj, System.IntPtr pd, double progress)
         {
             Eina.Log.Debug("function efl_interpolator_interpolate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((DivisorInterpolator)wrapper).Interpolate(progress);
+                    _ret_var = ((DivisorInterpolator)ws.Target).Interpolate(progress);
                 }
                 catch (Exception e)
                 {
@@ -266,7 +239,7 @@ public class DivisorInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
 
         private static efl_interpolator_interpolate_delegate efl_interpolator_interpolate_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

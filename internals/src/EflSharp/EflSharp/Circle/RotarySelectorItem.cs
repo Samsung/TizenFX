@@ -219,6 +219,19 @@ namespace Efl
                 }
 
                 /// <summary>
+                /// Sets or gets whether the item can be deleted in the edit mode or not.
+                /// </summary>
+                /// <since_tizen> 6 </since_tizen>
+                public bool IsRemovable
+                {
+                    get { return Interop.Eext.eext_rotary_selector_item_delete_enabled_get(NativeHandle); }
+                    set
+                    {
+                        Interop.Eext.eext_rotary_selector_item_delete_enabled_set(NativeHandle, value);
+                    }
+                }
+
+                /// <summary>
                 /// Sets or gets the normal icon image.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>

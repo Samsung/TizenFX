@@ -10,7 +10,7 @@ namespace Efl {
 /// <summary>Fds are objects that watch the activity on a given file descriptor. This file descriptor can be a network, a file, provided by a library.
 /// The object will trigger relevant events depending on what&apos;s happening.</summary>
 [Efl.LoopFd.NativeMethods]
-public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
+public class LoopFd : Efl.LoopConsumer
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -43,7 +43,7 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected LoopFd(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LoopFd"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -54,33 +54,6 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when a read happened on the file descriptor</summary>
     public event EventHandler ReadEvt
     {
@@ -88,10 +61,9 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -141,10 +113,9 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -194,10 +165,9 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -267,13 +237,13 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines which file descriptor to watch. If it is a file, use file_fd variant.</summary>
-/// <value>The file descriptor.</value>
+    /// <value>The file descriptor.</value>
     public int Fd {
         get { return GetFd(); }
         set { SetFd(value); }
     }
     /// <summary>Defines which file descriptor to watch when watching a file.</summary>
-/// <value>The file descriptor.</value>
+    /// <value>The file descriptor.</value>
     public int FdFile {
         get { return GetFdFile(); }
         set { SetFdFile(value); }
@@ -344,7 +314,7 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
             return Efl.LoopFd.efl_loop_fd_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_loop_fd_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -357,13 +327,13 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static int fd_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_fd_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LoopFd)wrapper).GetFd();
+                    _ret_var = ((LoopFd)ws.Target).GetFd();
                 }
                 catch (Exception e)
                 {
@@ -393,13 +363,13 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void fd_set(System.IntPtr obj, System.IntPtr pd, int fd)
         {
             Eina.Log.Debug("function efl_loop_fd_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LoopFd)wrapper).SetFd(fd);
+                    ((LoopFd)ws.Target).SetFd(fd);
                 }
                 catch (Exception e)
                 {
@@ -428,13 +398,13 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static int fd_file_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_fd_file_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LoopFd)wrapper).GetFdFile();
+                    _ret_var = ((LoopFd)ws.Target).GetFdFile();
                 }
                 catch (Exception e)
                 {
@@ -464,13 +434,13 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void fd_file_set(System.IntPtr obj, System.IntPtr pd, int fd)
         {
             Eina.Log.Debug("function efl_loop_fd_file_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LoopFd)wrapper).SetFdFile(fd);
+                    ((LoopFd)ws.Target).SetFdFile(fd);
                 }
                 catch (Exception e)
                 {
@@ -488,7 +458,7 @@ public class LoopFd : Efl.LoopConsumer, Efl.Eo.IWrapper
 
         private static efl_loop_fd_file_set_delegate efl_loop_fd_file_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

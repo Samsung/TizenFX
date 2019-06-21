@@ -193,11 +193,15 @@ public struct SelectionData
         this.Item = Item;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator SelectionData(IntPtr ptr)
     {
         var tmp = (SelectionData.NativeStruct)Marshal.PtrToStructure(ptr, typeof(SelectionData.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct SelectionData.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -244,6 +248,8 @@ public struct SelectionData
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -278,11 +284,15 @@ public struct SelectionChanged
         this.Exist = Exist;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator SelectionChanged(IntPtr ptr)
     {
         var tmp = (SelectionChanged.NativeStruct)Marshal.PtrToStructure(ptr, typeof(SelectionChanged.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct SelectionChanged.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -319,6 +329,8 @@ public struct SelectionChanged
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

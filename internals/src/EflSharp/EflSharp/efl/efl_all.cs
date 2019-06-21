@@ -23,7 +23,6 @@ static class UnsafeNativeMethods
     private static Efl.Eo.FunctionWrapper<init_func_delegate> _evas_init;
     [DllImport(efl.Libs.Evas)] public static extern void evas_shutdown();
     [DllImport(efl.Libs.Elementary)] public static extern int elm_init(int argc, IntPtr argv);
-    [DllImport(efl.Libs.Elementary)] public static extern void elm_policy_set(int policy, int policy_detail);
     [DllImport(efl.Libs.Elementary)] public static extern void elm_shutdown();
     [DllImport(efl.Libs.Elementary)] public static extern void elm_run();
     [DllImport(efl.Libs.Elementary)] public static extern void elm_exit();
@@ -73,8 +72,12 @@ public static class All
     {
         // Try to cleanup everything before actually shutting down.
         Eina.Log.Debug("Calling GC before shutdown");
-        System.GC.Collect();
-        System.GC.WaitForPendingFinalizers();
+        for (int i = 0; i < 3; i++)
+        {
+            System.GC.Collect();
+            System.GC.WaitForPendingFinalizers();
+            Efl.App.AppMain.Iterate();
+        }
 
         Monitor.Enter(InitLock);
         MainLoopInitialized = false;
@@ -117,11 +120,12 @@ public static class Config
 #endif
         elm_init(0, IntPtr.Zero);
 
-        elm_policy_set((int)Elm.Policy.Quit, (int)Elm.PolicyQuit.LastWindowHidden);
 
         // TIZEN_ONLY(20190425) Use efl-sharp-theme.edj on EflSharp
         Efl.Ui.Theme.GetDefault().AddOverlay("/usr/share/efl-sharp/efl-sharp-theme.edj");
         //
+
+        Efl.Ui.Win.ExitOnAllWindowsClosed = new Eina.Value(0);
     }
 
     public static void Shutdown()

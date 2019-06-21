@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>The bg (background) widget is used for setting (solid) background decorations for a window (unless it has transparency enabled) or for any container object. It works just like an image, but has some properties useful for backgrounds, such as setting it to tiled, centered, scaled or stretched.</summary>
 [Efl.Ui.Bg.NativeMethods]
-public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Efl.Gfx.IImageLoadController
+public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLoadController
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Bg(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Bg"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -61,33 +61,6 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Image data has been preloaded.</summary>
     public event EventHandler ImagePreloadEvt
     {
@@ -95,10 +68,9 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -148,10 +120,9 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -201,10 +172,9 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -254,10 +224,9 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -307,13 +276,12 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args args = new Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args();
+                        Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args args = new Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args();
                         args.arg = (Eina.Error)Marshal.PtrToStructure(evt.Info, typeof(Eina.Error));
                         try
                         {
@@ -720,149 +688,149 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
-/// (Since EFL 1.22)</summary>
-/// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
     public Eina.File Mmap {
         get { return GetMmap(); }
         set { SetMmap(value); }
     }
     /// <summary>Retrieve the file path from where an object is to fetch the data.
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The file path.</value>
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The file path.</value>
     public System.String File {
         get { return GetFile(); }
         set { SetFile(value); }
     }
     /// <summary>Get the previously-set key which corresponds to the target data within a file.
-/// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
-/// 
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
+    /// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
+    /// 
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
     public System.String Key {
         get { return GetKey(); }
         set { SetKey(value); }
     }
     /// <summary>Get the load state of the object.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
     public bool Loaded {
         get { return GetLoaded(); }
     }
     /// <summary>Whether to use high-quality image scaling algorithm for this image.
-/// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
-/// 
-/// <c>true</c> by default</summary>
-/// <value>Whether to use smooth scale or not.</value>
+    /// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
+    /// 
+    /// <c>true</c> by default</summary>
+    /// <value>Whether to use smooth scale or not.</value>
     public bool SmoothScale {
         get { return GetSmoothScale(); }
         set { SetSmoothScale(value); }
     }
     /// <summary>Control how the image is scaled.</summary>
-/// <value>Image scale type</value>
+    /// <value>Image scale type</value>
     public Efl.Gfx.ImageScaleType ScaleType {
         get { return GetScaleType(); }
         set { SetScaleType(value); }
     }
     /// <summary>The native width/height ratio of the image.</summary>
-/// <value>The image&apos;s ratio.</value>
+    /// <value>The image&apos;s ratio.</value>
     public double Ratio {
         get { return GetRatio(); }
     }
     /// <summary>Scaling factor applied to the image borders.
-/// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
-/// 
-/// Default value is 1.0 (no scaling).</summary>
-/// <value>The scale factor.</value>
+    /// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
+    /// 
+    /// Default value is 1.0 (no scaling).</summary>
+    /// <value>The scale factor.</value>
     public double BorderScale {
         get { return GetBorderScale(); }
         set { SetBorderScale(value); }
     }
     /// <summary>Specifies how the center part of the object (not the borders) should be drawn when EFL is rendering it.
-/// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
-/// 
-/// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
-/// <value>Fill mode of the center region.</value>
+    /// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
+    /// 
+    /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
+    /// <value>Fill mode of the center region.</value>
     public Efl.Gfx.BorderFillMode BorderCenterFill {
         get { return GetBorderCenterFill(); }
         set { SetBorderCenterFill(value); }
     }
     /// <summary>This represents the size of the original image in pixels.
-/// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
-/// 
-/// This is a read-only property, and may return 0x0.</summary>
-/// <value>The size in pixels.</value>
+    /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
+    /// 
+    /// This is a read-only property, and may return 0x0.</summary>
+    /// <value>The size in pixels.</value>
     public Eina.Size2D ImageSize {
         get { return GetImageSize(); }
     }
     /// <summary>Get the content hint setting of a given image object of the canvas.
-/// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
-/// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
+    /// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
+    /// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
     public Efl.Gfx.ImageContentHint ContentHint {
         get { return GetContentHint(); }
         set { SetContentHint(value); }
     }
     /// <summary>Get the scale hint of a given image of the canvas.
-/// This function returns the scale hint value of the given image object of the canvas.</summary>
-/// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
+    /// This function returns the scale hint value of the given image object of the canvas.</summary>
+    /// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
     public Efl.Gfx.ImageScaleHint ScaleHint {
         get { return GetScaleHint(); }
         set { SetScaleHint(value); }
     }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
-/// <value>The load error code.</value>
+    /// <value>The load error code.</value>
     public Eina.Error ImageLoadError {
         get { return GetImageLoadError(); }
     }
     /// <summary>The load size of an image.
-/// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
-/// 
-/// By default, the load size is not specified, so it is 0x0.</summary>
-/// <value>The image load size.</value>
+    /// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
+    /// 
+    /// By default, the load size is not specified, so it is 0x0.</summary>
+    /// <value>The image load size.</value>
     public Eina.Size2D LoadSize {
         get { return GetLoadSize(); }
         set { SetLoadSize(value); }
     }
     /// <summary>Get the DPI resolution of a loaded image object in the canvas.
-/// This function returns the DPI resolution of the given canvas image.</summary>
-/// <value>The DPI resolution.</value>
+    /// This function returns the DPI resolution of the given canvas image.</summary>
+    /// <value>The DPI resolution.</value>
     public double LoadDpi {
         get { return GetLoadDpi(); }
         set { SetLoadDpi(value); }
     }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
-/// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
     public bool LoadRegionSupport {
         get { return GetLoadRegionSupport(); }
     }
     /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
-/// <value>A region of the image.</value>
+    /// <value>A region of the image.</value>
     public Eina.Rect LoadRegion {
         get { return GetLoadRegion(); }
         set { SetLoadRegion(value); }
     }
     /// <summary>Defines whether the orientation information in the image file should be honored.
-/// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
-/// <value><c>true</c> means that it should honor the orientation information.</value>
+    /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
+    /// <value><c>true</c> means that it should honor the orientation information.</value>
     public bool LoadOrientation {
         get { return GetLoadOrientation(); }
         set { SetLoadOrientation(value); }
     }
     /// <summary>The scale down factor is a divider on the original image size.
-/// Setting the scale down factor can reduce load time and memory usage at the cost of having a scaled down image in memory.
-/// 
-/// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
-/// 
-/// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
-/// <value>The scale down dividing factor.</value>
+    /// Setting the scale down factor can reduce load time and memory usage at the cost of having a scaled down image in memory.
+    /// 
+    /// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
+    /// 
+    /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
+    /// <value>The scale down dividing factor.</value>
     public int LoadScaleDown {
         get { return GetLoadScaleDown(); }
         set { SetLoadScaleDown(value); }
     }
     /// <summary>Initial load should skip header check and leave it all to data load
-/// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
-/// <value>Will be true if header is to be skipped.</value>
+    /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+    /// <value>Will be true if header is to be skipped.</value>
     public bool LoadSkipHeader {
         get { return GetLoadSkipHeader(); }
         set { SetLoadSkipHeader(value); }
@@ -1303,7 +1271,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
             return Efl.Ui.Bg.efl_ui_bg_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.File efl_file_mmap_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1316,13 +1284,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.File mmap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_mmap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.File _ret_var = default(Eina.File);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetMmap();
+                    _ret_var = ((Bg)ws.Target).GetMmap();
                 }
                 catch (Exception e)
                 {
@@ -1352,13 +1320,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.Error mmap_set(System.IntPtr obj, System.IntPtr pd, Eina.File f)
         {
             Eina.Log.Debug("function efl_file_mmap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).SetMmap(f);
+                    _ret_var = ((Bg)ws.Target).SetMmap(f);
                 }
                 catch (Exception e)
                 {
@@ -1388,13 +1356,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static System.String file_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetFile();
+                    _ret_var = ((Bg)ws.Target).GetFile();
                 }
                 catch (Exception e)
                 {
@@ -1424,13 +1392,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.Error file_set(System.IntPtr obj, System.IntPtr pd, System.String file)
         {
             Eina.Log.Debug("function efl_file_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).SetFile(file);
+                    _ret_var = ((Bg)ws.Target).SetFile(file);
                 }
                 catch (Exception e)
                 {
@@ -1460,13 +1428,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static System.String key_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_key_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetKey();
+                    _ret_var = ((Bg)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -1496,13 +1464,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void key_set(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_file_key_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetKey(key);
+                    ((Bg)ws.Target).SetKey(key);
                 }
                 catch (Exception e)
                 {
@@ -1531,13 +1499,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static bool loaded_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_loaded_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoaded();
+                    _ret_var = ((Bg)ws.Target).GetLoaded();
                 }
                 catch (Exception e)
                 {
@@ -1567,13 +1535,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.Error load(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_load was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).Load();
+                    _ret_var = ((Bg)ws.Target).Load();
                 }
                 catch (Exception e)
                 {
@@ -1603,13 +1571,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void unload(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_unload was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Bg)wrapper).Unload();
+                    ((Bg)ws.Target).Unload();
                 }
                 catch (Exception e)
                 {
@@ -1638,13 +1606,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static bool smooth_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_smooth_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetSmoothScale();
+                    _ret_var = ((Bg)ws.Target).GetSmoothScale();
                 }
                 catch (Exception e)
                 {
@@ -1674,13 +1642,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void smooth_scale_set(System.IntPtr obj, System.IntPtr pd, bool smooth_scale)
         {
             Eina.Log.Debug("function efl_gfx_image_smooth_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetSmoothScale(smooth_scale);
+                    ((Bg)ws.Target).SetSmoothScale(smooth_scale);
                 }
                 catch (Exception e)
                 {
@@ -1709,13 +1677,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Efl.Gfx.ImageScaleType scale_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageScaleType _ret_var = default(Efl.Gfx.ImageScaleType);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetScaleType();
+                    _ret_var = ((Bg)ws.Target).GetScaleType();
                 }
                 catch (Exception e)
                 {
@@ -1745,13 +1713,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void scale_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageScaleType scale_type)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetScaleType(scale_type);
+                    ((Bg)ws.Target).SetScaleType(scale_type);
                 }
                 catch (Exception e)
                 {
@@ -1780,13 +1748,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static double ratio_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_ratio_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetRatio();
+                    _ret_var = ((Bg)ws.Target).GetRatio();
                 }
                 catch (Exception e)
                 {
@@ -1816,13 +1784,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void border_get(System.IntPtr obj, System.IntPtr pd, out int l, out int r, out int t, out int b)
         {
             Eina.Log.Debug("function efl_gfx_image_border_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((Bg)wrapper).GetBorder(out l, out r, out t, out b);
+                    ((Bg)ws.Target).GetBorder(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -1851,13 +1819,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void border_set(System.IntPtr obj, System.IntPtr pd, int l, int r, int t, int b)
         {
             Eina.Log.Debug("function efl_gfx_image_border_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((Bg)wrapper).SetBorder(l, r, t, b);
+                    ((Bg)ws.Target).SetBorder(l, r, t, b);
                 }
                 catch (Exception e)
                 {
@@ -1886,13 +1854,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static double border_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_border_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetBorderScale();
+                    _ret_var = ((Bg)ws.Target).GetBorderScale();
                 }
                 catch (Exception e)
                 {
@@ -1922,13 +1890,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void border_scale_set(System.IntPtr obj, System.IntPtr pd, double scale)
         {
             Eina.Log.Debug("function efl_gfx_image_border_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetBorderScale(scale);
+                    ((Bg)ws.Target).SetBorderScale(scale);
                 }
                 catch (Exception e)
                 {
@@ -1957,13 +1925,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Efl.Gfx.BorderFillMode border_center_fill_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_border_center_fill_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.BorderFillMode _ret_var = default(Efl.Gfx.BorderFillMode);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetBorderCenterFill();
+                    _ret_var = ((Bg)ws.Target).GetBorderCenterFill();
                 }
                 catch (Exception e)
                 {
@@ -1993,13 +1961,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void border_center_fill_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.BorderFillMode fill)
         {
             Eina.Log.Debug("function efl_gfx_image_border_center_fill_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetBorderCenterFill(fill);
+                    ((Bg)ws.Target).SetBorderCenterFill(fill);
                 }
                 catch (Exception e)
                 {
@@ -2028,13 +1996,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.Size2D.NativeStruct image_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetImageSize();
+                    _ret_var = ((Bg)ws.Target).GetImageSize();
                 }
                 catch (Exception e)
                 {
@@ -2064,13 +2032,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Efl.Gfx.ImageContentHint content_hint_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_content_hint_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageContentHint _ret_var = default(Efl.Gfx.ImageContentHint);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetContentHint();
+                    _ret_var = ((Bg)ws.Target).GetContentHint();
                 }
                 catch (Exception e)
                 {
@@ -2100,13 +2068,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void content_hint_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageContentHint hint)
         {
             Eina.Log.Debug("function efl_gfx_image_content_hint_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetContentHint(hint);
+                    ((Bg)ws.Target).SetContentHint(hint);
                 }
                 catch (Exception e)
                 {
@@ -2135,13 +2103,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Efl.Gfx.ImageScaleHint scale_hint_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_hint_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageScaleHint _ret_var = default(Efl.Gfx.ImageScaleHint);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetScaleHint();
+                    _ret_var = ((Bg)ws.Target).GetScaleHint();
                 }
                 catch (Exception e)
                 {
@@ -2171,13 +2139,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void scale_hint_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageScaleHint hint)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_hint_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetScaleHint(hint);
+                    ((Bg)ws.Target).SetScaleHint(hint);
                 }
                 catch (Exception e)
                 {
@@ -2206,13 +2174,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.Error image_load_error_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_error_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetImageLoadError();
+                    _ret_var = ((Bg)ws.Target).GetImageLoadError();
                 }
                 catch (Exception e)
                 {
@@ -2242,13 +2210,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.Size2D.NativeStruct load_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoadSize();
+                    _ret_var = ((Bg)ws.Target).GetLoadSize();
                 }
                 catch (Exception e)
                 {
@@ -2278,14 +2246,14 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct size)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_size = size;
                             
                 try
                 {
-                    ((Bg)wrapper).SetLoadSize(_in_size);
+                    ((Bg)ws.Target).SetLoadSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -2314,13 +2282,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static double load_dpi_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_dpi_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoadDpi();
+                    _ret_var = ((Bg)ws.Target).GetLoadDpi();
                 }
                 catch (Exception e)
                 {
@@ -2350,13 +2318,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_dpi_set(System.IntPtr obj, System.IntPtr pd, double dpi)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_dpi_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetLoadDpi(dpi);
+                    ((Bg)ws.Target).SetLoadDpi(dpi);
                 }
                 catch (Exception e)
                 {
@@ -2385,13 +2353,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static bool load_region_support_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_region_support_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoadRegionSupport();
+                    _ret_var = ((Bg)ws.Target).GetLoadRegionSupport();
                 }
                 catch (Exception e)
                 {
@@ -2421,13 +2389,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static Eina.Rect.NativeStruct load_region_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_region_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoadRegion();
+                    _ret_var = ((Bg)ws.Target).GetLoadRegion();
                 }
                 catch (Exception e)
                 {
@@ -2457,14 +2425,14 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_region_set(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct region)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_region_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_region = region;
                             
                 try
                 {
-                    ((Bg)wrapper).SetLoadRegion(_in_region);
+                    ((Bg)ws.Target).SetLoadRegion(_in_region);
                 }
                 catch (Exception e)
                 {
@@ -2493,13 +2461,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static bool load_orientation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_orientation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoadOrientation();
+                    _ret_var = ((Bg)ws.Target).GetLoadOrientation();
                 }
                 catch (Exception e)
                 {
@@ -2529,13 +2497,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_orientation_set(System.IntPtr obj, System.IntPtr pd, bool enable)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_orientation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetLoadOrientation(enable);
+                    ((Bg)ws.Target).SetLoadOrientation(enable);
                 }
                 catch (Exception e)
                 {
@@ -2564,13 +2532,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static int load_scale_down_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_scale_down_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoadScaleDown();
+                    _ret_var = ((Bg)ws.Target).GetLoadScaleDown();
                 }
                 catch (Exception e)
                 {
@@ -2600,13 +2568,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_scale_down_set(System.IntPtr obj, System.IntPtr pd, int div)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_scale_down_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetLoadScaleDown(div);
+                    ((Bg)ws.Target).SetLoadScaleDown(div);
                 }
                 catch (Exception e)
                 {
@@ -2635,13 +2603,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static bool load_skip_header_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_skip_header_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Bg)wrapper).GetLoadSkipHeader();
+                    _ret_var = ((Bg)ws.Target).GetLoadSkipHeader();
                 }
                 catch (Exception e)
                 {
@@ -2671,13 +2639,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_skip_header_set(System.IntPtr obj, System.IntPtr pd, bool skip)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_skip_header_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Bg)wrapper).SetLoadSkipHeader(skip);
+                    ((Bg)ws.Target).SetLoadSkipHeader(skip);
                 }
                 catch (Exception e)
                 {
@@ -2706,13 +2674,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_async_start(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_async_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Bg)wrapper).LoadAsyncStart();
+                    ((Bg)ws.Target).LoadAsyncStart();
                 }
                 catch (Exception e)
                 {
@@ -2741,13 +2709,13 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
         private static void load_async_cancel(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_controller_load_async_cancel was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Bg)wrapper).LoadAsyncCancel();
+                    ((Bg)ws.Target).LoadAsyncCancel();
                 }
                 catch (Exception e)
                 {
@@ -2765,7 +2733,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.Gfx.IImage,Ef
 
         private static efl_gfx_image_load_controller_load_async_cancel_delegate efl_gfx_image_load_controller_load_async_cancel_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

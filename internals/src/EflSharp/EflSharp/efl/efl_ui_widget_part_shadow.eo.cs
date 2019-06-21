@@ -18,7 +18,7 @@ namespace Ui {
 /// 
 /// It is also possible to manually specify which <see cref="Efl.Gfx.IFilter"/> program to use.</summary>
 [Efl.Ui.WidgetPartShadow.NativeMethods]
-public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur,Efl.Gfx.IColor,Efl.Gfx.IFilter
+public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor, Efl.Gfx.IFilter
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -51,7 +51,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected WidgetPartShadow(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="WidgetPartShadow"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -60,33 +60,6 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected WidgetPartShadow(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The blur radius in pixels.</summary>
@@ -269,17 +242,17 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>How much the original image should be &quot;grown&quot; before blurring.
-/// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
-/// 
-/// This is can be used efficiently to create glow effects.</summary>
-/// <value>How much to grow the original pixel data.</value>
+    /// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
+    /// 
+    /// This is can be used efficiently to create glow effects.</summary>
+    /// <value>How much to grow the original pixel data.</value>
     public double Grow {
         get { return GetGrow(); }
         set { SetGrow(value); }
     }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-/// (Since EFL 1.22)</summary>
-/// <value>the hex color code.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>the hex color code.</value>
     public System.String ColorCode {
         get { return GetColorCode(); }
         set { SetColorCode(value); }
@@ -500,7 +473,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
             return Efl.Ui.WidgetPartShadow.efl_ui_widget_part_shadow_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_blur_radius_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double rx,  out double ry);
@@ -513,13 +486,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void radius_get(System.IntPtr obj, System.IntPtr pd, out double rx, out double ry)
         {
             Eina.Log.Debug("function efl_gfx_blur_radius_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         rx = default(double);        ry = default(double);                            
                 try
                 {
-                    ((WidgetPartShadow)wrapper).GetRadius(out rx, out ry);
+                    ((WidgetPartShadow)ws.Target).GetRadius(out rx, out ry);
                 }
                 catch (Exception e)
                 {
@@ -548,13 +521,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void radius_set(System.IntPtr obj, System.IntPtr pd, double rx, double ry)
         {
             Eina.Log.Debug("function efl_gfx_blur_radius_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetRadius(rx, ry);
+                    ((WidgetPartShadow)ws.Target).SetRadius(rx, ry);
                 }
                 catch (Exception e)
                 {
@@ -583,13 +556,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void offset_get(System.IntPtr obj, System.IntPtr pd, out double ox, out double oy)
         {
             Eina.Log.Debug("function efl_gfx_blur_offset_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         ox = default(double);        oy = default(double);                            
                 try
                 {
-                    ((WidgetPartShadow)wrapper).GetOffset(out ox, out oy);
+                    ((WidgetPartShadow)ws.Target).GetOffset(out ox, out oy);
                 }
                 catch (Exception e)
                 {
@@ -618,13 +591,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void offset_set(System.IntPtr obj, System.IntPtr pd, double ox, double oy)
         {
             Eina.Log.Debug("function efl_gfx_blur_offset_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetOffset(ox, oy);
+                    ((WidgetPartShadow)ws.Target).SetOffset(ox, oy);
                 }
                 catch (Exception e)
                 {
@@ -653,13 +626,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static double grow_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_blur_grow_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((WidgetPartShadow)wrapper).GetGrow();
+                    _ret_var = ((WidgetPartShadow)ws.Target).GetGrow();
                 }
                 catch (Exception e)
                 {
@@ -689,13 +662,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void grow_set(System.IntPtr obj, System.IntPtr pd, double radius)
         {
             Eina.Log.Debug("function efl_gfx_blur_grow_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetGrow(radius);
+                    ((WidgetPartShadow)ws.Target).SetGrow(radius);
                 }
                 catch (Exception e)
                 {
@@ -724,13 +697,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void color_get(System.IntPtr obj, System.IntPtr pd, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
                 try
                 {
-                    ((WidgetPartShadow)wrapper).GetColor(out r, out g, out b, out a);
+                    ((WidgetPartShadow)ws.Target).GetColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -759,13 +732,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void color_set(System.IntPtr obj, System.IntPtr pd, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetColor(r, g, b, a);
+                    ((WidgetPartShadow)ws.Target).SetColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -794,13 +767,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static System.String color_code_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_color_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((WidgetPartShadow)wrapper).GetColorCode();
+                    _ret_var = ((WidgetPartShadow)ws.Target).GetColorCode();
                 }
                 catch (Exception e)
                 {
@@ -830,13 +803,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void color_code_set(System.IntPtr obj, System.IntPtr pd, System.String colorcode)
         {
             Eina.Log.Debug("function efl_gfx_color_code_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetColorCode(colorcode);
+                    ((WidgetPartShadow)ws.Target).SetColorCode(colorcode);
                 }
                 catch (Exception e)
                 {
@@ -865,15 +838,15 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_program_get(System.IntPtr obj, System.IntPtr pd, out System.String code, out System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_program_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         System.String _out_code = default(System.String);
         System.String _out_name = default(System.String);
                             
                 try
                 {
-                    ((WidgetPartShadow)wrapper).GetFilterProgram(out _out_code, out _out_name);
+                    ((WidgetPartShadow)ws.Target).GetFilterProgram(out _out_code, out _out_name);
                 }
                 catch (Exception e)
                 {
@@ -904,13 +877,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_program_set(System.IntPtr obj, System.IntPtr pd, System.String code, System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_program_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetFilterProgram(code, name);
+                    ((WidgetPartShadow)ws.Target).SetFilterProgram(code, name);
                 }
                 catch (Exception e)
                 {
@@ -939,15 +912,15 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_state_get(System.IntPtr obj, System.IntPtr pd, out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos)
         {
             Eina.Log.Debug("function efl_gfx_filter_state_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                 System.String _out_cur_state = default(System.String);
         cur_val = default(double);        System.String _out_next_state = default(System.String);
         next_val = default(double);        pos = default(double);                                                    
                 try
                 {
-                    ((WidgetPartShadow)wrapper).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
+                    ((WidgetPartShadow)ws.Target).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
                 }
                 catch (Exception e)
                 {
@@ -978,13 +951,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_state_set(System.IntPtr obj, System.IntPtr pd, System.String cur_state, double cur_val, System.String next_state, double next_val, double pos)
         {
             Eina.Log.Debug("function efl_gfx_filter_state_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
+                    ((WidgetPartShadow)ws.Target).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
                 }
                 catch (Exception e)
                 {
@@ -1013,13 +986,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_padding_get(System.IntPtr obj, System.IntPtr pd, out int l, out int r, out int t, out int b)
         {
             Eina.Log.Debug("function efl_gfx_filter_padding_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((WidgetPartShadow)wrapper).GetFilterPadding(out l, out r, out t, out b);
+                    ((WidgetPartShadow)ws.Target).GetFilterPadding(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -1048,13 +1021,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static Efl.Gfx.IEntity filter_source_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_source_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((WidgetPartShadow)wrapper).GetFilterSource(name);
+                    _ret_var = ((WidgetPartShadow)ws.Target).GetFilterSource(name);
                 }
                 catch (Exception e)
                 {
@@ -1084,13 +1057,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_source_set(System.IntPtr obj, System.IntPtr pd, System.String name, Efl.Gfx.IEntity source)
         {
             Eina.Log.Debug("function efl_gfx_filter_source_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetFilterSource(name, source);
+                    ((WidgetPartShadow)ws.Target).SetFilterSource(name, source);
                 }
                 catch (Exception e)
                 {
@@ -1119,14 +1092,14 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_data_get(System.IntPtr obj, System.IntPtr pd, System.String name, out System.String value, out bool execute)
         {
             Eina.Log.Debug("function efl_gfx_filter_data_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         System.String _out_value = default(System.String);
         execute = default(bool);                                    
                 try
                 {
-                    ((WidgetPartShadow)wrapper).GetFilterData(name, out _out_value, out execute);
+                    ((WidgetPartShadow)ws.Target).GetFilterData(name, out _out_value, out execute);
                 }
                 catch (Exception e)
                 {
@@ -1156,13 +1129,13 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
         private static void filter_data_set(System.IntPtr obj, System.IntPtr pd, System.String name, System.String value, bool execute)
         {
             Eina.Log.Debug("function efl_gfx_filter_data_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((WidgetPartShadow)wrapper).SetFilterData(name, value, execute);
+                    ((WidgetPartShadow)ws.Target).SetFilterData(name, value, execute);
                 }
                 catch (Exception e)
                 {
@@ -1180,7 +1153,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.Gfx.IBlur
 
         private static efl_gfx_filter_data_set_delegate efl_gfx_filter_data_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
