@@ -112,23 +112,23 @@ bool SelectionRemove(int selection_number);
     /// <summary>Text selection has changed</summary>
     event EventHandler AccessTextSelectionChangedEvt;
     /// <summary>Caret offset property</summary>
-/// <value>Offset</value>
+    /// <value>Offset</value>
     int CaretOffset {
         get ;
         set ;
     }
     /// <summary>Default attributes</summary>
-/// <value>List of default attributes</value>
+    /// <value>List of default attributes</value>
     Eina.List<Efl.Access.TextAttribute> DefaultAttributes {
         get ;
     }
     /// <summary>Character count</summary>
-/// <value>Character count</value>
+    /// <value>Character count</value>
     int CharacterCount {
         get ;
     }
     /// <summary>Selection count property</summary>
-/// <value>Selection counter</value>
+    /// <value>Selection counter</value>
     int SelectionsCount {
         get ;
     }
@@ -144,13 +144,13 @@ public class ITextAccessTextRemovedEvt_Args : EventArgs {
     public Efl.Access.TextChangeInfo arg { get; set; }
 }
 /// <summary>Elementary accessible text interface</summary>
-sealed public class ITextConcrete : 
-
-IText
+sealed public class ITextConcrete :
+    Efl.Eo.EoWrapper
+    , IText
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -165,155 +165,12 @@ IText
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_text_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IText"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextConcrete(System.IntPtr raw)
+    private ITextConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ITextConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Caret moved</summary>
@@ -323,10 +180,9 @@ IText
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -376,13 +232,12 @@ IText
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.ITextAccessTextInsertedEvt_Args args = new Efl.Access.ITextAccessTextInsertedEvt_Args();
+                        Efl.Access.ITextAccessTextInsertedEvt_Args args = new Efl.Access.ITextAccessTextInsertedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -439,13 +294,12 @@ IText
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.ITextAccessTextRemovedEvt_Args args = new Efl.Access.ITextAccessTextRemovedEvt_Args();
+                        Efl.Access.ITextAccessTextRemovedEvt_Args args = new Efl.Access.ITextAccessTextRemovedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -502,10 +356,9 @@ IText
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -720,23 +573,23 @@ IText
                         return _ret_var;
  }
     /// <summary>Caret offset property</summary>
-/// <value>Offset</value>
+    /// <value>Offset</value>
     public int CaretOffset {
         get { return GetCaretOffset(); }
         set { SetCaretOffset(value); }
     }
     /// <summary>Default attributes</summary>
-/// <value>List of default attributes</value>
+    /// <value>List of default attributes</value>
     public Eina.List<Efl.Access.TextAttribute> DefaultAttributes {
         get { return GetDefaultAttributes(); }
     }
     /// <summary>Character count</summary>
-/// <value>Character count</value>
+    /// <value>Character count</value>
     public int CharacterCount {
         get { return GetCharacterCount(); }
     }
     /// <summary>Selection count property</summary>
-/// <value>Selection counter</value>
+    /// <value>Selection counter</value>
     public int SelectionsCount {
         get { return GetSelectionsCount(); }
     }
@@ -945,7 +798,7 @@ IText
             return Efl.Access.ITextConcrete.efl_access_text_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Unicode efl_access_text_character_get_delegate(System.IntPtr obj, System.IntPtr pd,  int offset);
@@ -958,13 +811,13 @@ IText
         private static Eina.Unicode character_get(System.IntPtr obj, System.IntPtr pd, int offset)
         {
             Eina.Log.Debug("function efl_access_text_character_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Unicode _ret_var = default(Eina.Unicode);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetCharacter(offset);
+                    _ret_var = ((IText)ws.Target).GetCharacter(offset);
                 }
                 catch (Exception e)
                 {
@@ -994,15 +847,15 @@ IText
         private static System.String string_get(System.IntPtr obj, System.IntPtr pd, Efl.Access.TextGranularity granularity, System.IntPtr start_offset, System.IntPtr end_offset)
         {
             Eina.Log.Debug("function efl_access_text_string_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 var _in_start_offset = Eina.PrimitiveConversion.PointerToManaged<int>(start_offset);
         var _in_end_offset = Eina.PrimitiveConversion.PointerToManaged<int>(end_offset);
                                                             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetString(granularity, _in_start_offset, _in_end_offset);
+                    _ret_var = ((IText)ws.Target).GetString(granularity, _in_start_offset, _in_end_offset);
                 }
                 catch (Exception e)
                 {
@@ -1032,13 +885,13 @@ IText
         private static System.String access_text_get(System.IntPtr obj, System.IntPtr pd, int start_offset, int end_offset)
         {
             Eina.Log.Debug("function efl_access_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetAccessText(start_offset, end_offset);
+                    _ret_var = ((IText)ws.Target).GetAccessText(start_offset, end_offset);
                 }
                 catch (Exception e)
                 {
@@ -1068,13 +921,13 @@ IText
         private static int caret_offset_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_text_caret_offset_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetCaretOffset();
+                    _ret_var = ((IText)ws.Target).GetCaretOffset();
                 }
                 catch (Exception e)
                 {
@@ -1104,13 +957,13 @@ IText
         private static bool caret_offset_set(System.IntPtr obj, System.IntPtr pd, int offset)
         {
             Eina.Log.Debug("function efl_access_text_caret_offset_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IText)wrapper).SetCaretOffset(offset);
+                    _ret_var = ((IText)ws.Target).SetCaretOffset(offset);
                 }
                 catch (Exception e)
                 {
@@ -1140,15 +993,15 @@ IText
         private static bool attribute_get(System.IntPtr obj, System.IntPtr pd, System.String name, System.IntPtr start_offset, System.IntPtr end_offset, out System.String value)
         {
             Eina.Log.Debug("function efl_access_text_attribute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 var _in_start_offset = Eina.PrimitiveConversion.PointerToManaged<int>(start_offset);
         var _in_end_offset = Eina.PrimitiveConversion.PointerToManaged<int>(end_offset);
                                         value = default(System.String);                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetAttribute(name, _in_start_offset, _in_end_offset, out value);
+                    _ret_var = ((IText)ws.Target).GetAttribute(name, _in_start_offset, _in_end_offset, out value);
                 }
                 catch (Exception e)
                 {
@@ -1178,15 +1031,15 @@ IText
         private static System.IntPtr text_attributes_get(System.IntPtr obj, System.IntPtr pd, System.IntPtr start_offset, System.IntPtr end_offset)
         {
             Eina.Log.Debug("function efl_access_text_attributes_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_start_offset = Eina.PrimitiveConversion.PointerToManaged<int>(start_offset);
         var _in_end_offset = Eina.PrimitiveConversion.PointerToManaged<int>(end_offset);
                                             Eina.List<Efl.Access.TextAttribute> _ret_var = default(Eina.List<Efl.Access.TextAttribute>);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetTextAttributes(_in_start_offset, _in_end_offset);
+                    _ret_var = ((IText)ws.Target).GetTextAttributes(_in_start_offset, _in_end_offset);
                 }
                 catch (Exception e)
                 {
@@ -1216,13 +1069,13 @@ IText
         private static System.IntPtr default_attributes_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_text_default_attributes_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Access.TextAttribute> _ret_var = default(Eina.List<Efl.Access.TextAttribute>);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetDefaultAttributes();
+                    _ret_var = ((IText)ws.Target).GetDefaultAttributes();
                 }
                 catch (Exception e)
                 {
@@ -1252,14 +1105,14 @@ IText
         private static bool character_extents_get(System.IntPtr obj, System.IntPtr pd, int offset, bool screen_coords, out Eina.Rect.NativeStruct rect)
         {
             Eina.Log.Debug("function efl_access_text_character_extents_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                 Eina.Rect _out_rect = default(Eina.Rect);
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetCharacterExtents(offset, screen_coords, out _out_rect);
+                    _ret_var = ((IText)ws.Target).GetCharacterExtents(offset, screen_coords, out _out_rect);
                 }
                 catch (Exception e)
                 {
@@ -1290,13 +1143,13 @@ IText
         private static int character_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_text_character_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetCharacterCount();
+                    _ret_var = ((IText)ws.Target).GetCharacterCount();
                 }
                 catch (Exception e)
                 {
@@ -1326,13 +1179,13 @@ IText
         private static int offset_at_point_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int x, int y)
         {
             Eina.Log.Debug("function efl_access_text_offset_at_point_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetOffsetAtPoint(screen_coords, x, y);
+                    _ret_var = ((IText)ws.Target).GetOffsetAtPoint(screen_coords, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1362,14 +1215,14 @@ IText
         private static System.IntPtr bounded_ranges_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, Eina.Rect.NativeStruct rect, Efl.Access.TextClipType xclip, Efl.Access.TextClipType yclip)
         {
             Eina.Log.Debug("function efl_access_text_bounded_ranges_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Rect _in_rect = rect;
                                                                                             Eina.List<Efl.Access.TextRange> _ret_var = default(Eina.List<Efl.Access.TextRange>);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetBoundedRanges(screen_coords, _in_rect, xclip, yclip);
+                    _ret_var = ((IText)ws.Target).GetBoundedRanges(screen_coords, _in_rect, xclip, yclip);
                 }
                 catch (Exception e)
                 {
@@ -1399,14 +1252,14 @@ IText
         private static bool range_extents_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int start_offset, int end_offset, out Eina.Rect.NativeStruct rect)
         {
             Eina.Log.Debug("function efl_access_text_range_extents_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                 Eina.Rect _out_rect = default(Eina.Rect);
                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetRangeExtents(screen_coords, start_offset, end_offset, out _out_rect);
+                    _ret_var = ((IText)ws.Target).GetRangeExtents(screen_coords, start_offset, end_offset, out _out_rect);
                 }
                 catch (Exception e)
                 {
@@ -1437,13 +1290,13 @@ IText
         private static int selections_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_text_selections_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IText)wrapper).GetSelectionsCount();
+                    _ret_var = ((IText)ws.Target).GetSelectionsCount();
                 }
                 catch (Exception e)
                 {
@@ -1473,13 +1326,13 @@ IText
         private static void access_selection_get(System.IntPtr obj, System.IntPtr pd, int selection_number, out int start_offset, out int end_offset)
         {
             Eina.Log.Debug("function efl_access_text_access_selection_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         start_offset = default(int);        end_offset = default(int);                                    
                 try
                 {
-                    ((IText)wrapper).GetAccessSelection(selection_number, out start_offset, out end_offset);
+                    ((IText)ws.Target).GetAccessSelection(selection_number, out start_offset, out end_offset);
                 }
                 catch (Exception e)
                 {
@@ -1508,13 +1361,13 @@ IText
         private static bool access_selection_set(System.IntPtr obj, System.IntPtr pd, int selection_number, int start_offset, int end_offset)
         {
             Eina.Log.Debug("function efl_access_text_access_selection_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IText)wrapper).SetAccessSelection(selection_number, start_offset, end_offset);
+                    _ret_var = ((IText)ws.Target).SetAccessSelection(selection_number, start_offset, end_offset);
                 }
                 catch (Exception e)
                 {
@@ -1544,13 +1397,13 @@ IText
         private static bool selection_add(System.IntPtr obj, System.IntPtr pd, int start_offset, int end_offset)
         {
             Eina.Log.Debug("function efl_access_text_selection_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IText)wrapper).AddSelection(start_offset, end_offset);
+                    _ret_var = ((IText)ws.Target).AddSelection(start_offset, end_offset);
                 }
                 catch (Exception e)
                 {
@@ -1580,13 +1433,13 @@ IText
         private static bool selection_remove(System.IntPtr obj, System.IntPtr pd, int selection_number)
         {
             Eina.Log.Debug("function efl_access_text_selection_remove was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IText)wrapper).SelectionRemove(selection_number);
+                    _ret_var = ((IText)ws.Target).SelectionRemove(selection_number);
                 }
                 catch (Exception e)
                 {
@@ -1605,7 +1458,7 @@ IText
 
         private static efl_access_text_selection_remove_delegate efl_access_text_selection_remove_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -1678,11 +1531,15 @@ public struct TextAttribute
         this.Value = Value;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextAttribute(IntPtr ptr)
     {
         var tmp = (TextAttribute.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextAttribute.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct TextAttribute.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1711,6 +1568,8 @@ public struct TextAttribute
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -1743,11 +1602,15 @@ public struct TextRange
         this.Content = Content;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextRange(IntPtr ptr)
     {
         var tmp = (TextRange.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextRange.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct TextRange.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1780,6 +1643,8 @@ public struct TextRange
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -1816,11 +1681,15 @@ public struct TextChangeInfo
         this.Len = Len;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextChangeInfo(IntPtr ptr)
     {
         var tmp = (TextChangeInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextChangeInfo.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct TextChangeInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1857,6 +1726,8 @@ public struct TextChangeInfo
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

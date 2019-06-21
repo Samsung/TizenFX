@@ -7,7 +7,8 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>API for containers</summary>
+/// <summary>Common interface for objects (containers) with multiple contents (sub-objects) which can be added and removed at runtime in a linear fashion.
+/// This means the sub-objects are internally organized in an ordered list.</summary>
 [Efl.IPackLinearConcrete.NativeMethods]
 public interface IPackLinear : 
     Efl.IPack ,
@@ -17,67 +18,66 @@ public interface IPackLinear :
 /// This is the same as <see cref="Efl.IPackLinear.PackAt"/>(<c>subobj</c>, 0).
 /// 
 /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-/// <param name="subobj">Item to pack at the beginning.</param>
+/// <param name="subobj">Object to pack at the beginning.</param>
 /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
 bool PackBegin(Efl.Gfx.IEntity subobj);
-    /// <summary>Append item at the end of this container.
+    /// <summary>Append object at the end of this container.
 /// This is the same as <see cref="Efl.IPackLinear.PackAt"/>(<c>subobj</c>, -1).
 /// 
 /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-/// <param name="subobj">Item to pack at the end.</param>
+/// <param name="subobj">Object to pack at the end.</param>
 /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
 bool PackEnd(Efl.Gfx.IEntity subobj);
-    /// <summary>Prepend item before other sub object.
+    /// <summary>Prepend an object before an existing sub-object.
 /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-/// <param name="subobj">Item to pack before <c>existing</c>.</param>
-/// <param name="existing">Item to refer to.</param>
+/// <param name="subobj">Object to pack before <c>existing</c>.</param>
+/// <param name="existing">Existing reference sub-object.</param>
 /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
 bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing);
-    /// <summary>Append item after other sub object.
+    /// <summary>Append an object after an existing sub-object.
 /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-/// <param name="subobj">Item to pack after <c>existing</c>.</param>
-/// <param name="existing">Item to refer to.</param>
+/// <param name="subobj">Object to pack after <c>existing</c>.</param>
+/// <param name="existing">Existing reference sub-object.</param>
 /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
 bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing);
-    /// <summary>Inserts <c>subobj</c> BEFORE the item at position <c>index</c>.
-/// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first item (0) to last item (<c>count</c>-1), and negative numbers go from last item (-1) to first item (-<c>count</c>). Where <c>count</c> is the number of items currently in the container.
+    /// <summary>Inserts <c>subobj</c> BEFORE the sub-object at position <c>index</c>.
+/// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
 /// 
 /// If <c>index</c> is less than -<c>count</c>, it will trigger <see cref="Efl.IPackLinear.PackBegin"/>(<c>subobj</c>) whereas <c>index</c> greater than <c>count</c>-1 will trigger <see cref="Efl.IPackLinear.PackEnd"/>(<c>subobj</c>).
 /// 
 /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-/// <param name="subobj">Item to pack.</param>
-/// <param name="index">Index of item to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+/// <param name="subobj">Object to pack.</param>
+/// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
 /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
 bool PackAt(Efl.Gfx.IEntity subobj, int index);
-    /// <summary>Content at a given <c>index</c> in this container.
-/// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first item (0) to last item (<c>count</c>-1), and negative numbers go from last item (-1) to first item (-<c>count</c>). Where <c>count</c> is the number of items currently in the container.
+    /// <summary>Sub-object at a given <c>index</c> in this container.
+/// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
 /// 
-/// If <c>index</c> is less than -<c>count</c>, it will return the first item whereas <c>index</c> greater than <c>count</c>-1 will return the last item.</summary>
-/// <param name="index">Index of the item to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
-/// <returns>The object contained at the given <c>index</c>.</returns>
+/// If <c>index</c> is less than -<c>count</c>, it will return the first sub-object whereas <c>index</c> greater than <c>count</c>-1 will return the last sub-object.</summary>
+/// <param name="index">Index of the existing sub-object to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+/// <returns>The sub-object contained at the given <c>index</c>.</returns>
 Efl.Gfx.IEntity GetPackContent(int index);
-    /// <summary>Get the index of a child in this container.</summary>
-/// <param name="subobj">An object contained in this pack.</param>
-/// <returns>-1 in case <c>subobj</c> is not a child of this object, or the index of this item in the range 0 to (<c>count</c>-1).</returns>
+    /// <summary>Get the index of a sub-object in this container.</summary>
+/// <param name="subobj">An existing sub-object in this container.</param>
+/// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range 0 to (<c>count</c>-1).</returns>
 int GetPackIndex(Efl.Gfx.IEntity subobj);
-    /// <summary>Pop out (remove) the item at the specified <c>index</c>.
-/// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first item (0) to last item (<c>count</c>-1), and negative numbers go from last item (-1) to first item (-<c>count</c>). Where <c>count</c> is the number of items currently in the container.
+    /// <summary>Pop out (remove) the sub-object at the specified <c>index</c>.
+/// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
 /// 
-/// If <c>index</c> is less than -<c>count</c>, it will remove the first item whereas <c>index</c> greater than <c>count</c>-1 will remove the last item.
-/// 
-/// Equivalent to <see cref="Efl.IPack.Unpack"/>(<see cref="Efl.IPackLinear.GetPackContent"/>(<c>index</c>)).</summary>
-/// <param name="index">Index of item to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
-/// <returns>The child item if it could be removed.</returns>
+/// If <c>index</c> is less than -<c>count</c>, it will remove the first sub-object whereas <c>index</c> greater than <c>count</c>-1 will remove the last sub-object.</summary>
+/// <param name="index">Index of the sub-object to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+/// <returns>The sub-object if it could be removed.</returns>
 Efl.Gfx.IEntity PackUnpackAt(int index);
                                 }
-/// <summary>API for containers</summary>
-sealed public class IPackLinearConcrete : 
-
-IPackLinear
+/// <summary>Common interface for objects (containers) with multiple contents (sub-objects) which can be added and removed at runtime in a linear fashion.
+/// This means the sub-objects are internally organized in an ordered list.</summary>
+sealed public class IPackLinearConcrete :
+    Efl.Eo.EoWrapper
+    , IPackLinear
     , Efl.IContainer, Efl.IPack
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -92,158 +92,15 @@ IPackLinear
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_pack_linear_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IPackLinear"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IPackLinearConcrete(System.IntPtr raw)
+    private IPackLinearConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IPackLinearConcrete()
-    {
-        Dispose(false);
     }
 
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
-    }
-
-    /// <summary>Sent after a new item was added.
+    /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
@@ -251,13 +108,12 @@ IPackLinear
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
+                        Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -299,7 +155,7 @@ IPackLinear
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Sent after an item was removed, before unref.
+    /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
@@ -307,13 +163,12 @@ IPackLinear
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
+                        Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -359,85 +214,83 @@ IPackLinear
     /// This is the same as <see cref="Efl.IPackLinear.PackAt"/>(<c>subobj</c>, 0).
     /// 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-    /// <param name="subobj">Item to pack at the beginning.</param>
+    /// <param name="subobj">Object to pack at the beginning.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     public bool PackBegin(Efl.Gfx.IEntity subobj) {
                                  var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate(this.NativeHandle,subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Append item at the end of this container.
+    /// <summary>Append object at the end of this container.
     /// This is the same as <see cref="Efl.IPackLinear.PackAt"/>(<c>subobj</c>, -1).
     /// 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-    /// <param name="subobj">Item to pack at the end.</param>
+    /// <param name="subobj">Object to pack at the end.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     public bool PackEnd(Efl.Gfx.IEntity subobj) {
                                  var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate(this.NativeHandle,subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Prepend item before other sub object.
+    /// <summary>Prepend an object before an existing sub-object.
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-    /// <param name="subobj">Item to pack before <c>existing</c>.</param>
-    /// <param name="existing">Item to refer to.</param>
+    /// <param name="subobj">Object to pack before <c>existing</c>.</param>
+    /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     public bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
                                                          var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate(this.NativeHandle,subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
-    /// <summary>Append item after other sub object.
+    /// <summary>Append an object after an existing sub-object.
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-    /// <param name="subobj">Item to pack after <c>existing</c>.</param>
-    /// <param name="existing">Item to refer to.</param>
+    /// <param name="subobj">Object to pack after <c>existing</c>.</param>
+    /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     public bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
                                                          var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate(this.NativeHandle,subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
-    /// <summary>Inserts <c>subobj</c> BEFORE the item at position <c>index</c>.
-    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first item (0) to last item (<c>count</c>-1), and negative numbers go from last item (-1) to first item (-<c>count</c>). Where <c>count</c> is the number of items currently in the container.
+    /// <summary>Inserts <c>subobj</c> BEFORE the sub-object at position <c>index</c>.
+    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
     /// 
     /// If <c>index</c> is less than -<c>count</c>, it will trigger <see cref="Efl.IPackLinear.PackBegin"/>(<c>subobj</c>) whereas <c>index</c> greater than <c>count</c>-1 will trigger <see cref="Efl.IPackLinear.PackEnd"/>(<c>subobj</c>).
     /// 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-    /// <param name="subobj">Item to pack.</param>
-    /// <param name="index">Index of item to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+    /// <param name="subobj">Object to pack.</param>
+    /// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     public bool PackAt(Efl.Gfx.IEntity subobj, int index) {
                                                          var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate(this.NativeHandle,subobj, index);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
-    /// <summary>Content at a given <c>index</c> in this container.
-    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first item (0) to last item (<c>count</c>-1), and negative numbers go from last item (-1) to first item (-<c>count</c>). Where <c>count</c> is the number of items currently in the container.
+    /// <summary>Sub-object at a given <c>index</c> in this container.
+    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
     /// 
-    /// If <c>index</c> is less than -<c>count</c>, it will return the first item whereas <c>index</c> greater than <c>count</c>-1 will return the last item.</summary>
-    /// <param name="index">Index of the item to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
-    /// <returns>The object contained at the given <c>index</c>.</returns>
+    /// If <c>index</c> is less than -<c>count</c>, it will return the first sub-object whereas <c>index</c> greater than <c>count</c>-1 will return the last sub-object.</summary>
+    /// <param name="index">Index of the existing sub-object to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+    /// <returns>The sub-object contained at the given <c>index</c>.</returns>
     public Efl.Gfx.IEntity GetPackContent(int index) {
                                  var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate(this.NativeHandle,index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Get the index of a child in this container.</summary>
-    /// <param name="subobj">An object contained in this pack.</param>
-    /// <returns>-1 in case <c>subobj</c> is not a child of this object, or the index of this item in the range 0 to (<c>count</c>-1).</returns>
+    /// <summary>Get the index of a sub-object in this container.</summary>
+    /// <param name="subobj">An existing sub-object in this container.</param>
+    /// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range 0 to (<c>count</c>-1).</returns>
     public int GetPackIndex(Efl.Gfx.IEntity subobj) {
                                  var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate(this.NativeHandle,subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Pop out (remove) the item at the specified <c>index</c>.
-    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first item (0) to last item (<c>count</c>-1), and negative numbers go from last item (-1) to first item (-<c>count</c>). Where <c>count</c> is the number of items currently in the container.
+    /// <summary>Pop out (remove) the sub-object at the specified <c>index</c>.
+    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
     /// 
-    /// If <c>index</c> is less than -<c>count</c>, it will remove the first item whereas <c>index</c> greater than <c>count</c>-1 will remove the last item.
-    /// 
-    /// Equivalent to <see cref="Efl.IPack.Unpack"/>(<see cref="Efl.IPackLinear.GetPackContent"/>(<c>index</c>)).</summary>
-    /// <param name="index">Index of item to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
-    /// <returns>The child item if it could be removed.</returns>
+    /// If <c>index</c> is less than -<c>count</c>, it will remove the first sub-object whereas <c>index</c> greater than <c>count</c>-1 will remove the last sub-object.</summary>
+    /// <param name="index">Index of the sub-object to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+    /// <returns>The sub-object if it could be removed.</returns>
     public Efl.Gfx.IEntity PackUnpackAt(int index) {
                                  var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate(this.NativeHandle,index);
         Eina.Error.RaiseIfUnhandledException();
@@ -445,78 +298,48 @@ IPackLinear
  }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
-    /// <returns>Iterator to object content</returns>
+    /// <returns>Iterator on object&apos;s content.</returns>
     public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
          var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
  }
-    /// <summary>Returns the number of UI elements packed in this container.
+    /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
-    /// <returns>Number of packed UI elements</returns>
+    /// <returns>Number of sub-objects.</returns>
     public int ContentCount() {
          var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Alignment of the container within its bounds</summary>
-    /// <param name="align_horiz">Horizontal alignment</param>
-    /// <param name="align_vert">Vertical alignment</param>
-    public void GetPackAlign(out double align_horiz, out double align_vert) {
-                                                         Efl.IPackConcrete.NativeMethods.efl_pack_align_get_ptr.Value.Delegate(this.NativeHandle,out align_horiz, out align_vert);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Alignment of the container within its bounds</summary>
-    /// <param name="align_horiz">Horizontal alignment</param>
-    /// <param name="align_vert">Vertical alignment</param>
-    public void SetPackAlign(double align_horiz, double align_vert) {
-                                                         Efl.IPackConcrete.NativeMethods.efl_pack_align_set_ptr.Value.Delegate(this.NativeHandle,align_horiz, align_vert);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Padding between items contained in this object.</summary>
-    /// <param name="pad_horiz">Horizontal padding</param>
-    /// <param name="pad_vert">Vertical padding</param>
-    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
-    public void GetPackPadding(out double pad_horiz, out double pad_vert, out bool scalable) {
-                                                                                 Efl.IPackConcrete.NativeMethods.efl_pack_padding_get_ptr.Value.Delegate(this.NativeHandle,out pad_horiz, out pad_vert, out scalable);
-        Eina.Error.RaiseIfUnhandledException();
-                                                         }
-    /// <summary>Padding between items contained in this object.</summary>
-    /// <param name="pad_horiz">Horizontal padding</param>
-    /// <param name="pad_vert">Vertical padding</param>
-    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
-    public void SetPackPadding(double pad_horiz, double pad_vert, bool scalable) {
-                                                                                 Efl.IPackConcrete.NativeMethods.efl_pack_padding_set_ptr.Value.Delegate(this.NativeHandle,pad_horiz, pad_vert, scalable);
-        Eina.Error.RaiseIfUnhandledException();
-                                                         }
-    /// <summary>Removes all packed contents, and unreferences them.</summary>
-    /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
+    /// <summary>Removes all packed sub-objects and unreferences them.</summary>
+    /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     public bool ClearPack() {
          var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Removes all packed contents, without unreferencing them.
+    /// <summary>Removes all packed sub-objects without unreferencing them.
     /// Use with caution.</summary>
-    /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
+    /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     public bool UnpackAll() {
          var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Removes an existing item from the container, without deleting it.</summary>
-    /// <param name="subobj">The unpacked object.</param>
-    /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t a child or can&apos;t be removed</returns>
+    /// <summary>Removes an existing sub-object from the container without deleting it.</summary>
+    /// <param name="subobj">The sub-object to unpack.</param>
+    /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
     public bool Unpack(Efl.Gfx.IEntity subobj) {
                                  var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate(this.NativeHandle,subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Adds an item to this container.
+    /// <summary>Adds a sub-object to this container.
     /// Depending on the container this will either fill in the default spot, replacing any already existing element or append to the end of the container if there is no default part.
     /// 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
-    /// <param name="subobj">An object to pack.</param>
+    /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     public bool Pack(Efl.Gfx.IEntity subobj) {
                                  var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate(this.NativeHandle,subobj);
@@ -639,46 +462,6 @@ IPackLinear
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_count"), func = Marshal.GetFunctionPointerForDelegate(efl_content_count_static_delegate) });
             }
 
-            if (efl_pack_align_get_static_delegate == null)
-            {
-                efl_pack_align_get_static_delegate = new efl_pack_align_get_delegate(pack_align_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetPackAlign") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_align_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_align_get_static_delegate) });
-            }
-
-            if (efl_pack_align_set_static_delegate == null)
-            {
-                efl_pack_align_set_static_delegate = new efl_pack_align_set_delegate(pack_align_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetPackAlign") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_align_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_align_set_static_delegate) });
-            }
-
-            if (efl_pack_padding_get_static_delegate == null)
-            {
-                efl_pack_padding_get_static_delegate = new efl_pack_padding_get_delegate(pack_padding_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetPackPadding") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_padding_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_padding_get_static_delegate) });
-            }
-
-            if (efl_pack_padding_set_static_delegate == null)
-            {
-                efl_pack_padding_set_static_delegate = new efl_pack_padding_set_delegate(pack_padding_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetPackPadding") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_padding_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_padding_set_static_delegate) });
-            }
-
             if (efl_pack_clear_static_delegate == null)
             {
                 efl_pack_clear_static_delegate = new efl_pack_clear_delegate(pack_clear);
@@ -728,7 +511,7 @@ IPackLinear
             return Efl.IPackLinearConcrete.efl_pack_linear_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_pack_begin_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
@@ -741,13 +524,13 @@ IPackLinear
         private static bool pack_begin(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
         {
             Eina.Log.Debug("function efl_pack_begin was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).PackBegin(subobj);
+                    _ret_var = ((IPackLinear)ws.Target).PackBegin(subobj);
                 }
                 catch (Exception e)
                 {
@@ -777,13 +560,13 @@ IPackLinear
         private static bool pack_end(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
         {
             Eina.Log.Debug("function efl_pack_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).PackEnd(subobj);
+                    _ret_var = ((IPackLinear)ws.Target).PackEnd(subobj);
                 }
                 catch (Exception e)
                 {
@@ -813,13 +596,13 @@ IPackLinear
         private static bool pack_before(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing)
         {
             Eina.Log.Debug("function efl_pack_before was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).PackBefore(subobj, existing);
+                    _ret_var = ((IPackLinear)ws.Target).PackBefore(subobj, existing);
                 }
                 catch (Exception e)
                 {
@@ -849,13 +632,13 @@ IPackLinear
         private static bool pack_after(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing)
         {
             Eina.Log.Debug("function efl_pack_after was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).PackAfter(subobj, existing);
+                    _ret_var = ((IPackLinear)ws.Target).PackAfter(subobj, existing);
                 }
                 catch (Exception e)
                 {
@@ -885,13 +668,13 @@ IPackLinear
         private static bool pack_at(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, int index)
         {
             Eina.Log.Debug("function efl_pack_at was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).PackAt(subobj, index);
+                    _ret_var = ((IPackLinear)ws.Target).PackAt(subobj, index);
                 }
                 catch (Exception e)
                 {
@@ -921,13 +704,13 @@ IPackLinear
         private static Efl.Gfx.IEntity pack_content_get(System.IntPtr obj, System.IntPtr pd, int index)
         {
             Eina.Log.Debug("function efl_pack_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).GetPackContent(index);
+                    _ret_var = ((IPackLinear)ws.Target).GetPackContent(index);
                 }
                 catch (Exception e)
                 {
@@ -957,13 +740,13 @@ IPackLinear
         private static int pack_index_get(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
         {
             Eina.Log.Debug("function efl_pack_index_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).GetPackIndex(subobj);
+                    _ret_var = ((IPackLinear)ws.Target).GetPackIndex(subobj);
                 }
                 catch (Exception e)
                 {
@@ -993,13 +776,13 @@ IPackLinear
         private static Efl.Gfx.IEntity pack_unpack_at(System.IntPtr obj, System.IntPtr pd, int index)
         {
             Eina.Log.Debug("function efl_pack_unpack_at was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).PackUnpackAt(index);
+                    _ret_var = ((IPackLinear)ws.Target).PackUnpackAt(index);
                 }
                 catch (Exception e)
                 {
@@ -1029,13 +812,13 @@ IPackLinear
         private static System.IntPtr content_iterate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_iterate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).ContentIterate();
+                    _ret_var = ((IPackLinear)ws.Target).ContentIterate();
                 }
                 catch (Exception e)
                 {
@@ -1065,13 +848,13 @@ IPackLinear
         private static int content_count(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_count was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).ContentCount();
+                    _ret_var = ((IPackLinear)ws.Target).ContentCount();
                 }
                 catch (Exception e)
                 {
@@ -1090,146 +873,6 @@ IPackLinear
 
         private static efl_content_count_delegate efl_content_count_static_delegate;
 
-        
-        private delegate void efl_pack_align_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double align_horiz,  out double align_vert);
-
-        
-        public delegate void efl_pack_align_get_api_delegate(System.IntPtr obj,  out double align_horiz,  out double align_vert);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_align_get_api_delegate> efl_pack_align_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_align_get_api_delegate>(Module, "efl_pack_align_get");
-
-        private static void pack_align_get(System.IntPtr obj, System.IntPtr pd, out double align_horiz, out double align_vert)
-        {
-            Eina.Log.Debug("function efl_pack_align_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-                        align_horiz = default(double);        align_vert = default(double);                            
-                try
-                {
-                    ((IPackLinear)wrapper).GetPackAlign(out align_horiz, out align_vert);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_pack_align_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out align_horiz, out align_vert);
-            }
-        }
-
-        private static efl_pack_align_get_delegate efl_pack_align_get_static_delegate;
-
-        
-        private delegate void efl_pack_align_set_delegate(System.IntPtr obj, System.IntPtr pd,  double align_horiz,  double align_vert);
-
-        
-        public delegate void efl_pack_align_set_api_delegate(System.IntPtr obj,  double align_horiz,  double align_vert);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_align_set_api_delegate> efl_pack_align_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_align_set_api_delegate>(Module, "efl_pack_align_set");
-
-        private static void pack_align_set(System.IntPtr obj, System.IntPtr pd, double align_horiz, double align_vert)
-        {
-            Eina.Log.Debug("function efl_pack_align_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-                                                            
-                try
-                {
-                    ((IPackLinear)wrapper).SetPackAlign(align_horiz, align_vert);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_pack_align_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), align_horiz, align_vert);
-            }
-        }
-
-        private static efl_pack_align_set_delegate efl_pack_align_set_static_delegate;
-
-        
-        private delegate void efl_pack_padding_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double pad_horiz,  out double pad_vert, [MarshalAs(UnmanagedType.U1)] out bool scalable);
-
-        
-        public delegate void efl_pack_padding_get_api_delegate(System.IntPtr obj,  out double pad_horiz,  out double pad_vert, [MarshalAs(UnmanagedType.U1)] out bool scalable);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_padding_get_api_delegate> efl_pack_padding_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_padding_get_api_delegate>(Module, "efl_pack_padding_get");
-
-        private static void pack_padding_get(System.IntPtr obj, System.IntPtr pd, out double pad_horiz, out double pad_vert, out bool scalable)
-        {
-            Eina.Log.Debug("function efl_pack_padding_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-                                pad_horiz = default(double);        pad_vert = default(double);        scalable = default(bool);                                    
-                try
-                {
-                    ((IPackLinear)wrapper).GetPackPadding(out pad_horiz, out pad_vert, out scalable);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_pack_padding_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out pad_horiz, out pad_vert, out scalable);
-            }
-        }
-
-        private static efl_pack_padding_get_delegate efl_pack_padding_get_static_delegate;
-
-        
-        private delegate void efl_pack_padding_set_delegate(System.IntPtr obj, System.IntPtr pd,  double pad_horiz,  double pad_vert, [MarshalAs(UnmanagedType.U1)] bool scalable);
-
-        
-        public delegate void efl_pack_padding_set_api_delegate(System.IntPtr obj,  double pad_horiz,  double pad_vert, [MarshalAs(UnmanagedType.U1)] bool scalable);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_padding_set_api_delegate> efl_pack_padding_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_padding_set_api_delegate>(Module, "efl_pack_padding_set");
-
-        private static void pack_padding_set(System.IntPtr obj, System.IntPtr pd, double pad_horiz, double pad_vert, bool scalable)
-        {
-            Eina.Log.Debug("function efl_pack_padding_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-                                                                                    
-                try
-                {
-                    ((IPackLinear)wrapper).SetPackPadding(pad_horiz, pad_vert, scalable);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_pack_padding_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), pad_horiz, pad_vert, scalable);
-            }
-        }
-
-        private static efl_pack_padding_set_delegate efl_pack_padding_set_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_pack_clear_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -1241,13 +884,13 @@ IPackLinear
         private static bool pack_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_pack_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).ClearPack();
+                    _ret_var = ((IPackLinear)ws.Target).ClearPack();
                 }
                 catch (Exception e)
                 {
@@ -1277,13 +920,13 @@ IPackLinear
         private static bool unpack_all(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_pack_unpack_all was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).UnpackAll();
+                    _ret_var = ((IPackLinear)ws.Target).UnpackAll();
                 }
                 catch (Exception e)
                 {
@@ -1313,13 +956,13 @@ IPackLinear
         private static bool unpack(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
         {
             Eina.Log.Debug("function efl_pack_unpack was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).Unpack(subobj);
+                    _ret_var = ((IPackLinear)ws.Target).Unpack(subobj);
                 }
                 catch (Exception e)
                 {
@@ -1349,13 +992,13 @@ IPackLinear
         private static bool pack(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
         {
             Eina.Log.Debug("function efl_pack was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPackLinear)wrapper).Pack(subobj);
+                    _ret_var = ((IPackLinear)ws.Target).Pack(subobj);
                 }
                 catch (Exception e)
                 {
@@ -1374,7 +1017,7 @@ IPackLinear
 
         private static efl_pack_delegate efl_pack_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

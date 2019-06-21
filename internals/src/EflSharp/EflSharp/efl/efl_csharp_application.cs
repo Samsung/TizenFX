@@ -61,11 +61,11 @@ public abstract class Application
 #endif
             elm_init(0, IntPtr.Zero);
 
-            elm_policy_set((int)Elm.Policy.Quit, (int)Elm.PolicyQuit.LastWindowHidden);
-
             // TIZEN_ONLY(20190425) Use efl-sharp-theme.edj on EflSharp
             Efl.Ui.Theme.GetDefault().AddOverlay("/usr/share/efl-sharp/efl-sharp-theme.edj");
             //
+
+            Efl.Ui.Win.ExitOnAllWindowsClosed = new Eina.Value(0);
         }
 
         initComponent = component;

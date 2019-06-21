@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary progressbar class</summary>
 [Efl.Ui.Progressbar.NativeMethods]
-public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.IText,Efl.ITextMarkup,Efl.Access.IValue,Efl.Ui.IDirection,Efl.Ui.IFormat,Efl.Ui.IRangeDisplay
+public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup, Efl.Access.IValue, Efl.Ui.IFormat, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeDisplay
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Progressbar(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Progressbar"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -61,33 +61,6 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when progressbar changed</summary>
     public event EventHandler ChangedEvt
     {
@@ -95,10 +68,9 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -149,13 +121,12 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -198,7 +169,7 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Control whether a given progress bar widget is at &quot;pulsing mode&quot; or not.
-    /// By default progress bars display values from low to high boundaries. There are situations however in which the progress of a given task is unknown. In these cases, you can set a progress bar widget to a &quot;pulsing state&quot; to give the user an idea that some computation is being done without showing the precise progress rate. In the default theme, it will animate the bar with content, switching constantly between filling it and back to non-filled in a loop. To start and stop this pulsing animation you need to explicitly call efl_ui_progressbar_pulse_set().</summary>
+    /// By default progress bars display values from low to high boundaries. There are situations however in which the progress of a given task is unknown. In these cases, you can set a progress bar widget to a &quot;pulsing state&quot; to give the user an idea that some computation is being done without showing the precise progress rate. In the default theme, it will animate the bar with content, switching constantly between filling it and back to non-filled in a loop. To start and stop this pulsing animation you need to explicitly call <see cref="Efl.Ui.Progressbar.SetPulse"/>.</summary>
     /// <returns><c>true</c> to put <c>obj</c> in pulsing mode, <c>false</c> to put it back to its default one</returns>
     virtual public bool GetPulseMode() {
          var _ret_var = Efl.Ui.Progressbar.NativeMethods.efl_ui_progressbar_pulse_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
@@ -206,13 +177,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         return _ret_var;
  }
     /// <summary>Control whether a given progress bar widget is at &quot;pulsing mode&quot; or not.
-    /// By default progress bars display values from low to high boundaries. There are situations however in which the progress of a given task is unknown. In these cases, you can set a progress bar widget to a &quot;pulsing state&quot; to give the user an idea that some computation is being done without showing the precise progress rate. In the default theme, it will animate the bar with content, switching constantly between filling it and back to non-filled in a loop. To start and stop this pulsing animation you need to explicitly call efl_ui_progressbar_pulse_set().</summary>
+    /// By default progress bars display values from low to high boundaries. There are situations however in which the progress of a given task is unknown. In these cases, you can set a progress bar widget to a &quot;pulsing state&quot; to give the user an idea that some computation is being done without showing the precise progress rate. In the default theme, it will animate the bar with content, switching constantly between filling it and back to non-filled in a loop. To start and stop this pulsing animation you need to explicitly call <see cref="Efl.Ui.Progressbar.SetPulse"/>.</summary>
     /// <param name="pulse"><c>true</c> to put <c>obj</c> in pulsing mode, <c>false</c> to put it back to its default one</param>
     virtual public void SetPulseMode(bool pulse) {
                                  Efl.Ui.Progressbar.NativeMethods.efl_ui_progressbar_pulse_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pulse);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get the pulsing state on a given progressbar widget.</summary>
+    /// <summary>Get the pulsing state on a given progressbar widget. See <see cref="Efl.Ui.Progressbar.PulseMode"/>.</summary>
     /// <returns><c>true</c>, to start the pulsing animation, <c>false</c> to stop it</returns>
     virtual public bool GetPulse() {
          var _ret_var = Efl.Ui.Progressbar.NativeMethods.efl_ui_progressbar_pulse_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
@@ -220,7 +191,7 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         return _ret_var;
  }
     /// <summary>Start/stop a given progress bar &quot;pulsing&quot; animation, if its under that mode
-    /// Note: This call won&apos;t do anything if <c>obj</c> is not under &quot;pulsing mode&quot;.</summary>
+    /// Note: This call won&apos;t do anything if <c>obj</c> is not under &quot;pulsing mode&quot;. See <see cref="Efl.Ui.Progressbar.PulseMode"/>.</summary>
     /// <param name="state"><c>true</c>, to start the pulsing animation, <c>false</c> to stop it</param>
     virtual public void SetPulse(bool state) {
                                  Efl.Ui.Progressbar.NativeMethods.efl_ui_progressbar_pulse_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),state);
@@ -316,25 +287,6 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Control the direction of a given widget.
-    /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
-    /// 
-    /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
-    /// <returns>Direction of the widget.</returns>
-    virtual public Efl.Ui.Dir GetDirection() {
-         var _ret_var = Efl.Ui.IDirectionConcrete.NativeMethods.efl_ui_direction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Control the direction of a given widget.
-    /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
-    /// 
-    /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
-    /// <param name="dir">Direction of the widget.</param>
-    virtual public void SetDirection(Efl.Ui.Dir dir) {
-                                 Efl.Ui.IDirectionConcrete.NativeMethods.efl_ui_direction_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
     /// <summary>Set the format function pointer to format the string.</summary>
     /// <param name="func">The format function callback</param>
     virtual public void SetFormatCb(Efl.Ui.FormatFuncCb func) {
@@ -359,6 +311,25 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
     /// <param name="units">The format string for <c>obj</c>&apos;s units label.</param>
     virtual public void SetFormatString(System.String units) {
                                  Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),units);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Control the direction of a given widget.
+    /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
+    /// 
+    /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
+    /// <returns>Direction of the widget.</returns>
+    virtual public Efl.Ui.LayoutOrientation GetOrientation() {
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Control the direction of a given widget.
+    /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
+    /// 
+    /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
+    /// <param name="dir">Direction of the widget.</param>
+    virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the range value (in percentage) on a given range widget
@@ -403,65 +374,65 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control whether a given progress bar widget is at &quot;pulsing mode&quot; or not.
-/// By default progress bars display values from low to high boundaries. There are situations however in which the progress of a given task is unknown. In these cases, you can set a progress bar widget to a &quot;pulsing state&quot; to give the user an idea that some computation is being done without showing the precise progress rate. In the default theme, it will animate the bar with content, switching constantly between filling it and back to non-filled in a loop. To start and stop this pulsing animation you need to explicitly call efl_ui_progressbar_pulse_set().</summary>
-/// <value><c>true</c> to put <c>obj</c> in pulsing mode, <c>false</c> to put it back to its default one</value>
+    /// By default progress bars display values from low to high boundaries. There are situations however in which the progress of a given task is unknown. In these cases, you can set a progress bar widget to a &quot;pulsing state&quot; to give the user an idea that some computation is being done without showing the precise progress rate. In the default theme, it will animate the bar with content, switching constantly between filling it and back to non-filled in a loop. To start and stop this pulsing animation you need to explicitly call <see cref="Efl.Ui.Progressbar.SetPulse"/>.</summary>
+    /// <value><c>true</c> to put <c>obj</c> in pulsing mode, <c>false</c> to put it back to its default one</value>
     public bool PulseMode {
         get { return GetPulseMode(); }
         set { SetPulseMode(value); }
     }
-    /// <summary>Get the pulsing state on a given progressbar widget.</summary>
-/// <value><c>true</c>, to start the pulsing animation, <c>false</c> to stop it</value>
+    /// <summary>Get the pulsing state on a given progressbar widget. See <see cref="Efl.Ui.Progressbar.PulseMode"/>.</summary>
+    /// <value><c>true</c>, to start the pulsing animation, <c>false</c> to stop it</value>
     public bool Pulse {
         get { return GetPulse(); }
         set { SetPulse(value); }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     public System.String Markup {
         get { return GetMarkup(); }
         set { SetMarkup(value); }
     }
     /// <summary>Gets an minimal incrementation value</summary>
-/// <value>Minimal incrementation value</value>
+    /// <value>Minimal incrementation value</value>
     public double Increment {
         get { return GetIncrement(); }
     }
-    /// <summary>Control the direction of a given widget.
-/// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
-/// 
-/// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
-/// <value>Direction of the widget.</value>
-    public Efl.Ui.Dir Direction {
-        get { return GetDirection(); }
-        set { SetDirection(value); }
-    }
     /// <summary>Set the format function pointer to format the string.</summary>
-/// <value>The format function callback</value>
+    /// <value>The format function callback</value>
     public Efl.Ui.FormatFuncCb FormatCb {
         set { SetFormatCb(value); }
     }
     /// <summary>Control the format string for a given units label
-/// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-/// 
-/// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-/// <value>The format string for <c>obj</c>&apos;s units label.</value>
+    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
+    /// 
+    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
+    /// <value>The format string for <c>obj</c>&apos;s units label.</value>
     public System.String FormatString {
         get { return GetFormatString(); }
         set { SetFormatString(value); }
     }
+    /// <summary>Control the direction of a given widget.
+    /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
+    /// 
+    /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
+    /// <value>Direction of the widget.</value>
+    public Efl.Ui.LayoutOrientation Orientation {
+        get { return GetOrientation(); }
+        set { SetOrientation(value); }
+    }
     /// <summary>Control the range value (in percentage) on a given range widget
-/// Use this call to set range levels.
-/// 
-/// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-/// <value>The range value (must be between $0.0 and 1.0)</value>
+    /// Use this call to set range levels.
+    /// 
+    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
+    /// <value>The range value (must be between $0.0 and 1.0)</value>
     public double RangeValue {
         get { return GetRangeValue(); }
         set { SetRangeValue(value); }
@@ -632,26 +603,6 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_value_increment_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_value_increment_get_static_delegate) });
             }
 
-            if (efl_ui_direction_get_static_delegate == null)
-            {
-                efl_ui_direction_get_static_delegate = new efl_ui_direction_get_delegate(direction_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetDirection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_direction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_direction_get_static_delegate) });
-            }
-
-            if (efl_ui_direction_set_static_delegate == null)
-            {
-                efl_ui_direction_set_static_delegate = new efl_ui_direction_set_delegate(direction_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetDirection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_direction_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_direction_set_static_delegate) });
-            }
-
             if (efl_ui_format_cb_set_static_delegate == null)
             {
                 efl_ui_format_cb_set_static_delegate = new efl_ui_format_cb_set_delegate(format_cb_set);
@@ -680,6 +631,26 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
             if (methods.FirstOrDefault(m => m.Name == "SetFormatString") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_string_set_static_delegate) });
+            }
+
+            if (efl_ui_layout_orientation_get_static_delegate == null)
+            {
+                efl_ui_layout_orientation_get_static_delegate = new efl_ui_layout_orientation_get_delegate(orientation_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_get_static_delegate) });
+            }
+
+            if (efl_ui_layout_orientation_set_static_delegate == null)
+            {
+                efl_ui_layout_orientation_set_static_delegate = new efl_ui_layout_orientation_set_delegate(orientation_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
             }
 
             if (efl_ui_range_value_get_static_delegate == null)
@@ -732,7 +703,7 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
             return Efl.Ui.Progressbar.efl_ui_progressbar_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_progressbar_pulse_mode_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -745,13 +716,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static bool pulse_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_progressbar_pulse_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetPulseMode();
+                    _ret_var = ((Progressbar)ws.Target).GetPulseMode();
                 }
                 catch (Exception e)
                 {
@@ -781,13 +752,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void pulse_mode_set(System.IntPtr obj, System.IntPtr pd, bool pulse)
         {
             Eina.Log.Debug("function efl_ui_progressbar_pulse_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Progressbar)wrapper).SetPulseMode(pulse);
+                    ((Progressbar)ws.Target).SetPulseMode(pulse);
                 }
                 catch (Exception e)
                 {
@@ -816,13 +787,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static bool pulse_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_progressbar_pulse_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetPulse();
+                    _ret_var = ((Progressbar)ws.Target).GetPulse();
                 }
                 catch (Exception e)
                 {
@@ -852,13 +823,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void pulse_set(System.IntPtr obj, System.IntPtr pd, bool state)
         {
             Eina.Log.Debug("function efl_ui_progressbar_pulse_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Progressbar)wrapper).SetPulse(state);
+                    ((Progressbar)ws.Target).SetPulse(state);
                 }
                 catch (Exception e)
                 {
@@ -887,13 +858,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetContent();
+                    _ret_var = ((Progressbar)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -923,13 +894,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).SetContent(content);
+                    _ret_var = ((Progressbar)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -959,13 +930,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).UnsetContent();
+                    _ret_var = ((Progressbar)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -995,13 +966,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetText();
+                    _ret_var = ((Progressbar)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -1031,13 +1002,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Progressbar)wrapper).SetText(text);
+                    ((Progressbar)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -1066,13 +1037,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static System.String markup_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_markup_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetMarkup();
+                    _ret_var = ((Progressbar)ws.Target).GetMarkup();
                 }
                 catch (Exception e)
                 {
@@ -1102,13 +1073,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void markup_set(System.IntPtr obj, System.IntPtr pd, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Progressbar)wrapper).SetMarkup(markup);
+                    ((Progressbar)ws.Target).SetMarkup(markup);
                 }
                 catch (Exception e)
                 {
@@ -1137,14 +1108,14 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void value_and_text_get(System.IntPtr obj, System.IntPtr pd, out double value, out System.String text)
         {
             Eina.Log.Debug("function efl_access_value_and_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         value = default(double);        System.String _out_text = default(System.String);
                             
                 try
                 {
-                    ((Progressbar)wrapper).GetValueAndText(out value, out _out_text);
+                    ((Progressbar)ws.Target).GetValueAndText(out value, out _out_text);
                 }
                 catch (Exception e)
                 {
@@ -1174,13 +1145,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static bool value_and_text_set(System.IntPtr obj, System.IntPtr pd, double value, System.String text)
         {
             Eina.Log.Debug("function efl_access_value_and_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).SetValueAndText(value, text);
+                    _ret_var = ((Progressbar)ws.Target).SetValueAndText(value, text);
                 }
                 catch (Exception e)
                 {
@@ -1210,14 +1181,14 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void range_get(System.IntPtr obj, System.IntPtr pd, out double lower_limit, out double upper_limit, out System.String description)
         {
             Eina.Log.Debug("function efl_access_value_range_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 lower_limit = default(double);        upper_limit = default(double);        System.String _out_description = default(System.String);
                                     
                 try
                 {
-                    ((Progressbar)wrapper).GetRange(out lower_limit, out upper_limit, out _out_description);
+                    ((Progressbar)ws.Target).GetRange(out lower_limit, out upper_limit, out _out_description);
                 }
                 catch (Exception e)
                 {
@@ -1247,13 +1218,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static double increment_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_value_increment_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetIncrement();
+                    _ret_var = ((Progressbar)ws.Target).GetIncrement();
                 }
                 catch (Exception e)
                 {
@@ -1273,77 +1244,6 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static efl_access_value_increment_get_delegate efl_access_value_increment_get_static_delegate;
 
         
-        private delegate Efl.Ui.Dir efl_ui_direction_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.Dir efl_ui_direction_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_direction_get_api_delegate> efl_ui_direction_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_direction_get_api_delegate>(Module, "efl_ui_direction_get");
-
-        private static Efl.Ui.Dir direction_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_direction_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-            Efl.Ui.Dir _ret_var = default(Efl.Ui.Dir);
-                try
-                {
-                    _ret_var = ((Progressbar)wrapper).GetDirection();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_direction_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_direction_get_delegate efl_ui_direction_get_static_delegate;
-
-        
-        private delegate void efl_ui_direction_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.Dir dir);
-
-        
-        public delegate void efl_ui_direction_set_api_delegate(System.IntPtr obj,  Efl.Ui.Dir dir);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_direction_set_api_delegate> efl_ui_direction_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_direction_set_api_delegate>(Module, "efl_ui_direction_set");
-
-        private static void direction_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Dir dir)
-        {
-            Eina.Log.Debug("function efl_ui_direction_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-                                    
-                try
-                {
-                    ((Progressbar)wrapper).SetDirection(dir);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_direction_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
-            }
-        }
-
-        private static efl_ui_direction_set_delegate efl_ui_direction_set_static_delegate;
-
-        
         private delegate void efl_ui_format_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb);
 
         
@@ -1354,14 +1254,14 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void format_cb_set(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_ui_format_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                             Efl.Ui.FormatFuncCbWrapper func_wrapper = new Efl.Ui.FormatFuncCbWrapper(func, func_data, func_free_cb);
             
                 try
                 {
-                    ((Progressbar)wrapper).SetFormatCb(func_wrapper.ManagedCb);
+                    ((Progressbar)ws.Target).SetFormatCb(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -1390,13 +1290,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static System.String format_string_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_format_string_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetFormatString();
+                    _ret_var = ((Progressbar)ws.Target).GetFormatString();
                 }
                 catch (Exception e)
                 {
@@ -1426,13 +1326,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void format_string_set(System.IntPtr obj, System.IntPtr pd, System.String units)
         {
             Eina.Log.Debug("function efl_ui_format_string_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Progressbar)wrapper).SetFormatString(units);
+                    ((Progressbar)ws.Target).SetFormatString(units);
                 }
                 catch (Exception e)
                 {
@@ -1451,6 +1351,77 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static efl_ui_format_string_set_delegate efl_ui_format_string_set_static_delegate;
 
         
+        private delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate> efl_ui_layout_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate>(Module, "efl_ui_layout_orientation_get");
+
+        private static Efl.Ui.LayoutOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_layout_orientation_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
+                try
+                {
+                    _ret_var = ((Progressbar)ws.Target).GetOrientation();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_layout_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_layout_orientation_get_delegate efl_ui_layout_orientation_get_static_delegate;
+
+        
+        private delegate void efl_ui_layout_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.LayoutOrientation dir);
+
+        
+        public delegate void efl_ui_layout_orientation_set_api_delegate(System.IntPtr obj,  Efl.Ui.LayoutOrientation dir);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate> efl_ui_layout_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate>(Module, "efl_ui_layout_orientation_set");
+
+        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutOrientation dir)
+        {
+            Eina.Log.Debug("function efl_ui_layout_orientation_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Progressbar)ws.Target).SetOrientation(dir);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_layout_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
+            }
+        }
+
+        private static efl_ui_layout_orientation_set_delegate efl_ui_layout_orientation_set_static_delegate;
+
+        
         private delegate double efl_ui_range_value_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
@@ -1461,13 +1432,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static double range_value_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_range_value_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Progressbar)wrapper).GetRangeValue();
+                    _ret_var = ((Progressbar)ws.Target).GetRangeValue();
                 }
                 catch (Exception e)
                 {
@@ -1497,13 +1468,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void range_value_set(System.IntPtr obj, System.IntPtr pd, double val)
         {
             Eina.Log.Debug("function efl_ui_range_value_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Progressbar)wrapper).SetRangeValue(val);
+                    ((Progressbar)ws.Target).SetRangeValue(val);
                 }
                 catch (Exception e)
                 {
@@ -1532,13 +1503,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void range_min_max_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
         {
             Eina.Log.Debug("function efl_ui_range_min_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         min = default(double);        max = default(double);                            
                 try
                 {
-                    ((Progressbar)wrapper).GetRangeMinMax(out min, out max);
+                    ((Progressbar)ws.Target).GetRangeMinMax(out min, out max);
                 }
                 catch (Exception e)
                 {
@@ -1567,13 +1538,13 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
         private static void range_min_max_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
         {
             Eina.Log.Debug("function efl_ui_range_min_max_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Progressbar)wrapper).SetRangeMinMax(min, max);
+                    ((Progressbar)ws.Target).SetRangeMinMax(min, max);
                 }
                 catch (Exception e)
                 {
@@ -1591,7 +1562,7 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.I
 
         private static efl_ui_range_min_max_set_delegate efl_ui_range_min_max_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -7,8 +7,8 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>Common interface for objects that have multiple contents (sub objects).
-/// APIs in this interface deal with containers of multiple sub objects, not with individual parts.
+/// <summary>Common interface for objects (containers) that can have multiple contents (sub-objects).
+/// APIs in this interface deal with containers of multiple sub-objects, not with individual parts.
 /// (Since EFL 1.22)</summary>
 [Efl.IContainerConcrete.NativeMethods]
 public interface IContainer : 
@@ -16,16 +16,16 @@ public interface IContainer :
 {
     /// <summary>Begin iterating over this object&apos;s contents.
 /// (Since EFL 1.22)</summary>
-/// <returns>Iterator to object content</returns>
+/// <returns>Iterator on object&apos;s content.</returns>
 Eina.Iterator<Efl.Gfx.IEntity> ContentIterate();
-    /// <summary>Returns the number of UI elements packed in this container.
+    /// <summary>Returns the number of contained sub-objects.
 /// (Since EFL 1.22)</summary>
-/// <returns>Number of packed UI elements</returns>
+/// <returns>Number of sub-objects.</returns>
 int ContentCount();
-            /// <summary>Sent after a new item was added.
+            /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
     event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt;
-    /// <summary>Sent after an item was removed, before unref.
+    /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
     event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt;
 }
@@ -39,16 +39,16 @@ public class IContainerContentRemovedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Gfx.IEntity arg { get; set; }
 }
-/// <summary>Common interface for objects that have multiple contents (sub objects).
-/// APIs in this interface deal with containers of multiple sub objects, not with individual parts.
+/// <summary>Common interface for objects (containers) that can have multiple contents (sub-objects).
+/// APIs in this interface deal with containers of multiple sub-objects, not with individual parts.
 /// (Since EFL 1.22)</summary>
-sealed public class IContainerConcrete : 
-
-IContainer
+sealed public class IContainerConcrete :
+    Efl.Eo.EoWrapper
+    , IContainer
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -63,158 +63,15 @@ IContainer
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_container_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IContainer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IContainerConcrete(System.IntPtr raw)
+    private IContainerConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IContainerConcrete()
-    {
-        Dispose(false);
     }
 
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
-    }
-
-    /// <summary>Sent after a new item was added.
+    /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
@@ -222,13 +79,12 @@ IContainer
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
+                        Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -270,7 +126,7 @@ IContainer
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Sent after an item was removed, before unref.
+    /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
@@ -278,13 +134,12 @@ IContainer
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
+                        Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -328,15 +183,15 @@ IContainer
     }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
-    /// <returns>Iterator to object content</returns>
+    /// <returns>Iterator on object&apos;s content.</returns>
     public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
          var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
  }
-    /// <summary>Returns the number of UI elements packed in this container.
+    /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
-    /// <returns>Number of packed UI elements</returns>
+    /// <returns>Number of sub-objects.</returns>
     public int ContentCount() {
          var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
@@ -387,7 +242,7 @@ IContainer
             return Efl.IContainerConcrete.efl_container_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate System.IntPtr efl_content_iterate_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -400,13 +255,13 @@ IContainer
         private static System.IntPtr content_iterate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_iterate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((IContainer)wrapper).ContentIterate();
+                    _ret_var = ((IContainer)ws.Target).ContentIterate();
                 }
                 catch (Exception e)
                 {
@@ -436,13 +291,13 @@ IContainer
         private static int content_count(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_count was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IContainer)wrapper).ContentCount();
+                    _ret_var = ((IContainer)ws.Target).ContentCount();
                 }
                 catch (Exception e)
                 {
@@ -461,7 +316,7 @@ IContainer
 
         private static efl_content_count_delegate efl_content_count_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

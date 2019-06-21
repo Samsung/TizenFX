@@ -45,34 +45,34 @@ void SetZoomMode(Efl.Ui.ZoomMode mode);
     /// <summary>Called when zooming changed</summary>
     event EventHandler ZoomChangeEvt;
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
-/// <value>The paused state.</value>
+    /// <value>The paused state.</value>
     bool ZoomAnimation {
         get ;
         set ;
     }
     /// <summary>Get the zoom level of the photo
-/// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
-/// <value>The zoom level to set</value>
+    /// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
+    /// <value>The zoom level to set</value>
     double ZoomLevel {
         get ;
         set ;
     }
     /// <summary>Get the zoom mode
-/// This gets the current zoom mode of the zoomable object.</summary>
-/// <value>The zoom mode.</value>
+    /// This gets the current zoom mode of the zoomable object.</summary>
+    /// <value>The zoom mode.</value>
     Efl.Ui.ZoomMode ZoomMode {
         get ;
         set ;
     }
 }
 /// <summary>Efl UI zoom interface</summary>
-sealed public class IZoomConcrete : 
-
-IZoom
+sealed public class IZoomConcrete :
+    Efl.Eo.EoWrapper
+    , IZoom
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -87,155 +87,12 @@ IZoom
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_ui_zoom_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IZoom"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IZoomConcrete(System.IntPtr raw)
+    private IZoomConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IZoomConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Called when zooming started</summary>
@@ -245,10 +102,9 @@ IZoom
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -298,10 +154,9 @@ IZoom
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -351,10 +206,9 @@ IZoom
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -443,21 +297,21 @@ IZoom
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
-/// <value>The paused state.</value>
+    /// <value>The paused state.</value>
     public bool ZoomAnimation {
         get { return GetZoomAnimation(); }
         set { SetZoomAnimation(value); }
     }
     /// <summary>Get the zoom level of the photo
-/// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
-/// <value>The zoom level to set</value>
+    /// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
+    /// <value>The zoom level to set</value>
     public double ZoomLevel {
         get { return GetZoomLevel(); }
         set { SetZoomLevel(value); }
     }
     /// <summary>Get the zoom mode
-/// This gets the current zoom mode of the zoomable object.</summary>
-/// <value>The zoom mode.</value>
+    /// This gets the current zoom mode of the zoomable object.</summary>
+    /// <value>The zoom mode.</value>
     public Efl.Ui.ZoomMode ZoomMode {
         get { return GetZoomMode(); }
         set { SetZoomMode(value); }
@@ -547,7 +401,7 @@ IZoom
             return Efl.Ui.IZoomConcrete.efl_ui_zoom_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_zoom_animation_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -560,13 +414,13 @@ IZoom
         private static bool zoom_animation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_zoom_animation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IZoom)wrapper).GetZoomAnimation();
+                    _ret_var = ((IZoom)ws.Target).GetZoomAnimation();
                 }
                 catch (Exception e)
                 {
@@ -596,13 +450,13 @@ IZoom
         private static void zoom_animation_set(System.IntPtr obj, System.IntPtr pd, bool paused)
         {
             Eina.Log.Debug("function efl_ui_zoom_animation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IZoom)wrapper).SetZoomAnimation(paused);
+                    ((IZoom)ws.Target).SetZoomAnimation(paused);
                 }
                 catch (Exception e)
                 {
@@ -631,13 +485,13 @@ IZoom
         private static double zoom_level_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_zoom_level_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IZoom)wrapper).GetZoomLevel();
+                    _ret_var = ((IZoom)ws.Target).GetZoomLevel();
                 }
                 catch (Exception e)
                 {
@@ -667,13 +521,13 @@ IZoom
         private static void zoom_level_set(System.IntPtr obj, System.IntPtr pd, double zoom)
         {
             Eina.Log.Debug("function efl_ui_zoom_level_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IZoom)wrapper).SetZoomLevel(zoom);
+                    ((IZoom)ws.Target).SetZoomLevel(zoom);
                 }
                 catch (Exception e)
                 {
@@ -702,13 +556,13 @@ IZoom
         private static Efl.Ui.ZoomMode zoom_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_zoom_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.ZoomMode _ret_var = default(Efl.Ui.ZoomMode);
                 try
                 {
-                    _ret_var = ((IZoom)wrapper).GetZoomMode();
+                    _ret_var = ((IZoom)ws.Target).GetZoomMode();
                 }
                 catch (Exception e)
                 {
@@ -738,13 +592,13 @@ IZoom
         private static void zoom_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ZoomMode mode)
         {
             Eina.Log.Debug("function efl_ui_zoom_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IZoom)wrapper).SetZoomMode(mode);
+                    ((IZoom)ws.Target).SetZoomMode(mode);
                 }
                 catch (Exception e)
                 {
@@ -762,7 +616,7 @@ IZoom
 
         private static efl_ui_zoom_mode_set_delegate efl_ui_zoom_mode_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

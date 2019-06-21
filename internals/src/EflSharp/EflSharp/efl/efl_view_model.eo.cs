@@ -151,7 +151,7 @@ namespace Efl {
 /// <summary>Efl model providing helpers for custom properties used when linking a model to a view and you need to generate/adapt values for display.
 /// There is two ways to use this class, you can either inherit from it and have a custom constructor for example. Or you can just instantiate it and manually define your property on it via callbacks.</summary>
 [Efl.ViewModel.NativeMethods]
-public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
+public class ViewModel : Efl.CompositeModel
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -202,7 +202,7 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ViewModel(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ViewModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -211,33 +211,6 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected ViewModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get the state of the automatic binding of children object.</summary>
@@ -253,6 +226,29 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
                                  Efl.ViewModel.NativeMethods.efl_view_model_children_bind_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Adds a synthetic string property, generated from a <c>definition</c> string and other properties in the model.
+    /// The <c>definition</c> string, similar to how <c>printf</c> works, contains ${} placeholders that are replaced by the actual value of the property inside the placeholder tags when the synthetic property is retrieved. For example, a numeric property <c>length</c> might be strange to use as a label, since it will only display a number. However, a synthetic string can be generated with the definition &quot;Length ${length}.&quot; which renders more nicely and does not require any more code by the user of the property.
+    /// 
+    /// <c>not_ready</c> and <c>on_error</c> strings can be given to be used when the data is not ready or there is some error, respectively. These strings do accept placeholder tags.
+    /// 
+    /// See <see cref="Efl.ViewModel.DelPropertyString"/></summary>
+    /// <param name="name">The name for the new synthetic property.</param>
+    /// <param name="definition">The definition string for the new synthetic property.</param>
+    /// <param name="not_ready">The text to be used if any of the properties used in <c>definition</c> is not ready yet. If set to <c>null</c>, no check against EAGAIN will be done.</param>
+    /// <param name="on_error">The text to be used if any of the properties used in <c>definition</c> is in error. It takes precedence over <c>not_ready</c>. If set to <c>null</c>, no error checks are performed.</param>
+    virtual public Eina.Error AddPropertyString(System.String name, System.String definition, System.String not_ready, System.String on_error) {
+                                                                                                         var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_string_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, definition, not_ready, on_error);
+        Eina.Error.RaiseIfUnhandledException();
+                                                                        return _ret_var;
+ }
+    /// <summary>Delete a synthetic property previously defined by <see cref="Efl.ViewModel.AddPropertyString"/>.
+    /// See <see cref="Efl.ViewModel.AddPropertyString"/></summary>
+    /// <param name="name">The name of the synthetic property to delete.</param>
+    virtual public Eina.Error DelPropertyString(System.String name) {
+                                 var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_string_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+        Eina.Error.RaiseIfUnhandledException();
+                        return _ret_var;
+ }
     /// <summary>Add callbacks that will be triggered when someone ask for the specified property name when getting or setting a property.
     /// A get or set should at least be provided for this call to succeed.
     /// 
@@ -295,8 +291,8 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Define if we will intercept all childrens object reference and bind them through the ViewModel with the same property logic as this one. Be careful of recursivity.
-/// This can only be applied at construction time.</summary>
-/// <value>Do you automatically bind children. Default to true.</value>
+    /// This can only be applied at construction time.</summary>
+    /// <value>Do you automatically bind children. Default to true.</value>
     public bool ChildrenBind {
         get { return GetChildrenBind(); }
         set { SetChildrenBind(value); }
@@ -335,6 +331,26 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
             if (methods.FirstOrDefault(m => m.Name == "SetChildrenBind") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_view_model_children_bind_set"), func = Marshal.GetFunctionPointerForDelegate(efl_view_model_children_bind_set_static_delegate) });
+            }
+
+            if (efl_view_model_property_string_add_static_delegate == null)
+            {
+                efl_view_model_property_string_add_static_delegate = new efl_view_model_property_string_add_delegate(property_string_add);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "AddPropertyString") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_view_model_property_string_add"), func = Marshal.GetFunctionPointerForDelegate(efl_view_model_property_string_add_static_delegate) });
+            }
+
+            if (efl_view_model_property_string_del_static_delegate == null)
+            {
+                efl_view_model_property_string_del_static_delegate = new efl_view_model_property_string_del_delegate(property_string_del);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "DelPropertyString") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_view_model_property_string_del"), func = Marshal.GetFunctionPointerForDelegate(efl_view_model_property_string_del_static_delegate) });
             }
 
             if (efl_view_model_property_logic_add_static_delegate == null)
@@ -387,7 +403,7 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
             return Efl.ViewModel.efl_view_model_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_view_model_children_bind_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -400,13 +416,13 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static bool children_bind_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_view_model_children_bind_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ViewModel)wrapper).GetChildrenBind();
+                    _ret_var = ((ViewModel)ws.Target).GetChildrenBind();
                 }
                 catch (Exception e)
                 {
@@ -436,13 +452,13 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static void children_bind_set(System.IntPtr obj, System.IntPtr pd, bool enable)
         {
             Eina.Log.Debug("function efl_view_model_children_bind_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ViewModel)wrapper).SetChildrenBind(enable);
+                    ((ViewModel)ws.Target).SetChildrenBind(enable);
                 }
                 catch (Exception e)
                 {
@@ -461,6 +477,78 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static efl_view_model_children_bind_set_delegate efl_view_model_children_bind_set_static_delegate;
 
         
+        private delegate Eina.Error efl_view_model_property_string_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String definition, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String not_ready, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String on_error);
+
+        
+        public delegate Eina.Error efl_view_model_property_string_add_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String definition, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String not_ready, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String on_error);
+
+        public static Efl.Eo.FunctionWrapper<efl_view_model_property_string_add_api_delegate> efl_view_model_property_string_add_ptr = new Efl.Eo.FunctionWrapper<efl_view_model_property_string_add_api_delegate>(Module, "efl_view_model_property_string_add");
+
+        private static Eina.Error property_string_add(System.IntPtr obj, System.IntPtr pd, System.String name, System.String definition, System.String not_ready, System.String on_error)
+        {
+            Eina.Log.Debug("function efl_view_model_property_string_add was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                                                                            Eina.Error _ret_var = default(Eina.Error);
+                try
+                {
+                    _ret_var = ((ViewModel)ws.Target).AddPropertyString(name, definition, not_ready, on_error);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                                                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_view_model_property_string_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), name, definition, not_ready, on_error);
+            }
+        }
+
+        private static efl_view_model_property_string_add_delegate efl_view_model_property_string_add_static_delegate;
+
+        
+        private delegate Eina.Error efl_view_model_property_string_del_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
+
+        
+        public delegate Eina.Error efl_view_model_property_string_del_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
+
+        public static Efl.Eo.FunctionWrapper<efl_view_model_property_string_del_api_delegate> efl_view_model_property_string_del_ptr = new Efl.Eo.FunctionWrapper<efl_view_model_property_string_del_api_delegate>(Module, "efl_view_model_property_string_del");
+
+        private static Eina.Error property_string_del(System.IntPtr obj, System.IntPtr pd, System.String name)
+        {
+            Eina.Log.Debug("function efl_view_model_property_string_del was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    Eina.Error _ret_var = default(Eina.Error);
+                try
+                {
+                    _ret_var = ((ViewModel)ws.Target).DelPropertyString(name);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_view_model_property_string_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), name);
+            }
+        }
+
+        private static efl_view_model_property_string_del_delegate efl_view_model_property_string_del_static_delegate;
+
+        
         private delegate Eina.Error efl_view_model_property_logic_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String property,  IntPtr get_data, EflViewModelPropertyGetInternal get, EinaFreeCb get_free_cb,  IntPtr set_data, EflViewModelPropertySetInternal set, EinaFreeCb set_free_cb,  System.IntPtr binded);
 
         
@@ -471,8 +559,8 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static Eina.Error property_logic_add(System.IntPtr obj, System.IntPtr pd, System.String property, IntPtr get_data, EflViewModelPropertyGetInternal get, EinaFreeCb get_free_cb, IntPtr set_data, EflViewModelPropertySetInternal set, EinaFreeCb set_free_cb, System.IntPtr binded)
         {
             Eina.Log.Debug("function efl_view_model_property_logic_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 var _in_binded = new Eina.Iterator<System.String>(binded, false, false);
                                                     EflViewModelPropertyGetWrapper get_wrapper = new EflViewModelPropertyGetWrapper(get, get_data, get_free_cb);
@@ -480,7 +568,7 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((ViewModel)wrapper).AddPropertyLogic(property, get_wrapper.ManagedCb, set_wrapper.ManagedCb, _in_binded);
+                    _ret_var = ((ViewModel)ws.Target).AddPropertyLogic(property, get_wrapper.ManagedCb, set_wrapper.ManagedCb, _in_binded);
                 }
                 catch (Exception e)
                 {
@@ -510,13 +598,13 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static Eina.Error property_logic_del(System.IntPtr obj, System.IntPtr pd, System.String property)
         {
             Eina.Log.Debug("function efl_view_model_property_logic_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((ViewModel)wrapper).DelPropertyLogic(property);
+                    _ret_var = ((ViewModel)ws.Target).DelPropertyLogic(property);
                 }
                 catch (Exception e)
                 {
@@ -546,13 +634,13 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static void property_bind(System.IntPtr obj, System.IntPtr pd, System.String source, System.String destination)
         {
             Eina.Log.Debug("function efl_view_model_property_bind was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ViewModel)wrapper).PropertyBind(source, destination);
+                    ((ViewModel)ws.Target).PropertyBind(source, destination);
                 }
                 catch (Exception e)
                 {
@@ -581,13 +669,13 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static void property_unbind(System.IntPtr obj, System.IntPtr pd, System.String source, System.String destination)
         {
             Eina.Log.Debug("function efl_view_model_property_unbind was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ViewModel)wrapper).PropertyUnbind(source, destination);
+                    ((ViewModel)ws.Target).PropertyUnbind(source, destination);
                 }
                 catch (Exception e)
                 {
@@ -605,7 +693,7 @@ public class ViewModel : Efl.CompositeModel, Efl.Eo.IWrapper
 
         private static efl_view_model_property_unbind_delegate efl_view_model_property_unbind_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

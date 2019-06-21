@@ -45,6 +45,8 @@ uint GetChildrenCount();
 /// <see cref="Efl.IModel.GetProperty"/> can return an error with code EAGAIN when it doesn&apos;t have any meaningful value. To make life easier, this future will resolve when the error:EAGAIN disapears. Either into a failed future in case the error code changed to something else or a success with the value of the property whenever the property finally changes.
 /// 
 /// The future can also be canceled if the model itself gets destroyed.</summary>
+/// <param name="property">Property name.</param>
+/// <returns>Future to be resolved when the property changes to anything other than error:EAGAIN</returns>
  Eina.Future GetPropertyReady(System.String property);
     /// <summary>Get children slice OR full range.
 /// <see cref="Efl.IModel.GetChildrenSlice"/> behaves in two different ways, it may provide the slice if <c>count</c> is non-zero OR full range otherwise.
@@ -70,9 +72,26 @@ Efl.Object AddChild();
 /// Remove a child of a internal keeping. When the child is effectively removed the event <see cref="Efl.IModel.ChildRemovedEvt"/> is then raised to give a chance for listeners to perform any cleanup and/or update references.</summary>
 /// <param name="child">Child to be removed</param>
 void DelChild(Efl.Object child);
-                System.Threading.Tasks.Task<Eina.Value> SetPropertyAsync(System.String property,Eina.Value value, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
-            System.Threading.Tasks.Task<Eina.Value> GetPropertyReadyAsync(System.String property, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
-        System.Threading.Tasks.Task<Eina.Value> GetChildrenSliceAsync(uint start,uint count, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
+                /// <summary>Async wrapper for <see cref="SetProperty" />.</summary>
+    /// <param name="property">Property name</param>
+    /// <param name="value">Property value</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
+    System.Threading.Tasks.Task<Eina.Value> SetPropertyAsync(System.String property,Eina.Value value, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
+
+            /// <summary>Async wrapper for <see cref="GetPropertyReady" />.</summary>
+    /// <param name="property">Property name.</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
+    System.Threading.Tasks.Task<Eina.Value> GetPropertyReadyAsync(System.String property, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
+
+        /// <summary>Async wrapper for <see cref="GetChildrenSlice" />.</summary>
+    /// <param name="start">Range begin - start from here.</param>
+    /// <param name="count">Range size. If count is 0, start is ignored.</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
+    System.Threading.Tasks.Task<Eina.Value> GetChildrenSliceAsync(uint start,uint count, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
+
             /// <summary>Event dispatched when properties list is available.</summary>
     event EventHandler<Efl.IModelPropertiesChangedEvt_Args> PropertiesChangedEvt;
     /// <summary>Event dispatched when new child is added.</summary>
@@ -82,18 +101,18 @@ void DelChild(Efl.Object child);
     /// <summary>Event dispatched when children count is finished.</summary>
     event EventHandler ChildrenCountChangedEvt;
     /// <summary>Get properties from model.
-/// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
-/// 
-/// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
-/// <value>Array of current properties</value>
+    /// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
+    /// 
+    /// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+    /// <value>Array of current properties</value>
     Eina.Iterator<System.String> Properties {
         get ;
     }
     /// <summary>Get children count.
-/// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
-/// 
-/// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
-/// <value>Current known children count</value>
+    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
+    /// 
+    /// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
+    /// <value>Current known children count</value>
     uint ChildrenCount {
         get ;
     }
@@ -114,13 +133,13 @@ public class IModelChildRemovedEvt_Args : EventArgs {
     public Efl.ModelChildrenEvent arg { get; set; }
 }
 /// <summary>Efl model interface</summary>
-sealed public class IModelConcrete : 
-
-IModel
+sealed public class IModelConcrete :
+    Efl.Eo.EoWrapper
+    , IModel
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -135,155 +154,12 @@ IModel
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_model_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IModel"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IModelConcrete(System.IntPtr raw)
+    private IModelConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IModelConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Event dispatched when properties list is available.</summary>
@@ -293,13 +169,12 @@ IModel
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IModelPropertiesChangedEvt_Args args = new Efl.IModelPropertiesChangedEvt_Args();
+                        Efl.IModelPropertiesChangedEvt_Args args = new Efl.IModelPropertiesChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -356,13 +231,12 @@ IModel
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IModelChildAddedEvt_Args args = new Efl.IModelChildAddedEvt_Args();
+                        Efl.IModelChildAddedEvt_Args args = new Efl.IModelChildAddedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -419,13 +293,12 @@ IModel
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IModelChildRemovedEvt_Args args = new Efl.IModelChildRemovedEvt_Args();
+                        Efl.IModelChildRemovedEvt_Args args = new Efl.IModelChildRemovedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -482,10 +355,9 @@ IModel
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -577,6 +449,8 @@ IModel
     /// <see cref="Efl.IModel.GetProperty"/> can return an error with code EAGAIN when it doesn&apos;t have any meaningful value. To make life easier, this future will resolve when the error:EAGAIN disapears. Either into a failed future in case the error code changed to something else or a success with the value of the property whenever the property finally changes.
     /// 
     /// The future can also be canceled if the model itself gets destroyed.</summary>
+    /// <param name="property">Property name.</param>
+    /// <returns>Future to be resolved when the property changes to anything other than error:EAGAIN</returns>
     public  Eina.Future GetPropertyReady(System.String property) {
                                  var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_property_ready_get_ptr.Value.Delegate(this.NativeHandle,property);
         Eina.Error.RaiseIfUnhandledException();
@@ -617,34 +491,51 @@ IModel
                                  Efl.IModelConcrete.NativeMethods.efl_model_child_del_ptr.Value.Delegate(this.NativeHandle,child);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Async wrapper for <see cref="SetProperty" />.</summary>
+    /// <param name="property">Property name</param>
+    /// <param name="value">Property value</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> SetPropertyAsync(System.String property,Eina.Value value, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = SetProperty( property, value);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
+    /// <summary>Async wrapper for <see cref="GetPropertyReady" />.</summary>
+    /// <param name="property">Property name.</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> GetPropertyReadyAsync(System.String property, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = GetPropertyReady( property);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
+    /// <summary>Async wrapper for <see cref="GetChildrenSlice" />.</summary>
+    /// <param name="start">Range begin - start from here.</param>
+    /// <param name="count">Range size. If count is 0, start is ignored.</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> GetChildrenSliceAsync(uint start,uint count, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = GetChildrenSlice( start, count);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
     /// <summary>Get properties from model.
-/// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
-/// 
-/// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
-/// <value>Array of current properties</value>
+    /// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
+    /// 
+    /// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+    /// <value>Array of current properties</value>
     public Eina.Iterator<System.String> Properties {
         get { return GetProperties(); }
     }
     /// <summary>Get children count.
-/// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
-/// 
-/// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
-/// <value>Current known children count</value>
+    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
+    /// 
+    /// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
+    /// <value>Current known children count</value>
     public uint ChildrenCount {
         get { return GetChildrenCount(); }
     }
@@ -753,7 +644,7 @@ IModel
             return Efl.IModelConcrete.efl_model_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate System.IntPtr efl_model_properties_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -766,13 +657,13 @@ IModel
         private static System.IntPtr properties_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_model_properties_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<System.String> _ret_var = default(Eina.Iterator<System.String>);
                 try
                 {
-                    _ret_var = ((IModel)wrapper).GetProperties();
+                    _ret_var = ((IModel)ws.Target).GetProperties();
                 }
                 catch (Exception e)
                 {
@@ -802,13 +693,13 @@ IModel
         private static Eina.Value property_get(System.IntPtr obj, System.IntPtr pd, System.String property)
         {
             Eina.Log.Debug("function efl_model_property_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Value _ret_var = default(Eina.Value);
                 try
                 {
-                    _ret_var = ((IModel)wrapper).GetProperty(property);
+                    _ret_var = ((IModel)ws.Target).GetProperty(property);
                 }
                 catch (Exception e)
                 {
@@ -838,13 +729,13 @@ IModel
         private static  Eina.Future property_set(System.IntPtr obj, System.IntPtr pd, System.String property, Eina.Value value)
         {
             Eina.Log.Debug("function efl_model_property_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((IModel)wrapper).SetProperty(property, value);
+                    _ret_var = ((IModel)ws.Target).SetProperty(property, value);
                 }
                 catch (Exception e)
                 {
@@ -874,13 +765,13 @@ IModel
         private static uint children_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_model_children_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((IModel)wrapper).GetChildrenCount();
+                    _ret_var = ((IModel)ws.Target).GetChildrenCount();
                 }
                 catch (Exception e)
                 {
@@ -910,13 +801,13 @@ IModel
         private static  Eina.Future property_ready_get(System.IntPtr obj, System.IntPtr pd, System.String property)
         {
             Eina.Log.Debug("function efl_model_property_ready_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                      Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((IModel)wrapper).GetPropertyReady(property);
+                    _ret_var = ((IModel)ws.Target).GetPropertyReady(property);
                 }
                 catch (Exception e)
                 {
@@ -946,13 +837,13 @@ IModel
         private static  Eina.Future children_slice_get(System.IntPtr obj, System.IntPtr pd, uint start, uint count)
         {
             Eina.Log.Debug("function efl_model_children_slice_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((IModel)wrapper).GetChildrenSlice(start, count);
+                    _ret_var = ((IModel)ws.Target).GetChildrenSlice(start, count);
                 }
                 catch (Exception e)
                 {
@@ -982,13 +873,13 @@ IModel
         private static Efl.Object child_add(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_model_child_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((IModel)wrapper).AddChild();
+                    _ret_var = ((IModel)ws.Target).AddChild();
                 }
                 catch (Exception e)
                 {
@@ -1018,13 +909,13 @@ IModel
         private static void child_del(System.IntPtr obj, System.IntPtr pd, Efl.Object child)
         {
             Eina.Log.Debug("function efl_model_child_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IModel)wrapper).DelChild(child);
+                    ((IModel)ws.Target).DelChild(child);
                 }
                 catch (Exception e)
                 {
@@ -1042,7 +933,7 @@ IModel
 
         private static efl_model_child_del_delegate efl_model_child_del_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -1067,11 +958,15 @@ public struct ModelPropertyEvent
         this.Invalidated_properties = Invalidated_properties;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ModelPropertyEvent(IntPtr ptr)
     {
         var tmp = (ModelPropertyEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ModelPropertyEvent.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct ModelPropertyEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1101,6 +996,8 @@ public struct ModelPropertyEvent
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -1124,11 +1021,15 @@ public struct ModelChildrenEvent
         this.Child = Child;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ModelChildrenEvent(IntPtr ptr)
     {
         var tmp = (ModelChildrenEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ModelChildrenEvent.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct ModelChildrenEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1158,6 +1059,8 @@ public struct ModelChildrenEvent
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

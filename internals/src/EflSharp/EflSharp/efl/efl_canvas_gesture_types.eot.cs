@@ -74,3 +74,23 @@ ResultMask = 255,
 
 }
 
+namespace Efl {
+
+namespace Canvas {
+
+/// <summary>This enum type describes the state of a touch event.</summary>
+public enum GestureRecognizerType
+{
+Tap = 0,
+DoubleTap = 1,
+TripleTap = 2,
+LongTap = 3,
+Momentum = 4,
+Flick = 5,
+Zoom = 6,
+}
+
+}
+
+}
+

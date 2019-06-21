@@ -55,53 +55,53 @@ int GetLoopCount();
 /// <returns>Duration in seconds</returns>
 double GetFrameDuration(int start_frame, int frame_num);
                                 /// <summary>Check if an object can be animated (has multiple frames).
-/// This will be <c>true</c> for animated object for instance but <c>false</c> for a single frame object.</summary>
-/// <value><c>true</c> if the object is animated</value>
+    /// This will be <c>true</c> for animated object for instance but <c>false</c> for a single frame object.</summary>
+    /// <value><c>true</c> if the object is animated</value>
     bool Animated {
         get ;
     }
     /// <summary>Index of the current frame of an animated object.
-/// Ranges from 1 to <see cref="Efl.Gfx.IFrameController.GetFrameCount"/>. Valid only if <see cref="Efl.Gfx.IFrameController.GetAnimated"/>.</summary>
-/// <value>The index of current frame.</value>
+    /// Ranges from 1 to <see cref="Efl.Gfx.IFrameController.GetFrameCount"/>. Valid only if <see cref="Efl.Gfx.IFrameController.GetAnimated"/>.</summary>
+    /// <value>The index of current frame.</value>
     int Frame {
         get ;
         set ;
     }
     /// <summary>Get the total number of frames of the object, if animated.
-/// Returns -1 if not animated.</summary>
-/// <value>The number of frames in the animated object.</value>
+    /// Returns -1 if not animated.</summary>
+    /// <value>The number of frames in the animated object.</value>
     int FrameCount {
         get ;
     }
     /// <summary>Get the kind of looping the animated object does.
-/// This returns the kind of looping the animated object wants to do.
-/// 
-/// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>, you should display frames in a sequence like: 1-&gt;2-&gt;3-&gt;1-&gt;2-&gt;3-&gt;1...
-/// 
-/// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Pingpong"/>, it is better to display frames in a sequence like: 1-&gt;2-&gt;3-&gt;2-&gt;1-&gt;2-&gt;3-&gt;1...
-/// 
-/// The default type is <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>.</summary>
-/// <value>Loop type of the animated object.</value>
+    /// This returns the kind of looping the animated object wants to do.
+    /// 
+    /// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>, you should display frames in a sequence like: 1-&gt;2-&gt;3-&gt;1-&gt;2-&gt;3-&gt;1...
+    /// 
+    /// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Pingpong"/>, it is better to display frames in a sequence like: 1-&gt;2-&gt;3-&gt;2-&gt;1-&gt;2-&gt;3-&gt;1...
+    /// 
+    /// The default type is <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>.</summary>
+    /// <value>Loop type of the animated object.</value>
     Efl.Gfx.FrameControllerLoopHint LoopType {
         get ;
     }
     /// <summary>Get the number times the animation of the object loops.
-/// This returns loop count of animated object. The loop count is the number of times the animation will play fully from first to last frame until the animation should stop (at the final frame).
-/// 
-/// If 0 is returned, then looping should happen indefinitely (no limit to the number of times it loops).</summary>
-/// <value>The number of loop of an animated object.</value>
+    /// This returns loop count of animated object. The loop count is the number of times the animation will play fully from first to last frame until the animation should stop (at the final frame).
+    /// 
+    /// If 0 is returned, then looping should happen indefinitely (no limit to the number of times it loops).</summary>
+    /// <value>The number of loop of an animated object.</value>
     int LoopCount {
         get ;
     }
 }
 /// <summary>Efl frame controller of frame based animated object interface.</summary>
-sealed public class IFrameControllerConcrete : 
-
-IFrameController
+sealed public class IFrameControllerConcrete :
+    Efl.Eo.EoWrapper
+    , IFrameController
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -116,86 +116,12 @@ IFrameController
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_gfx_frame_controller_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFrameController"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFrameControllerConcrete(System.IntPtr raw)
+    private IFrameControllerConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IFrameControllerConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Check if an object can be animated (has multiple frames).
@@ -267,41 +193,41 @@ IFrameController
                                         return _ret_var;
  }
     /// <summary>Check if an object can be animated (has multiple frames).
-/// This will be <c>true</c> for animated object for instance but <c>false</c> for a single frame object.</summary>
-/// <value><c>true</c> if the object is animated</value>
+    /// This will be <c>true</c> for animated object for instance but <c>false</c> for a single frame object.</summary>
+    /// <value><c>true</c> if the object is animated</value>
     public bool Animated {
         get { return GetAnimated(); }
     }
     /// <summary>Index of the current frame of an animated object.
-/// Ranges from 1 to <see cref="Efl.Gfx.IFrameController.GetFrameCount"/>. Valid only if <see cref="Efl.Gfx.IFrameController.GetAnimated"/>.</summary>
-/// <value>The index of current frame.</value>
+    /// Ranges from 1 to <see cref="Efl.Gfx.IFrameController.GetFrameCount"/>. Valid only if <see cref="Efl.Gfx.IFrameController.GetAnimated"/>.</summary>
+    /// <value>The index of current frame.</value>
     public int Frame {
         get { return GetFrame(); }
         set { SetFrame(value); }
     }
     /// <summary>Get the total number of frames of the object, if animated.
-/// Returns -1 if not animated.</summary>
-/// <value>The number of frames in the animated object.</value>
+    /// Returns -1 if not animated.</summary>
+    /// <value>The number of frames in the animated object.</value>
     public int FrameCount {
         get { return GetFrameCount(); }
     }
     /// <summary>Get the kind of looping the animated object does.
-/// This returns the kind of looping the animated object wants to do.
-/// 
-/// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>, you should display frames in a sequence like: 1-&gt;2-&gt;3-&gt;1-&gt;2-&gt;3-&gt;1...
-/// 
-/// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Pingpong"/>, it is better to display frames in a sequence like: 1-&gt;2-&gt;3-&gt;2-&gt;1-&gt;2-&gt;3-&gt;1...
-/// 
-/// The default type is <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>.</summary>
-/// <value>Loop type of the animated object.</value>
+    /// This returns the kind of looping the animated object wants to do.
+    /// 
+    /// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>, you should display frames in a sequence like: 1-&gt;2-&gt;3-&gt;1-&gt;2-&gt;3-&gt;1...
+    /// 
+    /// If it returns <see cref="Efl.Gfx.FrameControllerLoopHint.Pingpong"/>, it is better to display frames in a sequence like: 1-&gt;2-&gt;3-&gt;2-&gt;1-&gt;2-&gt;3-&gt;1...
+    /// 
+    /// The default type is <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>.</summary>
+    /// <value>Loop type of the animated object.</value>
     public Efl.Gfx.FrameControllerLoopHint LoopType {
         get { return GetLoopType(); }
     }
     /// <summary>Get the number times the animation of the object loops.
-/// This returns loop count of animated object. The loop count is the number of times the animation will play fully from first to last frame until the animation should stop (at the final frame).
-/// 
-/// If 0 is returned, then looping should happen indefinitely (no limit to the number of times it loops).</summary>
-/// <value>The number of loop of an animated object.</value>
+    /// This returns loop count of animated object. The loop count is the number of times the animation will play fully from first to last frame until the animation should stop (at the final frame).
+    /// 
+    /// If 0 is returned, then looping should happen indefinitely (no limit to the number of times it loops).</summary>
+    /// <value>The number of loop of an animated object.</value>
     public int LoopCount {
         get { return GetLoopCount(); }
     }
@@ -400,7 +326,7 @@ IFrameController
             return Efl.Gfx.IFrameControllerConcrete.efl_gfx_frame_controller_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_gfx_frame_controller_animated_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -413,13 +339,13 @@ IFrameController
         private static bool animated_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_frame_controller_animated_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IFrameController)wrapper).GetAnimated();
+                    _ret_var = ((IFrameController)ws.Target).GetAnimated();
                 }
                 catch (Exception e)
                 {
@@ -449,13 +375,13 @@ IFrameController
         private static int frame_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_frame_controller_frame_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IFrameController)wrapper).GetFrame();
+                    _ret_var = ((IFrameController)ws.Target).GetFrame();
                 }
                 catch (Exception e)
                 {
@@ -485,13 +411,13 @@ IFrameController
         private static bool frame_set(System.IntPtr obj, System.IntPtr pd, int frame_index)
         {
             Eina.Log.Debug("function efl_gfx_frame_controller_frame_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IFrameController)wrapper).SetFrame(frame_index);
+                    _ret_var = ((IFrameController)ws.Target).SetFrame(frame_index);
                 }
                 catch (Exception e)
                 {
@@ -521,13 +447,13 @@ IFrameController
         private static int frame_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_frame_controller_frame_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IFrameController)wrapper).GetFrameCount();
+                    _ret_var = ((IFrameController)ws.Target).GetFrameCount();
                 }
                 catch (Exception e)
                 {
@@ -557,13 +483,13 @@ IFrameController
         private static Efl.Gfx.FrameControllerLoopHint loop_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_frame_controller_loop_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.FrameControllerLoopHint _ret_var = default(Efl.Gfx.FrameControllerLoopHint);
                 try
                 {
-                    _ret_var = ((IFrameController)wrapper).GetLoopType();
+                    _ret_var = ((IFrameController)ws.Target).GetLoopType();
                 }
                 catch (Exception e)
                 {
@@ -593,13 +519,13 @@ IFrameController
         private static int loop_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_frame_controller_loop_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IFrameController)wrapper).GetLoopCount();
+                    _ret_var = ((IFrameController)ws.Target).GetLoopCount();
                 }
                 catch (Exception e)
                 {
@@ -629,13 +555,13 @@ IFrameController
         private static double frame_duration_get(System.IntPtr obj, System.IntPtr pd, int start_frame, int frame_num)
         {
             Eina.Log.Debug("function efl_gfx_frame_controller_frame_duration_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IFrameController)wrapper).GetFrameDuration(start_frame, frame_num);
+                    _ret_var = ((IFrameController)ws.Target).GetFrameDuration(start_frame, frame_num);
                 }
                 catch (Exception e)
                 {
@@ -654,7 +580,7 @@ IFrameController
 
         private static efl_gfx_frame_controller_frame_duration_get_delegate efl_gfx_frame_controller_frame_duration_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

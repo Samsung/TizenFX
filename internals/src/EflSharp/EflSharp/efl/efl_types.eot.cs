@@ -53,11 +53,15 @@ public struct Time
         this.Tm_isdst = Tm_isdst;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Time(IntPtr ptr)
     {
         var tmp = (Time.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Time.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Time.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -115,6 +119,8 @@ public struct Time
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -156,11 +162,15 @@ public struct Version
         this.Build_id = Build_id;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Version(IntPtr ptr)
     {
         var tmp = (Version.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Version.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Version.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -205,6 +215,8 @@ public struct Version
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

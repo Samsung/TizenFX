@@ -10,7 +10,7 @@ namespace Efl {
 namespace Ui {
 
 [Efl.Ui.ListItem.NativeMethods]
-public abstract class ListItem : Efl.Ui.Item, Efl.Eo.IWrapper
+public abstract class ListItem : Efl.Ui.Item
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -49,7 +49,7 @@ public abstract class ListItem : Efl.Ui.Item, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ListItem(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class ListItemRealized : ListItem
@@ -65,33 +65,6 @@ public abstract class ListItem : Efl.Ui.Item, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected ListItem(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     private static IntPtr GetEflClassStatic()
@@ -117,9 +90,9 @@ public abstract class ListItem : Efl.Ui.Item, Efl.Eo.IWrapper
             return Efl.Ui.ListItem.efl_ui_list_item_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

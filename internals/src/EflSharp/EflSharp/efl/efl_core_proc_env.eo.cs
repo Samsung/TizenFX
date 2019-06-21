@@ -10,7 +10,7 @@ namespace Efl {
 namespace Core {
 
 [Efl.Core.ProcEnv.NativeMethods]
-public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
+public class ProcEnv : Efl.Core.Env
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -43,7 +43,7 @@ public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ProcEnv(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ProcEnv"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -52,33 +52,6 @@ public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected ProcEnv(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get a instance of this object
@@ -112,7 +85,7 @@ public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
             return Efl.Core.ProcEnv.efl_core_proc_env_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Core.Env efl_env_self_delegate();
@@ -125,8 +98,8 @@ public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
         private static Efl.Core.Env self(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_env_self was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Core.Env _ret_var = default(Efl.Core.Env);
                 try
@@ -148,7 +121,7 @@ public class ProcEnv : Efl.Core.Env, Efl.Eo.IWrapper
             }
         }
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

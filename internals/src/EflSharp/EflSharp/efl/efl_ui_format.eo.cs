@@ -104,28 +104,28 @@ System.String GetFormatString();
 /// <param name="units">The format string for <c>obj</c>&apos;s units label.</param>
 void SetFormatString(System.String units);
                 /// <summary>Set the format function pointer to format the string.</summary>
-/// <value>The format function callback</value>
+    /// <value>The format function callback</value>
     Efl.Ui.FormatFuncCb FormatCb {
         set ;
     }
     /// <summary>Control the format string for a given units label
-/// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-/// 
-/// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-/// <value>The format string for <c>obj</c>&apos;s units label.</value>
+    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
+    /// 
+    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
+    /// <value>The format string for <c>obj</c>&apos;s units label.</value>
     System.String FormatString {
         get ;
         set ;
     }
 }
 /// <summary>interface class for format_func</summary>
-sealed public class IFormatConcrete : 
-
-IFormat
+sealed public class IFormatConcrete :
+    Efl.Eo.EoWrapper
+    , IFormat
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -140,86 +140,12 @@ IFormat
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_ui_format_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IFormat"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFormatConcrete(System.IntPtr raw)
+    private IFormatConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IFormatConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Set the format function pointer to format the string.</summary>
@@ -249,15 +175,15 @@ IFormat
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the format function pointer to format the string.</summary>
-/// <value>The format function callback</value>
+    /// <value>The format function callback</value>
     public Efl.Ui.FormatFuncCb FormatCb {
         set { SetFormatCb(value); }
     }
     /// <summary>Control the format string for a given units label
-/// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-/// 
-/// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-/// <value>The format string for <c>obj</c>&apos;s units label.</value>
+    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
+    /// 
+    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
+    /// <value>The format string for <c>obj</c>&apos;s units label.</value>
     public System.String FormatString {
         get { return GetFormatString(); }
         set { SetFormatString(value); }
@@ -317,7 +243,7 @@ IFormat
             return Efl.Ui.IFormatConcrete.efl_ui_format_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_ui_format_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb);
@@ -330,14 +256,14 @@ IFormat
         private static void format_cb_set(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_ui_format_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                             Efl.Ui.FormatFuncCbWrapper func_wrapper = new Efl.Ui.FormatFuncCbWrapper(func, func_data, func_free_cb);
             
                 try
                 {
-                    ((IFormatConcrete)wrapper).SetFormatCb(func_wrapper.ManagedCb);
+                    ((IFormatConcrete)ws.Target).SetFormatCb(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -366,13 +292,13 @@ IFormat
         private static System.String format_string_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_format_string_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IFormatConcrete)wrapper).GetFormatString();
+                    _ret_var = ((IFormatConcrete)ws.Target).GetFormatString();
                 }
                 catch (Exception e)
                 {
@@ -402,13 +328,13 @@ IFormat
         private static void format_string_set(System.IntPtr obj, System.IntPtr pd, System.String units)
         {
             Eina.Log.Debug("function efl_ui_format_string_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IFormatConcrete)wrapper).SetFormatString(units);
+                    ((IFormatConcrete)ws.Target).SetFormatString(units);
                 }
                 catch (Exception e)
                 {
@@ -426,7 +352,7 @@ IFormat
 
         private static efl_ui_format_string_set_delegate efl_ui_format_string_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

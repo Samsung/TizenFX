@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI Popup internal part backwall class</summary>
 [Efl.Ui.PopupPartBackwall.NativeMethods]
-public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
+public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected PopupPartBackwall(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="PopupPartBackwall"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected PopupPartBackwall(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Determine whether backwall is set to repeat events.</summary>
@@ -183,39 +156,39 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Determine whether backwall is set to repeat events.</summary>
-/// <value>Whether <c>obj</c> is to repeat events (<c>true</c>) or not (<c>false</c>).</value>
+    /// <value>Whether <c>obj</c> is to repeat events (<c>true</c>) or not (<c>false</c>).</value>
     public bool RepeatEvents {
         get { return GetRepeatEvents(); }
         set { SetRepeatEvents(value); }
     }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
-/// (Since EFL 1.22)</summary>
-/// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
     public Eina.File Mmap {
         get { return GetMmap(); }
         set { SetMmap(value); }
     }
     /// <summary>Retrieve the file path from where an object is to fetch the data.
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The file path.</value>
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The file path.</value>
     public System.String File {
         get { return GetFile(); }
         set { SetFile(value); }
     }
     /// <summary>Get the previously-set key which corresponds to the target data within a file.
-/// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
-/// 
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
+    /// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
+    /// 
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
     public System.String Key {
         get { return GetKey(); }
         set { SetKey(value); }
     }
     /// <summary>Get the load state of the object.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
     public bool Loaded {
         get { return GetLoaded(); }
     }
@@ -355,7 +328,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
             return Efl.Ui.PopupPartBackwall.efl_ui_popup_part_backwall_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_popup_part_backwall_repeat_events_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -368,13 +341,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static bool repeat_events_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_popup_part_backwall_repeat_events_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).GetRepeatEvents();
+                    _ret_var = ((PopupPartBackwall)ws.Target).GetRepeatEvents();
                 }
                 catch (Exception e)
                 {
@@ -404,13 +377,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static void repeat_events_set(System.IntPtr obj, System.IntPtr pd, bool repeat)
         {
             Eina.Log.Debug("function efl_ui_popup_part_backwall_repeat_events_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((PopupPartBackwall)wrapper).SetRepeatEvents(repeat);
+                    ((PopupPartBackwall)ws.Target).SetRepeatEvents(repeat);
                 }
                 catch (Exception e)
                 {
@@ -439,13 +412,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.File mmap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_mmap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.File _ret_var = default(Eina.File);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).GetMmap();
+                    _ret_var = ((PopupPartBackwall)ws.Target).GetMmap();
                 }
                 catch (Exception e)
                 {
@@ -475,13 +448,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.Error mmap_set(System.IntPtr obj, System.IntPtr pd, Eina.File f)
         {
             Eina.Log.Debug("function efl_file_mmap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).SetMmap(f);
+                    _ret_var = ((PopupPartBackwall)ws.Target).SetMmap(f);
                 }
                 catch (Exception e)
                 {
@@ -511,13 +484,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static System.String file_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).GetFile();
+                    _ret_var = ((PopupPartBackwall)ws.Target).GetFile();
                 }
                 catch (Exception e)
                 {
@@ -547,13 +520,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.Error file_set(System.IntPtr obj, System.IntPtr pd, System.String file)
         {
             Eina.Log.Debug("function efl_file_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).SetFile(file);
+                    _ret_var = ((PopupPartBackwall)ws.Target).SetFile(file);
                 }
                 catch (Exception e)
                 {
@@ -583,13 +556,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static System.String key_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_key_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).GetKey();
+                    _ret_var = ((PopupPartBackwall)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -619,13 +592,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static void key_set(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_file_key_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((PopupPartBackwall)wrapper).SetKey(key);
+                    ((PopupPartBackwall)ws.Target).SetKey(key);
                 }
                 catch (Exception e)
                 {
@@ -654,13 +627,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static bool loaded_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_loaded_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).GetLoaded();
+                    _ret_var = ((PopupPartBackwall)ws.Target).GetLoaded();
                 }
                 catch (Exception e)
                 {
@@ -690,13 +663,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.Error load(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_load was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((PopupPartBackwall)wrapper).Load();
+                    _ret_var = ((PopupPartBackwall)ws.Target).Load();
                 }
                 catch (Exception e)
                 {
@@ -726,13 +699,13 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
         private static void unload(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_unload was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((PopupPartBackwall)wrapper).Unload();
+                    ((PopupPartBackwall)ws.Target).Unload();
                 }
                 catch (Exception e)
                 {
@@ -750,7 +723,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IFile
 
         private static efl_file_unload_delegate efl_file_unload_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

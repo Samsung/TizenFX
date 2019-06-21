@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI window interal part class</summary>
 [Efl.Ui.WinPart.NativeMethods]
-public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile,Efl.Gfx.IColor
+public class WinPart : Efl.Ui.WidgetPart, Efl.IContent, Efl.IFile, Efl.Gfx.IColor
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected WinPart(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="WinPart"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -55,33 +55,6 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
@@ -90,13 +63,12 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -287,47 +259,47 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
-/// (Since EFL 1.22)</summary>
-/// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
     public Eina.File Mmap {
         get { return GetMmap(); }
         set { SetMmap(value); }
     }
     /// <summary>Retrieve the file path from where an object is to fetch the data.
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The file path.</value>
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The file path.</value>
     public System.String File {
         get { return GetFile(); }
         set { SetFile(value); }
     }
     /// <summary>Get the previously-set key which corresponds to the target data within a file.
-/// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
-/// 
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
+    /// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
+    /// 
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
     public System.String Key {
         get { return GetKey(); }
         set { SetKey(value); }
     }
     /// <summary>Get the load state of the object.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
     public bool Loaded {
         get { return GetLoaded(); }
     }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-/// (Since EFL 1.22)</summary>
-/// <value>the hex color code.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>the hex color code.</value>
     public System.String ColorCode {
         get { return GetColorCode(); }
         set { SetColorCode(value); }
@@ -518,7 +490,7 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
             return Efl.Ui.WinPart.efl_ui_win_part_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -531,13 +503,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).GetContent();
+                    _ret_var = ((WinPart)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -567,13 +539,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).SetContent(content);
+                    _ret_var = ((WinPart)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -603,13 +575,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).UnsetContent();
+                    _ret_var = ((WinPart)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -639,13 +611,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static Eina.File mmap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_mmap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.File _ret_var = default(Eina.File);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).GetMmap();
+                    _ret_var = ((WinPart)ws.Target).GetMmap();
                 }
                 catch (Exception e)
                 {
@@ -675,13 +647,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static Eina.Error mmap_set(System.IntPtr obj, System.IntPtr pd, Eina.File f)
         {
             Eina.Log.Debug("function efl_file_mmap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).SetMmap(f);
+                    _ret_var = ((WinPart)ws.Target).SetMmap(f);
                 }
                 catch (Exception e)
                 {
@@ -711,13 +683,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static System.String file_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).GetFile();
+                    _ret_var = ((WinPart)ws.Target).GetFile();
                 }
                 catch (Exception e)
                 {
@@ -747,13 +719,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static Eina.Error file_set(System.IntPtr obj, System.IntPtr pd, System.String file)
         {
             Eina.Log.Debug("function efl_file_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).SetFile(file);
+                    _ret_var = ((WinPart)ws.Target).SetFile(file);
                 }
                 catch (Exception e)
                 {
@@ -783,13 +755,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static System.String key_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_key_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).GetKey();
+                    _ret_var = ((WinPart)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -819,13 +791,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static void key_set(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_file_key_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((WinPart)wrapper).SetKey(key);
+                    ((WinPart)ws.Target).SetKey(key);
                 }
                 catch (Exception e)
                 {
@@ -854,13 +826,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static bool loaded_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_loaded_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).GetLoaded();
+                    _ret_var = ((WinPart)ws.Target).GetLoaded();
                 }
                 catch (Exception e)
                 {
@@ -890,13 +862,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static Eina.Error load(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_load was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).Load();
+                    _ret_var = ((WinPart)ws.Target).Load();
                 }
                 catch (Exception e)
                 {
@@ -926,13 +898,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static void unload(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_unload was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((WinPart)wrapper).Unload();
+                    ((WinPart)ws.Target).Unload();
                 }
                 catch (Exception e)
                 {
@@ -961,13 +933,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static void color_get(System.IntPtr obj, System.IntPtr pd, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
                 try
                 {
-                    ((WinPart)wrapper).GetColor(out r, out g, out b, out a);
+                    ((WinPart)ws.Target).GetColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -996,13 +968,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static void color_set(System.IntPtr obj, System.IntPtr pd, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((WinPart)wrapper).SetColor(r, g, b, a);
+                    ((WinPart)ws.Target).SetColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -1031,13 +1003,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static System.String color_code_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_color_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((WinPart)wrapper).GetColorCode();
+                    _ret_var = ((WinPart)ws.Target).GetColorCode();
                 }
                 catch (Exception e)
                 {
@@ -1067,13 +1039,13 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
         private static void color_code_set(System.IntPtr obj, System.IntPtr pd, System.String colorcode)
         {
             Eina.Log.Debug("function efl_gfx_color_code_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((WinPart)wrapper).SetColorCode(colorcode);
+                    ((WinPart)ws.Target).SetColorCode(colorcode);
                 }
                 catch (Exception e)
                 {
@@ -1091,7 +1063,7 @@ public class WinPart : Efl.Ui.WidgetPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IFile
 
         private static efl_gfx_color_code_set_delegate efl_gfx_color_code_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

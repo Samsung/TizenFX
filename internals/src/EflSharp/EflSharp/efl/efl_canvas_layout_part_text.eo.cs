@@ -12,7 +12,7 @@ namespace Canvas {
 /// <summary>Represents a TEXT part of a layout
 /// Its lifetime is limited to one function call only, unless an extra reference is explicitly held.</summary>
 [Efl.Canvas.LayoutPartText.NativeMethods]
-public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,Efl.ITextCursor,Efl.ITextFont,Efl.ITextFormat,Efl.ITextMarkup,Efl.ITextMarkupInteractive,Efl.ITextStyle
+public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor, Efl.ITextFont, Efl.ITextFormat, Efl.ITextMarkup, Efl.ITextMarkupInteractive, Efl.ITextStyle
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -45,7 +45,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected LayoutPartText(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPartText"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -54,33 +54,6 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected LayoutPartText(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Sizing policy for text parts.
@@ -937,186 +910,186 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sizing policy for text parts.
-/// This will determine whether to consider height or width constraints, if text-specific behaviors occur (such as ellipsis, line-wrapping etc.</summary>
+    /// This will determine whether to consider height or width constraints, if text-specific behaviors occur (such as ellipsis, line-wrapping etc.</summary>
     public Efl.Canvas.LayoutPartTextExpand TextExpand {
         get { return GetTextExpand(); }
         set { SetTextExpand(value); }
     }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
-/// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
-/// <value>The font file&apos;s path.</value>
+    /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <value>The font file&apos;s path.</value>
     public System.String FontSource {
         get { return GetFontSource(); }
         set { SetFontSource(value); }
     }
     /// <summary>Comma-separated list of font fallbacks
-/// Will be used in case the primary font isn&apos;t available.</summary>
-/// <value>Font name fallbacks</value>
+    /// Will be used in case the primary font isn&apos;t available.</summary>
+    /// <value>Font name fallbacks</value>
     public System.String FontFallbacks {
         get { return GetFontFallbacks(); }
         set { SetFontFallbacks(value); }
     }
     /// <summary>Type of weight of the displayed font
-/// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
-/// <value>Font weight</value>
+    /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
+    /// <value>Font weight</value>
     public Efl.TextFontWeight FontWeight {
         get { return GetFontWeight(); }
         set { SetFontWeight(value); }
     }
     /// <summary>Type of slant of the displayed font
-/// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
-/// <value>Font slant</value>
+    /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
+    /// <value>Font slant</value>
     public Efl.TextFontSlant FontSlant {
         get { return GetFontSlant(); }
         set { SetFontSlant(value); }
     }
     /// <summary>Type of width of the displayed font
-/// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
-/// <value>Font width</value>
+    /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
+    /// <value>Font width</value>
     public Efl.TextFontWidth FontWidth {
         get { return GetFontWidth(); }
         set { SetFontWidth(value); }
     }
     /// <summary>Specific language of the displayed font
-/// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
-/// <value>Language</value>
+    /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
+    /// <value>Language</value>
     public System.String FontLang {
         get { return GetFontLang(); }
         set { SetFontLang(value); }
     }
     /// <summary>The bitmap fonts have fixed size glyphs for several available sizes. Basically, it is not scalable. But, it needs to be scalable for some use cases. (ex. colorful emoji fonts)
-/// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
-/// <value>Scalable</value>
+    /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
+    /// <value>Scalable</value>
     public Efl.TextFontBitmapScalable FontBitmapScalable {
         get { return GetFontBitmapScalable(); }
         set { SetFontBitmapScalable(value); }
     }
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
-/// <value>Ellipsis value</value>
+    /// <value>Ellipsis value</value>
     public double Ellipsis {
         get { return GetEllipsis(); }
         set { SetEllipsis(value); }
     }
     /// <summary>Wrap mode for use in the text</summary>
-/// <value>Wrap mode</value>
+    /// <value>Wrap mode</value>
     public Efl.TextFormatWrap Wrap {
         get { return GetWrap(); }
         set { SetWrap(value); }
     }
     /// <summary>Multiline is enabled or not</summary>
-/// <value><c>true</c> if multiline is enabled, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if multiline is enabled, <c>false</c> otherwise</value>
     public bool Multiline {
         get { return GetMultiline(); }
         set { SetMultiline(value); }
     }
     /// <summary>Horizontal alignment of text</summary>
-/// <value>Alignment type</value>
+    /// <value>Alignment type</value>
     public Efl.TextFormatHorizontalAlignmentAutoType HalignAutoType {
         get { return GetHalignAutoType(); }
         set { SetHalignAutoType(value); }
     }
     /// <summary>Horizontal alignment of text</summary>
-/// <value>Horizontal alignment value</value>
+    /// <value>Horizontal alignment value</value>
     public double Halign {
         get { return GetHalign(); }
         set { SetHalign(value); }
     }
     /// <summary>Vertical alignment of text</summary>
-/// <value>Vertical alignment value</value>
+    /// <value>Vertical alignment value</value>
     public double Valign {
         get { return GetValign(); }
         set { SetValign(value); }
     }
     /// <summary>Minimal line gap (top and bottom) for each line in the text
-/// <c>value</c> is absolute size.</summary>
-/// <value>Line gap value</value>
+    /// <c>value</c> is absolute size.</summary>
+    /// <value>Line gap value</value>
     public double Linegap {
         get { return GetLinegap(); }
         set { SetLinegap(value); }
     }
     /// <summary>Relative line gap (top and bottom) for each line in the text
-/// The original line gap value is multiplied by <c>value</c>.</summary>
-/// <value>Relative line gap value</value>
+    /// The original line gap value is multiplied by <c>value</c>.</summary>
+    /// <value>Relative line gap value</value>
     public double Linerelgap {
         get { return GetLinerelgap(); }
         set { SetLinerelgap(value); }
     }
     /// <summary>Tabstops value</summary>
-/// <value>Tapstops value</value>
+    /// <value>Tapstops value</value>
     public int Tabstops {
         get { return GetTabstops(); }
         set { SetTabstops(value); }
     }
     /// <summary>Whether text is a password</summary>
-/// <value><c>true</c> if the text is a password, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the text is a password, <c>false</c> otherwise</value>
     public bool Password {
         get { return GetPassword(); }
         set { SetPassword(value); }
     }
     /// <summary>The character used to replace characters that can&apos;t be displayed
-/// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
-/// <value>Replacement character</value>
+    /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
+    /// <value>Replacement character</value>
     public System.String ReplacementChar {
         get { return GetReplacementChar(); }
         set { SetReplacementChar(value); }
     }
     /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     public System.String Markup {
         get { return GetMarkup(); }
         set { SetMarkup(value); }
     }
     /// <summary>Enable or disable backing type</summary>
-/// <value>Backing type</value>
+    /// <value>Backing type</value>
     public Efl.TextStyleBackingType BackingType {
         get { return GetBackingType(); }
         set { SetBackingType(value); }
     }
     /// <summary>Sets an underline style on the text</summary>
-/// <value>Underline type</value>
+    /// <value>Underline type</value>
     public Efl.TextStyleUnderlineType UnderlineType {
         get { return GetUnderlineType(); }
         set { SetUnderlineType(value); }
     }
     /// <summary>Height of underline style</summary>
-/// <value>Height</value>
+    /// <value>Height</value>
     public double UnderlineHeight {
         get { return GetUnderlineHeight(); }
         set { SetUnderlineHeight(value); }
     }
     /// <summary>Width of dashed underline style</summary>
-/// <value>Width</value>
+    /// <value>Width</value>
     public int UnderlineDashedWidth {
         get { return GetUnderlineDashedWidth(); }
         set { SetUnderlineDashedWidth(value); }
     }
     /// <summary>Gap of dashed underline style</summary>
-/// <value>Gap</value>
+    /// <value>Gap</value>
     public int UnderlineDashedGap {
         get { return GetUnderlineDashedGap(); }
         set { SetUnderlineDashedGap(value); }
     }
     /// <summary>Type of strikethrough style</summary>
-/// <value>Strikethrough type</value>
+    /// <value>Strikethrough type</value>
     public Efl.TextStyleStrikethroughType StrikethroughType {
         get { return GetStrikethroughType(); }
         set { SetStrikethroughType(value); }
     }
     /// <summary>Type of effect used for the displayed text</summary>
-/// <value>Effect type</value>
+    /// <value>Effect type</value>
     public Efl.TextStyleEffectType EffectType {
         get { return GetEffectType(); }
         set { SetEffectType(value); }
     }
     /// <summary>Direction of shadow effect</summary>
-/// <value>Shadow direction</value>
+    /// <value>Shadow direction</value>
     public Efl.TextStyleShadowDirection ShadowDirection {
         get { return GetShadowDirection(); }
         set { SetShadowDirection(value); }
     }
     /// <summary>Program that applies a special filter
-/// See <see cref="Efl.Gfx.IFilter"/>.</summary>
-/// <value>Filter code</value>
+    /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
+    /// <value>Filter code</value>
     public System.String GfxFilter {
         get { return GetGfxFilter(); }
         set { SetGfxFilter(value); }
@@ -2287,7 +2260,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
             return Efl.Canvas.LayoutPartText.efl_canvas_layout_part_text_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.Canvas.LayoutPartTextExpand efl_canvas_layout_part_text_expand_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -2300,13 +2273,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.Canvas.LayoutPartTextExpand text_expand_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_expand_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.LayoutPartTextExpand _ret_var = default(Efl.Canvas.LayoutPartTextExpand);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetTextExpand();
+                    _ret_var = ((LayoutPartText)ws.Target).GetTextExpand();
                 }
                 catch (Exception e)
                 {
@@ -2336,13 +2309,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void text_expand_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.LayoutPartTextExpand type)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_expand_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetTextExpand(type);
+                    ((LayoutPartText)ws.Target).SetTextExpand(type);
                 }
                 catch (Exception e)
                 {
@@ -2371,13 +2344,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetText();
+                    _ret_var = ((LayoutPartText)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -2407,13 +2380,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetText(text);
+                    ((LayoutPartText)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -2442,13 +2415,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextCursorCursor text_cursor_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorGetType get_type)
         {
             Eina.Log.Debug("function efl_text_cursor_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetTextCursor(get_type);
+                    _ret_var = ((LayoutPartText)ws.Target).GetTextCursor(get_type);
                 }
                 catch (Exception e)
                 {
@@ -2478,13 +2451,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static int cursor_position_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetCursorPosition(cur);
+                    _ret_var = ((LayoutPartText)ws.Target).GetCursorPosition(cur);
                 }
                 catch (Exception e)
                 {
@@ -2514,13 +2487,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_position_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int position)
         {
             Eina.Log.Debug("function efl_text_cursor_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetCursorPosition(cur, position);
+                    ((LayoutPartText)ws.Target).SetCursorPosition(cur, position);
                 }
                 catch (Exception e)
                 {
@@ -2549,13 +2522,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Eina.Unicode cursor_content_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Unicode _ret_var = default(Eina.Unicode);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetCursorContent(cur);
+                    _ret_var = ((LayoutPartText)ws.Target).GetCursorContent(cur);
                 }
                 catch (Exception e)
                 {
@@ -2585,13 +2558,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static bool cursor_geometry_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, Efl.TextCursorType ctype, out int cx, out int cy, out int cw, out int ch, out int cx2, out int cy2, out int cw2, out int ch2)
         {
             Eina.Log.Debug("function efl_text_cursor_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                         cx = default(int);        cy = default(int);        cw = default(int);        ch = default(int);        cx2 = default(int);        cy2 = default(int);        cw2 = default(int);        ch2 = default(int);                                                                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetCursorGeometry(cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
+                    _ret_var = ((LayoutPartText)ws.Target).GetCursorGeometry(cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
                 }
                 catch (Exception e)
                 {
@@ -2621,13 +2594,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextCursorCursor cursor_new(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_cursor_new was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).NewCursor();
+                    _ret_var = ((LayoutPartText)ws.Target).NewCursor();
                 }
                 catch (Exception e)
                 {
@@ -2657,13 +2630,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_free(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_free was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorFree(cur);
+                    ((LayoutPartText)ws.Target).CursorFree(cur);
                 }
                 catch (Exception e)
                 {
@@ -2692,13 +2665,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static bool cursor_equal(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2)
         {
             Eina.Log.Debug("function efl_text_cursor_equal was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).CursorEqual(cur1, cur2);
+                    _ret_var = ((LayoutPartText)ws.Target).CursorEqual(cur1, cur2);
                 }
                 catch (Exception e)
                 {
@@ -2728,13 +2701,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static int cursor_compare(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2)
         {
             Eina.Log.Debug("function efl_text_cursor_compare was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).CursorCompare(cur1, cur2);
+                    _ret_var = ((LayoutPartText)ws.Target).CursorCompare(cur1, cur2);
                 }
                 catch (Exception e)
                 {
@@ -2764,13 +2737,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_copy(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor dst, Efl.TextCursorCursor src)
         {
             Eina.Log.Debug("function efl_text_cursor_copy was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorCopy(dst, src);
+                    ((LayoutPartText)ws.Target).CursorCopy(dst, src);
                 }
                 catch (Exception e)
                 {
@@ -2799,13 +2772,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_char_next(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_char_next was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorCharNext(cur);
+                    ((LayoutPartText)ws.Target).CursorCharNext(cur);
                 }
                 catch (Exception e)
                 {
@@ -2834,13 +2807,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_char_prev(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_char_prev was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorCharPrev(cur);
+                    ((LayoutPartText)ws.Target).CursorCharPrev(cur);
                 }
                 catch (Exception e)
                 {
@@ -2869,13 +2842,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_cluster_next(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_cluster_next was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorClusterNext(cur);
+                    ((LayoutPartText)ws.Target).CursorClusterNext(cur);
                 }
                 catch (Exception e)
                 {
@@ -2904,13 +2877,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_cluster_prev(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_cluster_prev was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorClusterPrev(cur);
+                    ((LayoutPartText)ws.Target).CursorClusterPrev(cur);
                 }
                 catch (Exception e)
                 {
@@ -2939,13 +2912,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_paragraph_char_first(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_char_first was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorParagraphCharFirst(cur);
+                    ((LayoutPartText)ws.Target).CursorParagraphCharFirst(cur);
                 }
                 catch (Exception e)
                 {
@@ -2974,13 +2947,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_paragraph_char_last(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_char_last was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorParagraphCharLast(cur);
+                    ((LayoutPartText)ws.Target).CursorParagraphCharLast(cur);
                 }
                 catch (Exception e)
                 {
@@ -3009,13 +2982,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_word_start(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_word_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorWordStart(cur);
+                    ((LayoutPartText)ws.Target).CursorWordStart(cur);
                 }
                 catch (Exception e)
                 {
@@ -3044,13 +3017,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_word_end(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_word_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorWordEnd(cur);
+                    ((LayoutPartText)ws.Target).CursorWordEnd(cur);
                 }
                 catch (Exception e)
                 {
@@ -3079,13 +3052,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_line_char_first(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_line_char_first was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorLineCharFirst(cur);
+                    ((LayoutPartText)ws.Target).CursorLineCharFirst(cur);
                 }
                 catch (Exception e)
                 {
@@ -3114,13 +3087,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_line_char_last(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_line_char_last was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorLineCharLast(cur);
+                    ((LayoutPartText)ws.Target).CursorLineCharLast(cur);
                 }
                 catch (Exception e)
                 {
@@ -3149,13 +3122,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_paragraph_first(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_first was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorParagraphFirst(cur);
+                    ((LayoutPartText)ws.Target).CursorParagraphFirst(cur);
                 }
                 catch (Exception e)
                 {
@@ -3184,13 +3157,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_paragraph_last(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_last was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorParagraphLast(cur);
+                    ((LayoutPartText)ws.Target).CursorParagraphLast(cur);
                 }
                 catch (Exception e)
                 {
@@ -3219,13 +3192,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_paragraph_next(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_next was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorParagraphNext(cur);
+                    ((LayoutPartText)ws.Target).CursorParagraphNext(cur);
                 }
                 catch (Exception e)
                 {
@@ -3254,13 +3227,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_paragraph_prev(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_prev was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorParagraphPrev(cur);
+                    ((LayoutPartText)ws.Target).CursorParagraphPrev(cur);
                 }
                 catch (Exception e)
                 {
@@ -3289,13 +3262,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_line_jump_by(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int by)
         {
             Eina.Log.Debug("function efl_text_cursor_line_jump_by was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorLineJumpBy(cur, by);
+                    ((LayoutPartText)ws.Target).CursorLineJumpBy(cur, by);
                 }
                 catch (Exception e)
                 {
@@ -3324,13 +3297,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_coord_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int x, int y)
         {
             Eina.Log.Debug("function efl_text_cursor_coord_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetCursorCoord(cur, x, y);
+                    ((LayoutPartText)ws.Target).SetCursorCoord(cur, x, y);
                 }
                 catch (Exception e)
                 {
@@ -3359,13 +3332,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_cluster_coord_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int x, int y)
         {
             Eina.Log.Debug("function efl_text_cursor_cluster_coord_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetCursorClusterCoord(cur, x, y);
+                    ((LayoutPartText)ws.Target).SetCursorClusterCoord(cur, x, y);
                 }
                 catch (Exception e)
                 {
@@ -3394,13 +3367,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static int cursor_text_insert(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, System.String text)
         {
             Eina.Log.Debug("function efl_text_cursor_text_insert was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).CursorTextInsert(cur, text);
+                    _ret_var = ((LayoutPartText)ws.Target).CursorTextInsert(cur, text);
                 }
                 catch (Exception e)
                 {
@@ -3430,13 +3403,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_char_delete(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_char_delete was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorCharDelete(cur);
+                    ((LayoutPartText)ws.Target).CursorCharDelete(cur);
                 }
                 catch (Exception e)
                 {
@@ -3465,14 +3438,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_get(System.IntPtr obj, System.IntPtr pd, out System.String font, out Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_text_font_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         System.String _out_font = default(System.String);
         size = default(Efl.Font.Size);                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetFont(out _out_font, out size);
+                    ((LayoutPartText)ws.Target).GetFont(out _out_font, out size);
                 }
                 catch (Exception e)
                 {
@@ -3502,13 +3475,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_set(System.IntPtr obj, System.IntPtr pd, System.String font, Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_text_font_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFont(font, size);
+                    ((LayoutPartText)ws.Target).SetFont(font, size);
                 }
                 catch (Exception e)
                 {
@@ -3537,13 +3510,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String font_source_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_source_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetFontSource();
+                    _ret_var = ((LayoutPartText)ws.Target).GetFontSource();
                 }
                 catch (Exception e)
                 {
@@ -3573,13 +3546,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_source_set(System.IntPtr obj, System.IntPtr pd, System.String font_source)
         {
             Eina.Log.Debug("function efl_text_font_source_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFontSource(font_source);
+                    ((LayoutPartText)ws.Target).SetFontSource(font_source);
                 }
                 catch (Exception e)
                 {
@@ -3608,13 +3581,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String font_fallbacks_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_fallbacks_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetFontFallbacks();
+                    _ret_var = ((LayoutPartText)ws.Target).GetFontFallbacks();
                 }
                 catch (Exception e)
                 {
@@ -3644,13 +3617,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_fallbacks_set(System.IntPtr obj, System.IntPtr pd, System.String font_fallbacks)
         {
             Eina.Log.Debug("function efl_text_font_fallbacks_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFontFallbacks(font_fallbacks);
+                    ((LayoutPartText)ws.Target).SetFontFallbacks(font_fallbacks);
                 }
                 catch (Exception e)
                 {
@@ -3679,13 +3652,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextFontWeight font_weight_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_weight_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontWeight _ret_var = default(Efl.TextFontWeight);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetFontWeight();
+                    _ret_var = ((LayoutPartText)ws.Target).GetFontWeight();
                 }
                 catch (Exception e)
                 {
@@ -3715,13 +3688,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_weight_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontWeight font_weight)
         {
             Eina.Log.Debug("function efl_text_font_weight_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFontWeight(font_weight);
+                    ((LayoutPartText)ws.Target).SetFontWeight(font_weight);
                 }
                 catch (Exception e)
                 {
@@ -3750,13 +3723,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextFontSlant font_slant_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_slant_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontSlant _ret_var = default(Efl.TextFontSlant);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetFontSlant();
+                    _ret_var = ((LayoutPartText)ws.Target).GetFontSlant();
                 }
                 catch (Exception e)
                 {
@@ -3786,13 +3759,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_slant_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontSlant style)
         {
             Eina.Log.Debug("function efl_text_font_slant_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFontSlant(style);
+                    ((LayoutPartText)ws.Target).SetFontSlant(style);
                 }
                 catch (Exception e)
                 {
@@ -3821,13 +3794,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextFontWidth font_width_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_width_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontWidth _ret_var = default(Efl.TextFontWidth);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetFontWidth();
+                    _ret_var = ((LayoutPartText)ws.Target).GetFontWidth();
                 }
                 catch (Exception e)
                 {
@@ -3857,13 +3830,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_width_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontWidth width)
         {
             Eina.Log.Debug("function efl_text_font_width_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFontWidth(width);
+                    ((LayoutPartText)ws.Target).SetFontWidth(width);
                 }
                 catch (Exception e)
                 {
@@ -3892,13 +3865,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String font_lang_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_lang_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetFontLang();
+                    _ret_var = ((LayoutPartText)ws.Target).GetFontLang();
                 }
                 catch (Exception e)
                 {
@@ -3928,13 +3901,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_lang_set(System.IntPtr obj, System.IntPtr pd, System.String lang)
         {
             Eina.Log.Debug("function efl_text_font_lang_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFontLang(lang);
+                    ((LayoutPartText)ws.Target).SetFontLang(lang);
                 }
                 catch (Exception e)
                 {
@@ -3963,13 +3936,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextFontBitmapScalable font_bitmap_scalable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_bitmap_scalable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontBitmapScalable _ret_var = default(Efl.TextFontBitmapScalable);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetFontBitmapScalable();
+                    _ret_var = ((LayoutPartText)ws.Target).GetFontBitmapScalable();
                 }
                 catch (Exception e)
                 {
@@ -3999,13 +3972,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void font_bitmap_scalable_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontBitmapScalable scalable)
         {
             Eina.Log.Debug("function efl_text_font_bitmap_scalable_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetFontBitmapScalable(scalable);
+                    ((LayoutPartText)ws.Target).SetFontBitmapScalable(scalable);
                 }
                 catch (Exception e)
                 {
@@ -4034,13 +4007,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static double ellipsis_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_ellipsis_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetEllipsis();
+                    _ret_var = ((LayoutPartText)ws.Target).GetEllipsis();
                 }
                 catch (Exception e)
                 {
@@ -4070,13 +4043,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void ellipsis_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_ellipsis_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetEllipsis(value);
+                    ((LayoutPartText)ws.Target).SetEllipsis(value);
                 }
                 catch (Exception e)
                 {
@@ -4105,13 +4078,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextFormatWrap wrap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_wrap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFormatWrap _ret_var = default(Efl.TextFormatWrap);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetWrap();
+                    _ret_var = ((LayoutPartText)ws.Target).GetWrap();
                 }
                 catch (Exception e)
                 {
@@ -4141,13 +4114,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void wrap_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFormatWrap wrap)
         {
             Eina.Log.Debug("function efl_text_wrap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetWrap(wrap);
+                    ((LayoutPartText)ws.Target).SetWrap(wrap);
                 }
                 catch (Exception e)
                 {
@@ -4176,13 +4149,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static bool multiline_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_multiline_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetMultiline();
+                    _ret_var = ((LayoutPartText)ws.Target).GetMultiline();
                 }
                 catch (Exception e)
                 {
@@ -4212,13 +4185,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void multiline_set(System.IntPtr obj, System.IntPtr pd, bool enabled)
         {
             Eina.Log.Debug("function efl_text_multiline_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetMultiline(enabled);
+                    ((LayoutPartText)ws.Target).SetMultiline(enabled);
                 }
                 catch (Exception e)
                 {
@@ -4247,13 +4220,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextFormatHorizontalAlignmentAutoType halign_auto_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_halign_auto_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFormatHorizontalAlignmentAutoType _ret_var = default(Efl.TextFormatHorizontalAlignmentAutoType);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetHalignAutoType();
+                    _ret_var = ((LayoutPartText)ws.Target).GetHalignAutoType();
                 }
                 catch (Exception e)
                 {
@@ -4283,13 +4256,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void halign_auto_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFormatHorizontalAlignmentAutoType value)
         {
             Eina.Log.Debug("function efl_text_halign_auto_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetHalignAutoType(value);
+                    ((LayoutPartText)ws.Target).SetHalignAutoType(value);
                 }
                 catch (Exception e)
                 {
@@ -4318,13 +4291,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static double halign_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_halign_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetHalign();
+                    _ret_var = ((LayoutPartText)ws.Target).GetHalign();
                 }
                 catch (Exception e)
                 {
@@ -4354,13 +4327,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void halign_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_halign_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetHalign(value);
+                    ((LayoutPartText)ws.Target).SetHalign(value);
                 }
                 catch (Exception e)
                 {
@@ -4389,13 +4362,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static double valign_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_valign_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetValign();
+                    _ret_var = ((LayoutPartText)ws.Target).GetValign();
                 }
                 catch (Exception e)
                 {
@@ -4425,13 +4398,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void valign_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_valign_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetValign(value);
+                    ((LayoutPartText)ws.Target).SetValign(value);
                 }
                 catch (Exception e)
                 {
@@ -4460,13 +4433,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static double linegap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_linegap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetLinegap();
+                    _ret_var = ((LayoutPartText)ws.Target).GetLinegap();
                 }
                 catch (Exception e)
                 {
@@ -4496,13 +4469,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void linegap_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_linegap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetLinegap(value);
+                    ((LayoutPartText)ws.Target).SetLinegap(value);
                 }
                 catch (Exception e)
                 {
@@ -4531,13 +4504,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static double linerelgap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_linerelgap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetLinerelgap();
+                    _ret_var = ((LayoutPartText)ws.Target).GetLinerelgap();
                 }
                 catch (Exception e)
                 {
@@ -4567,13 +4540,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void linerelgap_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_linerelgap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetLinerelgap(value);
+                    ((LayoutPartText)ws.Target).SetLinerelgap(value);
                 }
                 catch (Exception e)
                 {
@@ -4602,13 +4575,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static int tabstops_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_tabstops_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetTabstops();
+                    _ret_var = ((LayoutPartText)ws.Target).GetTabstops();
                 }
                 catch (Exception e)
                 {
@@ -4638,13 +4611,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void tabstops_set(System.IntPtr obj, System.IntPtr pd, int value)
         {
             Eina.Log.Debug("function efl_text_tabstops_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetTabstops(value);
+                    ((LayoutPartText)ws.Target).SetTabstops(value);
                 }
                 catch (Exception e)
                 {
@@ -4673,13 +4646,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static bool password_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_password_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetPassword();
+                    _ret_var = ((LayoutPartText)ws.Target).GetPassword();
                 }
                 catch (Exception e)
                 {
@@ -4709,13 +4682,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void password_set(System.IntPtr obj, System.IntPtr pd, bool enabled)
         {
             Eina.Log.Debug("function efl_text_password_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetPassword(enabled);
+                    ((LayoutPartText)ws.Target).SetPassword(enabled);
                 }
                 catch (Exception e)
                 {
@@ -4744,13 +4717,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String replacement_char_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_replacement_char_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetReplacementChar();
+                    _ret_var = ((LayoutPartText)ws.Target).GetReplacementChar();
                 }
                 catch (Exception e)
                 {
@@ -4780,13 +4753,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void replacement_char_set(System.IntPtr obj, System.IntPtr pd, System.String repch)
         {
             Eina.Log.Debug("function efl_text_replacement_char_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetReplacementChar(repch);
+                    ((LayoutPartText)ws.Target).SetReplacementChar(repch);
                 }
                 catch (Exception e)
                 {
@@ -4815,13 +4788,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String markup_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_markup_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetMarkup();
+                    _ret_var = ((LayoutPartText)ws.Target).GetMarkup();
                 }
                 catch (Exception e)
                 {
@@ -4851,13 +4824,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void markup_set(System.IntPtr obj, System.IntPtr pd, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetMarkup(markup);
+                    ((LayoutPartText)ws.Target).SetMarkup(markup);
                 }
                 catch (Exception e)
                 {
@@ -4886,13 +4859,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String markup_range_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor start, Efl.TextCursorCursor end)
         {
             Eina.Log.Debug("function efl_text_markup_interactive_markup_range_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetMarkupRange(start, end);
+                    _ret_var = ((LayoutPartText)ws.Target).GetMarkupRange(start, end);
                 }
                 catch (Exception e)
                 {
@@ -4922,13 +4895,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void markup_range_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor start, Efl.TextCursorCursor end, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_interactive_markup_range_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetMarkupRange(start, end, markup);
+                    ((LayoutPartText)ws.Target).SetMarkupRange(start, end, markup);
                 }
                 catch (Exception e)
                 {
@@ -4957,13 +4930,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void cursor_markup_insert(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_interactive_cursor_markup_insert was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).CursorMarkupInsert(cur, markup);
+                    ((LayoutPartText)ws.Target).CursorMarkupInsert(cur, markup);
                 }
                 catch (Exception e)
                 {
@@ -4992,13 +4965,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void normal_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_normal_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetNormalColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetNormalColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -5027,13 +5000,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void normal_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_normal_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetNormalColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetNormalColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -5062,13 +5035,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextStyleBackingType backing_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_backing_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleBackingType _ret_var = default(Efl.TextStyleBackingType);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetBackingType();
+                    _ret_var = ((LayoutPartText)ws.Target).GetBackingType();
                 }
                 catch (Exception e)
                 {
@@ -5098,13 +5071,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void backing_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleBackingType type)
         {
             Eina.Log.Debug("function efl_text_backing_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetBackingType(type);
+                    ((LayoutPartText)ws.Target).SetBackingType(type);
                 }
                 catch (Exception e)
                 {
@@ -5133,13 +5106,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void backing_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_backing_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetBackingColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetBackingColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -5168,13 +5141,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void backing_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_backing_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetBackingColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetBackingColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -5203,13 +5176,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextStyleUnderlineType underline_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleUnderlineType _ret_var = default(Efl.TextStyleUnderlineType);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetUnderlineType();
+                    _ret_var = ((LayoutPartText)ws.Target).GetUnderlineType();
                 }
                 catch (Exception e)
                 {
@@ -5239,13 +5212,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleUnderlineType type)
         {
             Eina.Log.Debug("function efl_text_underline_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetUnderlineType(type);
+                    ((LayoutPartText)ws.Target).SetUnderlineType(type);
                 }
                 catch (Exception e)
                 {
@@ -5274,13 +5247,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_underline_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetUnderlineColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetUnderlineColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -5309,13 +5282,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_underline_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetUnderlineColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetUnderlineColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -5344,13 +5317,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static double underline_height_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_height_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetUnderlineHeight();
+                    _ret_var = ((LayoutPartText)ws.Target).GetUnderlineHeight();
                 }
                 catch (Exception e)
                 {
@@ -5380,13 +5353,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_height_set(System.IntPtr obj, System.IntPtr pd, double height)
         {
             Eina.Log.Debug("function efl_text_underline_height_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetUnderlineHeight(height);
+                    ((LayoutPartText)ws.Target).SetUnderlineHeight(height);
                 }
                 catch (Exception e)
                 {
@@ -5415,13 +5388,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_dashed_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetUnderlineDashedColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetUnderlineDashedColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -5450,13 +5423,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_dashed_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetUnderlineDashedColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetUnderlineDashedColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -5485,13 +5458,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static int underline_dashed_width_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_width_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetUnderlineDashedWidth();
+                    _ret_var = ((LayoutPartText)ws.Target).GetUnderlineDashedWidth();
                 }
                 catch (Exception e)
                 {
@@ -5521,13 +5494,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_dashed_width_set(System.IntPtr obj, System.IntPtr pd, int width)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_width_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetUnderlineDashedWidth(width);
+                    ((LayoutPartText)ws.Target).SetUnderlineDashedWidth(width);
                 }
                 catch (Exception e)
                 {
@@ -5556,13 +5529,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static int underline_dashed_gap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_gap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetUnderlineDashedGap();
+                    _ret_var = ((LayoutPartText)ws.Target).GetUnderlineDashedGap();
                 }
                 catch (Exception e)
                 {
@@ -5592,13 +5565,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline_dashed_gap_set(System.IntPtr obj, System.IntPtr pd, int gap)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_gap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetUnderlineDashedGap(gap);
+                    ((LayoutPartText)ws.Target).SetUnderlineDashedGap(gap);
                 }
                 catch (Exception e)
                 {
@@ -5627,13 +5600,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline2_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_underline2_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetUnderline2Color(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetUnderline2Color(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -5662,13 +5635,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void underline2_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_underline2_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetUnderline2Color(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetUnderline2Color(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -5697,13 +5670,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextStyleStrikethroughType strikethrough_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_strikethrough_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleStrikethroughType _ret_var = default(Efl.TextStyleStrikethroughType);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetStrikethroughType();
+                    _ret_var = ((LayoutPartText)ws.Target).GetStrikethroughType();
                 }
                 catch (Exception e)
                 {
@@ -5733,13 +5706,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void strikethrough_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleStrikethroughType type)
         {
             Eina.Log.Debug("function efl_text_strikethrough_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetStrikethroughType(type);
+                    ((LayoutPartText)ws.Target).SetStrikethroughType(type);
                 }
                 catch (Exception e)
                 {
@@ -5768,13 +5741,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void strikethrough_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_strikethrough_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetStrikethroughColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetStrikethroughColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -5803,13 +5776,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void strikethrough_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_strikethrough_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetStrikethroughColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetStrikethroughColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -5838,13 +5811,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextStyleEffectType effect_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_effect_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleEffectType _ret_var = default(Efl.TextStyleEffectType);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetEffectType();
+                    _ret_var = ((LayoutPartText)ws.Target).GetEffectType();
                 }
                 catch (Exception e)
                 {
@@ -5874,13 +5847,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void effect_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleEffectType type)
         {
             Eina.Log.Debug("function efl_text_effect_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetEffectType(type);
+                    ((LayoutPartText)ws.Target).SetEffectType(type);
                 }
                 catch (Exception e)
                 {
@@ -5909,13 +5882,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void outline_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_outline_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetOutlineColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetOutlineColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -5944,13 +5917,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void outline_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_outline_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetOutlineColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetOutlineColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -5979,13 +5952,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static Efl.TextStyleShadowDirection shadow_direction_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_shadow_direction_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleShadowDirection _ret_var = default(Efl.TextStyleShadowDirection);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetShadowDirection();
+                    _ret_var = ((LayoutPartText)ws.Target).GetShadowDirection();
                 }
                 catch (Exception e)
                 {
@@ -6015,13 +5988,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void shadow_direction_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleShadowDirection type)
         {
             Eina.Log.Debug("function efl_text_shadow_direction_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetShadowDirection(type);
+                    ((LayoutPartText)ws.Target).SetShadowDirection(type);
                 }
                 catch (Exception e)
                 {
@@ -6050,13 +6023,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void shadow_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_shadow_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetShadowColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetShadowColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -6085,13 +6058,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void shadow_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_shadow_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetShadowColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetShadowColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -6120,13 +6093,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void glow_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_glow_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetGlowColor(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetGlowColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -6155,13 +6128,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void glow_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_glow_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetGlowColor(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetGlowColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -6190,13 +6163,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void glow2_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_glow2_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((LayoutPartText)wrapper).GetGlow2Color(out r, out g, out b, out a);
+                    ((LayoutPartText)ws.Target).GetGlow2Color(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -6225,13 +6198,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void glow2_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_glow2_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((LayoutPartText)wrapper).SetGlow2Color(r, g, b, a);
+                    ((LayoutPartText)ws.Target).SetGlow2Color(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -6260,13 +6233,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static System.String gfx_filter_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_gfx_filter_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartText)wrapper).GetGfxFilter();
+                    _ret_var = ((LayoutPartText)ws.Target).GetGfxFilter();
                 }
                 catch (Exception e)
                 {
@@ -6296,13 +6269,13 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
         private static void gfx_filter_set(System.IntPtr obj, System.IntPtr pd, System.String code)
         {
             Eina.Log.Debug("function efl_text_gfx_filter_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartText)wrapper).SetGfxFilter(code);
+                    ((LayoutPartText)ws.Target).SetGfxFilter(code);
                 }
                 catch (Exception e)
                 {
@@ -6320,7 +6293,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IText,E
 
         private static efl_text_gfx_filter_set_delegate efl_text_gfx_filter_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

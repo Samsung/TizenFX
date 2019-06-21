@@ -13,7 +13,7 @@ namespace Focus {
 
 /// <summary>This class ensures that the root is at least focusable, if nothing else is focusable</summary>
 [Efl.Ui.Focus.ManagerRootFocus.NativeMethods]
-public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
+public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -46,7 +46,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ManagerRootFocus(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ManagerRootFocus"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -55,33 +55,6 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected ManagerRootFocus(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>
@@ -98,7 +71,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>
-/// <value>Canvas object</value>
+    /// <value>Canvas object</value>
     public Efl.Canvas.Object CanvasObject {
         get { return GetCanvasObject(); }
         set { SetCanvasObject(value); }
@@ -149,7 +122,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
             return Efl.Ui.Focus.ManagerRootFocus.efl_ui_focus_manager_root_focus_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Canvas.Object efl_ui_focus_manager_root_focus_canvas_object_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -162,13 +135,13 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
         private static Efl.Canvas.Object canvas_object_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_focus_canvas_object_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((ManagerRootFocus)wrapper).GetCanvasObject();
+                    _ret_var = ((ManagerRootFocus)ws.Target).GetCanvasObject();
                 }
                 catch (Exception e)
                 {
@@ -198,13 +171,13 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
         private static void canvas_object_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object canvas_object)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_focus_canvas_object_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ManagerRootFocus)wrapper).SetCanvasObject(canvas_object);
+                    ((ManagerRootFocus)ws.Target).SetCanvasObject(canvas_object);
                 }
                 catch (Exception e)
                 {
@@ -222,7 +195,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc, Efl.Eo.IWrapper
 
         private static efl_ui_focus_manager_root_focus_canvas_object_set_delegate efl_ui_focus_manager_root_focus_canvas_object_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

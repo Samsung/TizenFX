@@ -24,7 +24,13 @@ public interface IFactory :
     /// <summary>Release a UI object and disconnect from models.</summary>
 /// <param name="ui_view">Efl canvas</param>
 void Release(Efl.Gfx.IEntity ui_view);
-        System.Threading.Tasks.Task<Eina.Value> CreateAsync(Efl.IModel model,Efl.Gfx.IEntity parent, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
+        /// <summary>Async wrapper for <see cref="Create" />.</summary>
+    /// <param name="model">Efl model</param>
+    /// <param name="parent">Efl canvas</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
+    System.Threading.Tasks.Task<Eina.Value> CreateAsync(Efl.IModel model,Efl.Gfx.IEntity parent, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
+
         /// <summary>Event triggered when an item has been successfully created.</summary>
     event EventHandler<Efl.Ui.IFactoryCreatedEvt_Args> CreatedEvt;
 }
@@ -34,13 +40,13 @@ public class IFactoryCreatedEvt_Args : EventArgs {
     public Efl.Ui.FactoryItemCreatedEvent arg { get; set; }
 }
 /// <summary>Efl UI factory interface</summary>
-sealed public class IFactoryConcrete : 
-
-IFactory
+sealed public class IFactoryConcrete :
+    Efl.Eo.EoWrapper
+    , IFactory
     , Efl.Ui.IFactoryBind, Efl.Ui.IPropertyBind
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -55,155 +61,12 @@ IFactory
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_ui_factory_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFactory"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFactoryConcrete(System.IntPtr raw)
+    private IFactoryConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IFactoryConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Event triggered when an item has been successfully created.</summary>
@@ -213,13 +76,12 @@ IFactory
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IFactoryCreatedEvt_Args args = new Efl.Ui.IFactoryCreatedEvt_Args();
+                        Efl.Ui.IFactoryCreatedEvt_Args args = new Efl.Ui.IFactoryCreatedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -276,13 +138,12 @@ IFactory
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IPropertyBindPropertiesChangedEvt_Args args = new Efl.Ui.IPropertyBindPropertiesChangedEvt_Args();
+                        Efl.Ui.IPropertyBindPropertiesChangedEvt_Args args = new Efl.Ui.IPropertyBindPropertiesChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -339,13 +200,12 @@ IFactory
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IPropertyBindPropertyBoundEvt_Args args = new Efl.Ui.IPropertyBindPropertyBoundEvt_Args();
+                        Efl.Ui.IPropertyBindPropertyBoundEvt_Args args = new Efl.Ui.IPropertyBindPropertyBoundEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -425,11 +285,17 @@ IFactory
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+    /// <summary>Async wrapper for <see cref="Create" />.</summary>
+    /// <param name="model">Efl model</param>
+    /// <param name="parent">Efl canvas</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> CreateAsync(Efl.IModel model,Efl.Gfx.IEntity parent, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = Create( model, parent);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.IFactoryConcrete.efl_ui_factory_interface_get();
@@ -495,7 +361,7 @@ IFactory
             return Efl.Ui.IFactoryConcrete.efl_ui_factory_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]
         private delegate  Eina.Future efl_ui_factory_create_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel model, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity parent);
@@ -508,13 +374,13 @@ IFactory
         private static  Eina.Future create(System.IntPtr obj, System.IntPtr pd, Efl.IModel model, Efl.Gfx.IEntity parent)
         {
             Eina.Log.Debug("function efl_ui_factory_create was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((IFactory)wrapper).Create(model, parent);
+                    _ret_var = ((IFactory)ws.Target).Create(model, parent);
                 }
                 catch (Exception e)
                 {
@@ -544,13 +410,13 @@ IFactory
         private static void release(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity ui_view)
         {
             Eina.Log.Debug("function efl_ui_factory_release was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IFactory)wrapper).Release(ui_view);
+                    ((IFactory)ws.Target).Release(ui_view);
                 }
                 catch (Exception e)
                 {
@@ -579,13 +445,13 @@ IFactory
         private static void factory_bind(System.IntPtr obj, System.IntPtr pd, System.String key, Efl.Ui.IFactory factory)
         {
             Eina.Log.Debug("function efl_ui_factory_bind was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IFactory)wrapper).FactoryBind(key, factory);
+                    ((IFactory)ws.Target).FactoryBind(key, factory);
                 }
                 catch (Exception e)
                 {
@@ -614,13 +480,13 @@ IFactory
         private static Eina.Error property_bind(System.IntPtr obj, System.IntPtr pd, System.String key, System.String property)
         {
             Eina.Log.Debug("function efl_ui_property_bind was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((IFactory)wrapper).PropertyBind(key, property);
+                    _ret_var = ((IFactory)ws.Target).PropertyBind(key, property);
                 }
                 catch (Exception e)
                 {
@@ -639,7 +505,7 @@ IFactory
 
         private static efl_ui_property_bind_delegate efl_ui_property_bind_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -668,11 +534,15 @@ public struct FactoryItemCreatedEvent
         this.Item = Item;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator FactoryItemCreatedEvent(IntPtr ptr)
     {
         var tmp = (FactoryItemCreatedEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(FactoryItemCreatedEvent.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct FactoryItemCreatedEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -703,6 +573,8 @@ public struct FactoryItemCreatedEvent
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

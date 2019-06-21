@@ -11,7 +11,7 @@ namespace Canvas {
 
 /// <summary>Efl rotate animation class</summary>
 [Efl.Canvas.AnimationRotate.NativeMethods]
-public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
+public class AnimationRotate : Efl.Canvas.Animation
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected AnimationRotate(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationRotate"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected AnimationRotate(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Rotate property</summary>
@@ -186,7 +159,7 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
             return Efl.Canvas.AnimationRotate.efl_canvas_animation_rotate_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_animation_rotate_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double from_degree,  out double to_degree, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] out Efl.Canvas.Object pivot,  out double cx,  out double cy);
@@ -199,13 +172,13 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void rotate_get(System.IntPtr obj, System.IntPtr pd, out double from_degree, out double to_degree, out Efl.Canvas.Object pivot, out double cx, out double cy)
         {
             Eina.Log.Debug("function efl_animation_rotate_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                 from_degree = default(double);        to_degree = default(double);        pivot = default(Efl.Canvas.Object);        cx = default(double);        cy = default(double);                                                    
                 try
                 {
-                    ((AnimationRotate)wrapper).GetRotate(out from_degree, out to_degree, out pivot, out cx, out cy);
+                    ((AnimationRotate)ws.Target).GetRotate(out from_degree, out to_degree, out pivot, out cx, out cy);
                 }
                 catch (Exception e)
                 {
@@ -234,13 +207,13 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void rotate_set(System.IntPtr obj, System.IntPtr pd, double from_degree, double to_degree, Efl.Canvas.Object pivot, double cx, double cy)
         {
             Eina.Log.Debug("function efl_animation_rotate_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     
                 try
                 {
-                    ((AnimationRotate)wrapper).SetRotate(from_degree, to_degree, pivot, cx, cy);
+                    ((AnimationRotate)ws.Target).SetRotate(from_degree, to_degree, pivot, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -269,13 +242,13 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void rotate_absolute_get(System.IntPtr obj, System.IntPtr pd, out double from_degree, out double to_degree, out int cx, out int cy)
         {
             Eina.Log.Debug("function efl_animation_rotate_absolute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         from_degree = default(double);        to_degree = default(double);        cx = default(int);        cy = default(int);                                            
                 try
                 {
-                    ((AnimationRotate)wrapper).GetRotateAbsolute(out from_degree, out to_degree, out cx, out cy);
+                    ((AnimationRotate)ws.Target).GetRotateAbsolute(out from_degree, out to_degree, out cx, out cy);
                 }
                 catch (Exception e)
                 {
@@ -304,13 +277,13 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void rotate_absolute_set(System.IntPtr obj, System.IntPtr pd, double from_degree, double to_degree, int cx, int cy)
         {
             Eina.Log.Debug("function efl_animation_rotate_absolute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((AnimationRotate)wrapper).SetRotateAbsolute(from_degree, to_degree, cx, cy);
+                    ((AnimationRotate)ws.Target).SetRotateAbsolute(from_degree, to_degree, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -328,7 +301,7 @@ public class AnimationRotate : Efl.Canvas.Animation, Efl.Eo.IWrapper
 
         private static efl_animation_rotate_absolute_set_delegate efl_animation_rotate_absolute_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

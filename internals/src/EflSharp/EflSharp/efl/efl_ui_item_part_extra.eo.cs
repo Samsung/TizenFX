@@ -9,16 +9,16 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>List Default Item internal content of end part class</summary>
-[Efl.Ui.ListDefaultItemPartEnd.NativeMethods]
-public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent
+/// <summary>Item internal content of extra part class</summary>
+[Efl.Ui.ItemPartExtra.NativeMethods]
+public class ItemPartExtra : Efl.Ui.LayoutPart, Efl.IContent
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
         {
-            if (((object)this).GetType() == typeof(ListDefaultItemPartEnd))
+            if (((object)this).GetType() == typeof(ItemPartExtra))
             {
                 return GetEflClassStatic();
             }
@@ -30,56 +30,29 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
-        efl_ui_list_default_item_part_end_class_get();
-    /// <summary>Initializes a new instance of the <see cref="ListDefaultItemPartEnd"/> class.</summary>
+        efl_ui_item_part_extra_class_get();
+    /// <summary>Initializes a new instance of the <see cref="ItemPartExtra"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    public ListDefaultItemPartEnd(Efl.Object parent= null
-            ) : base(efl_ui_list_default_item_part_end_class_get(), typeof(ListDefaultItemPartEnd), parent)
+    public ItemPartExtra(Efl.Object parent= null
+            ) : base(efl_ui_item_part_extra_class_get(), typeof(ItemPartExtra), parent)
     {
         FinishInstantiation();
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ListDefaultItemPartEnd"/> class.
+    /// <summary>Initializes a new instance of the <see cref="ItemPartExtra"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ListDefaultItemPartEnd(System.IntPtr raw) : base(raw)
+    protected ItemPartExtra(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
-    /// <summary>Initializes a new instance of the <see cref="ListDefaultItemPartEnd"/> class.
+    /// <summary>Initializes a new instance of the <see cref="ItemPartExtra"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
     /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ListDefaultItemPartEnd(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ItemPartExtra(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Sent after the content is set or unset using the current content object.
@@ -90,13 +63,12 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -166,16 +138,16 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
         return _ret_var;
  }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.ListDefaultItemPartEnd.efl_ui_list_default_item_part_end_class_get();
+        return Efl.Ui.ItemPartExtra.efl_ui_item_part_extra_class_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -226,10 +198,10 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.ListDefaultItemPartEnd.efl_ui_list_default_item_part_end_class_get();
+            return Efl.Ui.ItemPartExtra.efl_ui_item_part_extra_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -242,13 +214,13 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((ListDefaultItemPartEnd)wrapper).GetContent();
+                    _ret_var = ((ItemPartExtra)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -278,13 +250,13 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListDefaultItemPartEnd)wrapper).SetContent(content);
+                    _ret_var = ((ItemPartExtra)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -314,13 +286,13 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((ListDefaultItemPartEnd)wrapper).UnsetContent();
+                    _ret_var = ((ItemPartExtra)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -339,7 +311,7 @@ public class ListDefaultItemPartEnd : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.ICo
 
         private static efl_content_unset_delegate efl_content_unset_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
