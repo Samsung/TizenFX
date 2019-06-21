@@ -10,7 +10,7 @@ namespace Efl {
 /// <summary>Efl sinusoidal interpolator class
 /// output = (1 - cos(input * Pi)) / 2;</summary>
 [Efl.SinusoidalInterpolator.NativeMethods]
-public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
+public class SinusoidalInterpolator : Efl.Object, Efl.IInterpolator
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -43,7 +43,7 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected SinusoidalInterpolator(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="SinusoidalInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -52,33 +52,6 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected SinusoidalInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Factor property</summary>
@@ -103,7 +76,7 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
                         return _ret_var;
  }
     /// <summary>Factor property</summary>
-/// <value>Factor of the interpolation function.</value>
+    /// <value>Factor of the interpolation function.</value>
     public double Factor {
         get { return GetFactor(); }
         set { SetFactor(value); }
@@ -164,7 +137,7 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
             return Efl.SinusoidalInterpolator.efl_sinusoidal_interpolator_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_sinusoidal_interpolator_factor_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -177,13 +150,13 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
         private static double factor_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_sinusoidal_interpolator_factor_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((SinusoidalInterpolator)wrapper).GetFactor();
+                    _ret_var = ((SinusoidalInterpolator)ws.Target).GetFactor();
                 }
                 catch (Exception e)
                 {
@@ -213,13 +186,13 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
         private static void factor_set(System.IntPtr obj, System.IntPtr pd, double factor)
         {
             Eina.Log.Debug("function efl_sinusoidal_interpolator_factor_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((SinusoidalInterpolator)wrapper).SetFactor(factor);
+                    ((SinusoidalInterpolator)ws.Target).SetFactor(factor);
                 }
                 catch (Exception e)
                 {
@@ -248,13 +221,13 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
         private static double interpolate(System.IntPtr obj, System.IntPtr pd, double progress)
         {
             Eina.Log.Debug("function efl_interpolator_interpolate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((SinusoidalInterpolator)wrapper).Interpolate(progress);
+                    _ret_var = ((SinusoidalInterpolator)ws.Target).Interpolate(progress);
                 }
                 catch (Exception e)
                 {
@@ -273,7 +246,7 @@ public class SinusoidalInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpola
 
         private static efl_interpolator_interpolate_delegate efl_interpolator_interpolate_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

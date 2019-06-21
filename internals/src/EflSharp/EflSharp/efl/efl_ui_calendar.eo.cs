@@ -12,7 +12,7 @@ namespace Ui {
 /// <summary>Calendar widget
 /// It helps applications to flexibly display a calendar with day of the week, date, year and month. Applications are able to set specific dates to be reported back, when selected, in the smart callbacks of the calendar widget.</summary>
 [Efl.Ui.Calendar.NativeMethods]
-public class Calendar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IFormat,Efl.Ui.Focus.IComposition
+public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposition
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -51,7 +51,7 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IFormat,Efl.Ui
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Calendar(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Calendar"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -62,33 +62,6 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IFormat,Efl.Ui
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Emitted when the selected date in the calendar is changed</summary>
     public event EventHandler ChangedEvt
     {
@@ -96,10 +69,9 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IFormat,Efl.Ui
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -291,59 +263,59 @@ logical_order.Own = false;
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The first day of week to use on calendar widgets.
-/// This is the day that will appear in the left-most column (eg. Monday in France or Sunday in the US).</summary>
-/// <value>The first day of the week.</value>
+    /// This is the day that will appear in the left-most column (eg. Monday in France or Sunday in the US).</summary>
+    /// <value>The first day of the week.</value>
     public Efl.Ui.CalendarWeekday FirstDayOfWeek {
         get { return GetFirstDayOfWeek(); }
         set { SetFirstDayOfWeek(value); }
     }
     /// <summary>Minimum date on calendar.</summary>
-/// <value>Time structure containing the minimum date.</value>
+    /// <value>Time structure containing the minimum date.</value>
     public Efl.Time DateMin {
         get { return GetDateMin(); }
         set { SetDateMin(value); }
     }
     /// <summary>Maximum date on calendar.</summary>
-/// <value>Time structure containing the maximum date.</value>
+    /// <value>Time structure containing the maximum date.</value>
     public Efl.Time DateMax {
         get { return GetDateMax(); }
         set { SetDateMax(value); }
     }
     /// <summary>The selected date on calendar.</summary>
-/// <value>Time structure containing the selected date.</value>
+    /// <value>Time structure containing the selected date.</value>
     public Efl.Time Date {
         get { return GetDate(); }
         set { SetDate(value); }
     }
     /// <summary>Set the format function pointer to format the string.</summary>
-/// <value>The format function callback</value>
+    /// <value>The format function callback</value>
     public Efl.Ui.FormatFuncCb FormatCb {
         set { SetFormatCb(value); }
     }
     /// <summary>Control the format string for a given units label
-/// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-/// 
-/// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-/// <value>The format string for <c>obj</c>&apos;s units label.</value>
+    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
+    /// 
+    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
+    /// <value>The format string for <c>obj</c>&apos;s units label.</value>
     public System.String FormatString {
         get { return GetFormatString(); }
         set { SetFormatString(value); }
     }
     /// <summary>Set the order of elements that will be used for composition
-/// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
-/// 
-/// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
-/// 
-/// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
-/// 
-/// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
-/// <value>The order to use</value>
+    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// 
+    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// 
+    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// 
+    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// <value>The order to use</value>
     public Eina.List<Efl.Gfx.IEntity> CompositionElements {
         get { return GetCompositionElements(); }
         set { SetCompositionElements(value); }
     }
     /// <summary>Set to true if all children should be registered as logicals</summary>
-/// <value><c>true</c> or <c>false</c></value>
+    /// <value><c>true</c> or <c>false</c></value>
     public bool LogicalMode {
         get { return GetLogicalMode(); }
         set { SetLogicalMode(value); }
@@ -544,7 +516,7 @@ logical_order.Own = false;
             return Efl.Ui.Calendar.efl_ui_calendar_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.Ui.CalendarWeekday efl_ui_calendar_first_day_of_week_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -557,13 +529,13 @@ logical_order.Own = false;
         private static Efl.Ui.CalendarWeekday first_day_of_week_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_calendar_first_day_of_week_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.CalendarWeekday _ret_var = default(Efl.Ui.CalendarWeekday);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).GetFirstDayOfWeek();
+                    _ret_var = ((Calendar)ws.Target).GetFirstDayOfWeek();
                 }
                 catch (Exception e)
                 {
@@ -593,13 +565,13 @@ logical_order.Own = false;
         private static void first_day_of_week_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.CalendarWeekday day)
         {
             Eina.Log.Debug("function efl_ui_calendar_first_day_of_week_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Calendar)wrapper).SetFirstDayOfWeek(day);
+                    ((Calendar)ws.Target).SetFirstDayOfWeek(day);
                 }
                 catch (Exception e)
                 {
@@ -628,13 +600,13 @@ logical_order.Own = false;
         private static Efl.Time.NativeStruct date_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_calendar_date_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).GetDateMin();
+                    _ret_var = ((Calendar)ws.Target).GetDateMin();
                 }
                 catch (Exception e)
                 {
@@ -664,14 +636,14 @@ logical_order.Own = false;
         private static bool date_min_set(System.IntPtr obj, System.IntPtr pd, Efl.Time.NativeStruct min)
         {
             Eina.Log.Debug("function efl_ui_calendar_date_min_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Time _in_min = min;
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).SetDateMin(_in_min);
+                    _ret_var = ((Calendar)ws.Target).SetDateMin(_in_min);
                 }
                 catch (Exception e)
                 {
@@ -701,13 +673,13 @@ logical_order.Own = false;
         private static Efl.Time.NativeStruct date_max_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_calendar_date_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).GetDateMax();
+                    _ret_var = ((Calendar)ws.Target).GetDateMax();
                 }
                 catch (Exception e)
                 {
@@ -737,14 +709,14 @@ logical_order.Own = false;
         private static bool date_max_set(System.IntPtr obj, System.IntPtr pd, Efl.Time.NativeStruct max)
         {
             Eina.Log.Debug("function efl_ui_calendar_date_max_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Time _in_max = max;
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).SetDateMax(_in_max);
+                    _ret_var = ((Calendar)ws.Target).SetDateMax(_in_max);
                 }
                 catch (Exception e)
                 {
@@ -774,13 +746,13 @@ logical_order.Own = false;
         private static Efl.Time.NativeStruct date_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_calendar_date_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).GetDate();
+                    _ret_var = ((Calendar)ws.Target).GetDate();
                 }
                 catch (Exception e)
                 {
@@ -810,14 +782,14 @@ logical_order.Own = false;
         private static bool date_set(System.IntPtr obj, System.IntPtr pd, Efl.Time.NativeStruct date)
         {
             Eina.Log.Debug("function efl_ui_calendar_date_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Time _in_date = date;
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).SetDate(_in_date);
+                    _ret_var = ((Calendar)ws.Target).SetDate(_in_date);
                 }
                 catch (Exception e)
                 {
@@ -847,14 +819,14 @@ logical_order.Own = false;
         private static void format_cb_set(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_ui_format_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                             Efl.Ui.FormatFuncCbWrapper func_wrapper = new Efl.Ui.FormatFuncCbWrapper(func, func_data, func_free_cb);
             
                 try
                 {
-                    ((Calendar)wrapper).SetFormatCb(func_wrapper.ManagedCb);
+                    ((Calendar)ws.Target).SetFormatCb(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -883,13 +855,13 @@ logical_order.Own = false;
         private static System.String format_string_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_format_string_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).GetFormatString();
+                    _ret_var = ((Calendar)ws.Target).GetFormatString();
                 }
                 catch (Exception e)
                 {
@@ -919,13 +891,13 @@ logical_order.Own = false;
         private static void format_string_set(System.IntPtr obj, System.IntPtr pd, System.String units)
         {
             Eina.Log.Debug("function efl_ui_format_string_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Calendar)wrapper).SetFormatString(units);
+                    ((Calendar)ws.Target).SetFormatString(units);
                 }
                 catch (Exception e)
                 {
@@ -954,13 +926,13 @@ logical_order.Own = false;
         private static System.IntPtr composition_elements_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Gfx.IEntity> _ret_var = default(Eina.List<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).GetCompositionElements();
+                    _ret_var = ((Calendar)ws.Target).GetCompositionElements();
                 }
                 catch (Exception e)
                 {
@@ -990,14 +962,14 @@ logical_order.Own = false;
         private static void composition_elements_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr logical_order)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_elements_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_logical_order = new Eina.List<Efl.Gfx.IEntity>(logical_order, true, false);
                             
                 try
                 {
-                    ((Calendar)wrapper).SetCompositionElements(_in_logical_order);
+                    ((Calendar)ws.Target).SetCompositionElements(_in_logical_order);
                 }
                 catch (Exception e)
                 {
@@ -1026,13 +998,13 @@ logical_order.Own = false;
         private static bool logical_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_logical_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Calendar)wrapper).GetLogicalMode();
+                    _ret_var = ((Calendar)ws.Target).GetLogicalMode();
                 }
                 catch (Exception e)
                 {
@@ -1062,13 +1034,13 @@ logical_order.Own = false;
         private static void logical_mode_set(System.IntPtr obj, System.IntPtr pd, bool logical_mode)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_logical_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Calendar)wrapper).SetLogicalMode(logical_mode);
+                    ((Calendar)ws.Target).SetLogicalMode(logical_mode);
                 }
                 catch (Exception e)
                 {
@@ -1097,13 +1069,13 @@ logical_order.Own = false;
         private static void dirty(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_dirty was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Calendar)wrapper).Dirty();
+                    ((Calendar)ws.Target).Dirty();
                 }
                 catch (Exception e)
                 {
@@ -1132,13 +1104,13 @@ logical_order.Own = false;
         private static void prepare(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_prepare was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Calendar)wrapper).Prepare();
+                    ((Calendar)ws.Target).Prepare();
                 }
                 catch (Exception e)
                 {
@@ -1156,7 +1128,7 @@ logical_order.Own = false;
 
         private static efl_ui_focus_composition_prepare_delegate efl_ui_focus_composition_prepare_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

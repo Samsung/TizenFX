@@ -7,12 +7,12 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-namespace Page {
+namespace Ui {
 
-/// <summary>Icon type page indicator
-/// This class offers icon type indicator for <see cref="Efl.Ui.Pager"/>. This type of page indicator creates the same number of icons as pages and arrange them in a linear order. An icon has two states: default and selected.</summary>
-[Efl.Page.IndicatorIcon.NativeMethods]
-public class IndicatorIcon : Efl.Page.Indicator, Efl.Eo.IWrapper
+namespace ActiveView {
+
+[Efl.Ui.ActiveView.IndicatorIcon.NativeMethods]
+public class IndicatorIcon : Efl.Ui.ActiveView.Indicator
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -31,11 +31,11 @@ public class IndicatorIcon : Efl.Page.Indicator, Efl.Eo.IWrapper
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
-        efl_page_indicator_icon_class_get();
+        efl_ui_active_view_indicator_icon_class_get();
     /// <summary>Initializes a new instance of the <see cref="IndicatorIcon"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public IndicatorIcon(Efl.Object parent= null
-            ) : base(efl_page_indicator_icon_class_get(), typeof(IndicatorIcon), parent)
+            ) : base(efl_ui_active_view_indicator_icon_class_get(), typeof(IndicatorIcon), parent)
     {
         FinishInstantiation();
     }
@@ -45,7 +45,7 @@ public class IndicatorIcon : Efl.Page.Indicator, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected IndicatorIcon(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="IndicatorIcon"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -56,40 +56,13 @@ public class IndicatorIcon : Efl.Page.Indicator, Efl.Eo.IWrapper
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Page.IndicatorIcon.efl_page_indicator_icon_class_get();
+        return Efl.Ui.ActiveView.IndicatorIcon.efl_ui_active_view_indicator_icon_class_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public new class NativeMethods : Efl.Page.Indicator.NativeMethods
+    public new class NativeMethods : Efl.Ui.ActiveView.Indicator.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
@@ -103,15 +76,17 @@ public class IndicatorIcon : Efl.Page.Indicator, Efl.Eo.IWrapper
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Page.IndicatorIcon.efl_page_indicator_icon_class_get();
+            return Efl.Ui.ActiveView.IndicatorIcon.efl_ui_active_view_indicator_icon_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
+}
+
 }
 
 }

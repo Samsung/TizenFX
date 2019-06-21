@@ -39,8 +39,8 @@ void SetDragTarget(bool set);
     /// <summary>Called when drag starts into left direction</summary>
     event EventHandler<Efl.Ui.IDraggableDragStartLeftEvt_Args> DragStartLeftEvt;
     /// <summary>Control whether the object&apos;s content is changed by drag and drop.
-/// If <c>drag_target</c> is true the object can be the target of a dragging object. The content of this object can then be changed into dragging content. For example, if an object deals with image and <c>drag_target</c> is true, the user can drag the new image and drop it into said object. This object&apos;s image can then be changed into a new image.</summary>
-/// <value>Turn on or off drop_target. Default is <c>false</c>.</value>
+    /// If <c>drag_target</c> is true the object can be the target of a dragging object. The content of this object can then be changed into dragging content. For example, if an object deals with image and <c>drag_target</c> is true, the user can drag the new image and drop it into said object. This object&apos;s image can then be changed into a new image.</summary>
+    /// <value>Turn on or off drop_target. Default is <c>false</c>.</value>
     bool DragTarget {
         get ;
         set ;
@@ -77,13 +77,13 @@ public class IDraggableDragStartLeftEvt_Args : EventArgs {
     public Efl.Object arg { get; set; }
 }
 /// <summary>Efl UI draggable interface</summary>
-sealed public class IDraggableConcrete : 
-
-IDraggable
+sealed public class IDraggableConcrete :
+    Efl.Eo.EoWrapper
+    , IDraggable
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -98,155 +98,12 @@ IDraggable
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_ui_draggable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IDraggable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IDraggableConcrete(System.IntPtr raw)
+    private IDraggableConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IDraggableConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Called when drag operation starts</summary>
@@ -256,13 +113,12 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDraggableDragEvt_Args args = new Efl.Ui.IDraggableDragEvt_Args();
+                        Efl.Ui.IDraggableDragEvt_Args args = new Efl.Ui.IDraggableDragEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -311,10 +167,9 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -364,13 +219,12 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDraggableDragStopEvt_Args args = new Efl.Ui.IDraggableDragStopEvt_Args();
+                        Efl.Ui.IDraggableDragStopEvt_Args args = new Efl.Ui.IDraggableDragStopEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -419,10 +273,9 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -472,13 +325,12 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDraggableDragStartUpEvt_Args args = new Efl.Ui.IDraggableDragStartUpEvt_Args();
+                        Efl.Ui.IDraggableDragStartUpEvt_Args args = new Efl.Ui.IDraggableDragStartUpEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -527,13 +379,12 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDraggableDragStartDownEvt_Args args = new Efl.Ui.IDraggableDragStartDownEvt_Args();
+                        Efl.Ui.IDraggableDragStartDownEvt_Args args = new Efl.Ui.IDraggableDragStartDownEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -582,13 +433,12 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDraggableDragStartRightEvt_Args args = new Efl.Ui.IDraggableDragStartRightEvt_Args();
+                        Efl.Ui.IDraggableDragStartRightEvt_Args args = new Efl.Ui.IDraggableDragStartRightEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -637,13 +487,12 @@ IDraggable
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDraggableDragStartLeftEvt_Args args = new Efl.Ui.IDraggableDragStartLeftEvt_Args();
+                        Efl.Ui.IDraggableDragStartLeftEvt_Args args = new Efl.Ui.IDraggableDragStartLeftEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -701,8 +550,8 @@ IDraggable
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control whether the object&apos;s content is changed by drag and drop.
-/// If <c>drag_target</c> is true the object can be the target of a dragging object. The content of this object can then be changed into dragging content. For example, if an object deals with image and <c>drag_target</c> is true, the user can drag the new image and drop it into said object. This object&apos;s image can then be changed into a new image.</summary>
-/// <value>Turn on or off drop_target. Default is <c>false</c>.</value>
+    /// If <c>drag_target</c> is true the object can be the target of a dragging object. The content of this object can then be changed into dragging content. For example, if an object deals with image and <c>drag_target</c> is true, the user can drag the new image and drop it into said object. This object&apos;s image can then be changed into a new image.</summary>
+    /// <value>Turn on or off drop_target. Default is <c>false</c>.</value>
     public bool DragTarget {
         get { return GetDragTarget(); }
         set { SetDragTarget(value); }
@@ -752,7 +601,7 @@ IDraggable
             return Efl.Ui.IDraggableConcrete.efl_ui_draggable_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_draggable_drag_target_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -765,13 +614,13 @@ IDraggable
         private static bool drag_target_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_draggable_drag_target_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IDraggable)wrapper).GetDragTarget();
+                    _ret_var = ((IDraggable)ws.Target).GetDragTarget();
                 }
                 catch (Exception e)
                 {
@@ -801,13 +650,13 @@ IDraggable
         private static void drag_target_set(System.IntPtr obj, System.IntPtr pd, bool set)
         {
             Eina.Log.Debug("function efl_ui_draggable_drag_target_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IDraggable)wrapper).SetDragTarget(set);
+                    ((IDraggable)ws.Target).SetDragTarget(set);
                 }
                 catch (Exception e)
                 {
@@ -825,7 +674,7 @@ IDraggable
 
         private static efl_ui_draggable_drag_target_set_delegate efl_ui_draggable_drag_target_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

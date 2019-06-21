@@ -14,7 +14,7 @@ namespace Focus {
 /// <summary>Calculates the directions of Efl.Ui.Focus.Direction
 /// Each registered item will get an other registered object in each direction. You can get items for the currently focused item if you call request move.</summary>
 [Efl.Ui.Focus.ManagerCalc.NativeMethods]
-public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
+public class ManagerCalc : Efl.Object, Efl.Ui.Focus.IManager
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -47,7 +47,7 @@ public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ManagerCalc(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ManagerCalc"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -58,33 +58,6 @@ public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Redirect object has changed, the old manager is passed as an event argument.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt
@@ -93,13 +66,12 @@ public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
                         try
                         {
@@ -149,10 +121,9 @@ public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -203,10 +174,9 @@ public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -257,13 +227,12 @@ public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
                         try
                         {
@@ -313,14 +282,13 @@ public class ManagerCalc : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IManager
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -599,32 +567,32 @@ children.Own = false;
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The element which is currently focused by this manager
-/// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-/// (Since EFL 1.22)</summary>
-/// <value>Currently focused element.</value>
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Currently focused element.</value>
     public Efl.Ui.Focus.IObject ManagerFocus {
         get { return GetManagerFocus(); }
         set { SetManagerFocus(value); }
     }
     /// <summary>Add another manager to serve the move requests.
-/// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-/// (Since EFL 1.22)</summary>
-/// <value>The redirect manager.</value>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The redirect manager.</value>
     public Efl.Ui.Focus.IManager Redirect {
         get { return GetRedirect(); }
         set { SetRedirect(value); }
     }
     /// <summary>The list of elements which are at the border of the graph.
-/// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-/// (Since EFL 1.22)</summary>
-/// <value>An iterator over the border objects.</value>
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>An iterator over the border objects.</value>
     public Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
         get { return GetBorderElements(); }
     }
     /// <summary>Root node for all logical subtrees.
-/// This property can only be set once.
-/// (Since EFL 1.22)</summary>
-/// <value>Will be registered into this manager object.</value>
+    /// This property can only be set once.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Will be registered into this manager object.</value>
     public Efl.Ui.Focus.IObject Root {
         get { return GetRoot(); }
         set { SetRoot(value); }
@@ -905,7 +873,7 @@ children.Own = false;
             return Efl.Ui.Focus.ManagerCalc.efl_ui_focus_manager_calc_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_focus_manager_calc_register_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject child, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IManager redirect);
@@ -918,13 +886,13 @@ children.Own = false;
         private static bool register(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child, Efl.Ui.Focus.IObject parent, Efl.Ui.Focus.IManager redirect)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_calc_register was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).Register(child, parent, redirect);
+                    _ret_var = ((ManagerCalc)ws.Target).Register(child, parent, redirect);
                 }
                 catch (Exception e)
                 {
@@ -954,13 +922,13 @@ children.Own = false;
         private static bool register_logical(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child, Efl.Ui.Focus.IObject parent, Efl.Ui.Focus.IManager redirect)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_calc_register_logical was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).RegisterLogical(child, parent, redirect);
+                    _ret_var = ((ManagerCalc)ws.Target).RegisterLogical(child, parent, redirect);
                 }
                 catch (Exception e)
                 {
@@ -990,13 +958,13 @@ children.Own = false;
         private static bool update_redirect(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child, Efl.Ui.Focus.IManager redirect)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_calc_update_redirect was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).UpdateRedirect(child, redirect);
+                    _ret_var = ((ManagerCalc)ws.Target).UpdateRedirect(child, redirect);
                 }
                 catch (Exception e)
                 {
@@ -1026,13 +994,13 @@ children.Own = false;
         private static bool update_parent(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child, Efl.Ui.Focus.IObject parent)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_calc_update_parent was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).UpdateParent(child, parent);
+                    _ret_var = ((ManagerCalc)ws.Target).UpdateParent(child, parent);
                 }
                 catch (Exception e)
                 {
@@ -1062,14 +1030,14 @@ children.Own = false;
         private static bool update_children(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject parent, System.IntPtr children)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_calc_update_children was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 var _in_children = new Eina.List<Efl.Ui.Focus.IObject>(children, true, false);
                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).UpdateChildren(parent, _in_children);
+                    _ret_var = ((ManagerCalc)ws.Target).UpdateChildren(parent, _in_children);
                 }
                 catch (Exception e)
                 {
@@ -1099,14 +1067,14 @@ children.Own = false;
         private static void update_order(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject parent, System.IntPtr children)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_calc_update_order was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 var _in_children = new Eina.List<Efl.Ui.Focus.IObject>(children, true, false);
                                             
                 try
                 {
-                    ((ManagerCalc)wrapper).UpdateOrder(parent, _in_children);
+                    ((ManagerCalc)ws.Target).UpdateOrder(parent, _in_children);
                 }
                 catch (Exception e)
                 {
@@ -1135,13 +1103,13 @@ children.Own = false;
         private static void unregister(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_calc_unregister was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ManagerCalc)wrapper).Unregister(child);
+                    ((ManagerCalc)ws.Target).Unregister(child);
                 }
                 catch (Exception e)
                 {
@@ -1170,13 +1138,13 @@ children.Own = false;
         private static Efl.Ui.Focus.IObject manager_focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).GetManagerFocus();
+                    _ret_var = ((ManagerCalc)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -1206,13 +1174,13 @@ children.Own = false;
         private static void manager_focus_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject focus)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ManagerCalc)wrapper).SetManagerFocus(focus);
+                    ((ManagerCalc)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -1241,13 +1209,13 @@ children.Own = false;
         private static Efl.Ui.Focus.IManager redirect_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).GetRedirect();
+                    _ret_var = ((ManagerCalc)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -1277,13 +1245,13 @@ children.Own = false;
         private static void redirect_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IManager redirect)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ManagerCalc)wrapper).SetRedirect(redirect);
+                    ((ManagerCalc)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -1312,13 +1280,13 @@ children.Own = false;
         private static System.IntPtr border_elements_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_border_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).GetBorderElements();
+                    _ret_var = ((ManagerCalc)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -1348,14 +1316,14 @@ children.Own = false;
         private static System.IntPtr viewport_elements_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct viewport)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_viewport_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_viewport = viewport;
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).GetViewportElements(_in_viewport);
+                    _ret_var = ((ManagerCalc)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -1385,13 +1353,13 @@ children.Own = false;
         private static Efl.Ui.Focus.IObject root_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).GetRoot();
+                    _ret_var = ((ManagerCalc)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -1421,13 +1389,13 @@ children.Own = false;
         private static bool root_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).SetRoot(root);
+                    _ret_var = ((ManagerCalc)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -1457,13 +1425,13 @@ children.Own = false;
         private static Efl.Ui.Focus.IObject move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).Move(direction);
+                    _ret_var = ((ManagerCalc)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -1493,13 +1461,13 @@ children.Own = false;
         private static Efl.Ui.Focus.IObject request_move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).MoveRequest(direction, child, logical);
+                    _ret_var = ((ManagerCalc)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -1529,13 +1497,13 @@ children.Own = false;
         private static Efl.Ui.Focus.IObject request_subchild(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_subchild was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).RequestSubchild(root);
+                    _ret_var = ((ManagerCalc)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -1565,13 +1533,13 @@ children.Own = false;
         private static System.IntPtr fetch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_fetch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).Fetch(child);
+                    _ret_var = ((ManagerCalc)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -1601,13 +1569,13 @@ children.Own = false;
         private static Efl.Ui.Focus.ManagerLogicalEndDetail.NativeStruct logical_end(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_logical_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((ManagerCalc)wrapper).LogicalEnd();
+                    _ret_var = ((ManagerCalc)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -1637,13 +1605,13 @@ children.Own = false;
         private static void reset_history(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_reset_history was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ManagerCalc)wrapper).ResetHistory();
+                    ((ManagerCalc)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -1672,13 +1640,13 @@ children.Own = false;
         private static void pop_history_stack(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_pop_history_stack was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ManagerCalc)wrapper).PopHistoryStack();
+                    ((ManagerCalc)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -1707,13 +1675,13 @@ children.Own = false;
         private static void setup_on_first_touch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_setup_on_first_touch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ManagerCalc)wrapper).SetupOnFirstTouch(direction, entry);
+                    ((ManagerCalc)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -1742,13 +1710,13 @@ children.Own = false;
         private static void dirty_logic_freeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_freeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ManagerCalc)wrapper).FreezeDirtyLogic();
+                    ((ManagerCalc)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -1777,13 +1745,13 @@ children.Own = false;
         private static void dirty_logic_unfreeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_unfreeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ManagerCalc)wrapper).DirtyLogicUnfreeze();
+                    ((ManagerCalc)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {
@@ -1801,7 +1769,7 @@ children.Own = false;
 
         private static efl_ui_focus_manager_dirty_logic_unfreeze_delegate efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -44,12 +44,6 @@ public struct Efl_Object_Ops
     public UIntPtr count;
 };
 
-[StructLayout(LayoutKind.Sequential)]
-public struct EolianPD
-{
-    public IntPtr pointer;
-}
-
 #pragma warning disable 0169
 
 public struct EvasObjectBoxLayout
@@ -115,8 +109,7 @@ public struct EventDescription
 };
 
 public delegate void EventCb(System.IntPtr data, ref Event.NativeStruct evt);
-public delegate void FreeGCHandleCb(System.IntPtr gcHandle);
-public delegate void RemoveEventsCb(System.IntPtr obj, System.IntPtr gcHandle);
+public delegate void FreeWrapperSupervisorCb(System.IntPtr obj);
 
 [StructLayout(LayoutKind.Sequential)]
 public struct TextCursorCursor

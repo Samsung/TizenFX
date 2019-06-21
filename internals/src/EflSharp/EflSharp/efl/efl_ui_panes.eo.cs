@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary panes class</summary>
 [Efl.Ui.Panes.NativeMethods]
-public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui.IDirection
+public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrientable
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Panes(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Panes"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -61,33 +61,6 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when panes got pressed</summary>
     public event EventHandler PressEvt
     {
@@ -95,10 +68,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -148,10 +120,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -194,20 +165,20 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when object is clicked</summary>
-    public event EventHandler ClickedEvt
+    /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
+    public event EventHandler<Efl.Ui.IClickableClickedEvt_Args> ClickedEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        EventArgs args = EventArgs.Empty;
+                        Efl.Ui.IClickableClickedEvt_Args args = new Efl.Ui.IClickableClickedEvt_Args();
+                        args.arg =  evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -221,7 +192,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
                 };
 
                 string key = "_EFL_UI_EVENT_CLICKED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -230,37 +201,46 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(EventArgs e)
+    public void OnClickedEvt(Efl.Ui.IClickableClickedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_CLICKED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
     }
-    /// <summary>Called when object receives a double click</summary>
-    public event EventHandler ClickedDoubleEvt
+    /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
+    public event EventHandler<Efl.Ui.IClickableClickedAnyEvt_Args> ClickedAnyEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        EventArgs args = EventArgs.Empty;
+                        Efl.Ui.IClickableClickedAnyEvt_Args args = new Efl.Ui.IClickableClickedAnyEvt_Args();
+                        args.arg =  evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -273,8 +253,8 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                string key = "_EFL_UI_EVENT_CLICKED_ANY";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -282,147 +262,47 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         {
             lock (eventLock)
             {
-                string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                string key = "_EFL_UI_EVENT_CLICKED_ANY";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ClickedDoubleEvt.</summary>
-    public void OnClickedDoubleEvt(EventArgs e)
+    ///<summary>Method to raise event ClickedAnyEvt.</summary>
+    public void OnClickedAnyEvt(Efl.Ui.IClickableClickedAnyEvt_Args e)
     {
-        var key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        var key = "_EFL_UI_EVENT_CLICKED_ANY";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a triple click</summary>
-    public event EventHandler ClickedTripleEvt
-    {
-        add
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
         {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
         }
-
-        remove
+        finally
         {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
+            Marshal.FreeHGlobal(info);
         }
     }
-    ///<summary>Method to raise event ClickedTripleEvt.</summary>
-    public void OnClickedTripleEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a right click</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedRightEvt_Args> ClickedRightEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickableClickedRightEvt_Args args = new Efl.Ui.IClickableClickedRightEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedRightEvt.</summary>
-    public void OnClickedRightEvt(Efl.Ui.IClickableClickedRightEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object is pressed</summary>
+    /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
     public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -436,7 +316,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
                 };
 
                 string key = "_EFL_UI_EVENT_PRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -445,7 +325,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_PRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -453,31 +333,37 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
     public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_PRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
     }
-    /// <summary>Called when the object is no longer pressed</summary>
+    /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
     public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -491,7 +377,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
                 };
 
                 string key = "_EFL_UI_EVENT_UNPRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -500,7 +386,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_UNPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -508,31 +394,37 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
     public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_UNPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
     }
-    /// <summary>Called when the object receives a long press</summary>
+    /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
     public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -546,7 +438,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
                 };
 
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -555,7 +447,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -563,71 +455,25 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
     public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_LONGPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object receives repeated presses/clicks</summary>
-    public event EventHandler RepeatedEvt
-    {
-        add
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
         {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_REPEATED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
         }
-
-        remove
+        finally
         {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_REPEATED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
+            Marshal.FreeHGlobal(info);
         }
-    }
-    ///<summary>Method to raise event RepeatedEvt.</summary>
-    public void OnRepeatedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_REPEATED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>The second half of the panes widget (right or bottom)</summary>
-    public Efl.Ui.PanesPart Second
+    public Efl.Ui.PanesPart SecondPart
     {
         get
         {
@@ -635,7 +481,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         }
     }
     /// <summary>The first half of the panes widget (left or top)</summary>
-    public Efl.Ui.PanesPart First
+    public Efl.Ui.PanesPart FirstPart
     {
         get
         {
@@ -684,13 +530,33 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
                                  Efl.Ui.Panes.NativeMethods.efl_ui_panes_fixed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_fixed);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Change internal states that a button got pressed.
+    /// When the button is already pressed, this is silently ignored.</summary>
+    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
+    virtual public void Press(uint button) {
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Change internal states that a button got unpressed.
+    /// When the button is not pressed, this is silently ignored.</summary>
+    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
+    virtual public void Unpress(uint button) {
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>This aborts the internal state after a press call.
+    /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
+    virtual public void ResetButtonState(uint button) {
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
-    virtual public Efl.Ui.Dir GetDirection() {
-         var _ret_var = Efl.Ui.IDirectionConcrete.NativeMethods.efl_ui_direction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public Efl.Ui.LayoutOrientation GetOrientation() {
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -699,38 +565,38 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
-    virtual public void SetDirection(Efl.Ui.Dir dir) {
-                                 Efl.Ui.IDirectionConcrete.NativeMethods.efl_ui_direction_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+    virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the split ratio between panes widget first and second parts.
-/// By default it&apos;s homogeneous, i.e., both sides have the same size.
-/// 
-/// If something different is required, it can be set with this function. For example, if the first content should be displayed over 75% of the panes size, <c>ratio</c> should be passed as 0.75. This way, second content will be resized to 25% of panes size.
-/// 
-/// If displayed vertically, first content is displayed at top, and second content at bottom.
-/// 
-/// Note: This ratio will change when user drags the panes bar.</summary>
-/// <value>Value between 0.0 and 1.0 representing split ratio between panes first and second parts.</value>
+    /// By default it&apos;s homogeneous, i.e., both sides have the same size.
+    /// 
+    /// If something different is required, it can be set with this function. For example, if the first content should be displayed over 75% of the panes size, <c>ratio</c> should be passed as 0.75. This way, second content will be resized to 25% of panes size.
+    /// 
+    /// If displayed vertically, first content is displayed at top, and second content at bottom.
+    /// 
+    /// Note: This ratio will change when user drags the panes bar.</summary>
+    /// <value>Value between 0.0 and 1.0 representing split ratio between panes first and second parts.</value>
     public double SplitRatio {
         get { return GetSplitRatio(); }
         set { SetSplitRatio(value); }
     }
     /// <summary>Set whether the left and right panes can be resized by user interaction.
-/// By default panes&apos; contents are resizable by user interaction.</summary>
-/// <value>Use <c>true</c> to fix the left and right panes sizes and make them not to be resized by user interaction. Use <c>false</c> to make them resizable.</value>
+    /// By default panes&apos; contents are resizable by user interaction.</summary>
+    /// <value>Use <c>true</c> to fix the left and right panes sizes and make them not to be resized by user interaction. Use <c>false</c> to make them resizable.</value>
     public bool Fixed {
         get { return GetFixed(); }
         set { SetFixed(value); }
     }
     /// <summary>Control the direction of a given widget.
-/// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
-/// 
-/// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
-/// <value>Direction of the widget.</value>
-    public Efl.Ui.Dir Direction {
-        get { return GetDirection(); }
-        set { SetDirection(value); }
+    /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
+    /// 
+    /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
+    /// <value>Direction of the widget.</value>
+    public Efl.Ui.LayoutOrientation Orientation {
+        get { return GetOrientation(); }
+        set { SetOrientation(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -788,24 +654,54 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_panes_fixed_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_panes_fixed_set_static_delegate) });
             }
 
-            if (efl_ui_direction_get_static_delegate == null)
+            if (efl_ui_clickable_press_static_delegate == null)
             {
-                efl_ui_direction_get_static_delegate = new efl_ui_direction_get_delegate(direction_get);
+                efl_ui_clickable_press_static_delegate = new efl_ui_clickable_press_delegate(press);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetDirection") != null)
+            if (methods.FirstOrDefault(m => m.Name == "Press") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_direction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_direction_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_press_static_delegate) });
             }
 
-            if (efl_ui_direction_set_static_delegate == null)
+            if (efl_ui_clickable_unpress_static_delegate == null)
             {
-                efl_ui_direction_set_static_delegate = new efl_ui_direction_set_delegate(direction_set);
+                efl_ui_clickable_unpress_static_delegate = new efl_ui_clickable_unpress_delegate(unpress);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetDirection") != null)
+            if (methods.FirstOrDefault(m => m.Name == "Unpress") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_direction_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_direction_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_unpress_static_delegate) });
+            }
+
+            if (efl_ui_clickable_button_state_reset_static_delegate == null)
+            {
+                efl_ui_clickable_button_state_reset_static_delegate = new efl_ui_clickable_button_state_reset_delegate(button_state_reset);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ResetButtonState") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_button_state_reset_static_delegate) });
+            }
+
+            if (efl_ui_layout_orientation_get_static_delegate == null)
+            {
+                efl_ui_layout_orientation_get_static_delegate = new efl_ui_layout_orientation_get_delegate(orientation_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_get_static_delegate) });
+            }
+
+            if (efl_ui_layout_orientation_set_static_delegate == null)
+            {
+                efl_ui_layout_orientation_set_static_delegate = new efl_ui_layout_orientation_set_delegate(orientation_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -818,7 +714,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
             return Efl.Ui.Panes.efl_ui_panes_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_ui_panes_split_ratio_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -831,13 +727,13 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         private static double split_ratio_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_panes_split_ratio_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Panes)wrapper).GetSplitRatio();
+                    _ret_var = ((Panes)ws.Target).GetSplitRatio();
                 }
                 catch (Exception e)
                 {
@@ -867,13 +763,13 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         private static void split_ratio_set(System.IntPtr obj, System.IntPtr pd, double ratio)
         {
             Eina.Log.Debug("function efl_ui_panes_split_ratio_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Panes)wrapper).SetSplitRatio(ratio);
+                    ((Panes)ws.Target).SetSplitRatio(ratio);
                 }
                 catch (Exception e)
                 {
@@ -902,13 +798,13 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         private static bool fixed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_panes_fixed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Panes)wrapper).GetFixed();
+                    _ret_var = ((Panes)ws.Target).GetFixed();
                 }
                 catch (Exception e)
                 {
@@ -938,13 +834,13 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         private static void fixed_set(System.IntPtr obj, System.IntPtr pd, bool kw_fixed)
         {
             Eina.Log.Debug("function efl_ui_panes_fixed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Panes)wrapper).SetFixed(kw_fixed);
+                    ((Panes)ws.Target).SetFixed(kw_fixed);
                 }
                 catch (Exception e)
                 {
@@ -963,23 +859,128 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
         private static efl_ui_panes_fixed_set_delegate efl_ui_panes_fixed_set_static_delegate;
 
         
-        private delegate Efl.Ui.Dir efl_ui_direction_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        private delegate void efl_ui_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
 
         
-        public delegate Efl.Ui.Dir efl_ui_direction_get_api_delegate(System.IntPtr obj);
+        public delegate void efl_ui_clickable_press_api_delegate(System.IntPtr obj,  uint button);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_direction_get_api_delegate> efl_ui_direction_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_direction_get_api_delegate>(Module, "efl_ui_direction_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate> efl_ui_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate>(Module, "efl_ui_clickable_press");
 
-        private static Efl.Ui.Dir direction_get(System.IntPtr obj, System.IntPtr pd)
+        private static void press(System.IntPtr obj, System.IntPtr pd, uint button)
         {
-            Eina.Log.Debug("function efl_ui_direction_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_clickable_press was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
-            Efl.Ui.Dir _ret_var = default(Efl.Ui.Dir);
+                                    
                 try
                 {
-                    _ret_var = ((Panes)wrapper).GetDirection();
+                    ((Panes)ws.Target).Press(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_ui_clickable_press_delegate efl_ui_clickable_press_static_delegate;
+
+        
+        private delegate void efl_ui_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_ui_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate> efl_ui_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate>(Module, "efl_ui_clickable_unpress");
+
+        private static void unpress(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_ui_clickable_unpress was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Panes)ws.Target).Unpress(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_ui_clickable_unpress_delegate efl_ui_clickable_unpress_static_delegate;
+
+        
+        private delegate void efl_ui_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_ui_clickable_button_state_reset_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate> efl_ui_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate>(Module, "efl_ui_clickable_button_state_reset");
+
+        private static void button_state_reset(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_ui_clickable_button_state_reset was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Panes)ws.Target).ResetButtonState(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_ui_clickable_button_state_reset_delegate efl_ui_clickable_button_state_reset_static_delegate;
+
+        
+        private delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate> efl_ui_layout_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate>(Module, "efl_ui_layout_orientation_get");
+
+        private static Efl.Ui.LayoutOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_layout_orientation_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
+                try
+                {
+                    _ret_var = ((Panes)ws.Target).GetOrientation();
                 }
                 catch (Exception e)
                 {
@@ -992,30 +993,30 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
             }
             else
             {
-                return efl_ui_direction_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_ui_layout_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_ui_direction_get_delegate efl_ui_direction_get_static_delegate;
+        private static efl_ui_layout_orientation_get_delegate efl_ui_layout_orientation_get_static_delegate;
 
         
-        private delegate void efl_ui_direction_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.Dir dir);
+        private delegate void efl_ui_layout_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.LayoutOrientation dir);
 
         
-        public delegate void efl_ui_direction_set_api_delegate(System.IntPtr obj,  Efl.Ui.Dir dir);
+        public delegate void efl_ui_layout_orientation_set_api_delegate(System.IntPtr obj,  Efl.Ui.LayoutOrientation dir);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_direction_set_api_delegate> efl_ui_direction_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_direction_set_api_delegate>(Module, "efl_ui_direction_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate> efl_ui_layout_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate>(Module, "efl_ui_layout_orientation_set");
 
-        private static void direction_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Dir dir)
+        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutOrientation dir)
         {
-            Eina.Log.Debug("function efl_ui_direction_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_layout_orientation_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Panes)wrapper).SetDirection(dir);
+                    ((Panes)ws.Target).SetOrientation(dir);
                 }
                 catch (Exception e)
                 {
@@ -1027,13 +1028,13 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable,Efl.Ui
             }
             else
             {
-                efl_ui_direction_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
+                efl_ui_layout_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
             }
         }
 
-        private static efl_ui_direction_set_delegate efl_ui_direction_set_static_delegate;
+        private static efl_ui_layout_orientation_set_delegate efl_ui_layout_orientation_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

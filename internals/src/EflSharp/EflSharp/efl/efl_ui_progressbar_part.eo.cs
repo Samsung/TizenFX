@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary progressbar internal part class</summary>
 [Efl.Ui.ProgressbarPart.NativeMethods]
-public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeDisplay
+public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Ui.IRangeDisplay
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected ProgressbarPart(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ProgressbarPart"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected ProgressbarPart(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Control the range value (in percentage) on a given range widget
@@ -124,10 +97,10 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the range value (in percentage) on a given range widget
-/// Use this call to set range levels.
-/// 
-/// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-/// <value>The range value (must be between $0.0 and 1.0)</value>
+    /// Use this call to set range levels.
+    /// 
+    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
+    /// <value>The range value (must be between $0.0 and 1.0)</value>
     public double RangeValue {
         get { return GetRangeValue(); }
         set { SetRangeValue(value); }
@@ -198,7 +171,7 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
             return Efl.Ui.ProgressbarPart.efl_ui_progressbar_part_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_ui_range_value_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -211,13 +184,13 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
         private static double range_value_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_range_value_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ProgressbarPart)wrapper).GetRangeValue();
+                    _ret_var = ((ProgressbarPart)ws.Target).GetRangeValue();
                 }
                 catch (Exception e)
                 {
@@ -247,13 +220,13 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
         private static void range_value_set(System.IntPtr obj, System.IntPtr pd, double val)
         {
             Eina.Log.Debug("function efl_ui_range_value_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ProgressbarPart)wrapper).SetRangeValue(val);
+                    ((ProgressbarPart)ws.Target).SetRangeValue(val);
                 }
                 catch (Exception e)
                 {
@@ -282,13 +255,13 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
         private static void range_min_max_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
         {
             Eina.Log.Debug("function efl_ui_range_min_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         min = default(double);        max = default(double);                            
                 try
                 {
-                    ((ProgressbarPart)wrapper).GetRangeMinMax(out min, out max);
+                    ((ProgressbarPart)ws.Target).GetRangeMinMax(out min, out max);
                 }
                 catch (Exception e)
                 {
@@ -317,13 +290,13 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
         private static void range_min_max_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
         {
             Eina.Log.Debug("function efl_ui_range_min_max_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ProgressbarPart)wrapper).SetRangeMinMax(min, max);
+                    ((ProgressbarPart)ws.Target).SetRangeMinMax(min, max);
                 }
                 catch (Exception e)
                 {
@@ -341,7 +314,7 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.Ui.IRangeD
 
         private static efl_ui_range_min_max_set_delegate efl_ui_range_min_max_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

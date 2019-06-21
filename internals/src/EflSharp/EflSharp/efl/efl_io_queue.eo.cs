@@ -14,7 +14,7 @@ namespace Io {
 /// 
 /// A fixed sized queue can be implemented by setting <see cref="Efl.Io.Queue.Limit"/> followed by <see cref="Efl.Io.Queue.Preallocate"/></summary>
 [Efl.Io.Queue.NativeMethods]
-public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,Efl.Io.IWriter
+public class Queue : Efl.Object, Efl.Io.ICloser, Efl.Io.IReader, Efl.Io.IWriter
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -47,7 +47,7 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Queue(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Queue"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -58,33 +58,6 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>The read-slice returned by <see cref="Efl.Io.Queue.GetSlice"/> may have changed.</summary>
     public event EventHandler SliceChangedEvt
     {
@@ -92,10 +65,9 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -146,10 +118,9 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -203,14 +174,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -271,10 +241,9 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -328,14 +297,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -570,64 +538,64 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
                                         return _ret_var;
  }
     /// <summary>Limit how big the buffer can grow.
-/// This affects both <see cref="Efl.Io.Queue.Preallocate"/> and how buffer grows when <see cref="Efl.Io.IWriter.Write"/> is called.
-/// 
-/// If you want a buffer of an exact size, always set the limit before any further calls that can expand it.</summary>
-/// <value>Defines a maximum buffer size, or 0 to allow unlimited amount of bytes</value>
+    /// This affects both <see cref="Efl.Io.Queue.Preallocate"/> and how buffer grows when <see cref="Efl.Io.IWriter.Write"/> is called.
+    /// 
+    /// If you want a buffer of an exact size, always set the limit before any further calls that can expand it.</summary>
+    /// <value>Defines a maximum buffer size, or 0 to allow unlimited amount of bytes</value>
     public uint Limit {
         get { return GetLimit(); }
         set { SetLimit(value); }
     }
     /// <summary>How many bytes are available for read</summary>
-/// <value>Bytes available to read</value>
+    /// <value>Bytes available to read</value>
     public uint Usage {
         get { return GetUsage(); }
     }
     /// <summary>Gain temporary access to queue&apos;s internal read memory.
-/// The memory pointed to by slice may be changed by other methods of this class. The event &quot;slice,changed&quot; will be called in those situations.</summary>
-/// <value>Slice of the current buffer, may be invalidated if <see cref="Efl.Io.IWriter.Write"/>, <see cref="Efl.Io.ICloser.Close"/> or <see cref="Efl.Io.IReader.Read"/> are called. It is the full slice available for reading.</value>
+    /// The memory pointed to by slice may be changed by other methods of this class. The event &quot;slice,changed&quot; will be called in those situations.</summary>
+    /// <value>Slice of the current buffer, may be invalidated if <see cref="Efl.Io.IWriter.Write"/>, <see cref="Efl.Io.ICloser.Close"/> or <see cref="Efl.Io.IReader.Read"/> are called. It is the full slice available for reading.</value>
     public Eina.Slice Slice {
         get { return GetSlice(); }
     }
     /// <summary>If true will notify object was closed.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if closed, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if closed, <c>false</c> otherwise</value>
     public bool Closed {
         get { return GetClosed(); }
     }
     /// <summary>If true will automatically close resources on exec() calls.
-/// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
+    /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
     public bool CloseOnExec {
         get { return GetCloseOnExec(); }
         set { SetCloseOnExec(value); }
     }
     /// <summary>If true will automatically close() on object invalidate.
-/// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
+    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
     public bool CloseOnInvalidate {
         get { return GetCloseOnInvalidate(); }
         set { SetCloseOnInvalidate(value); }
     }
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     public bool CanRead {
         get { return GetCanRead(); }
         set { SetCanRead(value); }
     }
     /// <summary>If <c>true</c> will notify end of stream.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     public bool Eos {
         get { return GetEos(); }
         set { SetEos(value); }
     }
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
     public bool CanWrite {
         get { return GetCanWrite(); }
         set { SetCanWrite(value); }
@@ -878,7 +846,7 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
             return Efl.Io.Queue.efl_io_queue_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate uint efl_io_queue_limit_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -891,13 +859,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static uint limit_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_queue_limit_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetLimit();
+                    _ret_var = ((Queue)ws.Target).GetLimit();
                 }
                 catch (Exception e)
                 {
@@ -927,13 +895,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void limit_set(System.IntPtr obj, System.IntPtr pd, uint size)
         {
             Eina.Log.Debug("function efl_io_queue_limit_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Queue)wrapper).SetLimit(size);
+                    ((Queue)ws.Target).SetLimit(size);
                 }
                 catch (Exception e)
                 {
@@ -962,13 +930,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static uint usage_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_queue_usage_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetUsage();
+                    _ret_var = ((Queue)ws.Target).GetUsage();
                 }
                 catch (Exception e)
                 {
@@ -998,13 +966,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static Eina.Slice slice_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_queue_slice_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Slice _ret_var = default(Eina.Slice);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetSlice();
+                    _ret_var = ((Queue)ws.Target).GetSlice();
                 }
                 catch (Exception e)
                 {
@@ -1034,13 +1002,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void preallocate(System.IntPtr obj, System.IntPtr pd, uint size)
         {
             Eina.Log.Debug("function efl_io_queue_preallocate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Queue)wrapper).Preallocate(size);
+                    ((Queue)ws.Target).Preallocate(size);
                 }
                 catch (Exception e)
                 {
@@ -1069,13 +1037,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void discard(System.IntPtr obj, System.IntPtr pd, uint amount)
         {
             Eina.Log.Debug("function efl_io_queue_discard was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Queue)wrapper).Discard(amount);
+                    ((Queue)ws.Target).Discard(amount);
                 }
                 catch (Exception e)
                 {
@@ -1104,13 +1072,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_queue_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Queue)wrapper).Clear();
+                    ((Queue)ws.Target).Clear();
                 }
                 catch (Exception e)
                 {
@@ -1139,13 +1107,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void eos_mark(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_queue_eos_mark was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Queue)wrapper).EosMark();
+                    ((Queue)ws.Target).EosMark();
                 }
                 catch (Exception e)
                 {
@@ -1174,13 +1142,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static bool closed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_closed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetClosed();
+                    _ret_var = ((Queue)ws.Target).GetClosed();
                 }
                 catch (Exception e)
                 {
@@ -1210,13 +1178,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static bool close_on_exec_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_exec_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetCloseOnExec();
+                    _ret_var = ((Queue)ws.Target).GetCloseOnExec();
                 }
                 catch (Exception e)
                 {
@@ -1246,13 +1214,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static bool close_on_exec_set(System.IntPtr obj, System.IntPtr pd, bool close_on_exec)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_exec_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).SetCloseOnExec(close_on_exec);
+                    _ret_var = ((Queue)ws.Target).SetCloseOnExec(close_on_exec);
                 }
                 catch (Exception e)
                 {
@@ -1282,13 +1250,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static bool close_on_invalidate_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_invalidate_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetCloseOnInvalidate();
+                    _ret_var = ((Queue)ws.Target).GetCloseOnInvalidate();
                 }
                 catch (Exception e)
                 {
@@ -1318,13 +1286,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void close_on_invalidate_set(System.IntPtr obj, System.IntPtr pd, bool close_on_invalidate)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_invalidate_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Queue)wrapper).SetCloseOnInvalidate(close_on_invalidate);
+                    ((Queue)ws.Target).SetCloseOnInvalidate(close_on_invalidate);
                 }
                 catch (Exception e)
                 {
@@ -1353,13 +1321,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static Eina.Error close(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).Close();
+                    _ret_var = ((Queue)ws.Target).Close();
                 }
                 catch (Exception e)
                 {
@@ -1389,13 +1357,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static bool can_read_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetCanRead();
+                    _ret_var = ((Queue)ws.Target).GetCanRead();
                 }
                 catch (Exception e)
                 {
@@ -1425,13 +1393,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void can_read_set(System.IntPtr obj, System.IntPtr pd, bool can_read)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Queue)wrapper).SetCanRead(can_read);
+                    ((Queue)ws.Target).SetCanRead(can_read);
                 }
                 catch (Exception e)
                 {
@@ -1460,13 +1428,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static bool eos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_eos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetEos();
+                    _ret_var = ((Queue)ws.Target).GetEos();
                 }
                 catch (Exception e)
                 {
@@ -1496,13 +1464,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void eos_set(System.IntPtr obj, System.IntPtr pd, bool is_eos)
         {
             Eina.Log.Debug("function efl_io_reader_eos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Queue)wrapper).SetEos(is_eos);
+                    ((Queue)ws.Target).SetEos(is_eos);
                 }
                 catch (Exception e)
                 {
@@ -1531,13 +1499,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static Eina.Error read(System.IntPtr obj, System.IntPtr pd, ref Eina.RwSlice rw_slice)
         {
             Eina.Log.Debug("function efl_io_reader_read was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).Read(ref rw_slice);
+                    _ret_var = ((Queue)ws.Target).Read(ref rw_slice);
                 }
                 catch (Exception e)
                 {
@@ -1567,13 +1535,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static bool can_write_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_writer_can_write_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).GetCanWrite();
+                    _ret_var = ((Queue)ws.Target).GetCanWrite();
                 }
                 catch (Exception e)
                 {
@@ -1603,13 +1571,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static void can_write_set(System.IntPtr obj, System.IntPtr pd, bool can_write)
         {
             Eina.Log.Debug("function efl_io_writer_can_write_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Queue)wrapper).SetCanWrite(can_write);
+                    ((Queue)ws.Target).SetCanWrite(can_write);
                 }
                 catch (Exception e)
                 {
@@ -1638,13 +1606,13 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
         private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref Eina.Slice slice, ref Eina.Slice remaining)
         {
             Eina.Log.Debug("function efl_io_writer_write was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 remaining = default(Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Queue)wrapper).Write(ref slice, ref remaining);
+                    _ret_var = ((Queue)ws.Target).Write(ref slice, ref remaining);
                 }
                 catch (Exception e)
                 {
@@ -1663,7 +1631,7 @@ public class Queue : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IReader,E
 
         private static efl_io_writer_write_delegate efl_io_writer_write_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

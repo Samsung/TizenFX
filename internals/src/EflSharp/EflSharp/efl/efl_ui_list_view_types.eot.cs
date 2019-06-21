@@ -12,14 +12,14 @@ namespace Ui {
 [StructLayout(LayoutKind.Sequential)]
 public struct ListViewLayoutItem
 {
-        public Efl.Ui.Layout Layout;
-        public  Eina.Future Layout_request;
-        public Efl.IModel Children;
-        public int Index_offset;
-        public System.IntPtr Tree_node;
-        public Eina.Size2D Min;
-        public Eina.Size2D Size;
-        public Eina.Position2D Pos;
+    public Efl.Ui.Layout Layout;
+    public  Eina.Future Layout_request;
+    public Efl.IModel Children;
+    public int Index_offset;
+    public System.IntPtr Tree_node;
+    public Eina.Size2D Min;
+    public Eina.Size2D Size;
+    public Eina.Position2D Pos;
     ///<summary>Constructor for ListViewLayoutItem.</summary>
     public ListViewLayoutItem(
         Efl.Ui.Layout Layout = default(Efl.Ui.Layout),
@@ -41,11 +41,15 @@ public struct ListViewLayoutItem
         this.Pos = Pos;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ListViewLayoutItem(IntPtr ptr)
     {
         var tmp = (ListViewLayoutItem.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ListViewLayoutItem.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct ListViewLayoutItem.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -101,6 +105,8 @@ public struct ListViewLayoutItem
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -112,11 +118,15 @@ public struct EflUiListViewSegArray
 {
     ///<summary>Placeholder field</summary>
     public IntPtr field;
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator EflUiListViewSegArray(IntPtr ptr)
     {
         var tmp = (EflUiListViewSegArray.NativeStruct)Marshal.PtrToStructure(ptr, typeof(EflUiListViewSegArray.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct EflUiListViewSegArray.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -138,6 +148,8 @@ public struct EflUiListViewSegArray
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

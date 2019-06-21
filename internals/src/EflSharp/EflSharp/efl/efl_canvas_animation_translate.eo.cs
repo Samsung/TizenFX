@@ -11,7 +11,7 @@ namespace Canvas {
 
 /// <summary>Efl translate animation class</summary>
 [Efl.Canvas.AnimationTranslate.NativeMethods]
-public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
+public class AnimationTranslate : Efl.Canvas.Animation
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected AnimationTranslate(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationTranslate"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected AnimationTranslate(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Translate property</summary>
@@ -184,7 +157,7 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
             return Efl.Canvas.AnimationTranslate.efl_canvas_animation_translate_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_animation_translate_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int from_x,  out int from_y,  out int to_x,  out int to_y);
@@ -197,13 +170,13 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void translate_get(System.IntPtr obj, System.IntPtr pd, out int from_x, out int from_y, out int to_x, out int to_y)
         {
             Eina.Log.Debug("function efl_animation_translate_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         from_x = default(int);        from_y = default(int);        to_x = default(int);        to_y = default(int);                                            
                 try
                 {
-                    ((AnimationTranslate)wrapper).GetTranslate(out from_x, out from_y, out to_x, out to_y);
+                    ((AnimationTranslate)ws.Target).GetTranslate(out from_x, out from_y, out to_x, out to_y);
                 }
                 catch (Exception e)
                 {
@@ -232,13 +205,13 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void translate_set(System.IntPtr obj, System.IntPtr pd, int from_x, int from_y, int to_x, int to_y)
         {
             Eina.Log.Debug("function efl_animation_translate_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((AnimationTranslate)wrapper).SetTranslate(from_x, from_y, to_x, to_y);
+                    ((AnimationTranslate)ws.Target).SetTranslate(from_x, from_y, to_x, to_y);
                 }
                 catch (Exception e)
                 {
@@ -267,13 +240,13 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void translate_absolute_get(System.IntPtr obj, System.IntPtr pd, out int from_x, out int from_y, out int to_x, out int to_y)
         {
             Eina.Log.Debug("function efl_animation_translate_absolute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         from_x = default(int);        from_y = default(int);        to_x = default(int);        to_y = default(int);                                            
                 try
                 {
-                    ((AnimationTranslate)wrapper).GetTranslateAbsolute(out from_x, out from_y, out to_x, out to_y);
+                    ((AnimationTranslate)ws.Target).GetTranslateAbsolute(out from_x, out from_y, out to_x, out to_y);
                 }
                 catch (Exception e)
                 {
@@ -302,13 +275,13 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void translate_absolute_set(System.IntPtr obj, System.IntPtr pd, int from_x, int from_y, int to_x, int to_y)
         {
             Eina.Log.Debug("function efl_animation_translate_absolute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((AnimationTranslate)wrapper).SetTranslateAbsolute(from_x, from_y, to_x, to_y);
+                    ((AnimationTranslate)ws.Target).SetTranslateAbsolute(from_x, from_y, to_x, to_y);
                 }
                 catch (Exception e)
                 {
@@ -326,7 +299,7 @@ public class AnimationTranslate : Efl.Canvas.Animation, Efl.Eo.IWrapper
 
         private static efl_animation_translate_absolute_set_delegate efl_animation_translate_absolute_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

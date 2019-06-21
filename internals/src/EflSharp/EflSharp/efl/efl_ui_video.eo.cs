@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI video class</summary>
 [Efl.Ui.Video.NativeMethods]
-public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
+public class Video : Efl.Ui.LayoutBase, Efl.IFile, Efl.IPlayer
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Video(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Video"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -59,33 +59,6 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Video(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Set whether the object can remember the last played position.
@@ -316,107 +289,107 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Set whether the object can remember the last played position.
-/// Note: This API only serves as indication. System support is required.</summary>
-/// <value><c>true</c> when the object can remember the last position, <c>false</c> otherwise</value>
+    /// Note: This API only serves as indication. System support is required.</summary>
+    /// <value><c>true</c> when the object can remember the last position, <c>false</c> otherwise</value>
     public bool RememberPosition {
         get { return GetRememberPosition(); }
         set { SetRememberPosition(value); }
     }
     /// <summary>Get the underlying Emotion object.</summary>
-/// <value>The underlying Emotion object.</value>
+    /// <value>The underlying Emotion object.</value>
     public Efl.Canvas.Object Emotion {
         get { return GetEmotion(); }
     }
     /// <summary>Get the title (for instance DVD title) from this emotion object.
-/// This function is only useful when playing a DVD.
-/// 
-/// Note: Don&apos;t change or free the string returned by this function.</summary>
-/// <value>A string containing the title.</value>
+    /// This function is only useful when playing a DVD.
+    /// 
+    /// Note: Don&apos;t change or free the string returned by this function.</summary>
+    /// <value>A string containing the title.</value>
     public System.String Title {
         get { return GetTitle(); }
     }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
-/// (Since EFL 1.22)</summary>
-/// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
     public Eina.File Mmap {
         get { return GetMmap(); }
         set { SetMmap(value); }
     }
     /// <summary>Retrieve the file path from where an object is to fetch the data.
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The file path.</value>
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The file path.</value>
     public System.String File {
         get { return GetFile(); }
         set { SetFile(value); }
     }
     /// <summary>Get the previously-set key which corresponds to the target data within a file.
-/// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
-/// 
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
+    /// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
+    /// 
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
     public System.String Key {
         get { return GetKey(); }
         set { SetKey(value); }
     }
     /// <summary>Get the load state of the object.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
     public bool Loaded {
         get { return GetLoaded(); }
     }
     /// <summary>Whether or not the playable can be played.</summary>
-/// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
     public bool Playable {
         get { return GetPlayable(); }
     }
     /// <summary>Get play/pause state of the media file.</summary>
-/// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
+    /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     public bool Play {
         get { return GetPlay(); }
         set { SetPlay(value); }
     }
     /// <summary>Get the position in the media file.
-/// The position is returned as the number of seconds since the beginning of the media file.</summary>
-/// <value>The position (in seconds).</value>
+    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <value>The position (in seconds).</value>
     public double Pos {
         get { return GetPos(); }
         set { SetPos(value); }
     }
     /// <summary>Get how much of the file has been played.
-/// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
-/// <value>The progress within the [0, 1] range.</value>
+    /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
+    /// <value>The progress within the [0, 1] range.</value>
     public double Progress {
         get { return GetProgress(); }
     }
     /// <summary>Control the play speed of the media file.
-/// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
-/// <value>The play speed in the [0, infinity) range.</value>
+    /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
+    /// <value>The play speed in the [0, infinity) range.</value>
     public double PlaySpeed {
         get { return GetPlaySpeed(); }
         set { SetPlaySpeed(value); }
     }
     /// <summary>Control the audio volume.
-/// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
-/// <value>The volume level</value>
+    /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
+    /// <value>The volume level</value>
     public double Volume {
         get { return GetVolume(); }
         set { SetVolume(value); }
     }
     /// <summary>This property controls the audio mute state.</summary>
-/// <value>The mute state. <c>true</c> or <c>false</c>.</value>
+    /// <value>The mute state. <c>true</c> or <c>false</c>.</value>
     public bool Mute {
         get { return GetMute(); }
         set { SetMute(value); }
     }
     /// <summary>Get the length of play for the media file.</summary>
-/// <value>The length of the stream in seconds.</value>
+    /// <value>The length of the stream in seconds.</value>
     public double Length {
         get { return GetLength(); }
     }
     /// <summary>Get whether the media file is seekable.</summary>
-/// <value><c>true</c> if seekable.</value>
+    /// <value><c>true</c> if seekable.</value>
     public bool Seekable {
         get { return GetSeekable(); }
     }
@@ -736,7 +709,7 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
             return Efl.Ui.Video.efl_ui_video_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_video_remember_position_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -749,13 +722,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static bool remember_position_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_video_remember_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetRememberPosition();
+                    _ret_var = ((Video)ws.Target).GetRememberPosition();
                 }
                 catch (Exception e)
                 {
@@ -785,13 +758,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void remember_position_set(System.IntPtr obj, System.IntPtr pd, bool remember)
         {
             Eina.Log.Debug("function efl_ui_video_remember_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Video)wrapper).SetRememberPosition(remember);
+                    ((Video)ws.Target).SetRememberPosition(remember);
                 }
                 catch (Exception e)
                 {
@@ -820,13 +793,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static Efl.Canvas.Object emotion_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_video_emotion_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetEmotion();
+                    _ret_var = ((Video)ws.Target).GetEmotion();
                 }
                 catch (Exception e)
                 {
@@ -856,13 +829,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static System.String title_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_video_title_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetTitle();
+                    _ret_var = ((Video)ws.Target).GetTitle();
                 }
                 catch (Exception e)
                 {
@@ -892,13 +865,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static Eina.File mmap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_mmap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.File _ret_var = default(Eina.File);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetMmap();
+                    _ret_var = ((Video)ws.Target).GetMmap();
                 }
                 catch (Exception e)
                 {
@@ -928,13 +901,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static Eina.Error mmap_set(System.IntPtr obj, System.IntPtr pd, Eina.File f)
         {
             Eina.Log.Debug("function efl_file_mmap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Video)wrapper).SetMmap(f);
+                    _ret_var = ((Video)ws.Target).SetMmap(f);
                 }
                 catch (Exception e)
                 {
@@ -964,13 +937,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static System.String file_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetFile();
+                    _ret_var = ((Video)ws.Target).GetFile();
                 }
                 catch (Exception e)
                 {
@@ -1000,13 +973,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static Eina.Error file_set(System.IntPtr obj, System.IntPtr pd, System.String file)
         {
             Eina.Log.Debug("function efl_file_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Video)wrapper).SetFile(file);
+                    _ret_var = ((Video)ws.Target).SetFile(file);
                 }
                 catch (Exception e)
                 {
@@ -1036,13 +1009,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static System.String key_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_key_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetKey();
+                    _ret_var = ((Video)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -1072,13 +1045,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void key_set(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_file_key_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Video)wrapper).SetKey(key);
+                    ((Video)ws.Target).SetKey(key);
                 }
                 catch (Exception e)
                 {
@@ -1107,13 +1080,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static bool loaded_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_loaded_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetLoaded();
+                    _ret_var = ((Video)ws.Target).GetLoaded();
                 }
                 catch (Exception e)
                 {
@@ -1143,13 +1116,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static Eina.Error load(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_load was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Video)wrapper).Load();
+                    _ret_var = ((Video)ws.Target).Load();
                 }
                 catch (Exception e)
                 {
@@ -1179,13 +1152,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void unload(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_unload was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Video)wrapper).Unload();
+                    ((Video)ws.Target).Unload();
                 }
                 catch (Exception e)
                 {
@@ -1214,13 +1187,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static bool playable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_playable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetPlayable();
+                    _ret_var = ((Video)ws.Target).GetPlayable();
                 }
                 catch (Exception e)
                 {
@@ -1250,13 +1223,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static bool play_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetPlay();
+                    _ret_var = ((Video)ws.Target).GetPlay();
                 }
                 catch (Exception e)
                 {
@@ -1286,13 +1259,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void play_set(System.IntPtr obj, System.IntPtr pd, bool play)
         {
             Eina.Log.Debug("function efl_player_play_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Video)wrapper).SetPlay(play);
+                    ((Video)ws.Target).SetPlay(play);
                 }
                 catch (Exception e)
                 {
@@ -1321,13 +1294,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static double pos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_pos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetPos();
+                    _ret_var = ((Video)ws.Target).GetPos();
                 }
                 catch (Exception e)
                 {
@@ -1357,13 +1330,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void pos_set(System.IntPtr obj, System.IntPtr pd, double sec)
         {
             Eina.Log.Debug("function efl_player_pos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Video)wrapper).SetPos(sec);
+                    ((Video)ws.Target).SetPos(sec);
                 }
                 catch (Exception e)
                 {
@@ -1392,13 +1365,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static double progress_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_progress_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetProgress();
+                    _ret_var = ((Video)ws.Target).GetProgress();
                 }
                 catch (Exception e)
                 {
@@ -1428,13 +1401,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static double play_speed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_speed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetPlaySpeed();
+                    _ret_var = ((Video)ws.Target).GetPlaySpeed();
                 }
                 catch (Exception e)
                 {
@@ -1464,13 +1437,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void play_speed_set(System.IntPtr obj, System.IntPtr pd, double speed)
         {
             Eina.Log.Debug("function efl_player_play_speed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Video)wrapper).SetPlaySpeed(speed);
+                    ((Video)ws.Target).SetPlaySpeed(speed);
                 }
                 catch (Exception e)
                 {
@@ -1499,13 +1472,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static double volume_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_volume_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetVolume();
+                    _ret_var = ((Video)ws.Target).GetVolume();
                 }
                 catch (Exception e)
                 {
@@ -1535,13 +1508,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void volume_set(System.IntPtr obj, System.IntPtr pd, double volume)
         {
             Eina.Log.Debug("function efl_player_volume_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Video)wrapper).SetVolume(volume);
+                    ((Video)ws.Target).SetVolume(volume);
                 }
                 catch (Exception e)
                 {
@@ -1570,13 +1543,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static bool mute_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_mute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetMute();
+                    _ret_var = ((Video)ws.Target).GetMute();
                 }
                 catch (Exception e)
                 {
@@ -1606,13 +1579,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void mute_set(System.IntPtr obj, System.IntPtr pd, bool mute)
         {
             Eina.Log.Debug("function efl_player_mute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Video)wrapper).SetMute(mute);
+                    ((Video)ws.Target).SetMute(mute);
                 }
                 catch (Exception e)
                 {
@@ -1641,13 +1614,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static double length_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_length_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetLength();
+                    _ret_var = ((Video)ws.Target).GetLength();
                 }
                 catch (Exception e)
                 {
@@ -1677,13 +1650,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static bool seekable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_seekable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Video)wrapper).GetSeekable();
+                    _ret_var = ((Video)ws.Target).GetSeekable();
                 }
                 catch (Exception e)
                 {
@@ -1713,13 +1686,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void start(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Video)wrapper).Start();
+                    ((Video)ws.Target).Start();
                 }
                 catch (Exception e)
                 {
@@ -1748,13 +1721,13 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
         private static void stop(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_stop was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Video)wrapper).Stop();
+                    ((Video)ws.Target).Stop();
                 }
                 catch (Exception e)
                 {
@@ -1772,7 +1745,7 @@ public class Video : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile,Efl.IPlayer
 
         private static efl_player_stop_delegate efl_player_stop_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

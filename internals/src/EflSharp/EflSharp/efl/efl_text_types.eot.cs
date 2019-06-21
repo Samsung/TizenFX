@@ -60,11 +60,15 @@ public struct TextChangeInfo
         this.Merge = Merge;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextChangeInfo(IntPtr ptr)
     {
         var tmp = (TextChangeInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextChangeInfo.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct TextChangeInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -105,6 +109,8 @@ public struct TextChangeInfo
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

@@ -13,7 +13,7 @@ namespace TextFactory {
 
 /// <summary>Factory that creates emoticons from the current theme given a key.</summary>
 [Efl.Ui.TextFactory.Emoticons.NativeMethods]
-public class Emoticons : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
+public class Emoticons : Efl.Object, Efl.Canvas.ITextFactory
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -46,7 +46,7 @@ public class Emoticons : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Emoticons(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Emoticons"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -55,33 +55,6 @@ public class Emoticons : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Emoticons(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Translates a given <c>key</c> to an item object, and returns the object. The returned object should be owned by the passed <c>object</c>.</summary>
@@ -128,7 +101,7 @@ public class Emoticons : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
             return Efl.Ui.TextFactory.Emoticons.efl_ui_text_factory_emoticons_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.OwnTag>))]
         private delegate Efl.Canvas.Object efl_canvas_text_factory_create_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
@@ -141,13 +114,13 @@ public class Emoticons : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
         private static Efl.Canvas.Object create(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object kw_object, System.String key)
         {
             Eina.Log.Debug("function efl_canvas_text_factory_create was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Emoticons)wrapper).Create(kw_object, key);
+                    _ret_var = ((Emoticons)ws.Target).Create(kw_object, key);
                 }
                 catch (Exception e)
                 {
@@ -166,7 +139,7 @@ public class Emoticons : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
 
         private static efl_canvas_text_factory_create_delegate efl_canvas_text_factory_create_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

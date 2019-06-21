@@ -14,7 +14,7 @@ namespace Core {
 /// 
 /// A object can be forked, which will only copy its values, changes to the returned object will not change the object where it is forked off.</summary>
 [Efl.Core.Env.NativeMethods]
-public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
+public class Env : Efl.Object, Efl.IDuplicate
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -47,7 +47,7 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Env(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Env"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -56,33 +56,6 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Env(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get the value of the <c>var</c>, or <c>null</c> if no such <c>var</c> exists in the object</summary>
@@ -127,7 +100,7 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
         return _ret_var;
  }
     /// <summary>Get the content of this object.
-/// This will return a iterator that contains all keys that are part of this object.</summary>
+    /// This will return a iterator that contains all keys that are part of this object.</summary>
     public Eina.Iterator<System.String> Content {
         get { return GetContent(); }
     }
@@ -217,7 +190,7 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
             return Efl.Core.Env.efl_core_env_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_core_env_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String var);
@@ -230,13 +203,13 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
         private static System.String env_get(System.IntPtr obj, System.IntPtr pd, System.String var)
         {
             Eina.Log.Debug("function efl_core_env_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Env)wrapper).GetEnv(var);
+                    _ret_var = ((Env)ws.Target).GetEnv(var);
                 }
                 catch (Exception e)
                 {
@@ -266,13 +239,13 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
         private static void env_set(System.IntPtr obj, System.IntPtr pd, System.String var, System.String value)
         {
             Eina.Log.Debug("function efl_core_env_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Env)wrapper).SetEnv(var, value);
+                    ((Env)ws.Target).SetEnv(var, value);
                 }
                 catch (Exception e)
                 {
@@ -301,13 +274,13 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
         private static System.IntPtr content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_core_env_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<System.String> _ret_var = default(Eina.Iterator<System.String>);
                 try
                 {
-                    _ret_var = ((Env)wrapper).GetContent();
+                    _ret_var = ((Env)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -337,13 +310,13 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
         private static void unset(System.IntPtr obj, System.IntPtr pd, System.String var)
         {
             Eina.Log.Debug("function efl_core_env_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Env)wrapper).Unset(var);
+                    ((Env)ws.Target).Unset(var);
                 }
                 catch (Exception e)
                 {
@@ -372,13 +345,13 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
         private static void clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_core_env_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Env)wrapper).Clear();
+                    ((Env)ws.Target).Clear();
                 }
                 catch (Exception e)
                 {
@@ -407,13 +380,13 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
         private static Efl.IDuplicate duplicate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_duplicate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.IDuplicate _ret_var = default(Efl.IDuplicate);
                 try
                 {
-                    _ret_var = ((Env)wrapper).Duplicate();
+                    _ret_var = ((Env)ws.Target).Duplicate();
                 }
                 catch (Exception e)
                 {
@@ -432,7 +405,7 @@ public class Env : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate
 
         private static efl_duplicate_delegate efl_duplicate_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -11,7 +11,7 @@ namespace Input {
 
 /// <summary>Represents a pointing device such as a touch finger, pen or mouse.</summary>
 [Efl.Input.Device.NativeMethods]
-public class Device : Efl.Object, Efl.Eo.IWrapper
+public class Device : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Device(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Device"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Device(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Device type property</summary>
@@ -152,29 +125,29 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         return _ret_var;
  }
     /// <summary>Device type property</summary>
-/// <value>Input device class</value>
+    /// <value>Input device class</value>
     public Efl.Input.DeviceType DeviceType {
         get { return GetDeviceType(); }
         set { SetDeviceType(value); }
     }
     /// <summary>Device source property</summary>
-/// <value>Input device</value>
+    /// <value>Input device</value>
     public Efl.Input.Device Source {
         get { return GetSource(); }
         set { SetSource(value); }
     }
     /// <summary>Get the <see cref="Efl.Input.Device"/> that represents a seat.
-/// This method will find the seat the device belongs to.
-/// 
-/// For this, it walk through device&apos;s parents looking for a device with <see cref="Efl.Input.DeviceType.Seat"/>. It may be the device itself.
-/// 
-/// In case no seat is found, <c>null</c> is returned.</summary>
-/// <value>The seat this device belongs to.</value>
+    /// This method will find the seat the device belongs to.
+    /// 
+    /// For this, it walk through device&apos;s parents looking for a device with <see cref="Efl.Input.DeviceType.Seat"/>. It may be the device itself.
+    /// 
+    /// In case no seat is found, <c>null</c> is returned.</summary>
+    /// <value>The seat this device belongs to.</value>
     public Efl.Input.Device Seat {
         get { return GetSeat(); }
     }
     /// <summary>Seat id number</summary>
-/// <value>The id of the seat</value>
+    /// <value>The id of the seat</value>
     public uint SeatId {
         get { return GetSeatId(); }
         set { SetSeatId(value); }
@@ -295,7 +268,7 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
             return Efl.Input.Device.efl_input_device_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.Input.DeviceType efl_input_device_type_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -308,13 +281,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Input.DeviceType device_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.DeviceType _ret_var = default(Efl.Input.DeviceType);
                 try
                 {
-                    _ret_var = ((Device)wrapper).GetDeviceType();
+                    _ret_var = ((Device)ws.Target).GetDeviceType();
                 }
                 catch (Exception e)
                 {
@@ -344,13 +317,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static void device_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Input.DeviceType klass)
         {
             Eina.Log.Debug("function efl_input_device_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Device)wrapper).SetDeviceType(klass);
+                    ((Device)ws.Target).SetDeviceType(klass);
                 }
                 catch (Exception e)
                 {
@@ -379,13 +352,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Input.Device source_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_source_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Device)wrapper).GetSource();
+                    _ret_var = ((Device)ws.Target).GetSource();
                 }
                 catch (Exception e)
                 {
@@ -415,13 +388,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static void source_set(System.IntPtr obj, System.IntPtr pd, Efl.Input.Device src)
         {
             Eina.Log.Debug("function efl_input_device_source_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Device)wrapper).SetSource(src);
+                    ((Device)ws.Target).SetSource(src);
                 }
                 catch (Exception e)
                 {
@@ -450,13 +423,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Input.Device seat_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_seat_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Device)wrapper).GetSeat();
+                    _ret_var = ((Device)ws.Target).GetSeat();
                 }
                 catch (Exception e)
                 {
@@ -486,13 +459,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static uint seat_id_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_seat_id_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((Device)wrapper).GetSeatId();
+                    _ret_var = ((Device)ws.Target).GetSeatId();
                 }
                 catch (Exception e)
                 {
@@ -522,13 +495,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static void seat_id_set(System.IntPtr obj, System.IntPtr pd, uint id)
         {
             Eina.Log.Debug("function efl_input_device_seat_id_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Device)wrapper).SetSeatId(id);
+                    ((Device)ws.Target).SetSeatId(id);
                 }
                 catch (Exception e)
                 {
@@ -557,13 +530,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static System.IntPtr children_iterate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_children_iterate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Input.Device> _ret_var = default(Eina.Iterator<Efl.Input.Device>);
                 try
                 {
-                    _ret_var = ((Device)wrapper).ChildrenIterate();
+                    _ret_var = ((Device)ws.Target).ChildrenIterate();
                 }
                 catch (Exception e)
                 {
@@ -593,13 +566,13 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
         private static uint has_pointer_caps(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_has_pointer_caps was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((Device)wrapper).HasPointerCaps();
+                    _ret_var = ((Device)ws.Target).HasPointerCaps();
                 }
                 catch (Exception e)
                 {
@@ -618,7 +591,7 @@ public class Device : Efl.Object, Efl.Eo.IWrapper
 
         private static efl_input_device_has_pointer_caps_delegate efl_input_device_has_pointer_caps_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

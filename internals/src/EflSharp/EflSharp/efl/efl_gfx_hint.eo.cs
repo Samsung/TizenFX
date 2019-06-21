@@ -11,6 +11,7 @@ namespace Gfx {
 
 public partial class Constants
 {
+    /// <summary>Use with <see cref="Efl.Gfx.IHint.GetHintWeight"/>.</summary>
     public static readonly double HintExpand = 1.000000;
 }
 }
@@ -192,60 +193,60 @@ void SetHintFill(bool x, bool y);
     /// (Since EFL 1.22)</summary>
     event EventHandler HintsChangedEvt;
     /// <summary>Hints on the object&apos;s maximum size.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
-/// 
-/// The object container is in charge of fetching this property and placing the object accordingly.
-/// 
-/// Values -1 will be treated as unset hint components, when queried by managers.
-/// 
-/// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
-/// (Since EFL 1.22)</summary>
-/// <value>Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// The object container is in charge of fetching this property and placing the object accordingly.
+    /// 
+    /// Values -1 will be treated as unset hint components, when queried by managers.
+    /// 
+    /// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</value>
     Eina.Size2D HintSizeMax {
         get ;
         set ;
     }
     /// <summary>Hints on the object&apos;s minimum size.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate. The object container is in charge of fetching this property and placing the object accordingly.
-/// 
-/// Value 0 will be treated as unset hint components, when queried by managers.
-/// 
-/// Note: This property is meant to be set by applications and not by EFL itself. Use this to request a specific size (treated as minimum size).
-/// (Since EFL 1.22)</summary>
-/// <value>Minimum size (hint) in pixels.</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate. The object container is in charge of fetching this property and placing the object accordingly.
+    /// 
+    /// Value 0 will be treated as unset hint components, when queried by managers.
+    /// 
+    /// Note: This property is meant to be set by applications and not by EFL itself. Use this to request a specific size (treated as minimum size).
+    /// (Since EFL 1.22)</summary>
+    /// <value>Minimum size (hint) in pixels.</value>
     Eina.Size2D HintSizeMin {
         get ;
         set ;
     }
     /// <summary>Internal hints for an object&apos;s minimum size.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
-/// 
-/// Values 0 will be treated as unset hint components, when queried by managers.
-/// 
-/// Note: This property is internal and meant for widget developers to define the absolute minimum size of the object. EFL itself sets this size internally, so any change to it from an application might be ignored. Use <see cref="Efl.Gfx.IHint.HintSizeMin"/> instead.
-/// (Since EFL 1.22)</summary>
-/// <value>Minimum size (hint) in pixels.</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// Values 0 will be treated as unset hint components, when queried by managers.
+    /// 
+    /// Note: This property is internal and meant for widget developers to define the absolute minimum size of the object. EFL itself sets this size internally, so any change to it from an application might be ignored. Use <see cref="Efl.Gfx.IHint.HintSizeMin"/> instead.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Minimum size (hint) in pixels.</value>
     Eina.Size2D HintSizeRestrictedMin {
         get ;
         set ;
     }
     /// <summary>Read-only minimum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> and <see cref="Efl.Gfx.IHint.HintSizeMin"/> hints.
-/// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMin"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMin"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s minimum size.
-/// (Since EFL 1.22)</summary>
-/// <value>Minimum size (hint) in pixels.</value>
+    /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMin"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMin"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s minimum size.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Minimum size (hint) in pixels.</value>
     Eina.Size2D HintSizeCombinedMin {
         get ;
     }
 }
 /// <summary>Efl graphics hint interface
 /// (Since EFL 1.22)</summary>
-sealed public class IHintConcrete : 
-
-IHint
+sealed public class IHintConcrete :
+    Efl.Eo.EoWrapper
+    , IHint
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -260,155 +261,12 @@ IHint
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_gfx_hint_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IHint"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IHintConcrete(System.IntPtr raw)
+    private IHintConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IHintConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Object hints changed.
@@ -419,10 +277,9 @@ IHint
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -688,47 +545,47 @@ IHint
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Hints on the object&apos;s maximum size.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
-/// 
-/// The object container is in charge of fetching this property and placing the object accordingly.
-/// 
-/// Values -1 will be treated as unset hint components, when queried by managers.
-/// 
-/// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
-/// (Since EFL 1.22)</summary>
-/// <value>Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// The object container is in charge of fetching this property and placing the object accordingly.
+    /// 
+    /// Values -1 will be treated as unset hint components, when queried by managers.
+    /// 
+    /// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</value>
     public Eina.Size2D HintSizeMax {
         get { return GetHintSizeMax(); }
         set { SetHintSizeMax(value); }
     }
     /// <summary>Hints on the object&apos;s minimum size.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate. The object container is in charge of fetching this property and placing the object accordingly.
-/// 
-/// Value 0 will be treated as unset hint components, when queried by managers.
-/// 
-/// Note: This property is meant to be set by applications and not by EFL itself. Use this to request a specific size (treated as minimum size).
-/// (Since EFL 1.22)</summary>
-/// <value>Minimum size (hint) in pixels.</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate. The object container is in charge of fetching this property and placing the object accordingly.
+    /// 
+    /// Value 0 will be treated as unset hint components, when queried by managers.
+    /// 
+    /// Note: This property is meant to be set by applications and not by EFL itself. Use this to request a specific size (treated as minimum size).
+    /// (Since EFL 1.22)</summary>
+    /// <value>Minimum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeMin {
         get { return GetHintSizeMin(); }
         set { SetHintSizeMin(value); }
     }
     /// <summary>Internal hints for an object&apos;s minimum size.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
-/// 
-/// Values 0 will be treated as unset hint components, when queried by managers.
-/// 
-/// Note: This property is internal and meant for widget developers to define the absolute minimum size of the object. EFL itself sets this size internally, so any change to it from an application might be ignored. Use <see cref="Efl.Gfx.IHint.HintSizeMin"/> instead.
-/// (Since EFL 1.22)</summary>
-/// <value>Minimum size (hint) in pixels.</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// Values 0 will be treated as unset hint components, when queried by managers.
+    /// 
+    /// Note: This property is internal and meant for widget developers to define the absolute minimum size of the object. EFL itself sets this size internally, so any change to it from an application might be ignored. Use <see cref="Efl.Gfx.IHint.HintSizeMin"/> instead.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Minimum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeRestrictedMin {
         get { return GetHintSizeRestrictedMin(); }
         set { SetHintSizeRestrictedMin(value); }
     }
     /// <summary>Read-only minimum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> and <see cref="Efl.Gfx.IHint.HintSizeMin"/> hints.
-/// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMin"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMin"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s minimum size.
-/// (Since EFL 1.22)</summary>
-/// <value>Minimum size (hint) in pixels.</value>
+    /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMin"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMin"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s minimum size.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Minimum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeCombinedMin {
         get { return GetHintSizeCombinedMin(); }
     }
@@ -927,7 +784,7 @@ IHint
             return Efl.Gfx.IHintConcrete.efl_gfx_hint_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_hint_aspect_get_delegate(System.IntPtr obj, System.IntPtr pd,  out Efl.Gfx.HintAspect mode,  out Eina.Size2D.NativeStruct sz);
@@ -940,14 +797,14 @@ IHint
         private static void hint_aspect_get(System.IntPtr obj, System.IntPtr pd, out Efl.Gfx.HintAspect mode, out Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_gfx_hint_aspect_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         mode = default(Efl.Gfx.HintAspect);        Eina.Size2D _out_sz = default(Eina.Size2D);
                             
                 try
                 {
-                    ((IHint)wrapper).GetHintAspect(out mode, out _out_sz);
+                    ((IHint)ws.Target).GetHintAspect(out mode, out _out_sz);
                 }
                 catch (Exception e)
                 {
@@ -977,14 +834,14 @@ IHint
         private static void hint_aspect_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.HintAspect mode, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_gfx_hint_aspect_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Size2D _in_sz = sz;
                                             
                 try
                 {
-                    ((IHint)wrapper).SetHintAspect(mode, _in_sz);
+                    ((IHint)ws.Target).SetHintAspect(mode, _in_sz);
                 }
                 catch (Exception e)
                 {
@@ -1013,13 +870,13 @@ IHint
         private static Eina.Size2D.NativeStruct hint_size_max_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_hint_size_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IHint)wrapper).GetHintSizeMax();
+                    _ret_var = ((IHint)ws.Target).GetHintSizeMax();
                 }
                 catch (Exception e)
                 {
@@ -1049,14 +906,14 @@ IHint
         private static void hint_size_max_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_gfx_hint_size_max_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_sz = sz;
                             
                 try
                 {
-                    ((IHint)wrapper).SetHintSizeMax(_in_sz);
+                    ((IHint)ws.Target).SetHintSizeMax(_in_sz);
                 }
                 catch (Exception e)
                 {
@@ -1085,13 +942,13 @@ IHint
         private static Eina.Size2D.NativeStruct hint_size_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_hint_size_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IHint)wrapper).GetHintSizeMin();
+                    _ret_var = ((IHint)ws.Target).GetHintSizeMin();
                 }
                 catch (Exception e)
                 {
@@ -1121,14 +978,14 @@ IHint
         private static void hint_size_min_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_gfx_hint_size_min_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_sz = sz;
                             
                 try
                 {
-                    ((IHint)wrapper).SetHintSizeMin(_in_sz);
+                    ((IHint)ws.Target).SetHintSizeMin(_in_sz);
                 }
                 catch (Exception e)
                 {
@@ -1157,13 +1014,13 @@ IHint
         private static Eina.Size2D.NativeStruct hint_size_restricted_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_hint_size_restricted_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IHint)wrapper).GetHintSizeRestrictedMin();
+                    _ret_var = ((IHint)ws.Target).GetHintSizeRestrictedMin();
                 }
                 catch (Exception e)
                 {
@@ -1193,14 +1050,14 @@ IHint
         private static void hint_size_restricted_min_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_gfx_hint_size_restricted_min_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_sz = sz;
                             
                 try
                 {
-                    ((IHint)wrapper).SetHintSizeRestrictedMin(_in_sz);
+                    ((IHint)ws.Target).SetHintSizeRestrictedMin(_in_sz);
                 }
                 catch (Exception e)
                 {
@@ -1229,13 +1086,13 @@ IHint
         private static Eina.Size2D.NativeStruct hint_size_combined_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_hint_size_combined_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IHint)wrapper).GetHintSizeCombinedMin();
+                    _ret_var = ((IHint)ws.Target).GetHintSizeCombinedMin();
                 }
                 catch (Exception e)
                 {
@@ -1265,13 +1122,13 @@ IHint
         private static void hint_margin_get(System.IntPtr obj, System.IntPtr pd, out int l, out int r, out int t, out int b)
         {
             Eina.Log.Debug("function efl_gfx_hint_margin_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((IHint)wrapper).GetHintMargin(out l, out r, out t, out b);
+                    ((IHint)ws.Target).GetHintMargin(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -1300,13 +1157,13 @@ IHint
         private static void hint_margin_set(System.IntPtr obj, System.IntPtr pd, int l, int r, int t, int b)
         {
             Eina.Log.Debug("function efl_gfx_hint_margin_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IHint)wrapper).SetHintMargin(l, r, t, b);
+                    ((IHint)ws.Target).SetHintMargin(l, r, t, b);
                 }
                 catch (Exception e)
                 {
@@ -1335,13 +1192,13 @@ IHint
         private static void hint_weight_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_hint_weight_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IHint)wrapper).GetHintWeight(out x, out y);
+                    ((IHint)ws.Target).GetHintWeight(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1370,13 +1227,13 @@ IHint
         private static void hint_weight_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_hint_weight_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IHint)wrapper).SetHintWeight(x, y);
+                    ((IHint)ws.Target).SetHintWeight(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1405,13 +1262,13 @@ IHint
         private static void hint_align_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_hint_align_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IHint)wrapper).GetHintAlign(out x, out y);
+                    ((IHint)ws.Target).GetHintAlign(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1440,13 +1297,13 @@ IHint
         private static void hint_align_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_hint_align_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IHint)wrapper).SetHintAlign(x, y);
+                    ((IHint)ws.Target).SetHintAlign(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1475,13 +1332,13 @@ IHint
         private static void hint_fill_get(System.IntPtr obj, System.IntPtr pd, out bool x, out bool y)
         {
             Eina.Log.Debug("function efl_gfx_hint_fill_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(bool);        y = default(bool);                            
                 try
                 {
-                    ((IHint)wrapper).GetHintFill(out x, out y);
+                    ((IHint)ws.Target).GetHintFill(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1510,13 +1367,13 @@ IHint
         private static void hint_fill_set(System.IntPtr obj, System.IntPtr pd, bool x, bool y)
         {
             Eina.Log.Debug("function efl_gfx_hint_fill_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IHint)wrapper).SetHintFill(x, y);
+                    ((IHint)ws.Target).SetHintFill(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1534,7 +1391,7 @@ IHint
 
         private static efl_gfx_hint_fill_set_delegate efl_gfx_hint_fill_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

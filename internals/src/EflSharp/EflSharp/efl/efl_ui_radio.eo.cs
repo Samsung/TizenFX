@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary radio class</summary>
 [Efl.Ui.Radio.NativeMethods]
-public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
+public class Radio : Efl.Ui.Check
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Radio(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Radio"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -59,33 +59,6 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Radio(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get the integer value that this radio object represents.
@@ -118,6 +91,21 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
+    /// <summary>Change the value of the group.
+    /// This will enable the radio button in the group that is assosiated with this value. A value which is not assosiated with any radio button will result in every radio button beeing disabled.</summary>
+    /// <returns>The value of the radio button in the group which should be enabled.</returns>
+    virtual public int GetGroupValue() {
+         var _ret_var = Efl.Ui.Radio.NativeMethods.efl_ui_radio_group_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Change the value of the group.
+    /// This will enable the radio button in the group that is assosiated with this value. A value which is not assosiated with any radio button will result in every radio button beeing disabled.</summary>
+    /// <param name="value">The value of the radio button in the group which should be enabled.</param>
+    virtual public void SetGroupValue(int value) {
+                                 Efl.Ui.Radio.NativeMethods.efl_ui_radio_group_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
     /// <summary>Add this radio to a group of other radio objects
     /// Radio objects work in groups. Each member should have a different integer value assigned. In order to have them work as a group, they need to know about each other. This adds the given radio object to the group of which the group object indicated is a member.</summary>
     /// <param name="group">Any radio object whose group the obj is to join.</param>
@@ -126,22 +114,29 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the integer value that this radio object represents.
-/// This gets the value of the radio.</summary>
-/// <value>The value to use if this radio object is selected.</value>
+    /// This gets the value of the radio.</summary>
+    /// <value>The value to use if this radio object is selected.</value>
     public int StateValue {
         get { return GetStateValue(); }
         set { SetStateValue(value); }
     }
     /// <summary>Set a convenience pointer to an integer, which changes when radio group value changes.
-/// This sets a pointer to an integer that in addition to the radio object state will also be modified directly. To stop setting the object pointed to, simply use NULL as the valuep argument. If valuep is not NULL then when called, the radio object state will also be modified to reflect the value of the integer valuep points to, just like calling elm_radio_value_set().</summary>
-/// <value>Pointer to the integer to modify</value>
+    /// This sets a pointer to an integer that in addition to the radio object state will also be modified directly. To stop setting the object pointed to, simply use NULL as the valuep argument. If valuep is not NULL then when called, the radio object state will also be modified to reflect the value of the integer valuep points to, just like calling elm_radio_value_set().</summary>
+    /// <value>Pointer to the integer to modify</value>
     public int ValuePointer {
         set { SetValuePointer(value); }
     }
     /// <summary>Get the selected radio object.</summary>
-/// <value>The selected radio object</value>
+    /// <value>The selected radio object</value>
     public Efl.Canvas.Object SelectedObject {
         get { return GetSelectedObject(); }
+    }
+    /// <summary>Change the value of the group.
+    /// This will enable the radio button in the group that is assosiated with this value. A value which is not assosiated with any radio button will result in every radio button beeing disabled.</summary>
+    /// <value>The value of the radio button in the group which should be enabled.</value>
+    public int GroupValue {
+        get { return GetGroupValue(); }
+        set { SetGroupValue(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -199,6 +194,26 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_radio_selected_object_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_radio_selected_object_get_static_delegate) });
             }
 
+            if (efl_ui_radio_group_value_get_static_delegate == null)
+            {
+                efl_ui_radio_group_value_get_static_delegate = new efl_ui_radio_group_value_get_delegate(group_value_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetGroupValue") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_radio_group_value_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_radio_group_value_get_static_delegate) });
+            }
+
+            if (efl_ui_radio_group_value_set_static_delegate == null)
+            {
+                efl_ui_radio_group_value_set_static_delegate = new efl_ui_radio_group_value_set_delegate(group_value_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetGroupValue") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_radio_group_value_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_radio_group_value_set_static_delegate) });
+            }
+
             if (efl_ui_radio_group_add_static_delegate == null)
             {
                 efl_ui_radio_group_add_static_delegate = new efl_ui_radio_group_add_delegate(group_add);
@@ -219,7 +234,7 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
             return Efl.Ui.Radio.efl_ui_radio_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_ui_radio_state_value_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -232,13 +247,13 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         private static int state_value_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_radio_state_value_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Radio)wrapper).GetStateValue();
+                    _ret_var = ((Radio)ws.Target).GetStateValue();
                 }
                 catch (Exception e)
                 {
@@ -268,13 +283,13 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         private static void state_value_set(System.IntPtr obj, System.IntPtr pd, int value)
         {
             Eina.Log.Debug("function efl_ui_radio_state_value_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Radio)wrapper).SetStateValue(value);
+                    ((Radio)ws.Target).SetStateValue(value);
                 }
                 catch (Exception e)
                 {
@@ -303,14 +318,14 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         private static void value_pointer_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr valuep)
         {
             Eina.Log.Debug("function efl_ui_radio_value_pointer_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_valuep = Eina.PrimitiveConversion.PointerToManaged<int>(valuep);
                             
                 try
                 {
-                    ((Radio)wrapper).SetValuePointer(_in_valuep);
+                    ((Radio)ws.Target).SetValuePointer(_in_valuep);
                 }
                 catch (Exception e)
                 {
@@ -339,13 +354,13 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         private static Efl.Canvas.Object selected_object_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_radio_selected_object_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Radio)wrapper).GetSelectedObject();
+                    _ret_var = ((Radio)ws.Target).GetSelectedObject();
                 }
                 catch (Exception e)
                 {
@@ -365,6 +380,77 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         private static efl_ui_radio_selected_object_get_delegate efl_ui_radio_selected_object_get_static_delegate;
 
         
+        private delegate int efl_ui_radio_group_value_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate int efl_ui_radio_group_value_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_radio_group_value_get_api_delegate> efl_ui_radio_group_value_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_radio_group_value_get_api_delegate>(Module, "efl_ui_radio_group_value_get");
+
+        private static int group_value_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_radio_group_value_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            int _ret_var = default(int);
+                try
+                {
+                    _ret_var = ((Radio)ws.Target).GetGroupValue();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_radio_group_value_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_radio_group_value_get_delegate efl_ui_radio_group_value_get_static_delegate;
+
+        
+        private delegate void efl_ui_radio_group_value_set_delegate(System.IntPtr obj, System.IntPtr pd,  int value);
+
+        
+        public delegate void efl_ui_radio_group_value_set_api_delegate(System.IntPtr obj,  int value);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_radio_group_value_set_api_delegate> efl_ui_radio_group_value_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_radio_group_value_set_api_delegate>(Module, "efl_ui_radio_group_value_set");
+
+        private static void group_value_set(System.IntPtr obj, System.IntPtr pd, int value)
+        {
+            Eina.Log.Debug("function efl_ui_radio_group_value_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Radio)ws.Target).SetGroupValue(value);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_radio_group_value_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), value);
+            }
+        }
+
+        private static efl_ui_radio_group_value_set_delegate efl_ui_radio_group_value_set_static_delegate;
+
+        
         private delegate void efl_ui_radio_group_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Radio group);
 
         
@@ -375,13 +461,13 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
         private static void group_add(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Radio group)
         {
             Eina.Log.Debug("function efl_ui_radio_group_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Radio)wrapper).AddGroup(group);
+                    ((Radio)ws.Target).AddGroup(group);
                 }
                 catch (Exception e)
                 {
@@ -399,7 +485,7 @@ public class Radio : Efl.Ui.Check, Efl.Eo.IWrapper
 
         private static efl_ui_radio_group_add_delegate efl_ui_radio_group_add_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

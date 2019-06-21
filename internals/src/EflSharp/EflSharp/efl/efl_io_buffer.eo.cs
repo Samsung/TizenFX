@@ -16,7 +16,7 @@ namespace Io {
 /// 
 /// A fixed sized buffer can be implemented by setting <see cref="Efl.Io.Buffer.Limit"/> followed by <see cref="Efl.Io.Buffer.Preallocate"/></summary>
 [Efl.Io.Buffer.NativeMethods]
-public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositioner,Efl.Io.IReader,Efl.Io.ISizer,Efl.Io.IWriter
+public class Buffer : Efl.Object, Efl.Io.ICloser, Efl.Io.IPositioner, Efl.Io.IReader, Efl.Io.ISizer, Efl.Io.IWriter
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -49,7 +49,7 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Buffer(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Buffer"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -60,33 +60,6 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Notifies <see cref="Efl.Io.Buffer.PositionRead"/> changed</summary>
     public event EventHandler PositionReadChangedEvt
     {
@@ -94,10 +67,9 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -147,10 +119,9 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -200,10 +171,9 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -254,10 +224,9 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -307,10 +276,9 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -364,14 +332,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -432,10 +399,9 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -485,10 +451,9 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -542,14 +507,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -868,89 +832,89 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
                                         return _ret_var;
  }
     /// <summary>Limit how big the buffer can grow.
-/// This affects both <see cref="Efl.Io.Buffer.Preallocate"/> and how buffer grows when <see cref="Efl.Io.IWriter.Write"/> is called.
-/// 
-/// If you want a buffer of an exact size always set the limit before any further calls that can expand it.</summary>
-/// <value>Defines a maximum buffer size, or 0 to allow unlimited amount of bytes</value>
+    /// This affects both <see cref="Efl.Io.Buffer.Preallocate"/> and how buffer grows when <see cref="Efl.Io.IWriter.Write"/> is called.
+    /// 
+    /// If you want a buffer of an exact size always set the limit before any further calls that can expand it.</summary>
+    /// <value>Defines a maximum buffer size, or 0 to allow unlimited amount of bytes</value>
     public uint Limit {
         get { return GetLimit(); }
         set { SetLimit(value); }
     }
     /// <summary>The position used by <see cref="Efl.Io.IReader.Read"/>.
-/// Note that <see cref="Efl.Io.IPositioner.Seek"/> or <see cref="Efl.Io.IPositioner.SetPosition"/> will affect this property and <see cref="Efl.Io.Buffer.PositionWrite"/>.
-/// 
-/// <see cref="Efl.Io.IPositioner.GetPosition"/> will return the greatest of <see cref="Efl.Io.Buffer.PositionRead"/> and <see cref="Efl.Io.Buffer.PositionWrite"/>.</summary>
-/// <value>Position in buffer</value>
+    /// Note that <see cref="Efl.Io.IPositioner.Seek"/> or <see cref="Efl.Io.IPositioner.SetPosition"/> will affect this property and <see cref="Efl.Io.Buffer.PositionWrite"/>.
+    /// 
+    /// <see cref="Efl.Io.IPositioner.GetPosition"/> will return the greatest of <see cref="Efl.Io.Buffer.PositionRead"/> and <see cref="Efl.Io.Buffer.PositionWrite"/>.</summary>
+    /// <value>Position in buffer</value>
     public ulong PositionRead {
         get { return GetPositionRead(); }
         set { SetPositionRead(value); }
     }
     /// <summary>The position used by <see cref="Efl.Io.IWriter.Write"/>.
-/// Note that <see cref="Efl.Io.IPositioner.Seek"/> or <see cref="Efl.Io.IPositioner.SetPosition"/> will affect this property and <see cref="Efl.Io.Buffer.PositionRead"/>.
-/// 
-/// <see cref="Efl.Io.IPositioner.GetPosition"/> will return the greatest of <see cref="Efl.Io.Buffer.PositionRead"/> and <see cref="Efl.Io.Buffer.PositionWrite"/>.</summary>
-/// <value>Position in buffer</value>
+    /// Note that <see cref="Efl.Io.IPositioner.Seek"/> or <see cref="Efl.Io.IPositioner.SetPosition"/> will affect this property and <see cref="Efl.Io.Buffer.PositionRead"/>.
+    /// 
+    /// <see cref="Efl.Io.IPositioner.GetPosition"/> will return the greatest of <see cref="Efl.Io.Buffer.PositionRead"/> and <see cref="Efl.Io.Buffer.PositionWrite"/>.</summary>
+    /// <value>Position in buffer</value>
     public ulong PositionWrite {
         get { return GetPositionWrite(); }
         set { SetPositionWrite(value); }
     }
     /// <summary>Get a temporary access to buffer&apos;s internal memory.
-/// The memory pointed by slice may be changed by other methods of this class. The event &quot;reallocated&quot; will be called in those situations.</summary>
-/// <value>Slice of the current buffer, may be invalidated if <see cref="Efl.Io.IWriter.Write"/>, <see cref="Efl.Io.ICloser.Close"/> or <see cref="Efl.Io.ISizer.Resize"/> are called. It is the full slice, not a partial one starting at current position.</value>
+    /// The memory pointed by slice may be changed by other methods of this class. The event &quot;reallocated&quot; will be called in those situations.</summary>
+    /// <value>Slice of the current buffer, may be invalidated if <see cref="Efl.Io.IWriter.Write"/>, <see cref="Efl.Io.ICloser.Close"/> or <see cref="Efl.Io.ISizer.Resize"/> are called. It is the full slice, not a partial one starting at current position.</value>
     public Eina.Slice Slice {
         get { return GetSlice(); }
     }
     /// <summary>If true will notify object was closed.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if closed, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if closed, <c>false</c> otherwise</value>
     public bool Closed {
         get { return GetClosed(); }
     }
     /// <summary>If true will automatically close resources on exec() calls.
-/// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
+    /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
     public bool CloseOnExec {
         get { return GetCloseOnExec(); }
         set { SetCloseOnExec(value); }
     }
     /// <summary>If true will automatically close() on object invalidate.
-/// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
+    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
     public bool CloseOnInvalidate {
         get { return GetCloseOnInvalidate(); }
         set { SetCloseOnInvalidate(value); }
     }
     /// <summary>Position property</summary>
-/// <value>Position in file or buffer</value>
+    /// <value>Position in file or buffer</value>
     public ulong Position {
         get { return GetPosition(); }
         set { SetPosition(value); }
     }
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     public bool CanRead {
         get { return GetCanRead(); }
         set { SetCanRead(value); }
     }
     /// <summary>If <c>true</c> will notify end of stream.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     public bool Eos {
         get { return GetEos(); }
         set { SetEos(value); }
     }
     /// <summary>Size property</summary>
-/// <value>Object size</value>
+    /// <value>Object size</value>
     public ulong Size {
         get { return GetSize(); }
         set { SetSize(value); }
     }
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
     public bool CanWrite {
         get { return GetCanWrite(); }
         set { SetCanWrite(value); }
@@ -1291,7 +1255,7 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
             return Efl.Io.Buffer.efl_io_buffer_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate uint efl_io_buffer_limit_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1304,13 +1268,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static uint limit_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_buffer_limit_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetLimit();
+                    _ret_var = ((Buffer)ws.Target).GetLimit();
                 }
                 catch (Exception e)
                 {
@@ -1340,13 +1304,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void limit_set(System.IntPtr obj, System.IntPtr pd, uint size)
         {
             Eina.Log.Debug("function efl_io_buffer_limit_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).SetLimit(size);
+                    ((Buffer)ws.Target).SetLimit(size);
                 }
                 catch (Exception e)
                 {
@@ -1375,13 +1339,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static ulong position_read_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_buffer_position_read_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             ulong _ret_var = default(ulong);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetPositionRead();
+                    _ret_var = ((Buffer)ws.Target).GetPositionRead();
                 }
                 catch (Exception e)
                 {
@@ -1411,13 +1375,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool position_read_set(System.IntPtr obj, System.IntPtr pd, ulong position)
         {
             Eina.Log.Debug("function efl_io_buffer_position_read_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).SetPositionRead(position);
+                    _ret_var = ((Buffer)ws.Target).SetPositionRead(position);
                 }
                 catch (Exception e)
                 {
@@ -1447,13 +1411,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static ulong position_write_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_buffer_position_write_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             ulong _ret_var = default(ulong);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetPositionWrite();
+                    _ret_var = ((Buffer)ws.Target).GetPositionWrite();
                 }
                 catch (Exception e)
                 {
@@ -1483,13 +1447,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool position_write_set(System.IntPtr obj, System.IntPtr pd, ulong position)
         {
             Eina.Log.Debug("function efl_io_buffer_position_write_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).SetPositionWrite(position);
+                    _ret_var = ((Buffer)ws.Target).SetPositionWrite(position);
                 }
                 catch (Exception e)
                 {
@@ -1519,13 +1483,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static Eina.Slice slice_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_buffer_slice_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Slice _ret_var = default(Eina.Slice);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetSlice();
+                    _ret_var = ((Buffer)ws.Target).GetSlice();
                 }
                 catch (Exception e)
                 {
@@ -1555,13 +1519,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void preallocate(System.IntPtr obj, System.IntPtr pd, uint size)
         {
             Eina.Log.Debug("function efl_io_buffer_preallocate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).Preallocate(size);
+                    ((Buffer)ws.Target).Preallocate(size);
                 }
                 catch (Exception e)
                 {
@@ -1590,13 +1554,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void adopt_readonly(System.IntPtr obj, System.IntPtr pd, Eina.Slice slice)
         {
             Eina.Log.Debug("function efl_io_buffer_adopt_readonly was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).AdoptReadonly(slice);
+                    ((Buffer)ws.Target).AdoptReadonly(slice);
                 }
                 catch (Exception e)
                 {
@@ -1625,13 +1589,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void adopt_readwrite(System.IntPtr obj, System.IntPtr pd, Eina.RwSlice slice)
         {
             Eina.Log.Debug("function efl_io_buffer_adopt_readwrite was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).AdoptReadwrite(slice);
+                    ((Buffer)ws.Target).AdoptReadwrite(slice);
                 }
                 catch (Exception e)
                 {
@@ -1660,13 +1624,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static System.IntPtr binbuf_steal(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_buffer_binbuf_steal was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Binbuf _ret_var = default(Eina.Binbuf);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).BinbufSteal();
+                    _ret_var = ((Buffer)ws.Target).BinbufSteal();
                 }
                 catch (Exception e)
                 {
@@ -1696,13 +1660,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool closed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_closed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetClosed();
+                    _ret_var = ((Buffer)ws.Target).GetClosed();
                 }
                 catch (Exception e)
                 {
@@ -1732,13 +1696,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool close_on_exec_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_exec_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetCloseOnExec();
+                    _ret_var = ((Buffer)ws.Target).GetCloseOnExec();
                 }
                 catch (Exception e)
                 {
@@ -1768,13 +1732,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool close_on_exec_set(System.IntPtr obj, System.IntPtr pd, bool close_on_exec)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_exec_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).SetCloseOnExec(close_on_exec);
+                    _ret_var = ((Buffer)ws.Target).SetCloseOnExec(close_on_exec);
                 }
                 catch (Exception e)
                 {
@@ -1804,13 +1768,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool close_on_invalidate_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_invalidate_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetCloseOnInvalidate();
+                    _ret_var = ((Buffer)ws.Target).GetCloseOnInvalidate();
                 }
                 catch (Exception e)
                 {
@@ -1840,13 +1804,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void close_on_invalidate_set(System.IntPtr obj, System.IntPtr pd, bool close_on_invalidate)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_invalidate_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).SetCloseOnInvalidate(close_on_invalidate);
+                    ((Buffer)ws.Target).SetCloseOnInvalidate(close_on_invalidate);
                 }
                 catch (Exception e)
                 {
@@ -1875,13 +1839,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static Eina.Error close(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).Close();
+                    _ret_var = ((Buffer)ws.Target).Close();
                 }
                 catch (Exception e)
                 {
@@ -1911,13 +1875,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static ulong position_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_positioner_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             ulong _ret_var = default(ulong);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetPosition();
+                    _ret_var = ((Buffer)ws.Target).GetPosition();
                 }
                 catch (Exception e)
                 {
@@ -1947,13 +1911,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool position_set(System.IntPtr obj, System.IntPtr pd, ulong position)
         {
             Eina.Log.Debug("function efl_io_positioner_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).SetPosition(position);
+                    _ret_var = ((Buffer)ws.Target).SetPosition(position);
                 }
                 catch (Exception e)
                 {
@@ -1983,13 +1947,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static Eina.Error seek(System.IntPtr obj, System.IntPtr pd, long offset, Efl.Io.PositionerWhence whence)
         {
             Eina.Log.Debug("function efl_io_positioner_seek was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).Seek(offset, whence);
+                    _ret_var = ((Buffer)ws.Target).Seek(offset, whence);
                 }
                 catch (Exception e)
                 {
@@ -2019,13 +1983,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool can_read_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetCanRead();
+                    _ret_var = ((Buffer)ws.Target).GetCanRead();
                 }
                 catch (Exception e)
                 {
@@ -2055,13 +2019,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void can_read_set(System.IntPtr obj, System.IntPtr pd, bool can_read)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).SetCanRead(can_read);
+                    ((Buffer)ws.Target).SetCanRead(can_read);
                 }
                 catch (Exception e)
                 {
@@ -2090,13 +2054,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool eos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_eos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetEos();
+                    _ret_var = ((Buffer)ws.Target).GetEos();
                 }
                 catch (Exception e)
                 {
@@ -2126,13 +2090,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void eos_set(System.IntPtr obj, System.IntPtr pd, bool is_eos)
         {
             Eina.Log.Debug("function efl_io_reader_eos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).SetEos(is_eos);
+                    ((Buffer)ws.Target).SetEos(is_eos);
                 }
                 catch (Exception e)
                 {
@@ -2161,13 +2125,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static Eina.Error read(System.IntPtr obj, System.IntPtr pd, ref Eina.RwSlice rw_slice)
         {
             Eina.Log.Debug("function efl_io_reader_read was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).Read(ref rw_slice);
+                    _ret_var = ((Buffer)ws.Target).Read(ref rw_slice);
                 }
                 catch (Exception e)
                 {
@@ -2197,13 +2161,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static ulong size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_sizer_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             ulong _ret_var = default(ulong);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetSize();
+                    _ret_var = ((Buffer)ws.Target).GetSize();
                 }
                 catch (Exception e)
                 {
@@ -2233,13 +2197,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool size_set(System.IntPtr obj, System.IntPtr pd, ulong size)
         {
             Eina.Log.Debug("function efl_io_sizer_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).SetSize(size);
+                    _ret_var = ((Buffer)ws.Target).SetSize(size);
                 }
                 catch (Exception e)
                 {
@@ -2269,13 +2233,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static Eina.Error resize(System.IntPtr obj, System.IntPtr pd, ulong size)
         {
             Eina.Log.Debug("function efl_io_sizer_resize was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).Resize(size);
+                    _ret_var = ((Buffer)ws.Target).Resize(size);
                 }
                 catch (Exception e)
                 {
@@ -2305,13 +2269,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static bool can_write_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_writer_can_write_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).GetCanWrite();
+                    _ret_var = ((Buffer)ws.Target).GetCanWrite();
                 }
                 catch (Exception e)
                 {
@@ -2341,13 +2305,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static void can_write_set(System.IntPtr obj, System.IntPtr pd, bool can_write)
         {
             Eina.Log.Debug("function efl_io_writer_can_write_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Buffer)wrapper).SetCanWrite(can_write);
+                    ((Buffer)ws.Target).SetCanWrite(can_write);
                 }
                 catch (Exception e)
                 {
@@ -2376,13 +2340,13 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
         private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref Eina.Slice slice, ref Eina.Slice remaining)
         {
             Eina.Log.Debug("function efl_io_writer_write was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 remaining = default(Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Buffer)wrapper).Write(ref slice, ref remaining);
+                    _ret_var = ((Buffer)ws.Target).Write(ref slice, ref remaining);
                 }
                 catch (Exception e)
                 {
@@ -2401,7 +2365,7 @@ public class Buffer : Efl.Object, Efl.Eo.IWrapper,Efl.Io.ICloser,Efl.Io.IPositio
 
         private static efl_io_writer_write_delegate efl_io_writer_write_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

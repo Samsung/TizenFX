@@ -57,15 +57,15 @@ Eina.Error Read(ref Eina.RwSlice rw_slice);
     /// (Since EFL 1.22)</summary>
     event EventHandler EosEvt;
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     bool CanRead {
         get ;
         set ;
     }
     /// <summary>If <c>true</c> will notify end of stream.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     bool Eos {
         get ;
         set ;
@@ -81,13 +81,13 @@ public class IReaderCanReadChangedEvt_Args : EventArgs {
 /// 
 /// Calls to <see cref="Efl.Io.IReader.Read"/> may or may not block, that&apos;s not up to this interface to specify. The user can check based on <see cref="Efl.Io.IReader.Eos"/> property and signal if the stream reached an end, with event &quot;can_read,changed&quot; or property <see cref="Efl.Io.IReader.CanRead"/> to known whenever a read would have data to return.
 /// (Since EFL 1.22)</summary>
-sealed public class IReaderConcrete : 
-
-IReader
+sealed public class IReaderConcrete :
+    Efl.Eo.EoWrapper
+    , IReader
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -102,155 +102,12 @@ IReader
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
         efl_io_reader_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IReader"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IReaderConcrete(System.IntPtr raw)
+    private IReaderConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IReaderConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Notifies can_read property changed.
@@ -264,14 +121,13 @@ IReader
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -332,10 +188,9 @@ IReader
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -421,15 +276,15 @@ IReader
                         return _ret_var;
  }
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     public bool CanRead {
         get { return GetCanRead(); }
         set { SetCanRead(value); }
     }
     /// <summary>If <c>true</c> will notify end of stream.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     public bool Eos {
         get { return GetEos(); }
         set { SetEos(value); }
@@ -509,7 +364,7 @@ IReader
             return Efl.Io.IReaderConcrete.efl_io_reader_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_io_reader_can_read_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -522,13 +377,13 @@ IReader
         private static bool can_read_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IReader)wrapper).GetCanRead();
+                    _ret_var = ((IReader)ws.Target).GetCanRead();
                 }
                 catch (Exception e)
                 {
@@ -558,13 +413,13 @@ IReader
         private static void can_read_set(System.IntPtr obj, System.IntPtr pd, bool can_read)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IReader)wrapper).SetCanRead(can_read);
+                    ((IReader)ws.Target).SetCanRead(can_read);
                 }
                 catch (Exception e)
                 {
@@ -593,13 +448,13 @@ IReader
         private static bool eos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_eos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IReader)wrapper).GetEos();
+                    _ret_var = ((IReader)ws.Target).GetEos();
                 }
                 catch (Exception e)
                 {
@@ -629,13 +484,13 @@ IReader
         private static void eos_set(System.IntPtr obj, System.IntPtr pd, bool is_eos)
         {
             Eina.Log.Debug("function efl_io_reader_eos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IReader)wrapper).SetEos(is_eos);
+                    ((IReader)ws.Target).SetEos(is_eos);
                 }
                 catch (Exception e)
                 {
@@ -664,13 +519,13 @@ IReader
         private static Eina.Error read(System.IntPtr obj, System.IntPtr pd, ref Eina.RwSlice rw_slice)
         {
             Eina.Log.Debug("function efl_io_reader_read was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((IReader)wrapper).Read(ref rw_slice);
+                    _ret_var = ((IReader)ws.Target).Read(ref rw_slice);
                 }
                 catch (Exception e)
                 {
@@ -689,7 +544,7 @@ IReader
 
         private static efl_io_reader_read_delegate efl_io_reader_read_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

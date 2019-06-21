@@ -10,7 +10,7 @@ namespace Efl {
 /// <summary>No description supplied.
 /// (Since EFL 1.22)</summary>
 [Efl.Task.NativeMethods]
-public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
+public abstract class Task : Efl.LoopConsumer
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -43,7 +43,7 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Task(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class TaskRealized : Task
@@ -59,33 +59,6 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Task(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The priority of this task.
@@ -136,21 +109,25 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
          Efl.Task.NativeMethods.efl_task_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
          }
+    /// <summary>Async wrapper for <see cref="Run" />.</summary>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> RunAsync( System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = Run();
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
     /// <summary>The priority of this task.
-/// (Since EFL 1.22)</summary>
-/// <value>No description supplied.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>No description supplied.</value>
     public Efl.TaskPriority Priority {
         get { return GetPriority(); }
         set { SetPriority(value); }
     }
     /// <summary>The final exit code of this task.
-/// (Since EFL 1.22)</summary>
-/// <value>No description supplied.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>No description supplied.</value>
     public int ExitCode {
         get { return GetExitCode(); }
     }
@@ -255,7 +232,7 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
             return Efl.Task.efl_task_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.TaskPriority efl_task_priority_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -268,13 +245,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static Efl.TaskPriority priority_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_priority_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TaskPriority _ret_var = default(Efl.TaskPriority);
                 try
                 {
-                    _ret_var = ((Task)wrapper).GetPriority();
+                    _ret_var = ((Task)ws.Target).GetPriority();
                 }
                 catch (Exception e)
                 {
@@ -304,13 +281,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void priority_set(System.IntPtr obj, System.IntPtr pd, Efl.TaskPriority priority)
         {
             Eina.Log.Debug("function efl_task_priority_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Task)wrapper).SetPriority(priority);
+                    ((Task)ws.Target).SetPriority(priority);
                 }
                 catch (Exception e)
                 {
@@ -339,13 +316,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static int exit_code_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_exit_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Task)wrapper).GetExitCode();
+                    _ret_var = ((Task)ws.Target).GetExitCode();
                 }
                 catch (Exception e)
                 {
@@ -375,13 +352,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static Efl.TaskFlags flags_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_flags_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TaskFlags _ret_var = default(Efl.TaskFlags);
                 try
                 {
-                    _ret_var = ((Task)wrapper).GetFlags();
+                    _ret_var = ((Task)ws.Target).GetFlags();
                 }
                 catch (Exception e)
                 {
@@ -411,13 +388,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void flags_set(System.IntPtr obj, System.IntPtr pd, Efl.TaskFlags flags)
         {
             Eina.Log.Debug("function efl_task_flags_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Task)wrapper).SetFlags(flags);
+                    ((Task)ws.Target).SetFlags(flags);
                 }
                 catch (Exception e)
                 {
@@ -446,13 +423,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static  Eina.Future run(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_run was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((Task)wrapper).Run();
+                    _ret_var = ((Task)ws.Target).Run();
                 }
                 catch (Exception e)
                 {
@@ -482,13 +459,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void end(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Task)wrapper).End();
+                    ((Task)ws.Target).End();
                 }
                 catch (Exception e)
                 {
@@ -506,7 +483,7 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
 
         private static efl_task_end_delegate efl_task_end_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
