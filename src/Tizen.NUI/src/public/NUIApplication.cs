@@ -205,8 +205,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The default Window.</returns>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window GetDefaultWindow()
+        public static Window GetDefaultWindow()
         {
             return Window.Instance;
         }
