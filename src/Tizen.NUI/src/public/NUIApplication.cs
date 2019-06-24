@@ -206,7 +206,7 @@ namespace Tizen.NUI
         /// <returns>The default Window.</returns>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window GetDefaultWindow()
+        public static Window GetDefaultWindow()
         {
             return Window.Instance;
         }
