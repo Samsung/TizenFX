@@ -1294,7 +1294,20 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool layoutingDisabled{get; set;} = true;
 
-        internal readonly MergedStyle _mergedStyle;
+        private MergedStyle mergedStyle = null;
+        internal MergedStyle _mergedStyle
+        {
+            get
+            {
+                if (null == mergedStyle)
+                {
+                    mergedStyle = new MergedStyle(GetType(), this);
+                }
+
+                return mergedStyle;
+            }
+        }
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private LayoutItem _layout; // Exclusive layout assigned to this View.
         private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
@@ -1358,7 +1371,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 PositionUsesPivotPoint = false;
             }
-            _mergedStyle = new MergedStyle(GetType(), this);
 
             _onWindowSendEventCallback = SendViewAddedEventToWindow;
             this.OnWindowSignal().Connect(_onWindowSendEventCallback);
