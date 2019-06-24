@@ -3537,42 +3537,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Child property to specify desired width
-        /// </summary>
-        internal int LayoutWidthSpecificationFixed
-        {
-            get
-            {
-                return _widthPolicy;
-            }
-            set
-            {
-                _widthPolicy = value;
-                _measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
-                Size2D.Width = value;
-                _layout?.RequestLayout();
-            }
-        }
-
-        /// <summary>
-        /// Child property to specify desired height
-        /// </summary>
-        internal int LayoutHeightSpecificationFixed
-        {
-            get
-            {
-                return _heightPolicy;
-            }
-            set
-            {
-                _heightPolicy = value;
-                _measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
-                Size2D.Height = value;
-                _layout?.RequestLayout();
-            }
-        }
-
-        /// <summary>
         /// Child property to specify desired width, use MatchParent/WrapContent)
         /// </summary>
         internal ChildLayoutData LayoutWidthSpecification
