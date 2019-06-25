@@ -1806,39 +1806,51 @@ namespace Tizen.NUI
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
 
         /// <summary>
-        /// The playing range the AnimatedVectorImageVisual will use.
-        /// Animation will play between the values specified. Both values should be between 0-1,
-        /// otherwise they will be ignored. If the range provided is not in proper order ( minimum,maximum ), it will be reordered.
-        /// Type Property::VECTOR2, between 0 and 1
-        /// Default 0 and 1
+        /// @brief The playing range the AnimatedVectorImageVisual will use.
+        /// Animation will play between the values specified.The array can only have two values, and more will be ignored.
+        /// Both values should be between 0 and the total frame number, otherwise they will be ignored.
+        /// If the range provided is not in proper order (minimum, maximum), it will be reordered.
+        /// @details Name "playRange", Type Property::ARRAY of Property::INTEGER
+        /// @note Default 0 and the total frame number.
         /// </summary>
         /// <remarks>
-        /// Inhouse API
+        /// Hidden API (Inhouse API)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int PlayRange = OrientationCorrection + 4;
+        public static readonly int PlayRange = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 4;
 
         /// <summary>
-        /// The playing state the AnimatedVectorImageVisual will use.
-        /// Type PlayState (Property::INTEGER)
-        /// This property is read-only.
+        /// @brief The playing state the AnimatedVectorImageVisual will use.
+        /// @details Name "playState", type PlayState (Property::INTEGER)
+        /// @note This property is read-only.
         /// </summary>
         /// <remarks>
-        /// Inhouse API
+        /// Hidden API (Inhouse API)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int PlayState = OrientationCorrection + 5;
+        public static readonly int PlayState = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 5;
 
         /// <summary>
-        /// The animation progress the AnimatedVectorImageVisual will use.
-        /// Type Property::FLOAT, between [0, 1] or between the play range if specified
-        /// This property is read-only.
+        /// @brief The current frame number the AnimatedVectorImageVisual will use.
+        /// @details Name "currentFrameNumber", Type Property::INTEGER, between[0, the maximum frame number] or between the play range if specified
+        /// @note This property is read-only.
         /// </summary>
         /// <remarks>
         /// Inhouse API
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int CurrentProgress = OrientationCorrection + 6;
+        public static readonly int CurrentFrameNumber = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 6;
+
+        /// <summary>
+        /// @brief The total frame number the AnimatedVectorImageVisual will use.
+        /// @details Name "totalFrameNumber", Type Property::INTEGER.
+        /// @note This property is read-only.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int TotalFrameNumber = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 7;
     }
 
     /// <summary>
