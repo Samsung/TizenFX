@@ -354,7 +354,6 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
-            Device.PlatformServices = new TizenPlatformServices();
         }
     }
 

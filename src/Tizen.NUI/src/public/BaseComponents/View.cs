@@ -90,7 +90,6 @@ namespace Tizen.NUI.BaseComponents
     /// View is the base class for all views.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("Children")]
     public class View : Container, IResourcesProvider
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -3482,7 +3481,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal Style Style
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Style Style
         {
             get
             {

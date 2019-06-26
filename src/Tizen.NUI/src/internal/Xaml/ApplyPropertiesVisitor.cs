@@ -449,7 +449,6 @@ namespace Tizen.NUI.Xaml
             var elementType = element.GetType();
             var binding = value.ConvertTo(typeof(BindingBase),pinfoRetriever:null,serviceProvider:null) as BindingBase;
             var bindable = element as BindableObject;
-            var nativeBindingService = DependencyService.Get<INativeBindingService>();
 
             if (binding == null)
                 return false;
@@ -458,12 +457,6 @@ namespace Tizen.NUI.Xaml
                 bindable.SetBinding(property, binding);
                 return true;
             }
-
-            if (nativeBindingService != null && property != null && nativeBindingService.TrySetBinding(element, property, binding))
-                return true;
-
-            if (nativeBindingService != null && nativeBindingService.TrySetBinding(element, localName, binding))
-                return true;
 
             if (property != null)
                 exception = new XamlParseException($"{elementType.Name} is not a BindableObject or does not support native bindings", lineInfo);
@@ -477,7 +470,6 @@ namespace Tizen.NUI.Xaml
 
             var elementType = element.GetType();
             var bindable = element as BindableObject;
-            var nativeBindingService = DependencyService.Get<INativeBindingService>();
 
             if (property == null)
                 return false;
@@ -508,9 +500,6 @@ namespace Tizen.NUI.Xaml
                 // This might be a collection; see if we can add to it
                 return TryAddValue(bindable, property, value, serviceProvider);
             }
-
-            if (nativeBindingService != null && nativeBindingService.TrySetValue(element, property, convertedValue))
-                return true;
 
             exception = new XamlParseException($"{elementType.Name} is not a BindableObject or does not support setting native BindableProperties", lineInfo);
             return false;
