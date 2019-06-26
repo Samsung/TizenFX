@@ -1275,7 +1275,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StyleProperty = BindableProperty.Create("Style", typeof(XamlStyle), typeof(View), default(XamlStyle), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (XamlStyle)newvalue);
+        public static readonly BindableProperty StyleProperty = BindableProperty.Create("XamlStyle", typeof(XamlStyle), typeof(View), default(XamlStyle), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (XamlStyle)newvalue);
 
         /// <summary>
         /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
@@ -3484,7 +3484,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public XamlStyle Style
+        public XamlStyle XamlStyle
         {
             get
             {
