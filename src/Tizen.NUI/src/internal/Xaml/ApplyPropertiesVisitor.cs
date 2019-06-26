@@ -623,8 +623,8 @@ namespace Tizen.NUI.Xaml
 
             if (xKey != null)
                 resourceDictionary.Add(xKey, value);
-            else if (value is Tizen.NUI.Binding.Style)
-                resourceDictionary.Add((Tizen.NUI.Binding.Style)value);
+            else if (value is Tizen.NUI.Binding.XamlStyle)
+                resourceDictionary.Add((Tizen.NUI.Binding.XamlStyle)value);
             else if (value is ResourceDictionary)
                 resourceDictionary.Add((ResourceDictionary)value);
             else if (value is StyleSheets.StyleSheet)

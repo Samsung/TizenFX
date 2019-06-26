@@ -19,10 +19,10 @@ namespace Tizen.NUI.Binding
                         foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
                             if (!resources.ContainsKey(res.Key))
                                 resources.Add(res.Key, res.Value);
-                            else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
+                            else if (res.Key.StartsWith(XamlStyle.StyleClassPrefix, StringComparison.Ordinal))
                             {
-                                var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                                mergedClassStyles.AddRange(res.Value as List<Style>);
+                                var mergedClassStyles = new List<XamlStyle>(resources[res.Key] as List<XamlStyle>);
+                                mergedClassStyles.AddRange(res.Value as List<XamlStyle>);
                                 resources[res.Key] = mergedClassStyles;
                             }
                     }
@@ -34,10 +34,10 @@ namespace Tizen.NUI.Binding
                     foreach (KeyValuePair<string, object> res in app.SystemResources)
                         if (!resources.ContainsKey(res.Key))
                             resources.Add(res.Key, res.Value);
-                        else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
+                        else if (res.Key.StartsWith(XamlStyle.StyleClassPrefix, StringComparison.Ordinal))
                         {
-                            var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                            mergedClassStyles.AddRange(res.Value as List<Style>);
+                            var mergedClassStyles = new List<XamlStyle>(resources[res.Key] as List<XamlStyle>);
+                            mergedClassStyles.AddRange(res.Value as List<XamlStyle>);
                             resources[res.Key] = mergedClassStyles;
                         }
                 }

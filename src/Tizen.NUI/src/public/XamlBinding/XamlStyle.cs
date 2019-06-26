@@ -10,16 +10,16 @@ namespace Tizen.NUI.Binding
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ContentProperty("Setters")]
-    public sealed class Style : IStyle
+    public sealed class XamlStyle : IStyle
     {
         internal const string StyleClassPrefix = "Tizen.NUI.Binding.StyleClass.";
 
-        readonly BindableProperty _basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(Style), typeof(Style), default(Style),
+        readonly BindableProperty _basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(XamlStyle), typeof(XamlStyle), default(XamlStyle),
             propertyChanged: OnBasedOnResourceChanged);
 
         readonly List<WeakReference<BindableObject>> _targets = new List<WeakReference<BindableObject>>(4);
 
-        Style _basedOnStyle;
+        XamlStyle _basedOnStyle;
 
         string _baseResourceKey;
 
@@ -30,7 +30,7 @@ namespace Tizen.NUI.Binding
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Style([TypeConverter(typeof(TypeTypeConverter))] [Parameter("TargetType")] Type targetType)
+        public XamlStyle([TypeConverter(typeof(TypeTypeConverter))] [Parameter("TargetType")] Type targetType)
         {
             if (targetType == null)
                 throw new ArgumentNullException("targetType");
@@ -47,7 +47,7 @@ namespace Tizen.NUI.Binding
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Style BasedOn
+        public XamlStyle BasedOn
         {
             get { return _basedOnStyle; }
             set
@@ -56,7 +56,7 @@ namespace Tizen.NUI.Binding
                     return;
                 if (!ValidateBasedOn(value))
                     throw new ArgumentException("BasedOn.TargetType is not compatible with TargetType");
-                Style oldValue = _basedOnStyle;
+                XamlStyle oldValue = _basedOnStyle;
                 _basedOnStyle = value;
                 BasedOnChanged(oldValue, value);
                 if (value != null)
@@ -153,7 +153,7 @@ namespace Tizen.NUI.Binding
             return false;
         }
 
-        void ApplyCore(BindableObject bindable, Style basedOn)
+        void ApplyCore(BindableObject bindable, XamlStyle basedOn)
         {
             if (basedOn != null)
                 ((IStyle)basedOn).Apply(bindable);
@@ -164,7 +164,7 @@ namespace Tizen.NUI.Binding
             ((AttachedCollection<TriggerBase>)Triggers).AttachTo(bindable);
         }
 
-        void BasedOnChanged(Style oldValue, Style newValue)
+        void BasedOnChanged(XamlStyle oldValue, XamlStyle newValue)
         {
             foreach (WeakReference<BindableObject> bindableRef in _targets)
             {
@@ -177,9 +177,9 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        Style GetBasedOnResource(BindableObject bindable)
+        XamlStyle GetBasedOnResource(BindableObject bindable)
         {
-            return (Style)bindable.GetValue(_basedOnResourceProperty);
+            return (XamlStyle)bindable.GetValue(_basedOnResourceProperty);
         }
 
         static void OnBasedOnResourceChanged(BindableObject bindable, object oldValue, object newValue)
@@ -191,7 +191,7 @@ namespace Tizen.NUI.Binding
             // style.ApplyCore(bindable, (Style)newValue);
         }
 
-        void UnApplyCore(BindableObject bindable, Style basedOn)
+        void UnApplyCore(BindableObject bindable, XamlStyle basedOn)
         {
             ((AttachedCollection<TriggerBase>)Triggers).DetachFrom(bindable);
             ((AttachedCollection<Behavior>)Behaviors).DetachFrom(bindable);
@@ -202,7 +202,7 @@ namespace Tizen.NUI.Binding
                 ((IStyle)basedOn).UnApply(bindable);
         }
 
-        bool ValidateBasedOn(Style value)
+        bool ValidateBasedOn(XamlStyle value)
         {
             if (value == null)
                 return true;

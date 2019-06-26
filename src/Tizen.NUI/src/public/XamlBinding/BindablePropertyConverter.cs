@@ -48,7 +48,7 @@ namespace Tizen.NUI.Binding
                 object parent = parentValuesProvider.ParentObjects.Skip(1).FirstOrDefault();
                 if (parentValuesProvider.TargetObject is Setter)
                 {
-                    var style = parent as Style;
+                    var style = parent as XamlStyle;
                     var triggerBase = parent as TriggerBase;
                     var visualState = parent as VisualState;
                     if (style != null)
@@ -145,9 +145,9 @@ namespace Tizen.NUI.Binding
             }
 
             // These must be part of a Style; verify that 
-            if (!(parents[5] is Style style))
+            if (!(parents[5] is XamlStyle style))
             {
-                throw new XamlParseException($"Expected {nameof(Style)} but found {parents[5]}.", lineInfo);
+                throw new XamlParseException($"Expected {nameof(XamlStyle)} but found {parents[5]}.", lineInfo);
             }
 
             return style.TargetType;

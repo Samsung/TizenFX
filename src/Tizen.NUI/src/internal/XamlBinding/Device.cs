@@ -142,17 +142,17 @@ namespace Tizen.NUI.Binding
 
             public static readonly string CaptionStyleKey = "CaptionStyle";
 
-            public static readonly Style TitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = TitleStyleKey };
+            public static readonly XamlStyle TitleStyle = new XamlStyle(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = TitleStyleKey };
 
-            public static readonly Style SubtitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = SubtitleStyleKey };
+            public static readonly XamlStyle SubtitleStyle = new XamlStyle(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = SubtitleStyleKey };
 
-            public static readonly Style BodyStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = BodyStyleKey };
+            public static readonly XamlStyle BodyStyle = new XamlStyle(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = BodyStyleKey };
 
-            public static readonly Style ListItemTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemTextStyleKey };
+            public static readonly XamlStyle ListItemTextStyle = new XamlStyle(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemTextStyleKey };
 
-            public static readonly Style ListItemDetailTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemDetailTextStyleKey };
+            public static readonly XamlStyle ListItemDetailTextStyle = new XamlStyle(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemDetailTextStyleKey };
 
-            public static readonly Style CaptionStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = CaptionStyleKey };
+            public static readonly XamlStyle CaptionStyle = new XamlStyle(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = CaptionStyleKey };
         }
     }
 }

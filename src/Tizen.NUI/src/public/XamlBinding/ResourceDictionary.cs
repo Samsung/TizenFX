@@ -326,18 +326,18 @@ namespace Tizen.NUI.Binding
             remove { ValuesChanged -= value; }
         }
 
-        internal void Add(Style style)
+        internal void Add(XamlStyle style)
         {
             if (string.IsNullOrEmpty(style.Class))
                 Add(style.TargetType.FullName, style);
             else
             {
-                IList<Style> classes;
+                IList<XamlStyle> classes;
                 object outclasses;
-                if (!TryGetValue(Style.StyleClassPrefix + style.Class, out outclasses) || (classes = outclasses as IList<Style>) == null)
-                    classes = new List<Style>();
+                if (!TryGetValue(XamlStyle.StyleClassPrefix + style.Class, out outclasses) || (classes = outclasses as IList<XamlStyle>) == null)
+                    classes = new List<XamlStyle>();
                 classes.Add(style);
-                this[Style.StyleClassPrefix + style.Class] = classes;
+                this[XamlStyle.StyleClassPrefix + style.Class] = classes;
             }
         }
 
