@@ -75,6 +75,7 @@ namespace Tizen.NUI.Xaml
             return XamlLoader.LoadObject<T>(path);
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TXaml LoadFromXamlFile<TXaml>(this TXaml view, string nameOfXamlFile)
         {
