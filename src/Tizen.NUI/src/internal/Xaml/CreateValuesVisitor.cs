@@ -225,7 +225,7 @@ namespace Tizen.NUI.Xaml
             if (!node.Properties.ContainsKey(XmlName.xFactoryMethod))
             {
                 //non-default ctor
-                object ret = Activator.CreateInstance(nodeType, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, arguments, CultureInfo.CurrentCulture); ;
+                object ret = Activator.CreateInstance(nodeType, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, arguments, CultureInfo.CurrentCulture);
                 if (ret is Element)
                 {
                     if (null != Application.Current)

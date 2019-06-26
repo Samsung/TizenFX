@@ -39,13 +39,16 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml.Internals
 {
-    [Obsolete("Replaced by ResourceLoader")]
-    internal static class XamlLoader
+    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete ("Replaced by ResourceLoader")]
+    public static class XamlLoader
     {
         static Func<Type, string> xamlFileProvider;
 
-        public static Func<Type, string> XamlFileProvider
-        {
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Func<Type, string> XamlFileProvider {
             get { return xamlFileProvider; }
             internal set
             {

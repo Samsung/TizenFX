@@ -84,7 +84,9 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        internal override bool IsCreateByXaml
+        /// Only used by the IL of xaml, will never changed to not hidden.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsCreateByXaml
         {
             get
             {
