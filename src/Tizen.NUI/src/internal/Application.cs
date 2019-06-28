@@ -314,6 +314,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int PanGestureId { get; set; }
 
+        private List<Window> WindowList = new List<Window>();
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
@@ -1210,6 +1211,26 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void AddWindowList(Window window)
+        {
+            if(!WindowList.Contains(window))
+            {
+                WindowList.Add(window);
+            }
+        }
+
+        internal void RemoveWindowList(Window window)
+        {
+            if(WindowList.Contains(window))
+            {
+                WindowList.Remove(window);
+            }
+        }
+
+        internal List<Window> GetWindowList()
+        {
+            return WindowList;
+        }
 
         internal ApplicationSignal InitSignal()
         {

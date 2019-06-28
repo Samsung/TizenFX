@@ -78,6 +78,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window(Rectangle windowPosition, string name, bool isTransparent) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
         {
+            Application.Instance.AddWindowList(this);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -92,6 +93,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window(Rectangle windowPosition, string name) : this(Interop.Window.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
         {
+            Application.Instance.AddWindowList(this);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -108,6 +110,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(Interop.Window.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
         {
+            Application.Instance.AddWindowList(this);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -123,6 +126,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window(Rectangle windowPosition, string name, string className) : this(Interop.Window.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
         {
+            Application.Instance.AddWindowList(this);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1505,6 +1509,8 @@ namespace Tizen.NUI
             {
                 return;
             }
+
+            Application.Instance.RemoveWindowList(this);
 
             if (type == DisposeTypes.Explicit)
             {
