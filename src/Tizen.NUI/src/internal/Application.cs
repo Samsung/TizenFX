@@ -453,6 +453,7 @@ namespace Tizen.NUI
             OnResourcesChanged(changedResources);
         }
 
+        private List<Window> WindowList = new List<Window>();
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
@@ -1354,18 +1355,24 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static List<Window> GetWindowList()
+        internal void AddWindowList(Window window)
         {
-            uint ListSize = Interop.Application.Application_GetWindowsListSize();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            List<Window> WindowList = new List<Window>();
-            for( uint i = 0; i < ListSize; ++i )
+            if(!WindowList.Contains(window))
             {
-                Window currWin = new Window(Interop.Application.Application_GetWindowsFromList(i), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                WindowList.Add(currWin);
+                WindowList.Add(window);
             }
+        }
+
+        internal void RemoveWindowList(Window window)
+        {
+            if(WindowList.Contains(window))
+            {
+                WindowList.Remove(window);
+            }
+        }
+
+        internal List<Window> GetWindowList()
+        {
             return WindowList;
         }
 
