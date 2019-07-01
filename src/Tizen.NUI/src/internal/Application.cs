@@ -1354,6 +1354,26 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void AddWindowList(Window window)
+        {
+            if(!WindowList.Contains(window))
+            {
+                WindowList.Add(window);
+            }
+        }
+
+        internal void RemoveWindowList(Window window)
+        {
+            if(WindowList.Contains(window))
+            {
+                WindowList.Remove(window);
+            }
+        }
+
+        internal List<Window> GetWindowList()
+        {
+            return WindowList;
+        }
 
         internal ApplicationSignal InitSignal()
         {
