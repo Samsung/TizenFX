@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using System.Linq;
 
@@ -46,13 +47,17 @@ namespace Tizen.NUI
             _children = new List<LayoutItem>();
         }
 
-        /// <summary>
+          /// <summary>
         /// From ILayoutParent.<br />
         /// </summary>
         public virtual void Add(LayoutItem childLayout)
         {
             _children.Add(childLayout);
             childLayout.SetParent(this);
+            // Child added to use a Add transition.
+            childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Add;
+            // Child's parent sets all other children not being added to a ChangeOnAdd transition.
+            SetConditionsForAnimationOnLayoutGroup(TransitionCondition.ChangeOnAdd);
             OnChildAdd(childLayout);
             RequestLayout();
         }
@@ -64,6 +69,7 @@ namespace Tizen.NUI
         {
             foreach( LayoutItem childLayout in _children )
             {
+                childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Remove;
                 childLayout.Owner = null;
             }
             _children.Clear();
@@ -76,17 +82,29 @@ namespace Tizen.NUI
         /// </summary>
         public virtual void Remove(LayoutItem layoutItem)
         {
+            bool childRemoved = false;
             foreach( LayoutItem childLayout in _children.ToList() )
             {
                 if( childLayout == layoutItem )
                 {
-                    childLayout.SetParent(null);
+                    Window.Instance.LayoutController.AddToRemovalStack(childLayout);
                     _children.Remove(childLayout);
+                    ConditionForAnimation = ConditionForAnimation | TransitionCondition.Remove;
+                    // Add LayoutItem to the transition stack so can animate it out.
+                    Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0,0,0,0));
+
+                    childRemoved = true;
                 }
+            }
+            if (childRemoved)
+            {
+                // If child removed then set all siblings not being added to a ChangeOnRemove transition.
+                SetConditionsForAnimationOnLayoutGroup(TransitionCondition.ChangeOnRemove);
             }
             RequestLayout();
         }
 
+        // Attaches to View ChildAdded signal so called when a View is added to a view.
         private void AddChildToLayoutGroup(View child)
         {
             // Only give children a layout if their parent is an explicit container or a pure View.
@@ -122,18 +140,64 @@ namespace Tizen.NUI
                     Add(child.Layout);
                 }
             }
+            // Parent transitions are not attached to children.
         }
 
         /// <summary>
         /// If the child has a layout then it is removed from the parent layout.
         /// </summary>
-        /// <param name="child">Child to remove.true</param>
-        private void RemoveChildFromLayoutGroup(View child)
+        /// <param name="child">Child View to remove.</param>
+        internal void RemoveChildFromLayoutGroup(View child)
         {
-            if(child.Layout != null)
+            Debug.Assert(child.Layout !=null);
+            Remove(child.Layout);
+        }
+
+        /// <summary>
+        /// Set all children in a LayoutGroup to the supplied condition.
+        /// Children with Add or Remove conditions should not be changed.
+        /// </summary>
+        private void SetConditionsForAnimationOnLayoutGroup( TransitionCondition conditionToSet)
+        {
+            foreach( LayoutItem childLayout in _children )
             {
-                Remove(child.Layout);
+                switch( conditionToSet )
+                {
+                case TransitionCondition.ChangeOnAdd :
+                {
+                    // If other children also being added (TransitionCondition.Add) then do not change their
+                    // conditions, Continue to use their Add transitions.
+                    if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Add))
+                    {
+                        break;  // Child being Added so don't update it's condition
+                    }
+                    else
+                    {
+                        // Set siblings for the child being added to use the ChangeOnAdd transition.
+                        childLayout.ConditionForAnimation = TransitionCondition.ChangeOnAdd;
+                    }
+                    break;
+                }
+                case TransitionCondition.ChangeOnRemove :
+                {
+                    if (childLayout.ConditionForAnimation.HasFlag(TransitionCondition.Remove))
+                    {
+                        break; // Child being Removed so don't update it's condition
+                    }
+                    else
+                    {
+                        childLayout.ConditionForAnimation = TransitionCondition.ChangeOnRemove;
+                    }
+                    break;
+                }
+                case TransitionCondition.LayoutChanged :
+                {
+                    childLayout.ConditionForAnimation = TransitionCondition.LayoutChanged;
+                    break;
+                }
+                }
             }
+
         }
 
         /// <summary>
@@ -345,9 +409,10 @@ namespace Tizen.NUI
                 AddChildToLayoutGroup(view);
             }
 
-            // Layout attached to owner so connect to ChildAdded and ChildRemoved signals.
+            // Connect to owner ChildAdded signal.
             Owner.ChildAdded += OnChildAddedToOwner;
-            Owner.ChildRemoved += OnChildRemovedFromOwner;
+
+            // Removing Child from the owners View will directly call the LayoutGroup removal API.
         }
 
         // Virtual Methods that can be overridden by derived classes.

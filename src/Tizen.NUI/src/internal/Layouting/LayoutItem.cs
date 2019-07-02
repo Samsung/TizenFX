@@ -44,19 +44,22 @@ namespace Tizen.NUI
 
         private ILayoutParent Parent;
 
-        private LayoutLength _left;
-        private LayoutLength _right;
-        private LayoutLength _top;
-        private LayoutLength _bottom;
-        private LayoutData _layoutData;
+        LayoutData _layoutPositionData;
 
         private Extents _padding;
         private Extents _margin;
+
+        public TransitionCondition ConditionForAnimation{get; set;}
 
         /// <summary>
         /// [Draft] The View that this Layout has been assigned to.
         /// </summary>
         public View Owner{get; set;}  // Should not keep a View alive.
+
+        /// <summary>
+        /// [Draft] Is this Layout set to animate its content.
+        /// </summary>
+        public bool Animate{get; set;}
 
         /// <summary>
         /// [Draft] Margin for this LayoutItem
@@ -137,11 +140,7 @@ namespace Tizen.NUI
 
         private void Initialize()
         {
-            _layoutData = new LayoutData();
-            _left = new LayoutLength(0);
-            _top = new LayoutLength(0);
-            _right = new LayoutLength(0);
-            _bottom = new LayoutLength(0);
+            _layoutPositionData = new LayoutData(this,TransitionCondition.Unspecified,0,0,0,0);
             _padding = new Extents(0,0,0,0);
             _margin = new Extents(0,0,0,0);
         }
@@ -166,6 +165,12 @@ namespace Tizen.NUI
             // Add layout to parent layout if a layout container
             View parent = Owner.GetParent() as View;
             (parent?.Layout as LayoutGroup)?.Add( this );
+
+            // If Add or ChangeOnAdd then do not update condition
+            if (ConditionForAnimation.HasFlag(TransitionCondition.Unspecified))
+            {
+                ConditionForAnimation = TransitionCondition.LayoutChanged;
+            }
         }
 
         /// <summary>
@@ -215,7 +220,10 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            bool changed = SetFrame(left, top, right, bottom);
+            bool changed = SetFrame(left.AsRoundedValue(),
+                                    top.AsRoundedValue(),
+                                    right.AsRoundedValue(),
+                                    bottom.AsRoundedValue());
 
             // Check if Measure needed before Layouting
             if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
@@ -489,30 +497,37 @@ namespace Tizen.NUI
         {
         }
 
-        private bool SetFrame(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        private bool SetFrame(float left, float top, float right, float bottom)
         {
             bool changed = false;
 
-            if( _left != left || _right != right || _top != top || _bottom != bottom  )
+            if ( _layoutPositionData.Left != left ||
+                 _layoutPositionData.Right != right ||
+                 _layoutPositionData.Top != top ||
+                 _layoutPositionData.Bottom != bottom  )
             {
                 changed = true;
+
+                float oldWidth = _layoutPositionData.Right - _layoutPositionData.Left;
+                float oldHeight = _layoutPositionData.Bottom - _layoutPositionData.Top;
+                float newWidth = right - left;
+                float newHeight = bottom - top;
+                bool sizeChanged = ( newWidth != oldWidth ) || ( newHeight != oldHeight );
+
+                // Set condition to layout changed as currently unspecified. Add, Remove would have specified a condition.
+                if (ConditionForAnimation.HasFlag(TransitionCondition.Unspecified))
+                {
+                    ConditionForAnimation = TransitionCondition.LayoutChanged;
+                }
+
+                // Store new layout position data
+                _layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
+
+                Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+
+                // Reset condition for animation ready for next transition when required.
+                ConditionForAnimation = TransitionCondition.Unspecified;
             }
-
-            LayoutLength oldWidth = _right - _left;
-            LayoutLength oldHeight = _bottom - _top;
-            LayoutLength newWidth = right - left;
-            LayoutLength newHeight = bottom - top;
-            bool sizeChanged = ( newWidth != oldWidth ) || ( newHeight != oldHeight );
-
-            _left = left;
-            _top = top;
-            _right = right;
-            _bottom = bottom;
-
-            // Set actual positions of View.
-            Owner.SetX(_left.AsRoundedValue());
-            Owner.SetY(_top.AsRoundedValue());
-            Owner.SetSize((int)newWidth.AsRoundedValue(), (int)newHeight.AsRoundedValue());
 
             return changed;
         }

@@ -1277,6 +1277,9 @@ namespace Tizen.NUI.BaseComponents
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private LayoutItem _layout; // Exclusive layout assigned to this View.
+
+        // List of transitions paired with the condition that uses the transition.
+        private Dictionary<TransitionCondition, TransitionList> _layoutTransitions;
         private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int _heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private float _weight = 0.0f; // Weighting of child View in a Layout
@@ -3409,6 +3412,34 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        ///<summary>
+        /// Gets the List of transitions for this View.
+        ///</summary>
+        public Dictionary<TransitionCondition, TransitionList> LayoutTransitions
+        {
+            get
+            {
+                if (_layoutTransitions == null)
+                {
+                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                }
+                return _layoutTransitions;
+            }
+        }
+
+        internal LayoutTransition LayoutTransition
+        {
+            set
+            {
+                if (_layoutTransitions == null)
+                {
+                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                }
+                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions,value.Condition,value, true);
+
+                AttachTransitionsToChildren(value);
+            }
+        }
 
         /// <summary>
         /// [Obsolete("Please do not use! this will be deprecated")]
@@ -3520,8 +3551,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Set the layout on this View. Replaces any existing Layout.
         /// </summary>
-        /// <remarks>
-        /// </remarks>
         internal LayoutItem Layout
         {
             get
@@ -3641,6 +3670,17 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return _measureSpecificationHeight;
+            }
+        }
+
+        internal void AttachTransitionsToChildren(LayoutTransition transition)
+        {
+            // Iterate children, adding the transition unless a transition
+            // for the same condition and property has already been
+            // explicitly added.
+            foreach (View view in Children)
+            {
+                LayoutTransitionsHelper.AddTransitionForCondition(view.LayoutTransitions,transition.Condition, transition, false);
             }
         }
 
@@ -3926,23 +3966,22 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
+            if (!child || child.GetParent()==null) // Early out if child null.
+                return;
+
             bool hasLayout = (_layout != null);
-            Log.Info("NUI","Removing View:" + child.Name + "layout[" + hasLayout.ToString() +"]\n");
+            Log.Info("NUI","Removing View:" + child.Name + " layout[" + hasLayout.ToString() +"]\n");
 
-            Interop.Actor.Actor_Remove(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            Children.Remove(child);
-            child.InternalParent = null;
-
-            if (ChildRemoved != null)
+            // If View has a layout then do a deferred child removal
+            // Actual child removal is performed by the layouting system so
+            // transitions can be completed.
+            if (hasLayout)
             {
-                ChildRemovedEventArgs e = new ChildRemovedEventArgs
-                {
-                    Removed = child
-                };
-                ChildRemoved(this, e);
+                (_layout as LayoutGroup)?.RemoveChildFromLayoutGroup( child );
+            }
+            else
+            {
+                RemoveChild(child);
             }
         }
 
@@ -5133,6 +5172,26 @@ namespace Tizen.NUI.BaseComponents
         internal IntPtr GetPtrfromView()
         {
             return (IntPtr)swigCPtr;
+        }
+
+        internal void RemoveChild(View child)
+        {
+            // Do actual child removal
+            Interop.Actor.Actor_Remove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Remove(child);
+            child.InternalParent = null;
+
+            if (ChildRemoved != null)
+            {
+                ChildRemovedEventArgs e = new ChildRemovedEventArgs
+                {
+                    Removed = child
+                };
+                ChildRemoved(this, e);
+            }
         }
 
         /// <summary>
