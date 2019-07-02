@@ -87,7 +87,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -96,7 +96,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -104,7 +104,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     public void OnImagePreloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -139,7 +139,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -148,7 +148,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -156,7 +156,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     public void OnImageResizeEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -191,7 +191,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -200,7 +200,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -208,7 +208,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     public void OnImageUnloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -243,7 +243,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
                 };
 
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -252,7 +252,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -260,7 +260,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     public void OnLoadDoneEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -296,7 +296,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
                 };
 
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -305,7 +305,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -313,7 +313,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     public void OnLoadErrorEvt(Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

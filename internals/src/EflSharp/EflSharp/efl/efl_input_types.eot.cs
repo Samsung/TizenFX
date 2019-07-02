@@ -117,8 +117,8 @@ Timestamp = 1,
 Button = 2,
 /// <summary>32-bit bit mask (unsigned int). Prefer the method <c>buttons_pressed</c> to read this value. Default: 0.</summary>
 ButtonsPressed = 3,
-/// <summary>ID of the finger or tool (eg. pen) that triggered this event. Prefer the property <c>tool</c> to read this value. Default: 0.</summary>
-Tool = 4,
+/// <summary>ID of the finger or tool (eg. pen) that triggered this event. Prefer the property <c>touch_id</c> to read this value. Default: 0.</summary>
+TouchId = 4,
 /// <summary>Absolute X position where this event occurred, in pixels. Relative to the window. Default: last known position. This value may be smoothed out or even extrapolated by EFL.</summary>
 X = 5,
 /// <summary>Absolute Y position where this event occurred, in pixels. Relative to the window. Default: last known position. This value may be smoothed out or even extrapolated by EFL.</summary>

@@ -187,17 +187,19 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
                         Efl.Input.Pointer.NativeMethods.efl_input_pointer_previous_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>ID of the tool (eg. pen) that triggered this event.</summary>
-    /// <returns>Tool ID</returns>
-    virtual public int GetTool() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_tool_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    /// <summary>TThe ID associated with this pointer.
+    /// In case there are multiple pointers (for example when multiple fingers are touching the screen) this number uniquely identifies each pointer, for as long as it is present. This is, when a finger is lifted its ID can be later reused by another finger touching the screen.</summary>
+    /// <returns>An ID uniquely identifying this pointer among the currently present pointers.</returns>
+    virtual public int GetTouchId() {
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_touch_id_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>ID of the tool (eg. pen) that triggered this event.</summary>
-    /// <param name="id">Tool ID</param>
-    virtual public void SetTool(int id) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_tool_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+    /// <summary>TThe ID associated with this pointer.
+    /// In case there are multiple pointers (for example when multiple fingers are touching the screen) this number uniquely identifies each pointer, for as long as it is present. This is, when a finger is lifted its ID can be later reused by another finger touching the screen.</summary>
+    /// <param name="id">An ID uniquely identifying this pointer among the currently present pointers.</param>
+    virtual public void SetTouchId(int id) {
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_touch_id_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The object where this event first originated, in case of propagation or repetition of the event.</summary>
@@ -426,11 +428,12 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
         get { return GetPreviousPosition(); }
         set { SetPreviousPosition(value); }
     }
-    /// <summary>ID of the tool (eg. pen) that triggered this event.</summary>
-    /// <value>Tool ID</value>
-    public int Tool {
-        get { return GetTool(); }
-        set { SetTool(value); }
+    /// <summary>TThe ID associated with this pointer.
+    /// In case there are multiple pointers (for example when multiple fingers are touching the screen) this number uniquely identifies each pointer, for as long as it is present. This is, when a finger is lifted its ID can be later reused by another finger touching the screen.</summary>
+    /// <value>An ID uniquely identifying this pointer among the currently present pointers.</value>
+    public int TouchId {
+        get { return GetTouchId(); }
+        set { SetTouchId(value); }
     }
     /// <summary>The object where this event first originated, in case of propagation or repetition of the event.</summary>
     /// <value>Source object: <see cref="Efl.Gfx.IEntity"/></value>
@@ -672,24 +675,24 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_pointer_previous_position_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_pointer_previous_position_set_static_delegate) });
             }
 
-            if (efl_input_pointer_tool_get_static_delegate == null)
+            if (efl_input_pointer_touch_id_get_static_delegate == null)
             {
-                efl_input_pointer_tool_get_static_delegate = new efl_input_pointer_tool_get_delegate(tool_get);
+                efl_input_pointer_touch_id_get_static_delegate = new efl_input_pointer_touch_id_get_delegate(touch_id_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetTool") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetTouchId") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_pointer_tool_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_pointer_tool_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_pointer_touch_id_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_pointer_touch_id_get_static_delegate) });
             }
 
-            if (efl_input_pointer_tool_set_static_delegate == null)
+            if (efl_input_pointer_touch_id_set_static_delegate == null)
             {
-                efl_input_pointer_tool_set_static_delegate = new efl_input_pointer_tool_set_delegate(tool_set);
+                efl_input_pointer_touch_id_set_static_delegate = new efl_input_pointer_touch_id_set_delegate(touch_id_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetTool") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetTouchId") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_pointer_tool_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_pointer_tool_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_pointer_touch_id_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_pointer_touch_id_set_static_delegate) });
             }
 
             if (efl_input_pointer_source_get_static_delegate == null)
@@ -1512,23 +1515,23 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
         private static efl_input_pointer_previous_position_set_delegate efl_input_pointer_previous_position_set_static_delegate;
 
         
-        private delegate int efl_input_pointer_tool_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        private delegate int efl_input_pointer_touch_id_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
-        public delegate int efl_input_pointer_tool_get_api_delegate(System.IntPtr obj);
+        public delegate int efl_input_pointer_touch_id_get_api_delegate(System.IntPtr obj);
 
-        public static Efl.Eo.FunctionWrapper<efl_input_pointer_tool_get_api_delegate> efl_input_pointer_tool_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_pointer_tool_get_api_delegate>(Module, "efl_input_pointer_tool_get");
+        public static Efl.Eo.FunctionWrapper<efl_input_pointer_touch_id_get_api_delegate> efl_input_pointer_touch_id_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_pointer_touch_id_get_api_delegate>(Module, "efl_input_pointer_touch_id_get");
 
-        private static int tool_get(System.IntPtr obj, System.IntPtr pd)
+        private static int touch_id_get(System.IntPtr obj, System.IntPtr pd)
         {
-            Eina.Log.Debug("function efl_input_pointer_tool_get was called");
+            Eina.Log.Debug("function efl_input_pointer_touch_id_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Pointer)ws.Target).GetTool();
+                    _ret_var = ((Pointer)ws.Target).GetTouchId();
                 }
                 catch (Exception e)
                 {
@@ -1541,30 +1544,30 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
             }
             else
             {
-                return efl_input_pointer_tool_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_input_pointer_touch_id_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_input_pointer_tool_get_delegate efl_input_pointer_tool_get_static_delegate;
+        private static efl_input_pointer_touch_id_get_delegate efl_input_pointer_touch_id_get_static_delegate;
 
         
-        private delegate void efl_input_pointer_tool_set_delegate(System.IntPtr obj, System.IntPtr pd,  int id);
+        private delegate void efl_input_pointer_touch_id_set_delegate(System.IntPtr obj, System.IntPtr pd,  int id);
 
         
-        public delegate void efl_input_pointer_tool_set_api_delegate(System.IntPtr obj,  int id);
+        public delegate void efl_input_pointer_touch_id_set_api_delegate(System.IntPtr obj,  int id);
 
-        public static Efl.Eo.FunctionWrapper<efl_input_pointer_tool_set_api_delegate> efl_input_pointer_tool_set_ptr = new Efl.Eo.FunctionWrapper<efl_input_pointer_tool_set_api_delegate>(Module, "efl_input_pointer_tool_set");
+        public static Efl.Eo.FunctionWrapper<efl_input_pointer_touch_id_set_api_delegate> efl_input_pointer_touch_id_set_ptr = new Efl.Eo.FunctionWrapper<efl_input_pointer_touch_id_set_api_delegate>(Module, "efl_input_pointer_touch_id_set");
 
-        private static void tool_set(System.IntPtr obj, System.IntPtr pd, int id)
+        private static void touch_id_set(System.IntPtr obj, System.IntPtr pd, int id)
         {
-            Eina.Log.Debug("function efl_input_pointer_tool_set was called");
+            Eina.Log.Debug("function efl_input_pointer_touch_id_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                     
                 try
                 {
-                    ((Pointer)ws.Target).SetTool(id);
+                    ((Pointer)ws.Target).SetTouchId(id);
                 }
                 catch (Exception e)
                 {
@@ -1576,11 +1579,11 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
             }
             else
             {
-                efl_input_pointer_tool_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), id);
+                efl_input_pointer_touch_id_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), id);
             }
         }
 
-        private static efl_input_pointer_tool_set_delegate efl_input_pointer_tool_set_static_delegate;
+        private static efl_input_pointer_touch_id_set_delegate efl_input_pointer_touch_id_set_static_delegate;
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Object efl_input_pointer_source_get_delegate(System.IntPtr obj, System.IntPtr pd);

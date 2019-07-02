@@ -862,7 +862,7 @@ sealed public class ILayerConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).GetEnable();
+                    _ret_var = ((ILayer)ws.Target).GetEnable();
                 }
                 catch (Exception e)
                 {
@@ -898,7 +898,7 @@ sealed public class ILayerConcrete :
                                     
                 try
                 {
-                    ((ILayerConcrete)ws.Target).SetEnable(v);
+                    ((ILayer)ws.Target).SetEnable(v);
                 }
                 catch (Exception e)
                 {
@@ -933,7 +933,7 @@ sealed public class ILayerConcrete :
                         enable_on_visible = default(bool);        cycle = default(bool);                            
                 try
                 {
-                    ((ILayerConcrete)ws.Target).GetBehaviour(out enable_on_visible, out cycle);
+                    ((ILayer)ws.Target).GetBehaviour(out enable_on_visible, out cycle);
                 }
                 catch (Exception e)
                 {
@@ -968,7 +968,7 @@ sealed public class ILayerConcrete :
                                                             
                 try
                 {
-                    ((ILayerConcrete)ws.Target).SetBehaviour(enable_on_visible, cycle);
+                    ((ILayer)ws.Target).SetBehaviour(enable_on_visible, cycle);
                 }
                 catch (Exception e)
                 {
@@ -1003,7 +1003,7 @@ sealed public class ILayerConcrete :
                                     Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).FocusManagerCreate(root);
+                    _ret_var = ((ILayer)ws.Target).FocusManagerCreate(root);
                 }
                 catch (Exception e)
                 {
@@ -1039,7 +1039,7 @@ sealed public class ILayerConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).GetManagerFocus();
+                    _ret_var = ((ILayer)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -1075,7 +1075,7 @@ sealed public class ILayerConcrete :
                                     
                 try
                 {
-                    ((ILayerConcrete)ws.Target).SetManagerFocus(focus);
+                    ((ILayer)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -1110,7 +1110,7 @@ sealed public class ILayerConcrete :
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).GetRedirect();
+                    _ret_var = ((ILayer)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -1146,7 +1146,7 @@ sealed public class ILayerConcrete :
                                     
                 try
                 {
-                    ((ILayerConcrete)ws.Target).SetRedirect(redirect);
+                    ((ILayer)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -1181,7 +1181,7 @@ sealed public class ILayerConcrete :
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).GetBorderElements();
+                    _ret_var = ((ILayer)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -1218,7 +1218,7 @@ sealed public class ILayerConcrete :
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).GetViewportElements(_in_viewport);
+                    _ret_var = ((ILayer)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -1254,7 +1254,7 @@ sealed public class ILayerConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).GetRoot();
+                    _ret_var = ((ILayer)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -1290,7 +1290,7 @@ sealed public class ILayerConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).SetRoot(root);
+                    _ret_var = ((ILayer)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -1326,7 +1326,7 @@ sealed public class ILayerConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).Move(direction);
+                    _ret_var = ((ILayer)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -1362,7 +1362,7 @@ sealed public class ILayerConcrete :
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).MoveRequest(direction, child, logical);
+                    _ret_var = ((ILayer)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -1398,7 +1398,7 @@ sealed public class ILayerConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).RequestSubchild(root);
+                    _ret_var = ((ILayer)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -1434,7 +1434,7 @@ sealed public class ILayerConcrete :
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).Fetch(child);
+                    _ret_var = ((ILayer)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -1470,7 +1470,7 @@ sealed public class ILayerConcrete :
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((ILayerConcrete)ws.Target).LogicalEnd();
+                    _ret_var = ((ILayer)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -1506,7 +1506,7 @@ sealed public class ILayerConcrete :
             
                 try
                 {
-                    ((ILayerConcrete)ws.Target).ResetHistory();
+                    ((ILayer)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -1541,7 +1541,7 @@ sealed public class ILayerConcrete :
             
                 try
                 {
-                    ((ILayerConcrete)ws.Target).PopHistoryStack();
+                    ((ILayer)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -1576,7 +1576,7 @@ sealed public class ILayerConcrete :
                                                             
                 try
                 {
-                    ((ILayerConcrete)ws.Target).SetupOnFirstTouch(direction, entry);
+                    ((ILayer)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -1611,7 +1611,7 @@ sealed public class ILayerConcrete :
             
                 try
                 {
-                    ((ILayerConcrete)ws.Target).FreezeDirtyLogic();
+                    ((ILayer)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -1646,7 +1646,7 @@ sealed public class ILayerConcrete :
             
                 try
                 {
-                    ((ILayerConcrete)ws.Target).DirtyLogicUnfreeze();
+                    ((ILayer)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {

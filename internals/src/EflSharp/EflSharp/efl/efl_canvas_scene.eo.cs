@@ -98,10 +98,10 @@ Efl.Gfx.IEntity GetObjectTopInRectangle(Eina.Rect rect, bool include_pass_events
 Eina.Iterator<Efl.Input.Device> Seats();
                                                     /// <summary>Called when scene got focus
     /// (Since EFL 1.22)</summary>
-    event EventHandler<Efl.Canvas.ISceneSceneFocusInEvt_Args> SceneFocusInEvt;
+    event EventHandler SceneFocusInEvt;
     /// <summary>Called when scene lost focus
     /// (Since EFL 1.22)</summary>
-    event EventHandler<Efl.Canvas.ISceneSceneFocusOutEvt_Args> SceneFocusOutEvt;
+    event EventHandler SceneFocusOutEvt;
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
     event EventHandler<Efl.Canvas.ISceneObjectFocusInEvt_Args> ObjectFocusInEvt;
@@ -138,16 +138,6 @@ Eina.Iterator<Efl.Input.Device> Seats();
     Efl.Input.Device SeatDefault {
         get ;
     }
-}
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.SceneFocusInEvt"/>.</summary>
-public class ISceneSceneFocusInEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Input.Focus arg { get; set; }
-}
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.SceneFocusOutEvt"/>.</summary>
-public class ISceneSceneFocusOutEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Input.Focus arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusInEvt"/>.</summary>
 public class ISceneObjectFocusInEvt_Args : EventArgs {
@@ -202,7 +192,7 @@ sealed public class ISceneConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_canvas_scene_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IScene"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -212,7 +202,7 @@ sealed public class ISceneConcrete :
 
     /// <summary>Called when scene got focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusInEvt_Args> SceneFocusInEvt
+    public event EventHandler SceneFocusInEvt
     {
         add
         {
@@ -223,8 +213,7 @@ sealed public class ISceneConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Canvas.ISceneSceneFocusInEvt_Args args = new Efl.Canvas.ISceneSceneFocusInEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -252,7 +241,7 @@ sealed public class ISceneConcrete :
         }
     }
     ///<summary>Method to raise event SceneFocusInEvt.</summary>
-    public void OnSceneFocusInEvt(Efl.Canvas.ISceneSceneFocusInEvt_Args e)
+    public void OnSceneFocusInEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -262,12 +251,11 @@ sealed public class ISceneConcrete :
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scene lost focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusOutEvt_Args> SceneFocusOutEvt
+    public event EventHandler SceneFocusOutEvt
     {
         add
         {
@@ -278,8 +266,7 @@ sealed public class ISceneConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Canvas.ISceneSceneFocusOutEvt_Args args = new Efl.Canvas.ISceneSceneFocusOutEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -307,7 +294,7 @@ sealed public class ISceneConcrete :
         }
     }
     ///<summary>Method to raise event SceneFocusOutEvt.</summary>
-    public void OnSceneFocusOutEvt(Efl.Canvas.ISceneSceneFocusOutEvt_Args e)
+    public void OnSceneFocusOutEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -317,8 +304,7 @@ sealed public class ISceneConcrete :
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>

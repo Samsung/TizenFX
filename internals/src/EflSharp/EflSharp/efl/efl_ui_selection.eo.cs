@@ -279,7 +279,7 @@ sealed public class ISelectionConcrete :
                                                                                                              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((ISelectionConcrete)ws.Target).SetSelection(type, format, data, seat);
+                    _ret_var = ((ISelection)ws.Target).SetSelection(type, format, data, seat);
                 }
                 catch (Exception e)
                 {
@@ -316,7 +316,7 @@ sealed public class ISelectionConcrete :
                     
                 try
                 {
-                    ((ISelectionConcrete)ws.Target).GetSelection(type, format, data_func_wrapper.ManagedCb, seat);
+                    ((ISelection)ws.Target).GetSelection(type, format, data_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -351,7 +351,7 @@ sealed public class ISelectionConcrete :
                                                             
                 try
                 {
-                    ((ISelectionConcrete)ws.Target).ClearSelection(type, seat);
+                    ((ISelection)ws.Target).ClearSelection(type, seat);
                 }
                 catch (Exception e)
                 {
@@ -386,7 +386,7 @@ sealed public class ISelectionConcrete :
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISelectionConcrete)ws.Target).HasOwner(type, seat);
+                    _ret_var = ((ISelection)ws.Target).HasOwner(type, seat);
                 }
                 catch (Exception e)
                 {

@@ -140,7 +140,7 @@ public class Nstate : Efl.Ui.Button
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Activate widget</summary>
-    virtual public void Activate() {
+    virtual protected void Activate() {
          Efl.Ui.Nstate.NativeMethods.efl_ui_nstate_activate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
          }

@@ -156,7 +156,7 @@ sealed public class ITextFontConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_font_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextFont"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>

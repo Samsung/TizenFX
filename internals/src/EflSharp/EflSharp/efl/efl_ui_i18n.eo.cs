@@ -85,7 +85,7 @@ sealed public class II18nConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_i18n_interface_get();
     /// <summary>Initializes a new instance of the <see cref="II18n"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>

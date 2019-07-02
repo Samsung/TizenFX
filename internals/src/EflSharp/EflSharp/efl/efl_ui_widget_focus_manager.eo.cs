@@ -769,7 +769,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                     Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).FocusManagerCreate(root);
+                    _ret_var = ((IWidgetFocusManager)ws.Target).FocusManagerCreate(root);
                 }
                 catch (Exception e)
                 {
@@ -805,7 +805,7 @@ sealed public class IWidgetFocusManagerConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).GetManagerFocus();
+                    _ret_var = ((IWidgetFocusManager)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -841,7 +841,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                     
                 try
                 {
-                    ((IWidgetFocusManagerConcrete)ws.Target).SetManagerFocus(focus);
+                    ((IWidgetFocusManager)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -876,7 +876,7 @@ sealed public class IWidgetFocusManagerConcrete :
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).GetRedirect();
+                    _ret_var = ((IWidgetFocusManager)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -912,7 +912,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                     
                 try
                 {
-                    ((IWidgetFocusManagerConcrete)ws.Target).SetRedirect(redirect);
+                    ((IWidgetFocusManager)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -947,7 +947,7 @@ sealed public class IWidgetFocusManagerConcrete :
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).GetBorderElements();
+                    _ret_var = ((IWidgetFocusManager)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -984,7 +984,7 @@ sealed public class IWidgetFocusManagerConcrete :
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).GetViewportElements(_in_viewport);
+                    _ret_var = ((IWidgetFocusManager)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -1020,7 +1020,7 @@ sealed public class IWidgetFocusManagerConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).GetRoot();
+                    _ret_var = ((IWidgetFocusManager)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -1056,7 +1056,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).SetRoot(root);
+                    _ret_var = ((IWidgetFocusManager)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -1092,7 +1092,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).Move(direction);
+                    _ret_var = ((IWidgetFocusManager)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -1128,7 +1128,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).MoveRequest(direction, child, logical);
+                    _ret_var = ((IWidgetFocusManager)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -1164,7 +1164,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).RequestSubchild(root);
+                    _ret_var = ((IWidgetFocusManager)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -1200,7 +1200,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).Fetch(child);
+                    _ret_var = ((IWidgetFocusManager)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -1236,7 +1236,7 @@ sealed public class IWidgetFocusManagerConcrete :
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((IWidgetFocusManagerConcrete)ws.Target).LogicalEnd();
+                    _ret_var = ((IWidgetFocusManager)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -1272,7 +1272,7 @@ sealed public class IWidgetFocusManagerConcrete :
             
                 try
                 {
-                    ((IWidgetFocusManagerConcrete)ws.Target).ResetHistory();
+                    ((IWidgetFocusManager)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -1307,7 +1307,7 @@ sealed public class IWidgetFocusManagerConcrete :
             
                 try
                 {
-                    ((IWidgetFocusManagerConcrete)ws.Target).PopHistoryStack();
+                    ((IWidgetFocusManager)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -1342,7 +1342,7 @@ sealed public class IWidgetFocusManagerConcrete :
                                                             
                 try
                 {
-                    ((IWidgetFocusManagerConcrete)ws.Target).SetupOnFirstTouch(direction, entry);
+                    ((IWidgetFocusManager)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -1377,7 +1377,7 @@ sealed public class IWidgetFocusManagerConcrete :
             
                 try
                 {
-                    ((IWidgetFocusManagerConcrete)ws.Target).FreezeDirtyLogic();
+                    ((IWidgetFocusManager)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -1412,7 +1412,7 @@ sealed public class IWidgetFocusManagerConcrete :
             
                 try
                 {
-                    ((IWidgetFocusManagerConcrete)ws.Target).DirtyLogicUnfreeze();
+                    ((IWidgetFocusManager)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {

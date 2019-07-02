@@ -84,7 +84,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -93,7 +93,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
             lock (eventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -101,7 +101,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -139,7 +139,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -148,7 +148,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
             lock (eventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -156,7 +156,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -169,7 +169,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
     /// <summary>Real part property</summary>
     /// <param name="layout">Real part object</param>
     /// <param name="part">Real part name</param>
-    virtual public void SetRealPart(Efl.Object layout, System.String part) {
+    virtual protected void SetRealPart(Efl.Object layout, System.String part) {
                                                          Efl.Ui.LayoutPartBox.NativeMethods.efl_ui_layout_part_box_real_part_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),layout, part);
         Eina.Error.RaiseIfUnhandledException();
                                          }

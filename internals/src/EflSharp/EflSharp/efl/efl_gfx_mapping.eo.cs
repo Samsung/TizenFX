@@ -1078,7 +1078,7 @@ sealed public class IMappingConcrete :
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)ws.Target).GetMappingPointCount();
+                    _ret_var = ((IMapping)ws.Target).GetMappingPointCount();
                 }
                 catch (Exception e)
                 {
@@ -1114,7 +1114,7 @@ sealed public class IMappingConcrete :
                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).SetMappingPointCount(count);
+                    ((IMapping)ws.Target).SetMappingPointCount(count);
                 }
                 catch (Exception e)
                 {
@@ -1149,7 +1149,7 @@ sealed public class IMappingConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)ws.Target).GetMappingClockwise();
+                    _ret_var = ((IMapping)ws.Target).GetMappingClockwise();
                 }
                 catch (Exception e)
                 {
@@ -1185,7 +1185,7 @@ sealed public class IMappingConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)ws.Target).GetMappingSmooth();
+                    _ret_var = ((IMapping)ws.Target).GetMappingSmooth();
                 }
                 catch (Exception e)
                 {
@@ -1221,7 +1221,7 @@ sealed public class IMappingConcrete :
                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).SetMappingSmooth(smooth);
+                    ((IMapping)ws.Target).SetMappingSmooth(smooth);
                 }
                 catch (Exception e)
                 {
@@ -1256,7 +1256,7 @@ sealed public class IMappingConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)ws.Target).GetMappingAlpha();
+                    _ret_var = ((IMapping)ws.Target).GetMappingAlpha();
                 }
                 catch (Exception e)
                 {
@@ -1292,7 +1292,7 @@ sealed public class IMappingConcrete :
                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).SetMappingAlpha(alpha);
+                    ((IMapping)ws.Target).SetMappingAlpha(alpha);
                 }
                 catch (Exception e)
                 {
@@ -1327,7 +1327,7 @@ sealed public class IMappingConcrete :
                                                 x = default(double);        y = default(double);        z = default(double);                                            
                 try
                 {
-                    ((IMappingConcrete)ws.Target).GetMappingCoordAbsolute(idx, out x, out y, out z);
+                    ((IMapping)ws.Target).GetMappingCoordAbsolute(idx, out x, out y, out z);
                 }
                 catch (Exception e)
                 {
@@ -1362,7 +1362,7 @@ sealed public class IMappingConcrete :
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).SetMappingCoordAbsolute(idx, x, y, z);
+                    ((IMapping)ws.Target).SetMappingCoordAbsolute(idx, x, y, z);
                 }
                 catch (Exception e)
                 {
@@ -1397,7 +1397,7 @@ sealed public class IMappingConcrete :
                                         u = default(double);        v = default(double);                                    
                 try
                 {
-                    ((IMappingConcrete)ws.Target).GetMappingUv(idx, out u, out v);
+                    ((IMapping)ws.Target).GetMappingUv(idx, out u, out v);
                 }
                 catch (Exception e)
                 {
@@ -1432,7 +1432,7 @@ sealed public class IMappingConcrete :
                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).SetMappingUv(idx, u, v);
+                    ((IMapping)ws.Target).SetMappingUv(idx, u, v);
                 }
                 catch (Exception e)
                 {
@@ -1467,7 +1467,7 @@ sealed public class IMappingConcrete :
                                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                                    
                 try
                 {
-                    ((IMappingConcrete)ws.Target).GetMappingColor(idx, out r, out g, out b, out a);
+                    ((IMapping)ws.Target).GetMappingColor(idx, out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -1502,7 +1502,7 @@ sealed public class IMappingConcrete :
                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).SetMappingColor(idx, r, g, b, a);
+                    ((IMapping)ws.Target).SetMappingColor(idx, r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -1537,7 +1537,7 @@ sealed public class IMappingConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)ws.Target).HasMapping();
+                    _ret_var = ((IMapping)ws.Target).HasMapping();
                 }
                 catch (Exception e)
                 {
@@ -1573,7 +1573,7 @@ sealed public class IMappingConcrete :
             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).ResetMapping();
+                    ((IMapping)ws.Target).ResetMapping();
                 }
                 catch (Exception e)
                 {
@@ -1608,7 +1608,7 @@ sealed public class IMappingConcrete :
                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Translate(dx, dy, dz);
+                    ((IMapping)ws.Target).Translate(dx, dy, dz);
                 }
                 catch (Exception e)
                 {
@@ -1643,7 +1643,7 @@ sealed public class IMappingConcrete :
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Rotate(degrees, pivot, cx, cy);
+                    ((IMapping)ws.Target).Rotate(degrees, pivot, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -1678,7 +1678,7 @@ sealed public class IMappingConcrete :
                                                                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Rotate3d(dx, dy, dz, pivot, cx, cy, cz);
+                    ((IMapping)ws.Target).Rotate3d(dx, dy, dz, pivot, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -1713,7 +1713,7 @@ sealed public class IMappingConcrete :
                                                                                                                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).RotateQuat(qx, qy, qz, qw, pivot, cx, cy, cz);
+                    ((IMapping)ws.Target).RotateQuat(qx, qy, qz, qw, pivot, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -1748,7 +1748,7 @@ sealed public class IMappingConcrete :
                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Zoom(zoomx, zoomy, pivot, cx, cy);
+                    ((IMapping)ws.Target).Zoom(zoomx, zoomy, pivot, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -1783,7 +1783,7 @@ sealed public class IMappingConcrete :
                                                                                                                                                                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Lighting3d(pivot, lx, ly, lz, lr, lg, lb, ar, ag, ab);
+                    ((IMapping)ws.Target).Lighting3d(pivot, lx, ly, lz, lr, lg, lb, ar, ag, ab);
                 }
                 catch (Exception e)
                 {
@@ -1818,7 +1818,7 @@ sealed public class IMappingConcrete :
                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Perspective3d(pivot, px, py, z0, foc);
+                    ((IMapping)ws.Target).Perspective3d(pivot, px, py, z0, foc);
                 }
                 catch (Exception e)
                 {
@@ -1853,7 +1853,7 @@ sealed public class IMappingConcrete :
                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).RotateAbsolute(degrees, cx, cy);
+                    ((IMapping)ws.Target).RotateAbsolute(degrees, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -1888,7 +1888,7 @@ sealed public class IMappingConcrete :
                                                                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Rotate3dAbsolute(dx, dy, dz, cx, cy, cz);
+                    ((IMapping)ws.Target).Rotate3dAbsolute(dx, dy, dz, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -1923,7 +1923,7 @@ sealed public class IMappingConcrete :
                                                                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).RotateQuatAbsolute(qx, qy, qz, qw, cx, cy, cz);
+                    ((IMapping)ws.Target).RotateQuatAbsolute(qx, qy, qz, qw, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -1958,7 +1958,7 @@ sealed public class IMappingConcrete :
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).ZoomAbsolute(zoomx, zoomy, cx, cy);
+                    ((IMapping)ws.Target).ZoomAbsolute(zoomx, zoomy, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -1993,7 +1993,7 @@ sealed public class IMappingConcrete :
                                                                                                                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Lighting3dAbsolute(lx, ly, lz, lr, lg, lb, ar, ag, ab);
+                    ((IMapping)ws.Target).Lighting3dAbsolute(lx, ly, lz, lr, lg, lb, ar, ag, ab);
                 }
                 catch (Exception e)
                 {
@@ -2028,7 +2028,7 @@ sealed public class IMappingConcrete :
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)ws.Target).Perspective3dAbsolute(px, py, z0, foc);
+                    ((IMapping)ws.Target).Perspective3dAbsolute(px, py, z0, foc);
                 }
                 catch (Exception e)
                 {

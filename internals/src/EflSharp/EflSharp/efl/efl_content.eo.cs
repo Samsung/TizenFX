@@ -70,7 +70,7 @@ sealed public class IContentConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_content_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IContent"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>

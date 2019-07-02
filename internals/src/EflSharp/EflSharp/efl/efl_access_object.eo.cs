@@ -1588,7 +1588,7 @@ sealed public class IObjectConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetLocalizedRoleName();
+                    _ret_var = ((IObject)ws.Target).GetLocalizedRoleName();
                 }
                 catch (Exception e)
                 {
@@ -1624,7 +1624,7 @@ sealed public class IObjectConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetI18nName();
+                    _ret_var = ((IObject)ws.Target).GetI18nName();
                 }
                 catch (Exception e)
                 {
@@ -1660,7 +1660,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetI18nName(i18n_name);
+                    ((IObject)ws.Target).SetI18nName(i18n_name);
                 }
                 catch (Exception e)
                 {
@@ -1695,7 +1695,7 @@ sealed public class IObjectConcrete :
                                                             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetNameCb(name_cb, data);
+                    ((IObject)ws.Target).SetNameCb(name_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -1730,7 +1730,7 @@ sealed public class IObjectConcrete :
             Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetRelationSet();
+                    _ret_var = ((IObject)ws.Target).GetRelationSet();
                 }
                 catch (Exception e)
                 {
@@ -1766,7 +1766,7 @@ sealed public class IObjectConcrete :
             Efl.Access.Role _ret_var = default(Efl.Access.Role);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetRole();
+                    _ret_var = ((IObject)ws.Target).GetRole();
                 }
                 catch (Exception e)
                 {
@@ -1802,7 +1802,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetRole(role);
+                    ((IObject)ws.Target).SetRole(role);
                 }
                 catch (Exception e)
                 {
@@ -1837,7 +1837,7 @@ sealed public class IObjectConcrete :
             Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetAccessParent();
+                    _ret_var = ((IObject)ws.Target).GetAccessParent();
                 }
                 catch (Exception e)
                 {
@@ -1873,7 +1873,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetAccessParent(parent);
+                    ((IObject)ws.Target).SetAccessParent(parent);
                 }
                 catch (Exception e)
                 {
@@ -1908,7 +1908,7 @@ sealed public class IObjectConcrete :
                                                             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetDescriptionCb(description_cb, data);
+                    ((IObject)ws.Target).SetDescriptionCb(description_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -1943,7 +1943,7 @@ sealed public class IObjectConcrete :
                                                             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetGestureCb(gesture_cb, data);
+                    ((IObject)ws.Target).SetGestureCb(gesture_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -1978,7 +1978,7 @@ sealed public class IObjectConcrete :
             Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetAccessChildren();
+                    _ret_var = ((IObject)ws.Target).GetAccessChildren();
                 }
                 catch (Exception e)
                 {
@@ -2014,7 +2014,7 @@ sealed public class IObjectConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetRoleName();
+                    _ret_var = ((IObject)ws.Target).GetRoleName();
                 }
                 catch (Exception e)
                 {
@@ -2050,7 +2050,7 @@ sealed public class IObjectConcrete :
             Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetAttributes();
+                    _ret_var = ((IObject)ws.Target).GetAttributes();
                 }
                 catch (Exception e)
                 {
@@ -2086,7 +2086,7 @@ sealed public class IObjectConcrete :
             Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetReadingInfoType();
+                    _ret_var = ((IObject)ws.Target).GetReadingInfoType();
                 }
                 catch (Exception e)
                 {
@@ -2122,7 +2122,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetReadingInfoType(reading_info);
+                    ((IObject)ws.Target).SetReadingInfoType(reading_info);
                 }
                 catch (Exception e)
                 {
@@ -2157,7 +2157,7 @@ sealed public class IObjectConcrete :
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetIndexInParent();
+                    _ret_var = ((IObject)ws.Target).GetIndexInParent();
                 }
                 catch (Exception e)
                 {
@@ -2193,7 +2193,7 @@ sealed public class IObjectConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetDescription();
+                    _ret_var = ((IObject)ws.Target).GetDescription();
                 }
                 catch (Exception e)
                 {
@@ -2229,7 +2229,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetDescription(description);
+                    ((IObject)ws.Target).SetDescription(description);
                 }
                 catch (Exception e)
                 {
@@ -2264,7 +2264,7 @@ sealed public class IObjectConcrete :
             Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetStateSet();
+                    _ret_var = ((IObject)ws.Target).GetStateSet();
                 }
                 catch (Exception e)
                 {
@@ -2300,7 +2300,7 @@ sealed public class IObjectConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetCanHighlight();
+                    _ret_var = ((IObject)ws.Target).GetCanHighlight();
                 }
                 catch (Exception e)
                 {
@@ -2336,7 +2336,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetCanHighlight(can_highlight);
+                    ((IObject)ws.Target).SetCanHighlight(can_highlight);
                 }
                 catch (Exception e)
                 {
@@ -2371,7 +2371,7 @@ sealed public class IObjectConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetTranslationDomain();
+                    _ret_var = ((IObject)ws.Target).GetTranslationDomain();
                 }
                 catch (Exception e)
                 {
@@ -2407,7 +2407,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetTranslationDomain(domain);
+                    ((IObject)ws.Target).SetTranslationDomain(domain);
                 }
                 catch (Exception e)
                 {
@@ -2477,7 +2477,7 @@ sealed public class IObjectConcrete :
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GestureDo(_in_gesture_info);
+                    _ret_var = ((IObject)ws.Target).GestureDo(_in_gesture_info);
                 }
                 catch (Exception e)
                 {
@@ -2513,7 +2513,7 @@ sealed public class IObjectConcrete :
                                                             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).AppendAttribute(key, value);
+                    ((IObject)ws.Target).AppendAttribute(key, value);
                 }
                 catch (Exception e)
                 {
@@ -2548,7 +2548,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).DelAttribute(key);
+                    ((IObject)ws.Target).DelAttribute(key);
                 }
                 catch (Exception e)
                 {
@@ -2583,7 +2583,7 @@ sealed public class IObjectConcrete :
             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).ClearAttributes();
+                    ((IObject)ws.Target).ClearAttributes();
                 }
                 catch (Exception e)
                 {
@@ -2719,7 +2719,7 @@ sealed public class IObjectConcrete :
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).AppendRelationship(type, relation_object);
+                    _ret_var = ((IObject)ws.Target).AppendRelationship(type, relation_object);
                 }
                 catch (Exception e)
                 {
@@ -2755,7 +2755,7 @@ sealed public class IObjectConcrete :
                                                             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).RelationshipRemove(type, relation_object);
+                    ((IObject)ws.Target).RelationshipRemove(type, relation_object);
                 }
                 catch (Exception e)
                 {
@@ -2790,7 +2790,7 @@ sealed public class IObjectConcrete :
             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).ClearRelationships();
+                    ((IObject)ws.Target).ClearRelationships();
                 }
                 catch (Exception e)
                 {
@@ -2825,7 +2825,7 @@ sealed public class IObjectConcrete :
                                                             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).StateNotify(state_types_mask, recursive);
+                    ((IObject)ws.Target).StateNotify(state_types_mask, recursive);
                 }
                 catch (Exception e)
                 {

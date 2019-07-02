@@ -205,7 +205,7 @@ public class Group : Efl.Canvas.Object
     /// <summary>Get the internal clipper.
     /// (Since EFL 1.22)</summary>
     /// <returns>A clipper rectangle.</returns>
-    virtual public Efl.Canvas.Object GetGroupClipper() {
+    virtual protected Efl.Canvas.Object GetGroupClipper() {
          var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_clipper_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -280,7 +280,7 @@ public class Group : Efl.Canvas.Object
     /// This is the object clipping all the child objects. Do not delete or otherwise modify this clipper!
     /// (Since EFL 1.22)</summary>
     /// <value>A clipper rectangle.</value>
-    public Efl.Canvas.Object GroupClipper {
+    protected Efl.Canvas.Object GroupClipper {
         get { return GetGroupClipper(); }
     }
     private static IntPtr GetEflClassStatic()

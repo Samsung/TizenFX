@@ -537,7 +537,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -546,7 +546,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -554,7 +554,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -599,7 +599,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -608,7 +608,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -616,7 +616,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -662,7 +662,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -671,7 +671,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -679,7 +679,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -724,7 +724,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_HINTS_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -733,7 +733,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_HINTS_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -741,7 +741,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     public void OnHintsChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_HINTS_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -777,7 +777,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -786,7 +786,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -794,7 +794,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1902,7 +1902,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// This can be different from <see cref="Efl.Object.Parent"/> because this one is used internally for rendering and the normal parent is what the user expects to be the parent.
     /// (Since EFL 1.22)</summary>
     /// <returns>The parent smart object of <c>obj</c> or <c>null</c>.</returns>
-    virtual public Efl.Canvas.Object GetRenderParent() {
+    virtual protected Efl.Canvas.Object GetRenderParent() {
          var _ret_var = Efl.Canvas.Object.NativeMethods.efl_canvas_object_render_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -2996,7 +2996,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// This can be different from <see cref="Efl.Object.Parent"/> because this one is used internally for rendering and the normal parent is what the user expects to be the parent.
     /// (Since EFL 1.22)</summary>
     /// <value>The parent smart object of <c>obj</c> or <c>null</c>.</value>
-    public Efl.Canvas.Object RenderParent {
+    protected Efl.Canvas.Object RenderParent {
         get { return GetRenderParent(); }
     }
     /// <summary>This handles text paragraph direction of the given object. Even if the given object is not textblock or text, its smart child objects can inherit the paragraph direction from the given object. The default paragraph direction is <c>inherit</c>.

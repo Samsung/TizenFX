@@ -88,7 +88,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -97,7 +97,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -105,7 +105,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
     public void OnImagePreloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -140,7 +140,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -149,7 +149,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -157,7 +157,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
     public void OnImageResizeEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -192,7 +192,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -201,7 +201,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -209,7 +209,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canv
     public void OnImageUnloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

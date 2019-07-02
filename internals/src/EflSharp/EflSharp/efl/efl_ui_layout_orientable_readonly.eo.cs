@@ -36,7 +36,7 @@ sealed public class ILayoutOrientableReadonlyConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_layout_orientable_readonly_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="ILayoutOrientableReadonly"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -136,7 +136,7 @@ sealed public class ILayoutOrientableReadonlyConcrete :
             Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
                 try
                 {
-                    _ret_var = ((ILayoutOrientableReadonlyConcrete)ws.Target).GetOrientation();
+                    _ret_var = ((ILayoutOrientableReadonly)ws.Target).GetOrientation();
                 }
                 catch (Exception e)
                 {
@@ -172,7 +172,7 @@ sealed public class ILayoutOrientableReadonlyConcrete :
                                     
                 try
                 {
-                    ((ILayoutOrientableReadonlyConcrete)ws.Target).SetOrientation(dir);
+                    ((ILayoutOrientableReadonly)ws.Target).SetOrientation(dir);
                 }
                 catch (Exception e)
                 {

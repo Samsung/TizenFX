@@ -708,7 +708,7 @@ sealed public class IObjectConcrete :
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetFocusGeometry();
+                    _ret_var = ((IObject)ws.Target).GetFocusGeometry();
                 }
                 catch (Exception e)
                 {
@@ -744,7 +744,7 @@ sealed public class IObjectConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetFocus();
+                    _ret_var = ((IObject)ws.Target).GetFocus();
                 }
                 catch (Exception e)
                 {
@@ -780,7 +780,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetFocus(focus);
+                    ((IObject)ws.Target).SetFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -815,7 +815,7 @@ sealed public class IObjectConcrete :
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetFocusManager();
+                    _ret_var = ((IObject)ws.Target).GetFocusManager();
                 }
                 catch (Exception e)
                 {
@@ -851,7 +851,7 @@ sealed public class IObjectConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetFocusParent();
+                    _ret_var = ((IObject)ws.Target).GetFocusParent();
                 }
                 catch (Exception e)
                 {
@@ -887,7 +887,7 @@ sealed public class IObjectConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).GetChildFocus();
+                    _ret_var = ((IObject)ws.Target).GetChildFocus();
                 }
                 catch (Exception e)
                 {
@@ -923,7 +923,7 @@ sealed public class IObjectConcrete :
                                     
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetChildFocus(child_focus);
+                    ((IObject)ws.Target).SetChildFocus(child_focus);
                 }
                 catch (Exception e)
                 {
@@ -958,7 +958,7 @@ sealed public class IObjectConcrete :
             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetupOrder();
+                    ((IObject)ws.Target).SetupOrder();
                 }
                 catch (Exception e)
                 {
@@ -993,7 +993,7 @@ sealed public class IObjectConcrete :
             
                 try
                 {
-                    ((IObjectConcrete)ws.Target).SetupOrderNonRecursive();
+                    ((IObject)ws.Target).SetupOrderNonRecursive();
                 }
                 catch (Exception e)
                 {
@@ -1028,7 +1028,7 @@ sealed public class IObjectConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)ws.Target).UpdateOnFocus();
+                    _ret_var = ((IObject)ws.Target).UpdateOnFocus();
                 }
                 catch (Exception e)
                 {

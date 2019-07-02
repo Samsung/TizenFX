@@ -57,7 +57,7 @@ sealed public class IGradientConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_gradient_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IGradient"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>

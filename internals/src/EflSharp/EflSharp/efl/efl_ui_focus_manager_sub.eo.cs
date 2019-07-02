@@ -753,7 +753,7 @@ sealed public class IManagerSubConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).GetManagerFocus();
+                    _ret_var = ((IManagerSub)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -789,7 +789,7 @@ sealed public class IManagerSubConcrete :
                                     
                 try
                 {
-                    ((IManagerSubConcrete)ws.Target).SetManagerFocus(focus);
+                    ((IManagerSub)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -824,7 +824,7 @@ sealed public class IManagerSubConcrete :
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).GetRedirect();
+                    _ret_var = ((IManagerSub)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -860,7 +860,7 @@ sealed public class IManagerSubConcrete :
                                     
                 try
                 {
-                    ((IManagerSubConcrete)ws.Target).SetRedirect(redirect);
+                    ((IManagerSub)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -895,7 +895,7 @@ sealed public class IManagerSubConcrete :
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).GetBorderElements();
+                    _ret_var = ((IManagerSub)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -932,7 +932,7 @@ sealed public class IManagerSubConcrete :
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).GetViewportElements(_in_viewport);
+                    _ret_var = ((IManagerSub)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -968,7 +968,7 @@ sealed public class IManagerSubConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).GetRoot();
+                    _ret_var = ((IManagerSub)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -1004,7 +1004,7 @@ sealed public class IManagerSubConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).SetRoot(root);
+                    _ret_var = ((IManagerSub)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -1040,7 +1040,7 @@ sealed public class IManagerSubConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).Move(direction);
+                    _ret_var = ((IManagerSub)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -1076,7 +1076,7 @@ sealed public class IManagerSubConcrete :
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).MoveRequest(direction, child, logical);
+                    _ret_var = ((IManagerSub)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -1112,7 +1112,7 @@ sealed public class IManagerSubConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).RequestSubchild(root);
+                    _ret_var = ((IManagerSub)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -1148,7 +1148,7 @@ sealed public class IManagerSubConcrete :
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).Fetch(child);
+                    _ret_var = ((IManagerSub)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -1184,7 +1184,7 @@ sealed public class IManagerSubConcrete :
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((IManagerSubConcrete)ws.Target).LogicalEnd();
+                    _ret_var = ((IManagerSub)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -1220,7 +1220,7 @@ sealed public class IManagerSubConcrete :
             
                 try
                 {
-                    ((IManagerSubConcrete)ws.Target).ResetHistory();
+                    ((IManagerSub)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -1255,7 +1255,7 @@ sealed public class IManagerSubConcrete :
             
                 try
                 {
-                    ((IManagerSubConcrete)ws.Target).PopHistoryStack();
+                    ((IManagerSub)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -1290,7 +1290,7 @@ sealed public class IManagerSubConcrete :
                                                             
                 try
                 {
-                    ((IManagerSubConcrete)ws.Target).SetupOnFirstTouch(direction, entry);
+                    ((IManagerSub)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -1325,7 +1325,7 @@ sealed public class IManagerSubConcrete :
             
                 try
                 {
-                    ((IManagerSubConcrete)ws.Target).FreezeDirtyLogic();
+                    ((IManagerSub)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -1360,7 +1360,7 @@ sealed public class IManagerSubConcrete :
             
                 try
                 {
-                    ((IManagerSubConcrete)ws.Target).DirtyLogicUnfreeze();
+                    ((IManagerSub)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {

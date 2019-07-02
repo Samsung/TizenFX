@@ -473,7 +473,7 @@ sealed public class IInternalConcrete :
                                     
                 try
                 {
-                    ((IInternalConcrete)ws.Target).SetFilterChanged(val);
+                    ((IInternal)ws.Target).SetFilterChanged(val);
                 }
                 catch (Exception e)
                 {
@@ -508,7 +508,7 @@ sealed public class IInternalConcrete :
                                     
                 try
                 {
-                    ((IInternalConcrete)ws.Target).SetFilterInvalid(val);
+                    ((IInternal)ws.Target).SetFilterInvalid(val);
                 }
                 catch (Exception e)
                 {
@@ -543,7 +543,7 @@ sealed public class IInternalConcrete :
             System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
-                    _ret_var = ((IInternalConcrete)ws.Target).GetFilterOutputBuffer();
+                    _ret_var = ((IInternal)ws.Target).GetFilterOutputBuffer();
                 }
                 catch (Exception e)
                 {
@@ -579,7 +579,7 @@ sealed public class IInternalConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInternalConcrete)ws.Target).FilterInputAlpha();
+                    _ret_var = ((IInternal)ws.Target).FilterInputAlpha();
                 }
                 catch (Exception e)
                 {
@@ -616,7 +616,7 @@ sealed public class IInternalConcrete :
                                     
                 try
                 {
-                    ((IInternalConcrete)ws.Target).FilterStatePrepare(out _out_state, data);
+                    ((IInternal)ws.Target).FilterStatePrepare(out _out_state, data);
                 }
                 catch (Exception e)
                 {
@@ -652,7 +652,7 @@ sealed public class IInternalConcrete :
                                                                                                                                                                                                                                                                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInternalConcrete)ws.Target).FilterInputRender(filter, engine, output, drawctx, data, l, r, t, b, x, y, do_async);
+                    _ret_var = ((IInternal)ws.Target).FilterInputRender(filter, engine, output, drawctx, data, l, r, t, b, x, y, do_async);
                 }
                 catch (Exception e)
                 {
@@ -688,7 +688,7 @@ sealed public class IInternalConcrete :
             
                 try
                 {
-                    ((IInternalConcrete)ws.Target).FilterDirty();
+                    ((IInternal)ws.Target).FilterDirty();
                 }
                 catch (Exception e)
                 {
@@ -725,7 +725,7 @@ sealed public class IInternalConcrete :
                             
                 try
                 {
-                    ((IInternalConcrete)ws.Target).GetFilterProgram(out _out_code, out _out_name);
+                    ((IInternal)ws.Target).GetFilterProgram(out _out_code, out _out_name);
                 }
                 catch (Exception e)
                 {
@@ -762,7 +762,7 @@ sealed public class IInternalConcrete :
                                                             
                 try
                 {
-                    ((IInternalConcrete)ws.Target).SetFilterProgram(code, name);
+                    ((IInternal)ws.Target).SetFilterProgram(code, name);
                 }
                 catch (Exception e)
                 {
@@ -799,7 +799,7 @@ sealed public class IInternalConcrete :
         next_val = default(double);        pos = default(double);                                                    
                 try
                 {
-                    ((IInternalConcrete)ws.Target).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
+                    ((IInternal)ws.Target).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
                 }
                 catch (Exception e)
                 {
@@ -836,7 +836,7 @@ sealed public class IInternalConcrete :
                                                                                                                                     
                 try
                 {
-                    ((IInternalConcrete)ws.Target).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
+                    ((IInternal)ws.Target).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
                 }
                 catch (Exception e)
                 {
@@ -871,7 +871,7 @@ sealed public class IInternalConcrete :
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((IInternalConcrete)ws.Target).GetFilterPadding(out l, out r, out t, out b);
+                    ((IInternal)ws.Target).GetFilterPadding(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -906,7 +906,7 @@ sealed public class IInternalConcrete :
                                     Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((IInternalConcrete)ws.Target).GetFilterSource(name);
+                    _ret_var = ((IInternal)ws.Target).GetFilterSource(name);
                 }
                 catch (Exception e)
                 {
@@ -942,7 +942,7 @@ sealed public class IInternalConcrete :
                                                             
                 try
                 {
-                    ((IInternalConcrete)ws.Target).SetFilterSource(name, source);
+                    ((IInternal)ws.Target).SetFilterSource(name, source);
                 }
                 catch (Exception e)
                 {
@@ -978,7 +978,7 @@ sealed public class IInternalConcrete :
         execute = default(bool);                                    
                 try
                 {
-                    ((IInternalConcrete)ws.Target).GetFilterData(name, out _out_value, out execute);
+                    ((IInternal)ws.Target).GetFilterData(name, out _out_value, out execute);
                 }
                 catch (Exception e)
                 {
@@ -1014,7 +1014,7 @@ sealed public class IInternalConcrete :
                                                                                     
                 try
                 {
-                    ((IInternalConcrete)ws.Target).SetFilterData(name, value, execute);
+                    ((IInternal)ws.Target).SetFilterData(name, value, execute);
                 }
                 catch (Exception e)
                 {

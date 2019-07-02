@@ -416,7 +416,7 @@ sealed public class IEventConcrete :
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IEventConcrete)ws.Target).GetTimestamp();
+                    _ret_var = ((IEvent)ws.Target).GetTimestamp();
                 }
                 catch (Exception e)
                 {
@@ -452,7 +452,7 @@ sealed public class IEventConcrete :
                                     
                 try
                 {
-                    ((IEventConcrete)ws.Target).SetTimestamp(ms);
+                    ((IEvent)ws.Target).SetTimestamp(ms);
                 }
                 catch (Exception e)
                 {
@@ -487,7 +487,7 @@ sealed public class IEventConcrete :
             Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((IEventConcrete)ws.Target).GetDevice();
+                    _ret_var = ((IEvent)ws.Target).GetDevice();
                 }
                 catch (Exception e)
                 {
@@ -523,7 +523,7 @@ sealed public class IEventConcrete :
                                     
                 try
                 {
-                    ((IEventConcrete)ws.Target).SetDevice(dev);
+                    ((IEvent)ws.Target).SetDevice(dev);
                 }
                 catch (Exception e)
                 {
@@ -558,7 +558,7 @@ sealed public class IEventConcrete :
             Efl.Input.Flags _ret_var = default(Efl.Input.Flags);
                 try
                 {
-                    _ret_var = ((IEventConcrete)ws.Target).GetEventFlags();
+                    _ret_var = ((IEvent)ws.Target).GetEventFlags();
                 }
                 catch (Exception e)
                 {
@@ -594,7 +594,7 @@ sealed public class IEventConcrete :
                                     
                 try
                 {
-                    ((IEventConcrete)ws.Target).SetEventFlags(flags);
+                    ((IEvent)ws.Target).SetEventFlags(flags);
                 }
                 catch (Exception e)
                 {
@@ -629,7 +629,7 @@ sealed public class IEventConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IEventConcrete)ws.Target).GetProcessed();
+                    _ret_var = ((IEvent)ws.Target).GetProcessed();
                 }
                 catch (Exception e)
                 {
@@ -665,7 +665,7 @@ sealed public class IEventConcrete :
                                     
                 try
                 {
-                    ((IEventConcrete)ws.Target).SetProcessed(val);
+                    ((IEvent)ws.Target).SetProcessed(val);
                 }
                 catch (Exception e)
                 {
@@ -700,7 +700,7 @@ sealed public class IEventConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IEventConcrete)ws.Target).GetScrolling();
+                    _ret_var = ((IEvent)ws.Target).GetScrolling();
                 }
                 catch (Exception e)
                 {
@@ -736,7 +736,7 @@ sealed public class IEventConcrete :
                                     
                 try
                 {
-                    ((IEventConcrete)ws.Target).SetScrolling(val);
+                    ((IEvent)ws.Target).SetScrolling(val);
                 }
                 catch (Exception e)
                 {
@@ -771,7 +771,7 @@ sealed public class IEventConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IEventConcrete)ws.Target).GetFake();
+                    _ret_var = ((IEvent)ws.Target).GetFake();
                 }
                 catch (Exception e)
                 {
@@ -807,7 +807,7 @@ sealed public class IEventConcrete :
             
                 try
                 {
-                    ((IEventConcrete)ws.Target).Reset();
+                    ((IEvent)ws.Target).Reset();
                 }
                 catch (Exception e)
                 {
@@ -842,7 +842,7 @@ sealed public class IEventConcrete :
             Efl.IDuplicate _ret_var = default(Efl.IDuplicate);
                 try
                 {
-                    _ret_var = ((IEventConcrete)ws.Target).Duplicate();
+                    _ret_var = ((IEvent)ws.Target).Duplicate();
                 }
                 catch (Exception e)
                 {

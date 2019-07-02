@@ -492,7 +492,7 @@ sealed public class IClickableConcrete :
                                     
                 try
                 {
-                    ((IClickableConcrete)ws.Target).Press(button);
+                    ((IClickable)ws.Target).Press(button);
                 }
                 catch (Exception e)
                 {
@@ -527,7 +527,7 @@ sealed public class IClickableConcrete :
                                     
                 try
                 {
-                    ((IClickableConcrete)ws.Target).Unpress(button);
+                    ((IClickable)ws.Target).Unpress(button);
                 }
                 catch (Exception e)
                 {
@@ -562,7 +562,7 @@ sealed public class IClickableConcrete :
                                     
                 try
                 {
-                    ((IClickableConcrete)ws.Target).ResetButtonState(button);
+                    ((IClickable)ws.Target).ResetButtonState(button);
                 }
                 catch (Exception e)
                 {

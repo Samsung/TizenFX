@@ -92,7 +92,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -101,7 +101,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -109,7 +109,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -154,7 +154,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -163,7 +163,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -171,7 +171,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -217,7 +217,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -226,7 +226,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -234,7 +234,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -279,7 +279,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -288,7 +288,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -296,7 +296,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

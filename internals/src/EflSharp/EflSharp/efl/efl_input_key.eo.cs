@@ -112,16 +112,16 @@ public class Key : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IStat
     /// <summary>A UTF8 string if this keystroke has modified a string in the middle of being composed.
     /// Note: This string replaces the previous one</summary>
     /// <returns>Composed key string in UTF8</returns>
-    virtual public System.String GetCompose() {
-         var _ret_var = Efl.Input.Key.NativeMethods.efl_input_key_compose_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public System.String GetComposeString() {
+         var _ret_var = Efl.Input.Key.NativeMethods.efl_input_key_compose_string_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>A UTF8 string if this keystroke has modified a string in the middle of being composed.
     /// Note: This string replaces the previous one</summary>
     /// <param name="val">Composed key string in UTF8</param>
-    virtual public void SetCompose(System.String val) {
-                                 Efl.Input.Key.NativeMethods.efl_input_key_compose_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+    virtual public void SetComposeString(System.String val) {
+                                 Efl.Input.Key.NativeMethods.efl_input_key_compose_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Key scan code numeric value.</summary>
@@ -264,9 +264,9 @@ public class Key : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IStat
     /// <summary>A UTF8 string if this keystroke has modified a string in the middle of being composed.
     /// Note: This string replaces the previous one</summary>
     /// <value>Composed key string in UTF8</value>
-    public System.String Compose {
-        get { return GetCompose(); }
-        set { SetCompose(value); }
+    public System.String ComposeString {
+        get { return GetComposeString(); }
+        set { SetComposeString(value); }
     }
     /// <summary>Key scan code numeric value.</summary>
     /// <value>Key scan code</value>
@@ -406,24 +406,24 @@ public class Key : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IStat
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_string_set_static_delegate) });
             }
 
-            if (efl_input_key_compose_get_static_delegate == null)
+            if (efl_input_key_compose_string_get_static_delegate == null)
             {
-                efl_input_key_compose_get_static_delegate = new efl_input_key_compose_get_delegate(compose_get);
+                efl_input_key_compose_string_get_static_delegate = new efl_input_key_compose_string_get_delegate(compose_string_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetCompose") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetComposeString") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_string_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_string_get_static_delegate) });
             }
 
-            if (efl_input_key_compose_set_static_delegate == null)
+            if (efl_input_key_compose_string_set_static_delegate == null)
             {
-                efl_input_key_compose_set_static_delegate = new efl_input_key_compose_set_delegate(compose_set);
+                efl_input_key_compose_string_set_static_delegate = new efl_input_key_compose_string_set_delegate(compose_string_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetCompose") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetComposeString") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_string_set_static_delegate) });
             }
 
             if (efl_input_key_code_get_static_delegate == null)
@@ -893,23 +893,23 @@ public class Key : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IStat
         private static efl_input_key_string_set_delegate efl_input_key_string_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_input_key_compose_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        private delegate System.String efl_input_key_compose_string_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_input_key_compose_get_api_delegate(System.IntPtr obj);
+        public delegate System.String efl_input_key_compose_string_get_api_delegate(System.IntPtr obj);
 
-        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_get_api_delegate> efl_input_key_compose_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_get_api_delegate>(Module, "efl_input_key_compose_get");
+        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_string_get_api_delegate> efl_input_key_compose_string_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_string_get_api_delegate>(Module, "efl_input_key_compose_string_get");
 
-        private static System.String compose_get(System.IntPtr obj, System.IntPtr pd)
+        private static System.String compose_string_get(System.IntPtr obj, System.IntPtr pd)
         {
-            Eina.Log.Debug("function efl_input_key_compose_get was called");
+            Eina.Log.Debug("function efl_input_key_compose_string_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Key)ws.Target).GetCompose();
+                    _ret_var = ((Key)ws.Target).GetComposeString();
                 }
                 catch (Exception e)
                 {
@@ -922,30 +922,30 @@ public class Key : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IStat
             }
             else
             {
-                return efl_input_key_compose_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_input_key_compose_string_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_input_key_compose_get_delegate efl_input_key_compose_get_static_delegate;
+        private static efl_input_key_compose_string_get_delegate efl_input_key_compose_string_get_static_delegate;
 
         
-        private delegate void efl_input_key_compose_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
+        private delegate void efl_input_key_compose_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
 
         
-        public delegate void efl_input_key_compose_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
+        public delegate void efl_input_key_compose_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
 
-        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_set_api_delegate> efl_input_key_compose_set_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_set_api_delegate>(Module, "efl_input_key_compose_set");
+        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_string_set_api_delegate> efl_input_key_compose_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_string_set_api_delegate>(Module, "efl_input_key_compose_string_set");
 
-        private static void compose_set(System.IntPtr obj, System.IntPtr pd, System.String val)
+        private static void compose_string_set(System.IntPtr obj, System.IntPtr pd, System.String val)
         {
-            Eina.Log.Debug("function efl_input_key_compose_set was called");
+            Eina.Log.Debug("function efl_input_key_compose_string_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)ws.Target).SetCompose(val);
+                    ((Key)ws.Target).SetComposeString(val);
                 }
                 catch (Exception e)
                 {
@@ -957,11 +957,11 @@ public class Key : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IStat
             }
             else
             {
-                efl_input_key_compose_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), val);
+                efl_input_key_compose_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), val);
             }
         }
 
-        private static efl_input_key_compose_set_delegate efl_input_key_compose_set_static_delegate;
+        private static efl_input_key_compose_string_set_delegate efl_input_key_compose_string_set_static_delegate;
 
         
         private delegate int efl_input_key_code_get_delegate(System.IntPtr obj, System.IntPtr pd);
