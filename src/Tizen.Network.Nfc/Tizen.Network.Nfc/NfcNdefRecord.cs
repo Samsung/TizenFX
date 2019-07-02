@@ -284,6 +284,11 @@ namespace Tizen.Network.Nfc
             }
         }
 
+        internal NfcNdefRecord(IntPtr recordHandle)
+        {
+            _recordHandle = recordHandle;
+        }
+
         /// <summary>
         /// NfcNdefRecord destructor.
         /// </summary>
