@@ -68,6 +68,29 @@ namespace Tizen.Network.Nfc
         internal NfcNdefMessage(IntPtr messageHandle)
         {
             _messageHandle = messageHandle;
+
+            int recordCount;
+            int ret = Interop.Nfc.NdefMessage.GetRecordCount(_messageHandle, out recordCount);
+            if (ret != (int)NfcError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to GetRecordCount, Error - " + (NfcError)ret);
+                NfcErrorFactory.ThrowNfcException(ret);
+            }
+
+            for (int i = 0; i < recordCount; i++) {
+                IntPtr recordHandle;
+                ret = Interop.Nfc.NdefMessage.GetRecord(_messageHandle, i, out recordHandle);
+                if (ret != (int)NfcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get record, Error - " + (NfcError)ret);
+                    NfcErrorFactory.ThrowNfcException(ret);
+                }
+
+                NfcNdefRecord record = new NfcNdefRecord(recordHandle);
+                
+                _recordList.Add(record);
+                Log.Error(Globals.LogTag, "Record Added");
+            }
         }
 
         /// <summary>
