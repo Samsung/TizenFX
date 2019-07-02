@@ -126,7 +126,7 @@ sealed public class IComponentConcrete :
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -135,7 +135,7 @@ sealed public class IComponentConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -143,7 +143,7 @@ sealed public class IComponentConcrete :
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -188,7 +188,7 @@ sealed public class IComponentConcrete :
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -197,7 +197,7 @@ sealed public class IComponentConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -205,7 +205,7 @@ sealed public class IComponentConcrete :
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -251,7 +251,7 @@ sealed public class IComponentConcrete :
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -260,7 +260,7 @@ sealed public class IComponentConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -268,7 +268,7 @@ sealed public class IComponentConcrete :
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -313,7 +313,7 @@ sealed public class IComponentConcrete :
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -322,7 +322,7 @@ sealed public class IComponentConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -330,7 +330,7 @@ sealed public class IComponentConcrete :
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1022,7 +1022,7 @@ sealed public class IComponentConcrete :
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetZOrder();
+                    _ret_var = ((IComponent)ws.Target).GetZOrder();
                 }
                 catch (Exception e)
                 {
@@ -1058,7 +1058,7 @@ sealed public class IComponentConcrete :
                                     Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetExtents(screen_coords);
+                    _ret_var = ((IComponent)ws.Target).GetExtents(screen_coords);
                 }
                 catch (Exception e)
                 {
@@ -1095,7 +1095,7 @@ sealed public class IComponentConcrete :
                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).SetExtents(screen_coords, _in_rect);
+                    _ret_var = ((IComponent)ws.Target).SetExtents(screen_coords, _in_rect);
                 }
                 catch (Exception e)
                 {
@@ -1131,7 +1131,7 @@ sealed public class IComponentConcrete :
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((IComponentConcrete)ws.Target).GetScreenPosition(out x, out y);
+                    ((IComponent)ws.Target).GetScreenPosition(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1166,7 +1166,7 @@ sealed public class IComponentConcrete :
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).SetScreenPosition(x, y);
+                    _ret_var = ((IComponent)ws.Target).SetScreenPosition(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1202,7 +1202,7 @@ sealed public class IComponentConcrete :
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((IComponentConcrete)ws.Target).GetSocketOffset(out x, out y);
+                    ((IComponent)ws.Target).GetSocketOffset(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1237,7 +1237,7 @@ sealed public class IComponentConcrete :
                                                             
                 try
                 {
-                    ((IComponentConcrete)ws.Target).SetSocketOffset(x, y);
+                    ((IComponent)ws.Target).SetSocketOffset(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1272,7 +1272,7 @@ sealed public class IComponentConcrete :
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).Contains(screen_coords, x, y);
+                    _ret_var = ((IComponent)ws.Target).Contains(screen_coords, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1308,7 +1308,7 @@ sealed public class IComponentConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GrabFocus();
+                    _ret_var = ((IComponent)ws.Target).GrabFocus();
                 }
                 catch (Exception e)
                 {
@@ -1344,7 +1344,7 @@ sealed public class IComponentConcrete :
                                                                                     Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetAccessibleAtPoint(screen_coords, x, y);
+                    _ret_var = ((IComponent)ws.Target).GetAccessibleAtPoint(screen_coords, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1380,7 +1380,7 @@ sealed public class IComponentConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GrabHighlight();
+                    _ret_var = ((IComponent)ws.Target).GrabHighlight();
                 }
                 catch (Exception e)
                 {
@@ -1416,7 +1416,7 @@ sealed public class IComponentConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).ClearHighlight();
+                    _ret_var = ((IComponent)ws.Target).ClearHighlight();
                 }
                 catch (Exception e)
                 {
@@ -1452,7 +1452,7 @@ sealed public class IComponentConcrete :
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetPosition();
+                    _ret_var = ((IComponent)ws.Target).GetPosition();
                 }
                 catch (Exception e)
                 {
@@ -1489,7 +1489,7 @@ sealed public class IComponentConcrete :
                             
                 try
                 {
-                    ((IComponentConcrete)ws.Target).SetPosition(_in_pos);
+                    ((IComponent)ws.Target).SetPosition(_in_pos);
                 }
                 catch (Exception e)
                 {
@@ -1524,7 +1524,7 @@ sealed public class IComponentConcrete :
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetSize();
+                    _ret_var = ((IComponent)ws.Target).GetSize();
                 }
                 catch (Exception e)
                 {
@@ -1561,7 +1561,7 @@ sealed public class IComponentConcrete :
                             
                 try
                 {
-                    ((IComponentConcrete)ws.Target).SetSize(_in_size);
+                    ((IComponent)ws.Target).SetSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -1596,7 +1596,7 @@ sealed public class IComponentConcrete :
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetGeometry();
+                    _ret_var = ((IComponent)ws.Target).GetGeometry();
                 }
                 catch (Exception e)
                 {
@@ -1633,7 +1633,7 @@ sealed public class IComponentConcrete :
                             
                 try
                 {
-                    ((IComponentConcrete)ws.Target).SetGeometry(_in_rect);
+                    ((IComponent)ws.Target).SetGeometry(_in_rect);
                 }
                 catch (Exception e)
                 {
@@ -1668,7 +1668,7 @@ sealed public class IComponentConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetVisible();
+                    _ret_var = ((IComponent)ws.Target).GetVisible();
                 }
                 catch (Exception e)
                 {
@@ -1704,7 +1704,7 @@ sealed public class IComponentConcrete :
                                     
                 try
                 {
-                    ((IComponentConcrete)ws.Target).SetVisible(v);
+                    ((IComponent)ws.Target).SetVisible(v);
                 }
                 catch (Exception e)
                 {
@@ -1739,7 +1739,7 @@ sealed public class IComponentConcrete :
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetScale();
+                    _ret_var = ((IComponent)ws.Target).GetScale();
                 }
                 catch (Exception e)
                 {
@@ -1775,7 +1775,7 @@ sealed public class IComponentConcrete :
                                     
                 try
                 {
-                    ((IComponentConcrete)ws.Target).SetScale(scale);
+                    ((IComponent)ws.Target).SetScale(scale);
                 }
                 catch (Exception e)
                 {
@@ -1810,7 +1810,7 @@ sealed public class IComponentConcrete :
             short _ret_var = default(short);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetLayer();
+                    _ret_var = ((IComponent)ws.Target).GetLayer();
                 }
                 catch (Exception e)
                 {
@@ -1846,7 +1846,7 @@ sealed public class IComponentConcrete :
                                     
                 try
                 {
-                    ((IComponentConcrete)ws.Target).SetLayer(l);
+                    ((IComponent)ws.Target).SetLayer(l);
                 }
                 catch (Exception e)
                 {
@@ -1881,7 +1881,7 @@ sealed public class IComponentConcrete :
             Efl.Gfx.IStack _ret_var = default(Efl.Gfx.IStack);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetBelow();
+                    _ret_var = ((IComponent)ws.Target).GetBelow();
                 }
                 catch (Exception e)
                 {
@@ -1917,7 +1917,7 @@ sealed public class IComponentConcrete :
             Efl.Gfx.IStack _ret_var = default(Efl.Gfx.IStack);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)ws.Target).GetAbove();
+                    _ret_var = ((IComponent)ws.Target).GetAbove();
                 }
                 catch (Exception e)
                 {
@@ -1953,7 +1953,7 @@ sealed public class IComponentConcrete :
                                     
                 try
                 {
-                    ((IComponentConcrete)ws.Target).StackBelow(below);
+                    ((IComponent)ws.Target).StackBelow(below);
                 }
                 catch (Exception e)
                 {
@@ -1988,7 +1988,7 @@ sealed public class IComponentConcrete :
             
                 try
                 {
-                    ((IComponentConcrete)ws.Target).RaiseToTop();
+                    ((IComponent)ws.Target).RaiseToTop();
                 }
                 catch (Exception e)
                 {
@@ -2023,7 +2023,7 @@ sealed public class IComponentConcrete :
                                     
                 try
                 {
-                    ((IComponentConcrete)ws.Target).StackAbove(above);
+                    ((IComponent)ws.Target).StackAbove(above);
                 }
                 catch (Exception e)
                 {
@@ -2058,7 +2058,7 @@ sealed public class IComponentConcrete :
             
                 try
                 {
-                    ((IComponentConcrete)ws.Target).LowerToBottom();
+                    ((IComponent)ws.Target).LowerToBottom();
                 }
                 catch (Exception e)
                 {

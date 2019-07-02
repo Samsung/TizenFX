@@ -1554,7 +1554,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1563,7 +1563,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1571,7 +1571,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnItemSelectedEvt(Efl.Ui.ISelectableItemSelectedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_ITEM_SELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1608,7 +1608,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1617,7 +1617,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1625,7 +1625,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnItemUnselectedEvt(Efl.Ui.ISelectableItemUnselectedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1661,7 +1661,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_PASTE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1670,7 +1670,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_PASTE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1678,7 +1678,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnSelectionPasteEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_PASTE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1713,7 +1713,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_COPY";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1722,7 +1722,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_COPY";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1730,7 +1730,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnSelectionCopyEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_COPY";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1765,7 +1765,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_CUT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1774,7 +1774,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CUT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1782,7 +1782,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnSelectionCutEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CUT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1817,7 +1817,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1826,7 +1826,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1834,7 +1834,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnSelectionStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1869,7 +1869,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1878,7 +1878,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1886,7 +1886,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1921,7 +1921,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1930,7 +1930,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1938,7 +1938,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public void OnSelectionClearedEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

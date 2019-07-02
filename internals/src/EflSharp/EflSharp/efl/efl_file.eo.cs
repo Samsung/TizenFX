@@ -118,7 +118,7 @@ sealed public class IFileConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_file_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IFile"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -375,7 +375,7 @@ sealed public class IFileConcrete :
             Eina.File _ret_var = default(Eina.File);
                 try
                 {
-                    _ret_var = ((IFileConcrete)ws.Target).GetMmap();
+                    _ret_var = ((IFile)ws.Target).GetMmap();
                 }
                 catch (Exception e)
                 {
@@ -411,7 +411,7 @@ sealed public class IFileConcrete :
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((IFileConcrete)ws.Target).SetMmap(f);
+                    _ret_var = ((IFile)ws.Target).SetMmap(f);
                 }
                 catch (Exception e)
                 {
@@ -447,7 +447,7 @@ sealed public class IFileConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IFileConcrete)ws.Target).GetFile();
+                    _ret_var = ((IFile)ws.Target).GetFile();
                 }
                 catch (Exception e)
                 {
@@ -483,7 +483,7 @@ sealed public class IFileConcrete :
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((IFileConcrete)ws.Target).SetFile(file);
+                    _ret_var = ((IFile)ws.Target).SetFile(file);
                 }
                 catch (Exception e)
                 {
@@ -519,7 +519,7 @@ sealed public class IFileConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IFileConcrete)ws.Target).GetKey();
+                    _ret_var = ((IFile)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -555,7 +555,7 @@ sealed public class IFileConcrete :
                                     
                 try
                 {
-                    ((IFileConcrete)ws.Target).SetKey(key);
+                    ((IFile)ws.Target).SetKey(key);
                 }
                 catch (Exception e)
                 {
@@ -590,7 +590,7 @@ sealed public class IFileConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IFileConcrete)ws.Target).GetLoaded();
+                    _ret_var = ((IFile)ws.Target).GetLoaded();
                 }
                 catch (Exception e)
                 {
@@ -626,7 +626,7 @@ sealed public class IFileConcrete :
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((IFileConcrete)ws.Target).Load();
+                    _ret_var = ((IFile)ws.Target).Load();
                 }
                 catch (Exception e)
                 {
@@ -662,7 +662,7 @@ sealed public class IFileConcrete :
             
                 try
                 {
-                    ((IFileConcrete)ws.Target).Unload();
+                    ((IFile)ws.Target).Unload();
                 }
                 catch (Exception e)
                 {

@@ -90,7 +90,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -99,7 +99,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
             lock (eventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -107,7 +107,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -143,7 +143,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
                 };
 
                 string key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -152,7 +152,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
             lock (eventLock)
             {
                 string key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -160,7 +160,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     public void OnRepeatedEvt(EventArgs e)
     {
         var key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

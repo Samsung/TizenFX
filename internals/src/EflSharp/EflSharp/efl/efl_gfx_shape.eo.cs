@@ -138,7 +138,7 @@ sealed public class IShapeConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_shape_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IShape"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -958,7 +958,7 @@ sealed public class IShapeConcrete :
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).GetStrokeScale();
+                    _ret_var = ((IShape)ws.Target).GetStrokeScale();
                 }
                 catch (Exception e)
                 {
@@ -994,7 +994,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetStrokeScale(s);
+                    ((IShape)ws.Target).SetStrokeScale(s);
                 }
                 catch (Exception e)
                 {
@@ -1029,7 +1029,7 @@ sealed public class IShapeConcrete :
                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
                 try
                 {
-                    ((IShapeConcrete)ws.Target).GetStrokeColor(out r, out g, out b, out a);
+                    ((IShape)ws.Target).GetStrokeColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -1064,7 +1064,7 @@ sealed public class IShapeConcrete :
                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetStrokeColor(r, g, b, a);
+                    ((IShape)ws.Target).SetStrokeColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -1099,7 +1099,7 @@ sealed public class IShapeConcrete :
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).GetStrokeWidth();
+                    _ret_var = ((IShape)ws.Target).GetStrokeWidth();
                 }
                 catch (Exception e)
                 {
@@ -1135,7 +1135,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetStrokeWidth(w);
+                    ((IShape)ws.Target).SetStrokeWidth(w);
                 }
                 catch (Exception e)
                 {
@@ -1170,7 +1170,7 @@ sealed public class IShapeConcrete :
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).GetStrokeLocation();
+                    _ret_var = ((IShape)ws.Target).GetStrokeLocation();
                 }
                 catch (Exception e)
                 {
@@ -1206,7 +1206,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetStrokeLocation(centered);
+                    ((IShape)ws.Target).SetStrokeLocation(centered);
                 }
                 catch (Exception e)
                 {
@@ -1242,7 +1242,7 @@ sealed public class IShapeConcrete :
         length = default(uint);                            
                 try
                 {
-                    ((IShapeConcrete)ws.Target).GetStrokeDash(out _out_dash, out length);
+                    ((IShape)ws.Target).GetStrokeDash(out _out_dash, out length);
                 }
                 catch (Exception e)
                 {
@@ -1279,7 +1279,7 @@ sealed public class IShapeConcrete :
                                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetStrokeDash(ref _in_dash, length);
+                    ((IShape)ws.Target).SetStrokeDash(ref _in_dash, length);
                 }
                 catch (Exception e)
                 {
@@ -1315,7 +1315,7 @@ sealed public class IShapeConcrete :
             Efl.Gfx.Cap _ret_var = default(Efl.Gfx.Cap);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).GetStrokeCap();
+                    _ret_var = ((IShape)ws.Target).GetStrokeCap();
                 }
                 catch (Exception e)
                 {
@@ -1351,7 +1351,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetStrokeCap(c);
+                    ((IShape)ws.Target).SetStrokeCap(c);
                 }
                 catch (Exception e)
                 {
@@ -1386,7 +1386,7 @@ sealed public class IShapeConcrete :
             Efl.Gfx.Join _ret_var = default(Efl.Gfx.Join);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).GetStrokeJoin();
+                    _ret_var = ((IShape)ws.Target).GetStrokeJoin();
                 }
                 catch (Exception e)
                 {
@@ -1422,7 +1422,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetStrokeJoin(j);
+                    ((IShape)ws.Target).SetStrokeJoin(j);
                 }
                 catch (Exception e)
                 {
@@ -1457,7 +1457,7 @@ sealed public class IShapeConcrete :
             Efl.Gfx.FillRule _ret_var = default(Efl.Gfx.FillRule);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).GetFillRule();
+                    _ret_var = ((IShape)ws.Target).GetFillRule();
                 }
                 catch (Exception e)
                 {
@@ -1493,7 +1493,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetFillRule(fill_rule);
+                    ((IShape)ws.Target).SetFillRule(fill_rule);
                 }
                 catch (Exception e)
                 {
@@ -1530,7 +1530,7 @@ sealed public class IShapeConcrete :
                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).GetPath(out _out_op, out _out_points);
+                    ((IShape)ws.Target).GetPath(out _out_op, out _out_points);
                 }
                 catch (Exception e)
                 {
@@ -1569,7 +1569,7 @@ sealed public class IShapeConcrete :
                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).SetPath(_in_op, _in_points);
+                    ((IShape)ws.Target).SetPath(_in_op, _in_points);
                 }
                 catch (Exception e)
                 {
@@ -1604,7 +1604,7 @@ sealed public class IShapeConcrete :
                         commands = default(uint);        points = default(uint);                            
                 try
                 {
-                    ((IShapeConcrete)ws.Target).GetLength(out commands, out points);
+                    ((IShape)ws.Target).GetLength(out commands, out points);
                 }
                 catch (Exception e)
                 {
@@ -1639,7 +1639,7 @@ sealed public class IShapeConcrete :
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IShapeConcrete)ws.Target).GetCurrent(out x, out y);
+                    ((IShape)ws.Target).GetCurrent(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1674,7 +1674,7 @@ sealed public class IShapeConcrete :
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IShapeConcrete)ws.Target).GetCurrentCtrl(out x, out y);
+                    ((IShape)ws.Target).GetCurrentCtrl(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1709,7 +1709,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).CopyFrom(dup_from);
+                    ((IShape)ws.Target).CopyFrom(dup_from);
                 }
                 catch (Exception e)
                 {
@@ -1745,7 +1745,7 @@ sealed public class IShapeConcrete :
                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).GetBounds(out _out_r);
+                    ((IShape)ws.Target).GetBounds(out _out_r);
                 }
                 catch (Exception e)
                 {
@@ -1781,7 +1781,7 @@ sealed public class IShapeConcrete :
             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).Reset();
+                    ((IShape)ws.Target).Reset();
                 }
                 catch (Exception e)
                 {
@@ -1816,7 +1816,7 @@ sealed public class IShapeConcrete :
                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendMoveTo(x, y);
+                    ((IShape)ws.Target).AppendMoveTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1851,7 +1851,7 @@ sealed public class IShapeConcrete :
                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendLineTo(x, y);
+                    ((IShape)ws.Target).AppendLineTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1886,7 +1886,7 @@ sealed public class IShapeConcrete :
                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendQuadraticTo(x, y, ctrl_x, ctrl_y);
+                    ((IShape)ws.Target).AppendQuadraticTo(x, y, ctrl_x, ctrl_y);
                 }
                 catch (Exception e)
                 {
@@ -1921,7 +1921,7 @@ sealed public class IShapeConcrete :
                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendSquadraticTo(x, y);
+                    ((IShape)ws.Target).AppendSquadraticTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1956,7 +1956,7 @@ sealed public class IShapeConcrete :
                                                                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendCubicTo(ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
+                    ((IShape)ws.Target).AppendCubicTo(ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1991,7 +1991,7 @@ sealed public class IShapeConcrete :
                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendScubicTo(x, y, ctrl_x, ctrl_y);
+                    ((IShape)ws.Target).AppendScubicTo(x, y, ctrl_x, ctrl_y);
                 }
                 catch (Exception e)
                 {
@@ -2026,7 +2026,7 @@ sealed public class IShapeConcrete :
                                                                                                                                                                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendArcTo(x, y, rx, ry, angle, large_arc, sweep);
+                    ((IShape)ws.Target).AppendArcTo(x, y, rx, ry, angle, large_arc, sweep);
                 }
                 catch (Exception e)
                 {
@@ -2061,7 +2061,7 @@ sealed public class IShapeConcrete :
                                                                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendArc(x, y, w, h, start_angle, sweep_length);
+                    ((IShape)ws.Target).AppendArc(x, y, w, h, start_angle, sweep_length);
                 }
                 catch (Exception e)
                 {
@@ -2096,7 +2096,7 @@ sealed public class IShapeConcrete :
             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).CloseAppend();
+                    ((IShape)ws.Target).CloseAppend();
                 }
                 catch (Exception e)
                 {
@@ -2131,7 +2131,7 @@ sealed public class IShapeConcrete :
                                                                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendCircle(x, y, radius);
+                    ((IShape)ws.Target).AppendCircle(x, y, radius);
                 }
                 catch (Exception e)
                 {
@@ -2166,7 +2166,7 @@ sealed public class IShapeConcrete :
                                                                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendRect(x, y, w, h, rx, ry);
+                    ((IShape)ws.Target).AppendRect(x, y, w, h, rx, ry);
                 }
                 catch (Exception e)
                 {
@@ -2201,7 +2201,7 @@ sealed public class IShapeConcrete :
                                     
                 try
                 {
-                    ((IShapeConcrete)ws.Target).AppendSvgPath(svg_path_data);
+                    ((IShape)ws.Target).AppendSvgPath(svg_path_data);
                 }
                 catch (Exception e)
                 {
@@ -2236,7 +2236,7 @@ sealed public class IShapeConcrete :
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).Interpolate(from, to, pos_map);
+                    _ret_var = ((IShape)ws.Target).Interpolate(from, to, pos_map);
                 }
                 catch (Exception e)
                 {
@@ -2272,7 +2272,7 @@ sealed public class IShapeConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)ws.Target).EqualCommands(with);
+                    _ret_var = ((IShape)ws.Target).EqualCommands(with);
                 }
                 catch (Exception e)
                 {
@@ -2308,7 +2308,7 @@ sealed public class IShapeConcrete :
                                                             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).Reserve(cmd_count, pts_count);
+                    ((IShape)ws.Target).Reserve(cmd_count, pts_count);
                 }
                 catch (Exception e)
                 {
@@ -2343,7 +2343,7 @@ sealed public class IShapeConcrete :
             
                 try
                 {
-                    ((IShapeConcrete)ws.Target).Commit();
+                    ((IShape)ws.Target).Commit();
                 }
                 catch (Exception e)
                 {

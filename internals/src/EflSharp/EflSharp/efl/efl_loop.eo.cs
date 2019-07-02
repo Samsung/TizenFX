@@ -528,7 +528,7 @@ public abstract class Loop : Efl.Task
     /// Note: The time point must match whatever zero time you get from ecore_time_get() and <see cref="Efl.Loop.GetTime"/> (same 0 point). What this point is is undefined, so unless your source uses the same 0 time, then you may have to adjust and do some guessing.
     /// (Since EFL 1.22)</summary>
     /// <param name="timepoint">Time in seconds</param>
-    virtual public void SetTime(double timepoint) {
+    virtual protected void SetTime(double timepoint) {
                                  Efl.Loop.NativeMethods.efl_loop_time_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),timepoint);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -650,7 +650,7 @@ public abstract class Loop : Efl.Task
     /// <value>Time in seconds</value>
     public double Time {
         get { return GetTime(); }
-        set { SetTime(value); }
+        protected set { SetTime(value); }
     }
     private static IntPtr GetEflClassStatic()
     {

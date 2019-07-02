@@ -29,7 +29,7 @@ public class GestureTripleTap : Efl.Canvas.Gesture
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_gesture_triple_tap_class_get();
     /// <summary>Initializes a new instance of the <see cref="GestureTripleTap"/> class.</summary>
     /// <param name="parent">Parent instance.</param>

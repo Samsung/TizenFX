@@ -84,7 +84,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.IContent
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
 
@@ -93,7 +93,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.IContent
             lock (eventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
@@ -101,7 +101,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.IContent
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

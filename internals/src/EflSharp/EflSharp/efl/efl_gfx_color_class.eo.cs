@@ -108,7 +108,7 @@ sealed public class IColorClassConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_class_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IColorClass"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -327,7 +327,7 @@ sealed public class IColorClassConcrete :
                                                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)ws.Target).GetColorClass(color_class, layer, out r, out g, out b, out a);
+                    _ret_var = ((IColorClass)ws.Target).GetColorClass(color_class, layer, out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -363,7 +363,7 @@ sealed public class IColorClassConcrete :
                                                                                                                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)ws.Target).SetColorClass(color_class, layer, r, g, b, a);
+                    _ret_var = ((IColorClass)ws.Target).SetColorClass(color_class, layer, r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -399,7 +399,7 @@ sealed public class IColorClassConcrete :
                                                             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)ws.Target).GetColorClassCode(color_class, layer);
+                    _ret_var = ((IColorClass)ws.Target).GetColorClassCode(color_class, layer);
                 }
                 catch (Exception e)
                 {
@@ -435,7 +435,7 @@ sealed public class IColorClassConcrete :
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)ws.Target).SetColorClassCode(color_class, layer, colorcode);
+                    _ret_var = ((IColorClass)ws.Target).SetColorClassCode(color_class, layer, colorcode);
                 }
                 catch (Exception e)
                 {
@@ -471,7 +471,7 @@ sealed public class IColorClassConcrete :
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)ws.Target).GetColorClassDescription(color_class);
+                    _ret_var = ((IColorClass)ws.Target).GetColorClassDescription(color_class);
                 }
                 catch (Exception e)
                 {
@@ -507,7 +507,7 @@ sealed public class IColorClassConcrete :
                                     
                 try
                 {
-                    ((IColorClassConcrete)ws.Target).DelColorClass(color_class);
+                    ((IColorClass)ws.Target).DelColorClass(color_class);
                 }
                 catch (Exception e)
                 {
@@ -542,7 +542,7 @@ sealed public class IColorClassConcrete :
             
                 try
                 {
-                    ((IColorClassConcrete)ws.Target).ClearColorClass();
+                    ((IColorClass)ws.Target).ClearColorClass();
                 }
                 catch (Exception e)
                 {

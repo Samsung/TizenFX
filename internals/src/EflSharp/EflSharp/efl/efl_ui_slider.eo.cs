@@ -342,8 +342,8 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Note: If only one value is needed, the other pointer can be passed as <c>null</c>.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
-    virtual public void GetRangeMinMax(out double min, out double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_min_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out min, out max);
+    virtual public void GetRangeLimits(out double min, out double max) {
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out min, out max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the minimum and maximum values for given range widget.
@@ -356,8 +356,8 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Warning: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
-    virtual public void SetRangeMinMax(double min, double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_min_max_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),min, max);
+    virtual public void SetRangeLimits(double min, double max) {
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),min, max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the step used to increment or decrement values for given widget.
@@ -513,24 +513,24 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_value_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_value_set_static_delegate) });
             }
 
-            if (efl_ui_range_min_max_get_static_delegate == null)
+            if (efl_ui_range_limits_get_static_delegate == null)
             {
-                efl_ui_range_min_max_get_static_delegate = new efl_ui_range_min_max_get_delegate(range_min_max_get);
+                efl_ui_range_limits_get_static_delegate = new efl_ui_range_limits_get_delegate(range_limits_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetRangeMinMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetRangeLimits") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_min_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_min_max_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_limits_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_limits_get_static_delegate) });
             }
 
-            if (efl_ui_range_min_max_set_static_delegate == null)
+            if (efl_ui_range_limits_set_static_delegate == null)
             {
-                efl_ui_range_min_max_set_static_delegate = new efl_ui_range_min_max_set_delegate(range_min_max_set);
+                efl_ui_range_limits_set_static_delegate = new efl_ui_range_limits_set_delegate(range_limits_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetRangeMinMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetRangeLimits") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_min_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_min_max_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_limits_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_limits_set_static_delegate) });
             }
 
             if (efl_ui_range_step_get_static_delegate == null)
@@ -854,23 +854,23 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
         private static efl_ui_range_value_set_delegate efl_ui_range_value_set_static_delegate;
 
         
-        private delegate void efl_ui_range_min_max_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double min,  out double max);
+        private delegate void efl_ui_range_limits_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double min,  out double max);
 
         
-        public delegate void efl_ui_range_min_max_get_api_delegate(System.IntPtr obj,  out double min,  out double max);
+        public delegate void efl_ui_range_limits_get_api_delegate(System.IntPtr obj,  out double min,  out double max);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_min_max_get_api_delegate> efl_ui_range_min_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_min_max_get_api_delegate>(Module, "efl_ui_range_min_max_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_range_limits_get_api_delegate> efl_ui_range_limits_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_limits_get_api_delegate>(Module, "efl_ui_range_limits_get");
 
-        private static void range_min_max_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
+        private static void range_limits_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
         {
-            Eina.Log.Debug("function efl_ui_range_min_max_get was called");
+            Eina.Log.Debug("function efl_ui_range_limits_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                         min = default(double);        max = default(double);                            
                 try
                 {
-                    ((Slider)ws.Target).GetRangeMinMax(out min, out max);
+                    ((Slider)ws.Target).GetRangeLimits(out min, out max);
                 }
                 catch (Exception e)
                 {
@@ -882,30 +882,30 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
             }
             else
             {
-                efl_ui_range_min_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out min, out max);
+                efl_ui_range_limits_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out min, out max);
             }
         }
 
-        private static efl_ui_range_min_max_get_delegate efl_ui_range_min_max_get_static_delegate;
+        private static efl_ui_range_limits_get_delegate efl_ui_range_limits_get_static_delegate;
 
         
-        private delegate void efl_ui_range_min_max_set_delegate(System.IntPtr obj, System.IntPtr pd,  double min,  double max);
+        private delegate void efl_ui_range_limits_set_delegate(System.IntPtr obj, System.IntPtr pd,  double min,  double max);
 
         
-        public delegate void efl_ui_range_min_max_set_api_delegate(System.IntPtr obj,  double min,  double max);
+        public delegate void efl_ui_range_limits_set_api_delegate(System.IntPtr obj,  double min,  double max);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_min_max_set_api_delegate> efl_ui_range_min_max_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_min_max_set_api_delegate>(Module, "efl_ui_range_min_max_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_range_limits_set_api_delegate> efl_ui_range_limits_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_limits_set_api_delegate>(Module, "efl_ui_range_limits_set");
 
-        private static void range_min_max_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
+        private static void range_limits_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
         {
-            Eina.Log.Debug("function efl_ui_range_min_max_set was called");
+            Eina.Log.Debug("function efl_ui_range_limits_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Slider)ws.Target).SetRangeMinMax(min, max);
+                    ((Slider)ws.Target).SetRangeLimits(min, max);
                 }
                 catch (Exception e)
                 {
@@ -917,11 +917,11 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
             }
             else
             {
-                efl_ui_range_min_max_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), min, max);
+                efl_ui_range_limits_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), min, max);
             }
         }
 
-        private static efl_ui_range_min_max_set_delegate efl_ui_range_min_max_set_static_delegate;
+        private static efl_ui_range_limits_set_delegate efl_ui_range_limits_set_static_delegate;
 
         
         private delegate double efl_ui_range_step_get_delegate(System.IntPtr obj, System.IntPtr pd);

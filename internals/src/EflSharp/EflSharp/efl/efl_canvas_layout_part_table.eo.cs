@@ -84,7 +84,7 @@ public class LayoutPartTable : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack,
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
 
@@ -93,7 +93,7 @@ public class LayoutPartTable : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack,
             lock (eventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
@@ -101,7 +101,7 @@ public class LayoutPartTable : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack,
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -139,7 +139,7 @@ public class LayoutPartTable : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack,
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
 
@@ -148,7 +148,7 @@ public class LayoutPartTable : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack,
             lock (eventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
@@ -156,7 +156,7 @@ public class LayoutPartTable : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack,
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

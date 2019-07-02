@@ -80,7 +80,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
                 };
 
                 string key = "_EFL_IO_CLOSER_EVENT_CLOSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -89,7 +89,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
             lock (eventLock)
             {
                 string key = "_EFL_IO_CLOSER_EVENT_CLOSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -97,7 +97,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
     public void OnClosedEvt(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -137,7 +137,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
                 };
 
                 string key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -146,7 +146,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
             lock (eventLock)
             {
                 string key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -154,7 +154,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
     public void OnCanReadChangedEvt(Efl.Io.IReaderCanReadChangedEvt_Args e)
     {
         var key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -203,7 +203,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
                 };
 
                 string key = "_EFL_IO_READER_EVENT_EOS";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -212,7 +212,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
             lock (eventLock)
             {
                 string key = "_EFL_IO_READER_EVENT_EOS";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -220,7 +220,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
     public void OnEosEvt(EventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_EOS";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -260,7 +260,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
                 };
 
                 string key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -269,7 +269,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
             lock (eventLock)
             {
                 string key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -277,7 +277,7 @@ public class Appthread : Efl.Loop, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.
     public void OnCanWriteChangedEvt(Efl.Io.IWriterCanWriteChangedEvt_Args e)
     {
         var key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

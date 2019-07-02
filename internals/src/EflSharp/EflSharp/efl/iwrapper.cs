@@ -334,7 +334,16 @@ public class Globals
     public static byte class_initializer_call(IntPtr klass, System.Type type)
     {
         Eina.Log.Debug($"called with 0x{klass.ToInt64():x} {type}");
-        Efl.Eo.NativeClass nativeClass = GetNativeClass(type.BaseType);
+        var derived = type.BaseType;
+        Efl.Eo.NativeClass nativeClass = GetNativeClass(derived);
+
+        while (nativeClass == null)
+        {
+            derived = derived.BaseType;
+            if (derived == null)
+                break;
+            nativeClass = GetNativeClass(derived);
+        }
 
         if (nativeClass != null)
         {

@@ -89,7 +89,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
                 };
 
                 string key = "_EFL_UI_FACTORY_EVENT_CREATED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -98,7 +98,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
             lock (eventLock)
             {
                 string key = "_EFL_UI_FACTORY_EVENT_CREATED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -106,7 +106,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     public void OnCreatedEvt(Efl.Ui.IFactoryCreatedEvt_Args e)
     {
         var key = "_EFL_UI_FACTORY_EVENT_CREATED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -151,7 +151,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
                 };
 
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -160,7 +160,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
             lock (eventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -168,7 +168,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     public void OnPropertiesChangedEvt(Efl.Ui.IPropertyBindPropertiesChangedEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -213,7 +213,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
                 };
 
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -222,7 +222,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
             lock (eventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -230,7 +230,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     public void OnPropertyBoundEvt(Efl.Ui.IPropertyBindPropertyBoundEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
