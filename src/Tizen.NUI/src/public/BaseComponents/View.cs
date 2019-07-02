@@ -3456,8 +3456,6 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// Gets the List of transitions for this View.
         ///</summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Dictionary<TransitionCondition, TransitionList> LayoutTransitions
         {
             get
@@ -4070,7 +4068,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
 
             bool hasLayout = (_layout != null);
-            Log.Info("NUI","Removing View:" + child.Name + "layout[" + hasLayout.ToString() +"]\n");
+            Log.Info("NUI","Removing View:" + child.Name + " layout[" + hasLayout.ToString() +"]\n");
 
             // If View has a layout then do a deferred child removal
             // Actual child removal is performed by the layouting system so
@@ -4080,7 +4078,7 @@ namespace Tizen.NUI.BaseComponents
                 (_layout as LayoutGroup)?.RemoveChildFromLayoutGroup( child );
             }
             else
-                {
+            {
                 RemoveChild(child);
             }
         }
