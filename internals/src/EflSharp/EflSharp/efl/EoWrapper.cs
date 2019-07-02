@@ -241,9 +241,9 @@ public abstract class EoWrapper : IWrapper, IDisposable
     /// <summary>Register handlers to ownership events, in order to control the object lifetime. For internal use only.</summary>
     private void AddOwnershipEventHandlers()
     {
-        AddNativeEventHandler("eo", "_EFL_EVENT_INVALIDATE", ownershipUniqueDelegate, ownershipUniqueDelegate);
-        AddNativeEventHandler("eo", "_EFL_EVENT_OWNERSHIP_UNIQUE", ownershipUniqueDelegate, ownershipUniqueDelegate);
-        AddNativeEventHandler("eo", "_EFL_EVENT_OWNERSHIP_SHARED", ownershipSharedDelegate, ownershipSharedDelegate);
+        AddNativeEventHandler(efl.Libs.Eo, "_EFL_EVENT_INVALIDATE", ownershipUniqueDelegate, ownershipUniqueDelegate);
+        AddNativeEventHandler(efl.Libs.Eo, "_EFL_EVENT_OWNERSHIP_UNIQUE", ownershipUniqueDelegate, ownershipUniqueDelegate);
+        AddNativeEventHandler(efl.Libs.Eo, "_EFL_EVENT_OWNERSHIP_SHARED", ownershipSharedDelegate, ownershipSharedDelegate);
         Eina.Error.RaiseIfUnhandledException();
     }
 }

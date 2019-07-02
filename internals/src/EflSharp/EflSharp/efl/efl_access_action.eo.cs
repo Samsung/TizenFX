@@ -207,7 +207,7 @@ sealed public class IActionConcrete :
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IActionConcrete)ws.Target).GetActionName(id);
+                    _ret_var = ((IAction)ws.Target).GetActionName(id);
                 }
                 catch (Exception e)
                 {
@@ -243,7 +243,7 @@ sealed public class IActionConcrete :
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IActionConcrete)ws.Target).GetActionLocalizedName(id);
+                    _ret_var = ((IAction)ws.Target).GetActionLocalizedName(id);
                 }
                 catch (Exception e)
                 {
@@ -279,7 +279,7 @@ sealed public class IActionConcrete :
             Eina.List<Efl.Access.ActionData> _ret_var = default(Eina.List<Efl.Access.ActionData>);
                 try
                 {
-                    _ret_var = ((IActionConcrete)ws.Target).GetActions();
+                    _ret_var = ((IAction)ws.Target).GetActions();
                 }
                 catch (Exception e)
                 {
@@ -315,7 +315,7 @@ sealed public class IActionConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IActionConcrete)ws.Target).ActionDo(id);
+                    _ret_var = ((IAction)ws.Target).ActionDo(id);
                 }
                 catch (Exception e)
                 {
@@ -351,7 +351,7 @@ sealed public class IActionConcrete :
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IActionConcrete)ws.Target).GetActionKeybinding(id);
+                    _ret_var = ((IAction)ws.Target).GetActionKeybinding(id);
                 }
                 catch (Exception e)
                 {

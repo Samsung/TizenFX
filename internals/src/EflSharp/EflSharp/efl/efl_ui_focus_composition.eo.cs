@@ -275,7 +275,7 @@ logical_order.Own = false;
             Eina.List<Efl.Gfx.IEntity> _ret_var = default(Eina.List<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((ICompositionConcrete)ws.Target).GetCompositionElements();
+                    _ret_var = ((IComposition)ws.Target).GetCompositionElements();
                 }
                 catch (Exception e)
                 {
@@ -312,7 +312,7 @@ logical_order.Own = false;
                             
                 try
                 {
-                    ((ICompositionConcrete)ws.Target).SetCompositionElements(_in_logical_order);
+                    ((IComposition)ws.Target).SetCompositionElements(_in_logical_order);
                 }
                 catch (Exception e)
                 {
@@ -347,7 +347,7 @@ logical_order.Own = false;
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ICompositionConcrete)ws.Target).GetLogicalMode();
+                    _ret_var = ((IComposition)ws.Target).GetLogicalMode();
                 }
                 catch (Exception e)
                 {
@@ -383,7 +383,7 @@ logical_order.Own = false;
                                     
                 try
                 {
-                    ((ICompositionConcrete)ws.Target).SetLogicalMode(logical_mode);
+                    ((IComposition)ws.Target).SetLogicalMode(logical_mode);
                 }
                 catch (Exception e)
                 {
@@ -418,7 +418,7 @@ logical_order.Own = false;
             
                 try
                 {
-                    ((ICompositionConcrete)ws.Target).Dirty();
+                    ((IComposition)ws.Target).Dirty();
                 }
                 catch (Exception e)
                 {
@@ -453,7 +453,7 @@ logical_order.Own = false;
             
                 try
                 {
-                    ((ICompositionConcrete)ws.Target).Prepare();
+                    ((IComposition)ws.Target).Prepare();
                 }
                 catch (Exception e)
                 {

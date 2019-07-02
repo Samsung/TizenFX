@@ -566,7 +566,7 @@ sealed public class IDndConcrete :
                     
                 try
                 {
-                    ((IDndConcrete)ws.Target).DragStart(format, data, action, icon_func_wrapper.ManagedCb, seat);
+                    ((IDnd)ws.Target).DragStart(format, data, action, icon_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -601,7 +601,7 @@ sealed public class IDndConcrete :
                                                             
                 try
                 {
-                    ((IDndConcrete)ws.Target).SetDragAction(action, seat);
+                    ((IDnd)ws.Target).SetDragAction(action, seat);
                 }
                 catch (Exception e)
                 {
@@ -636,7 +636,7 @@ sealed public class IDndConcrete :
                                     
                 try
                 {
-                    ((IDndConcrete)ws.Target).DragCancel(seat);
+                    ((IDnd)ws.Target).DragCancel(seat);
                 }
                 catch (Exception e)
                 {
@@ -671,7 +671,7 @@ sealed public class IDndConcrete :
                                                             
                 try
                 {
-                    ((IDndConcrete)ws.Target).AddDropTarget(format, seat);
+                    ((IDnd)ws.Target).AddDropTarget(format, seat);
                 }
                 catch (Exception e)
                 {
@@ -706,7 +706,7 @@ sealed public class IDndConcrete :
                                                             
                 try
                 {
-                    ((IDndConcrete)ws.Target).DelDropTarget(format, seat);
+                    ((IDnd)ws.Target).DelDropTarget(format, seat);
                 }
                 catch (Exception e)
                 {

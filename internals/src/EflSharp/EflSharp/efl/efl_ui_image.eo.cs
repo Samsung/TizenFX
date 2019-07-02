@@ -154,7 +154,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -163,7 +163,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -171,7 +171,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnImagePreloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -206,7 +206,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -215,7 +215,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -223,7 +223,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnImageResizeEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -258,7 +258,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -267,7 +267,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -275,7 +275,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnImageUnloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -310,7 +310,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -319,7 +319,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -327,7 +327,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnLoadDoneEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -363,7 +363,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -372,7 +372,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -380,7 +380,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnLoadErrorEvt(Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -424,7 +424,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
-                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -433,7 +433,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
-                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -441,7 +441,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnRecalcEvt(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -478,7 +478,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
-                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -487,7 +487,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
-                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -495,7 +495,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -839,7 +839,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -848,7 +848,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -856,7 +856,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragEvt(Efl.Ui.IDraggableDragEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -892,7 +892,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -901,7 +901,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -909,7 +909,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -945,7 +945,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -954,7 +954,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -962,7 +962,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragStopEvt(Efl.Ui.IDraggableDragStopEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -998,7 +998,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG_END";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1007,7 +1007,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_END";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1015,7 +1015,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragEndEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_DRAG_END";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1051,7 +1051,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG_START_UP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1060,7 +1060,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_UP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1068,7 +1068,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragStartUpEvt(Efl.Ui.IDraggableDragStartUpEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_UP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1105,7 +1105,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG_START_DOWN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1114,7 +1114,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_DOWN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1122,7 +1122,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragStartDownEvt(Efl.Ui.IDraggableDragStartDownEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_DOWN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1159,7 +1159,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG_START_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1168,7 +1168,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1176,7 +1176,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragStartRightEvt(Efl.Ui.IDraggableDragStartRightEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1213,7 +1213,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 };
 
                 string key = "_EFL_UI_EVENT_DRAG_START_LEFT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1222,7 +1222,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_LEFT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1230,7 +1230,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public void OnDragStartLeftEvt(Efl.Ui.IDraggableDragStartLeftEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_LEFT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

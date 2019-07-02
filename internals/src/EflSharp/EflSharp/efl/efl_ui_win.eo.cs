@@ -998,7 +998,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1007,7 +1007,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1015,7 +1015,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1391,7 +1391,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when scene got focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusInEvt_Args> SceneFocusInEvt
+    public event EventHandler SceneFocusInEvt
     {
         add
         {
@@ -1402,8 +1402,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Canvas.ISceneSceneFocusInEvt_Args args = new Efl.Canvas.ISceneSceneFocusInEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1417,7 +1416,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1426,27 +1425,26 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event SceneFocusInEvt.</summary>
-    public void OnSceneFocusInEvt(Efl.Canvas.ISceneSceneFocusInEvt_Args e)
+    public void OnSceneFocusInEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scene lost focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusOutEvt_Args> SceneFocusOutEvt
+    public event EventHandler SceneFocusOutEvt
     {
         add
         {
@@ -1457,8 +1455,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Canvas.ISceneSceneFocusOutEvt_Args args = new Efl.Canvas.ISceneSceneFocusOutEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1472,7 +1469,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1481,23 +1478,22 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event SceneFocusOutEvt.</summary>
-    public void OnSceneFocusOutEvt(Efl.Canvas.ISceneSceneFocusOutEvt_Args e)
+    public void OnSceneFocusOutEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
@@ -1527,7 +1523,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1536,7 +1532,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1544,7 +1540,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnObjectFocusInEvt(Efl.Canvas.ISceneObjectFocusInEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1582,7 +1578,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1591,7 +1587,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1599,7 +1595,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnObjectFocusOutEvt(Efl.Canvas.ISceneObjectFocusOutEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1636,7 +1632,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1645,7 +1641,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1653,7 +1649,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnRenderPreEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1690,7 +1686,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1699,7 +1695,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1707,7 +1703,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnRenderPostEvt(Efl.Canvas.ISceneRenderPostEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1753,7 +1749,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1762,7 +1758,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1770,7 +1766,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnDeviceChangedEvt(Efl.Canvas.ISceneDeviceChangedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1808,7 +1804,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1817,7 +1813,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1825,7 +1821,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnDeviceAddedEvt(Efl.Canvas.ISceneDeviceAddedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1863,7 +1859,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1872,7 +1868,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             lock (eventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1880,7 +1876,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public void OnDeviceRemovedEvt(Efl.Canvas.ISceneDeviceRemovedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2797,7 +2793,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     /// <summary>Returns an iterator over the current known pointer positions.
     /// This is used to iterate over the current known multi-touch positions, including the first finger. Each pointer position is represented by an object of type <see cref="Efl.Input.Pointer"/>.
     /// 
-    /// Each finger in a multi touch environment can then be identified by the <see cref="Efl.Input.Pointer.Tool"/> property. The order of the pointers in this iterator is not defined.
+    /// Each finger in a multi touch environment can then be identified by the <see cref="Efl.Input.Pointer.TouchId"/> property. The order of the pointers in this iterator is not defined.
     /// 
     /// Note: If the input surface supports hovering input, some pointers may not be in a &quot;down&quot; state. To retrieve the list of such pointers, set the <c>hover</c> value to <c>true</c>. Remember though that most devices currently don&apos;t support this.
     /// (Since EFL 1.22)</summary>

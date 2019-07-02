@@ -30,6 +30,14 @@ namespace Efl
             }
 
 
+            /// The event argument of Rotary Selector editing state.
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            public class RotarySelectorEditingEventArgs : EventArgs
+            {
+                public bool editing { get; internal set; }
+            }
+
             /// <summary>
             /// The RotarySelector is a widget to display a selector and multiple items surrounding the selector.
             /// An item can be selected by the Rotary event or user item click.
@@ -45,6 +53,8 @@ namespace Efl
                 const string ItemClickedEventName = "item,clicked";
                 const string ItemDeletedEventName = "item,deleted";
                 const string ItemReorderedEventName = "item,reordered";
+                const string EditingEnterEventName = "editing,entered";
+                const string EditingLeaveEventName = "editing,exited";
 
                 Image _normalBgImage;
 
@@ -74,10 +84,18 @@ namespace Efl
                 /// <since_tizen> 6 </since_tizen>
                 public event EventHandler<RotarySelectorItemReorderedEventArgs> Reordered;
 
+                /// <summary>
+                /// Editing will be triggered when entering and leaving the editing state.
+                /// </summary>
+                /// <since_tizen> 6 </since_tizen>
+                public event EventHandler<RotarySelectorEditingEventArgs> EditingStateChanged;
+
                 private Interop.Evas.SmartCallback smartClicked;
                 private Interop.Evas.SmartCallback smartSelected;
                 private Interop.Evas.SmartCallback smartDeleted;
                 private Interop.Evas.SmartCallback smartReordered;
+                private Interop.Evas.SmartCallback smartEditingEnter;
+                private Interop.Evas.SmartCallback smartEditingLeave;
 
                 /// <summary>
                 /// Creates and initializes a new instance of the RotarySelector class.
@@ -119,10 +137,22 @@ namespace Efl
                         UpdateListOrder(reorderedItem, idx);
                     });
 
+                    smartEditingEnter = new Interop.Evas.SmartCallback((d, o, e) =>
+                    {
+                        EditingStateChanged?.Invoke(this, new RotarySelectorEditingEventArgs { editing = true});
+                    });
+
+                    smartEditingLeave = new Interop.Evas.SmartCallback((d, o, e) =>
+                    {
+                        EditingStateChanged?.Invoke(this, new RotarySelectorEditingEventArgs { editing = false });
+                    });
+
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemClickedEventName, smartClicked, IntPtr.Zero);
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemSelectedEventName, smartSelected, IntPtr.Zero);
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemDeletedEventName, smartDeleted, IntPtr.Zero);
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemReorderedEventName, smartReordered, IntPtr.Zero);
+                    Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, EditingEnterEventName, smartEditingEnter, IntPtr.Zero);
+                    Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, EditingLeaveEventName, smartEditingLeave, IntPtr.Zero);
                 }
 
                 private void UpdateListOrder(RotarySelectorItem reorderedItem, int currentIdx)

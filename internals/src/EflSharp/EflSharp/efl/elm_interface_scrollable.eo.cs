@@ -655,7 +655,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -664,7 +664,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -672,7 +672,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -707,7 +707,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -716,7 +716,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -724,7 +724,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -759,7 +759,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -768,7 +768,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -776,7 +776,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -811,7 +811,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -820,7 +820,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -828,7 +828,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_UP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -863,7 +863,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -872,7 +872,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -880,7 +880,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DOWN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -915,7 +915,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -924,7 +924,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -932,7 +932,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_LEFT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -967,7 +967,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -976,7 +976,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -984,7 +984,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1019,7 +1019,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_UP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1028,7 +1028,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_UP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1036,7 +1036,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnEdgeUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_UP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1071,7 +1071,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1080,7 +1080,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1088,7 +1088,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnEdgeDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_DOWN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1123,7 +1123,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1132,7 +1132,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1140,7 +1140,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnEdgeLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_LEFT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1175,7 +1175,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1184,7 +1184,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1192,7 +1192,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnEdgeRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1227,7 +1227,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1236,7 +1236,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1244,7 +1244,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollAnimStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1279,7 +1279,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1288,7 +1288,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1296,7 +1296,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollAnimStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1331,7 +1331,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1340,7 +1340,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1348,7 +1348,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollDragStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1383,7 +1383,7 @@ sealed public class IInterfaceScrollableConcrete :
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1392,7 +1392,7 @@ sealed public class IInterfaceScrollableConcrete :
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1400,7 +1400,7 @@ sealed public class IInterfaceScrollableConcrete :
     public void OnScrollDragStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -3663,7 +3663,7 @@ sealed public class IInterfaceScrollableConcrete :
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetGravity(out x, out y);
+                    ((IInterfaceScrollable)ws.Target).GetGravity(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -3698,7 +3698,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetGravity(x, y);
+                    ((IInterfaceScrollable)ws.Target).SetGravity(x, y);
                 }
                 catch (Exception e)
                 {
@@ -3733,7 +3733,7 @@ sealed public class IInterfaceScrollableConcrete :
                         horiz = default(bool);        vert = default(bool);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetBounceAllow(out horiz, out vert);
+                    ((IInterfaceScrollable)ws.Target).GetBounceAllow(out horiz, out vert);
                 }
                 catch (Exception e)
                 {
@@ -3768,7 +3768,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetBounceAllow(horiz, vert);
+                    ((IInterfaceScrollable)ws.Target).SetBounceAllow(horiz, vert);
                 }
                 catch (Exception e)
                 {
@@ -3803,7 +3803,7 @@ sealed public class IInterfaceScrollableConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetWheelDisabled();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetWheelDisabled();
                 }
                 catch (Exception e)
                 {
@@ -3839,7 +3839,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetWheelDisabled(disabled);
+                    ((IInterfaceScrollable)ws.Target).SetWheelDisabled(disabled);
                 }
                 catch (Exception e)
                 {
@@ -3874,7 +3874,7 @@ sealed public class IInterfaceScrollableConcrete :
             Efl.Ui.ScrollBlock _ret_var = default(Efl.Ui.ScrollBlock);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetMovementBlock();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetMovementBlock();
                 }
                 catch (Exception e)
                 {
@@ -3910,7 +3910,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetMovementBlock(block);
+                    ((IInterfaceScrollable)ws.Target).SetMovementBlock(block);
                 }
                 catch (Exception e)
                 {
@@ -3945,7 +3945,7 @@ sealed public class IInterfaceScrollableConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetMomentumAnimatorDisabled();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetMomentumAnimatorDisabled();
                 }
                 catch (Exception e)
                 {
@@ -3981,7 +3981,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetMomentumAnimatorDisabled(disabled);
+                    ((IInterfaceScrollable)ws.Target).SetMomentumAnimatorDisabled(disabled);
                 }
                 catch (Exception e)
                 {
@@ -4016,7 +4016,7 @@ sealed public class IInterfaceScrollableConcrete :
                         hbar = default(Elm.Scroller.Policy);        vbar = default(Elm.Scroller.Policy);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetPolicy(out hbar, out vbar);
+                    ((IInterfaceScrollable)ws.Target).GetPolicy(out hbar, out vbar);
                 }
                 catch (Exception e)
                 {
@@ -4051,7 +4051,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetPolicy(hbar, vbar);
+                    ((IInterfaceScrollable)ws.Target).SetPolicy(hbar, vbar);
                 }
                 catch (Exception e)
                 {
@@ -4086,7 +4086,7 @@ sealed public class IInterfaceScrollableConcrete :
                                         x = default(int);        y = default(int);        w = default(int);        h = default(int);                                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetContentRegion(out x, out y, out w, out h);
+                    ((IInterfaceScrollable)ws.Target).GetContentRegion(out x, out y, out w, out h);
                 }
                 catch (Exception e)
                 {
@@ -4121,7 +4121,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetContentRegion(x, y, w, h);
+                    ((IInterfaceScrollable)ws.Target).SetContentRegion(x, y, w, h);
                 }
                 catch (Exception e)
                 {
@@ -4156,7 +4156,7 @@ sealed public class IInterfaceScrollableConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetContentEvents();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetContentEvents();
                 }
                 catch (Exception e)
                 {
@@ -4192,7 +4192,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetContentEvents(repeat_events);
+                    ((IInterfaceScrollable)ws.Target).SetContentEvents(repeat_events);
                 }
                 catch (Exception e)
                 {
@@ -4227,7 +4227,7 @@ sealed public class IInterfaceScrollableConcrete :
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetPageSize(out x, out y);
+                    ((IInterfaceScrollable)ws.Target).GetPageSize(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -4262,7 +4262,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetPageSize(x, y);
+                    ((IInterfaceScrollable)ws.Target).SetPageSize(x, y);
                 }
                 catch (Exception e)
                 {
@@ -4297,7 +4297,7 @@ sealed public class IInterfaceScrollableConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetBounceAnimatorDisabled();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetBounceAnimatorDisabled();
                 }
                 catch (Exception e)
                 {
@@ -4333,7 +4333,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetBounceAnimatorDisabled(disabled);
+                    ((IInterfaceScrollable)ws.Target).SetBounceAnimatorDisabled(disabled);
                 }
                 catch (Exception e)
                 {
@@ -4368,7 +4368,7 @@ sealed public class IInterfaceScrollableConcrete :
                         page_limit_h = default(int);        page_limit_v = default(int);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetPageScrollLimit(out page_limit_h, out page_limit_v);
+                    ((IInterfaceScrollable)ws.Target).GetPageScrollLimit(out page_limit_h, out page_limit_v);
                 }
                 catch (Exception e)
                 {
@@ -4403,7 +4403,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetPageScrollLimit(page_limit_h, page_limit_v);
+                    ((IInterfaceScrollable)ws.Target).SetPageScrollLimit(page_limit_h, page_limit_v);
                 }
                 catch (Exception e)
                 {
@@ -4438,7 +4438,7 @@ sealed public class IInterfaceScrollableConcrete :
                         horiz = default(bool);        vert = default(bool);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetPageSnapAllow(out horiz, out vert);
+                    ((IInterfaceScrollable)ws.Target).GetPageSnapAllow(out horiz, out vert);
                 }
                 catch (Exception e)
                 {
@@ -4473,7 +4473,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetPageSnapAllow(horiz, vert);
+                    ((IInterfaceScrollable)ws.Target).SetPageSnapAllow(horiz, vert);
                 }
                 catch (Exception e)
                 {
@@ -4508,7 +4508,7 @@ sealed public class IInterfaceScrollableConcrete :
                                         pagerel_h = default(double);        pagerel_v = default(double);        pagesize_h = default(int);        pagesize_v = default(int);                                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetPaging(out pagerel_h, out pagerel_v, out pagesize_h, out pagesize_v);
+                    ((IInterfaceScrollable)ws.Target).GetPaging(out pagerel_h, out pagerel_v, out pagesize_h, out pagesize_v);
                 }
                 catch (Exception e)
                 {
@@ -4543,7 +4543,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetPaging(pagerel_h, pagerel_v, pagesize_h, pagesize_v);
+                    ((IInterfaceScrollable)ws.Target).SetPaging(pagerel_h, pagerel_v, pagesize_h, pagesize_v);
                 }
                 catch (Exception e)
                 {
@@ -4578,7 +4578,7 @@ sealed public class IInterfaceScrollableConcrete :
             Elm.Scroller.SingleDirection _ret_var = default(Elm.Scroller.SingleDirection);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetSingleDirection();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetSingleDirection();
                 }
                 catch (Exception e)
                 {
@@ -4614,7 +4614,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetSingleDirection(single_dir);
+                    ((IInterfaceScrollable)ws.Target).SetSingleDirection(single_dir);
                 }
                 catch (Exception e)
                 {
@@ -4649,7 +4649,7 @@ sealed public class IInterfaceScrollableConcrete :
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetStepSize(out x, out y);
+                    ((IInterfaceScrollable)ws.Target).GetStepSize(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -4684,7 +4684,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetStepSize(x, y);
+                    ((IInterfaceScrollable)ws.Target).SetStepSize(x, y);
                 }
                 catch (Exception e)
                 {
@@ -4719,7 +4719,7 @@ sealed public class IInterfaceScrollableConcrete :
                         loop_h = default(bool);        loop_v = default(bool);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetContentLoop(out loop_h, out loop_v);
+                    ((IInterfaceScrollable)ws.Target).GetContentLoop(out loop_h, out loop_v);
                 }
                 catch (Exception e)
                 {
@@ -4754,7 +4754,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetContentLoop(loop_h, loop_v);
+                    ((IInterfaceScrollable)ws.Target).SetContentLoop(loop_h, loop_v);
                 }
                 catch (Exception e)
                 {
@@ -4789,7 +4789,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollUpCb(scroll_up_cb);
+                    ((IInterfaceScrollable)ws.Target).SetScrollUpCb(scroll_up_cb);
                 }
                 catch (Exception e)
                 {
@@ -4824,7 +4824,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetHbarDragCb(hbar_drag_cb);
+                    ((IInterfaceScrollable)ws.Target).SetHbarDragCb(hbar_drag_cb);
                 }
                 catch (Exception e)
                 {
@@ -4859,7 +4859,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetDragStartCb(drag_start_cb);
+                    ((IInterfaceScrollable)ws.Target).SetDragStartCb(drag_start_cb);
                 }
                 catch (Exception e)
                 {
@@ -4894,7 +4894,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollStartCb(scroll_start_cb);
+                    ((IInterfaceScrollable)ws.Target).SetScrollStartCb(scroll_start_cb);
                 }
                 catch (Exception e)
                 {
@@ -4929,7 +4929,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetFreeze(freeze);
+                    ((IInterfaceScrollable)ws.Target).SetFreeze(freeze);
                 }
                 catch (Exception e)
                 {
@@ -4964,7 +4964,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetContentViewportResizeCb(viewport_resize_cb);
+                    ((IInterfaceScrollable)ws.Target).SetContentViewportResizeCb(viewport_resize_cb);
                 }
                 catch (Exception e)
                 {
@@ -4999,7 +4999,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollLeftCb(scroll_left_cb);
+                    ((IInterfaceScrollable)ws.Target).SetScrollLeftCb(scroll_left_cb);
                 }
                 catch (Exception e)
                 {
@@ -5034,7 +5034,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetVbarPressCb(vbar_press_cb);
+                    ((IInterfaceScrollable)ws.Target).SetVbarPressCb(vbar_press_cb);
                 }
                 catch (Exception e)
                 {
@@ -5069,7 +5069,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetHbarPressCb(hbar_press_cb);
+                    ((IInterfaceScrollable)ws.Target).SetHbarPressCb(hbar_press_cb);
                 }
                 catch (Exception e)
                 {
@@ -5104,7 +5104,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetHbarUnpressCb(hbar_unpress_cb);
+                    ((IInterfaceScrollable)ws.Target).SetHbarUnpressCb(hbar_unpress_cb);
                 }
                 catch (Exception e)
                 {
@@ -5139,7 +5139,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetDragStopCb(drag_stop_cb);
+                    ((IInterfaceScrollable)ws.Target).SetDragStopCb(drag_stop_cb);
                 }
                 catch (Exception e)
                 {
@@ -5174,7 +5174,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollStopCb(scroll_stop_cb);
+                    ((IInterfaceScrollable)ws.Target).SetScrollStopCb(scroll_stop_cb);
                 }
                 catch (Exception e)
                 {
@@ -5209,7 +5209,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetExternPan(pan);
+                    ((IInterfaceScrollable)ws.Target).SetExternPan(pan);
                 }
                 catch (Exception e)
                 {
@@ -5244,7 +5244,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetPageChangeCb(page_change_cb);
+                    ((IInterfaceScrollable)ws.Target).SetPageChangeCb(page_change_cb);
                 }
                 catch (Exception e)
                 {
@@ -5279,7 +5279,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetHold(hold);
+                    ((IInterfaceScrollable)ws.Target).SetHold(hold);
                 }
                 catch (Exception e)
                 {
@@ -5314,7 +5314,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetAnimateStartCb(animate_start_cb);
+                    ((IInterfaceScrollable)ws.Target).SetAnimateStartCb(animate_start_cb);
                 }
                 catch (Exception e)
                 {
@@ -5349,7 +5349,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollDownCb(scroll_down_cb);
+                    ((IInterfaceScrollable)ws.Target).SetScrollDownCb(scroll_down_cb);
                 }
                 catch (Exception e)
                 {
@@ -5384,7 +5384,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetPageRelative(h_pagerel, v_pagerel);
+                    ((IInterfaceScrollable)ws.Target).SetPageRelative(h_pagerel, v_pagerel);
                 }
                 catch (Exception e)
                 {
@@ -5419,7 +5419,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollCb(scroll_cb);
+                    ((IInterfaceScrollable)ws.Target).SetScrollCb(scroll_cb);
                 }
                 catch (Exception e)
                 {
@@ -5454,7 +5454,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetAnimateStopCb(animate_stop_cb);
+                    ((IInterfaceScrollable)ws.Target).SetAnimateStopCb(animate_stop_cb);
                 }
                 catch (Exception e)
                 {
@@ -5489,7 +5489,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetContentMinLimitCb(min_limit_cb);
+                    ((IInterfaceScrollable)ws.Target).SetContentMinLimitCb(min_limit_cb);
                 }
                 catch (Exception e)
                 {
@@ -5524,7 +5524,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollRightCb(scroll_right_cb);
+                    ((IInterfaceScrollable)ws.Target).SetScrollRightCb(scroll_right_cb);
                 }
                 catch (Exception e)
                 {
@@ -5559,7 +5559,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetScrollableContent(content);
+                    ((IInterfaceScrollable)ws.Target).SetScrollableContent(content);
                 }
                 catch (Exception e)
                 {
@@ -5594,7 +5594,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetEdgeLeftCb(edge_left_cb);
+                    ((IInterfaceScrollable)ws.Target).SetEdgeLeftCb(edge_left_cb);
                 }
                 catch (Exception e)
                 {
@@ -5629,7 +5629,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetVbarDragCb(vbar_drag_cb);
+                    ((IInterfaceScrollable)ws.Target).SetVbarDragCb(vbar_drag_cb);
                 }
                 catch (Exception e)
                 {
@@ -5664,7 +5664,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetVbarUnpressCb(vbar_unpress_cb);
+                    ((IInterfaceScrollable)ws.Target).SetVbarUnpressCb(vbar_unpress_cb);
                 }
                 catch (Exception e)
                 {
@@ -5699,7 +5699,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetEdgeBottomCb(edge_bottom_cb);
+                    ((IInterfaceScrollable)ws.Target).SetEdgeBottomCb(edge_bottom_cb);
                 }
                 catch (Exception e)
                 {
@@ -5734,7 +5734,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetEdgeRightCb(edge_right_cb);
+                    ((IInterfaceScrollable)ws.Target).SetEdgeRightCb(edge_right_cb);
                 }
                 catch (Exception e)
                 {
@@ -5769,7 +5769,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetEdgeTopCb(edge_top_cb);
+                    ((IInterfaceScrollable)ws.Target).SetEdgeTopCb(edge_top_cb);
                 }
                 catch (Exception e)
                 {
@@ -5804,7 +5804,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetObjects(edje_object, hit_rectangle);
+                    ((IInterfaceScrollable)ws.Target).SetObjects(edje_object, hit_rectangle);
                 }
                 catch (Exception e)
                 {
@@ -5839,7 +5839,7 @@ sealed public class IInterfaceScrollableConcrete :
                         pagenumber_h = default(int);        pagenumber_v = default(int);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetLastPage(out pagenumber_h, out pagenumber_v);
+                    ((IInterfaceScrollable)ws.Target).GetLastPage(out pagenumber_h, out pagenumber_v);
                 }
                 catch (Exception e)
                 {
@@ -5874,7 +5874,7 @@ sealed public class IInterfaceScrollableConcrete :
                         pagenumber_h = default(int);        pagenumber_v = default(int);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetCurrentPage(out pagenumber_h, out pagenumber_v);
+                    ((IInterfaceScrollable)ws.Target).GetCurrentPage(out pagenumber_h, out pagenumber_v);
                 }
                 catch (Exception e)
                 {
@@ -5909,7 +5909,7 @@ sealed public class IInterfaceScrollableConcrete :
                                         x = default(int);        y = default(int);        w = default(int);        h = default(int);                                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetContentViewportGeometry(out x, out y, out w, out h);
+                    ((IInterfaceScrollable)ws.Target).GetContentViewportGeometry(out x, out y, out w, out h);
                 }
                 catch (Exception e)
                 {
@@ -5944,7 +5944,7 @@ sealed public class IInterfaceScrollableConcrete :
                         w = default(int);        h = default(int);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetContentSize(out w, out h);
+                    ((IInterfaceScrollable)ws.Target).GetContentSize(out w, out h);
                 }
                 catch (Exception e)
                 {
@@ -5979,7 +5979,7 @@ sealed public class IInterfaceScrollableConcrete :
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetItemLoopEnabled();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetItemLoopEnabled();
                 }
                 catch (Exception e)
                 {
@@ -6015,7 +6015,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetItemLoopEnabled(enable);
+                    ((IInterfaceScrollable)ws.Target).SetItemLoopEnabled(enable);
                 }
                 catch (Exception e)
                 {
@@ -6050,7 +6050,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetContentPos(x, y, sig);
+                    ((IInterfaceScrollable)ws.Target).SetContentPos(x, y, sig);
                 }
                 catch (Exception e)
                 {
@@ -6085,7 +6085,7 @@ sealed public class IInterfaceScrollableConcrete :
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).GetContentPos(out x, out y);
+                    ((IInterfaceScrollable)ws.Target).GetContentPos(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -6120,7 +6120,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).ShowPage(pagenumber_h, pagenumber_v);
+                    ((IInterfaceScrollable)ws.Target).ShowPage(pagenumber_h, pagenumber_v);
                 }
                 catch (Exception e)
                 {
@@ -6155,7 +6155,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).RegionBringIn(x, y, w, h);
+                    ((IInterfaceScrollable)ws.Target).RegionBringIn(x, y, w, h);
                 }
                 catch (Exception e)
                 {
@@ -6190,7 +6190,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).PageBringIn(pagenumber_h, pagenumber_v);
+                    ((IInterfaceScrollable)ws.Target).PageBringIn(pagenumber_h, pagenumber_v);
                 }
                 catch (Exception e)
                 {
@@ -6225,7 +6225,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).ShowContentRegion(x, y, w, h);
+                    ((IInterfaceScrollable)ws.Target).ShowContentRegion(x, y, w, h);
                 }
                 catch (Exception e)
                 {
@@ -6260,7 +6260,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).ContentMinLimit(w, h);
+                    ((IInterfaceScrollable)ws.Target).ContentMinLimit(w, h);
                 }
                 catch (Exception e)
                 {
@@ -6295,7 +6295,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetWantedRegion(x, y);
+                    ((IInterfaceScrollable)ws.Target).SetWantedRegion(x, y);
                 }
                 catch (Exception e)
                 {
@@ -6332,7 +6332,7 @@ sealed public class IInterfaceScrollableConcrete :
                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).CustomPanPosAdjust(_in_x, _in_y);
+                    ((IInterfaceScrollable)ws.Target).CustomPanPosAdjust(_in_x, _in_y);
                 }
                 catch (Exception e)
                 {
@@ -6367,7 +6367,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).FocusManagerCreate(root);
+                    _ret_var = ((IInterfaceScrollable)ws.Target).FocusManagerCreate(root);
                 }
                 catch (Exception e)
                 {
@@ -6403,7 +6403,7 @@ sealed public class IInterfaceScrollableConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetManagerFocus();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -6439,7 +6439,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetManagerFocus(focus);
+                    ((IInterfaceScrollable)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -6474,7 +6474,7 @@ sealed public class IInterfaceScrollableConcrete :
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetRedirect();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -6510,7 +6510,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetRedirect(redirect);
+                    ((IInterfaceScrollable)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -6545,7 +6545,7 @@ sealed public class IInterfaceScrollableConcrete :
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetBorderElements();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -6582,7 +6582,7 @@ sealed public class IInterfaceScrollableConcrete :
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetViewportElements(_in_viewport);
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -6618,7 +6618,7 @@ sealed public class IInterfaceScrollableConcrete :
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).GetRoot();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -6654,7 +6654,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).SetRoot(root);
+                    _ret_var = ((IInterfaceScrollable)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -6690,7 +6690,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).Move(direction);
+                    _ret_var = ((IInterfaceScrollable)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -6726,7 +6726,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).MoveRequest(direction, child, logical);
+                    _ret_var = ((IInterfaceScrollable)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -6762,7 +6762,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).RequestSubchild(root);
+                    _ret_var = ((IInterfaceScrollable)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -6798,7 +6798,7 @@ sealed public class IInterfaceScrollableConcrete :
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).Fetch(child);
+                    _ret_var = ((IInterfaceScrollable)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -6834,7 +6834,7 @@ sealed public class IInterfaceScrollableConcrete :
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((IInterfaceScrollableConcrete)ws.Target).LogicalEnd();
+                    _ret_var = ((IInterfaceScrollable)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -6870,7 +6870,7 @@ sealed public class IInterfaceScrollableConcrete :
             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).ResetHistory();
+                    ((IInterfaceScrollable)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -6905,7 +6905,7 @@ sealed public class IInterfaceScrollableConcrete :
             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).PopHistoryStack();
+                    ((IInterfaceScrollable)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -6940,7 +6940,7 @@ sealed public class IInterfaceScrollableConcrete :
                                                             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).SetupOnFirstTouch(direction, entry);
+                    ((IInterfaceScrollable)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -6975,7 +6975,7 @@ sealed public class IInterfaceScrollableConcrete :
             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).FreezeDirtyLogic();
+                    ((IInterfaceScrollable)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -7010,7 +7010,7 @@ sealed public class IInterfaceScrollableConcrete :
             
                 try
                 {
-                    ((IInterfaceScrollableConcrete)ws.Target).DirtyLogicUnfreeze();
+                    ((IInterfaceScrollable)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {

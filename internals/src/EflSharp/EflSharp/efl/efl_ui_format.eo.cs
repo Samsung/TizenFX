@@ -140,7 +140,7 @@ sealed public class IFormatConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_format_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IFormat"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -263,7 +263,7 @@ sealed public class IFormatConcrete :
             
                 try
                 {
-                    ((IFormatConcrete)ws.Target).SetFormatCb(func_wrapper.ManagedCb);
+                    ((IFormat)ws.Target).SetFormatCb(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -298,7 +298,7 @@ sealed public class IFormatConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IFormatConcrete)ws.Target).GetFormatString();
+                    _ret_var = ((IFormat)ws.Target).GetFormatString();
                 }
                 catch (Exception e)
                 {
@@ -334,7 +334,7 @@ sealed public class IFormatConcrete :
                                     
                 try
                 {
-                    ((IFormatConcrete)ws.Target).SetFormatString(units);
+                    ((IFormat)ws.Target).SetFormatString(units);
                 }
                 catch (Exception e)
                 {

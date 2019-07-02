@@ -70,7 +70,7 @@ sealed public class IColorConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IColor"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -206,7 +206,7 @@ sealed public class IColorConcrete :
                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
                 try
                 {
-                    ((IColorConcrete)ws.Target).GetColor(out r, out g, out b, out a);
+                    ((IColor)ws.Target).GetColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -241,7 +241,7 @@ sealed public class IColorConcrete :
                                                                                                             
                 try
                 {
-                    ((IColorConcrete)ws.Target).SetColor(r, g, b, a);
+                    ((IColor)ws.Target).SetColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -276,7 +276,7 @@ sealed public class IColorConcrete :
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IColorConcrete)ws.Target).GetColorCode();
+                    _ret_var = ((IColor)ws.Target).GetColorCode();
                 }
                 catch (Exception e)
                 {
@@ -312,7 +312,7 @@ sealed public class IColorConcrete :
                                     
                 try
                 {
-                    ((IColorConcrete)ws.Target).SetColorCode(colorcode);
+                    ((IColor)ws.Target).SetColorCode(colorcode);
                 }
                 catch (Exception e)
                 {

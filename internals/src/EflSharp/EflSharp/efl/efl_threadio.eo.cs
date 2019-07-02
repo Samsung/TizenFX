@@ -360,7 +360,7 @@ sealed public class IThreadIOConcrete :
             System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
-                    _ret_var = ((IThreadIOConcrete)ws.Target).GetIndata();
+                    _ret_var = ((IThreadIO)ws.Target).GetIndata();
                 }
                 catch (Exception e)
                 {
@@ -396,7 +396,7 @@ sealed public class IThreadIOConcrete :
                                     
                 try
                 {
-                    ((IThreadIOConcrete)ws.Target).SetIndata(data);
+                    ((IThreadIO)ws.Target).SetIndata(data);
                 }
                 catch (Exception e)
                 {
@@ -431,7 +431,7 @@ sealed public class IThreadIOConcrete :
             System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
-                    _ret_var = ((IThreadIOConcrete)ws.Target).GetOutdata();
+                    _ret_var = ((IThreadIO)ws.Target).GetOutdata();
                 }
                 catch (Exception e)
                 {
@@ -467,7 +467,7 @@ sealed public class IThreadIOConcrete :
                                     
                 try
                 {
-                    ((IThreadIOConcrete)ws.Target).SetOutdata(data);
+                    ((IThreadIO)ws.Target).SetOutdata(data);
                 }
                 catch (Exception e)
                 {
@@ -503,7 +503,7 @@ sealed public class IThreadIOConcrete :
             
                 try
                 {
-                    ((IThreadIOConcrete)ws.Target).Call(func_wrapper.ManagedCb);
+                    ((IThreadIO)ws.Target).Call(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -539,7 +539,7 @@ sealed public class IThreadIOConcrete :
             System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
-                    _ret_var = ((IThreadIOConcrete)ws.Target).CallSync(func_wrapper.ManagedCb);
+                    _ret_var = ((IThreadIO)ws.Target).CallSync(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {

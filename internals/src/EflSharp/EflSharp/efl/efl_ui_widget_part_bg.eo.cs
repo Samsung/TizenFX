@@ -81,7 +81,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -90,7 +90,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -98,7 +98,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
     public void OnImagePreloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -133,7 +133,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -142,7 +142,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -150,7 +150,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
     public void OnImageResizeEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -185,7 +185,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -194,7 +194,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -202,7 +202,7 @@ public class WidgetPartBg : Efl.Ui.WidgetPart, Efl.IFile, Efl.Gfx.IColor, Efl.Gf
     public void OnImageUnloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

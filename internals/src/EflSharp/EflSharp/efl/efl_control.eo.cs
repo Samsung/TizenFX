@@ -59,7 +59,7 @@ sealed public class IControlConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_control_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IControl"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>

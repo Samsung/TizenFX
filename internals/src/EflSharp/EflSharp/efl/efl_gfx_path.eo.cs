@@ -165,7 +165,7 @@ sealed public class IPathConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_path_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IPath"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -669,7 +669,7 @@ sealed public class IPathConcrete :
                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).GetPath(out _out_op, out _out_points);
+                    ((IPath)ws.Target).GetPath(out _out_op, out _out_points);
                 }
                 catch (Exception e)
                 {
@@ -708,7 +708,7 @@ sealed public class IPathConcrete :
                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).SetPath(_in_op, _in_points);
+                    ((IPath)ws.Target).SetPath(_in_op, _in_points);
                 }
                 catch (Exception e)
                 {
@@ -743,7 +743,7 @@ sealed public class IPathConcrete :
                         commands = default(uint);        points = default(uint);                            
                 try
                 {
-                    ((IPathConcrete)ws.Target).GetLength(out commands, out points);
+                    ((IPath)ws.Target).GetLength(out commands, out points);
                 }
                 catch (Exception e)
                 {
@@ -778,7 +778,7 @@ sealed public class IPathConcrete :
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IPathConcrete)ws.Target).GetCurrent(out x, out y);
+                    ((IPath)ws.Target).GetCurrent(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -813,7 +813,7 @@ sealed public class IPathConcrete :
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IPathConcrete)ws.Target).GetCurrentCtrl(out x, out y);
+                    ((IPath)ws.Target).GetCurrentCtrl(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -848,7 +848,7 @@ sealed public class IPathConcrete :
                                     
                 try
                 {
-                    ((IPathConcrete)ws.Target).CopyFrom(dup_from);
+                    ((IPath)ws.Target).CopyFrom(dup_from);
                 }
                 catch (Exception e)
                 {
@@ -884,7 +884,7 @@ sealed public class IPathConcrete :
                     
                 try
                 {
-                    ((IPathConcrete)ws.Target).GetBounds(out _out_r);
+                    ((IPath)ws.Target).GetBounds(out _out_r);
                 }
                 catch (Exception e)
                 {
@@ -920,7 +920,7 @@ sealed public class IPathConcrete :
             
                 try
                 {
-                    ((IPathConcrete)ws.Target).Reset();
+                    ((IPath)ws.Target).Reset();
                 }
                 catch (Exception e)
                 {
@@ -955,7 +955,7 @@ sealed public class IPathConcrete :
                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendMoveTo(x, y);
+                    ((IPath)ws.Target).AppendMoveTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -990,7 +990,7 @@ sealed public class IPathConcrete :
                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendLineTo(x, y);
+                    ((IPath)ws.Target).AppendLineTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1025,7 +1025,7 @@ sealed public class IPathConcrete :
                                                                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendQuadraticTo(x, y, ctrl_x, ctrl_y);
+                    ((IPath)ws.Target).AppendQuadraticTo(x, y, ctrl_x, ctrl_y);
                 }
                 catch (Exception e)
                 {
@@ -1060,7 +1060,7 @@ sealed public class IPathConcrete :
                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendSquadraticTo(x, y);
+                    ((IPath)ws.Target).AppendSquadraticTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1095,7 +1095,7 @@ sealed public class IPathConcrete :
                                                                                                                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendCubicTo(ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
+                    ((IPath)ws.Target).AppendCubicTo(ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1130,7 +1130,7 @@ sealed public class IPathConcrete :
                                                                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendScubicTo(x, y, ctrl_x, ctrl_y);
+                    ((IPath)ws.Target).AppendScubicTo(x, y, ctrl_x, ctrl_y);
                 }
                 catch (Exception e)
                 {
@@ -1165,7 +1165,7 @@ sealed public class IPathConcrete :
                                                                                                                                                                                     
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendArcTo(x, y, rx, ry, angle, large_arc, sweep);
+                    ((IPath)ws.Target).AppendArcTo(x, y, rx, ry, angle, large_arc, sweep);
                 }
                 catch (Exception e)
                 {
@@ -1200,7 +1200,7 @@ sealed public class IPathConcrete :
                                                                                                                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendArc(x, y, w, h, start_angle, sweep_length);
+                    ((IPath)ws.Target).AppendArc(x, y, w, h, start_angle, sweep_length);
                 }
                 catch (Exception e)
                 {
@@ -1235,7 +1235,7 @@ sealed public class IPathConcrete :
             
                 try
                 {
-                    ((IPathConcrete)ws.Target).CloseAppend();
+                    ((IPath)ws.Target).CloseAppend();
                 }
                 catch (Exception e)
                 {
@@ -1270,7 +1270,7 @@ sealed public class IPathConcrete :
                                                                                     
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendCircle(x, y, radius);
+                    ((IPath)ws.Target).AppendCircle(x, y, radius);
                 }
                 catch (Exception e)
                 {
@@ -1305,7 +1305,7 @@ sealed public class IPathConcrete :
                                                                                                                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendRect(x, y, w, h, rx, ry);
+                    ((IPath)ws.Target).AppendRect(x, y, w, h, rx, ry);
                 }
                 catch (Exception e)
                 {
@@ -1340,7 +1340,7 @@ sealed public class IPathConcrete :
                                     
                 try
                 {
-                    ((IPathConcrete)ws.Target).AppendSvgPath(svg_path_data);
+                    ((IPath)ws.Target).AppendSvgPath(svg_path_data);
                 }
                 catch (Exception e)
                 {
@@ -1375,7 +1375,7 @@ sealed public class IPathConcrete :
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPathConcrete)ws.Target).Interpolate(from, to, pos_map);
+                    _ret_var = ((IPath)ws.Target).Interpolate(from, to, pos_map);
                 }
                 catch (Exception e)
                 {
@@ -1411,7 +1411,7 @@ sealed public class IPathConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPathConcrete)ws.Target).EqualCommands(with);
+                    _ret_var = ((IPath)ws.Target).EqualCommands(with);
                 }
                 catch (Exception e)
                 {
@@ -1447,7 +1447,7 @@ sealed public class IPathConcrete :
                                                             
                 try
                 {
-                    ((IPathConcrete)ws.Target).Reserve(cmd_count, pts_count);
+                    ((IPath)ws.Target).Reserve(cmd_count, pts_count);
                 }
                 catch (Exception e)
                 {
@@ -1482,7 +1482,7 @@ sealed public class IPathConcrete :
             
                 try
                 {
-                    ((IPathConcrete)ws.Target).Commit();
+                    ((IPath)ws.Target).Commit();
                 }
                 catch (Exception e)
                 {

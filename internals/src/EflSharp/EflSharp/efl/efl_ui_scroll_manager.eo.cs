@@ -83,7 +83,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -92,7 +92,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -100,7 +100,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -135,7 +135,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -144,7 +144,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -152,7 +152,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -187,7 +187,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -196,7 +196,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -204,7 +204,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -239,7 +239,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -248,7 +248,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -256,7 +256,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_UP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -291,7 +291,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -300,7 +300,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -308,7 +308,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DOWN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -343,7 +343,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -352,7 +352,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -360,7 +360,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_LEFT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -395,7 +395,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -404,7 +404,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -412,7 +412,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -447,7 +447,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_UP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -456,7 +456,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_UP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -464,7 +464,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnEdgeUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_UP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -499,7 +499,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -508,7 +508,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -516,7 +516,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnEdgeDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_DOWN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -551,7 +551,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -560,7 +560,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -568,7 +568,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnEdgeLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_LEFT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -603,7 +603,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -612,7 +612,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -620,7 +620,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnEdgeRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -655,7 +655,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -664,7 +664,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -672,7 +672,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollAnimStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -707,7 +707,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -716,7 +716,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -724,7 +724,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollAnimStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -759,7 +759,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -768,7 +768,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -776,7 +776,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollDragStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -811,7 +811,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -820,7 +820,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -828,7 +828,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnScrollDragStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -864,7 +864,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -873,7 +873,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -881,7 +881,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnBarPressEvt(Efl.Ui.IScrollbarBarPressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -925,7 +925,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -934,7 +934,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -942,7 +942,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnBarUnpressEvt(Efl.Ui.IScrollbarBarUnpressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -986,7 +986,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -995,7 +995,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1003,7 +1003,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnBarDragEvt(Efl.Ui.IScrollbarBarDragEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1046,7 +1046,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1055,7 +1055,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1063,7 +1063,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnBarSizeChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1098,7 +1098,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1107,7 +1107,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1115,7 +1115,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnBarPosChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1151,7 +1151,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1160,7 +1160,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1168,7 +1168,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnBarShowEvt(Efl.Ui.IScrollbarBarShowEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1212,7 +1212,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1221,7 +1221,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
             lock (eventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1229,7 +1229,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     public void OnBarHideEvt(Efl.Ui.IScrollbarBarHideEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1249,7 +1249,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     /// <summary>This is the internal pan object managed by scroll manager.
     /// This property is protected as it is meant for scrollable object implementations only, to set and access the internal pan object. If pan is set to NULL, scrolling does not work.</summary>
     /// <param name="pan">Pan object</param>
-    virtual public void SetPan(Efl.Ui.Pan pan) {
+    virtual protected void SetPan(Efl.Ui.Pan pan) {
                                  Efl.Ui.Scroll.Manager.NativeMethods.efl_ui_scroll_manager_pan_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pan);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -1504,7 +1504,7 @@ public class Manager : Efl.Object, Efl.Ui.II18n, Efl.Ui.IScrollable, Efl.Ui.IScr
     /// <summary>This is the internal pan object managed by scroll manager.
     /// This property is protected as it is meant for scrollable object implementations only, to set and access the internal pan object. If pan is set to NULL, scrolling does not work.</summary>
     /// <value>Pan object</value>
-    public Efl.Ui.Pan Pan {
+    protected Efl.Ui.Pan Pan {
         set { SetPan(value); }
     }
     /// <summary>Whether this object should be mirrored.

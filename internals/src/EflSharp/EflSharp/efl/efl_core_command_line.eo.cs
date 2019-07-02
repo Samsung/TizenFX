@@ -238,7 +238,7 @@ array.OwnContent = false;
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ICommandLineConcrete)ws.Target).GetCommand();
+                    _ret_var = ((ICommandLine)ws.Target).GetCommand();
                 }
                 catch (Exception e)
                 {
@@ -275,7 +275,7 @@ array.OwnContent = false;
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ICommandLineConcrete)ws.Target).SetCommandArray(_in_array);
+                    _ret_var = ((ICommandLine)ws.Target).SetCommandArray(_in_array);
                 }
                 catch (Exception e)
                 {
@@ -311,7 +311,7 @@ array.OwnContent = false;
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ICommandLineConcrete)ws.Target).SetCommandString(str);
+                    _ret_var = ((ICommandLine)ws.Target).SetCommandString(str);
                 }
                 catch (Exception e)
                 {
@@ -347,7 +347,7 @@ array.OwnContent = false;
             Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
                 try
                 {
-                    _ret_var = ((ICommandLineConcrete)ws.Target).CommandAccess();
+                    _ret_var = ((ICommandLine)ws.Target).CommandAccess();
                 }
                 catch (Exception e)
                 {
