@@ -16,7 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace Tizen.Network.Nfc
 {
@@ -28,7 +28,7 @@ namespace Tizen.Network.Nfc
     {
         private bool disposed = false;
         private IntPtr _messageHandle = IntPtr.Zero;
-        private List<NfcNdefRecord> _recordList = new List<NfcNdefRecord>();
+        private ArrayList _recordList = new ArrayList();
 
         /// <summary>
         /// The number of records in the NDEF message.
@@ -67,7 +67,35 @@ namespace Tizen.Network.Nfc
 
         internal NfcNdefMessage(IntPtr messageHandle)
         {
+            if (messageHandle == IntPtr.Zero)
+            {
+                return;
+            }
+
             _messageHandle = messageHandle;
+
+            int recordCount;
+            int ret = Interop.Nfc.NdefMessage.GetRecordCount(_messageHandle, out recordCount);
+            if (ret != (int)NfcError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to GetRecordCount, Error - " + (NfcError)ret);
+                NfcErrorFactory.ThrowNfcException(ret);
+            }
+
+            for (int i = 0; i < recordCount; i++) {
+                IntPtr recordHandle;
+                ret = Interop.Nfc.NdefMessage.GetRecord(_messageHandle, i, out recordHandle);
+                if (ret != (int)NfcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get record, Error - " + (NfcError)ret);
+                    NfcErrorFactory.ThrowNfcException(ret);
+                }
+
+                NfcNdefRecord record = new NfcNdefRecord(recordHandle);
+                
+                _recordList.Add(record);
+                Log.Debug(Globals.LogTag, "Record Added");
+            }
         }
 
         /// <summary>
@@ -150,7 +178,7 @@ namespace Tizen.Network.Nfc
             }
             else
             {
-                _recordList.Add(record);
+                _recordList.Insert(index, record);
             }
 
             return isSuccess;
@@ -184,26 +212,7 @@ namespace Tizen.Network.Nfc
         /// <param name="index">The index of a record ( starts from 0 ).</param>
         public NfcNdefRecord GetRecord(int index)
         {
-            IntPtr recordHandle;
-            NfcNdefRecord recordObject = null;
-
-            int ret = Interop.Nfc.NdefMessage.GetRecord(_messageHandle, index, out recordHandle);
-            if (ret != (int)NfcError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to remove record, Error - " + (NfcError)ret);
-            }
-
-            foreach (NfcNdefRecord recordElement in _recordList)
-            {
-                if(recordElement.GetHandle() == recordHandle)
-                {
-                    Log.Debug(Globals.LogTag, "Find record handle");
-                    recordObject = recordElement;
-                    break;
-                }
-            }
-
-            return recordObject;
+            return (NfcNdefRecord)_recordList[index];
         }
 
         internal IntPtr GetHandle()
