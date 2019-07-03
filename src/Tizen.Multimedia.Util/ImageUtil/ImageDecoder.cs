@@ -126,7 +126,6 @@ namespace Tizen.Multimedia.Util
             var pathPtr = Marshal.StringToHGlobalAnsi(inputFilePath);
             try
             {
-
                 SetInputPath(Handle, pathPtr).ThrowIfFailed("Failed to set input file path for decoding");
                 return await DecodeAsync();
             }
@@ -204,11 +203,11 @@ namespace Tizen.Multimedia.Util
 
         private IEnumerable<BitmapFrame> RunDecoding()
         {
-            IntPtr outBuffer = IntPtr.Zero;
+            IntPtr outBuffer = Marshal.AllocHGlobal(sizeof(char));
 
             try
             {
-                SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to decode given image");
+                SetOutputBuffer(Handle, ref outBuffer).ThrowIfFailed("Failed to decode given image");
 
                 DecodeRun(Handle, out var width, out var height, out var size).
                     ThrowIfFailed("Failed to decode");
@@ -217,7 +216,7 @@ namespace Tizen.Multimedia.Util
             }
             finally
             {
-                LibcSupport.Free(outBuffer);
+                Marshal.FreeHGlobal(outBuffer);
             }
         }
 
