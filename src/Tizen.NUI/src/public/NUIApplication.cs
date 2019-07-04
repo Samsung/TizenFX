@@ -350,7 +350,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void OnCreate()
         {
-            Application.Instance.AddWindowList(Window.Instance);
             base.OnCreate();
         }
     }
