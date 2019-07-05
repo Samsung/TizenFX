@@ -203,11 +203,11 @@ namespace Tizen.Multimedia.Util
 
         private IEnumerable<BitmapFrame> RunDecoding()
         {
-            IntPtr outBuffer = Marshal.AllocHGlobal(sizeof(char));
+            IntPtr outBuffer = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)));
 
             try
             {
-                SetOutputBuffer(Handle, ref outBuffer).ThrowIfFailed("Failed to decode given image");
+                SetOutputBuffer(Handle, outBuffer).ThrowIfFailed("Failed to decode given image");
 
                 DecodeRun(Handle, out var width, out var height, out var size).
                     ThrowIfFailed("Failed to decode");
@@ -216,6 +216,7 @@ namespace Tizen.Multimedia.Util
             }
             finally
             {
+                LibcSupport.Free(Marshal.ReadIntPtr(outBuffer));
                 Marshal.FreeHGlobal(outBuffer);
             }
         }
