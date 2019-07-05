@@ -204,6 +204,7 @@ namespace Tizen.Multimedia.Util
         private IEnumerable<BitmapFrame> RunDecoding()
         {
             IntPtr outBuffer = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)));
+            Marshal.WriteIntPtr(outBuffer, IntPtr.Zero);
 
             try
             {
@@ -216,7 +217,11 @@ namespace Tizen.Multimedia.Util
             }
             finally
             {
-                LibcSupport.Free(Marshal.ReadIntPtr(outBuffer));
+                if (Marshal.ReadIntPtr(outBuffer) != IntPtr.Zero)
+                {
+                    LibcSupport.Free(Marshal.ReadIntPtr(outBuffer));
+                }
+
                 Marshal.FreeHGlobal(outBuffer);
             }
         }
