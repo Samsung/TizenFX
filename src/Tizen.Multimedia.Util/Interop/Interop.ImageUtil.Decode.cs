@@ -39,7 +39,7 @@ internal static partial class Interop
         internal static extern ImageUtilError SetInputBuffer(ImageDecoderHandle handle, byte[] srcBuffer, ulong srcSize);
 
         [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_output_buffer")]
-        internal static extern ImageUtilError SetOutputBuffer(ImageDecoderHandle handle, out IntPtr dstBuffer);
+        internal static extern ImageUtilError SetOutputBuffer(ImageDecoderHandle handle, IntPtr dstBuffer);
 
         [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_colorspace")]
         internal static extern ImageUtilError SetColorspace(ImageDecoderHandle handle, ImageColorSpace colorspace);
