@@ -3497,6 +3497,40 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The Color of View. This is an RGBA value.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color Color
+        {
+            set
+            {
+                SetColor(value);
+            }
+            get
+            {
+                return GetCurrentColor();
+            }
+        }
+
+        /// <summary>
+        /// The color mode of View.
+        /// This specifies whether the View uses its own color, or inherits its parent color.
+        /// The default is ColorMode.UseOwnMultiplyParentColor.
+        /// </summary>
+        internal ColorMode ColorMode
+        {
+            set
+            {
+                SetColorMode(value);
+            }
+            get
+            {
+                return GetColorMode();
+            }
+        }
+
+        /// <summary>
         /// Child property to specify desired width
         /// </summary>
         internal int LayoutWidthSpecificationFixed
