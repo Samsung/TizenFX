@@ -212,7 +212,7 @@ namespace Tizen.Multimedia.Util
                 DecodeRun(Handle, out var width, out var height, out var size).
                     ThrowIfFailed("Failed to decode");
 
-                yield return new BitmapFrame(outBuffer, width, height, (int)size);
+                yield return new BitmapFrame(Marshal.ReadIntPtr(outBuffer), width, height, (int)size);
             }
             finally
             {
