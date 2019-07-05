@@ -1142,7 +1142,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether developer option state is enabled on the device or not.
+        /// Indicates whether accessibility grayscale is enabled on the device or not.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public bool Value
@@ -1175,7 +1175,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether developer option state is enabled on the device or not.
+        /// Indicates whether accessibility negative color is enabled on the device or not.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public bool Value
@@ -1193,10 +1193,11 @@ namespace Tizen.System
     /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
     /// <privlevel>platform</privlevel>
     /// <feature>http://tizen.org/feature/systemsetting</feature>
-    /// <exception cref="ArgumentException">Invalid Argument</exception>
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
-    /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <remarks>
+    /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. When getting the value, it isn't needed.
+    /// </remarks>
     /// <since_tizen> 6 </since_tizen>
     public class RotaryEventEnabledChangedEventArgs : EventArgs
     {
@@ -1207,15 +1208,9 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether developer option state is enabled on the device or not.
+        /// Indicates whether rotary event enable is enabled on the device or not.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public bool Value
-        {
-            get
-            {
-                return _rotaryEventEnabled;
-            }
-        }
+        public bool Value { get; }
     }
 }
