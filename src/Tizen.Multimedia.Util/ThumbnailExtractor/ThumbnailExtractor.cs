@@ -204,6 +204,10 @@ namespace Tizen.Multimedia.Util
                     {
                         tcs.TrySetResult(new ThumbnailExtractionResult(thumbData, thumbWidth, thumbHeight, dataSize));
                     }
+                    catch (Exception e)
+                    {
+                        tcs.TrySetException(new InvalidOperationException("[" + error + "] Failed to create ThumbnailExtractionResult instance.", e));
+                    }
                     finally
                     {
                         LibcSupport.Free(thumbData);
@@ -288,7 +292,12 @@ namespace Tizen.Multimedia.Util
             }
             finally
             {
-                LibcSupport.Free(Marshal.ReadIntPtr(thumbData));
+                if (Marshal.ReadIntPtr(thumbData) != IntPtr.Zero)
+                {
+                    LibcSupport.Free(Marshal.ReadIntPtr(thumbData));
+                }
+
+                Marshal.FreeHGlobal(thumbData);
             }
         }
 
