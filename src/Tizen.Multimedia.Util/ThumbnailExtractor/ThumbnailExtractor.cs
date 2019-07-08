@@ -202,14 +202,7 @@ namespace Tizen.Multimedia.Util
                 {
                     try
                     {
-                        byte[] tmpBuf = new byte[dataSize];
-                        Marshal.Copy(thumbData, tmpBuf, 0, dataSize);
-
-                        tcs.TrySetResult(new ThumbnailExtractionResult(tmpBuf, thumbWidth, thumbHeight));
-                    }
-                    catch (Exception e)
-                    {
-                        tcs.TrySetException(new InvalidOperationException("[" + error + "] Failed to copy data.", e));
+                        tcs.TrySetResult(new ThumbnailExtractionResult(thumbData, thumbWidth, thumbHeight, dataSize));
                     }
                     finally
                     {
@@ -241,6 +234,104 @@ namespace Tizen.Multimedia.Util
                 Native.Cancel(handle, id).ThrowIfError("Failed to cancel.");
                 tcs.TrySetCanceled();
             });
+        }
+
+        /// <summary>
+        /// Extracts the thumbnail for the given media with the specified path and size.
+        /// </summary>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
+        /// <param name="size">The size of the thumbnail.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
+        /// </exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <returns>The result of extracting operation.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public static ThumbnailExtractionResult Extract(string path, Size size)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            if (File.Exists(path) == false)
+            {
+                throw new FileNotFoundException("File does not exists.", path);
+            }
+
+            if (size.Width <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(size), size.Width,
+                    "The width must be greater than zero.");
+            }
+
+            if (size.Height <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(size), size.Height,
+                    "The height must be greater than zero.");
+            }
+
+            IntPtr thumbData = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)));
+            Marshal.WriteIntPtr(thumbData, IntPtr.Zero);
+
+            Native.ExtractToBuffer(path, (uint)size.Width, (uint)size.Height, thumbData,
+                out int dataSize, out uint thumbWidth, out uint thumbHeight).
+                ThrowIfError("Failed to extract thumbnail to buffer");
+
+            try
+            {
+                return new ThumbnailExtractionResult(Marshal.ReadIntPtr(thumbData), (int)thumbWidth,
+                    (int)thumbHeight, dataSize);
+            }
+            finally
+            {
+                LibcSupport.Free(Marshal.ReadIntPtr(thumbData));
+            }
+        }
+
+        /// <summary>
+        /// Extracts the thumbnail for the given media with the specified path and size.
+        /// </summary>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
+        /// <param name="size">The size of the thumbnail.</param>
+        /// <param name="thumbnailPath">The path to save the generated thumbnail.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
+        /// </exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void Extract(string path, Size size, string thumbnailPath)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            if (File.Exists(path) == false)
+            {
+                throw new FileNotFoundException("File does not exists.", path);
+            }
+
+            if (size.Width <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(size), size.Width,
+                    "The width must be greater than zero.");
+            }
+
+            if (size.Height <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(size), size.Height,
+                    "The height must be greater than zero.");
+            }
+
+            Native.ExtractToFile(path, (uint)size.Width, (uint)size.Height, thumbnailPath).
+                ThrowIfError("Failed to extract thumbnail to file.");
         }
     }
 }
