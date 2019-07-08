@@ -3609,7 +3609,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool BackgroundImageSynchronosLoading
+        /// <summary>
+        ///  Whether to load the BackgroundImage synchronously.
+        ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
+        ///  Note: For Normal Quad images only.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BackgroundImageSynchronosLoading
         {
             get
             {
