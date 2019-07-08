@@ -242,6 +242,7 @@ namespace Tizen.Multimedia.Util
 
         /// <summary>
         /// Extracts the thumbnail for the given media with the specified path and size.
+        /// The generated thumbnail will be returned in <see cref="ThumbnailExtractionResult"/>.
         /// </summary>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="size">The size of the thumbnail.</param>
@@ -278,35 +279,31 @@ namespace Tizen.Multimedia.Util
                     "The height must be greater than zero.");
             }
 
-            IntPtr thumbData = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)));
-            Marshal.WriteIntPtr(thumbData, IntPtr.Zero);
-
-            Native.ExtractToBuffer(path, (uint)size.Width, (uint)size.Height, thumbData,
+            Native.ExtractToBuffer(path, (uint)size.Width, (uint)size.Height, out IntPtr thumbData,
                 out int dataSize, out uint thumbWidth, out uint thumbHeight).
                 ThrowIfError("Failed to extract thumbnail to buffer");
 
             try
             {
-                return new ThumbnailExtractionResult(Marshal.ReadIntPtr(thumbData), (int)thumbWidth,
-                    (int)thumbHeight, dataSize);
+                return new ThumbnailExtractionResult(thumbData, (int)thumbWidth, (int)thumbHeight,
+                    dataSize);
             }
             finally
             {
-                if (Marshal.ReadIntPtr(thumbData) != IntPtr.Zero)
+                if (thumbData != IntPtr.Zero)
                 {
-                    LibcSupport.Free(Marshal.ReadIntPtr(thumbData));
+                    LibcSupport.Free(thumbData);
                 }
-
-                Marshal.FreeHGlobal(thumbData);
             }
         }
 
         /// <summary>
         /// Extracts the thumbnail for the given media with the specified path and size.
+        /// The generated thumbnail will be saved in <paramref name="resultThumbnailPath"/>.
         /// </summary>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="size">The size of the thumbnail.</param>
-        /// <param name="thumbnailPath">The path to save the generated thumbnail.</param>
+        /// <param name="resultThumbnailPath">The path to save the generated thumbnail.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
@@ -315,7 +312,7 @@ namespace Tizen.Multimedia.Util
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public static void Extract(string path, Size size, string thumbnailPath)
+        public static void Extract(string path, Size size, string resultThumbnailPath)
         {
             if (path == null)
             {
@@ -339,7 +336,7 @@ namespace Tizen.Multimedia.Util
                     "The height must be greater than zero.");
             }
 
-            Native.ExtractToFile(path, (uint)size.Width, (uint)size.Height, thumbnailPath).
+            Native.ExtractToFile(path, (uint)size.Width, (uint)size.Height, resultThumbnailPath).
                 ThrowIfError("Failed to extract thumbnail to file.");
         }
     }

@@ -48,7 +48,7 @@ internal static partial class Interop
         internal static extern ThumbnailExtractorError Destroy(IntPtr handle);
 
         [DllImport(Libraries.ThumbnailExtractor, EntryPoint = "thumbnail_util_extract_to_buffer")]
-        internal static extern ThumbnailExtractorError ExtractToBuffer(string path, uint width, uint height, IntPtr thumbData,
+        internal static extern ThumbnailExtractorError ExtractToBuffer(string path, uint width, uint height, out IntPtr thumbData,
             out int dataSize, out uint thumbWidth, out uint thumbHeight);
 
         [DllImport(Libraries.ThumbnailExtractor, EntryPoint = "thumbnail_util_extract_to_file")]
