@@ -1354,6 +1354,20 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal List<Window> GetWindowList()
+        {
+            uint ListSize = Interop.Application.Application_GetWindowsListSize();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            List<Window> WindowList = new List<Window>();
+            for( uint i = 0; i < ListSize; ++i )
+            {
+                Window currWin = new Window(Interop.Application.Application_GetWindowsFromList(i), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                WindowList.Add(currWin);
+            }
+            return WindowList;
+        }
 
         internal ApplicationSignal InitSignal()
         {
