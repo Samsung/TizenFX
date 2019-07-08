@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using static Interop;
 using static Interop.Decode;
@@ -201,37 +202,38 @@ namespace Tizen.Multimedia.Util
             }
         }
 
+        private IEnumerable<BitmapFrame> RunDecoding()
+        {
+            IntPtr outBuffer = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)));
+            Marshal.WriteIntPtr(outBuffer, IntPtr.Zero);
+
+            try
+            {
+                SetOutputBuffer(Handle, outBuffer).ThrowIfFailed("Failed to decode given image");
+
+                DecodeRun(Handle, out var width, out var height, out var size).
+                    ThrowIfFailed("Failed to decode");
+
+                yield return new BitmapFrame(Marshal.ReadIntPtr(outBuffer), width, height, (int)size);
+            }
+            finally
+            {
+                if (Marshal.ReadIntPtr(outBuffer) != IntPtr.Zero)
+                {
+                    LibcSupport.Free(Marshal.ReadIntPtr(outBuffer));
+                }
+
+                Marshal.FreeHGlobal(outBuffer);
+            }
+        }
+
         internal Task<IEnumerable<BitmapFrame>> DecodeAsync()
         {
             Initialize(Handle);
 
-            IntPtr outBuffer = IntPtr.Zero;
-            SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to decode given image");
-
-            var tcs = new TaskCompletionSource<IEnumerable<BitmapFrame>>();
-
-            Task.Run(() =>
-            {
-                try
-                {
-                    int width, height;
-                    ulong size;
-
-                    DecodeRun(Handle, out width, out height, out size).ThrowIfFailed("Failed to decode");
-
-                    tcs.SetResult(new[] { new BitmapFrame(outBuffer, width, height, (int)size) });
-                }
-                catch (Exception e)
-                {
-                    tcs.TrySetException(e);
-                }
-                finally
-                {
-                    LibcSupport.Free(outBuffer);
-                }
-            });
-
-            return tcs.Task;
+            return Task.Factory.StartNew(RunDecoding, CancellationToken.None,
+                TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
+                TaskScheduler.Default);
         }
 
         internal virtual void Initialize(ImageDecoderHandle handle)
