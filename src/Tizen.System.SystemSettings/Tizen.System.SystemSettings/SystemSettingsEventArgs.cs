@@ -1204,7 +1204,7 @@ namespace Tizen.System
         private readonly bool _rotaryEventEnabled;
         internal RotaryEventEnabledChangedEventArgs(bool val)
         {
-            _rotaryEventEnabled = val;
+            Value = val;
         }
 
         /// <summary>
