@@ -1354,24 +1354,18 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void AddWindowList(Window window)
-        {
-            if(!WindowList.Contains(window))
-            {
-                WindowList.Add(window);
-            }
-        }
-
-        internal void RemoveWindowList(Window window)
-        {
-            if(WindowList.Contains(window))
-            {
-                WindowList.Remove(window);
-            }
-        }
-
         internal List<Window> GetWindowList()
         {
+            uint ListSize = Interop.Application.Application_GetWindowsListSize();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            List<Window> WindowList = new List<Window>();
+            for( uint i = 0; i < ListSize; ++i )
+            {
+                Window currWin = new Window(Interop.Application.Application_GetWindowsFromList(i), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                WindowList.Add(currWin);
+            }
             return WindowList;
         }
 
