@@ -41,7 +41,7 @@ sealed public class IFactoryBindConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_factory_bind_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFactoryBind"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>

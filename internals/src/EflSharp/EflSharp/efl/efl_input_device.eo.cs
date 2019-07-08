@@ -29,7 +29,7 @@ public class Device : Efl.Object
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_input_device_class_get();
     /// <summary>Initializes a new instance of the <see cref="Device"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
@@ -106,6 +106,21 @@ public class Device : Efl.Object
                                  Efl.Input.Device.NativeMethods.efl_input_device_seat_id_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>The number of pointer devices in this seat.
+    /// Pointer devices are the ones whose <see cref="Efl.Input.Device.DeviceType"/> is <c>mouse</c>, <c>pen</c>, <c>touch</c> or <c>wand</c>. In case this device is not of the type <c>seat</c>, -1 is returned.</summary>
+    /// <returns>The number of pointer devices.</returns>
+    virtual public int GetPointerDeviceCount() {
+         var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_pointer_device_count_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary><c>true</c> if <see cref="Efl.Input.Device.DeviceType"/> is <c>mouse</c>, <c>pen</c>, <c>touch</c> or <c>wand</c>.</summary>
+    /// <returns><c>true</c> if the device has pointing capabilities.</returns>
+    virtual public bool GetIsPointerType() {
+         var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_is_pointer_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
     /// <summary>Lists the children attached to this device.
     /// This is only meaningful with seat devices, as they are groups of real input devices.</summary>
     /// <returns>List of device children</returns>
@@ -113,16 +128,6 @@ public class Device : Efl.Object
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_children_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Input.Device>(_ret_var, true, false);
- }
-    /// <summary>Determine whether a device has pointer capabilities.
-    /// Returns 1 for Mouse, Touch, Pen, Pointer, and Wand type devices.
-    /// 
-    /// If a seat device is passed returns the number of pointer devices in the seat.</summary>
-    /// <returns>Pointer caps</returns>
-    virtual public uint HasPointerCaps() {
-         var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_has_pointer_caps_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
  }
     /// <summary>Device type property</summary>
     /// <value>Input device class</value>
@@ -151,6 +156,17 @@ public class Device : Efl.Object
     public uint SeatId {
         get { return GetSeatId(); }
         set { SetSeatId(value); }
+    }
+    /// <summary>The number of pointer devices in this seat.
+    /// Pointer devices are the ones whose <see cref="Efl.Input.Device.DeviceType"/> is <c>mouse</c>, <c>pen</c>, <c>touch</c> or <c>wand</c>. In case this device is not of the type <c>seat</c>, -1 is returned.</summary>
+    /// <value>The number of pointer devices.</value>
+    public int PointerDeviceCount {
+        get { return GetPointerDeviceCount(); }
+    }
+    /// <summary><c>true</c> if <see cref="Efl.Input.Device.DeviceType"/> is <c>mouse</c>, <c>pen</c>, <c>touch</c> or <c>wand</c>.</summary>
+    /// <value><c>true</c> if the device has pointing capabilities.</value>
+    public bool IsPointerType {
+        get { return GetIsPointerType(); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -238,6 +254,26 @@ public class Device : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_device_seat_id_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_device_seat_id_set_static_delegate) });
             }
 
+            if (efl_input_device_pointer_device_count_get_static_delegate == null)
+            {
+                efl_input_device_pointer_device_count_get_static_delegate = new efl_input_device_pointer_device_count_get_delegate(pointer_device_count_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetPointerDeviceCount") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_device_pointer_device_count_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_device_pointer_device_count_get_static_delegate) });
+            }
+
+            if (efl_input_device_is_pointer_type_get_static_delegate == null)
+            {
+                efl_input_device_is_pointer_type_get_static_delegate = new efl_input_device_is_pointer_type_get_delegate(is_pointer_type_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetIsPointerType") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_device_is_pointer_type_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_device_is_pointer_type_get_static_delegate) });
+            }
+
             if (efl_input_device_children_iterate_static_delegate == null)
             {
                 efl_input_device_children_iterate_static_delegate = new efl_input_device_children_iterate_delegate(children_iterate);
@@ -246,16 +282,6 @@ public class Device : Efl.Object
             if (methods.FirstOrDefault(m => m.Name == "ChildrenIterate") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_device_children_iterate"), func = Marshal.GetFunctionPointerForDelegate(efl_input_device_children_iterate_static_delegate) });
-            }
-
-            if (efl_input_device_has_pointer_caps_static_delegate == null)
-            {
-                efl_input_device_has_pointer_caps_static_delegate = new efl_input_device_has_pointer_caps_delegate(has_pointer_caps);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "HasPointerCaps") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_device_has_pointer_caps"), func = Marshal.GetFunctionPointerForDelegate(efl_input_device_has_pointer_caps_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -520,6 +546,78 @@ public class Device : Efl.Object
         private static efl_input_device_seat_id_set_delegate efl_input_device_seat_id_set_static_delegate;
 
         
+        private delegate int efl_input_device_pointer_device_count_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate int efl_input_device_pointer_device_count_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_device_pointer_device_count_get_api_delegate> efl_input_device_pointer_device_count_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_device_pointer_device_count_get_api_delegate>(Module, "efl_input_device_pointer_device_count_get");
+
+        private static int pointer_device_count_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_input_device_pointer_device_count_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            int _ret_var = default(int);
+                try
+                {
+                    _ret_var = ((Device)ws.Target).GetPointerDeviceCount();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_input_device_pointer_device_count_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_input_device_pointer_device_count_get_delegate efl_input_device_pointer_device_count_get_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_input_device_is_pointer_type_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_input_device_is_pointer_type_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_device_is_pointer_type_get_api_delegate> efl_input_device_is_pointer_type_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_device_is_pointer_type_get_api_delegate>(Module, "efl_input_device_is_pointer_type_get");
+
+        private static bool is_pointer_type_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_input_device_is_pointer_type_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Device)ws.Target).GetIsPointerType();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_input_device_is_pointer_type_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_input_device_is_pointer_type_get_delegate efl_input_device_is_pointer_type_get_static_delegate;
+
+        
         private delegate System.IntPtr efl_input_device_children_iterate_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
@@ -554,42 +652,6 @@ public class Device : Efl.Object
         }
 
         private static efl_input_device_children_iterate_delegate efl_input_device_children_iterate_static_delegate;
-
-        
-        private delegate uint efl_input_device_has_pointer_caps_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate uint efl_input_device_has_pointer_caps_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_input_device_has_pointer_caps_api_delegate> efl_input_device_has_pointer_caps_ptr = new Efl.Eo.FunctionWrapper<efl_input_device_has_pointer_caps_api_delegate>(Module, "efl_input_device_has_pointer_caps");
-
-        private static uint has_pointer_caps(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_input_device_has_pointer_caps was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            uint _ret_var = default(uint);
-                try
-                {
-                    _ret_var = ((Device)ws.Target).HasPointerCaps();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_input_device_has_pointer_caps_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_input_device_has_pointer_caps_delegate efl_input_device_has_pointer_caps_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

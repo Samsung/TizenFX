@@ -247,25 +247,6 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
                                  Efl.Ui.ActiveView.Container.NativeMethods.efl_ui_active_view_active_index_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>When a new view is added to this widget, the indices for the previous views might change (for example, when adding a view at the beginning of the list with <see cref="Efl.IPackLinear.PackBegin"/> all previous view&apos;s indices are increased by one).
-    /// This property controls whether the Active View should remain the same view as before (<see cref="Efl.Ui.ActiveView.ContainerGravity.Content"/>) or if the Active View should be moved to the one with the same index as before (<see cref="Efl.Ui.ActiveView.ContainerGravity.Index"/>).
-    /// 
-    /// For example, <see cref="Efl.Ui.ActiveView.ContainerGravity.Index"/> can be used to build a Stack, where <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> is always 0 and new views are pushed onto the stack with <see cref="Efl.IPackLinear.PackBegin"/> and popped from the stack with <see cref="Efl.IPackLinear.PackUnpackAt"/> 0.</summary>
-    /// <returns>Active View behavior when adding new views. Default is <see cref="Efl.Ui.ActiveView.ContainerGravity.Content"/>.</returns>
-    virtual public Efl.Ui.ActiveView.ContainerGravity GetActiveViewGravity() {
-         var _ret_var = Efl.Ui.ActiveView.Container.NativeMethods.efl_ui_active_view_gravity_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>When a new view is added to this widget, the indices for the previous views might change (for example, when adding a view at the beginning of the list with <see cref="Efl.IPackLinear.PackBegin"/> all previous view&apos;s indices are increased by one).
-    /// This property controls whether the Active View should remain the same view as before (<see cref="Efl.Ui.ActiveView.ContainerGravity.Content"/>) or if the Active View should be moved to the one with the same index as before (<see cref="Efl.Ui.ActiveView.ContainerGravity.Index"/>).
-    /// 
-    /// For example, <see cref="Efl.Ui.ActiveView.ContainerGravity.Index"/> can be used to build a Stack, where <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> is always 0 and new views are pushed onto the stack with <see cref="Efl.IPackLinear.PackBegin"/> and popped from the stack with <see cref="Efl.IPackLinear.PackUnpackAt"/> 0.</summary>
-    /// <param name="gravity">Active View behavior when adding new views. Default is <see cref="Efl.Ui.ActiveView.ContainerGravity.Content"/>.</param>
-    virtual public void SetActiveViewGravity(Efl.Ui.ActiveView.ContainerGravity gravity) {
-                                 Efl.Ui.ActiveView.Container.NativeMethods.efl_ui_active_view_gravity_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),gravity);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
     /// <summary>The size to use when displaying the Active View. This is used by the <see cref="Efl.Ui.ActiveView.Container.ViewManager"/> to perform the rendering. Views other than the Active one may or may not use this size.</summary>
     /// <returns>Render size for the Active View. (-1, -1) means that all available space inside the container is used.</returns>
     virtual public Eina.Size2D GetActiveViewSize() {
@@ -280,6 +261,28 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
                         Efl.Ui.ActiveView.Container.NativeMethods.efl_ui_active_view_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Packs a new view at the position indicated by <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> (0 by default).
+    /// This is the same behavior as a push operation on a stack.
+    /// 
+    /// An animation might be triggered to make the new active view come into position.</summary>
+    /// <param name="view">View to add and set to be the active view.</param>
+    virtual public void Push(Efl.Gfx.IEntity view) {
+                                 Efl.Ui.ActiveView.Container.NativeMethods.efl_ui_active_view_push_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),view);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Removes the active view from the widget.
+    /// The views behind it naturally flow down so the next one becomes the active view. This is the same behavior as a pop operation on a stack. When combined with <see cref="Efl.Ui.ActiveView.Container.Push"/> you don&apos;t have to worry about <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> since only the first view is manipulated.
+    /// 
+    /// An animation might be triggered to make the new active view come into position and the old one disappear.
+    /// 
+    /// The removed view can be returned to the caller or deleted (depending on <c>delete_on_transition_end</c>).</summary>
+    /// <param name="deletion_on_transition_end">if <c>true</c>, then the object will be deleted before resolving the future, and a NULL pointer is the value of the future. <c>false</c> if no operation should be applied to it</param>
+    /// <returns>This Future gets resolved when any transition animation finishes and the popped view is ready for collection. If there is no animation, the Future resolves immediately. If <c>deletion_on_transition_end</c> is <c>true</c> then this widget will destroy the popped view and the Future will contain no Value. Otherwise, the caller becomes the owner of the view contained in the Future and must dispose of it appropriately.</returns>
+    virtual public  Eina.Future Pop(bool deletion_on_transition_end) {
+                                 var _ret_var = Efl.Ui.ActiveView.Container.NativeMethods.efl_ui_active_view_pop_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),deletion_on_transition_end);
+        Eina.Error.RaiseIfUnhandledException();
+                        return _ret_var;
+ }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool ClearPack() {
@@ -400,6 +403,16 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
+    /// <summary>Async wrapper for <see cref="Pop" />.</summary>
+    /// <param name="deletion_on_transition_end">if <c>true</c>, then the object will be deleted before resolving the future, and a NULL pointer is the value of the future. <c>false</c> if no operation should be applied to it</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
+    public System.Threading.Tasks.Task<Eina.Value> PopAsync(bool deletion_on_transition_end, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
+    {
+        Eina.Future future = Pop( deletion_on_transition_end);
+        return Efl.Eo.Globals.WrapAsync(future, token);
+    }
+
     /// <summary>This object defines how views are rendered and animated. If it is not set, only the active view is shown and transitions are instantaneous (not animated).</summary>
     /// <value>The View Manager object or <c>NULL</c>.</value>
     public Efl.Ui.ActiveView.ViewManager ViewManager {
@@ -418,15 +431,6 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     public int ActiveIndex {
         get { return GetActiveIndex(); }
         set { SetActiveIndex(value); }
-    }
-    /// <summary>When a new view is added to this widget, the indices for the previous views might change (for example, when adding a view at the beginning of the list with <see cref="Efl.IPackLinear.PackBegin"/> all previous view&apos;s indices are increased by one).
-    /// This property controls whether the Active View should remain the same view as before (<see cref="Efl.Ui.ActiveView.ContainerGravity.Content"/>) or if the Active View should be moved to the one with the same index as before (<see cref="Efl.Ui.ActiveView.ContainerGravity.Index"/>).
-    /// 
-    /// For example, <see cref="Efl.Ui.ActiveView.ContainerGravity.Index"/> can be used to build a Stack, where <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> is always 0 and new views are pushed onto the stack with <see cref="Efl.IPackLinear.PackBegin"/> and popped from the stack with <see cref="Efl.IPackLinear.PackUnpackAt"/> 0.</summary>
-    /// <value>Active View behavior when adding new views. Default is <see cref="Efl.Ui.ActiveView.ContainerGravity.Content"/>.</value>
-    public Efl.Ui.ActiveView.ContainerGravity ActiveViewGravity {
-        get { return GetActiveViewGravity(); }
-        set { SetActiveViewGravity(value); }
     }
     /// <summary>The size to use when displaying the Active View. This is used by the <see cref="Efl.Ui.ActiveView.Container.ViewManager"/> to perform the rendering. Views other than the Active one may or may not use this size.</summary>
     /// <value>Render size for the Active View. (-1, -1) means that all available space inside the container is used.</value>
@@ -510,26 +514,6 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_active_view_active_index_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_active_view_active_index_set_static_delegate) });
             }
 
-            if (efl_ui_active_view_gravity_get_static_delegate == null)
-            {
-                efl_ui_active_view_gravity_get_static_delegate = new efl_ui_active_view_gravity_get_delegate(active_view_gravity_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetActiveViewGravity") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_active_view_gravity_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_active_view_gravity_get_static_delegate) });
-            }
-
-            if (efl_ui_active_view_gravity_set_static_delegate == null)
-            {
-                efl_ui_active_view_gravity_set_static_delegate = new efl_ui_active_view_gravity_set_delegate(active_view_gravity_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetActiveViewGravity") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_active_view_gravity_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_active_view_gravity_set_static_delegate) });
-            }
-
             if (efl_ui_active_view_size_get_static_delegate == null)
             {
                 efl_ui_active_view_size_get_static_delegate = new efl_ui_active_view_size_get_delegate(active_view_size_get);
@@ -548,6 +532,26 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
             if (methods.FirstOrDefault(m => m.Name == "SetActiveViewSize") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_active_view_size_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_active_view_size_set_static_delegate) });
+            }
+
+            if (efl_ui_active_view_push_static_delegate == null)
+            {
+                efl_ui_active_view_push_static_delegate = new efl_ui_active_view_push_delegate(push);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "Push") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_active_view_push"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_active_view_push_static_delegate) });
+            }
+
+            if (efl_ui_active_view_pop_static_delegate == null)
+            {
+                efl_ui_active_view_pop_static_delegate = new efl_ui_active_view_pop_delegate(pop);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "Pop") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_active_view_pop"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_active_view_pop_static_delegate) });
             }
 
             if (efl_pack_clear_static_delegate == null)
@@ -896,77 +900,6 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
         private static efl_ui_active_view_active_index_set_delegate efl_ui_active_view_active_index_set_static_delegate;
 
         
-        private delegate Efl.Ui.ActiveView.ContainerGravity efl_ui_active_view_gravity_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.ActiveView.ContainerGravity efl_ui_active_view_gravity_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_active_view_gravity_get_api_delegate> efl_ui_active_view_gravity_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_active_view_gravity_get_api_delegate>(Module, "efl_ui_active_view_gravity_get");
-
-        private static Efl.Ui.ActiveView.ContainerGravity active_view_gravity_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_active_view_gravity_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.ActiveView.ContainerGravity _ret_var = default(Efl.Ui.ActiveView.ContainerGravity);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).GetActiveViewGravity();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_active_view_gravity_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_active_view_gravity_get_delegate efl_ui_active_view_gravity_get_static_delegate;
-
-        
-        private delegate void efl_ui_active_view_gravity_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.ActiveView.ContainerGravity gravity);
-
-        
-        public delegate void efl_ui_active_view_gravity_set_api_delegate(System.IntPtr obj,  Efl.Ui.ActiveView.ContainerGravity gravity);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_active_view_gravity_set_api_delegate> efl_ui_active_view_gravity_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_active_view_gravity_set_api_delegate>(Module, "efl_ui_active_view_gravity_set");
-
-        private static void active_view_gravity_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ActiveView.ContainerGravity gravity)
-        {
-            Eina.Log.Debug("function efl_ui_active_view_gravity_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Container)ws.Target).SetActiveViewGravity(gravity);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_active_view_gravity_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), gravity);
-            }
-        }
-
-        private static efl_ui_active_view_gravity_set_delegate efl_ui_active_view_gravity_set_static_delegate;
-
-        
         private delegate Eina.Size2D.NativeStruct efl_ui_active_view_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
@@ -1037,6 +970,77 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
         }
 
         private static efl_ui_active_view_size_set_delegate efl_ui_active_view_size_set_static_delegate;
+
+        
+        private delegate void efl_ui_active_view_push_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity view);
+
+        
+        public delegate void efl_ui_active_view_push_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity view);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_active_view_push_api_delegate> efl_ui_active_view_push_ptr = new Efl.Eo.FunctionWrapper<efl_ui_active_view_push_api_delegate>(Module, "efl_ui_active_view_push");
+
+        private static void push(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity view)
+        {
+            Eina.Log.Debug("function efl_ui_active_view_push was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Container)ws.Target).Push(view);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_active_view_push_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), view);
+            }
+        }
+
+        private static efl_ui_active_view_push_delegate efl_ui_active_view_push_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]
+        private delegate  Eina.Future efl_ui_active_view_pop_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool deletion_on_transition_end);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]
+        public delegate  Eina.Future efl_ui_active_view_pop_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool deletion_on_transition_end);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_active_view_pop_api_delegate> efl_ui_active_view_pop_ptr = new Efl.Eo.FunctionWrapper<efl_ui_active_view_pop_api_delegate>(Module, "efl_ui_active_view_pop");
+
+        private static  Eina.Future pop(System.IntPtr obj, System.IntPtr pd, bool deletion_on_transition_end)
+        {
+            Eina.Log.Debug("function efl_ui_active_view_pop was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                     Eina.Future _ret_var = default( Eina.Future);
+                try
+                {
+                    _ret_var = ((Container)ws.Target).Pop(deletion_on_transition_end);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_active_view_pop_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), deletion_on_transition_end);
+            }
+        }
+
+        private static efl_ui_active_view_pop_delegate efl_ui_active_view_pop_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_pack_clear_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1474,27 +1478,6 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
 
 }
 }
-}
-
-}
-
-}
-
-namespace Efl {
-
-namespace Ui {
-
-namespace ActiveView {
-
-/// <summary>This enum controls the behavior of <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> when indices are shifted due to object addition or removal.</summary>
-public enum ContainerGravity
-{
-/// <summary>When a view is added or removed from the container, the <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> will be adjusted as necessary so it points to the same view as before.</summary>
-Content = 0,
-/// <summary>When a view is added or removed from the container, the <see cref="Efl.Ui.ActiveView.Container.ActiveIndex"/> will remain the same, possibly pointing to a different view.</summary>
-Index = 1,
-}
-
 }
 
 }

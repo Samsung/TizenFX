@@ -85,7 +85,7 @@ namespace Efl
                         {
                             double Minimum, Maximum;
 
-                            GetRangeMinMax(out Minimum, out Maximum);
+                            GetRangeLimits(out Minimum, out Maximum);
                             if (Maximum == Minimum)
                             {
                                 return 0.0;

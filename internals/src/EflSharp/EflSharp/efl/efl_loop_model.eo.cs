@@ -86,7 +86,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
                 };
 
                 string key = "_EFL_MODEL_EVENT_PROPERTIES_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -95,7 +95,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             lock (eventLock)
             {
                 string key = "_EFL_MODEL_EVENT_PROPERTIES_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -103,7 +103,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
     public void OnPropertiesChangedEvt(Efl.IModelPropertiesChangedEvt_Args e)
     {
         var key = "_EFL_MODEL_EVENT_PROPERTIES_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -148,7 +148,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
                 };
 
                 string key = "_EFL_MODEL_EVENT_CHILD_ADDED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -157,7 +157,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             lock (eventLock)
             {
                 string key = "_EFL_MODEL_EVENT_CHILD_ADDED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -165,7 +165,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
     public void OnChildAddedEvt(Efl.IModelChildAddedEvt_Args e)
     {
         var key = "_EFL_MODEL_EVENT_CHILD_ADDED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -210,7 +210,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
                 };
 
                 string key = "_EFL_MODEL_EVENT_CHILD_REMOVED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -219,7 +219,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             lock (eventLock)
             {
                 string key = "_EFL_MODEL_EVENT_CHILD_REMOVED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -227,7 +227,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
     public void OnChildRemovedEvt(Efl.IModelChildRemovedEvt_Args e)
     {
         var key = "_EFL_MODEL_EVENT_CHILD_REMOVED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -271,7 +271,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
                 };
 
                 string key = "_EFL_MODEL_EVENT_CHILDREN_COUNT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -280,7 +280,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             lock (eventLock)
             {
                 string key = "_EFL_MODEL_EVENT_CHILDREN_COUNT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -288,7 +288,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
     public void OnChildrenCountChangedEvt(EventArgs e)
     {
         var key = "_EFL_MODEL_EVENT_CHILDREN_COUNT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

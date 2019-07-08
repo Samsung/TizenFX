@@ -227,7 +227,7 @@ sealed public class IDndContainerConcrete :
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IDndContainerConcrete)ws.Target).GetDragDelayTime();
+                    _ret_var = ((IDndContainer)ws.Target).GetDragDelayTime();
                 }
                 catch (Exception e)
                 {
@@ -263,7 +263,7 @@ sealed public class IDndContainerConcrete :
                                     
                 try
                 {
-                    ((IDndContainerConcrete)ws.Target).SetDragDelayTime(time);
+                    ((IDndContainer)ws.Target).SetDragDelayTime(time);
                 }
                 catch (Exception e)
                 {
@@ -302,7 +302,7 @@ sealed public class IDndContainerConcrete :
                     
                 try
                 {
-                    ((IDndContainerConcrete)ws.Target).AddDragItem(data_func_wrapper.ManagedCb, item_func_wrapper.ManagedCb, icon_func_wrapper.ManagedCb, icon_list_func_wrapper.ManagedCb, seat);
+                    ((IDndContainer)ws.Target).AddDragItem(data_func_wrapper.ManagedCb, item_func_wrapper.ManagedCb, icon_func_wrapper.ManagedCb, icon_list_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -337,7 +337,7 @@ sealed public class IDndContainerConcrete :
                                     
                 try
                 {
-                    ((IDndContainerConcrete)ws.Target).DelDragItem(seat);
+                    ((IDndContainer)ws.Target).DelDragItem(seat);
                 }
                 catch (Exception e)
                 {
@@ -373,7 +373,7 @@ sealed public class IDndContainerConcrete :
                     
                 try
                 {
-                    ((IDndContainerConcrete)ws.Target).AddDropItem(format, item_func_wrapper.ManagedCb, seat);
+                    ((IDndContainer)ws.Target).AddDropItem(format, item_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -408,7 +408,7 @@ sealed public class IDndContainerConcrete :
                                     
                 try
                 {
-                    ((IDndContainerConcrete)ws.Target).DelDropItem(seat);
+                    ((IDndContainer)ws.Target).DelDropItem(seat);
                 }
                 catch (Exception e)
                 {

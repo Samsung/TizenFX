@@ -80,7 +80,7 @@ sealed public class IWriterConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_io_writer_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IWriter"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>

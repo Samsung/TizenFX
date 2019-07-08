@@ -94,7 +94,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -103,7 +103,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
             lock (eventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -111,7 +111,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -149,7 +149,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -158,7 +158,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
             lock (eventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -166,7 +166,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -202,7 +202,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
                 };
 
                 string key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -211,7 +211,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
             lock (eventLock)
             {
                 string key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -219,7 +219,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
     public void OnLayoutUpdatedEvt(EventArgs e)
     {
         var key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

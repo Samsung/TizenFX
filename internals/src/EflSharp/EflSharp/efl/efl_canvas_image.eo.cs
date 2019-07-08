@@ -82,7 +82,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
                 };
 
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -91,7 +91,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -99,7 +99,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     public void OnLoadDoneEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -135,7 +135,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
                 };
 
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
@@ -144,7 +144,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
             lock (eventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -152,7 +152,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     public void OnLoadErrorEvt(Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");

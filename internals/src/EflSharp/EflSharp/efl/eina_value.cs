@@ -184,6 +184,10 @@ static internal class UnsafeNativeMethods
 
     [DllImport(efl.Libs.CustomExports)]
     [return: MarshalAsAttribute(UnmanagedType.U1)]
+    internal static extern bool eina_value_container_append_wrapper_ptr(IntPtr handle, IntPtr data);
+
+    [DllImport(efl.Libs.CustomExports)]
+    [return: MarshalAsAttribute(UnmanagedType.U1)]
     internal static extern bool eina_value_container_append_wrapper_char(IntPtr handle, sbyte data);
 
     [DllImport(efl.Libs.CustomExports)]
@@ -277,6 +281,10 @@ static internal class UnsafeNativeMethods
     [DllImport(efl.Libs.CustomExports)]
     [return: MarshalAsAttribute(UnmanagedType.U1)]
     internal static extern bool eina_value_container_set_wrapper_string(IntPtr handle, int index, string value);
+
+    [DllImport(efl.Libs.CustomExports)]
+    [return: MarshalAsAttribute(UnmanagedType.U1)]
+    internal static extern bool eina_value_container_set_wrapper_ptr(IntPtr handle, int index, IntPtr value);
 
     [DllImport(efl.Libs.CustomExports)]
     [return: MarshalAsAttribute(UnmanagedType.U1)]
@@ -377,6 +385,10 @@ static internal class UnsafeNativeMethods
     [DllImport(efl.Libs.Eina, CharSet=CharSet.Ansi)]
     [return: MarshalAsAttribute(UnmanagedType.U1)]
     internal static extern bool eina_value_optional_pset(IntPtr handle, IntPtr subtype, ref string value);
+
+    [DllImport(efl.Libs.Eina)]
+    [return: MarshalAsAttribute(UnmanagedType.U1)]
+    internal static extern bool eina_value_optional_pset(IntPtr handle, IntPtr subtype, ref IntPtr value);
 
     [DllImport(efl.Libs.Eina)]
     [return: MarshalAsAttribute(UnmanagedType.U1)]
@@ -507,6 +519,10 @@ static internal class UnsafeNativeMethods
     // Error
     [DllImport(efl.Libs.CustomExports)]
     internal static extern IntPtr type_error();
+
+    // Error
+    [DllImport(efl.Libs.CustomExports)]
+    internal static extern IntPtr type_object();
 }
 }
 
@@ -613,6 +629,7 @@ public enum ValueType
     Optional,
     /// <summary>Error values.</summary>
     Error,
+    Object,
     /// <summary>Empty values.</summary>
     Empty,
 }
@@ -673,6 +690,11 @@ static class ValueTypeMethods
     public static bool IsError(this ValueType val)
     {
         return val == ValueType.Error;
+    }
+
+    public static bool IsObject(this ValueType val)
+    {
+        return val == ValueType.Object;
     }
 
     /// <summary>Returns the Marshal.SizeOf for the given ValueType native structure.</summary>
@@ -770,6 +792,9 @@ static class ValueTypeBridge
 
         ManagedToNative.Add(ValueType.Error, type_error());
         NativeToManaged.Add(type_error(), ValueType.Error);
+
+        ManagedToNative.Add(ValueType.Object, type_object());
+        NativeToManaged.Add(type_object(), ValueType.Object);
 
         ManagedToNative.Add(ValueType.Empty, IntPtr.Zero);
         NativeToManaged.Add(IntPtr.Zero, ValueType.Empty);
@@ -1354,6 +1379,32 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
         return b;
     }
 
+    // Efl.Object conversions are made explicit to avoid ambiguity between
+    // Set(Efl.Object) and Set(Value) when dealing with classes derived from
+    // Efl.Object.
+    /// <summary>Explicit conversion from EFL objects.</summary>
+    public static explicit operator Value(Efl.Object obj)
+    {
+        var v = new Eina.Value(ValueType.Object);
+        if (!v.Set(obj))
+        {
+            throw new InvalidOperationException("Couldn't set value.");
+        }
+        return v;
+    }
+
+    /// <summary>Explicit conversion from Value to Efl.Objects.</summary>
+    public static explicit operator Efl.Object(Value v)
+    {
+        Efl.Object obj;
+        if (!v.Get(out obj))
+        {
+            throw new InvalidOperationException("Couldn't get value.");
+        }
+
+        return obj;
+    }
+
     /// <summary>Creates an Value instance from a given array description.</summary>
     private static Value FromArrayDesc(Eina.EinaNative.Value_Array arrayDesc)
     {
@@ -1789,6 +1840,22 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
         return eina_value_set_wrapper_int(this.Handle, error_code);
     }
 
+    /// <summary>Stores the given object.</summary>
+    public bool Set(Efl.Object value)
+    {
+        // FIXME Implement me
+        SanityChecks();
+
+        if (this.Optional)
+        {
+            IntPtr ptr = value.NativeHandle;
+            return eina_value_optional_pset(this.Handle,
+                                            ValueTypeBridge.GetNative(ValueType.Object),
+                                            ref ptr);
+        }
+        return eina_value_set_wrapper_ptr(this.Handle, value.NativeHandle);
+    }
+
     /// <summary>Stores the given value into this value. The target value must be an optional.</summary>
     public bool Set(Value value)
     {
@@ -2016,6 +2083,36 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
 
         return ret;
     }
+
+    /// <summary>Gets the currently stored value as an <see cref="Efl.Object"/>.</summary>
+    public bool Get(out Efl.Object obj)
+    {
+        // FIXME Implement me
+        SanityChecks();
+        IntPtr ptr;
+        bool ret;
+
+        if (this.Optional)
+        {
+            ret = eina_value_optional_pget(this.Handle, out ptr);
+        }
+        else
+        {
+            ret = eina_value_get_wrapper(this.Handle, out ptr);
+        }
+
+        if (ret)
+        {
+            obj = (Efl.Object) Efl.Eo.Globals.CreateWrapperFor(ptr);
+        }
+        else
+        {
+            obj = null;
+        }
+
+        return ret;
+    }
+
 
     /// <summary>Gets the currently stored value as an complex (e.g. container) Eina.Value.</summary>
     public bool Get(out Value value)
@@ -2281,6 +2378,11 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
                     string x = Convert.ToString(o);
                     return eina_value_container_append_wrapper_string(this.Handle, x);
                 }
+            case ValueType.Object:
+                {
+                    var x = (Efl.Object) o;
+                    return eina_value_container_append_wrapper_ptr(this.Handle, x.NativeHandle);
+                }
         }
 
         return false;
@@ -2374,6 +2476,12 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
                         eina_value_container_get_wrapper(this.Handle, i, out ptr);
                         return Eina.StringConversion.NativeUtf8ToManagedString(ptr);
                     }
+                case ValueType.Object:
+                    {
+                        IntPtr ptr = IntPtr.Zero;
+                        eina_value_container_get_wrapper(this.Handle, i, out ptr);
+                        return Efl.Eo.Globals.CreateWrapperFor(ptr);
+                    }
 
                 default:
                     throw new InvalidOperationException("Subtype not supported.");
@@ -2461,6 +2569,12 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
                     {
                         string x = Convert.ToString(value);
                         eina_value_container_set_wrapper_string(this.Handle, i, x);
+                        break;
+                    }
+                case ValueType.Object:
+                    {
+                        Efl.Object x = (Efl.Object)value;
+                        eina_value_container_set_wrapper_ptr(this.Handle, i, x.NativeHandle);
                         break;
                     }
             }

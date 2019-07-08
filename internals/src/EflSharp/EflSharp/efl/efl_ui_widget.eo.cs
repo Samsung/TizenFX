@@ -1280,7 +1280,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 };
 
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1289,7 +1289,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             lock (eventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1297,7 +1297,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     public void OnPropertiesChangedEvt(Efl.Ui.IPropertyBindPropertiesChangedEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1342,7 +1342,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 };
 
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1351,7 +1351,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             lock (eventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1359,7 +1359,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     public void OnPropertyBoundEvt(Efl.Ui.IPropertyBindPropertyBoundEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1804,7 +1804,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <summary>Sets the new resize object for this widget.
     /// (Since EFL 1.22)</summary>
     /// <param name="sobj">A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</param>
-    virtual public void SetResizeObject(Efl.Canvas.Object sobj) {
+    virtual protected void SetResizeObject(Efl.Canvas.Object sobj) {
                                  Efl.Ui.Widget.NativeMethods.efl_ui_widget_resize_object_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sobj);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -1837,7 +1837,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="style">Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</param>
     /// <returns>Whether the style was successfully applied or not, see the Efl.Ui.Theme.Apply_Error subset of <see cref="Eina.Error"/> for more information.</returns>
-    virtual public Eina.Error SetStyle(System.String style) {
+    virtual protected Eina.Error SetStyle(System.String style) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),style);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -1871,7 +1871,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
     /// (Since EFL 1.22)</summary>
     /// <returns>Widget parent object</returns>
-    virtual public Efl.Ui.Widget GetWidgetParent() {
+    virtual protected Efl.Ui.Widget GetWidgetParent() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -1880,7 +1880,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
     /// (Since EFL 1.22)</summary>
     /// <param name="parent">Widget parent object</param>
-    virtual public void SetWidgetParent(Efl.Ui.Widget parent) {
+    virtual protected void SetWidgetParent(Efl.Ui.Widget parent) {
                                  Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -1907,7 +1907,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.
     /// (Since EFL 1.22)</summary>
     /// <returns>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</returns>
-    virtual public Eina.Rect GetInterestRegion() {
+    virtual protected Eina.Rect GetInterestRegion() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_interest_region_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -1915,7 +1915,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <summary>This is a read-only property.
     /// (Since EFL 1.22)</summary>
     /// <returns>The rectangle area.</returns>
-    virtual public Eina.Rect GetFocusHighlightGeometry() {
+    virtual protected Eina.Rect GetFocusHighlightGeometry() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_highlight_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -1991,7 +1991,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="eo_event">EO event struct with an Efl.Input.Event as info.</param>
     /// <param name="source">Source object where the event originated. Often same as this.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool WidgetInputEventHandler(ref Efl.Event eo_event, Efl.Canvas.Object source) {
+    virtual protected bool WidgetInputEventHandler(ref Efl.Event eo_event, Efl.Canvas.Object source) {
          Efl.Event.NativeStruct _in_eo_event = eo_event;
                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_input_event_handler_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_eo_event, source);
         Eina.Error.RaiseIfUnhandledException();
@@ -2003,7 +2003,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="act">Type of activation.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool OnAccessActivate(Efl.Ui.Activate act) {
+    virtual protected bool OnAccessActivate(Efl.Ui.Activate act) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_activate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),act);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -2012,7 +2012,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// This meant to be overridden by subclasses to support accessibility. This is an unstable API.
     /// (Since EFL 1.22)</summary>
     /// <param name="enable"><c>true</c> if accessibility is enabled.</param>
-    virtual public void UpdateOnAccess(bool enable) {
+    virtual protected void UpdateOnAccess(bool enable) {
                                  Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -2037,7 +2037,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">Sub object to be added. Not necessarily a widget itself.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
-    virtual public bool AddWidgetSubObject(Efl.Canvas.Object sub_obj) {
+    virtual protected bool AddWidgetSubObject(Efl.Canvas.Object sub_obj) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -2051,7 +2051,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">Sub object to be removed. Should be a child of this widget.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
-    virtual public bool DelWidgetSubObject(Efl.Canvas.Object sub_obj) {
+    virtual protected bool DelWidgetSubObject(Efl.Canvas.Object sub_obj) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -2062,7 +2062,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// Note: even widgets not based on layouts may override this method to handle widget updates (scale, mirrored mode, etc...).
     /// (Since EFL 1.22)</summary>
     /// <returns>Indicates success, and if the current theme or default theme was used.</returns>
-    virtual public Eina.Error ThemeApply() {
+    virtual protected Eina.Error ThemeApply() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_theme_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -2327,7 +2327,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <summary>Virtual function which checks if this widget can handle passing focus to sub-object, in a given direction.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool IsFocusDirectionManager() {
+    virtual protected bool IsFocusDirectionManager() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_manager_is_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -2341,7 +2341,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="configured_state">The new configuration being set on the widget.</param>
     /// <param name="redirect">A redirect object if there is any</param>
     /// <returns>Returns <c>true</c> if the widget is registered in the focus manager, <c>false</c> if not.</returns>
-    virtual public bool FocusStateApply(Efl.Ui.WidgetFocusState current_state, ref Efl.Ui.WidgetFocusState configured_state, Efl.Ui.Widget redirect) {
+    virtual protected bool FocusStateApply(Efl.Ui.WidgetFocusState current_state, ref Efl.Ui.WidgetFocusState configured_state, Efl.Ui.Widget redirect) {
          Efl.Ui.WidgetFocusState.NativeStruct _in_current_state = current_state;
                                 var _out_configured_state = new Efl.Ui.WidgetFocusState.NativeStruct();
                                         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_state_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_current_state, ref _out_configured_state, redirect);
@@ -3006,7 +3006,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// This property is protected as it is meant for widget implementations only, to set and access the internal canvas object. Do use this function unless you&apos;re implementing a widget.
     /// (Since EFL 1.22)</summary>
     /// <value>A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</value>
-    public Efl.Canvas.Object ResizeObject {
+    protected Efl.Canvas.Object ResizeObject {
         set { SetResizeObject(value); }
     }
     /// <summary>Whether the widget is enabled (accepts and reacts to user inputs).
@@ -3027,7 +3027,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <value>Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</value>
     public System.String Style {
         get { return GetStyle(); }
-        set { SetStyle(value); }
+        protected set { SetStyle(value); }
     }
     /// <summary>The ability for a widget to be focused.
     /// Unfocusable objects do nothing when programmatically focused. The nearest focusable parent object the one really getting focus. Also, when they receive mouse input, they will get the event, but not take away the focus from where it was previously.
@@ -3045,7 +3045,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
     /// (Since EFL 1.22)</summary>
     /// <value>Widget parent object</value>
-    public Efl.Ui.Widget WidgetParent {
+    protected Efl.Ui.Widget WidgetParent {
         get { return GetWidgetParent(); }
         set { SetWidgetParent(value); }
     }
@@ -3063,14 +3063,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.
     /// (Since EFL 1.22)</summary>
     /// <value>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</value>
-    public Eina.Rect InterestRegion {
+    protected Eina.Rect InterestRegion {
         get { return GetInterestRegion(); }
     }
     /// <summary>The rectangle region to be highlighted on focus.
     /// This is a rectangle region where the focus highlight should be displayed.
     /// (Since EFL 1.22)</summary>
     /// <value>The rectangle area.</value>
-    public Eina.Rect FocusHighlightGeometry {
+    protected Eina.Rect FocusHighlightGeometry {
         get { return GetFocusHighlightGeometry(); }
     }
     /// <summary>Focus order property

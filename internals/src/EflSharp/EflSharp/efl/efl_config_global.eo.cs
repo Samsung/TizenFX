@@ -80,7 +80,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// If <c>profile</c> is not <c>null</c>, this will take the current in-memory config and write it out to the named <c>profile</c>. This will not change profile for the application or make other processes switch profile.</summary>
     /// <param name="profile">The profile name.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool Save(System.String profile) {
+    virtual protected bool Save(System.String profile) {
                                  var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_save_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -116,7 +116,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// At this point it is not expected that anyone would generally use this API except if you are a desktop environment and so the user base of this API will be enlightenment itself.</summary>
     /// <param name="profile">The new profile&apos;s name.</param>
     /// <param name="options">Derive options detailing how to modify.</param>
-    virtual public void AddProfileDerived(System.String profile, System.String options) {
+    virtual protected void AddProfileDerived(System.String profile, System.String options) {
                                                          Efl.ConfigGlobal.NativeMethods.efl_config_profile_derived_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile, options);
         Eina.Error.RaiseIfUnhandledException();
                                          }
@@ -125,7 +125,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// 
     /// At this point it is not expected that anyone would generally use this API except if you are a desktop environment and so the user base of this API will be enlightenment itself.</summary>
     /// <param name="profile">The name of the profile that is to be deleted.</param>
-    virtual public void DelProfileDerived(System.String profile) {
+    virtual protected void DelProfileDerived(System.String profile) {
                                  Efl.ConfigGlobal.NativeMethods.efl_config_profile_derived_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile);
         Eina.Error.RaiseIfUnhandledException();
                          }

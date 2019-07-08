@@ -85,6 +85,7 @@ namespace Efl
                 Image _disabledBgImage;
                 Image _selectedBgImage;
                 Image _selectorIconImage;
+                bool _isRemovable;
 
                 /// <summary>
                 /// Sets or gets the color of the main text.
@@ -155,6 +156,8 @@ namespace Efl
                         SetPart(BgPartName, ItemState.Normal, SelectedBgColor);
 
                         SetPart(SelectorIconPartName, ItemState.Normal, _selectorIconImage);
+
+                        SetRemovable(_isRemovable);
                     }
                     get
                     {
@@ -188,6 +191,12 @@ namespace Efl
                         if (r != -1 || g != -1 || b != -1 || a != -1)
                           Interop.Eext.eext_rotary_selector_item_part_color_set(NativeHandle, partName, (int)state, r, g, b, a);
                     }
+                }
+
+                void SetRemovable(bool isRemovable)
+                {
+                    if (NativeHandle != null)
+                        Interop.Eext.eext_rotary_selector_item_delete_enabled_set(NativeHandle, isRemovable);
                 }
 
                 /// <summary>
@@ -224,10 +233,11 @@ namespace Efl
                 /// <since_tizen> 6 </since_tizen>
                 public bool IsRemovable
                 {
-                    get { return Interop.Eext.eext_rotary_selector_item_delete_enabled_get(NativeHandle); }
+                    get { return _isRemovable; }
                     set
                     {
-                        Interop.Eext.eext_rotary_selector_item_delete_enabled_set(NativeHandle, value);
+                        _isRemovable = value;
+                        SetRemovable(value);
                     }
                 }
 

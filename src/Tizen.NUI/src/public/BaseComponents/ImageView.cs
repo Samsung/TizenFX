@@ -41,6 +41,7 @@ namespace Tizen.NUI.BaseComponents
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                 url = url.Replace("*Resource*", resource);
             }
+            imageView._resourceUrl = url;
             imageView.UpdateImage(ImageVisualProperty.URL, new PropertyValue(url));
         },
         defaultValueCreator: (bindable) =>
@@ -158,9 +159,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var imageView = (ImageView)bindable;
-            imageView._border = (Rectangle)newValue;
-            imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
+            if(newValue != null)
+            {
+                var imageView = (ImageView)bindable;
+                imageView._border = (Rectangle)newValue;
+                imageView.UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(imageView._border));
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -237,6 +241,7 @@ namespace Tizen.NUI.BaseComponents
         private _resourceLoadedCallbackType _resourceLoadedCallback;
 
         private Rectangle _border;
+        private string _resourceUrl = "";
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -577,6 +582,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetImage(string url)
         {
+            if(url.Contains(".json"))
+            {
+                Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
+                return;
+            }
+
             Interop.ImageView.ImageView_SetImage__SWIG_1(swigCPtr, url);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -824,6 +835,12 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetImage(string url, Uint16Pair size)
         {
+            if(url.Contains(".json"))
+            {
+                Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
+                return;
+            }
+
             Interop.ImageView.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 			
@@ -903,22 +920,28 @@ namespace Tizen.NUI.BaseComponents
 			
             SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
         }
-
+		
         private void UpdateImage(int key, PropertyValue value)
         {
             PropertyMap temp = new PropertyMap();
 
+            if (_resourceUrl == "")
+            {
+                temp.Insert(ImageVisualProperty.URL, new PropertyValue(_resourceUrl));
+                SetProperty(ImageView.Property.IMAGE, new PropertyValue(temp));
+                return;
+            }
+
             if (_border == null)
             {
                 temp.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
-                temp.Insert(NpatchImageVisualProperty.BorderOnly, new PropertyValue(false));
-                temp.Insert(NpatchImageVisualProperty.Border, new PropertyValue(new Rectangle(0, 0, 0, 0)));
             }
             else
             {
                 temp.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+                temp.Insert(NpatchImageVisualProperty.Border, new PropertyValue(_border));
             }
-
+        
             if (value != null)
             {
                 temp.Insert(key, value);
@@ -929,6 +952,7 @@ namespace Tizen.NUI.BaseComponents
             temp.Dispose();
             temp = null;
         }
+
 
         private void OnResourceLoaded(IntPtr view)
         {

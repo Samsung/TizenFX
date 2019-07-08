@@ -57,7 +57,7 @@ sealed public class IPositionerConcrete :
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_io_positioner_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IPositioner"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -221,7 +221,7 @@ sealed public class IPositionerConcrete :
             ulong _ret_var = default(ulong);
                 try
                 {
-                    _ret_var = ((IPositionerConcrete)ws.Target).GetPosition();
+                    _ret_var = ((IPositioner)ws.Target).GetPosition();
                 }
                 catch (Exception e)
                 {
@@ -257,7 +257,7 @@ sealed public class IPositionerConcrete :
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPositionerConcrete)ws.Target).SetPosition(position);
+                    _ret_var = ((IPositioner)ws.Target).SetPosition(position);
                 }
                 catch (Exception e)
                 {
@@ -293,7 +293,7 @@ sealed public class IPositionerConcrete :
                                                             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((IPositionerConcrete)ws.Target).Seek(offset, whence);
+                    _ret_var = ((IPositioner)ws.Target).Seek(offset, whence);
                 }
                 catch (Exception e)
                 {

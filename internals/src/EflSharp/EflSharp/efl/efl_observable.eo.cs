@@ -27,7 +27,7 @@ public class Observable : Efl.Object
         }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_observable_class_get();
     /// <summary>Initializes a new instance of the <see cref="Observable"/> class.</summary>
     /// <param name="parent">Parent instance.</param>

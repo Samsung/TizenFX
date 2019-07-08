@@ -83,7 +83,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -92,7 +92,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -100,7 +100,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -138,7 +138,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -147,7 +147,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -155,7 +155,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -200,7 +200,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -209,7 +209,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -217,7 +217,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -263,7 +263,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -272,7 +272,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -280,7 +280,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
