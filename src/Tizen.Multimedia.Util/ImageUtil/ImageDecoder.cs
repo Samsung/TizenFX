@@ -206,18 +206,24 @@ namespace Tizen.Multimedia.Util
         private IEnumerable<BitmapFrame> RunDecoding()
         {
             IntPtr imageHandle = IntPtr.Zero;
+            IntPtr outBuffer = IntPtr.Zero;
 
             try
             {
                 NativeDecoder.DecodeRun(Handle, out imageHandle).ThrowIfFailed("Failed to decode");
 
                 NativeUtil.GetImage(imageHandle, out int width, out int height, out ImageColorSpace colorspace,
-                    out IntPtr data, out int size).ThrowIfFailed("Failed to get decoded image.");
+                    out outBuffer, out int size).ThrowIfFailed("Failed to get decoded image.");
 
-                yield return new BitmapFrame(data, width, height, size);
+                yield return new BitmapFrame(outBuffer, width, height, size);
             }
             finally
             {
+                if (outBuffer != IntPtr.Zero)
+                {
+                    LibcSupport.Free(outBuffer);
+                }
+
                 if (imageHandle != IntPtr.Zero)
                 {
                     NativeUtil.Destroy(imageHandle).ThrowIfFailed("Failed to destroy handle");
