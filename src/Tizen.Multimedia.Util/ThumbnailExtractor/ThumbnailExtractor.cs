@@ -245,6 +245,31 @@ namespace Tizen.Multimedia.Util
         /// The generated thumbnail will be returned in <see cref="ThumbnailExtractionResult"/>.
         /// </summary>
         /// <remarks>
+        /// The size of generated thumbnail will be 320x240.<br/>
+        /// If you want to set the size of generated thumbnail, please use <see cref="Extract(string, Size)"/><br/>
+        /// <br/>
+        /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
+        /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <returns>The result of extracting operation.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public static ThumbnailExtractionResult Extract(string path)
+        {
+            return Extract(path, new Size(320, 240));
+        }
+
+        /// <summary>
+        /// Extracts the thumbnail for the given media with the specified path and size.
+        /// The generated thumbnail will be returned in <see cref="ThumbnailExtractionResult"/>.
+        /// </summary>
+        /// <remarks>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
         /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
@@ -301,6 +326,31 @@ namespace Tizen.Multimedia.Util
                     LibcSupport.Free(thumbData);
                 }
             }
+        }
+
+        /// <summary>
+        /// Extracts the thumbnail for the given media with the specified path and size.
+        /// The generated thumbnail will be saved in <paramref name="resultThumbnailPath"/>.
+        /// </summary>
+        /// <remarks>
+        /// The size of generated thumbnail will be 320x240.<br/>
+        /// If you want to set the size of generated thumbnail, please use <see cref="Extract(string, Size, string)"/><br/>
+        /// <br/>
+        /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
+        /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        /// </remarks>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <param name="path">The path of the media file to extract the thumbnail.</param>
+        /// <param name="resultThumbnailPath">The path to save the generated thumbnail.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void Extract(string path, string resultThumbnailPath)
+        {
+            Extract(path, new Size(320, 240), resultThumbnailPath);
         }
 
         /// <summary>
