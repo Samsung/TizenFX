@@ -15,8 +15,8 @@
  */
 
 using System;
-using static Interop.ImageUtil;
-using static Interop.ImageUtil.Transform;
+using static Interop;
+using NativeTransform = Interop.ImageUtil.Transform;
 
 namespace Tizen.Multimedia.Util
 {
@@ -96,7 +96,7 @@ namespace Tizen.Multimedia.Util
 
         internal override void Configure(TransformHandle handle)
         {
-            SetCropArea(handle, Region.Left, Region.Top, Region.Right, Region.Bottom);
+            NativeTransform.SetCropArea(handle, Region.Left, Region.Top, Region.Right, Region.Bottom);
         }
 
         internal override void ValidateFormat(VideoMediaFormat format)

@@ -23,7 +23,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using static Interop;
-using static Interop.Decode;
+using NativeUtil = Interop.ImageUtil;
+using NativeDecoder = Interop.ImageUtil.Decode;
 
 namespace Tizen.Multimedia.Util
 {
@@ -39,7 +40,7 @@ namespace Tizen.Multimedia.Util
 
         internal ImageDecoder(ImageFormat format)
         {
-            Create(out _handle).ThrowIfFailed("Failed to create ImageDecoder");
+            NativeDecoder.Create(out _handle).ThrowIfFailed("Failed to create ImageDecoder");
 
             Debug.Assert(_handle != null);
 
@@ -126,7 +127,8 @@ namespace Tizen.Multimedia.Util
             var pathPtr = Marshal.StringToHGlobalAnsi(inputFilePath);
             try
             {
-                SetInputPath(Handle, pathPtr).ThrowIfFailed("Failed to set input file path for decoding");
+                NativeDecoder.SetInputPath(Handle, pathPtr).ThrowIfFailed("Failed to set input file path for decoding");
+
                 return await DecodeAsync();
             }
             finally
@@ -163,7 +165,7 @@ namespace Tizen.Multimedia.Util
                 throw new FileFormatException("buffer has an invalid header.");
             }
 
-            SetInputBuffer(Handle, inputBuffer, (ulong)inputBuffer.Length).
+            NativeDecoder.SetInputBuffer(Handle, inputBuffer, (ulong)inputBuffer.Length).
                 ThrowIfFailed("Failed to set input buffer for decoding");
 
             return DecodeAsync();
@@ -203,26 +205,23 @@ namespace Tizen.Multimedia.Util
 
         private IEnumerable<BitmapFrame> RunDecoding()
         {
-            IntPtr outBuffer = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)));
-            Marshal.WriteIntPtr(outBuffer, IntPtr.Zero);
+            IntPtr imageHandle = IntPtr.Zero;
 
             try
             {
-                SetOutputBuffer(Handle, outBuffer).ThrowIfFailed("Failed to decode given image");
+                NativeDecoder.DecodeRun(Handle, out imageHandle).ThrowIfFailed("Failed to decode");
 
-                DecodeRun(Handle, out var width, out var height, out var size).
-                    ThrowIfFailed("Failed to decode");
+                NativeUtil.GetImage(imageHandle, out int width, out int height, out ImageColorSpace colorspace,
+                    out IntPtr data, out int size).ThrowIfFailed("Failed to get decoded image.");
 
-                yield return new BitmapFrame(Marshal.ReadIntPtr(outBuffer), width, height, (int)size);
+                yield return new BitmapFrame(data, width, height, size);
             }
             finally
             {
-                if (Marshal.ReadIntPtr(outBuffer) != IntPtr.Zero)
+                if (imageHandle != IntPtr.Zero)
                 {
-                    LibcSupport.Free(Marshal.ReadIntPtr(outBuffer));
+                    NativeUtil.Destroy(imageHandle).ThrowIfFailed("Failed to destroy handle");
                 }
-
-                Marshal.FreeHGlobal(outBuffer);
             }
         }
 
@@ -239,7 +238,7 @@ namespace Tizen.Multimedia.Util
         {
             if (_colorSpace.HasValue)
             {
-                SetColorspace(Handle, _colorSpace.Value.ToImageColorSpace()).ThrowIfFailed("Failed to set color space");
+                NativeDecoder.SetColorspace(Handle, _colorSpace.Value.ToImageColorSpace()).ThrowIfFailed("Failed to set color space");
             }
         }
 
@@ -364,7 +363,7 @@ namespace Tizen.Multimedia.Util
         {
             base.Initialize(handle);
 
-            SetJpegDownscale(handle, Downscale).ThrowIfFailed("Failed to set downscale for decoding");
+            NativeDecoder.SetJpegDownscale(handle, Downscale).ThrowIfFailed("Failed to set downscale for decoding");
         }
 
         internal override byte[] Header => _header;
