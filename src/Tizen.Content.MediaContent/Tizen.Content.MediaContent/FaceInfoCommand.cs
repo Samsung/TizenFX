@@ -142,7 +142,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts a new face information the database with the specified media ID, area, orientation.
+        /// Inserts a new face information to the database with the specified media ID, area, orientation.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <param name="mediaId">The media ID to be associated with.</param>
@@ -166,7 +166,7 @@ namespace Tizen.Content.MediaContent
         }
 
         /// <summary>
-        /// Inserts a new face information the database with the specified media ID, area, orientation, and tag.
+        /// Inserts a new face information to the database with the specified media ID, area, orientation, and tag.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <param name="mediaId">The media ID to be associated with.</param>
