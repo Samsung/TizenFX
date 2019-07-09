@@ -258,6 +258,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <returns>The result of extracting operation.</returns>
         /// <since_tizen> 6 </since_tizen>
         public static ThumbnailExtractionResult Extract(string path)
@@ -284,6 +285,7 @@ namespace Tizen.Multimedia.Util
         ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <returns>The result of extracting operation.</returns>
         /// <since_tizen> 6 </since_tizen>
         public static ThumbnailExtractionResult Extract(string path, Size size)
@@ -347,6 +349,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void Extract(string path, string resultThumbnailPath)
         {
@@ -373,6 +376,7 @@ namespace Tizen.Multimedia.Util
         ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void Extract(string path, Size size, string resultThumbnailPath)
         {
