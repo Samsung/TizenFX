@@ -1201,7 +1201,6 @@ namespace Tizen.System
     /// <since_tizen> 6 </since_tizen>
     public class RotaryEventEnabledChangedEventArgs : EventArgs
     {
-        private readonly bool _rotaryEventEnabled;
         internal RotaryEventEnabledChangedEventArgs(bool val)
         {
             Value = val;
