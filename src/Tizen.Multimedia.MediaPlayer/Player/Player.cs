@@ -884,7 +884,72 @@ namespace Tizen.Multimedia
         {
             Interlocked.Exchange(ref _isPreparing, 0);
         }
-
         #endregion
+
+        /// <summary>
+        /// Set a media packet audio decoded callback function.
+        /// </summary>
+        /// <remarks><para>This function must be called before calling player_prepare() or player_prepare_async().
+        /// A registered callback is called in a separate thread(not in the main loop).
+        /// The audio PCM data can be retrieved using a registered callback as a media packet
+        /// and it is available until it's destroyed by media_packet_destroy().</para>
+        /// <para>The packet has to be destroyed as quickly as possible after rendering the data
+        /// and all the packets have to be destroyed before player_unprepare() is called.</para></remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     </exception>
+        /// <seealso cref="PlayerAudioExtractOption"/>
+        /// <seealso cref="UnsetAudioFrameDecodedCallback"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetAudioFrameDecodedCallback(AudioMediaFormat format, PlayerAudioExtractOption option)
+        {
+            ValidatePlayerState(PlayerState.Idle);
+
+            if (format == null)
+            {
+                Log.Error(PlayerLog.Tag, "invalid media format");
+                return;
+            }
+
+            IntPtr formatHandle = IntPtr.Zero;
+
+            _audioFrameDecodedCallback = (IntPtr packetHandle, IntPtr userData) =>
+            {
+                var handler = _audioFrameDecoded;
+                if (handler != null)
+                {
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle.ToString());
+                    handler.Invoke(this,
+                        new AudioFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
+                }
+                else
+                {
+                    MediaPacket.From(packetHandle).Dispose();
+                }
+            };
+
+            formatHandle = format.AsNativeHandle();
+
+            NativePlayer.SetAudioFrameDecodedCb(Handle, formatHandle, option, _audioFrameDecodedCallback, IntPtr.Zero).
+                ThrowIfFailed(this, "Failed to register the _audioFrameDecoded");
+        }
+
+        /// <summary>
+        /// Unset a media packet audio decoded callback function.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     </exception>
+        /// <seealso cref="SetAudioFrameDecodedCallback"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void UnsetAudioFrameDecodedCallback()
+        {
+            NativePlayer.UnsetAudioFrameDecodedCb(Handle).
+                ThrowIfFailed(this, "Failed to unset the AudioFrameDecoded");
+
+            _audioFrameDecodedCallback = null;
+        }
     }
 }

@@ -169,7 +169,6 @@ namespace Tizen.Multimedia
         }
 
         #region VideoFrameDecoded event
-
         private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
 
         private NativePlayer.VideoFrameDecodedCallback _videoFrameDecodedCallback;
@@ -220,6 +219,33 @@ namespace Tizen.Multimedia
 
             NativePlayer.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
                 ThrowIfFailed(this, "Failed to register the VideoFrameDecoded");
+        }
+        #endregion
+
+        #region AudioFrameDecoded event
+        private event EventHandler<AudioFrameDecodedEventArgs> _audioFrameDecoded;
+
+        private NativePlayer.AudioFrameDecodedCallback _audioFrameDecodedCallback;
+
+        /// <summary>
+        /// Occurs when a audio frame is decoded.
+        /// </summary>
+        /// <remarks>
+        ///     <para>The event handler will be executed on an internal thread.</para>
+        ///     <para>The <see cref="AudioFrameDecodedEventArgs.Packet"/> in event args should be disposed after use.</para>
+        /// </remarks>
+        /// <seealso cref="AudioFrameDecodedEventArgs.Packet"/>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<AudioFrameDecodedEventArgs> AudioFrameDecoded
+        {
+            add
+            {
+                _audioFrameDecoded += value;
+            }
+            remove
+            {
+                _audioFrameDecoded -= value;
+            }
         }
         #endregion
 

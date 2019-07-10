@@ -295,4 +295,32 @@ namespace Tizen.Multimedia
         /// </summary>
         Year
     }
+
+    /// <summary>
+    /// Enumeration of audio extract option.
+    /// </summary>
+    /// <seealso cref="Player.SetAudioFrameDecodedCallback"/>
+    /// <since_tizen> 6 </since_tizen>
+    public enum PlayerAudioExtractOption
+    {
+        /// <summary>
+        /// Sync with the playback clock and multichannel audio stream
+        /// </summary>
+        Default = 0x00,
+
+        /// <summary>
+        /// No sync with the playback clock
+        /// </summary>
+        NoSyncWithClock = 0x01,
+
+        /// <summary>
+        /// Splits one interleaved multichannel audio stream into many mono audio streams
+        /// </summary>
+        Deinterleave = 0x02,
+
+        /// <summary>
+        /// No sync with clock and splits into mono streams
+        /// </summary>
+        NoSyncAndDeinterleave = 0x03,
+    }
 }
