@@ -32,11 +32,15 @@ public struct AnimationPlayerEventRunning
 {
     ///<summary>Placeholder field</summary>
     public IntPtr field;
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator AnimationPlayerEventRunning(IntPtr ptr)
     {
         var tmp = (AnimationPlayerEventRunning.NativeStruct)Marshal.PtrToStructure(ptr, typeof(AnimationPlayerEventRunning.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct AnimationPlayerEventRunning.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -58,6 +62,8 @@ public struct AnimationPlayerEventRunning
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

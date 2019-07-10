@@ -98,10 +98,10 @@ Efl.Gfx.IEntity GetObjectTopInRectangle(Eina.Rect rect, bool include_pass_events
 Eina.Iterator<Efl.Input.Device> Seats();
                                                     /// <summary>Called when scene got focus
     /// (Since EFL 1.22)</summary>
-    event EventHandler<Efl.Canvas.ISceneSceneFocusInEvt_Args> SceneFocusInEvt;
+    event EventHandler SceneFocusInEvt;
     /// <summary>Called when scene lost focus
     /// (Since EFL 1.22)</summary>
-    event EventHandler<Efl.Canvas.ISceneSceneFocusOutEvt_Args> SceneFocusOutEvt;
+    event EventHandler SceneFocusOutEvt;
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
     event EventHandler<Efl.Canvas.ISceneObjectFocusInEvt_Args> ObjectFocusInEvt;
@@ -124,30 +124,20 @@ Eina.Iterator<Efl.Input.Device> Seats();
     /// (Since EFL 1.22)</summary>
     event EventHandler<Efl.Canvas.ISceneDeviceRemovedEvt_Args> DeviceRemovedEvt;
     /// <summary>Get if the canvas is currently calculating group objects.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if currently calculating group objects.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if currently calculating group objects.</value>
     bool GroupObjectsCalculating {
         get ;
     }
     /// <summary>Get the default seat attached to this canvas.
-/// A canvas may have exactly one default seat.
-/// 
-/// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
-/// (Since EFL 1.22)</summary>
-/// <value>The default seat or <c>null</c> if one does not exist.</value>
+    /// A canvas may have exactly one default seat.
+    /// 
+    /// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The default seat or <c>null</c> if one does not exist.</value>
     Efl.Input.Device SeatDefault {
         get ;
     }
-}
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.SceneFocusInEvt"/>.</summary>
-public class ISceneSceneFocusInEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Input.Focus arg { get; set; }
-}
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.SceneFocusOutEvt"/>.</summary>
-public class ISceneSceneFocusOutEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Input.Focus arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusInEvt"/>.</summary>
 public class ISceneObjectFocusInEvt_Args : EventArgs {
@@ -181,13 +171,13 @@ public class ISceneDeviceRemovedEvt_Args : EventArgs {
 }
 /// <summary>Interface containing basic canvas-related methods and events.
 /// (Since EFL 1.22)</summary>
-sealed public class ISceneConcrete : 
-
-IScene
+sealed public class ISceneConcrete :
+    Efl.Eo.EoWrapper
+    , IScene
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -202,173 +192,28 @@ IScene
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_canvas_scene_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IScene"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISceneConcrete(System.IntPtr raw)
+    private ISceneConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ISceneConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Called when scene got focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusInEvt_Args> SceneFocusInEvt
+    public event EventHandler SceneFocusInEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneSceneFocusInEvt_Args args = new Efl.Canvas.ISceneSceneFocusInEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -396,7 +241,7 @@ IScene
         }
     }
     ///<summary>Method to raise event SceneFocusInEvt.</summary>
-    public void OnSceneFocusInEvt(Efl.Canvas.ISceneSceneFocusInEvt_Args e)
+    public void OnSceneFocusInEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -406,25 +251,22 @@ IScene
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scene lost focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusOutEvt_Args> SceneFocusOutEvt
+    public event EventHandler SceneFocusOutEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneSceneFocusOutEvt_Args args = new Efl.Canvas.ISceneSceneFocusOutEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -452,7 +294,7 @@ IScene
         }
     }
     ///<summary>Method to raise event SceneFocusOutEvt.</summary>
-    public void OnSceneFocusOutEvt(Efl.Canvas.ISceneSceneFocusOutEvt_Args e)
+    public void OnSceneFocusOutEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -462,8 +304,7 @@ IScene
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
@@ -473,13 +314,12 @@ IScene
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneObjectFocusInEvt_Args args = new Efl.Canvas.ISceneObjectFocusInEvt_Args();
+                        Efl.Canvas.ISceneObjectFocusInEvt_Args args = new Efl.Canvas.ISceneObjectFocusInEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
                         try
                         {
@@ -529,13 +369,12 @@ IScene
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneObjectFocusOutEvt_Args args = new Efl.Canvas.ISceneObjectFocusOutEvt_Args();
+                        Efl.Canvas.ISceneObjectFocusOutEvt_Args args = new Efl.Canvas.ISceneObjectFocusOutEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
                         try
                         {
@@ -585,10 +424,9 @@ IScene
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -639,13 +477,12 @@ IScene
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneRenderPostEvt_Args args = new Efl.Canvas.ISceneRenderPostEvt_Args();
+                        Efl.Canvas.ISceneRenderPostEvt_Args args = new Efl.Canvas.ISceneRenderPostEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -703,13 +540,12 @@ IScene
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneDeviceChangedEvt_Args args = new Efl.Canvas.ISceneDeviceChangedEvt_Args();
+                        Efl.Canvas.ISceneDeviceChangedEvt_Args args = new Efl.Canvas.ISceneDeviceChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Device);
                         try
                         {
@@ -759,13 +595,12 @@ IScene
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneDeviceAddedEvt_Args args = new Efl.Canvas.ISceneDeviceAddedEvt_Args();
+                        Efl.Canvas.ISceneDeviceAddedEvt_Args args = new Efl.Canvas.ISceneDeviceAddedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Device);
                         try
                         {
@@ -815,13 +650,12 @@ IScene
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneDeviceRemovedEvt_Args args = new Efl.Canvas.ISceneDeviceRemovedEvt_Args();
+                        Efl.Canvas.ISceneDeviceRemovedEvt_Args args = new Efl.Canvas.ISceneDeviceRemovedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Device);
                         try
                         {
@@ -1000,17 +834,17 @@ IScene
         return new Eina.Iterator<Efl.Input.Device>(_ret_var, true, false);
  }
     /// <summary>Get if the canvas is currently calculating group objects.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if currently calculating group objects.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if currently calculating group objects.</value>
     public bool GroupObjectsCalculating {
         get { return GetGroupObjectsCalculating(); }
     }
     /// <summary>Get the default seat attached to this canvas.
-/// A canvas may have exactly one default seat.
-/// 
-/// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
-/// (Since EFL 1.22)</summary>
-/// <value>The default seat or <c>null</c> if one does not exist.</value>
+    /// A canvas may have exactly one default seat.
+    /// 
+    /// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The default seat or <c>null</c> if one does not exist.</value>
     public Efl.Input.Device SeatDefault {
         get { return GetSeatDefault(); }
     }
@@ -1159,7 +993,7 @@ IScene
             return Efl.Canvas.ISceneConcrete.efl_canvas_scene_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_canvas_scene_image_max_size_get_delegate(System.IntPtr obj, System.IntPtr pd,  out Eina.Size2D.NativeStruct max);
@@ -1172,14 +1006,14 @@ IScene
         private static bool image_max_size_get(System.IntPtr obj, System.IntPtr pd, out Eina.Size2D.NativeStruct max)
         {
             Eina.Log.Debug("function efl_canvas_scene_image_max_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Size2D _out_max = default(Eina.Size2D);
                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetImageMaxSize(out _out_max);
+                    _ret_var = ((IScene)ws.Target).GetImageMaxSize(out _out_max);
                 }
                 catch (Exception e)
                 {
@@ -1210,13 +1044,13 @@ IScene
         private static bool group_objects_calculating_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_group_objects_calculating_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetGroupObjectsCalculating();
+                    _ret_var = ((IScene)ws.Target).GetGroupObjectsCalculating();
                 }
                 catch (Exception e)
                 {
@@ -1246,13 +1080,13 @@ IScene
         private static Efl.Input.Device device_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_canvas_scene_device_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetDevice(name);
+                    _ret_var = ((IScene)ws.Target).GetDevice(name);
                 }
                 catch (Exception e)
                 {
@@ -1282,13 +1116,13 @@ IScene
         private static Efl.Input.Device seat_get(System.IntPtr obj, System.IntPtr pd, int id)
         {
             Eina.Log.Debug("function efl_canvas_scene_seat_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetSeat(id);
+                    _ret_var = ((IScene)ws.Target).GetSeat(id);
                 }
                 catch (Exception e)
                 {
@@ -1318,13 +1152,13 @@ IScene
         private static Efl.Input.Device seat_default_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_seat_default_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetSeatDefault();
+                    _ret_var = ((IScene)ws.Target).GetSeatDefault();
                 }
                 catch (Exception e)
                 {
@@ -1354,14 +1188,14 @@ IScene
         private static bool pointer_position_get(System.IntPtr obj, System.IntPtr pd, Efl.Input.Device seat, out Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_canvas_scene_pointer_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 Eina.Position2D _out_pos = default(Eina.Position2D);
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetPointerPosition(seat, out _out_pos);
+                    _ret_var = ((IScene)ws.Target).GetPointerPosition(seat, out _out_pos);
                 }
                 catch (Exception e)
                 {
@@ -1392,13 +1226,13 @@ IScene
         private static void group_objects_calculate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_group_objects_calculate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IScene)wrapper).CalculateGroupObjects();
+                    ((IScene)ws.Target).CalculateGroupObjects();
                 }
                 catch (Exception e)
                 {
@@ -1427,14 +1261,14 @@ IScene
         private static System.IntPtr objects_at_xy_get(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_objects_at_xy_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                                                                             Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetObjectsAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((IScene)ws.Target).GetObjectsAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -1464,14 +1298,14 @@ IScene
         private static Efl.Gfx.IEntity object_top_at_xy_get(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_object_top_at_xy_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                                                                             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetObjectTopAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((IScene)ws.Target).GetObjectTopAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -1501,14 +1335,14 @@ IScene
         private static System.IntPtr objects_in_rectangle_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_objects_in_rectangle_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                                                                             Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetObjectsInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((IScene)ws.Target).GetObjectsInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -1538,14 +1372,14 @@ IScene
         private static Efl.Gfx.IEntity object_top_in_rectangle_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_object_top_in_rectangle_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                                                                             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).GetObjectTopInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((IScene)ws.Target).GetObjectTopInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -1575,13 +1409,13 @@ IScene
         private static System.IntPtr seats(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_seats was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Input.Device> _ret_var = default(Eina.Iterator<Efl.Input.Device>);
                 try
                 {
-                    _ret_var = ((IScene)wrapper).Seats();
+                    _ret_var = ((IScene)ws.Target).Seats();
                 }
                 catch (Exception e)
                 {
@@ -1600,7 +1434,7 @@ IScene
 
         private static efl_canvas_scene_seats_delegate efl_canvas_scene_seats_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

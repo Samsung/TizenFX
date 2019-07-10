@@ -168,7 +168,7 @@ namespace Tizen.Uix.InputMethodManager
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="T:System.InvalidOperationException">
         /// This exception can occur if:
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.

@@ -55,41 +55,41 @@ System.String GetGroupData(System.String key);
 /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
 bool GetPartExist(System.String part);
                     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
-/// 
-/// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
-/// 
-/// Note: On failure, this function also return 0x0.
-/// 
-/// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMax"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The minimum size as set in EDC.</value>
+    /// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
+    /// 
+    /// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
+    /// 
+    /// Note: On failure, this function also return 0x0.
+    /// 
+    /// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMax"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The minimum size as set in EDC.</value>
     Eina.Size2D GroupSizeMin {
         get ;
     }
     /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
-/// 
-/// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
-/// 
-/// Note: On failure, this function will return 0x0.
-/// 
-/// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMin"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The maximum size as set in EDC.</value>
+    /// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
+    /// 
+    /// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
+    /// 
+    /// Note: On failure, this function will return 0x0.
+    /// 
+    /// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMin"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The maximum size as set in EDC.</value>
     Eina.Size2D GroupSizeMax {
         get ;
     }
 }
 /// <summary>APIs representing static data from a group in an edje file.
 /// (Since EFL 1.22)</summary>
-sealed public class IGroupConcrete : 
-
-IGroup
+sealed public class IGroupConcrete :
+    Efl.Eo.EoWrapper
+    , IGroup
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -104,86 +104,12 @@ IGroup
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
         efl_layout_group_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IGroup"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IGroupConcrete(System.IntPtr raw)
+    private IGroupConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IGroupConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
@@ -242,28 +168,28 @@ IGroup
                         return _ret_var;
  }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
-/// 
-/// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
-/// 
-/// Note: On failure, this function also return 0x0.
-/// 
-/// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMax"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The minimum size as set in EDC.</value>
+    /// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
+    /// 
+    /// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
+    /// 
+    /// Note: On failure, this function also return 0x0.
+    /// 
+    /// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMax"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The minimum size as set in EDC.</value>
     public Eina.Size2D GroupSizeMin {
         get { return GetGroupSizeMin(); }
     }
     /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
-/// 
-/// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
-/// 
-/// Note: On failure, this function will return 0x0.
-/// 
-/// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMin"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The maximum size as set in EDC.</value>
+    /// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
+    /// 
+    /// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
+    /// 
+    /// Note: On failure, this function will return 0x0.
+    /// 
+    /// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMin"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The maximum size as set in EDC.</value>
     public Eina.Size2D GroupSizeMax {
         get { return GetGroupSizeMax(); }
     }
@@ -332,7 +258,7 @@ IGroup
             return Efl.Layout.IGroupConcrete.efl_layout_group_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Size2D.NativeStruct efl_layout_group_size_min_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -345,13 +271,13 @@ IGroup
         private static Eina.Size2D.NativeStruct group_size_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_group_size_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IGroup)wrapper).GetGroupSizeMin();
+                    _ret_var = ((IGroup)ws.Target).GetGroupSizeMin();
                 }
                 catch (Exception e)
                 {
@@ -381,13 +307,13 @@ IGroup
         private static Eina.Size2D.NativeStruct group_size_max_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_group_size_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IGroup)wrapper).GetGroupSizeMax();
+                    _ret_var = ((IGroup)ws.Target).GetGroupSizeMax();
                 }
                 catch (Exception e)
                 {
@@ -417,13 +343,13 @@ IGroup
         private static System.String group_data_get(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_layout_group_data_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IGroup)wrapper).GetGroupData(key);
+                    _ret_var = ((IGroup)ws.Target).GetGroupData(key);
                 }
                 catch (Exception e)
                 {
@@ -453,13 +379,13 @@ IGroup
         private static bool part_exist_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_layout_group_part_exist_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IGroup)wrapper).GetPartExist(part);
+                    _ret_var = ((IGroup)ws.Target).GetPartExist(part);
                 }
                 catch (Exception e)
                 {
@@ -478,7 +404,7 @@ IGroup
 
         private static efl_layout_group_part_exist_get_delegate efl_layout_group_part_exist_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -9,17 +9,25 @@ namespace Efl {
 
 namespace Access {
 
+/// <summary>Accessibility object state set.</summary>
 public struct StateSet
 {
     private ulong payload;
-    public static implicit operator StateSet(ulong x)
+
+    /// <summary>Converts an instance of ulong to this struct.</summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <returns>A struct with the given value.</returns>
+    public static implicit operator StateSet(ulong value)
     {
-        return new StateSet{payload=x};
+        return new StateSet{payload=value};
     }
 
-    public static implicit operator ulong(StateSet x)
+    /// <summary>Converts an instance of this struct to ulong.</summary>
+    /// <param name="value">The value to be converted packed in this struct.</param>
+    /// <returns>The actual value the alias is wrapping.</returns>
+    public static implicit operator ulong(StateSet value)
     {
-        return x.payload;
+        return value.payload;
     }
 
 }
@@ -32,17 +40,25 @@ namespace Efl {
 
 namespace Access {
 
+/// <summary>Elementary Accessibility relation set type</summary>
 public struct RelationSet
 {
     private Eina.List<Efl.Access.Relation> payload;
-    public static implicit operator RelationSet(Eina.List<Efl.Access.Relation> x)
+
+    /// <summary>Converts an instance of Eina.List<Efl.Access.Relation> to this struct.</summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <returns>A struct with the given value.</returns>
+    public static implicit operator RelationSet(Eina.List<Efl.Access.Relation> value)
     {
-        return new RelationSet{payload=x};
+        return new RelationSet{payload=value};
     }
 
-    public static implicit operator Eina.List<Efl.Access.Relation>(RelationSet x)
+    /// <summary>Converts an instance of this struct to Eina.List<Efl.Access.Relation>.</summary>
+    /// <param name="value">The value to be converted packed in this struct.</param>
+    /// <returns>The actual value the alias is wrapping.</returns>
+    public static implicit operator Eina.List<Efl.Access.Relation>(RelationSet value)
     {
-        return x.payload;
+        return value.payload;
     }
 
 }
@@ -203,85 +219,85 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
     event EventHandler RemovedEvt;
     event EventHandler MoveOutedEvt;
     /// <summary>Gets an localized string describing accessible object role name.</summary>
-/// <value>Localized accessible object role name</value>
+    /// <value>Localized accessible object role name</value>
     System.String LocalizedRoleName {
         get ;
     }
     /// <summary>Accessible name of the object.</summary>
-/// <value>Accessible name</value>
+    /// <value>Accessible name</value>
     System.String I18nName {
         get ;
         set ;
     }
     /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
-/// <value>Accessible relation set</value>
+    /// <value>Accessible relation set</value>
     Efl.Access.RelationSet RelationSet {
         get ;
     }
     /// <summary>The role of the object in accessibility domain.</summary>
-/// <value>Accessible role</value>
+    /// <value>Accessible role</value>
     Efl.Access.Role Role {
         get ;
         set ;
     }
     /// <summary>Gets object&apos;s accessible parent.</summary>
-/// <value>Accessible parent</value>
+    /// <value>Accessible parent</value>
     Efl.Access.IObject AccessParent {
         get ;
         set ;
     }
     /// <summary>Gets object&apos;s accessible children.</summary>
-/// <value>List of widget&apos;s children</value>
+    /// <value>List of widget&apos;s children</value>
     Eina.List<Efl.Access.IObject> AccessChildren {
         get ;
     }
     /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
-/// <value>Accessible role name</value>
+    /// <value>Accessible role name</value>
     System.String RoleName {
         get ;
     }
     /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
-/// <value>List of object attributes, Must be freed by the user</value>
+    /// <value>List of object attributes, Must be freed by the user</value>
     Eina.List<Efl.Access.Attribute> Attributes {
         get ;
     }
     /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <value>Reading information types</value>
+    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// <value>Reading information types</value>
     Efl.Access.ReadingInfoTypeMask ReadingInfoType {
         get ;
         set ;
     }
     /// <summary>Gets index of the child in parent&apos;s children list.</summary>
-/// <value>Index in children list</value>
+    /// <value>Index in children list</value>
     int IndexInParent {
         get ;
     }
     /// <summary>Gets contextual information about object.</summary>
-/// <value>Accessible contextual information</value>
+    /// <value>Accessible contextual information</value>
     System.String Description {
         get ;
         set ;
     }
     /// <summary>Gets set describing object accessible states.</summary>
-/// <value>Accessible state set</value>
+    /// <value>Accessible state set</value>
     Efl.Access.StateSet StateSet {
         get ;
     }
     /// <summary>Gets highlightable of given widget.
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <value>If @c true, the object is highlightable.</value>
+    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// <value>If @c true, the object is highlightable.</value>
     bool CanHighlight {
         get ;
         set ;
     }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
-/// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
-/// 
-/// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
-/// 
-/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
-/// <value>Translation domain</value>
+    /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
+    /// 
+    /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
+    /// 
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+    /// <value>Translation domain</value>
     System.String TranslationDomain {
         get ;
         set ;
@@ -313,13 +329,13 @@ public class IObjectActiveDescendantChangedEvt_Args : EventArgs {
     public Efl.Object arg { get; set; }
 }
 /// <summary>Accessibility accessible mixin</summary>
-sealed public class IObjectConcrete : 
-
-IObject
+sealed public class IObjectConcrete :
+    Efl.Eo.EoWrapper
+    , IObject
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -334,155 +350,12 @@ IObject
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_object_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IObjectConcrete(System.IntPtr raw)
+    private IObjectConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IObjectConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Called when property has changed</summary>
@@ -492,13 +365,12 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
+                        Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -554,13 +426,12 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
+                        Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -617,13 +488,12 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
+                        Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -680,13 +550,12 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
+                        Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -743,10 +612,9 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -796,13 +664,12 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
+                        Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -851,10 +718,9 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -904,10 +770,9 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -956,10 +821,9 @@ IObject
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1272,91 +1136,91 @@ IObject
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets an localized string describing accessible object role name.</summary>
-/// <value>Localized accessible object role name</value>
+    /// <value>Localized accessible object role name</value>
     public System.String LocalizedRoleName {
         get { return GetLocalizedRoleName(); }
     }
     /// <summary>Accessible name of the object.</summary>
-/// <value>Accessible name</value>
+    /// <value>Accessible name</value>
     public System.String I18nName {
         get { return GetI18nName(); }
         set { SetI18nName(value); }
     }
     /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
-/// <value>Accessible relation set</value>
+    /// <value>Accessible relation set</value>
     public Efl.Access.RelationSet RelationSet {
         get { return GetRelationSet(); }
     }
     /// <summary>The role of the object in accessibility domain.</summary>
-/// <value>Accessible role</value>
+    /// <value>Accessible role</value>
     public Efl.Access.Role Role {
         get { return GetRole(); }
         set { SetRole(value); }
     }
     /// <summary>Gets object&apos;s accessible parent.</summary>
-/// <value>Accessible parent</value>
+    /// <value>Accessible parent</value>
     public Efl.Access.IObject AccessParent {
         get { return GetAccessParent(); }
         set { SetAccessParent(value); }
     }
     /// <summary>Gets object&apos;s accessible children.</summary>
-/// <value>List of widget&apos;s children</value>
+    /// <value>List of widget&apos;s children</value>
     public Eina.List<Efl.Access.IObject> AccessChildren {
         get { return GetAccessChildren(); }
     }
     /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
-/// <value>Accessible role name</value>
+    /// <value>Accessible role name</value>
     public System.String RoleName {
         get { return GetRoleName(); }
     }
     /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
-/// <value>List of object attributes, Must be freed by the user</value>
+    /// <value>List of object attributes, Must be freed by the user</value>
     public Eina.List<Efl.Access.Attribute> Attributes {
         get { return GetAttributes(); }
     }
     /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <value>Reading information types</value>
+    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// <value>Reading information types</value>
     public Efl.Access.ReadingInfoTypeMask ReadingInfoType {
         get { return GetReadingInfoType(); }
         set { SetReadingInfoType(value); }
     }
     /// <summary>Gets index of the child in parent&apos;s children list.</summary>
-/// <value>Index in children list</value>
+    /// <value>Index in children list</value>
     public int IndexInParent {
         get { return GetIndexInParent(); }
     }
     /// <summary>Gets contextual information about object.</summary>
-/// <value>Accessible contextual information</value>
+    /// <value>Accessible contextual information</value>
     public System.String Description {
         get { return GetDescription(); }
         set { SetDescription(value); }
     }
     /// <summary>Gets set describing object accessible states.</summary>
-/// <value>Accessible state set</value>
+    /// <value>Accessible state set</value>
     public Efl.Access.StateSet StateSet {
         get { return GetStateSet(); }
     }
     /// <summary>Gets highlightable of given widget.
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <value>If @c true, the object is highlightable.</value>
+    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// <value>If @c true, the object is highlightable.</value>
     public bool CanHighlight {
         get { return GetCanHighlight(); }
         set { SetCanHighlight(value); }
     }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
-/// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
-/// 
-/// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
-/// 
-/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
-/// <value>Translation domain</value>
+    /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
+    /// 
+    /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
+    /// 
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+    /// <value>Translation domain</value>
     public System.String TranslationDomain {
         get { return GetTranslationDomain(); }
         set { SetTranslationDomain(value); }
     }
     /// <summary>Get root object of accessible object hierarchy</summary>
-/// <value>Root object</value>
+    /// <value>Root object</value>
     public static Efl.Object AccessRoot {
         get { return GetAccessRoot(); }
     }
@@ -1705,7 +1569,7 @@ IObject
             return Efl.Access.IObjectConcrete.efl_access_object_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_access_object_localized_role_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1718,13 +1582,13 @@ IObject
         private static System.String localized_role_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_localized_role_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetLocalizedRoleName();
+                    _ret_var = ((IObject)ws.Target).GetLocalizedRoleName();
                 }
                 catch (Exception e)
                 {
@@ -1754,13 +1618,13 @@ IObject
         private static System.String i18n_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_i18n_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetI18nName();
+                    _ret_var = ((IObject)ws.Target).GetI18nName();
                 }
                 catch (Exception e)
                 {
@@ -1790,13 +1654,13 @@ IObject
         private static void i18n_name_set(System.IntPtr obj, System.IntPtr pd, System.String i18n_name)
         {
             Eina.Log.Debug("function efl_access_object_i18n_name_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetI18nName(i18n_name);
+                    ((IObject)ws.Target).SetI18nName(i18n_name);
                 }
                 catch (Exception e)
                 {
@@ -1825,13 +1689,13 @@ IObject
         private static void name_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb name_cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_name_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetNameCb(name_cb, data);
+                    ((IObject)ws.Target).SetNameCb(name_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -1860,13 +1724,13 @@ IObject
         private static Efl.Access.RelationSet relation_set_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_relation_set_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetRelationSet();
+                    _ret_var = ((IObject)ws.Target).GetRelationSet();
                 }
                 catch (Exception e)
                 {
@@ -1896,13 +1760,13 @@ IObject
         private static Efl.Access.Role role_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_role_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.Role _ret_var = default(Efl.Access.Role);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetRole();
+                    _ret_var = ((IObject)ws.Target).GetRole();
                 }
                 catch (Exception e)
                 {
@@ -1932,13 +1796,13 @@ IObject
         private static void role_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.Role role)
         {
             Eina.Log.Debug("function efl_access_object_role_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetRole(role);
+                    ((IObject)ws.Target).SetRole(role);
                 }
                 catch (Exception e)
                 {
@@ -1967,13 +1831,13 @@ IObject
         private static Efl.Access.IObject access_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_access_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetAccessParent();
+                    _ret_var = ((IObject)ws.Target).GetAccessParent();
                 }
                 catch (Exception e)
                 {
@@ -2003,13 +1867,13 @@ IObject
         private static void access_parent_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject parent)
         {
             Eina.Log.Debug("function efl_access_object_access_parent_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetAccessParent(parent);
+                    ((IObject)ws.Target).SetAccessParent(parent);
                 }
                 catch (Exception e)
                 {
@@ -2038,13 +1902,13 @@ IObject
         private static void description_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb description_cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_description_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetDescriptionCb(description_cb, data);
+                    ((IObject)ws.Target).SetDescriptionCb(description_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -2073,13 +1937,13 @@ IObject
         private static void gesture_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureCb gesture_cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_gesture_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetGestureCb(gesture_cb, data);
+                    ((IObject)ws.Target).SetGestureCb(gesture_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -2108,13 +1972,13 @@ IObject
         private static System.IntPtr access_children_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_access_children_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetAccessChildren();
+                    _ret_var = ((IObject)ws.Target).GetAccessChildren();
                 }
                 catch (Exception e)
                 {
@@ -2144,13 +2008,13 @@ IObject
         private static System.String role_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_role_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetRoleName();
+                    _ret_var = ((IObject)ws.Target).GetRoleName();
                 }
                 catch (Exception e)
                 {
@@ -2180,13 +2044,13 @@ IObject
         private static System.IntPtr attributes_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_attributes_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetAttributes();
+                    _ret_var = ((IObject)ws.Target).GetAttributes();
                 }
                 catch (Exception e)
                 {
@@ -2216,13 +2080,13 @@ IObject
         private static Efl.Access.ReadingInfoTypeMask reading_info_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_reading_info_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetReadingInfoType();
+                    _ret_var = ((IObject)ws.Target).GetReadingInfoType();
                 }
                 catch (Exception e)
                 {
@@ -2252,13 +2116,13 @@ IObject
         private static void reading_info_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoTypeMask reading_info)
         {
             Eina.Log.Debug("function efl_access_object_reading_info_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetReadingInfoType(reading_info);
+                    ((IObject)ws.Target).SetReadingInfoType(reading_info);
                 }
                 catch (Exception e)
                 {
@@ -2287,13 +2151,13 @@ IObject
         private static int index_in_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_index_in_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetIndexInParent();
+                    _ret_var = ((IObject)ws.Target).GetIndexInParent();
                 }
                 catch (Exception e)
                 {
@@ -2323,13 +2187,13 @@ IObject
         private static System.String description_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_description_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetDescription();
+                    _ret_var = ((IObject)ws.Target).GetDescription();
                 }
                 catch (Exception e)
                 {
@@ -2359,13 +2223,13 @@ IObject
         private static void description_set(System.IntPtr obj, System.IntPtr pd, System.String description)
         {
             Eina.Log.Debug("function efl_access_object_description_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetDescription(description);
+                    ((IObject)ws.Target).SetDescription(description);
                 }
                 catch (Exception e)
                 {
@@ -2394,13 +2258,13 @@ IObject
         private static Efl.Access.StateSet state_set_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_state_set_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetStateSet();
+                    _ret_var = ((IObject)ws.Target).GetStateSet();
                 }
                 catch (Exception e)
                 {
@@ -2430,13 +2294,13 @@ IObject
         private static bool can_highlight_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_can_highlight_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetCanHighlight();
+                    _ret_var = ((IObject)ws.Target).GetCanHighlight();
                 }
                 catch (Exception e)
                 {
@@ -2466,13 +2330,13 @@ IObject
         private static void can_highlight_set(System.IntPtr obj, System.IntPtr pd, bool can_highlight)
         {
             Eina.Log.Debug("function efl_access_object_can_highlight_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetCanHighlight(can_highlight);
+                    ((IObject)ws.Target).SetCanHighlight(can_highlight);
                 }
                 catch (Exception e)
                 {
@@ -2501,13 +2365,13 @@ IObject
         private static System.String translation_domain_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_translation_domain_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetTranslationDomain();
+                    _ret_var = ((IObject)ws.Target).GetTranslationDomain();
                 }
                 catch (Exception e)
                 {
@@ -2537,13 +2401,13 @@ IObject
         private static void translation_domain_set(System.IntPtr obj, System.IntPtr pd, System.String domain)
         {
             Eina.Log.Debug("function efl_access_object_translation_domain_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetTranslationDomain(domain);
+                    ((IObject)ws.Target).SetTranslationDomain(domain);
                 }
                 catch (Exception e)
                 {
@@ -2572,8 +2436,8 @@ IObject
         private static Efl.Object access_root_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_access_root_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Object _ret_var = default(Efl.Object);
                 try
@@ -2606,14 +2470,14 @@ IObject
         private static bool gesture_do(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureInfo.NativeStruct gesture_info)
         {
             Eina.Log.Debug("function efl_access_object_gesture_do was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Access.GestureInfo _in_gesture_info = gesture_info;
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GestureDo(_in_gesture_info);
+                    _ret_var = ((IObject)ws.Target).GestureDo(_in_gesture_info);
                 }
                 catch (Exception e)
                 {
@@ -2643,13 +2507,13 @@ IObject
         private static void attribute_append(System.IntPtr obj, System.IntPtr pd, System.String key, System.String value)
         {
             Eina.Log.Debug("function efl_access_object_attribute_append was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IObjectConcrete)wrapper).AppendAttribute(key, value);
+                    ((IObject)ws.Target).AppendAttribute(key, value);
                 }
                 catch (Exception e)
                 {
@@ -2678,13 +2542,13 @@ IObject
         private static void attribute_del(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_access_object_attribute_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).DelAttribute(key);
+                    ((IObject)ws.Target).DelAttribute(key);
                 }
                 catch (Exception e)
                 {
@@ -2713,13 +2577,13 @@ IObject
         private static void attributes_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_attributes_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IObjectConcrete)wrapper).ClearAttributes();
+                    ((IObject)ws.Target).ClearAttributes();
                 }
                 catch (Exception e)
                 {
@@ -2748,8 +2612,8 @@ IObject
         private static Efl.Access.Event.Handler event_handler_add(System.IntPtr obj, System.IntPtr pd, Efl.EventCb cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_event_handler_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Efl.Access.Event.Handler _ret_var = default(Efl.Access.Event.Handler);
                 try
@@ -2782,8 +2646,8 @@ IObject
         private static void event_handler_del(System.IntPtr obj, System.IntPtr pd, Efl.Access.Event.Handler handler)
         {
             Eina.Log.Debug("function efl_access_object_event_handler_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
@@ -2815,8 +2679,8 @@ IObject
         private static void event_emit(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject accessible, System.IntPtr kw_event, System.IntPtr event_info)
         {
             Eina.Log.Debug("function efl_access_object_event_emit was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 var _in_kw_event = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(kw_event);
                                                                     
@@ -2849,13 +2713,13 @@ IObject
         private static bool relationship_append(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
         {
             Eina.Log.Debug("function efl_access_object_relationship_append was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).AppendRelationship(type, relation_object);
+                    _ret_var = ((IObject)ws.Target).AppendRelationship(type, relation_object);
                 }
                 catch (Exception e)
                 {
@@ -2885,13 +2749,13 @@ IObject
         private static void relationship_remove(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
         {
             Eina.Log.Debug("function efl_access_object_relationship_remove was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IObjectConcrete)wrapper).RelationshipRemove(type, relation_object);
+                    ((IObject)ws.Target).RelationshipRemove(type, relation_object);
                 }
                 catch (Exception e)
                 {
@@ -2920,13 +2784,13 @@ IObject
         private static void relationships_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_relationships_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IObjectConcrete)wrapper).ClearRelationships();
+                    ((IObject)ws.Target).ClearRelationships();
                 }
                 catch (Exception e)
                 {
@@ -2955,13 +2819,13 @@ IObject
         private static void state_notify(System.IntPtr obj, System.IntPtr pd, Efl.Access.StateSet state_types_mask, bool recursive)
         {
             Eina.Log.Debug("function efl_access_object_state_notify was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IObjectConcrete)wrapper).StateNotify(state_types_mask, recursive);
+                    ((IObject)ws.Target).StateNotify(state_types_mask, recursive);
                 }
                 catch (Exception e)
                 {
@@ -2979,7 +2843,7 @@ IObject
 
         private static efl_access_object_state_notify_delegate efl_access_object_state_notify_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -3492,11 +3356,15 @@ public struct Handler
 {
     ///<summary>Placeholder field</summary>
     public IntPtr field;
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Handler(IntPtr ptr)
     {
         var tmp = (Handler.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Handler.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Handler.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3518,6 +3386,8 @@ public struct Handler
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -3552,11 +3422,15 @@ public struct Data
         this.New_value = New_value;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Data(IntPtr ptr)
     {
         var tmp = (Data.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Data.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Data.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3585,6 +3459,8 @@ public struct Data
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -3629,11 +3505,15 @@ public struct Data
         this.Height = Height;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Data(IntPtr ptr)
     {
         var tmp = (Data.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Data.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Data.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3671,6 +3551,8 @@ public struct Data
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -3706,11 +3588,15 @@ public struct Data
         this.Child = Child;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Data(IntPtr ptr)
     {
         var tmp = (Data.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Data.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Data.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3740,6 +3626,8 @@ public struct Data
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -3772,11 +3660,15 @@ public struct Attribute
         this.Value = Value;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Attribute(IntPtr ptr)
     {
         var tmp = (Attribute.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Attribute.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Attribute.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3806,6 +3698,8 @@ public struct Attribute
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -3833,11 +3727,15 @@ public struct Relation
         this.Objects = Objects;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Relation(IntPtr ptr)
     {
         var tmp = (Relation.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Relation.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Relation.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3866,6 +3764,8 @@ public struct Relation
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -3913,11 +3813,15 @@ public struct GestureInfo
         this.Event_time = Event_time;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator GestureInfo(IntPtr ptr)
     {
         var tmp = (GestureInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(GestureInfo.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct GestureInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3966,6 +3870,8 @@ public struct GestureInfo
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

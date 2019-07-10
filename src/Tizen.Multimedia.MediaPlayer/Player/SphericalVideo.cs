@@ -422,7 +422,6 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <seealso cref="FieldOfView"/>
         /// <seealso cref="GetZoom()"/>
-        /// <seealso cref="GetFileOfView()"/>
         /// <since_tizen> 5 </since_tizen>
         public void SetZoomWithFieldOfView(float level, FieldOfView fieldOfView)
         {

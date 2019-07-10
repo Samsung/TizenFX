@@ -40,8 +40,8 @@ System.String GetColorCode();
 /// <param name="colorcode">the hex color code.</param>
 void SetColorCode(System.String colorcode);
                     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-/// (Since EFL 1.22)</summary>
-/// <value>the hex color code.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>the hex color code.</value>
     System.String ColorCode {
         get ;
         set ;
@@ -49,13 +49,13 @@ void SetColorCode(System.String colorcode);
 }
 /// <summary>Efl Gfx Color mixin class
 /// (Since EFL 1.22)</summary>
-sealed public class IColorConcrete : 
-
-IColor
+sealed public class IColorConcrete :
+    Efl.Eo.EoWrapper
+    , IColor
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -70,86 +70,12 @@ IColor
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IColor"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IColorConcrete(System.IntPtr raw)
+    private IColorConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IColorConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Retrieves the general/main color of the given Evas object.
@@ -190,8 +116,8 @@ IColor
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-/// (Since EFL 1.22)</summary>
-/// <value>the hex color code.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>the hex color code.</value>
     public System.String ColorCode {
         get { return GetColorCode(); }
         set { SetColorCode(value); }
@@ -261,7 +187,7 @@ IColor
             return Efl.Gfx.IColorConcrete.efl_gfx_color_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_color_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int r,  out int g,  out int b,  out int a);
@@ -274,13 +200,13 @@ IColor
         private static void color_get(System.IntPtr obj, System.IntPtr pd, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
                 try
                 {
-                    ((IColorConcrete)wrapper).GetColor(out r, out g, out b, out a);
+                    ((IColor)ws.Target).GetColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -309,13 +235,13 @@ IColor
         private static void color_set(System.IntPtr obj, System.IntPtr pd, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IColorConcrete)wrapper).SetColor(r, g, b, a);
+                    ((IColor)ws.Target).SetColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -344,13 +270,13 @@ IColor
         private static System.String color_code_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_color_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IColorConcrete)wrapper).GetColorCode();
+                    _ret_var = ((IColor)ws.Target).GetColorCode();
                 }
                 catch (Exception e)
                 {
@@ -380,13 +306,13 @@ IColor
         private static void color_code_set(System.IntPtr obj, System.IntPtr pd, System.String colorcode)
         {
             Eina.Log.Debug("function efl_gfx_color_code_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IColorConcrete)wrapper).SetColorCode(colorcode);
+                    ((IColor)ws.Target).SetColorCode(colorcode);
                 }
                 catch (Exception e)
                 {
@@ -404,7 +330,7 @@ IColor
 
         private static efl_gfx_color_code_set_delegate efl_gfx_color_code_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

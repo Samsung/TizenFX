@@ -88,7 +88,7 @@ namespace Ui {
 /// <summary>Efl UI widget abstract class
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Widget.NativeMethods]
-public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.Access.IAction,Efl.Access.IComponent,Efl.Access.IObject,Efl.Access.Widget.IAction,Efl.Ui.IDnd,Efl.Ui.IL10n,Efl.Ui.IPropertyBind,Efl.Ui.ISelection,Efl.Ui.IView,Efl.Ui.Focus.IObject
+public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, Efl.Access.IComponent, Efl.Access.IObject, Efl.Access.Widget.IAction, Efl.Ui.IDnd, Efl.Ui.IL10n, Efl.Ui.IPropertyBind, Efl.Ui.ISelection, Efl.Ui.IView, Efl.Ui.Focus.IObject
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -127,7 +127,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Widget(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class WidgetRealized : Widget
@@ -145,43 +145,15 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     public event EventHandler AtspiHighlightedEvt
     {
         add
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -230,10 +202,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -284,10 +255,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -338,10 +308,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -391,13 +360,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
+                        Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -453,13 +421,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
+                        Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -516,13 +483,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
+                        Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -579,13 +545,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
+                        Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -642,10 +607,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -695,13 +659,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
+                        Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -750,10 +713,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -803,10 +765,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -855,10 +816,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -907,10 +867,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -960,13 +919,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDndDragAcceptEvt_Args args = new Efl.Ui.IDndDragAcceptEvt_Args();
+                        Efl.Ui.IDndDragAcceptEvt_Args args = new Efl.Ui.IDndDragAcceptEvt_Args();
                         args.arg = (bool)Marshal.PtrToStructure(evt.Info, typeof(bool));
                         try
                         {
@@ -1022,10 +980,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1075,10 +1032,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1128,10 +1084,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1181,13 +1136,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDndDragPosEvt_Args args = new Efl.Ui.IDndDragPosEvt_Args();
+                        Efl.Ui.IDndDragPosEvt_Args args = new Efl.Ui.IDndDragPosEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1244,13 +1198,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IDndDragDropEvt_Args args = new Efl.Ui.IDndDragDropEvt_Args();
+                        Efl.Ui.IDndDragDropEvt_Args args = new Efl.Ui.IDndDragDropEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1307,13 +1260,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IPropertyBindPropertiesChangedEvt_Args args = new Efl.Ui.IPropertyBindPropertiesChangedEvt_Args();
+                        Efl.Ui.IPropertyBindPropertiesChangedEvt_Args args = new Efl.Ui.IPropertyBindPropertiesChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1328,7 +1280,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
                 };
 
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1337,7 +1289,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
             lock (eventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1345,7 +1297,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     public void OnPropertiesChangedEvt(Efl.Ui.IPropertyBindPropertiesChangedEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1370,13 +1322,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IPropertyBindPropertyBoundEvt_Args args = new Efl.Ui.IPropertyBindPropertyBoundEvt_Args();
+                        Efl.Ui.IPropertyBindPropertyBoundEvt_Args args = new Efl.Ui.IPropertyBindPropertyBoundEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -1391,7 +1342,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
                 };
 
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -1400,7 +1351,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
             lock (eventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1408,7 +1359,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     public void OnPropertyBoundEvt(Efl.Ui.IPropertyBindPropertyBoundEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1432,13 +1383,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ISelectionWmSelectionChangedEvt_Args args = new Efl.Ui.ISelectionWmSelectionChangedEvt_Args();
+                        Efl.Ui.ISelectionWmSelectionChangedEvt_Args args = new Efl.Ui.ISelectionWmSelectionChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1496,14 +1446,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1559,13 +1508,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
                         try
                         {
@@ -1615,13 +1563,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
                         try
                         {
@@ -1671,14 +1618,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1734,13 +1680,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1788,6 +1733,20 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         finally
         {
             Marshal.FreeHGlobal(info);
+        }
+    }
+    public Efl.Ui.WidgetPartBg BackgroundPart
+    {
+        get
+        {
+            return GetPart("background") as Efl.Ui.WidgetPartBg;
+        }
+    }
+    public Efl.Ui.WidgetPartShadow ShadowPart
+    {
+        get
+        {
+            return GetPart("shadow") as Efl.Ui.WidgetPartShadow;
         }
     }
     /// <summary>Returns the current cursor name.
@@ -1845,7 +1804,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <summary>Sets the new resize object for this widget.
     /// (Since EFL 1.22)</summary>
     /// <param name="sobj">A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</param>
-    virtual public void SetResizeObject(Efl.Canvas.Object sobj) {
+    virtual protected void SetResizeObject(Efl.Canvas.Object sobj) {
                                  Efl.Ui.Widget.NativeMethods.efl_ui_widget_resize_object_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sobj);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -1878,7 +1837,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// (Since EFL 1.22)</summary>
     /// <param name="style">Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</param>
     /// <returns>Whether the style was successfully applied or not, see the Efl.Ui.Theme.Apply_Error subset of <see cref="Eina.Error"/> for more information.</returns>
-    virtual public Eina.Error SetStyle(System.String style) {
+    virtual protected Eina.Error SetStyle(System.String style) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),style);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -1912,7 +1871,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
     /// (Since EFL 1.22)</summary>
     /// <returns>Widget parent object</returns>
-    virtual public Efl.Ui.Widget GetWidgetParent() {
+    virtual protected Efl.Ui.Widget GetWidgetParent() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -1921,7 +1880,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
     /// (Since EFL 1.22)</summary>
     /// <param name="parent">Widget parent object</param>
-    virtual public void SetWidgetParent(Efl.Ui.Widget parent) {
+    virtual protected void SetWidgetParent(Efl.Ui.Widget parent) {
                                  Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -1948,7 +1907,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.
     /// (Since EFL 1.22)</summary>
     /// <returns>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</returns>
-    virtual public Eina.Rect GetInterestRegion() {
+    virtual protected Eina.Rect GetInterestRegion() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_interest_region_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -1956,7 +1915,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <summary>This is a read-only property.
     /// (Since EFL 1.22)</summary>
     /// <returns>The rectangle area.</returns>
-    virtual public Eina.Rect GetFocusHighlightGeometry() {
+    virtual protected Eina.Rect GetFocusHighlightGeometry() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_highlight_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -2032,7 +1991,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <param name="eo_event">EO event struct with an Efl.Input.Event as info.</param>
     /// <param name="source">Source object where the event originated. Often same as this.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool WidgetInputEventHandler(ref Efl.Event eo_event, Efl.Canvas.Object source) {
+    virtual protected bool WidgetInputEventHandler(ref Efl.Event eo_event, Efl.Canvas.Object source) {
          Efl.Event.NativeStruct _in_eo_event = eo_event;
                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_input_event_handler_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_eo_event, source);
         Eina.Error.RaiseIfUnhandledException();
@@ -2044,7 +2003,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// (Since EFL 1.22)</summary>
     /// <param name="act">Type of activation.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool OnAccessActivate(Efl.Ui.Activate act) {
+    virtual protected bool OnAccessActivate(Efl.Ui.Activate act) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_activate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),act);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -2053,7 +2012,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// This meant to be overridden by subclasses to support accessibility. This is an unstable API.
     /// (Since EFL 1.22)</summary>
     /// <param name="enable"><c>true</c> if accessibility is enabled.</param>
-    virtual public void UpdateOnAccess(bool enable) {
+    virtual protected void UpdateOnAccess(bool enable) {
                                  Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -2078,7 +2037,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">Sub object to be added. Not necessarily a widget itself.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
-    virtual public bool AddWidgetSubObject(Efl.Canvas.Object sub_obj) {
+    virtual protected bool AddWidgetSubObject(Efl.Canvas.Object sub_obj) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -2092,7 +2051,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">Sub object to be removed. Should be a child of this widget.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
-    virtual public bool DelWidgetSubObject(Efl.Canvas.Object sub_obj) {
+    virtual protected bool DelWidgetSubObject(Efl.Canvas.Object sub_obj) {
                                  var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -2103,7 +2062,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// Note: even widgets not based on layouts may override this method to handle widget updates (scale, mirrored mode, etc...).
     /// (Since EFL 1.22)</summary>
     /// <returns>Indicates success, and if the current theme or default theme was used.</returns>
-    virtual public Eina.Error ThemeApply() {
+    virtual protected Eina.Error ThemeApply() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_theme_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -2368,7 +2327,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <summary>Virtual function which checks if this widget can handle passing focus to sub-object, in a given direction.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool IsFocusDirectionManager() {
+    virtual protected bool IsFocusDirectionManager() {
          var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_manager_is_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -2382,7 +2341,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
     /// <param name="configured_state">The new configuration being set on the widget.</param>
     /// <param name="redirect">A redirect object if there is any</param>
     /// <returns>Returns <c>true</c> if the widget is registered in the focus manager, <c>false</c> if not.</returns>
-    virtual public bool FocusStateApply(Efl.Ui.WidgetFocusState current_state, ref Efl.Ui.WidgetFocusState configured_state, Efl.Ui.Widget redirect) {
+    virtual protected bool FocusStateApply(Efl.Ui.WidgetFocusState current_state, ref Efl.Ui.WidgetFocusState configured_state, Efl.Ui.Widget redirect) {
          Efl.Ui.WidgetFocusState.NativeStruct _in_current_state = current_state;
                                 var _out_configured_state = new Efl.Ui.WidgetFocusState.NativeStruct();
                                         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_state_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_current_state, ref _out_configured_state, redirect);
@@ -3004,280 +2963,288 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
+    /// <summary>Async wrapper for <see cref="SetSelection" />.</summary>
+    /// <param name="type">Selection Type</param>
+    /// <param name="format">Selection Format</param>
+    /// <param name="data">Selection data</param>
+    /// <param name="seat">Specified seat for multiple seats case.</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> SetSelectionAsync(Efl.Ui.SelectionType type,Efl.Ui.SelectionFormat format,Eina.Slice data,uint seat, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = SetSelection( type, format, data, seat);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
     /// <summary>The cursor to be shown when mouse is over the object
-/// This is the cursor that will be displayed when mouse is over the object. The object can have only one cursor set to it so if <see cref="Efl.Ui.Widget.SetCursor"/> is called twice for an object, the previous set will be unset.
-/// 
-/// If using X cursors, a definition of all the valid cursor names is listed on Elementary_Cursors.h. If an invalid name is set the default cursor will be used.
-/// (Since EFL 1.22)</summary>
-/// <value>The cursor name, defined either by the display system or the theme.</value>
+    /// This is the cursor that will be displayed when mouse is over the object. The object can have only one cursor set to it so if <see cref="Efl.Ui.Widget.SetCursor"/> is called twice for an object, the previous set will be unset.
+    /// 
+    /// If using X cursors, a definition of all the valid cursor names is listed on Elementary_Cursors.h. If an invalid name is set the default cursor will be used.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The cursor name, defined either by the display system or the theme.</value>
     public System.String Cursor {
         get { return GetCursor(); }
         set { SetCursor(value); }
     }
     /// <summary>A different style for the cursor.
-/// This only makes sense if theme cursors are used. The cursor should be set with <see cref="Efl.Ui.Widget.SetCursor"/> first before setting its style with this property.
-/// (Since EFL 1.22)</summary>
-/// <value>A specific style to use, eg. default, transparent, ....</value>
+    /// This only makes sense if theme cursors are used. The cursor should be set with <see cref="Efl.Ui.Widget.SetCursor"/> first before setting its style with this property.
+    /// (Since EFL 1.22)</summary>
+    /// <value>A specific style to use, eg. default, transparent, ....</value>
     public System.String CursorStyle {
         get { return GetCursorStyle(); }
         set { SetCursorStyle(value); }
     }
     /// <summary>Whether the cursor may be looked in the theme or not.
-/// If <c>false</c>, the cursor may only come from the render engine, i.e. from the display manager.
-/// (Since EFL 1.22)</summary>
-/// <value>Whether to use theme cursors.</value>
+    /// If <c>false</c>, the cursor may only come from the render engine, i.e. from the display manager.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Whether to use theme cursors.</value>
     public bool CursorThemeSearchEnabled {
         get { return GetCursorThemeSearchEnabled(); }
         set { SetCursorThemeSearchEnabled(value); }
     }
     /// <summary>This is the internal canvas object managed by a widget.
-/// This property is protected as it is meant for widget implementations only, to set and access the internal canvas object. Do use this function unless you&apos;re implementing a widget.
-/// (Since EFL 1.22)</summary>
-/// <value>A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</value>
-    public Efl.Canvas.Object ResizeObject {
+    /// This property is protected as it is meant for widget implementations only, to set and access the internal canvas object. Do use this function unless you&apos;re implementing a widget.
+    /// (Since EFL 1.22)</summary>
+    /// <value>A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</value>
+    protected Efl.Canvas.Object ResizeObject {
         set { SetResizeObject(value); }
     }
     /// <summary>Whether the widget is enabled (accepts and reacts to user inputs).
-/// The property works counted, this means, whenever n-caller set the value to <c>true</c>, n-caller have to set it to <c>false</c> in order to get it out of the disabled state again.
-/// 
-/// Each widget may handle the disabled state differently, but overall disabled widgets shall not respond to any input events. This is <c>false</c> by default, meaning the widget is enabled.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the widget is disabled.</value>
+    /// The property works counted, this means, whenever n-caller set the value to <c>true</c>, n-caller have to set it to <c>false</c> in order to get it out of the disabled state again.
+    /// 
+    /// Each widget may handle the disabled state differently, but overall disabled widgets shall not respond to any input events. This is <c>false</c> by default, meaning the widget is enabled.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the widget is disabled.</value>
     public bool Disabled {
         get { return GetDisabled(); }
         set { SetDisabled(value); }
     }
     /// <summary>The widget style to use.
-/// Styles define different look and feel for widgets, and may provide different parts for layout-based widgets. Styles vary from widget to widget and may be defined by other themes by means of extensions and overlays.
-/// 
-/// The style can only be set before <see cref="Efl.Object.FinalizeAdd"/>, which means at construction time of the object (inside <c>efl_add</c> in C).
-/// (Since EFL 1.22)</summary>
-/// <value>Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</value>
+    /// Styles define different look and feel for widgets, and may provide different parts for layout-based widgets. Styles vary from widget to widget and may be defined by other themes by means of extensions and overlays.
+    /// 
+    /// The style can only be set before <see cref="Efl.Object.FinalizeAdd"/>, which means at construction time of the object (inside <c>efl_add</c> in C).
+    /// (Since EFL 1.22)</summary>
+    /// <value>Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</value>
     public System.String Style {
         get { return GetStyle(); }
-        set { SetStyle(value); }
+        protected set { SetStyle(value); }
     }
     /// <summary>The ability for a widget to be focused.
-/// Unfocusable objects do nothing when programmatically focused. The nearest focusable parent object the one really getting focus. Also, when they receive mouse input, they will get the event, but not take away the focus from where it was previously.
-/// 
-/// Note: Objects which are meant to be interacted with by input events are created able to be focused, by default. All the others are not.
-/// 
-/// This property&apos;s default value depends on the widget (eg. a box is not focusable, but a button is).
-/// (Since EFL 1.22)</summary>
-/// <value>Whether the object is focusable.</value>
+    /// Unfocusable objects do nothing when programmatically focused. The nearest focusable parent object the one really getting focus. Also, when they receive mouse input, they will get the event, but not take away the focus from where it was previously.
+    /// 
+    /// Note: Objects which are meant to be interacted with by input events are created able to be focused, by default. All the others are not.
+    /// 
+    /// This property&apos;s default value depends on the widget (eg. a box is not focusable, but a button is).
+    /// (Since EFL 1.22)</summary>
+    /// <value>Whether the object is focusable.</value>
     public bool FocusAllow {
         get { return GetFocusAllow(); }
         set { SetFocusAllow(value); }
     }
     /// <summary>The internal parent of this widget.
-/// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
-/// (Since EFL 1.22)</summary>
-/// <value>Widget parent object</value>
-    public Efl.Ui.Widget WidgetParent {
+    /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Widget parent object</value>
+    protected Efl.Ui.Widget WidgetParent {
         get { return GetWidgetParent(); }
         set { SetWidgetParent(value); }
     }
     /// <summary>Accessibility information.
-/// This is a replacement string to be read by the accessibility text-to-speech engine, if accessibility is enabled by configuration. This will take precedence over the default text for this object, which means for instance that the label of a button won&apos;t be read out loud, instead <c>txt</c> will be read out.
-/// (Since EFL 1.22)</summary>
-/// <value>Accessibility text description.</value>
+    /// This is a replacement string to be read by the accessibility text-to-speech engine, if accessibility is enabled by configuration. This will take precedence over the default text for this object, which means for instance that the label of a button won&apos;t be read out loud, instead <c>txt</c> will be read out.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Accessibility text description.</value>
     public System.String AccessInfo {
         get { return GetAccessInfo(); }
         set { SetAccessInfo(value); }
     }
     /// <summary>Region of interest inside this widget, that should be given priority to be visible inside a scroller.
-/// When this widget or one of its subwidgets is given focus, this region should be shown, which means any parent scroller should attempt to display the given area of this widget. For instance, an entry given focus should scroll to show the text cursor if that cursor moves. In this example, this region defines the relative geometry of the cursor within the widget.
-/// 
-/// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.
-/// (Since EFL 1.22)</summary>
-/// <value>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</value>
-    public Eina.Rect InterestRegion {
+    /// When this widget or one of its subwidgets is given focus, this region should be shown, which means any parent scroller should attempt to display the given area of this widget. For instance, an entry given focus should scroll to show the text cursor if that cursor moves. In this example, this region defines the relative geometry of the cursor within the widget.
+    /// 
+    /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</value>
+    protected Eina.Rect InterestRegion {
         get { return GetInterestRegion(); }
     }
     /// <summary>The rectangle region to be highlighted on focus.
-/// This is a rectangle region where the focus highlight should be displayed.
-/// (Since EFL 1.22)</summary>
-/// <value>The rectangle area.</value>
-    public Eina.Rect FocusHighlightGeometry {
+    /// This is a rectangle region where the focus highlight should be displayed.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The rectangle area.</value>
+    protected Eina.Rect FocusHighlightGeometry {
         get { return GetFocusHighlightGeometry(); }
     }
     /// <summary>Focus order property
-/// (Since EFL 1.22)</summary>
-/// <value>FIXME</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>FIXME</value>
     public uint FocusOrder {
         get { return GetFocusOrder(); }
     }
     /// <summary>A custom chain of objects to pass focus.
-/// Note: On focus cycle, only will be evaluated children of this container.
-/// (Since EFL 1.22)</summary>
-/// <value>Chain of objects to pass focus</value>
+    /// Note: On focus cycle, only will be evaluated children of this container.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Chain of objects to pass focus</value>
     public Eina.List<Efl.Canvas.Object> FocusCustomChain {
         get { return GetFocusCustomChain(); }
         set { SetFocusCustomChain(value); }
     }
     /// <summary>Current focused object in object tree.
-/// (Since EFL 1.22)</summary>
-/// <value>Current focused or <c>null</c>, if there is no focused object.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>Current focused or <c>null</c>, if there is no focused object.</value>
     public Efl.Canvas.Object FocusedObject {
         get { return GetFocusedObject(); }
     }
     /// <summary>The widget&apos;s focus move policy.
-/// (Since EFL 1.22)</summary>
-/// <value>Focus move policy</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>Focus move policy</value>
     public Efl.Ui.Focus.MovePolicy FocusMovePolicy {
         get { return GetFocusMovePolicy(); }
         set { SetFocusMovePolicy(value); }
     }
     /// <summary>Control the widget&apos;s focus_move_policy mode setting.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> to follow system focus move policy change, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> to follow system focus move policy change, <c>false</c> otherwise</value>
     public bool FocusMovePolicyAutomatic {
         get { return GetFocusMovePolicyAutomatic(); }
         set { SetFocusMovePolicyAutomatic(value); }
     }
     /// <summary>Get list of available widget actions</summary>
-/// <value>Contains statically allocated strings.</value>
+    /// <value>Contains statically allocated strings.</value>
     public Eina.List<Efl.Access.ActionData> Actions {
         get { return GetActions(); }
     }
     /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
-/// <value>Z order of component</value>
+    /// <value>Z order of component</value>
     public int ZOrder {
         get { return GetZOrder(); }
     }
     /// <summary>Gets an localized string describing accessible object role name.</summary>
-/// <value>Localized accessible object role name</value>
+    /// <value>Localized accessible object role name</value>
     public System.String LocalizedRoleName {
         get { return GetLocalizedRoleName(); }
     }
     /// <summary>Accessible name of the object.</summary>
-/// <value>Accessible name</value>
+    /// <value>Accessible name</value>
     public System.String I18nName {
         get { return GetI18nName(); }
         set { SetI18nName(value); }
     }
     /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
-/// <value>Accessible relation set</value>
+    /// <value>Accessible relation set</value>
     public Efl.Access.RelationSet RelationSet {
         get { return GetRelationSet(); }
     }
     /// <summary>The role of the object in accessibility domain.</summary>
-/// <value>Accessible role</value>
+    /// <value>Accessible role</value>
     public Efl.Access.Role Role {
         get { return GetRole(); }
         set { SetRole(value); }
     }
     /// <summary>Gets object&apos;s accessible parent.</summary>
-/// <value>Accessible parent</value>
+    /// <value>Accessible parent</value>
     public Efl.Access.IObject AccessParent {
         get { return GetAccessParent(); }
         set { SetAccessParent(value); }
     }
     /// <summary>Gets object&apos;s accessible children.</summary>
-/// <value>List of widget&apos;s children</value>
+    /// <value>List of widget&apos;s children</value>
     public Eina.List<Efl.Access.IObject> AccessChildren {
         get { return GetAccessChildren(); }
     }
     /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
-/// <value>Accessible role name</value>
+    /// <value>Accessible role name</value>
     public System.String RoleName {
         get { return GetRoleName(); }
     }
     /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
-/// <value>List of object attributes, Must be freed by the user</value>
+    /// <value>List of object attributes, Must be freed by the user</value>
     public Eina.List<Efl.Access.Attribute> Attributes {
         get { return GetAttributes(); }
     }
     /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <value>Reading information types</value>
+    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// <value>Reading information types</value>
     public Efl.Access.ReadingInfoTypeMask ReadingInfoType {
         get { return GetReadingInfoType(); }
         set { SetReadingInfoType(value); }
     }
     /// <summary>Gets index of the child in parent&apos;s children list.</summary>
-/// <value>Index in children list</value>
+    /// <value>Index in children list</value>
     public int IndexInParent {
         get { return GetIndexInParent(); }
     }
     /// <summary>Gets contextual information about object.</summary>
-/// <value>Accessible contextual information</value>
+    /// <value>Accessible contextual information</value>
     public System.String Description {
         get { return GetDescription(); }
         set { SetDescription(value); }
     }
     /// <summary>Gets set describing object accessible states.</summary>
-/// <value>Accessible state set</value>
+    /// <value>Accessible state set</value>
     public Efl.Access.StateSet StateSet {
         get { return GetStateSet(); }
     }
     /// <summary>Gets highlightable of given widget.
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <value>If @c true, the object is highlightable.</value>
+    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// <value>If @c true, the object is highlightable.</value>
     public bool CanHighlight {
         get { return GetCanHighlight(); }
         set { SetCanHighlight(value); }
     }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
-/// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
-/// 
-/// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
-/// 
-/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
-/// <value>Translation domain</value>
+    /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
+    /// 
+    /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
+    /// 
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+    /// <value>Translation domain</value>
     public System.String TranslationDomain {
         get { return GetTranslationDomain(); }
         set { SetTranslationDomain(value); }
     }
     /// <summary>Get root object of accessible object hierarchy</summary>
-/// <value>Root object</value>
+    /// <value>Root object</value>
     public static Efl.Object AccessRoot {
         get { return GetAccessRoot(); }
     }
     /// <summary>Elementary actions</summary>
-/// <value>NULL-terminated array of Efl.Access.Action_Data.</value>
+    /// <value>NULL-terminated array of Efl.Access.Action_Data.</value>
     public Efl.Access.ActionData ElmActions {
         get { return GetElmActions(); }
     }
     /// <summary>Model that is/will be</summary>
-/// <value>Efl model</value>
+    /// <value>Efl model</value>
     public Efl.IModel Model {
         get { return GetModel(); }
         set { SetModel(value); }
     }
     /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-/// (Since EFL 1.22)</summary>
-/// <value>The geometry to use.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The geometry to use.</value>
     public Eina.Rect FocusGeometry {
         get { return GetFocusGeometry(); }
     }
     /// <summary>Returns whether the widget is currently focused or not.
-/// (Since EFL 1.22)</summary>
-/// <value>The focused state of the object.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focused state of the object.</value>
     public bool Focus {
         get { return GetFocus(); }
         set { SetFocus(value); }
     }
     /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-/// (Since EFL 1.22)</summary>
-/// <value>The manager object</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The manager object</value>
     public Efl.Ui.Focus.IManager FocusManager {
         get { return GetFocusManager(); }
     }
     /// <summary>Describes which logical parent is used by this object.
-/// (Since EFL 1.22)</summary>
-/// <value>The focus parent.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focus parent.</value>
     public Efl.Ui.Focus.IObject FocusParent {
         get { return GetFocusParent(); }
     }
     /// <summary>Indicates if a child of this object has focus set to true.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if a child has focus.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if a child has focus.</value>
     public bool ChildFocus {
         get { return GetChildFocus(); }
         set { SetChildFocus(value); }
@@ -4738,7 +4705,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
             return Efl.Ui.Widget.efl_ui_widget_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_ui_widget_cursor_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -4751,13 +4718,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String cursor_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_cursor_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetCursor();
+                    _ret_var = ((Widget)ws.Target).GetCursor();
                 }
                 catch (Exception e)
                 {
@@ -4787,13 +4754,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool cursor_set(System.IntPtr obj, System.IntPtr pd, System.String cursor)
         {
             Eina.Log.Debug("function efl_ui_widget_cursor_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).SetCursor(cursor);
+                    _ret_var = ((Widget)ws.Target).SetCursor(cursor);
                 }
                 catch (Exception e)
                 {
@@ -4823,13 +4790,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String cursor_style_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_cursor_style_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetCursorStyle();
+                    _ret_var = ((Widget)ws.Target).GetCursorStyle();
                 }
                 catch (Exception e)
                 {
@@ -4859,13 +4826,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool cursor_style_set(System.IntPtr obj, System.IntPtr pd, System.String style)
         {
             Eina.Log.Debug("function efl_ui_widget_cursor_style_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).SetCursorStyle(style);
+                    _ret_var = ((Widget)ws.Target).SetCursorStyle(style);
                 }
                 catch (Exception e)
                 {
@@ -4895,13 +4862,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool cursor_theme_search_enabled_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_cursor_theme_search_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetCursorThemeSearchEnabled();
+                    _ret_var = ((Widget)ws.Target).GetCursorThemeSearchEnabled();
                 }
                 catch (Exception e)
                 {
@@ -4931,13 +4898,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool cursor_theme_search_enabled_set(System.IntPtr obj, System.IntPtr pd, bool allow)
         {
             Eina.Log.Debug("function efl_ui_widget_cursor_theme_search_enabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).SetCursorThemeSearchEnabled(allow);
+                    _ret_var = ((Widget)ws.Target).SetCursorThemeSearchEnabled(allow);
                 }
                 catch (Exception e)
                 {
@@ -4967,13 +4934,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void resize_object_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object sobj)
         {
             Eina.Log.Debug("function efl_ui_widget_resize_object_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetResizeObject(sobj);
+                    ((Widget)ws.Target).SetResizeObject(sobj);
                 }
                 catch (Exception e)
                 {
@@ -5002,13 +4969,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool disabled_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_disabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetDisabled();
+                    _ret_var = ((Widget)ws.Target).GetDisabled();
                 }
                 catch (Exception e)
                 {
@@ -5038,13 +5005,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void disabled_set(System.IntPtr obj, System.IntPtr pd, bool disabled)
         {
             Eina.Log.Debug("function efl_ui_widget_disabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetDisabled(disabled);
+                    ((Widget)ws.Target).SetDisabled(disabled);
                 }
                 catch (Exception e)
                 {
@@ -5073,13 +5040,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String style_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_style_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetStyle();
+                    _ret_var = ((Widget)ws.Target).GetStyle();
                 }
                 catch (Exception e)
                 {
@@ -5109,13 +5076,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Eina.Error style_set(System.IntPtr obj, System.IntPtr pd, System.String style)
         {
             Eina.Log.Debug("function efl_ui_widget_style_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).SetStyle(style);
+                    _ret_var = ((Widget)ws.Target).SetStyle(style);
                 }
                 catch (Exception e)
                 {
@@ -5145,13 +5112,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_allow_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_allow_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusAllow();
+                    _ret_var = ((Widget)ws.Target).GetFocusAllow();
                 }
                 catch (Exception e)
                 {
@@ -5181,13 +5148,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_allow_set(System.IntPtr obj, System.IntPtr pd, bool can_focus)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_allow_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetFocusAllow(can_focus);
+                    ((Widget)ws.Target).SetFocusAllow(can_focus);
                 }
                 catch (Exception e)
                 {
@@ -5216,13 +5183,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Ui.Widget widget_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Widget _ret_var = default(Efl.Ui.Widget);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetWidgetParent();
+                    _ret_var = ((Widget)ws.Target).GetWidgetParent();
                 }
                 catch (Exception e)
                 {
@@ -5252,13 +5219,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void widget_parent_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Widget parent)
         {
             Eina.Log.Debug("function efl_ui_widget_parent_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetWidgetParent(parent);
+                    ((Widget)ws.Target).SetWidgetParent(parent);
                 }
                 catch (Exception e)
                 {
@@ -5287,13 +5254,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String access_info_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_access_info_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetAccessInfo();
+                    _ret_var = ((Widget)ws.Target).GetAccessInfo();
                 }
                 catch (Exception e)
                 {
@@ -5323,13 +5290,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void access_info_set(System.IntPtr obj, System.IntPtr pd, System.String txt)
         {
             Eina.Log.Debug("function efl_ui_widget_access_info_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetAccessInfo(txt);
+                    ((Widget)ws.Target).SetAccessInfo(txt);
                 }
                 catch (Exception e)
                 {
@@ -5358,13 +5325,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Eina.Rect.NativeStruct interest_region_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_interest_region_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetInterestRegion();
+                    _ret_var = ((Widget)ws.Target).GetInterestRegion();
                 }
                 catch (Exception e)
                 {
@@ -5394,13 +5361,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Eina.Rect.NativeStruct focus_highlight_geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_highlight_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusHighlightGeometry();
+                    _ret_var = ((Widget)ws.Target).GetFocusHighlightGeometry();
                 }
                 catch (Exception e)
                 {
@@ -5430,13 +5397,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static uint focus_order_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_order_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusOrder();
+                    _ret_var = ((Widget)ws.Target).GetFocusOrder();
                 }
                 catch (Exception e)
                 {
@@ -5466,13 +5433,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.IntPtr focus_custom_chain_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_custom_chain_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Canvas.Object> _ret_var = default(Eina.List<Efl.Canvas.Object>);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusCustomChain();
+                    _ret_var = ((Widget)ws.Target).GetFocusCustomChain();
                 }
                 catch (Exception e)
                 {
@@ -5502,14 +5469,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_custom_chain_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr objs)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_custom_chain_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_objs = new Eina.List<Efl.Canvas.Object>(objs, false, false);
                             
                 try
                 {
-                    ((Widget)wrapper).SetFocusCustomChain(_in_objs);
+                    ((Widget)ws.Target).SetFocusCustomChain(_in_objs);
                 }
                 catch (Exception e)
                 {
@@ -5538,13 +5505,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Canvas.Object focused_object_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focused_object_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusedObject();
+                    _ret_var = ((Widget)ws.Target).GetFocusedObject();
                 }
                 catch (Exception e)
                 {
@@ -5574,13 +5541,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Ui.Focus.MovePolicy focus_move_policy_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_move_policy_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.MovePolicy _ret_var = default(Efl.Ui.Focus.MovePolicy);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusMovePolicy();
+                    _ret_var = ((Widget)ws.Target).GetFocusMovePolicy();
                 }
                 catch (Exception e)
                 {
@@ -5610,13 +5577,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_move_policy_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.MovePolicy policy)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_move_policy_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetFocusMovePolicy(policy);
+                    ((Widget)ws.Target).SetFocusMovePolicy(policy);
                 }
                 catch (Exception e)
                 {
@@ -5645,13 +5612,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_move_policy_automatic_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_move_policy_automatic_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusMovePolicyAutomatic();
+                    _ret_var = ((Widget)ws.Target).GetFocusMovePolicyAutomatic();
                 }
                 catch (Exception e)
                 {
@@ -5681,13 +5648,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_move_policy_automatic_set(System.IntPtr obj, System.IntPtr pd, bool automatic)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_move_policy_automatic_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetFocusMovePolicyAutomatic(automatic);
+                    ((Widget)ws.Target).SetFocusMovePolicyAutomatic(automatic);
                 }
                 catch (Exception e)
                 {
@@ -5716,14 +5683,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool widget_input_event_handler(System.IntPtr obj, System.IntPtr pd, ref Efl.Event.NativeStruct eo_event, Efl.Canvas.Object source)
         {
             Eina.Log.Debug("function efl_ui_widget_input_event_handler was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Event _in_eo_event = eo_event;
                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).WidgetInputEventHandler(ref _in_eo_event, source);
+                    _ret_var = ((Widget)ws.Target).WidgetInputEventHandler(ref _in_eo_event, source);
                 }
                 catch (Exception e)
                 {
@@ -5754,13 +5721,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool on_access_activate(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Activate act)
         {
             Eina.Log.Debug("function efl_ui_widget_on_access_activate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).OnAccessActivate(act);
+                    _ret_var = ((Widget)ws.Target).OnAccessActivate(act);
                 }
                 catch (Exception e)
                 {
@@ -5790,13 +5757,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void on_access_update(System.IntPtr obj, System.IntPtr pd, bool enable)
         {
             Eina.Log.Debug("function efl_ui_widget_on_access_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).UpdateOnAccess(enable);
+                    ((Widget)ws.Target).UpdateOnAccess(enable);
                 }
                 catch (Exception e)
                 {
@@ -5825,13 +5792,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void screen_reader(System.IntPtr obj, System.IntPtr pd, bool is_screen_reader)
         {
             Eina.Log.Debug("function efl_ui_widget_screen_reader was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).ScreenReader(is_screen_reader);
+                    ((Widget)ws.Target).ScreenReader(is_screen_reader);
                 }
                 catch (Exception e)
                 {
@@ -5860,13 +5827,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void atspi(System.IntPtr obj, System.IntPtr pd, bool is_atspi)
         {
             Eina.Log.Debug("function efl_ui_widget_atspi was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).Atspi(is_atspi);
+                    ((Widget)ws.Target).Atspi(is_atspi);
                 }
                 catch (Exception e)
                 {
@@ -5895,13 +5862,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool widget_sub_object_add(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object sub_obj)
         {
             Eina.Log.Debug("function efl_ui_widget_sub_object_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).AddWidgetSubObject(sub_obj);
+                    _ret_var = ((Widget)ws.Target).AddWidgetSubObject(sub_obj);
                 }
                 catch (Exception e)
                 {
@@ -5931,13 +5898,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool widget_sub_object_del(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object sub_obj)
         {
             Eina.Log.Debug("function efl_ui_widget_sub_object_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).DelWidgetSubObject(sub_obj);
+                    _ret_var = ((Widget)ws.Target).DelWidgetSubObject(sub_obj);
                 }
                 catch (Exception e)
                 {
@@ -5967,13 +5934,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Eina.Error theme_apply(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_theme_apply was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).ThemeApply();
+                    _ret_var = ((Widget)ws.Target).ThemeApply();
                 }
                 catch (Exception e)
                 {
@@ -6003,13 +5970,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void scroll_hold_push(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_scroll_hold_push was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).PushScrollHold();
+                    ((Widget)ws.Target).PushScrollHold();
                 }
                 catch (Exception e)
                 {
@@ -6038,13 +6005,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void scroll_hold_pop(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_scroll_hold_pop was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).PopScrollHold();
+                    ((Widget)ws.Target).PopScrollHold();
                 }
                 catch (Exception e)
                 {
@@ -6073,13 +6040,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void scroll_freeze_push(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_scroll_freeze_push was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).PushScrollFreeze();
+                    ((Widget)ws.Target).PushScrollFreeze();
                 }
                 catch (Exception e)
                 {
@@ -6108,13 +6075,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void scroll_freeze_pop(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_scroll_freeze_pop was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).PopScrollFreeze();
+                    ((Widget)ws.Target).PopScrollFreeze();
                 }
                 catch (Exception e)
                 {
@@ -6143,13 +6110,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Canvas.Object part_access_object_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_ui_widget_part_access_object_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetPartAccessObject(part);
+                    _ret_var = ((Widget)ws.Target).GetPartAccessObject(part);
                 }
                 catch (Exception e)
                 {
@@ -6179,13 +6146,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Canvas.Object newest_focus_order_get(System.IntPtr obj, System.IntPtr pd, out uint newest_focus_order, bool can_focus_only)
         {
             Eina.Log.Debug("function efl_ui_widget_newest_focus_order_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         newest_focus_order = default(uint);                                    Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetNewestFocusOrder(out newest_focus_order, can_focus_only);
+                    _ret_var = ((Widget)ws.Target).GetNewestFocusOrder(out newest_focus_order, can_focus_only);
                 }
                 catch (Exception e)
                 {
@@ -6215,13 +6182,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_next_object_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object next, Efl.Ui.Focus.Direction dir)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_next_object_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetFocusNextObject(next, dir);
+                    ((Widget)ws.Target).SetFocusNextObject(next, dir);
                 }
                 catch (Exception e)
                 {
@@ -6250,13 +6217,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Canvas.Object focus_next_object_get(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction dir)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_next_object_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusNextObject(dir);
+                    _ret_var = ((Widget)ws.Target).GetFocusNextObject(dir);
                 }
                 catch (Exception e)
                 {
@@ -6286,13 +6253,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_next_item_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Widget next_item, Efl.Ui.Focus.Direction dir)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_next_item_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetFocusNextItem(next_item, dir);
+                    ((Widget)ws.Target).SetFocusNextItem(next_item, dir);
                 }
                 catch (Exception e)
                 {
@@ -6321,13 +6288,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Ui.Widget focus_next_item_get(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction dir)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_next_item_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Widget _ret_var = default(Efl.Ui.Widget);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusNextItem(dir);
+                    _ret_var = ((Widget)ws.Target).GetFocusNextItem(dir);
                 }
                 catch (Exception e)
                 {
@@ -6357,13 +6324,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_tree_unfocusable_handle(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_tree_unfocusable_handle was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).FocusTreeUnfocusableHandle();
+                    ((Widget)ws.Target).FocusTreeUnfocusableHandle();
                 }
                 catch (Exception e)
                 {
@@ -6392,13 +6359,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_custom_chain_prepend(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object child, Efl.Canvas.Object relative_child)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_custom_chain_prepend was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).FocusCustomChainPrepend(child, relative_child);
+                    ((Widget)ws.Target).FocusCustomChainPrepend(child, relative_child);
                 }
                 catch (Exception e)
                 {
@@ -6427,13 +6394,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_cycle(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction dir)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_cycle was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).FocusCycle(dir);
+                    ((Widget)ws.Target).FocusCycle(dir);
                 }
                 catch (Exception e)
                 {
@@ -6462,13 +6429,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_direction(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_direction was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                 direction = default(Efl.Canvas.Object);        direction_item = default(Efl.Ui.Widget);        weight = default(double);                                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).FocusDirection(kw_base, degree, out direction, out direction_item, out weight);
+                    _ret_var = ((Widget)ws.Target).FocusDirection(kw_base, degree, out direction, out direction_item, out weight);
                 }
                 catch (Exception e)
                 {
@@ -6498,13 +6465,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_next_manager_is(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_next_manager_is was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).IsFocusNextManager();
+                    _ret_var = ((Widget)ws.Target).IsFocusNextManager();
                 }
                 catch (Exception e)
                 {
@@ -6534,14 +6501,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_list_direction_get(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object kw_base, System.IntPtr items, System.IntPtr list_data_get, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_list_direction_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 var _in_items = new Eina.List<Efl.Object>(items, false, false);
                                                                                 direction = default(Efl.Canvas.Object);        direction_item = default(Efl.Ui.Widget);        weight = default(double);                                                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusListDirection(kw_base, _in_items, list_data_get, degree, out direction, out direction_item, out weight);
+                    _ret_var = ((Widget)ws.Target).GetFocusListDirection(kw_base, _in_items, list_data_get, degree, out direction, out direction_item, out weight);
                 }
                 catch (Exception e)
                 {
@@ -6571,13 +6538,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focused_object_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focused_object_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).ClearFocusedObject();
+                    ((Widget)ws.Target).ClearFocusedObject();
                 }
                 catch (Exception e)
                 {
@@ -6606,13 +6573,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_direction_go(System.IntPtr obj, System.IntPtr pd, double degree)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_direction_go was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).FocusDirectionGo(degree);
+                    _ret_var = ((Widget)ws.Target).FocusDirectionGo(degree);
                 }
                 catch (Exception e)
                 {
@@ -6642,13 +6609,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_next_get(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_next_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         next = default(Efl.Canvas.Object);        next_item = default(Efl.Ui.Widget);                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusNext(dir, out next, out next_item);
+                    _ret_var = ((Widget)ws.Target).GetFocusNext(dir, out next, out next_item);
                 }
                 catch (Exception e)
                 {
@@ -6678,13 +6645,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_restore(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_restore was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).FocusRestore();
+                    ((Widget)ws.Target).FocusRestore();
                 }
                 catch (Exception e)
                 {
@@ -6713,13 +6680,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_custom_chain_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_custom_chain_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).UnsetFocusCustomChain();
+                    ((Widget)ws.Target).UnsetFocusCustomChain();
                 }
                 catch (Exception e)
                 {
@@ -6748,13 +6715,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_steal(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Widget item)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_steal was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).FocusSteal(item);
+                    ((Widget)ws.Target).FocusSteal(item);
                 }
                 catch (Exception e)
                 {
@@ -6783,13 +6750,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_hide_handle(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_hide_handle was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).FocusHideHandle();
+                    ((Widget)ws.Target).FocusHideHandle();
                 }
                 catch (Exception e)
                 {
@@ -6818,13 +6785,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_next(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_next was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         next = default(Efl.Canvas.Object);        next_item = default(Efl.Ui.Widget);                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).FocusNext(dir, out next, out next_item);
+                    _ret_var = ((Widget)ws.Target).FocusNext(dir, out next, out next_item);
                 }
                 catch (Exception e)
                 {
@@ -6854,14 +6821,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_list_next_get(System.IntPtr obj, System.IntPtr pd, System.IntPtr items, System.IntPtr list_data_get, Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_list_next_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_items = new Eina.List<Efl.Object>(items, false, false);
                                                                 next = default(Efl.Canvas.Object);        next_item = default(Efl.Ui.Widget);                                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusListNext(_in_items, list_data_get, dir, out next, out next_item);
+                    _ret_var = ((Widget)ws.Target).GetFocusListNext(_in_items, list_data_get, dir, out next, out next_item);
                 }
                 catch (Exception e)
                 {
@@ -6891,13 +6858,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_mouse_up_handle(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_mouse_up_handle was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).FocusMouseUpHandle();
+                    ((Widget)ws.Target).FocusMouseUpHandle();
                 }
                 catch (Exception e)
                 {
@@ -6926,13 +6893,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_direction_get(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_direction_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                 direction = default(Efl.Canvas.Object);        direction_item = default(Efl.Ui.Widget);        weight = default(double);                                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusDirection(kw_base, degree, out direction, out direction_item, out weight);
+                    _ret_var = ((Widget)ws.Target).GetFocusDirection(kw_base, degree, out direction, out direction_item, out weight);
                 }
                 catch (Exception e)
                 {
@@ -6962,13 +6929,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_disabled_handle(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_disabled_handle was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).FocusDisabledHandle();
+                    ((Widget)ws.Target).FocusDisabledHandle();
                 }
                 catch (Exception e)
                 {
@@ -6997,13 +6964,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_custom_chain_append(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object child, Efl.Canvas.Object relative_child)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_custom_chain_append was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).AppendFocusCustomChain(child, relative_child);
+                    ((Widget)ws.Target).AppendFocusCustomChain(child, relative_child);
                 }
                 catch (Exception e)
                 {
@@ -7032,13 +6999,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_reconfigure(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_reconfigure was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).FocusReconfigure();
+                    ((Widget)ws.Target).FocusReconfigure();
                 }
                 catch (Exception e)
                 {
@@ -7067,13 +7034,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_direction_manager_is(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_direction_manager_is was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).IsFocusDirectionManager();
+                    _ret_var = ((Widget)ws.Target).IsFocusDirectionManager();
                 }
                 catch (Exception e)
                 {
@@ -7103,15 +7070,15 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_state_apply(System.IntPtr obj, System.IntPtr pd, Efl.Ui.WidgetFocusState.NativeStruct current_state, ref Efl.Ui.WidgetFocusState.NativeStruct configured_state, Efl.Ui.Widget redirect)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_state_apply was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Ui.WidgetFocusState _in_current_state = current_state;
                                 Efl.Ui.WidgetFocusState _out_configured_state = default(Efl.Ui.WidgetFocusState);
                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).FocusStateApply(_in_current_state, ref _out_configured_state, redirect);
+                    _ret_var = ((Widget)ws.Target).FocusStateApply(_in_current_state, ref _out_configured_state, redirect);
                 }
                 catch (Exception e)
                 {
@@ -7142,13 +7109,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Object part_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_part_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetPart(name);
+                    _ret_var = ((Widget)ws.Target).GetPart(name);
                 }
                 catch (Exception e)
                 {
@@ -7178,13 +7145,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String action_name_get(System.IntPtr obj, System.IntPtr pd, int id)
         {
             Eina.Log.Debug("function efl_access_action_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetActionName(id);
+                    _ret_var = ((Widget)ws.Target).GetActionName(id);
                 }
                 catch (Exception e)
                 {
@@ -7214,13 +7181,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String action_localized_name_get(System.IntPtr obj, System.IntPtr pd, int id)
         {
             Eina.Log.Debug("function efl_access_action_localized_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetActionLocalizedName(id);
+                    _ret_var = ((Widget)ws.Target).GetActionLocalizedName(id);
                 }
                 catch (Exception e)
                 {
@@ -7250,13 +7217,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.IntPtr actions_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_action_actions_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Access.ActionData> _ret_var = default(Eina.List<Efl.Access.ActionData>);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetActions();
+                    _ret_var = ((Widget)ws.Target).GetActions();
                 }
                 catch (Exception e)
                 {
@@ -7286,13 +7253,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool action_do(System.IntPtr obj, System.IntPtr pd, int id)
         {
             Eina.Log.Debug("function efl_access_action_do was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).ActionDo(id);
+                    _ret_var = ((Widget)ws.Target).ActionDo(id);
                 }
                 catch (Exception e)
                 {
@@ -7322,13 +7289,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String action_keybinding_get(System.IntPtr obj, System.IntPtr pd, int id)
         {
             Eina.Log.Debug("function efl_access_action_keybinding_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetActionKeybinding(id);
+                    _ret_var = ((Widget)ws.Target).GetActionKeybinding(id);
                 }
                 catch (Exception e)
                 {
@@ -7358,13 +7325,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static int z_order_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_z_order_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetZOrder();
+                    _ret_var = ((Widget)ws.Target).GetZOrder();
                 }
                 catch (Exception e)
                 {
@@ -7394,13 +7361,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Eina.Rect.NativeStruct extents_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords)
         {
             Eina.Log.Debug("function efl_access_component_extents_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetExtents(screen_coords);
+                    _ret_var = ((Widget)ws.Target).GetExtents(screen_coords);
                 }
                 catch (Exception e)
                 {
@@ -7430,14 +7397,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool extents_set(System.IntPtr obj, System.IntPtr pd, bool screen_coords, Eina.Rect.NativeStruct rect)
         {
             Eina.Log.Debug("function efl_access_component_extents_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Rect _in_rect = rect;
                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).SetExtents(screen_coords, _in_rect);
+                    _ret_var = ((Widget)ws.Target).SetExtents(screen_coords, _in_rect);
                 }
                 catch (Exception e)
                 {
@@ -7467,13 +7434,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void screen_position_get(System.IntPtr obj, System.IntPtr pd, out int x, out int y)
         {
             Eina.Log.Debug("function efl_access_component_screen_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((Widget)wrapper).GetScreenPosition(out x, out y);
+                    ((Widget)ws.Target).GetScreenPosition(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -7502,13 +7469,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool screen_position_set(System.IntPtr obj, System.IntPtr pd, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_screen_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).SetScreenPosition(x, y);
+                    _ret_var = ((Widget)ws.Target).SetScreenPosition(x, y);
                 }
                 catch (Exception e)
                 {
@@ -7538,13 +7505,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void socket_offset_get(System.IntPtr obj, System.IntPtr pd, out int x, out int y)
         {
             Eina.Log.Debug("function efl_access_component_socket_offset_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((Widget)wrapper).GetSocketOffset(out x, out y);
+                    ((Widget)ws.Target).GetSocketOffset(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -7573,13 +7540,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void socket_offset_set(System.IntPtr obj, System.IntPtr pd, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_socket_offset_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetSocketOffset(x, y);
+                    ((Widget)ws.Target).SetSocketOffset(x, y);
                 }
                 catch (Exception e)
                 {
@@ -7608,13 +7575,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool contains(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_contains was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).Contains(screen_coords, x, y);
+                    _ret_var = ((Widget)ws.Target).Contains(screen_coords, x, y);
                 }
                 catch (Exception e)
                 {
@@ -7644,13 +7611,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_grab(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_focus_grab was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GrabFocus();
+                    _ret_var = ((Widget)ws.Target).GrabFocus();
                 }
                 catch (Exception e)
                 {
@@ -7680,13 +7647,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Object accessible_at_point_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_accessible_at_point_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetAccessibleAtPoint(screen_coords, x, y);
+                    _ret_var = ((Widget)ws.Target).GetAccessibleAtPoint(screen_coords, x, y);
                 }
                 catch (Exception e)
                 {
@@ -7716,13 +7683,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool highlight_grab(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_highlight_grab was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GrabHighlight();
+                    _ret_var = ((Widget)ws.Target).GrabHighlight();
                 }
                 catch (Exception e)
                 {
@@ -7752,13 +7719,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool highlight_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_highlight_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).ClearHighlight();
+                    _ret_var = ((Widget)ws.Target).ClearHighlight();
                 }
                 catch (Exception e)
                 {
@@ -7788,13 +7755,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String localized_role_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_localized_role_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetLocalizedRoleName();
+                    _ret_var = ((Widget)ws.Target).GetLocalizedRoleName();
                 }
                 catch (Exception e)
                 {
@@ -7824,13 +7791,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String i18n_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_i18n_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetI18nName();
+                    _ret_var = ((Widget)ws.Target).GetI18nName();
                 }
                 catch (Exception e)
                 {
@@ -7860,13 +7827,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void i18n_name_set(System.IntPtr obj, System.IntPtr pd, System.String i18n_name)
         {
             Eina.Log.Debug("function efl_access_object_i18n_name_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetI18nName(i18n_name);
+                    ((Widget)ws.Target).SetI18nName(i18n_name);
                 }
                 catch (Exception e)
                 {
@@ -7895,13 +7862,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void name_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb name_cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_name_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetNameCb(name_cb, data);
+                    ((Widget)ws.Target).SetNameCb(name_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -7930,13 +7897,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Access.RelationSet relation_set_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_relation_set_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetRelationSet();
+                    _ret_var = ((Widget)ws.Target).GetRelationSet();
                 }
                 catch (Exception e)
                 {
@@ -7966,13 +7933,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Access.Role role_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_role_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.Role _ret_var = default(Efl.Access.Role);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetRole();
+                    _ret_var = ((Widget)ws.Target).GetRole();
                 }
                 catch (Exception e)
                 {
@@ -8002,13 +7969,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void role_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.Role role)
         {
             Eina.Log.Debug("function efl_access_object_role_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetRole(role);
+                    ((Widget)ws.Target).SetRole(role);
                 }
                 catch (Exception e)
                 {
@@ -8037,13 +8004,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Access.IObject access_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_access_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetAccessParent();
+                    _ret_var = ((Widget)ws.Target).GetAccessParent();
                 }
                 catch (Exception e)
                 {
@@ -8073,13 +8040,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void access_parent_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject parent)
         {
             Eina.Log.Debug("function efl_access_object_access_parent_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetAccessParent(parent);
+                    ((Widget)ws.Target).SetAccessParent(parent);
                 }
                 catch (Exception e)
                 {
@@ -8108,13 +8075,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void description_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb description_cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_description_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetDescriptionCb(description_cb, data);
+                    ((Widget)ws.Target).SetDescriptionCb(description_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -8143,13 +8110,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void gesture_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureCb gesture_cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_gesture_cb_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetGestureCb(gesture_cb, data);
+                    ((Widget)ws.Target).SetGestureCb(gesture_cb, data);
                 }
                 catch (Exception e)
                 {
@@ -8178,13 +8145,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.IntPtr access_children_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_access_children_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetAccessChildren();
+                    _ret_var = ((Widget)ws.Target).GetAccessChildren();
                 }
                 catch (Exception e)
                 {
@@ -8214,13 +8181,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String role_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_role_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetRoleName();
+                    _ret_var = ((Widget)ws.Target).GetRoleName();
                 }
                 catch (Exception e)
                 {
@@ -8250,13 +8217,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.IntPtr attributes_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_attributes_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetAttributes();
+                    _ret_var = ((Widget)ws.Target).GetAttributes();
                 }
                 catch (Exception e)
                 {
@@ -8286,13 +8253,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Access.ReadingInfoTypeMask reading_info_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_reading_info_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetReadingInfoType();
+                    _ret_var = ((Widget)ws.Target).GetReadingInfoType();
                 }
                 catch (Exception e)
                 {
@@ -8322,13 +8289,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void reading_info_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoTypeMask reading_info)
         {
             Eina.Log.Debug("function efl_access_object_reading_info_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetReadingInfoType(reading_info);
+                    ((Widget)ws.Target).SetReadingInfoType(reading_info);
                 }
                 catch (Exception e)
                 {
@@ -8357,13 +8324,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static int index_in_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_index_in_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetIndexInParent();
+                    _ret_var = ((Widget)ws.Target).GetIndexInParent();
                 }
                 catch (Exception e)
                 {
@@ -8393,13 +8360,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String description_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_description_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetDescription();
+                    _ret_var = ((Widget)ws.Target).GetDescription();
                 }
                 catch (Exception e)
                 {
@@ -8429,13 +8396,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void description_set(System.IntPtr obj, System.IntPtr pd, System.String description)
         {
             Eina.Log.Debug("function efl_access_object_description_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetDescription(description);
+                    ((Widget)ws.Target).SetDescription(description);
                 }
                 catch (Exception e)
                 {
@@ -8464,13 +8431,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Access.StateSet state_set_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_state_set_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetStateSet();
+                    _ret_var = ((Widget)ws.Target).GetStateSet();
                 }
                 catch (Exception e)
                 {
@@ -8500,13 +8467,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool can_highlight_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_can_highlight_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetCanHighlight();
+                    _ret_var = ((Widget)ws.Target).GetCanHighlight();
                 }
                 catch (Exception e)
                 {
@@ -8536,13 +8503,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void can_highlight_set(System.IntPtr obj, System.IntPtr pd, bool can_highlight)
         {
             Eina.Log.Debug("function efl_access_object_can_highlight_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetCanHighlight(can_highlight);
+                    ((Widget)ws.Target).SetCanHighlight(can_highlight);
                 }
                 catch (Exception e)
                 {
@@ -8571,13 +8538,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String translation_domain_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_translation_domain_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetTranslationDomain();
+                    _ret_var = ((Widget)ws.Target).GetTranslationDomain();
                 }
                 catch (Exception e)
                 {
@@ -8607,13 +8574,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void translation_domain_set(System.IntPtr obj, System.IntPtr pd, System.String domain)
         {
             Eina.Log.Debug("function efl_access_object_translation_domain_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetTranslationDomain(domain);
+                    ((Widget)ws.Target).SetTranslationDomain(domain);
                 }
                 catch (Exception e)
                 {
@@ -8642,8 +8609,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Object access_root_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_access_root_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Object _ret_var = default(Efl.Object);
                 try
@@ -8676,14 +8643,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool gesture_do(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureInfo.NativeStruct gesture_info)
         {
             Eina.Log.Debug("function efl_access_object_gesture_do was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Access.GestureInfo _in_gesture_info = gesture_info;
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GestureDo(_in_gesture_info);
+                    _ret_var = ((Widget)ws.Target).GestureDo(_in_gesture_info);
                 }
                 catch (Exception e)
                 {
@@ -8713,13 +8680,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void attribute_append(System.IntPtr obj, System.IntPtr pd, System.String key, System.String value)
         {
             Eina.Log.Debug("function efl_access_object_attribute_append was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).AppendAttribute(key, value);
+                    ((Widget)ws.Target).AppendAttribute(key, value);
                 }
                 catch (Exception e)
                 {
@@ -8748,13 +8715,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void attribute_del(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_access_object_attribute_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).DelAttribute(key);
+                    ((Widget)ws.Target).DelAttribute(key);
                 }
                 catch (Exception e)
                 {
@@ -8783,13 +8750,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void attributes_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_attributes_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).ClearAttributes();
+                    ((Widget)ws.Target).ClearAttributes();
                 }
                 catch (Exception e)
                 {
@@ -8818,8 +8785,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Access.Event.Handler event_handler_add(System.IntPtr obj, System.IntPtr pd, Efl.EventCb cb, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_access_object_event_handler_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Efl.Access.Event.Handler _ret_var = default(Efl.Access.Event.Handler);
                 try
@@ -8852,8 +8819,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void event_handler_del(System.IntPtr obj, System.IntPtr pd, Efl.Access.Event.Handler handler)
         {
             Eina.Log.Debug("function efl_access_object_event_handler_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
@@ -8885,8 +8852,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void event_emit(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject accessible, System.IntPtr kw_event, System.IntPtr event_info)
         {
             Eina.Log.Debug("function efl_access_object_event_emit was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 var _in_kw_event = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(kw_event);
                                                                     
@@ -8919,13 +8886,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool relationship_append(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
         {
             Eina.Log.Debug("function efl_access_object_relationship_append was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).AppendRelationship(type, relation_object);
+                    _ret_var = ((Widget)ws.Target).AppendRelationship(type, relation_object);
                 }
                 catch (Exception e)
                 {
@@ -8955,13 +8922,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void relationship_remove(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
         {
             Eina.Log.Debug("function efl_access_object_relationship_remove was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).RelationshipRemove(type, relation_object);
+                    ((Widget)ws.Target).RelationshipRemove(type, relation_object);
                 }
                 catch (Exception e)
                 {
@@ -8990,13 +8957,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void relationships_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_object_relationships_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).ClearRelationships();
+                    ((Widget)ws.Target).ClearRelationships();
                 }
                 catch (Exception e)
                 {
@@ -9025,13 +8992,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void state_notify(System.IntPtr obj, System.IntPtr pd, Efl.Access.StateSet state_types_mask, bool recursive)
         {
             Eina.Log.Debug("function efl_access_object_state_notify was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).StateNotify(state_types_mask, recursive);
+                    ((Widget)ws.Target).StateNotify(state_types_mask, recursive);
                 }
                 catch (Exception e)
                 {
@@ -9060,13 +9027,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Access.ActionData elm_actions_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_widget_action_elm_actions_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Access.ActionData _ret_var = default(Efl.Access.ActionData);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetElmActions();
+                    _ret_var = ((Widget)ws.Target).GetElmActions();
                 }
                 catch (Exception e)
                 {
@@ -9096,14 +9063,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void drag_start(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionFormat format, Eina.Slice data, Efl.Ui.SelectionAction action, IntPtr icon_func_data, Efl.Dnd.DragIconCreateInternal icon_func, EinaFreeCb icon_func_free_cb, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_drag_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                     Efl.Dnd.DragIconCreateWrapper icon_func_wrapper = new Efl.Dnd.DragIconCreateWrapper(icon_func, icon_func_data, icon_func_free_cb);
                     
                 try
                 {
-                    ((Widget)wrapper).DragStart(format, data, action, icon_func_wrapper.ManagedCb, seat);
+                    ((Widget)ws.Target).DragStart(format, data, action, icon_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -9132,13 +9099,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void drag_action_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionAction action, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_drag_action_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetDragAction(action, seat);
+                    ((Widget)ws.Target).SetDragAction(action, seat);
                 }
                 catch (Exception e)
                 {
@@ -9167,13 +9134,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void drag_cancel(System.IntPtr obj, System.IntPtr pd, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_drag_cancel was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).DragCancel(seat);
+                    ((Widget)ws.Target).DragCancel(seat);
                 }
                 catch (Exception e)
                 {
@@ -9202,13 +9169,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void drop_target_add(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionFormat format, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_drop_target_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).AddDropTarget(format, seat);
+                    ((Widget)ws.Target).AddDropTarget(format, seat);
                 }
                 catch (Exception e)
                 {
@@ -9237,13 +9204,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void drop_target_del(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionFormat format, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_drop_target_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).DelDropTarget(format, seat);
+                    ((Widget)ws.Target).DelDropTarget(format, seat);
                 }
                 catch (Exception e)
                 {
@@ -9272,14 +9239,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static System.String l10n_text_get(System.IntPtr obj, System.IntPtr pd, out System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 System.String _out_domain = default(System.String);
                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetL10nText(out _out_domain);
+                    _ret_var = ((Widget)ws.Target).GetL10nText(out _out_domain);
                 }
                 catch (Exception e)
                 {
@@ -9310,13 +9277,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void l10n_text_set(System.IntPtr obj, System.IntPtr pd, System.String label, System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).SetL10nText(label, domain);
+                    ((Widget)ws.Target).SetL10nText(label, domain);
                 }
                 catch (Exception e)
                 {
@@ -9345,13 +9312,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void translation_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_l10n_translation_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).UpdateTranslation();
+                    ((Widget)ws.Target).UpdateTranslation();
                 }
                 catch (Exception e)
                 {
@@ -9380,13 +9347,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Eina.Error property_bind(System.IntPtr obj, System.IntPtr pd, System.String key, System.String property)
         {
             Eina.Log.Debug("function efl_ui_property_bind was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).PropertyBind(key, property);
+                    _ret_var = ((Widget)ws.Target).PropertyBind(key, property);
                 }
                 catch (Exception e)
                 {
@@ -9416,13 +9383,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static  Eina.Future selection_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat)
         {
             Eina.Log.Debug("function efl_ui_selection_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).SetSelection(type, format, data, seat);
+                    _ret_var = ((Widget)ws.Target).SetSelection(type, format, data, seat);
                 }
                 catch (Exception e)
                 {
@@ -9452,14 +9419,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void selection_get(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, IntPtr data_func_data, Efl.Ui.SelectionDataReadyInternal data_func, EinaFreeCb data_func_free_cb, uint seat)
         {
             Eina.Log.Debug("function efl_ui_selection_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                             Efl.Ui.SelectionDataReadyWrapper data_func_wrapper = new Efl.Ui.SelectionDataReadyWrapper(data_func, data_func_data, data_func_free_cb);
                     
                 try
                 {
-                    ((Widget)wrapper).GetSelection(type, format, data_func_wrapper.ManagedCb, seat);
+                    ((Widget)ws.Target).GetSelection(type, format, data_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -9488,13 +9455,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void selection_clear(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, uint seat)
         {
             Eina.Log.Debug("function efl_ui_selection_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Widget)wrapper).ClearSelection(type, seat);
+                    ((Widget)ws.Target).ClearSelection(type, seat);
                 }
                 catch (Exception e)
                 {
@@ -9523,13 +9490,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool has_owner(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, uint seat)
         {
             Eina.Log.Debug("function efl_ui_selection_has_owner was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).HasOwner(type, seat);
+                    _ret_var = ((Widget)ws.Target).HasOwner(type, seat);
                 }
                 catch (Exception e)
                 {
@@ -9559,13 +9526,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.IModel model_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_view_model_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.IModel _ret_var = default(Efl.IModel);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetModel();
+                    _ret_var = ((Widget)ws.Target).GetModel();
                 }
                 catch (Exception e)
                 {
@@ -9595,13 +9562,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void model_set(System.IntPtr obj, System.IntPtr pd, Efl.IModel model)
         {
             Eina.Log.Debug("function efl_ui_view_model_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetModel(model);
+                    ((Widget)ws.Target).SetModel(model);
                 }
                 catch (Exception e)
                 {
@@ -9630,13 +9597,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Eina.Rect.NativeStruct focus_geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusGeometry();
+                    _ret_var = ((Widget)ws.Target).GetFocusGeometry();
                 }
                 catch (Exception e)
                 {
@@ -9666,13 +9633,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocus();
+                    _ret_var = ((Widget)ws.Target).GetFocus();
                 }
                 catch (Exception e)
                 {
@@ -9702,13 +9669,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void focus_set(System.IntPtr obj, System.IntPtr pd, bool focus)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetFocus(focus);
+                    ((Widget)ws.Target).SetFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -9737,13 +9704,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Ui.Focus.IManager focus_manager_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_manager_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusManager();
+                    _ret_var = ((Widget)ws.Target).GetFocusManager();
                 }
                 catch (Exception e)
                 {
@@ -9773,13 +9740,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static Efl.Ui.Focus.IObject focus_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetFocusParent();
+                    _ret_var = ((Widget)ws.Target).GetFocusParent();
                 }
                 catch (Exception e)
                 {
@@ -9809,13 +9776,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool child_focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_child_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).GetChildFocus();
+                    _ret_var = ((Widget)ws.Target).GetChildFocus();
                 }
                 catch (Exception e)
                 {
@@ -9845,13 +9812,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void child_focus_set(System.IntPtr obj, System.IntPtr pd, bool child_focus)
         {
             Eina.Log.Debug("function efl_ui_focus_object_child_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Widget)wrapper).SetChildFocus(child_focus);
+                    ((Widget)ws.Target).SetChildFocus(child_focus);
                 }
                 catch (Exception e)
                 {
@@ -9880,13 +9847,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void setup_order(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_setup_order was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).SetupOrder();
+                    ((Widget)ws.Target).SetupOrder();
                 }
                 catch (Exception e)
                 {
@@ -9915,13 +9882,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static void setup_order_non_recursive(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_setup_order_non_recursive was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Widget)wrapper).SetupOrderNonRecursive();
+                    ((Widget)ws.Target).SetupOrderNonRecursive();
                 }
                 catch (Exception e)
                 {
@@ -9950,13 +9917,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
         private static bool on_focus_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_on_focus_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)wrapper).UpdateOnFocus();
+                    _ret_var = ((Widget)ws.Target).UpdateOnFocus();
                 }
                 catch (Exception e)
                 {
@@ -9975,7 +9942,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IPart,Efl.A
 
         private static efl_ui_focus_object_on_focus_update_delegate efl_ui_focus_object_on_focus_update_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -10009,11 +9976,15 @@ public struct WidgetFocusState
         this.Logical = Logical;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator WidgetFocusState(IntPtr ptr)
     {
         var tmp = (WidgetFocusState.NativeStruct)Marshal.PtrToStructure(ptr, typeof(WidgetFocusState.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct WidgetFocusState.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -10048,6 +10019,8 @@ public struct WidgetFocusState
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

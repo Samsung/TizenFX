@@ -479,13 +479,13 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
         /// <remarks>
         /// The <see cref="MediaDatabase.ScanFile(string)"/> or the <see cref="MediaDatabase.ScanFolderAsync(string)"/> can be used instead.<br/>
-        /// Since API level 6, If file still exists in file system before calling this method,
-        /// <see cref="InvalidOperationException"/> will be thrown to keep db consistency.
+        /// Since API level 6, if the file related with the <paramref name="mediaId"/> in DB still exists in file system before calling this method,
+        /// <see cref="InvalidOperationException"/> will be thrown to keep consistency in DB.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
         ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
         ///     -or-<br/>
-        ///     File still exists in file system. (Since API level 6)
+        ///     The file related with the <paramref name="mediaId"/> in DB still exists in file system. (Since API level 6)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>

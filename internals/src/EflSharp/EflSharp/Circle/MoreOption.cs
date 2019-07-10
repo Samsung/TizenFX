@@ -32,13 +32,13 @@ namespace Efl
                 /// Clicked will be triggered when the user selects the already selected item again or selects a selector.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler<MoreOptionItemEventArgs> Clicked;
+                public event EventHandler<MoreOptionItemEventArgs> ClickedEvt;
 
                 /// <summary>
                 /// Selected will be triggered when the user selects an item.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler<MoreOptionItemEventArgs> Selected;
+                public event EventHandler<MoreOptionItemEventArgs> SelectedEvt;
 
                 private Interop.Evas.SmartCallback smartClicked;
                 private Interop.Evas.SmartCallback smartSelected;
@@ -54,14 +54,14 @@ namespace Efl
                     {
                         MoreOptionItem clickedItem = FindItemByNativeHandle(e);
                         if (clickedItem != null)
-                            Clicked?.Invoke(this, new MoreOptionItemEventArgs { item = clickedItem });
+                            ClickedEvt?.Invoke(this, new MoreOptionItemEventArgs { item = clickedItem });
                     });
 
                     smartSelected = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
                         MoreOptionItem selectedItem = FindItemByNativeHandle(e);
                         if (selectedItem != null)
-                            Selected?.Invoke(this, new MoreOptionItemEventArgs { item = selectedItem });
+                            SelectedEvt?.Invoke(this, new MoreOptionItemEventArgs { item = selectedItem });
                     });
 
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemClickedEventName, smartClicked, IntPtr.Zero);

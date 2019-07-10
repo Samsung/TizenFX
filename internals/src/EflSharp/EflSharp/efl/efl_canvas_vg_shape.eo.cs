@@ -13,7 +13,7 @@ namespace Vg {
 
 /// <summary>Efl vector graphics shape class</summary>
 [Efl.Canvas.Vg.Shape.NativeMethods]
-public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
+public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -46,7 +46,7 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Shape(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Shape"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -55,33 +55,6 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Shape(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Fill of the shape object</summary>
@@ -244,57 +217,57 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Fill of the shape object</summary>
-/// <value>Fill object</value>
+    /// <value>Fill object</value>
     public Efl.Canvas.Vg.Node Fill {
         get { return GetFill(); }
         set { SetFill(value); }
     }
     /// <summary>Stroke fill of the shape object</summary>
-/// <value>Stroke fill object</value>
+    /// <value>Stroke fill object</value>
     public Efl.Canvas.Vg.Node StrokeFill {
         get { return GetStrokeFill(); }
         set { SetStrokeFill(value); }
     }
     /// <summary>Stroke marker of the shape object</summary>
-/// <value>Stroke marker object</value>
+    /// <value>Stroke marker object</value>
     public Efl.Canvas.Vg.Node StrokeMarker {
         get { return GetStrokeMarker(); }
         set { SetStrokeMarker(value); }
     }
     /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
-/// <value>Stroke scale value</value>
+    /// <value>Stroke scale value</value>
     public double StrokeScale {
         get { return GetStrokeScale(); }
         set { SetStrokeScale(value); }
     }
     /// <summary>The stroke width to be used for stroking the path.</summary>
-/// <value>Stroke width to be used</value>
+    /// <value>Stroke width to be used</value>
     public double StrokeWidth {
         get { return GetStrokeWidth(); }
         set { SetStrokeWidth(value); }
     }
     /// <summary>Not implemented</summary>
-/// <value>Centered stroke location</value>
+    /// <value>Centered stroke location</value>
     public double StrokeLocation {
         get { return GetStrokeLocation(); }
         set { SetStrokeLocation(value); }
     }
     /// <summary>The cap style to be used for stroking the path. The cap will be used for capping the end point of a open subpath.
-/// See also <see cref="Efl.Gfx.Cap"/>.</summary>
-/// <value>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></value>
+    /// See also <see cref="Efl.Gfx.Cap"/>.</summary>
+    /// <value>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></value>
     public Efl.Gfx.Cap StrokeCap {
         get { return GetStrokeCap(); }
         set { SetStrokeCap(value); }
     }
     /// <summary>The join style to be used for stroking the path. The join style will be used for joining the two line segment while stroking the path.
-/// See also <see cref="Efl.Gfx.Join"/>.</summary>
-/// <value>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></value>
+    /// See also <see cref="Efl.Gfx.Join"/>.</summary>
+    /// <value>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></value>
     public Efl.Gfx.Join StrokeJoin {
         get { return GetStrokeJoin(); }
         set { SetStrokeJoin(value); }
     }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
-/// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
+    /// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
     public Efl.Gfx.FillRule FillRule {
         get { return GetFillRule(); }
         set { SetFillRule(value); }
@@ -545,7 +518,7 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
             return Efl.Canvas.Vg.Shape.efl_canvas_vg_shape_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Canvas.Vg.Node efl_canvas_vg_shape_fill_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -558,13 +531,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static Efl.Canvas.Vg.Node fill_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_vg_shape_fill_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Vg.Node _ret_var = default(Efl.Canvas.Vg.Node);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetFill();
+                    _ret_var = ((Shape)ws.Target).GetFill();
                 }
                 catch (Exception e)
                 {
@@ -594,13 +567,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void fill_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Vg.Node f)
         {
             Eina.Log.Debug("function efl_canvas_vg_shape_fill_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetFill(f);
+                    ((Shape)ws.Target).SetFill(f);
                 }
                 catch (Exception e)
                 {
@@ -629,13 +602,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static Efl.Canvas.Vg.Node stroke_fill_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_vg_shape_stroke_fill_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Vg.Node _ret_var = default(Efl.Canvas.Vg.Node);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetStrokeFill();
+                    _ret_var = ((Shape)ws.Target).GetStrokeFill();
                 }
                 catch (Exception e)
                 {
@@ -665,13 +638,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_fill_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Vg.Node f)
         {
             Eina.Log.Debug("function efl_canvas_vg_shape_stroke_fill_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeFill(f);
+                    ((Shape)ws.Target).SetStrokeFill(f);
                 }
                 catch (Exception e)
                 {
@@ -700,13 +673,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static Efl.Canvas.Vg.Node stroke_marker_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_vg_shape_stroke_marker_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Vg.Node _ret_var = default(Efl.Canvas.Vg.Node);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetStrokeMarker();
+                    _ret_var = ((Shape)ws.Target).GetStrokeMarker();
                 }
                 catch (Exception e)
                 {
@@ -736,13 +709,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_marker_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Vg.Node m)
         {
             Eina.Log.Debug("function efl_canvas_vg_shape_stroke_marker_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeMarker(m);
+                    ((Shape)ws.Target).SetStrokeMarker(m);
                 }
                 catch (Exception e)
                 {
@@ -771,13 +744,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static double stroke_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetStrokeScale();
+                    _ret_var = ((Shape)ws.Target).GetStrokeScale();
                 }
                 catch (Exception e)
                 {
@@ -807,13 +780,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_scale_set(System.IntPtr obj, System.IntPtr pd, double s)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeScale(s);
+                    ((Shape)ws.Target).SetStrokeScale(s);
                 }
                 catch (Exception e)
                 {
@@ -842,13 +815,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_color_get(System.IntPtr obj, System.IntPtr pd, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
                 try
                 {
-                    ((Shape)wrapper).GetStrokeColor(out r, out g, out b, out a);
+                    ((Shape)ws.Target).GetStrokeColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -877,13 +850,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_color_set(System.IntPtr obj, System.IntPtr pd, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((Shape)wrapper).SetStrokeColor(r, g, b, a);
+                    ((Shape)ws.Target).SetStrokeColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -912,13 +885,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static double stroke_width_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_width_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetStrokeWidth();
+                    _ret_var = ((Shape)ws.Target).GetStrokeWidth();
                 }
                 catch (Exception e)
                 {
@@ -948,13 +921,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_width_set(System.IntPtr obj, System.IntPtr pd, double w)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_width_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeWidth(w);
+                    ((Shape)ws.Target).SetStrokeWidth(w);
                 }
                 catch (Exception e)
                 {
@@ -983,13 +956,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static double stroke_location_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_location_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetStrokeLocation();
+                    _ret_var = ((Shape)ws.Target).GetStrokeLocation();
                 }
                 catch (Exception e)
                 {
@@ -1019,13 +992,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_location_set(System.IntPtr obj, System.IntPtr pd, double centered)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_location_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeLocation(centered);
+                    ((Shape)ws.Target).SetStrokeLocation(centered);
                 }
                 catch (Exception e)
                 {
@@ -1054,14 +1027,14 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_dash_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr dash, out uint length)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_dash_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Gfx.Dash _out_dash = default(Efl.Gfx.Dash);
         length = default(uint);                            
                 try
                 {
-                    ((Shape)wrapper).GetStrokeDash(out _out_dash, out length);
+                    ((Shape)ws.Target).GetStrokeDash(out _out_dash, out length);
                 }
                 catch (Exception e)
                 {
@@ -1091,14 +1064,14 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_dash_set(System.IntPtr obj, System.IntPtr pd, ref Efl.Gfx.Dash.NativeStruct dash, uint length)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_dash_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Gfx.Dash _in_dash = dash;
                                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeDash(ref _in_dash, length);
+                    ((Shape)ws.Target).SetStrokeDash(ref _in_dash, length);
                 }
                 catch (Exception e)
                 {
@@ -1128,13 +1101,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static Efl.Gfx.Cap stroke_cap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_cap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.Cap _ret_var = default(Efl.Gfx.Cap);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetStrokeCap();
+                    _ret_var = ((Shape)ws.Target).GetStrokeCap();
                 }
                 catch (Exception e)
                 {
@@ -1164,13 +1137,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_cap_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.Cap c)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_cap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeCap(c);
+                    ((Shape)ws.Target).SetStrokeCap(c);
                 }
                 catch (Exception e)
                 {
@@ -1199,13 +1172,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static Efl.Gfx.Join stroke_join_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_join_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.Join _ret_var = default(Efl.Gfx.Join);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetStrokeJoin();
+                    _ret_var = ((Shape)ws.Target).GetStrokeJoin();
                 }
                 catch (Exception e)
                 {
@@ -1235,13 +1208,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void stroke_join_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.Join j)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_join_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetStrokeJoin(j);
+                    ((Shape)ws.Target).SetStrokeJoin(j);
                 }
                 catch (Exception e)
                 {
@@ -1270,13 +1243,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static Efl.Gfx.FillRule fill_rule_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_fill_rule_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.FillRule _ret_var = default(Efl.Gfx.FillRule);
                 try
                 {
-                    _ret_var = ((Shape)wrapper).GetFillRule();
+                    _ret_var = ((Shape)ws.Target).GetFillRule();
                 }
                 catch (Exception e)
                 {
@@ -1306,13 +1279,13 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
         private static void fill_rule_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.FillRule fill_rule)
         {
             Eina.Log.Debug("function efl_gfx_shape_fill_rule_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Shape)wrapper).SetFillRule(fill_rule);
+                    ((Shape)ws.Target).SetFillRule(fill_rule);
                 }
                 catch (Exception e)
                 {
@@ -1330,7 +1303,7 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Eo.IWrapper,Efl.Gfx.IShape
 
         private static efl_gfx_shape_fill_rule_set_delegate efl_gfx_shape_fill_rule_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

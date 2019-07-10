@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>EFL UI popup class</summary>
 [Efl.Ui.Popup.NativeMethods]
-public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWidgetFocusManager,Efl.Ui.Focus.ILayer,Efl.Ui.Focus.IManager
+public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager, Efl.Ui.Focus.ILayer, Efl.Ui.Focus.IManager
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Popup(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Popup"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -61,33 +61,6 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>This is called whenever the user clicks back wall of popup.</summary>
     public event EventHandler BackwallClickedEvt
     {
@@ -95,10 +68,9 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -148,10 +120,9 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -202,13 +173,12 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -223,7 +193,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -232,7 +202,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
             lock (eventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -240,7 +210,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -258,13 +228,12 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
                         try
                         {
@@ -314,10 +283,9 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -368,10 +336,9 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -422,13 +389,12 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
                         try
                         {
@@ -478,14 +444,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -534,7 +499,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         }
     }
     /// <summary>A backwall behind the popup.</summary>
-    public Efl.Ui.PopupPartBackwall Backwall
+    public Efl.Ui.PopupPartBackwall BackwallPart
     {
         get
         {
@@ -806,13 +771,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the current popup alignment.</summary>
-/// <value>Alignment type</value>
+    /// <value>Alignment type</value>
     public Efl.Ui.PopupAlign Align {
         get { return GetAlign(); }
         set { SetAlign(value); }
     }
     /// <summary>Get the currently set timeout seconds.</summary>
-/// <value>Timeout in seconds</value>
+    /// <value>Timeout in seconds</value>
     public double Timeout {
         get { return GetTimeout(); }
         set { SetTimeout(value); }
@@ -823,46 +788,46 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         set { SetPopupSize(value); }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     /// <summary>Enable property</summary>
-/// <value><c>true</c> to set enable the layer <c>false</c> to disable it</value>
+    /// <value><c>true</c> to set enable the layer <c>false</c> to disable it</value>
     public bool Enable {
         get { return GetEnable(); }
         set { SetEnable(value); }
     }
     /// <summary>The element which is currently focused by this manager
-/// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-/// (Since EFL 1.22)</summary>
-/// <value>Currently focused element.</value>
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Currently focused element.</value>
     public Efl.Ui.Focus.IObject ManagerFocus {
         get { return GetManagerFocus(); }
         set { SetManagerFocus(value); }
     }
     /// <summary>Add another manager to serve the move requests.
-/// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-/// (Since EFL 1.22)</summary>
-/// <value>The redirect manager.</value>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The redirect manager.</value>
     public Efl.Ui.Focus.IManager Redirect {
         get { return GetRedirect(); }
         set { SetRedirect(value); }
     }
     /// <summary>The list of elements which are at the border of the graph.
-/// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-/// (Since EFL 1.22)</summary>
-/// <value>An iterator over the border objects.</value>
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>An iterator over the border objects.</value>
     public Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
         get { return GetBorderElements(); }
     }
     /// <summary>Root node for all logical subtrees.
-/// This property can only be set once.
-/// (Since EFL 1.22)</summary>
-/// <value>Will be registered into this manager object.</value>
+    /// This property can only be set once.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Will be registered into this manager object.</value>
     public Efl.Ui.Focus.IObject Root {
         get { return GetRoot(); }
         set { SetRoot(value); }
@@ -1213,7 +1178,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
             return Efl.Ui.Popup.efl_ui_popup_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.Ui.PopupAlign efl_ui_popup_align_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1226,13 +1191,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.PopupAlign align_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_popup_align_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.PopupAlign _ret_var = default(Efl.Ui.PopupAlign);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetAlign();
+                    _ret_var = ((Popup)ws.Target).GetAlign();
                 }
                 catch (Exception e)
                 {
@@ -1262,13 +1227,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void align_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.PopupAlign type)
         {
             Eina.Log.Debug("function efl_ui_popup_align_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Popup)wrapper).SetAlign(type);
+                    ((Popup)ws.Target).SetAlign(type);
                 }
                 catch (Exception e)
                 {
@@ -1297,13 +1262,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static double timeout_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_popup_timeout_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetTimeout();
+                    _ret_var = ((Popup)ws.Target).GetTimeout();
                 }
                 catch (Exception e)
                 {
@@ -1333,13 +1298,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void timeout_set(System.IntPtr obj, System.IntPtr pd, double time)
         {
             Eina.Log.Debug("function efl_ui_popup_timeout_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Popup)wrapper).SetTimeout(time);
+                    ((Popup)ws.Target).SetTimeout(time);
                 }
                 catch (Exception e)
                 {
@@ -1368,13 +1333,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Eina.Size2D.NativeStruct popup_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_popup_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetPopupSize();
+                    _ret_var = ((Popup)ws.Target).GetPopupSize();
                 }
                 catch (Exception e)
                 {
@@ -1404,14 +1369,14 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void popup_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct size)
         {
             Eina.Log.Debug("function efl_ui_popup_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_size = size;
                             
                 try
                 {
-                    ((Popup)wrapper).SetPopupSize(_in_size);
+                    ((Popup)ws.Target).SetPopupSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -1440,13 +1405,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetContent();
+                    _ret_var = ((Popup)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -1476,13 +1441,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).SetContent(content);
+                    _ret_var = ((Popup)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -1512,13 +1477,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).UnsetContent();
+                    _ret_var = ((Popup)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -1548,13 +1513,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.IManager focus_manager_create(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_manager_create was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).FocusManagerCreate(root);
+                    _ret_var = ((Popup)ws.Target).FocusManagerCreate(root);
                 }
                 catch (Exception e)
                 {
@@ -1584,13 +1549,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static bool enable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_layer_enable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetEnable();
+                    _ret_var = ((Popup)ws.Target).GetEnable();
                 }
                 catch (Exception e)
                 {
@@ -1620,13 +1585,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void enable_set(System.IntPtr obj, System.IntPtr pd, bool v)
         {
             Eina.Log.Debug("function efl_ui_focus_layer_enable_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Popup)wrapper).SetEnable(v);
+                    ((Popup)ws.Target).SetEnable(v);
                 }
                 catch (Exception e)
                 {
@@ -1655,13 +1620,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void behaviour_get(System.IntPtr obj, System.IntPtr pd, out bool enable_on_visible, out bool cycle)
         {
             Eina.Log.Debug("function efl_ui_focus_layer_behaviour_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         enable_on_visible = default(bool);        cycle = default(bool);                            
                 try
                 {
-                    ((Popup)wrapper).GetBehaviour(out enable_on_visible, out cycle);
+                    ((Popup)ws.Target).GetBehaviour(out enable_on_visible, out cycle);
                 }
                 catch (Exception e)
                 {
@@ -1690,13 +1655,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void behaviour_set(System.IntPtr obj, System.IntPtr pd, bool enable_on_visible, bool cycle)
         {
             Eina.Log.Debug("function efl_ui_focus_layer_behaviour_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Popup)wrapper).SetBehaviour(enable_on_visible, cycle);
+                    ((Popup)ws.Target).SetBehaviour(enable_on_visible, cycle);
                 }
                 catch (Exception e)
                 {
@@ -1725,13 +1690,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.IObject manager_focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetManagerFocus();
+                    _ret_var = ((Popup)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -1761,13 +1726,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void manager_focus_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject focus)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Popup)wrapper).SetManagerFocus(focus);
+                    ((Popup)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -1796,13 +1761,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.IManager redirect_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetRedirect();
+                    _ret_var = ((Popup)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -1832,13 +1797,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void redirect_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IManager redirect)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Popup)wrapper).SetRedirect(redirect);
+                    ((Popup)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -1867,13 +1832,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static System.IntPtr border_elements_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_border_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetBorderElements();
+                    _ret_var = ((Popup)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -1903,14 +1868,14 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static System.IntPtr viewport_elements_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct viewport)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_viewport_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_viewport = viewport;
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetViewportElements(_in_viewport);
+                    _ret_var = ((Popup)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -1940,13 +1905,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.IObject root_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).GetRoot();
+                    _ret_var = ((Popup)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -1976,13 +1941,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static bool root_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).SetRoot(root);
+                    _ret_var = ((Popup)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -2012,13 +1977,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.IObject move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).Move(direction);
+                    _ret_var = ((Popup)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -2048,13 +2013,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.IObject request_move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).MoveRequest(direction, child, logical);
+                    _ret_var = ((Popup)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -2084,13 +2049,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.IObject request_subchild(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_subchild was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).RequestSubchild(root);
+                    _ret_var = ((Popup)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -2120,13 +2085,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static System.IntPtr fetch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_fetch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).Fetch(child);
+                    _ret_var = ((Popup)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -2156,13 +2121,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static Efl.Ui.Focus.ManagerLogicalEndDetail.NativeStruct logical_end(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_logical_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((Popup)wrapper).LogicalEnd();
+                    _ret_var = ((Popup)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -2192,13 +2157,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void reset_history(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_reset_history was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Popup)wrapper).ResetHistory();
+                    ((Popup)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -2227,13 +2192,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void pop_history_stack(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_pop_history_stack was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Popup)wrapper).PopHistoryStack();
+                    ((Popup)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -2262,13 +2227,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void setup_on_first_touch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_setup_on_first_touch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Popup)wrapper).SetupOnFirstTouch(direction, entry);
+                    ((Popup)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -2297,13 +2262,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void dirty_logic_freeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_freeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Popup)wrapper).FreezeDirtyLogic();
+                    ((Popup)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -2332,13 +2297,13 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
         private static void dirty_logic_unfreeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_unfreeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Popup)wrapper).DirtyLogicUnfreeze();
+                    ((Popup)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {
@@ -2356,7 +2321,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent,Efl.Ui.IWid
 
         private static efl_ui_focus_manager_dirty_logic_unfreeze_delegate efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

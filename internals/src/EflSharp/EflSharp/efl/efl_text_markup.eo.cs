@@ -19,20 +19,20 @@ System.String GetMarkup();
 /// <param name="markup">The markup-text representation set to this text.</param>
 void SetMarkup(System.String markup);
             /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     System.String Markup {
         get ;
         set ;
     }
 }
 /// <summary>Markup data that populates the text object&apos;s style and format</summary>
-sealed public class ITextMarkupConcrete : 
-
-ITextMarkup
+sealed public class ITextMarkupConcrete :
+    Efl.Eo.EoWrapper
+    , ITextMarkup
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -47,86 +47,12 @@ ITextMarkup
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_markup_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextMarkup"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextMarkupConcrete(System.IntPtr raw)
+    private ITextMarkupConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ITextMarkupConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Markup property</summary>
@@ -143,7 +69,7 @@ ITextMarkup
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     public System.String Markup {
         get { return GetMarkup(); }
         set { SetMarkup(value); }
@@ -193,7 +119,7 @@ ITextMarkup
             return Efl.ITextMarkupConcrete.efl_text_markup_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_text_markup_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -206,13 +132,13 @@ ITextMarkup
         private static System.String markup_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_markup_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextMarkup)wrapper).GetMarkup();
+                    _ret_var = ((ITextMarkup)ws.Target).GetMarkup();
                 }
                 catch (Exception e)
                 {
@@ -242,13 +168,13 @@ ITextMarkup
         private static void markup_set(System.IntPtr obj, System.IntPtr pd, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkup)wrapper).SetMarkup(markup);
+                    ((ITextMarkup)ws.Target).SetMarkup(markup);
                 }
                 catch (Exception e)
                 {
@@ -266,7 +192,7 @@ ITextMarkup
 
         private static efl_text_markup_set_delegate efl_text_markup_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

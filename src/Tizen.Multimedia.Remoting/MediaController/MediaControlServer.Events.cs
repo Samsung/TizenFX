@@ -95,7 +95,9 @@ namespace Tizen.Multimedia.Remoting
                 // SendPlaybackCommand doesn't use requestId. It'll be removed in Level 7.
                 if (requestId == null)
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCommand.ToPublic()));
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 else
                 {
@@ -182,7 +184,7 @@ namespace Tizen.Multimedia.Remoting
             Native.SetCustomCommandReceivedCb(Handle, _customCommandCallback).
                 ThrowIfError("Failed to init CustomCommandReceived event.");
         }
-        
+
         private static SearchCommand CreateSearchCommandReceivedEventArgs(IntPtr searchHandle)
         {
             var searchConditions = new List<MediaControlSearchCondition>();

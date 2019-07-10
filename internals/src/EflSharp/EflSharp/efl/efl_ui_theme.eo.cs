@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Efl Ui Theme class</summary>
 [Efl.Ui.Theme.NativeMethods]
-public class Theme : Efl.Object, Efl.Eo.IWrapper
+public class Theme : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Theme(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Theme"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Theme(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the default theme handle.</summary>
@@ -114,8 +87,8 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This is the default theme.
-/// All widgets use the default theme implicitly unless a specific theme is set.</summary>
-/// <value>The default theme handle</value>
+    /// All widgets use the default theme implicitly unless a specific theme is set.</summary>
+    /// <value>The default theme handle</value>
     public static Efl.Ui.Theme Default {
         get { return GetDefault(); }
     }
@@ -185,7 +158,7 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
             return Efl.Ui.Theme.efl_ui_theme_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Ui.Theme efl_ui_theme_default_get_delegate();
@@ -198,8 +171,8 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Ui.Theme default_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_theme_default_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Theme _ret_var = default(Efl.Ui.Theme);
                 try
@@ -232,13 +205,13 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
         private static void extension_add(System.IntPtr obj, System.IntPtr pd, System.String item)
         {
             Eina.Log.Debug("function efl_ui_theme_extension_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Theme)wrapper).AddExtension(item);
+                    ((Theme)ws.Target).AddExtension(item);
                 }
                 catch (Exception e)
                 {
@@ -267,13 +240,13 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
         private static void extension_del(System.IntPtr obj, System.IntPtr pd, System.String item)
         {
             Eina.Log.Debug("function efl_ui_theme_extension_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Theme)wrapper).DelExtension(item);
+                    ((Theme)ws.Target).DelExtension(item);
                 }
                 catch (Exception e)
                 {
@@ -302,13 +275,13 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
         private static void overlay_add(System.IntPtr obj, System.IntPtr pd, System.String item)
         {
             Eina.Log.Debug("function efl_ui_theme_overlay_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Theme)wrapper).AddOverlay(item);
+                    ((Theme)ws.Target).AddOverlay(item);
                 }
                 catch (Exception e)
                 {
@@ -337,13 +310,13 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
         private static void overlay_del(System.IntPtr obj, System.IntPtr pd, System.String item)
         {
             Eina.Log.Debug("function efl_ui_theme_overlay_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Theme)wrapper).DelOverlay(item);
+                    ((Theme)ws.Target).DelOverlay(item);
                 }
                 catch (Exception e)
                 {
@@ -361,7 +334,7 @@ public class Theme : Efl.Object, Efl.Eo.IWrapper
 
         private static efl_ui_theme_overlay_del_delegate efl_ui_theme_overlay_del_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

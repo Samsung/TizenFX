@@ -14,7 +14,7 @@ namespace TextFactory {
 /// <summary>Factory that creates images given key string
 /// The key can be either a full image path, or associated with one. The factory will fallback if key was not matches with an image, and try to load it as a full path.</summary>
 [Efl.Ui.TextFactory.Images.NativeMethods]
-public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
+public class Images : Efl.Object, Efl.Canvas.ITextFactory
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -47,7 +47,7 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Images(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Images"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -56,33 +56,6 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Images(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Associates given name with a path of an image or EET file.
@@ -213,7 +186,7 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
             return Efl.Ui.TextFactory.Images.efl_ui_text_factory_images_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_text_factory_images_matches_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String path, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
@@ -226,13 +199,13 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
         private static bool matches_add(System.IntPtr obj, System.IntPtr pd, System.String name, System.String path, System.String key)
         {
             Eina.Log.Debug("function efl_ui_text_factory_images_matches_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Images)wrapper).AddMatches(name, path, key);
+                    _ret_var = ((Images)ws.Target).AddMatches(name, path, key);
                 }
                 catch (Exception e)
                 {
@@ -262,13 +235,13 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
         private static bool matches_del(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_ui_text_factory_images_matches_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Images)wrapper).DelMatches(key);
+                    _ret_var = ((Images)ws.Target).DelMatches(key);
                 }
                 catch (Exception e)
                 {
@@ -298,13 +271,13 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
         private static bool matches_mmap_add(System.IntPtr obj, System.IntPtr pd, System.String name, Eina.File file, System.String key)
         {
             Eina.Log.Debug("function efl_ui_text_factory_images_matches_mmap_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Images)wrapper).AddMatchesMmap(name, file, key);
+                    _ret_var = ((Images)ws.Target).AddMatchesMmap(name, file, key);
                 }
                 catch (Exception e)
                 {
@@ -334,13 +307,13 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
         private static bool matches_mmap_del(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_ui_text_factory_images_matches_mmap_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Images)wrapper).DelMatchesMmap(key);
+                    _ret_var = ((Images)ws.Target).DelMatchesMmap(key);
                 }
                 catch (Exception e)
                 {
@@ -370,13 +343,13 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
         private static Efl.Canvas.Object create(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object kw_object, System.String key)
         {
             Eina.Log.Debug("function efl_canvas_text_factory_create was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Images)wrapper).Create(kw_object, key);
+                    _ret_var = ((Images)ws.Target).Create(kw_object, key);
                 }
                 catch (Exception e)
                 {
@@ -395,7 +368,7 @@ public class Images : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
 
         private static efl_canvas_text_factory_create_delegate efl_canvas_text_factory_create_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

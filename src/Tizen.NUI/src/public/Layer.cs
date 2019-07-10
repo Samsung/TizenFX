@@ -30,6 +30,7 @@ namespace Tizen.NUI
     public class Layer : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private Window window;
 
         /// <summary>
         /// Creates a Layer object.
@@ -137,7 +138,7 @@ namespace Tizen.NUI
                 else
                 {
                     // Clipping not enabled so return the window size
-                    Size2D windowSize = Window.Instance.Size;
+                    Size2D windowSize = window?.Size;
                     Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
                     return ret;
                 }
@@ -286,6 +287,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 
@@ -381,6 +383,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal override View FindCurrentChildById(uint id)
+        {
+            return FindChildById(id);
+        }
+
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View FindChildByName(string viewName)
@@ -403,7 +410,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -422,7 +429,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
@@ -441,7 +448,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -459,7 +466,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -517,7 +524,7 @@ namespace Tizen.NUI
 
         internal uint GetDepth()
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int idx = parentChildren.IndexOf(this);
@@ -530,7 +537,7 @@ namespace Tizen.NUI
         }
         internal void RaiseAbove(Layer target)
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
@@ -557,7 +564,7 @@ namespace Tizen.NUI
 
         internal void LowerBelow(Layer target)
         {
-            var parentChildren = Window.Instance.LayersChildren;
+            var parentChildren = window?.LayersChildren;
 
             if (parentChildren != null)
             {
@@ -639,6 +646,11 @@ namespace Tizen.NUI
             Interop.Actor.Actor_SetName(swigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetWindow(Window win)
+        {
+            window = win;
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace Efl {
 
 /// <summary>Efl boolean model class</summary>
 [Efl.BooleanModel.NativeMethods]
-public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
+public class BooleanModel : Efl.CompositeModel
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -54,7 +54,7 @@ public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected BooleanModel(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="BooleanModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -63,33 +63,6 @@ public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected BooleanModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Add a new named boolean property with a defined default value.</summary>
@@ -165,7 +138,7 @@ public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
             return Efl.BooleanModel.efl_boolean_model_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_boolean_model_boolean_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name, [MarshalAs(UnmanagedType.U1)] bool default_value);
@@ -178,13 +151,13 @@ public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static void boolean_add(System.IntPtr obj, System.IntPtr pd, System.String name, bool default_value)
         {
             Eina.Log.Debug("function efl_boolean_model_boolean_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((BooleanModel)wrapper).AddBoolean(name, default_value);
+                    ((BooleanModel)ws.Target).AddBoolean(name, default_value);
                 }
                 catch (Exception e)
                 {
@@ -213,13 +186,13 @@ public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static void boolean_del(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_boolean_model_boolean_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((BooleanModel)wrapper).DelBoolean(name);
+                    ((BooleanModel)ws.Target).DelBoolean(name);
                 }
                 catch (Exception e)
                 {
@@ -248,13 +221,13 @@ public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
         private static System.IntPtr boolean_iterator_get(System.IntPtr obj, System.IntPtr pd, System.String name, bool request)
         {
             Eina.Log.Debug("function efl_boolean_model_boolean_iterator_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Eina.Iterator<ulong> _ret_var = default(Eina.Iterator<ulong>);
                 try
                 {
-                    _ret_var = ((BooleanModel)wrapper).GetBooleanIterator(name, request);
+                    _ret_var = ((BooleanModel)ws.Target).GetBooleanIterator(name, request);
                 }
                 catch (Exception e)
                 {
@@ -273,7 +246,7 @@ public class BooleanModel : Efl.CompositeModel, Efl.Eo.IWrapper
 
         private static efl_boolean_model_boolean_iterator_get_delegate efl_boolean_model_boolean_iterator_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -29,20 +29,20 @@ Efl.Gfx.GradientSpread GetSpread();
 /// <param name="s">Spread type to be used</param>
 void SetSpread(Efl.Gfx.GradientSpread s);
                     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
-/// <value>Spread type to be used</value>
+    /// <value>Spread type to be used</value>
     Efl.Gfx.GradientSpread Spread {
         get ;
         set ;
     }
 }
 /// <summary>Efl graphics gradient interface</summary>
-sealed public class IGradientConcrete : 
-
-IGradient
+sealed public class IGradientConcrete :
+    Efl.Eo.EoWrapper
+    , IGradient
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -57,86 +57,12 @@ IGradient
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_gradient_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IGradient"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IGradientConcrete(System.IntPtr raw)
+    private IGradientConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IGradientConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get the list of color stops.</summary>
@@ -171,7 +97,7 @@ IGradient
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
-/// <value>Spread type to be used</value>
+    /// <value>Spread type to be used</value>
     public Efl.Gfx.GradientSpread Spread {
         get { return GetSpread(); }
         set { SetSpread(value); }
@@ -241,7 +167,7 @@ IGradient
             return Efl.Gfx.IGradientConcrete.efl_gfx_gradient_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_gradient_stop_get_delegate(System.IntPtr obj, System.IntPtr pd,  out System.IntPtr colors,  out uint length);
@@ -254,14 +180,14 @@ IGradient
         private static void stop_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr colors, out uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
         length = default(uint);                            
                 try
                 {
-                    ((IGradient)wrapper).GetStop(out _out_colors, out length);
+                    ((IGradient)ws.Target).GetStop(out _out_colors, out length);
                 }
                 catch (Exception e)
                 {
@@ -291,14 +217,14 @@ IGradient
         private static void stop_set(System.IntPtr obj, System.IntPtr pd, ref Efl.Gfx.GradientStop.NativeStruct colors, uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Gfx.GradientStop _in_colors = colors;
                                                     
                 try
                 {
-                    ((IGradient)wrapper).SetStop(ref _in_colors, length);
+                    ((IGradient)ws.Target).SetStop(ref _in_colors, length);
                 }
                 catch (Exception e)
                 {
@@ -328,13 +254,13 @@ IGradient
         private static Efl.Gfx.GradientSpread spread_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.GradientSpread _ret_var = default(Efl.Gfx.GradientSpread);
                 try
                 {
-                    _ret_var = ((IGradient)wrapper).GetSpread();
+                    _ret_var = ((IGradient)ws.Target).GetSpread();
                 }
                 catch (Exception e)
                 {
@@ -364,13 +290,13 @@ IGradient
         private static void spread_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.GradientSpread s)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IGradient)wrapper).SetSpread(s);
+                    ((IGradient)ws.Target).SetSpread(s);
                 }
                 catch (Exception e)
                 {
@@ -388,7 +314,7 @@ IGradient
 
         private static efl_gfx_gradient_spread_set_delegate efl_gfx_gradient_spread_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

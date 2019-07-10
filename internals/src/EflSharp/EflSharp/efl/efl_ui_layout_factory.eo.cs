@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Efl Ui Layout Factory class</summary>
 [Efl.Ui.LayoutFactory.NativeMethods]
-public class LayoutFactory : Efl.Ui.CachingFactory, Efl.Eo.IWrapper
+public class LayoutFactory : Efl.Ui.CachingFactory
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class LayoutFactory : Efl.Ui.CachingFactory, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected LayoutFactory(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutFactory"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -59,33 +59,6 @@ public class LayoutFactory : Efl.Ui.CachingFactory, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected LayoutFactory(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>No description supplied.</summary>
@@ -132,7 +105,7 @@ public class LayoutFactory : Efl.Ui.CachingFactory, Efl.Eo.IWrapper
             return Efl.Ui.LayoutFactory.efl_ui_layout_factory_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_ui_layout_factory_theme_config_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String group, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String style);
@@ -145,13 +118,13 @@ public class LayoutFactory : Efl.Ui.CachingFactory, Efl.Eo.IWrapper
         private static void theme_config(System.IntPtr obj, System.IntPtr pd, System.String klass, System.String group, System.String style)
         {
             Eina.Log.Debug("function efl_ui_layout_factory_theme_config was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((LayoutFactory)wrapper).ThemeConfig(klass, group, style);
+                    ((LayoutFactory)ws.Target).ThemeConfig(klass, group, style);
                 }
                 catch (Exception e)
                 {
@@ -169,7 +142,7 @@ public class LayoutFactory : Efl.Ui.CachingFactory, Efl.Eo.IWrapper
 
         private static efl_ui_layout_factory_theme_config_delegate efl_ui_layout_factory_theme_config_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

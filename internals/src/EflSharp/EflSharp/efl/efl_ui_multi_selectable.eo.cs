@@ -21,20 +21,20 @@ Efl.Ui.SelectMode GetSelectMode();
 /// <param name="mode">Type of selection of children</param>
 void SetSelectMode(Efl.Ui.SelectMode mode);
             /// <summary>The mode type for children selection.</summary>
-/// <value>Type of selection of children</value>
+    /// <value>Type of selection of children</value>
     Efl.Ui.SelectMode SelectMode {
         get ;
         set ;
     }
 }
 /// <summary>Efl UI Multi selectable interface. The container have to control select property of multiple chidren.</summary>
-sealed public class IMultiSelectableConcrete : 
-
-IMultiSelectable
+sealed public class IMultiSelectableConcrete :
+    Efl.Eo.EoWrapper
+    , IMultiSelectable
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -49,86 +49,12 @@ IMultiSelectable
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_multi_selectable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IMultiSelectable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IMultiSelectableConcrete(System.IntPtr raw)
+    private IMultiSelectableConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IMultiSelectableConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The mode type for children selection.</summary>
@@ -145,7 +71,7 @@ IMultiSelectable
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The mode type for children selection.</summary>
-/// <value>Type of selection of children</value>
+    /// <value>Type of selection of children</value>
     public Efl.Ui.SelectMode SelectMode {
         get { return GetSelectMode(); }
         set { SetSelectMode(value); }
@@ -195,7 +121,7 @@ IMultiSelectable
             return Efl.Ui.IMultiSelectableConcrete.efl_ui_multi_selectable_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.Ui.SelectMode efl_ui_select_mode_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -208,13 +134,13 @@ IMultiSelectable
         private static Efl.Ui.SelectMode select_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_select_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.SelectMode _ret_var = default(Efl.Ui.SelectMode);
                 try
                 {
-                    _ret_var = ((IMultiSelectable)wrapper).GetSelectMode();
+                    _ret_var = ((IMultiSelectable)ws.Target).GetSelectMode();
                 }
                 catch (Exception e)
                 {
@@ -244,13 +170,13 @@ IMultiSelectable
         private static void select_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectMode mode)
         {
             Eina.Log.Debug("function efl_ui_select_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IMultiSelectable)wrapper).SetSelectMode(mode);
+                    ((IMultiSelectable)ws.Target).SetSelectMode(mode);
                 }
                 catch (Exception e)
                 {
@@ -268,7 +194,7 @@ IMultiSelectable
 
         private static efl_ui_select_mode_set_delegate efl_ui_select_mode_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

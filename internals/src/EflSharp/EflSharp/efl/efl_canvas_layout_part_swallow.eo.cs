@@ -12,7 +12,7 @@ namespace Canvas {
 /// <summary>Represents a SWALLOW part of an Edje object.
 /// Its lifetime is limited to one function call only, unless an extra reference is explicitely held.</summary>
 [Efl.Canvas.LayoutPartSwallow.NativeMethods]
-public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.IContent
+public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.IContent
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -45,7 +45,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected LayoutPartSwallow(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPartSwallow"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -56,33 +56,6 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
@@ -91,13 +64,12 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -112,7 +84,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
 
@@ -121,7 +93,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
             lock (eventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
@@ -129,7 +101,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -167,9 +139,9 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
         return _ret_var;
  }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
@@ -230,7 +202,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
             return Efl.Canvas.LayoutPartSwallow.efl_canvas_layout_part_swallow_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -243,13 +215,13 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((LayoutPartSwallow)wrapper).GetContent();
+                    _ret_var = ((LayoutPartSwallow)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -279,13 +251,13 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LayoutPartSwallow)wrapper).SetContent(content);
+                    _ret_var = ((LayoutPartSwallow)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -315,13 +287,13 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((LayoutPartSwallow)wrapper).UnsetContent();
+                    _ret_var = ((LayoutPartSwallow)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -340,7 +312,7 @@ public class LayoutPartSwallow : Efl.Canvas.LayoutPart, Efl.Eo.IWrapper,Efl.ICon
 
         private static efl_content_unset_delegate efl_content_unset_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

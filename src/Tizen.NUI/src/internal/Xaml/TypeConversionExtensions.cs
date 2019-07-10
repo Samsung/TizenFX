@@ -202,12 +202,6 @@ namespace Tizen.NUI.Xaml
                 }
             }
 
-            var nativeValueConverterService = DependencyService.Get<INativeValueConverterService>();
-
-            object nativeValue = null;
-            if (nativeValueConverterService != null && nativeValueConverterService.ConvertTo(value, toType, out nativeValue))
-                return nativeValue;
-
             return value;
         }
 

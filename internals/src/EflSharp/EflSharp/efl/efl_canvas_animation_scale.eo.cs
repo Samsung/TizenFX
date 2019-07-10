@@ -11,7 +11,7 @@ namespace Canvas {
 
 /// <summary>Efl scale animation class</summary>
 [Efl.Canvas.AnimationScale.NativeMethods]
-public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
+public class AnimationScale : Efl.Canvas.Animation
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected AnimationScale(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationScale"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected AnimationScale(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Scale property</summary>
@@ -194,7 +167,7 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
             return Efl.Canvas.AnimationScale.efl_canvas_animation_scale_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_animation_scale_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double from_scale_x,  out double from_scale_y,  out double to_scale_x,  out double to_scale_y, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] out Efl.Canvas.Object pivot,  out double cx,  out double cy);
@@ -207,13 +180,13 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void scale_get(System.IntPtr obj, System.IntPtr pd, out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out Efl.Canvas.Object pivot, out double cx, out double cy)
         {
             Eina.Log.Debug("function efl_animation_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                 from_scale_x = default(double);        from_scale_y = default(double);        to_scale_x = default(double);        to_scale_y = default(double);        pivot = default(Efl.Canvas.Object);        cx = default(double);        cy = default(double);                                                                    
                 try
                 {
-                    ((AnimationScale)wrapper).GetScale(out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out pivot, out cx, out cy);
+                    ((AnimationScale)ws.Target).GetScale(out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out pivot, out cx, out cy);
                 }
                 catch (Exception e)
                 {
@@ -242,13 +215,13 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void scale_set(System.IntPtr obj, System.IntPtr pd, double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, Efl.Canvas.Object pivot, double cx, double cy)
         {
             Eina.Log.Debug("function efl_animation_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                     
                 try
                 {
-                    ((AnimationScale)wrapper).SetScale(from_scale_x, from_scale_y, to_scale_x, to_scale_y, pivot, cx, cy);
+                    ((AnimationScale)ws.Target).SetScale(from_scale_x, from_scale_y, to_scale_x, to_scale_y, pivot, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -277,13 +250,13 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void scale_absolute_get(System.IntPtr obj, System.IntPtr pd, out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out int cx, out int cy)
         {
             Eina.Log.Debug("function efl_animation_scale_absolute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         from_scale_x = default(double);        from_scale_y = default(double);        to_scale_x = default(double);        to_scale_y = default(double);        cx = default(int);        cy = default(int);                                                            
                 try
                 {
-                    ((AnimationScale)wrapper).GetScaleAbsolute(out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out cx, out cy);
+                    ((AnimationScale)ws.Target).GetScaleAbsolute(out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out cx, out cy);
                 }
                 catch (Exception e)
                 {
@@ -312,13 +285,13 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void scale_absolute_set(System.IntPtr obj, System.IntPtr pd, double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, int cx, int cy)
         {
             Eina.Log.Debug("function efl_animation_scale_absolute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                             
                 try
                 {
-                    ((AnimationScale)wrapper).SetScaleAbsolute(from_scale_x, from_scale_y, to_scale_x, to_scale_y, cx, cy);
+                    ((AnimationScale)ws.Target).SetScaleAbsolute(from_scale_x, from_scale_y, to_scale_x, to_scale_y, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -336,7 +309,7 @@ public class AnimationScale : Efl.Canvas.Animation, Efl.Eo.IWrapper
 
         private static efl_animation_scale_absolute_set_delegate efl_animation_scale_absolute_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

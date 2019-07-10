@@ -9,17 +9,25 @@ namespace Efl {
 
 namespace Font {
 
+/// <summary>Efl font size type</summary>
 public struct Size
 {
     private int payload;
-    public static implicit operator Size(int x)
+
+    /// <summary>Converts an instance of int to this struct.</summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <returns>A struct with the given value.</returns>
+    public static implicit operator Size(int value)
     {
-        return new Size{payload=x};
+        return new Size{payload=value};
     }
 
-    public static implicit operator int(Size x)
+    /// <summary>Converts an instance of this struct to int.</summary>
+    /// <param name="value">The value to be converted packed in this struct.</param>
+    /// <returns>The actual value the alias is wrapping.</returns>
+    public static implicit operator int(Size value)
     {
-        return x.payload;
+        return value.payload;
     }
 
 }
@@ -246,15 +254,15 @@ namespace Gfx {
 /// (Since EFL 1.18)</summary>
 public enum ChangeFlag
 {
-/// <summary>No change</summary>
+/// <summary>Nothing changed.</summary>
 None = 0,
-/// <summary>matrix got changed</summary>
+/// <summary>Matrix got changed.</summary>
 Matrix = 1,
-/// <summary>path got changes</summary>
+/// <summary>Path got changed.</summary>
 Path = 2,
-/// <summary>coloring or fill information changed, not geometry</summary>
+/// <summary>Coloring or fill information changed, not geometry.</summary>
 Fill = 4,
-/// <summary>all properties got changed</summary>
+/// <summary>All properties got changed.</summary>
 All = 65535,
 }
 
@@ -327,11 +335,15 @@ public struct Dash
         this.Gap = Gap;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Dash(IntPtr ptr)
     {
         var tmp = (Dash.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Dash.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Dash.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -360,6 +372,8 @@ public struct Dash
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -401,11 +415,15 @@ public struct GradientStop
         this.A = A;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator GradientStop(IntPtr ptr)
     {
         var tmp = (GradientStop.NativeStruct)Marshal.PtrToStructure(ptr, typeof(GradientStop.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct GradientStop.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -447,6 +465,8 @@ public struct GradientStop
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -482,11 +502,15 @@ public struct StrokeColor
         this.A = A;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StrokeColor(IntPtr ptr)
     {
         var tmp = (StrokeColor.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StrokeColor.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct StrokeColor.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -523,6 +547,8 @@ public struct StrokeColor
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
@@ -576,11 +602,15 @@ public struct Stroke
         this.Join = Join;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Stroke(IntPtr ptr)
     {
         var tmp = (Stroke.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Stroke.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Stroke.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -634,6 +664,8 @@ public struct Stroke
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -657,11 +689,15 @@ public struct ShapePublic
         this.Stroke = Stroke;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ShapePublic(IntPtr ptr)
     {
         var tmp = (ShapePublic.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ShapePublic.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct ShapePublic.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -687,57 +723,7 @@ public struct ShapePublic
 
     }
 
-}
-
-}
-
-}
-
-namespace Efl {
-
-namespace Gfx {
-
-[StructLayout(LayoutKind.Sequential)]
-public struct PathChangeEvent
-{
-    /// <summary>Indicates what changed.</summary>
-    public Efl.Gfx.ChangeFlag What;
-    ///<summary>Constructor for PathChangeEvent.</summary>
-    public PathChangeEvent(
-        Efl.Gfx.ChangeFlag What = default(Efl.Gfx.ChangeFlag)    )
-    {
-        this.What = What;
-    }
-
-    public static implicit operator PathChangeEvent(IntPtr ptr)
-    {
-        var tmp = (PathChangeEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(PathChangeEvent.NativeStruct));
-        return tmp;
-    }
-
-    ///<summary>Internal wrapper for struct PathChangeEvent.</summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct NativeStruct
-    {
-        
-        public Efl.Gfx.ChangeFlag What;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
-        public static implicit operator PathChangeEvent.NativeStruct(PathChangeEvent _external_struct)
-        {
-            var _internal_struct = new PathChangeEvent.NativeStruct();
-            _internal_struct.What = _external_struct.What;
-            return _internal_struct;
-        }
-
-        ///<summary>Implicit conversion to the managed representation.</summary>
-        public static implicit operator PathChangeEvent(PathChangeEvent.NativeStruct _internal_struct)
-        {
-            var _external_struct = new PathChangeEvent();
-            _external_struct.What = _internal_struct.What;
-            return _external_struct;
-        }
-
-    }
+    #pragma warning restore CS1591
 
 }
 
@@ -764,11 +750,15 @@ public struct RenderPost
         this.Updated_area = Updated_area;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator RenderPost(IntPtr ptr)
     {
         var tmp = (RenderPost.NativeStruct)Marshal.PtrToStructure(ptr, typeof(RenderPost.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct RenderPost.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -793,6 +783,8 @@ public struct RenderPost
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

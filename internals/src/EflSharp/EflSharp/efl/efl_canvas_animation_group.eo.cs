@@ -11,7 +11,7 @@ namespace Canvas {
 
 /// <summary>Efl group animation abstract class</summary>
 [Efl.Canvas.AnimationGroup.NativeMethods]
-public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
+public abstract class AnimationGroup : Efl.Canvas.Animation
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected AnimationGroup(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class AnimationGroupRealized : AnimationGroup
@@ -60,33 +60,6 @@ public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected AnimationGroup(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Add the given animation to the animation group.</summary>
@@ -164,7 +137,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
             return Efl.Canvas.AnimationGroup.efl_canvas_animation_group_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_animation_group_animation_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Animation animation);
@@ -177,13 +150,13 @@ public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void animation_add(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Animation animation)
         {
             Eina.Log.Debug("function efl_animation_group_animation_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationGroup)wrapper).AddAnimation(animation);
+                    ((AnimationGroup)ws.Target).AddAnimation(animation);
                 }
                 catch (Exception e)
                 {
@@ -212,13 +185,13 @@ public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void animation_del(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Animation animation)
         {
             Eina.Log.Debug("function efl_animation_group_animation_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationGroup)wrapper).DelAnimation(animation);
+                    ((AnimationGroup)ws.Target).DelAnimation(animation);
                 }
                 catch (Exception e)
                 {
@@ -247,13 +220,13 @@ public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static System.IntPtr animations_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_group_animations_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Canvas.Animation> _ret_var = default(Eina.List<Efl.Canvas.Animation>);
                 try
                 {
-                    _ret_var = ((AnimationGroup)wrapper).GetAnimations();
+                    _ret_var = ((AnimationGroup)ws.Target).GetAnimations();
                 }
                 catch (Exception e)
                 {
@@ -272,7 +245,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation, Efl.Eo.IWrapper
 
         private static efl_animation_group_animations_get_delegate efl_animation_group_animations_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

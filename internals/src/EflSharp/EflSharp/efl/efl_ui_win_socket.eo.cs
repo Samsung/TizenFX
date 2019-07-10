@@ -12,7 +12,7 @@ namespace Ui {
 /// <summary>An off-screen window to be displayed in a remote process.
 /// The window is rendered onto an image buffer to be displayed in another process&apos; plug image object. No actual window is created for this type. The window contents can then be sent over a socket so that another process displays it inside a plug image.</summary>
 [Efl.Ui.WinSocket.NativeMethods]
-public class WinSocket : Efl.Ui.Win, Efl.Eo.IWrapper
+public class WinSocket : Efl.Ui.Win
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -69,7 +69,7 @@ public class WinSocket : Efl.Ui.Win, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected WinSocket(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="WinSocket"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -78,33 +78,6 @@ public class WinSocket : Efl.Ui.Win, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected WinSocket(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Create a socket to provide the service for Plug widget.</summary>
@@ -153,7 +126,7 @@ public class WinSocket : Efl.Ui.Win, Efl.Eo.IWrapper
             return Efl.Ui.WinSocket.efl_ui_win_socket_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_win_socket_listen_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String svcname,  int svcnum, [MarshalAs(UnmanagedType.U1)] bool svcsys);
@@ -166,13 +139,13 @@ public class WinSocket : Efl.Ui.Win, Efl.Eo.IWrapper
         private static bool socket_listen(System.IntPtr obj, System.IntPtr pd, System.String svcname, int svcnum, bool svcsys)
         {
             Eina.Log.Debug("function efl_ui_win_socket_listen was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((WinSocket)wrapper).SocketListen(svcname, svcnum, svcsys);
+                    _ret_var = ((WinSocket)ws.Target).SocketListen(svcname, svcnum, svcsys);
                 }
                 catch (Exception e)
                 {
@@ -191,7 +164,7 @@ public class WinSocket : Efl.Ui.Win, Efl.Eo.IWrapper
 
         private static efl_ui_win_socket_listen_delegate efl_ui_win_socket_listen_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

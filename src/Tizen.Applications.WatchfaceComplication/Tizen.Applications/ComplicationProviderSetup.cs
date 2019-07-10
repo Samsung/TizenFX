@@ -21,15 +21,15 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the ComplicationProviderSetup class for the complication provider setup application.
+    /// Represents the complication setup for a setup application.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public static class ComplicationProviderSetup
     {
         /// <summary>
-        /// Gets the received appctrl containing inforamtion about edit.
+        /// Gets the received appcontrol containing information about edit.
         /// </summary>
-        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The received appcontrol.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -59,7 +59,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Replies the setup context to the editor
         /// </summary>
-        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The received appcontrol.</param>
         /// <param name="context">The context created by complication setup app.</param>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
@@ -92,7 +92,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets complication's setup context.
         /// </summary>
-        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The received appcontrol.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>

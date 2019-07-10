@@ -67,68 +67,68 @@ void Start();
     /// <summary>Stop playable object.</summary>
 void Stop();
                                                                     /// <summary>Whether or not the playable can be played.</summary>
-/// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
     bool Playable {
         get ;
     }
     /// <summary>Get play/pause state of the media file.</summary>
-/// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
+    /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     bool Play {
         get ;
         set ;
     }
     /// <summary>Get the position in the media file.
-/// The position is returned as the number of seconds since the beginning of the media file.</summary>
-/// <value>The position (in seconds).</value>
+    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <value>The position (in seconds).</value>
     double Pos {
         get ;
         set ;
     }
     /// <summary>Get how much of the file has been played.
-/// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
-/// <value>The progress within the [0, 1] range.</value>
+    /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
+    /// <value>The progress within the [0, 1] range.</value>
     double Progress {
         get ;
     }
     /// <summary>Control the play speed of the media file.
-/// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
-/// <value>The play speed in the [0, infinity) range.</value>
+    /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
+    /// <value>The play speed in the [0, infinity) range.</value>
     double PlaySpeed {
         get ;
         set ;
     }
     /// <summary>Control the audio volume.
-/// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
-/// <value>The volume level</value>
+    /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
+    /// <value>The volume level</value>
     double Volume {
         get ;
         set ;
     }
     /// <summary>This property controls the audio mute state.</summary>
-/// <value>The mute state. <c>true</c> or <c>false</c>.</value>
+    /// <value>The mute state. <c>true</c> or <c>false</c>.</value>
     bool Mute {
         get ;
         set ;
     }
     /// <summary>Get the length of play for the media file.</summary>
-/// <value>The length of the stream in seconds.</value>
+    /// <value>The length of the stream in seconds.</value>
     double Length {
         get ;
     }
     /// <summary>Get whether the media file is seekable.</summary>
-/// <value><c>true</c> if seekable.</value>
+    /// <value><c>true</c> if seekable.</value>
     bool Seekable {
         get ;
     }
 }
 /// <summary>Efl media player interface</summary>
-sealed public class IPlayerConcrete : 
-
-IPlayer
+sealed public class IPlayerConcrete :
+    Efl.Eo.EoWrapper
+    , IPlayer
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -143,86 +143,12 @@ IPlayer
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_player_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IPlayer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IPlayerConcrete(System.IntPtr raw)
+    private IPlayerConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IPlayerConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Whether or not the playable can be played.</summary>
@@ -337,56 +263,56 @@ IPlayer
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Whether or not the playable can be played.</summary>
-/// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
     public bool Playable {
         get { return GetPlayable(); }
     }
     /// <summary>Get play/pause state of the media file.</summary>
-/// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
+    /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     public bool Play {
         get { return GetPlay(); }
         set { SetPlay(value); }
     }
     /// <summary>Get the position in the media file.
-/// The position is returned as the number of seconds since the beginning of the media file.</summary>
-/// <value>The position (in seconds).</value>
+    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <value>The position (in seconds).</value>
     public double Pos {
         get { return GetPos(); }
         set { SetPos(value); }
     }
     /// <summary>Get how much of the file has been played.
-/// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
-/// <value>The progress within the [0, 1] range.</value>
+    /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
+    /// <value>The progress within the [0, 1] range.</value>
     public double Progress {
         get { return GetProgress(); }
     }
     /// <summary>Control the play speed of the media file.
-/// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
-/// <value>The play speed in the [0, infinity) range.</value>
+    /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
+    /// <value>The play speed in the [0, infinity) range.</value>
     public double PlaySpeed {
         get { return GetPlaySpeed(); }
         set { SetPlaySpeed(value); }
     }
     /// <summary>Control the audio volume.
-/// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
-/// <value>The volume level</value>
+    /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
+    /// <value>The volume level</value>
     public double Volume {
         get { return GetVolume(); }
         set { SetVolume(value); }
     }
     /// <summary>This property controls the audio mute state.</summary>
-/// <value>The mute state. <c>true</c> or <c>false</c>.</value>
+    /// <value>The mute state. <c>true</c> or <c>false</c>.</value>
     public bool Mute {
         get { return GetMute(); }
         set { SetMute(value); }
     }
     /// <summary>Get the length of play for the media file.</summary>
-/// <value>The length of the stream in seconds.</value>
+    /// <value>The length of the stream in seconds.</value>
     public double Length {
         get { return GetLength(); }
     }
     /// <summary>Get whether the media file is seekable.</summary>
-/// <value><c>true</c> if seekable.</value>
+    /// <value><c>true</c> if seekable.</value>
     public bool Seekable {
         get { return GetSeekable(); }
     }
@@ -575,7 +501,7 @@ IPlayer
             return Efl.IPlayerConcrete.efl_player_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_player_playable_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -588,13 +514,13 @@ IPlayer
         private static bool playable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_playable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetPlayable();
+                    _ret_var = ((IPlayer)ws.Target).GetPlayable();
                 }
                 catch (Exception e)
                 {
@@ -624,13 +550,13 @@ IPlayer
         private static bool play_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetPlay();
+                    _ret_var = ((IPlayer)ws.Target).GetPlay();
                 }
                 catch (Exception e)
                 {
@@ -660,13 +586,13 @@ IPlayer
         private static void play_set(System.IntPtr obj, System.IntPtr pd, bool play)
         {
             Eina.Log.Debug("function efl_player_play_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IPlayer)wrapper).SetPlay(play);
+                    ((IPlayer)ws.Target).SetPlay(play);
                 }
                 catch (Exception e)
                 {
@@ -695,13 +621,13 @@ IPlayer
         private static double pos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_pos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetPos();
+                    _ret_var = ((IPlayer)ws.Target).GetPos();
                 }
                 catch (Exception e)
                 {
@@ -731,13 +657,13 @@ IPlayer
         private static void pos_set(System.IntPtr obj, System.IntPtr pd, double sec)
         {
             Eina.Log.Debug("function efl_player_pos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IPlayer)wrapper).SetPos(sec);
+                    ((IPlayer)ws.Target).SetPos(sec);
                 }
                 catch (Exception e)
                 {
@@ -766,13 +692,13 @@ IPlayer
         private static double progress_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_progress_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetProgress();
+                    _ret_var = ((IPlayer)ws.Target).GetProgress();
                 }
                 catch (Exception e)
                 {
@@ -802,13 +728,13 @@ IPlayer
         private static double play_speed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_speed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetPlaySpeed();
+                    _ret_var = ((IPlayer)ws.Target).GetPlaySpeed();
                 }
                 catch (Exception e)
                 {
@@ -838,13 +764,13 @@ IPlayer
         private static void play_speed_set(System.IntPtr obj, System.IntPtr pd, double speed)
         {
             Eina.Log.Debug("function efl_player_play_speed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IPlayer)wrapper).SetPlaySpeed(speed);
+                    ((IPlayer)ws.Target).SetPlaySpeed(speed);
                 }
                 catch (Exception e)
                 {
@@ -873,13 +799,13 @@ IPlayer
         private static double volume_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_volume_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetVolume();
+                    _ret_var = ((IPlayer)ws.Target).GetVolume();
                 }
                 catch (Exception e)
                 {
@@ -909,13 +835,13 @@ IPlayer
         private static void volume_set(System.IntPtr obj, System.IntPtr pd, double volume)
         {
             Eina.Log.Debug("function efl_player_volume_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IPlayer)wrapper).SetVolume(volume);
+                    ((IPlayer)ws.Target).SetVolume(volume);
                 }
                 catch (Exception e)
                 {
@@ -944,13 +870,13 @@ IPlayer
         private static bool mute_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_mute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetMute();
+                    _ret_var = ((IPlayer)ws.Target).GetMute();
                 }
                 catch (Exception e)
                 {
@@ -980,13 +906,13 @@ IPlayer
         private static void mute_set(System.IntPtr obj, System.IntPtr pd, bool mute)
         {
             Eina.Log.Debug("function efl_player_mute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IPlayer)wrapper).SetMute(mute);
+                    ((IPlayer)ws.Target).SetMute(mute);
                 }
                 catch (Exception e)
                 {
@@ -1015,13 +941,13 @@ IPlayer
         private static double length_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_length_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetLength();
+                    _ret_var = ((IPlayer)ws.Target).GetLength();
                 }
                 catch (Exception e)
                 {
@@ -1051,13 +977,13 @@ IPlayer
         private static bool seekable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_seekable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IPlayer)wrapper).GetSeekable();
+                    _ret_var = ((IPlayer)ws.Target).GetSeekable();
                 }
                 catch (Exception e)
                 {
@@ -1087,13 +1013,13 @@ IPlayer
         private static void start(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IPlayer)wrapper).Start();
+                    ((IPlayer)ws.Target).Start();
                 }
                 catch (Exception e)
                 {
@@ -1122,13 +1048,13 @@ IPlayer
         private static void stop(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_stop was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IPlayer)wrapper).Stop();
+                    ((IPlayer)ws.Target).Stop();
                 }
                 catch (Exception e)
                 {
@@ -1146,7 +1072,7 @@ IPlayer
 
         private static efl_player_stop_delegate efl_player_stop_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

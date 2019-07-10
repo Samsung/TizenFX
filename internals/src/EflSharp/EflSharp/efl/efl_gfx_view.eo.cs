@@ -39,29 +39,29 @@ Eina.Size2D GetViewSize();
 /// <param name="size">Size of the view.</param>
 void SetViewSize(Eina.Size2D size);
             /// <summary>The dimensions of this object&apos;s viewport.
-/// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
-/// 
-/// For scalable scenes (vector graphics, 3D or GL), this means scaling the contents of the scene and drawing more pixels as a result; For pixmaps this means zooming and stretching up or down the backing buffer to fit this view.
-/// 
-/// In most cases the view should have the same dimensions as the object on the canvas, for best quality.
-/// 
-/// <see cref="Efl.Gfx.IView.SetViewSize"/> may not be implemented. If it is, it might trigger a complete recalculation of the scene, or reload of the pixel data.
-/// 
-/// Refer to each implementing class specific documentation for more details.</summary>
-/// <value>Size of the view.</value>
+    /// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
+    /// 
+    /// For scalable scenes (vector graphics, 3D or GL), this means scaling the contents of the scene and drawing more pixels as a result; For pixmaps this means zooming and stretching up or down the backing buffer to fit this view.
+    /// 
+    /// In most cases the view should have the same dimensions as the object on the canvas, for best quality.
+    /// 
+    /// <see cref="Efl.Gfx.IView.SetViewSize"/> may not be implemented. If it is, it might trigger a complete recalculation of the scene, or reload of the pixel data.
+    /// 
+    /// Refer to each implementing class specific documentation for more details.</summary>
+    /// <value>Size of the view.</value>
     Eina.Size2D ViewSize {
         get ;
         set ;
     }
 }
 /// <summary>Efl graphics view interface</summary>
-sealed public class IViewConcrete : 
-
-IView
+sealed public class IViewConcrete :
+    Efl.Eo.EoWrapper
+    , IView
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -76,86 +76,12 @@ IView
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_view_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IView"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IViewConcrete(System.IntPtr raw)
+    private IViewConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IViewConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The dimensions of this object&apos;s viewport.
@@ -191,16 +117,16 @@ IView
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The dimensions of this object&apos;s viewport.
-/// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
-/// 
-/// For scalable scenes (vector graphics, 3D or GL), this means scaling the contents of the scene and drawing more pixels as a result; For pixmaps this means zooming and stretching up or down the backing buffer to fit this view.
-/// 
-/// In most cases the view should have the same dimensions as the object on the canvas, for best quality.
-/// 
-/// <see cref="Efl.Gfx.IView.SetViewSize"/> may not be implemented. If it is, it might trigger a complete recalculation of the scene, or reload of the pixel data.
-/// 
-/// Refer to each implementing class specific documentation for more details.</summary>
-/// <value>Size of the view.</value>
+    /// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
+    /// 
+    /// For scalable scenes (vector graphics, 3D or GL), this means scaling the contents of the scene and drawing more pixels as a result; For pixmaps this means zooming and stretching up or down the backing buffer to fit this view.
+    /// 
+    /// In most cases the view should have the same dimensions as the object on the canvas, for best quality.
+    /// 
+    /// <see cref="Efl.Gfx.IView.SetViewSize"/> may not be implemented. If it is, it might trigger a complete recalculation of the scene, or reload of the pixel data.
+    /// 
+    /// Refer to each implementing class specific documentation for more details.</summary>
+    /// <value>Size of the view.</value>
     public Eina.Size2D ViewSize {
         get { return GetViewSize(); }
         set { SetViewSize(value); }
@@ -250,7 +176,7 @@ IView
             return Efl.Gfx.IViewConcrete.efl_gfx_view_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Size2D.NativeStruct efl_gfx_view_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -263,13 +189,13 @@ IView
         private static Eina.Size2D.NativeStruct view_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_view_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IView)wrapper).GetViewSize();
+                    _ret_var = ((IView)ws.Target).GetViewSize();
                 }
                 catch (Exception e)
                 {
@@ -299,14 +225,14 @@ IView
         private static void view_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct size)
         {
             Eina.Log.Debug("function efl_gfx_view_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_size = size;
                             
                 try
                 {
-                    ((IView)wrapper).SetViewSize(_in_size);
+                    ((IView)ws.Target).SetViewSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -324,7 +250,7 @@ IView
 
         private static efl_gfx_view_size_set_delegate efl_gfx_view_size_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

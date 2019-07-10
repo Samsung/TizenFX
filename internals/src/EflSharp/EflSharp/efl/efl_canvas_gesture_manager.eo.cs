@@ -11,7 +11,7 @@ namespace Canvas {
 
 /// <summary>EFL Gesture Manager class</summary>
 [Efl.Canvas.GestureManager.NativeMethods]
-public class GestureManager : Efl.Object, Efl.Eo.IWrapper
+public class GestureManager : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected GestureManager(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="GestureManager"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected GestureManager(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>This property holds the config value for the recognizer</summary>
@@ -99,20 +72,24 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
                                          }
     /// <summary>This function is called to register a new Efl.Canvas.Gesture_Recognizer</summary>
     /// <param name="recognizer">The gesture recognizer object</param>
-    /// <returns>Returns the Efl.Event_Description type the recognizer supports</returns>
-    virtual public Efl.EventDescription RecognizerRegister(Efl.Canvas.GestureRecognizer recognizer) {
-                                 var _ret_var = Efl.Canvas.GestureManager.NativeMethods.efl_gesture_manager_recognizer_register_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recognizer);
+    virtual public void RecognizerRegister(Efl.Canvas.GestureRecognizer recognizer) {
+                                 Efl.Canvas.GestureManager.NativeMethods.efl_gesture_manager_recognizer_register_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recognizer);
         Eina.Error.RaiseIfUnhandledException();
-                        var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(_ret_var);
-        
-        return __ret_tmp;
- }
+                         }
     /// <summary>This function is called to unregister a Efl.Canvas.Gesture_Recognizer</summary>
     /// <param name="recognizer">The gesture recognizer object</param>
     virtual public void RecognizerUnregister(Efl.Canvas.GestureRecognizer recognizer) {
                                  Efl.Canvas.GestureManager.NativeMethods.efl_gesture_manager_recognizer_unregister_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recognizer);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Gets event type&apos;s recognizer</summary>
+    /// <param name="gesture_type">The gesture type</param>
+    /// <returns>The gesture recognizer</returns>
+    virtual public Efl.Canvas.GestureRecognizer GetRecognizer(Efl.Canvas.GestureRecognizerType gesture_type) {
+                                 var _ret_var = Efl.Canvas.GestureManager.NativeMethods.efl_gesture_manager_recognizer_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),gesture_type);
+        Eina.Error.RaiseIfUnhandledException();
+                        return _ret_var;
+ }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.GestureManager.efl_canvas_gesture_manager_class_get();
@@ -169,6 +146,16 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_manager_recognizer_unregister"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_manager_recognizer_unregister_static_delegate) });
             }
 
+            if (efl_gesture_manager_recognizer_get_static_delegate == null)
+            {
+                efl_gesture_manager_recognizer_get_static_delegate = new efl_gesture_manager_recognizer_get_delegate(recognizer_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetRecognizer") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_manager_recognizer_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_manager_recognizer_get_static_delegate) });
+            }
+
             descs.AddRange(base.GetEoOps(type));
             return descs;
         }
@@ -179,7 +166,7 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
             return Efl.Canvas.GestureManager.efl_canvas_gesture_manager_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueMarshaler))]
         private delegate Eina.Value efl_gesture_manager_config_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
@@ -192,13 +179,13 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
         private static Eina.Value config_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_gesture_manager_config_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Value _ret_var = default(Eina.Value);
                 try
                 {
-                    _ret_var = ((GestureManager)wrapper).GetConfig(name);
+                    _ret_var = ((GestureManager)ws.Target).GetConfig(name);
                 }
                 catch (Exception e)
                 {
@@ -228,13 +215,13 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
         private static void config_set(System.IntPtr obj, System.IntPtr pd, System.String name, Eina.Value value)
         {
             Eina.Log.Debug("function efl_gesture_manager_config_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((GestureManager)wrapper).SetConfig(name, value);
+                    ((GestureManager)ws.Target).SetConfig(name, value);
                 }
                 catch (Exception e)
                 {
@@ -253,23 +240,23 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
         private static efl_gesture_manager_config_set_delegate efl_gesture_manager_config_set_static_delegate;
 
         
-        private delegate System.IntPtr efl_gesture_manager_recognizer_register_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.GestureRecognizer recognizer);
+        private delegate void efl_gesture_manager_recognizer_register_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.GestureRecognizer recognizer);
 
         
-        public delegate System.IntPtr efl_gesture_manager_recognizer_register_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.GestureRecognizer recognizer);
+        public delegate void efl_gesture_manager_recognizer_register_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.GestureRecognizer recognizer);
 
         public static Efl.Eo.FunctionWrapper<efl_gesture_manager_recognizer_register_api_delegate> efl_gesture_manager_recognizer_register_ptr = new Efl.Eo.FunctionWrapper<efl_gesture_manager_recognizer_register_api_delegate>(Module, "efl_gesture_manager_recognizer_register");
 
-        private static System.IntPtr recognizer_register(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.GestureRecognizer recognizer)
+        private static void recognizer_register(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.GestureRecognizer recognizer)
         {
             Eina.Log.Debug("function efl_gesture_manager_recognizer_register was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
-                                    Efl.EventDescription _ret_var = default(Efl.EventDescription);
+                                    
                 try
                 {
-                    _ret_var = ((GestureManager)wrapper).RecognizerRegister(recognizer);
+                    ((GestureManager)ws.Target).RecognizerRegister(recognizer);
                 }
                 catch (Exception e)
                 {
@@ -277,12 +264,11 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return Eina.PrimitiveConversion.ManagedToPointerAlloc(_ret_var);
-
+                        
             }
             else
             {
-                return efl_gesture_manager_recognizer_register_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), recognizer);
+                efl_gesture_manager_recognizer_register_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), recognizer);
             }
         }
 
@@ -299,13 +285,13 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
         private static void recognizer_unregister(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.GestureRecognizer recognizer)
         {
             Eina.Log.Debug("function efl_gesture_manager_recognizer_unregister was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((GestureManager)wrapper).RecognizerUnregister(recognizer);
+                    ((GestureManager)ws.Target).RecognizerUnregister(recognizer);
                 }
                 catch (Exception e)
                 {
@@ -323,7 +309,43 @@ public class GestureManager : Efl.Object, Efl.Eo.IWrapper
 
         private static efl_gesture_manager_recognizer_unregister_delegate efl_gesture_manager_recognizer_unregister_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.Canvas.GestureRecognizer efl_gesture_manager_recognizer_get_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Canvas.GestureRecognizerType gesture_type);
+
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.Canvas.GestureRecognizer efl_gesture_manager_recognizer_get_api_delegate(System.IntPtr obj,  Efl.Canvas.GestureRecognizerType gesture_type);
+
+        public static Efl.Eo.FunctionWrapper<efl_gesture_manager_recognizer_get_api_delegate> efl_gesture_manager_recognizer_get_ptr = new Efl.Eo.FunctionWrapper<efl_gesture_manager_recognizer_get_api_delegate>(Module, "efl_gesture_manager_recognizer_get");
+
+        private static Efl.Canvas.GestureRecognizer recognizer_get(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.GestureRecognizerType gesture_type)
+        {
+            Eina.Log.Debug("function efl_gesture_manager_recognizer_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    Efl.Canvas.GestureRecognizer _ret_var = default(Efl.Canvas.GestureRecognizer);
+                try
+                {
+                    _ret_var = ((GestureManager)ws.Target).GetRecognizer(gesture_type);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gesture_manager_recognizer_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), gesture_type);
+            }
+        }
+
+        private static efl_gesture_manager_recognizer_get_delegate efl_gesture_manager_recognizer_get_static_delegate;
+
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

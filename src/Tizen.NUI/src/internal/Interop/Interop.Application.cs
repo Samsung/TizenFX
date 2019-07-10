@@ -63,7 +63,14 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_GetWindow")]
             public static extern global::System.IntPtr Application_GetWindow(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_GetWindowsListSize")]
+            public static extern uint Application_GetWindowsListSize();
+
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_GetWindowsFromList")]
+            public static extern global::System.IntPtr Application_GetWindowsFromList(uint jarg1);
 
             //window handle test
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_GetWindowHandleFromNUI")]
@@ -85,11 +92,10 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_GetRegion")]
             public static extern string Application_GetRegion(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New__SWIG_4")]
             public static extern global::System.IntPtr Application_New__SWIG_4(int jarg1, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
-
 
         }
     }

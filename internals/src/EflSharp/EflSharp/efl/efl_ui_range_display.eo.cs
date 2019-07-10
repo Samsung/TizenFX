@@ -30,7 +30,7 @@ void SetRangeValue(double val);
 /// Note: If only one value is needed, the other pointer can be passed as <c>null</c>.</summary>
 /// <param name="min">The minimum value.</param>
 /// <param name="max">The maximum value.</param>
-void GetRangeMinMax(out double min, out double max);
+void GetRangeLimits(out double min, out double max);
     /// <summary>Set the minimum and maximum values for given range widget.
 /// Define the allowed range of values to be selected by the user.
 /// 
@@ -41,25 +41,25 @@ void GetRangeMinMax(out double min, out double max);
 /// Warning: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
 /// <param name="min">The minimum value.</param>
 /// <param name="max">The maximum value.</param>
-void SetRangeMinMax(double min, double max);
+void SetRangeLimits(double min, double max);
                     /// <summary>Control the range value (in percentage) on a given range widget
-/// Use this call to set range levels.
-/// 
-/// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-/// <value>The range value (must be between $0.0 and 1.0)</value>
+    /// Use this call to set range levels.
+    /// 
+    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
+    /// <value>The range value (must be between $0.0 and 1.0)</value>
     double RangeValue {
         get ;
         set ;
     }
 }
 /// <summary>Interface that contains properties regarding the displaying of a range.</summary>
-sealed public class IRangeDisplayConcrete : 
-
-IRangeDisplay
+sealed public class IRangeDisplayConcrete :
+    Efl.Eo.EoWrapper
+    , IRangeDisplay
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -74,86 +74,12 @@ IRangeDisplay
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_range_display_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IRangeDisplay"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IRangeDisplayConcrete(System.IntPtr raw)
+    private IRangeDisplayConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IRangeDisplayConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Control the range value (in percentage) on a given range widget
@@ -179,8 +105,8 @@ IRangeDisplay
     /// Note: If only one value is needed, the other pointer can be passed as <c>null</c>.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
-    public void GetRangeMinMax(out double min, out double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_min_max_get_ptr.Value.Delegate(this.NativeHandle,out min, out max);
+    public void GetRangeLimits(out double min, out double max) {
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate(this.NativeHandle,out min, out max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the minimum and maximum values for given range widget.
@@ -193,15 +119,15 @@ IRangeDisplay
     /// Warning: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
-    public void SetRangeMinMax(double min, double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_min_max_set_ptr.Value.Delegate(this.NativeHandle,min, max);
+    public void SetRangeLimits(double min, double max) {
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate(this.NativeHandle,min, max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the range value (in percentage) on a given range widget
-/// Use this call to set range levels.
-/// 
-/// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-/// <value>The range value (must be between $0.0 and 1.0)</value>
+    /// Use this call to set range levels.
+    /// 
+    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
+    /// <value>The range value (must be between $0.0 and 1.0)</value>
     public double RangeValue {
         get { return GetRangeValue(); }
         set { SetRangeValue(value); }
@@ -242,24 +168,24 @@ IRangeDisplay
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_value_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_value_set_static_delegate) });
             }
 
-            if (efl_ui_range_min_max_get_static_delegate == null)
+            if (efl_ui_range_limits_get_static_delegate == null)
             {
-                efl_ui_range_min_max_get_static_delegate = new efl_ui_range_min_max_get_delegate(range_min_max_get);
+                efl_ui_range_limits_get_static_delegate = new efl_ui_range_limits_get_delegate(range_limits_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetRangeMinMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetRangeLimits") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_min_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_min_max_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_limits_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_limits_get_static_delegate) });
             }
 
-            if (efl_ui_range_min_max_set_static_delegate == null)
+            if (efl_ui_range_limits_set_static_delegate == null)
             {
-                efl_ui_range_min_max_set_static_delegate = new efl_ui_range_min_max_set_delegate(range_min_max_set);
+                efl_ui_range_limits_set_static_delegate = new efl_ui_range_limits_set_delegate(range_limits_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetRangeMinMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetRangeLimits") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_min_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_min_max_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_limits_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_limits_set_static_delegate) });
             }
 
             return descs;
@@ -271,7 +197,7 @@ IRangeDisplay
             return Efl.Ui.IRangeDisplayConcrete.efl_ui_range_display_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_ui_range_value_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -284,13 +210,13 @@ IRangeDisplay
         private static double range_value_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_range_value_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IRangeDisplay)wrapper).GetRangeValue();
+                    _ret_var = ((IRangeDisplay)ws.Target).GetRangeValue();
                 }
                 catch (Exception e)
                 {
@@ -320,13 +246,13 @@ IRangeDisplay
         private static void range_value_set(System.IntPtr obj, System.IntPtr pd, double val)
         {
             Eina.Log.Debug("function efl_ui_range_value_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IRangeDisplay)wrapper).SetRangeValue(val);
+                    ((IRangeDisplay)ws.Target).SetRangeValue(val);
                 }
                 catch (Exception e)
                 {
@@ -345,23 +271,23 @@ IRangeDisplay
         private static efl_ui_range_value_set_delegate efl_ui_range_value_set_static_delegate;
 
         
-        private delegate void efl_ui_range_min_max_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double min,  out double max);
+        private delegate void efl_ui_range_limits_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double min,  out double max);
 
         
-        public delegate void efl_ui_range_min_max_get_api_delegate(System.IntPtr obj,  out double min,  out double max);
+        public delegate void efl_ui_range_limits_get_api_delegate(System.IntPtr obj,  out double min,  out double max);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_min_max_get_api_delegate> efl_ui_range_min_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_min_max_get_api_delegate>(Module, "efl_ui_range_min_max_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_range_limits_get_api_delegate> efl_ui_range_limits_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_limits_get_api_delegate>(Module, "efl_ui_range_limits_get");
 
-        private static void range_min_max_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
+        private static void range_limits_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
         {
-            Eina.Log.Debug("function efl_ui_range_min_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_range_limits_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         min = default(double);        max = default(double);                            
                 try
                 {
-                    ((IRangeDisplay)wrapper).GetRangeMinMax(out min, out max);
+                    ((IRangeDisplay)ws.Target).GetRangeLimits(out min, out max);
                 }
                 catch (Exception e)
                 {
@@ -373,30 +299,30 @@ IRangeDisplay
             }
             else
             {
-                efl_ui_range_min_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out min, out max);
+                efl_ui_range_limits_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out min, out max);
             }
         }
 
-        private static efl_ui_range_min_max_get_delegate efl_ui_range_min_max_get_static_delegate;
+        private static efl_ui_range_limits_get_delegate efl_ui_range_limits_get_static_delegate;
 
         
-        private delegate void efl_ui_range_min_max_set_delegate(System.IntPtr obj, System.IntPtr pd,  double min,  double max);
+        private delegate void efl_ui_range_limits_set_delegate(System.IntPtr obj, System.IntPtr pd,  double min,  double max);
 
         
-        public delegate void efl_ui_range_min_max_set_api_delegate(System.IntPtr obj,  double min,  double max);
+        public delegate void efl_ui_range_limits_set_api_delegate(System.IntPtr obj,  double min,  double max);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_min_max_set_api_delegate> efl_ui_range_min_max_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_min_max_set_api_delegate>(Module, "efl_ui_range_min_max_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_range_limits_set_api_delegate> efl_ui_range_limits_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_limits_set_api_delegate>(Module, "efl_ui_range_limits_set");
 
-        private static void range_min_max_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
+        private static void range_limits_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
         {
-            Eina.Log.Debug("function efl_ui_range_min_max_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_range_limits_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IRangeDisplay)wrapper).SetRangeMinMax(min, max);
+                    ((IRangeDisplay)ws.Target).SetRangeLimits(min, max);
                 }
                 catch (Exception e)
                 {
@@ -408,13 +334,13 @@ IRangeDisplay
             }
             else
             {
-                efl_ui_range_min_max_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), min, max);
+                efl_ui_range_limits_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), min, max);
             }
         }
 
-        private static efl_ui_range_min_max_set_delegate efl_ui_range_min_max_set_static_delegate;
+        private static efl_ui_range_limits_set_delegate efl_ui_range_limits_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

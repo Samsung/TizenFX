@@ -10,7 +10,7 @@ namespace Efl {
 /// <summary>An <see cref="Efl.LoopConsumer"/> is a class which requires one of the parents to provide an <see cref="Efl.Loop"/> interface when performing <see cref="Efl.Object.FindProvider"/>. It will enforce this by only allowing parents which provide such an interface or <c>NULL</c>.
 /// (Since EFL 1.22)</summary>
 [Efl.LoopConsumer.NativeMethods]
-public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
+public abstract class LoopConsumer : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -43,7 +43,7 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected LoopConsumer(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class LoopConsumerRealized : LoopConsumer
@@ -59,33 +59,6 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected LoopConsumer(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets a handle to the loop.
@@ -131,19 +104,30 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
+    /// <summary>Async wrapper for <see cref="FutureResolved" />.</summary>
+    /// <param name="result">The value to be delivered.
+    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using @ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> FutureResolvedAsync(Eina.Value result, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = FutureResolved( result);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
+    /// <summary>Async wrapper for <see cref="FutureRejected" />.</summary>
+    /// <param name="error">An Eina_Error value</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> FutureRejectedAsync(Eina.Error error, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = FutureRejected( error);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
     /// <summary>The loop to which this object belongs to.
-/// (Since EFL 1.22)</summary>
-/// <value>Efl loop</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>Efl loop</value>
     public Efl.Loop Loop {
         get { return GetLoop(); }
     }
@@ -213,7 +197,7 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
             return Efl.LoopConsumer.efl_loop_consumer_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Loop efl_loop_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -226,13 +210,13 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Loop loop_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Loop _ret_var = default(Efl.Loop);
                 try
                 {
-                    _ret_var = ((LoopConsumer)wrapper).GetLoop();
+                    _ret_var = ((LoopConsumer)ws.Target).GetLoop();
                 }
                 catch (Exception e)
                 {
@@ -262,14 +246,14 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
         private static  Eina.Future future_resolved(System.IntPtr obj, System.IntPtr pd, Eina.ValueNative result)
         {
             Eina.Log.Debug("function efl_loop_future_resolved was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_result = new Eina.Value(result);
                              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((LoopConsumer)wrapper).FutureResolved(_in_result);
+                    _ret_var = ((LoopConsumer)ws.Target).FutureResolved(_in_result);
                 }
                 catch (Exception e)
                 {
@@ -299,13 +283,13 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
         private static  Eina.Future future_rejected(System.IntPtr obj, System.IntPtr pd, Eina.Error error)
         {
             Eina.Log.Debug("function efl_loop_future_rejected was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                      Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((LoopConsumer)wrapper).FutureRejected(error);
+                    _ret_var = ((LoopConsumer)ws.Target).FutureRejected(error);
                 }
                 catch (Exception e)
                 {
@@ -335,13 +319,13 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
         private static Eina.Promise promise_new(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_promise_new was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Promise _ret_var = default(Eina.Promise);
                 try
                 {
-                    _ret_var = ((LoopConsumer)wrapper).NewPromise();
+                    _ret_var = ((LoopConsumer)ws.Target).NewPromise();
                 }
                 catch (Exception e)
                 {
@@ -360,7 +344,7 @@ public abstract class LoopConsumer : Efl.Object, Efl.Eo.IWrapper
 
         private static efl_loop_promise_new_delegate efl_loop_promise_new_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

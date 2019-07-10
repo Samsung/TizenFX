@@ -11,6 +11,7 @@ namespace Gfx {
 
 public partial class Constants
 {
+    /// <summary>bottom-most layer number</summary>
     public static readonly short StackLayerMin = -32768;
 }
 }
@@ -23,6 +24,7 @@ namespace Gfx {
 
 public partial class Constants
 {
+    /// <summary>top-most layer number</summary>
     public static readonly short StackLayerMax = 32767;
 }
 }
@@ -111,41 +113,41 @@ void LowerToBottom();
     /// (Since EFL 1.22)</summary>
     event EventHandler StackingChangedEvt;
     /// <summary>Retrieves the layer of its canvas that the given object is part of.
-/// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
+    /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
     short Layer {
         get ;
         set ;
     }
     /// <summary>Get the Evas object stacked right below <c>obj</c>
-/// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
-/// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
+    /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
+    /// 
+    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     Efl.Gfx.IStack Below {
         get ;
     }
     /// <summary>Get the Evas object stacked right above <c>obj</c>
-/// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
-/// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
+    /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
+    /// 
+    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     Efl.Gfx.IStack Above {
         get ;
     }
 }
 /// <summary>Efl graphics stack interface
 /// (Since EFL 1.22)</summary>
-sealed public class IStackConcrete : 
-
-IStack
+sealed public class IStackConcrete :
+    Efl.Eo.EoWrapper
+    , IStack
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -160,155 +162,12 @@ IStack
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_stack_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IStack"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IStackConcrete(System.IntPtr raw)
+    private IStackConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IStackConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Object stacking was changed.
@@ -319,10 +178,9 @@ IStack
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -461,28 +319,28 @@ IStack
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Retrieves the layer of its canvas that the given object is part of.
-/// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
+    /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
     public short Layer {
         get { return GetLayer(); }
         set { SetLayer(value); }
     }
     /// <summary>Get the Evas object stacked right below <c>obj</c>
-/// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
-/// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
+    /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
+    /// 
+    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     public Efl.Gfx.IStack Below {
         get { return GetBelow(); }
     }
     /// <summary>Get the Evas object stacked right above <c>obj</c>
-/// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
-/// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
+    /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
+    /// 
+    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     public Efl.Gfx.IStack Above {
         get { return GetAbove(); }
     }
@@ -591,7 +449,7 @@ IStack
             return Efl.Gfx.IStackConcrete.efl_gfx_stack_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate short efl_gfx_stack_layer_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -604,13 +462,13 @@ IStack
         private static short layer_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_layer_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             short _ret_var = default(short);
                 try
                 {
-                    _ret_var = ((IStack)wrapper).GetLayer();
+                    _ret_var = ((IStack)ws.Target).GetLayer();
                 }
                 catch (Exception e)
                 {
@@ -640,13 +498,13 @@ IStack
         private static void layer_set(System.IntPtr obj, System.IntPtr pd, short l)
         {
             Eina.Log.Debug("function efl_gfx_stack_layer_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IStack)wrapper).SetLayer(l);
+                    ((IStack)ws.Target).SetLayer(l);
                 }
                 catch (Exception e)
                 {
@@ -675,13 +533,13 @@ IStack
         private static Efl.Gfx.IStack below_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_below_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IStack _ret_var = default(Efl.Gfx.IStack);
                 try
                 {
-                    _ret_var = ((IStack)wrapper).GetBelow();
+                    _ret_var = ((IStack)ws.Target).GetBelow();
                 }
                 catch (Exception e)
                 {
@@ -711,13 +569,13 @@ IStack
         private static Efl.Gfx.IStack above_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_above_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IStack _ret_var = default(Efl.Gfx.IStack);
                 try
                 {
-                    _ret_var = ((IStack)wrapper).GetAbove();
+                    _ret_var = ((IStack)ws.Target).GetAbove();
                 }
                 catch (Exception e)
                 {
@@ -747,13 +605,13 @@ IStack
         private static void stack_below(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IStack below)
         {
             Eina.Log.Debug("function efl_gfx_stack_below was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IStack)wrapper).StackBelow(below);
+                    ((IStack)ws.Target).StackBelow(below);
                 }
                 catch (Exception e)
                 {
@@ -782,13 +640,13 @@ IStack
         private static void raise_to_top(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_raise_to_top was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IStack)wrapper).RaiseToTop();
+                    ((IStack)ws.Target).RaiseToTop();
                 }
                 catch (Exception e)
                 {
@@ -817,13 +675,13 @@ IStack
         private static void stack_above(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IStack above)
         {
             Eina.Log.Debug("function efl_gfx_stack_above was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IStack)wrapper).StackAbove(above);
+                    ((IStack)ws.Target).StackAbove(above);
                 }
                 catch (Exception e)
                 {
@@ -852,13 +710,13 @@ IStack
         private static void lower_to_bottom(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_lower_to_bottom was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IStack)wrapper).LowerToBottom();
+                    ((IStack)ws.Target).LowerToBottom();
                 }
                 catch (Exception e)
                 {
@@ -876,7 +734,7 @@ IStack
 
         private static efl_gfx_stack_lower_to_bottom_delegate efl_gfx_stack_lower_to_bottom_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

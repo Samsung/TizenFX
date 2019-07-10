@@ -13,7 +13,7 @@ namespace Vg {
 
 /// <summary>Efl vector graphics gradient radial class</summary>
 [Efl.Canvas.Vg.GradientRadial.NativeMethods]
-public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IGradientRadial
+public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -46,7 +46,7 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected GradientRadial(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="GradientRadial"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -55,33 +55,6 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected GradientRadial(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the center of this radial gradient.</summary>
@@ -126,7 +99,7 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets the center radius of this radial gradient.</summary>
-/// <value>Center radius</value>
+    /// <value>Center radius</value>
     public double Radius {
         get { return GetRadius(); }
         set { SetRadius(value); }
@@ -217,7 +190,7 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
             return Efl.Canvas.Vg.GradientRadial.efl_canvas_vg_gradient_radial_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_gradient_radial_center_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double x,  out double y);
@@ -230,13 +203,13 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void center_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_center_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((GradientRadial)wrapper).GetCenter(out x, out y);
+                    ((GradientRadial)ws.Target).GetCenter(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -265,13 +238,13 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void center_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_center_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((GradientRadial)wrapper).SetCenter(x, y);
+                    ((GradientRadial)ws.Target).SetCenter(x, y);
                 }
                 catch (Exception e)
                 {
@@ -300,13 +273,13 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static double radius_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_radius_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((GradientRadial)wrapper).GetRadius();
+                    _ret_var = ((GradientRadial)ws.Target).GetRadius();
                 }
                 catch (Exception e)
                 {
@@ -336,13 +309,13 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void radius_set(System.IntPtr obj, System.IntPtr pd, double r)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_radius_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((GradientRadial)wrapper).SetRadius(r);
+                    ((GradientRadial)ws.Target).SetRadius(r);
                 }
                 catch (Exception e)
                 {
@@ -371,13 +344,13 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void focal_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_focal_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((GradientRadial)wrapper).GetFocal(out x, out y);
+                    ((GradientRadial)ws.Target).GetFocal(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -406,13 +379,13 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void focal_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_focal_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((GradientRadial)wrapper).SetFocal(x, y);
+                    ((GradientRadial)ws.Target).SetFocal(x, y);
                 }
                 catch (Exception e)
                 {
@@ -430,7 +403,7 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
 
         private static efl_gfx_gradient_radial_focal_set_delegate efl_gfx_gradient_radial_focal_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

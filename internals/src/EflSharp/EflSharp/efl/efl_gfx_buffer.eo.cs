@@ -102,43 +102,43 @@ bool SetBufferManaged(Eina.Slice slice, Eina.Size2D size, int stride, Efl.Gfx.Co
 /// <returns>The data slice. The memory pointer will be <c>null</c> in case of failure.</returns>
 Eina.Slice GetBufferManaged(int plane);
                                                         /// <summary>Rectangular size of the pixel buffer as allocated in memory.</summary>
-/// <value>Size of the buffer in pixels.</value>
+    /// <value>Size of the buffer in pixels.</value>
     Eina.Size2D BufferSize {
         get ;
         set ;
     }
     /// <summary>The colorspace defines how pixels are encoded in the image in memory.
-/// By default, images are encoded in 32-bit BGRA, ie. each pixel takes 4 bytes in memory, with each channel B,G,R,A encoding the color with values from 0 to 255.
-/// 
-/// All images used in EFL use alpha-premultipied BGRA values, which means that for each pixel, B &lt;= A, G &lt;= A and R &lt;= A.</summary>
-/// <value>Colorspace</value>
+    /// By default, images are encoded in 32-bit BGRA, ie. each pixel takes 4 bytes in memory, with each channel B,G,R,A encoding the color with values from 0 to 255.
+    /// 
+    /// All images used in EFL use alpha-premultipied BGRA values, which means that for each pixel, B &lt;= A, G &lt;= A and R &lt;= A.</summary>
+    /// <value>Colorspace</value>
     Efl.Gfx.Colorspace Colorspace {
         get ;
     }
     /// <summary>Indicates whether the alpha channel should be used.
-/// This does not indicate whether the image source file contains an alpha channel, only whether to respect it or discard it.</summary>
-/// <value>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</value>
+    /// This does not indicate whether the image source file contains an alpha channel, only whether to respect it or discard it.</summary>
+    /// <value>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</value>
     bool Alpha {
         get ;
         set ;
     }
     /// <summary>Length in bytes of one row of pixels in memory.
-/// Usually this will be equal to width * 4, with a plain BGRA image. This may return 0 if the stride is not applicable.
-/// 
-/// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
-/// <value>Stride</value>
+    /// Usually this will be equal to width * 4, with a plain BGRA image. This may return 0 if the stride is not applicable.
+    /// 
+    /// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
+    /// <value>Stride</value>
     int Stride {
         get ;
     }
 }
 /// <summary>Common APIs for all objects representing images and 2D pixel buffers.</summary>
-sealed public class IBufferConcrete : 
-
-IBuffer
+sealed public class IBufferConcrete :
+    Efl.Eo.EoWrapper
+    , IBuffer
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -153,86 +153,12 @@ IBuffer
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_buffer_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IBuffer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IBufferConcrete(System.IntPtr raw)
+    private IBufferConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IBufferConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Rectangular size of the pixel buffer as allocated in memory.</summary>
@@ -380,31 +306,31 @@ IBuffer
                         return _ret_var;
  }
     /// <summary>Rectangular size of the pixel buffer as allocated in memory.</summary>
-/// <value>Size of the buffer in pixels.</value>
+    /// <value>Size of the buffer in pixels.</value>
     public Eina.Size2D BufferSize {
         get { return GetBufferSize(); }
         set { SetBufferSize(value); }
     }
     /// <summary>The colorspace defines how pixels are encoded in the image in memory.
-/// By default, images are encoded in 32-bit BGRA, ie. each pixel takes 4 bytes in memory, with each channel B,G,R,A encoding the color with values from 0 to 255.
-/// 
-/// All images used in EFL use alpha-premultipied BGRA values, which means that for each pixel, B &lt;= A, G &lt;= A and R &lt;= A.</summary>
-/// <value>Colorspace</value>
+    /// By default, images are encoded in 32-bit BGRA, ie. each pixel takes 4 bytes in memory, with each channel B,G,R,A encoding the color with values from 0 to 255.
+    /// 
+    /// All images used in EFL use alpha-premultipied BGRA values, which means that for each pixel, B &lt;= A, G &lt;= A and R &lt;= A.</summary>
+    /// <value>Colorspace</value>
     public Efl.Gfx.Colorspace Colorspace {
         get { return GetColorspace(); }
     }
     /// <summary>Indicates whether the alpha channel should be used.
-/// This does not indicate whether the image source file contains an alpha channel, only whether to respect it or discard it.</summary>
-/// <value>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</value>
+    /// This does not indicate whether the image source file contains an alpha channel, only whether to respect it or discard it.</summary>
+    /// <value>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</value>
     public bool Alpha {
         get { return GetAlpha(); }
         set { SetAlpha(value); }
     }
     /// <summary>Length in bytes of one row of pixels in memory.
-/// Usually this will be equal to width * 4, with a plain BGRA image. This may return 0 if the stride is not applicable.
-/// 
-/// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
-/// <value>Stride</value>
+    /// Usually this will be equal to width * 4, with a plain BGRA image. This may return 0 if the stride is not applicable.
+    /// 
+    /// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
+    /// <value>Stride</value>
     public int Stride {
         get { return GetStride(); }
     }
@@ -563,7 +489,7 @@ IBuffer
             return Efl.Gfx.IBufferConcrete.efl_gfx_buffer_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Size2D.NativeStruct efl_gfx_buffer_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -576,13 +502,13 @@ IBuffer
         private static Eina.Size2D.NativeStruct buffer_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).GetBufferSize();
+                    _ret_var = ((IBuffer)ws.Target).GetBufferSize();
                 }
                 catch (Exception e)
                 {
@@ -612,14 +538,14 @@ IBuffer
         private static void buffer_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_gfx_buffer_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_sz = sz;
                             
                 try
                 {
-                    ((IBuffer)wrapper).SetBufferSize(_in_sz);
+                    ((IBuffer)ws.Target).SetBufferSize(_in_sz);
                 }
                 catch (Exception e)
                 {
@@ -648,13 +574,13 @@ IBuffer
         private static Efl.Gfx.Colorspace colorspace_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_colorspace_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.Colorspace _ret_var = default(Efl.Gfx.Colorspace);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).GetColorspace();
+                    _ret_var = ((IBuffer)ws.Target).GetColorspace();
                 }
                 catch (Exception e)
                 {
@@ -684,13 +610,13 @@ IBuffer
         private static bool alpha_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_alpha_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).GetAlpha();
+                    _ret_var = ((IBuffer)ws.Target).GetAlpha();
                 }
                 catch (Exception e)
                 {
@@ -720,13 +646,13 @@ IBuffer
         private static void alpha_set(System.IntPtr obj, System.IntPtr pd, bool alpha)
         {
             Eina.Log.Debug("function efl_gfx_buffer_alpha_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IBuffer)wrapper).SetAlpha(alpha);
+                    ((IBuffer)ws.Target).SetAlpha(alpha);
                 }
                 catch (Exception e)
                 {
@@ -755,13 +681,13 @@ IBuffer
         private static int stride_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_stride_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).GetStride();
+                    _ret_var = ((IBuffer)ws.Target).GetStride();
                 }
                 catch (Exception e)
                 {
@@ -791,13 +717,13 @@ IBuffer
         private static void buffer_borders_get(System.IntPtr obj, System.IntPtr pd, out uint l, out uint r, out uint t, out uint b)
         {
             Eina.Log.Debug("function efl_gfx_buffer_borders_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(uint);        r = default(uint);        t = default(uint);        b = default(uint);                                            
                 try
                 {
-                    ((IBuffer)wrapper).GetBufferBorders(out l, out r, out t, out b);
+                    ((IBuffer)ws.Target).GetBufferBorders(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -826,14 +752,14 @@ IBuffer
         private static void buffer_update_add(System.IntPtr obj, System.IntPtr pd, ref Eina.Rect.NativeStruct region)
         {
             Eina.Log.Debug("function efl_gfx_buffer_update_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_region = region;
                             
                 try
                 {
-                    ((IBuffer)wrapper).AddBufferUpdate(ref _in_region);
+                    ((IBuffer)ws.Target).AddBufferUpdate(ref _in_region);
                 }
                 catch (Exception e)
                 {
@@ -863,14 +789,14 @@ IBuffer
         private static Eina.RwSlice buffer_map(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.BufferAccessMode mode, ref Eina.Rect.NativeStruct region, Efl.Gfx.Colorspace cspace, int plane, out int stride)
         {
             Eina.Log.Debug("function efl_gfx_buffer_map was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Rect _in_region = region;
                                                                 stride = default(int);                                                    Eina.RwSlice _ret_var = default(Eina.RwSlice);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).BufferMap(mode, ref _in_region, cspace, plane, out stride);
+                    _ret_var = ((IBuffer)ws.Target).BufferMap(mode, ref _in_region, cspace, plane, out stride);
                 }
                 catch (Exception e)
                 {
@@ -901,13 +827,13 @@ IBuffer
         private static bool buffer_unmap(System.IntPtr obj, System.IntPtr pd, Eina.RwSlice slice)
         {
             Eina.Log.Debug("function efl_gfx_buffer_unmap was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).BufferUnmap(slice);
+                    _ret_var = ((IBuffer)ws.Target).BufferUnmap(slice);
                 }
                 catch (Exception e)
                 {
@@ -937,15 +863,15 @@ IBuffer
         private static bool buffer_copy_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr slice, Eina.Size2D.NativeStruct size, int stride, Efl.Gfx.Colorspace cspace, int plane)
         {
             Eina.Log.Debug("function efl_gfx_buffer_copy_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_slice = Eina.PrimitiveConversion.PointerToManaged<Eina.Slice>(slice);
         Eina.Size2D _in_size = size;
                                                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).SetBufferCopy(_in_slice, _in_size, stride, cspace, plane);
+                    _ret_var = ((IBuffer)ws.Target).SetBufferCopy(_in_slice, _in_size, stride, cspace, plane);
                 }
                 catch (Exception e)
                 {
@@ -975,15 +901,15 @@ IBuffer
         private static bool buffer_managed_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr slice, Eina.Size2D.NativeStruct size, int stride, Efl.Gfx.Colorspace cspace, int plane)
         {
             Eina.Log.Debug("function efl_gfx_buffer_managed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_slice = Eina.PrimitiveConversion.PointerToManaged<Eina.Slice>(slice);
         Eina.Size2D _in_size = size;
                                                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).SetBufferManaged(_in_slice, _in_size, stride, cspace, plane);
+                    _ret_var = ((IBuffer)ws.Target).SetBufferManaged(_in_slice, _in_size, stride, cspace, plane);
                 }
                 catch (Exception e)
                 {
@@ -1013,13 +939,13 @@ IBuffer
         private static Eina.Slice buffer_managed_get(System.IntPtr obj, System.IntPtr pd, int plane)
         {
             Eina.Log.Debug("function efl_gfx_buffer_managed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Slice _ret_var = default(Eina.Slice);
                 try
                 {
-                    _ret_var = ((IBuffer)wrapper).GetBufferManaged(plane);
+                    _ret_var = ((IBuffer)ws.Target).GetBufferManaged(plane);
                 }
                 catch (Exception e)
                 {
@@ -1038,7 +964,7 @@ IBuffer
 
         private static efl_gfx_buffer_managed_get_delegate efl_gfx_buffer_managed_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

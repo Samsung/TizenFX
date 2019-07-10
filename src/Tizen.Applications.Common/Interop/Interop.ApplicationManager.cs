@@ -347,6 +347,7 @@ internal static partial class Interop
             internal IntPtr icon;
             internal IntPtr uri;
             internal IntPtr image;
+            internal IntPtr compId;
         };
 
         [DllImport(Libraries.Rua, EntryPoint = "rua_history_get_rec")]

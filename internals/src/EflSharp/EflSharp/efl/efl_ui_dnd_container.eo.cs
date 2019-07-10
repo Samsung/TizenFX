@@ -36,19 +36,19 @@ void AddDropItem(Efl.Ui.SelectionFormat format, Efl.Dnd.ItemGet item_func, uint 
     /// <param name="seat">Specified seat for multiple seats case.</param>
 void DelDropItem(uint seat);
                             /// <summary>The time since mouse down happens to drag starts.</summary>
-/// <value>The drag delay time</value>
+    /// <value>The drag delay time</value>
     double DragDelayTime {
         get ;
         set ;
     }
 }
-sealed public class IDndContainerConcrete : 
-
-IDndContainer
+sealed public class IDndContainerConcrete :
+    Efl.Eo.EoWrapper
+    , IDndContainer
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -63,86 +63,12 @@ IDndContainer
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_dnd_container_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IDndContainer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IDndContainerConcrete(System.IntPtr raw)
+    private IDndContainerConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IDndContainerConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The time since mouse down happens to drag starts.</summary>
@@ -192,7 +118,7 @@ IDndContainer
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The time since mouse down happens to drag starts.</summary>
-/// <value>The drag delay time</value>
+    /// <value>The drag delay time</value>
     public double DragDelayTime {
         get { return GetDragDelayTime(); }
         set { SetDragDelayTime(value); }
@@ -282,7 +208,7 @@ IDndContainer
             return Efl.Ui.IDndContainerConcrete.efl_ui_dnd_container_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_ui_dnd_container_drag_delay_time_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -295,13 +221,13 @@ IDndContainer
         private static double drag_delay_time_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_dnd_container_drag_delay_time_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IDndContainerConcrete)wrapper).GetDragDelayTime();
+                    _ret_var = ((IDndContainer)ws.Target).GetDragDelayTime();
                 }
                 catch (Exception e)
                 {
@@ -331,13 +257,13 @@ IDndContainer
         private static void drag_delay_time_set(System.IntPtr obj, System.IntPtr pd, double time)
         {
             Eina.Log.Debug("function efl_ui_dnd_container_drag_delay_time_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IDndContainerConcrete)wrapper).SetDragDelayTime(time);
+                    ((IDndContainer)ws.Target).SetDragDelayTime(time);
                 }
                 catch (Exception e)
                 {
@@ -366,8 +292,8 @@ IDndContainer
         private static void drag_item_add(System.IntPtr obj, System.IntPtr pd, IntPtr data_func_data, Efl.Dnd.DragDataGetInternal data_func, EinaFreeCb data_func_free_cb, IntPtr item_func_data, Efl.Dnd.ItemGetInternal item_func, EinaFreeCb item_func_free_cb, IntPtr icon_func_data, Efl.Dnd.DragIconCreateInternal icon_func, EinaFreeCb icon_func_free_cb, IntPtr icon_list_func_data, Efl.Dnd.DragIconListCreateInternal icon_list_func, EinaFreeCb icon_list_func_free_cb, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_container_drag_item_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                             Efl.Dnd.DragDataGetWrapper data_func_wrapper = new Efl.Dnd.DragDataGetWrapper(data_func, data_func_data, data_func_free_cb);
             Efl.Dnd.ItemGetWrapper item_func_wrapper = new Efl.Dnd.ItemGetWrapper(item_func, item_func_data, item_func_free_cb);
@@ -376,7 +302,7 @@ IDndContainer
                     
                 try
                 {
-                    ((IDndContainerConcrete)wrapper).AddDragItem(data_func_wrapper.ManagedCb, item_func_wrapper.ManagedCb, icon_func_wrapper.ManagedCb, icon_list_func_wrapper.ManagedCb, seat);
+                    ((IDndContainer)ws.Target).AddDragItem(data_func_wrapper.ManagedCb, item_func_wrapper.ManagedCb, icon_func_wrapper.ManagedCb, icon_list_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -405,13 +331,13 @@ IDndContainer
         private static void drag_item_del(System.IntPtr obj, System.IntPtr pd, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_container_drag_item_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IDndContainerConcrete)wrapper).DelDragItem(seat);
+                    ((IDndContainer)ws.Target).DelDragItem(seat);
                 }
                 catch (Exception e)
                 {
@@ -440,14 +366,14 @@ IDndContainer
         private static void drop_item_add(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionFormat format, IntPtr item_func_data, Efl.Dnd.ItemGetInternal item_func, EinaFreeCb item_func_free_cb, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_container_drop_item_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                     Efl.Dnd.ItemGetWrapper item_func_wrapper = new Efl.Dnd.ItemGetWrapper(item_func, item_func_data, item_func_free_cb);
                     
                 try
                 {
-                    ((IDndContainerConcrete)wrapper).AddDropItem(format, item_func_wrapper.ManagedCb, seat);
+                    ((IDndContainer)ws.Target).AddDropItem(format, item_func_wrapper.ManagedCb, seat);
                 }
                 catch (Exception e)
                 {
@@ -476,13 +402,13 @@ IDndContainer
         private static void drop_item_del(System.IntPtr obj, System.IntPtr pd, uint seat)
         {
             Eina.Log.Debug("function efl_ui_dnd_container_drop_item_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IDndContainerConcrete)wrapper).DelDropItem(seat);
+                    ((IDndContainer)ws.Target).DelDropItem(seat);
                 }
                 catch (Exception e)
                 {
@@ -500,7 +426,7 @@ IDndContainer
 
         private static efl_ui_dnd_container_drop_item_del_delegate efl_ui_dnd_container_drop_item_del_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -11,7 +11,7 @@ namespace Input {
 
 /// <summary>Represents a single key event from a keyboard or similar device.</summary>
 [Efl.Input.Key.NativeMethods]
-public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,Efl.Input.IState
+public class Key : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IState
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -44,7 +44,7 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Key(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Key"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     protected Key(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary><c>true</c> if the key is down, <c>false</c> if it is released.</summary>
@@ -139,16 +112,16 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
     /// <summary>A UTF8 string if this keystroke has modified a string in the middle of being composed.
     /// Note: This string replaces the previous one</summary>
     /// <returns>Composed key string in UTF8</returns>
-    virtual public System.String GetCompose() {
-         var _ret_var = Efl.Input.Key.NativeMethods.efl_input_key_compose_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public System.String GetComposeString() {
+         var _ret_var = Efl.Input.Key.NativeMethods.efl_input_key_compose_string_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>A UTF8 string if this keystroke has modified a string in the middle of being composed.
     /// Note: This string replaces the previous one</summary>
     /// <param name="val">Composed key string in UTF8</param>
-    virtual public void SetCompose(System.String val) {
-                                 Efl.Input.Key.NativeMethods.efl_input_key_compose_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+    virtual public void SetComposeString(System.String val) {
+                                 Efl.Input.Key.NativeMethods.efl_input_key_compose_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Key scan code numeric value.</summary>
@@ -271,69 +244,69 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
                                         return _ret_var;
  }
     /// <summary><c>true</c> if the key is down, <c>false</c> if it is released.</summary>
-/// <value><c>true</c> if the key is pressed, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the key is pressed, <c>false</c> otherwise</value>
     public bool Pressed {
         get { return GetPressed(); }
         set { SetPressed(value); }
     }
     /// <summary>Name string of the key.</summary>
-/// <value>Key name</value>
+    /// <value>Key name</value>
     public System.String KeyName {
         get { return GetKeyName(); }
         set { SetKeyName(value); }
     }
     /// <summary>A UTF8 string if this keystroke has produced a visible string to be added.</summary>
-/// <value>Visible string from key press in UTF8</value>
+    /// <value>Visible string from key press in UTF8</value>
     public System.String String {
         get { return GetString(); }
         set { SetString(value); }
     }
     /// <summary>A UTF8 string if this keystroke has modified a string in the middle of being composed.
-/// Note: This string replaces the previous one</summary>
-/// <value>Composed key string in UTF8</value>
-    public System.String Compose {
-        get { return GetCompose(); }
-        set { SetCompose(value); }
+    /// Note: This string replaces the previous one</summary>
+    /// <value>Composed key string in UTF8</value>
+    public System.String ComposeString {
+        get { return GetComposeString(); }
+        set { SetComposeString(value); }
     }
     /// <summary>Key scan code numeric value.</summary>
-/// <value>Key scan code</value>
+    /// <value>Key scan code</value>
     public int KeyCode {
         get { return GetKeyCode(); }
         set { SetKeyCode(value); }
     }
     /// <summary>The time at which an event was generated.
-/// If the event is generated by a server (eg. X.org or Wayland), then the time may be set by the server. Usually this time will be based on the monotonic clock, if available, but this class can not guarantee it.</summary>
-/// <value>Time in milliseconds when the event happened.</value>
+    /// If the event is generated by a server (eg. X.org or Wayland), then the time may be set by the server. Usually this time will be based on the monotonic clock, if available, but this class can not guarantee it.</summary>
+    /// <value>Time in milliseconds when the event happened.</value>
     public double Timestamp {
         get { return GetTimestamp(); }
         set { SetTimestamp(value); }
     }
     /// <summary>Input device that originated this event.</summary>
-/// <value>Input device origin</value>
+    /// <value>Input device origin</value>
     public Efl.Input.Device Device {
         get { return GetDevice(); }
         set { SetDevice(value); }
     }
     /// <summary>Extra flags for this event, may be changed by the user.</summary>
-/// <value>Input event flags</value>
+    /// <value>Input event flags</value>
     public Efl.Input.Flags EventFlags {
         get { return GetEventFlags(); }
         set { SetEventFlags(value); }
     }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event is on hold.</summary>
-/// <value><c>true</c> if the event is on hold, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the event is on hold, <c>false</c> otherwise</value>
     public bool Processed {
         get { return GetProcessed(); }
         set { SetProcessed(value); }
     }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event happened while scrolling.</summary>
-/// <value><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</value>
     public bool Scrolling {
         get { return GetScrolling(); }
         set { SetScrolling(value); }
     }
     /// <summary><c>true</c> if the event was fake, not triggered by real hardware.</summary>
-/// <value><c>true</c> if the event was not from real hardware, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the event was not from real hardware, <c>false</c> otherwise</value>
     public bool Fake {
         get { return GetFake(); }
     }
@@ -433,24 +406,24 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_string_set_static_delegate) });
             }
 
-            if (efl_input_key_compose_get_static_delegate == null)
+            if (efl_input_key_compose_string_get_static_delegate == null)
             {
-                efl_input_key_compose_get_static_delegate = new efl_input_key_compose_get_delegate(compose_get);
+                efl_input_key_compose_string_get_static_delegate = new efl_input_key_compose_string_get_delegate(compose_string_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetCompose") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetComposeString") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_string_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_string_get_static_delegate) });
             }
 
-            if (efl_input_key_compose_set_static_delegate == null)
+            if (efl_input_key_compose_string_set_static_delegate == null)
             {
-                efl_input_key_compose_set_static_delegate = new efl_input_key_compose_set_delegate(compose_set);
+                efl_input_key_compose_string_set_static_delegate = new efl_input_key_compose_string_set_delegate(compose_string_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetCompose") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetComposeString") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_key_compose_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_key_compose_string_set_static_delegate) });
             }
 
             if (efl_input_key_code_get_static_delegate == null)
@@ -633,7 +606,7 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
             return Efl.Input.Key.efl_input_key_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_input_key_pressed_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -646,13 +619,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static bool pressed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_key_pressed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetPressed();
+                    _ret_var = ((Key)ws.Target).GetPressed();
                 }
                 catch (Exception e)
                 {
@@ -682,13 +655,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void pressed_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function efl_input_key_pressed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetPressed(val);
+                    ((Key)ws.Target).SetPressed(val);
                 }
                 catch (Exception e)
                 {
@@ -717,13 +690,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static System.String key_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_key_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetKeyName();
+                    _ret_var = ((Key)ws.Target).GetKeyName();
                 }
                 catch (Exception e)
                 {
@@ -753,13 +726,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void key_name_set(System.IntPtr obj, System.IntPtr pd, System.String val)
         {
             Eina.Log.Debug("function efl_input_key_name_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetKeyName(val);
+                    ((Key)ws.Target).SetKeyName(val);
                 }
                 catch (Exception e)
                 {
@@ -788,13 +761,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static System.String key_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_key_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetKey();
+                    _ret_var = ((Key)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -824,13 +797,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void key_set(System.IntPtr obj, System.IntPtr pd, System.String val)
         {
             Eina.Log.Debug("function efl_input_key_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetKey(val);
+                    ((Key)ws.Target).SetKey(val);
                 }
                 catch (Exception e)
                 {
@@ -859,13 +832,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static System.String string_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_key_string_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetString();
+                    _ret_var = ((Key)ws.Target).GetString();
                 }
                 catch (Exception e)
                 {
@@ -895,13 +868,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void string_set(System.IntPtr obj, System.IntPtr pd, System.String val)
         {
             Eina.Log.Debug("function efl_input_key_string_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetString(val);
+                    ((Key)ws.Target).SetString(val);
                 }
                 catch (Exception e)
                 {
@@ -920,23 +893,23 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static efl_input_key_string_set_delegate efl_input_key_string_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_input_key_compose_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        private delegate System.String efl_input_key_compose_string_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_input_key_compose_get_api_delegate(System.IntPtr obj);
+        public delegate System.String efl_input_key_compose_string_get_api_delegate(System.IntPtr obj);
 
-        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_get_api_delegate> efl_input_key_compose_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_get_api_delegate>(Module, "efl_input_key_compose_get");
+        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_string_get_api_delegate> efl_input_key_compose_string_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_string_get_api_delegate>(Module, "efl_input_key_compose_string_get");
 
-        private static System.String compose_get(System.IntPtr obj, System.IntPtr pd)
+        private static System.String compose_string_get(System.IntPtr obj, System.IntPtr pd)
         {
-            Eina.Log.Debug("function efl_input_key_compose_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_input_key_compose_string_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetCompose();
+                    _ret_var = ((Key)ws.Target).GetComposeString();
                 }
                 catch (Exception e)
                 {
@@ -949,30 +922,30 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
             }
             else
             {
-                return efl_input_key_compose_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_input_key_compose_string_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_input_key_compose_get_delegate efl_input_key_compose_get_static_delegate;
+        private static efl_input_key_compose_string_get_delegate efl_input_key_compose_string_get_static_delegate;
 
         
-        private delegate void efl_input_key_compose_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
+        private delegate void efl_input_key_compose_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
 
         
-        public delegate void efl_input_key_compose_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
+        public delegate void efl_input_key_compose_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String val);
 
-        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_set_api_delegate> efl_input_key_compose_set_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_set_api_delegate>(Module, "efl_input_key_compose_set");
+        public static Efl.Eo.FunctionWrapper<efl_input_key_compose_string_set_api_delegate> efl_input_key_compose_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_input_key_compose_string_set_api_delegate>(Module, "efl_input_key_compose_string_set");
 
-        private static void compose_set(System.IntPtr obj, System.IntPtr pd, System.String val)
+        private static void compose_string_set(System.IntPtr obj, System.IntPtr pd, System.String val)
         {
-            Eina.Log.Debug("function efl_input_key_compose_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_input_key_compose_string_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetCompose(val);
+                    ((Key)ws.Target).SetComposeString(val);
                 }
                 catch (Exception e)
                 {
@@ -984,11 +957,11 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
             }
             else
             {
-                efl_input_key_compose_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), val);
+                efl_input_key_compose_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), val);
             }
         }
 
-        private static efl_input_key_compose_set_delegate efl_input_key_compose_set_static_delegate;
+        private static efl_input_key_compose_string_set_delegate efl_input_key_compose_string_set_static_delegate;
 
         
         private delegate int efl_input_key_code_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1001,13 +974,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static int key_code_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_key_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetKeyCode();
+                    _ret_var = ((Key)ws.Target).GetKeyCode();
                 }
                 catch (Exception e)
                 {
@@ -1037,13 +1010,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void key_code_set(System.IntPtr obj, System.IntPtr pd, int val)
         {
             Eina.Log.Debug("function efl_input_key_code_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetKeyCode(val);
+                    ((Key)ws.Target).SetKeyCode(val);
                 }
                 catch (Exception e)
                 {
@@ -1072,13 +1045,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static Efl.IDuplicate duplicate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_duplicate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.IDuplicate _ret_var = default(Efl.IDuplicate);
                 try
                 {
-                    _ret_var = ((Key)wrapper).Duplicate();
+                    _ret_var = ((Key)ws.Target).Duplicate();
                 }
                 catch (Exception e)
                 {
@@ -1108,13 +1081,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static double timestamp_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_timestamp_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetTimestamp();
+                    _ret_var = ((Key)ws.Target).GetTimestamp();
                 }
                 catch (Exception e)
                 {
@@ -1144,13 +1117,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void timestamp_set(System.IntPtr obj, System.IntPtr pd, double ms)
         {
             Eina.Log.Debug("function efl_input_timestamp_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetTimestamp(ms);
+                    ((Key)ws.Target).SetTimestamp(ms);
                 }
                 catch (Exception e)
                 {
@@ -1179,13 +1152,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static Efl.Input.Device device_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetDevice();
+                    _ret_var = ((Key)ws.Target).GetDevice();
                 }
                 catch (Exception e)
                 {
@@ -1215,13 +1188,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void device_set(System.IntPtr obj, System.IntPtr pd, Efl.Input.Device dev)
         {
             Eina.Log.Debug("function efl_input_device_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetDevice(dev);
+                    ((Key)ws.Target).SetDevice(dev);
                 }
                 catch (Exception e)
                 {
@@ -1250,13 +1223,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static Efl.Input.Flags event_flags_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_event_flags_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Flags _ret_var = default(Efl.Input.Flags);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetEventFlags();
+                    _ret_var = ((Key)ws.Target).GetEventFlags();
                 }
                 catch (Exception e)
                 {
@@ -1286,13 +1259,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void event_flags_set(System.IntPtr obj, System.IntPtr pd, Efl.Input.Flags flags)
         {
             Eina.Log.Debug("function efl_input_event_flags_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetEventFlags(flags);
+                    ((Key)ws.Target).SetEventFlags(flags);
                 }
                 catch (Exception e)
                 {
@@ -1321,13 +1294,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static bool processed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_processed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetProcessed();
+                    _ret_var = ((Key)ws.Target).GetProcessed();
                 }
                 catch (Exception e)
                 {
@@ -1357,13 +1330,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void processed_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function efl_input_processed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetProcessed(val);
+                    ((Key)ws.Target).SetProcessed(val);
                 }
                 catch (Exception e)
                 {
@@ -1392,13 +1365,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static bool scrolling_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_scrolling_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetScrolling();
+                    _ret_var = ((Key)ws.Target).GetScrolling();
                 }
                 catch (Exception e)
                 {
@@ -1428,13 +1401,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void scrolling_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function efl_input_scrolling_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Key)wrapper).SetScrolling(val);
+                    ((Key)ws.Target).SetScrolling(val);
                 }
                 catch (Exception e)
                 {
@@ -1463,13 +1436,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static bool fake_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_fake_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetFake();
+                    _ret_var = ((Key)ws.Target).GetFake();
                 }
                 catch (Exception e)
                 {
@@ -1499,13 +1472,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static void reset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_reset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Key)wrapper).Reset();
+                    ((Key)ws.Target).Reset();
                 }
                 catch (Exception e)
                 {
@@ -1534,13 +1507,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static bool modifier_enabled_get(System.IntPtr obj, System.IntPtr pd, Efl.Input.Modifier mod, Efl.Input.Device seat)
         {
             Eina.Log.Debug("function efl_input_modifier_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetModifierEnabled(mod, seat);
+                    _ret_var = ((Key)ws.Target).GetModifierEnabled(mod, seat);
                 }
                 catch (Exception e)
                 {
@@ -1570,13 +1543,13 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
         private static bool lock_enabled_get(System.IntPtr obj, System.IntPtr pd, Efl.Input.Lock kw_lock, Efl.Input.Device seat)
         {
             Eina.Log.Debug("function efl_input_lock_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Key)wrapper).GetLockEnabled(kw_lock, seat);
+                    _ret_var = ((Key)ws.Target).GetLockEnabled(kw_lock, seat);
                 }
                 catch (Exception e)
                 {
@@ -1595,7 +1568,7 @@ public class Key : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent,E
 
         private static efl_input_lock_enabled_get_delegate efl_input_lock_enabled_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

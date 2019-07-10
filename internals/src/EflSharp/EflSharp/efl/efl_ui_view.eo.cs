@@ -21,20 +21,20 @@ Efl.IModel GetModel();
 /// <param name="model">Efl model</param>
 void SetModel(Efl.IModel model);
             /// <summary>Model that is/will be</summary>
-/// <value>Efl model</value>
+    /// <value>Efl model</value>
     Efl.IModel Model {
         get ;
         set ;
     }
 }
 /// <summary>Efl UI view interface</summary>
-sealed public class IViewConcrete : 
-
-IView
+sealed public class IViewConcrete :
+    Efl.Eo.EoWrapper
+    , IView
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -49,86 +49,12 @@ IView
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_view_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IView"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IViewConcrete(System.IntPtr raw)
+    private IViewConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IViewConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Model that is/will be</summary>
@@ -145,7 +71,7 @@ IView
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Model that is/will be</summary>
-/// <value>Efl model</value>
+    /// <value>Efl model</value>
     public Efl.IModel Model {
         get { return GetModel(); }
         set { SetModel(value); }
@@ -195,7 +121,7 @@ IView
             return Efl.Ui.IViewConcrete.efl_ui_view_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.IModel efl_ui_view_model_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -208,13 +134,13 @@ IView
         private static Efl.IModel model_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_view_model_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.IModel _ret_var = default(Efl.IModel);
                 try
                 {
-                    _ret_var = ((IView)wrapper).GetModel();
+                    _ret_var = ((IView)ws.Target).GetModel();
                 }
                 catch (Exception e)
                 {
@@ -244,13 +170,13 @@ IView
         private static void model_set(System.IntPtr obj, System.IntPtr pd, Efl.IModel model)
         {
             Eina.Log.Debug("function efl_ui_view_model_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IView)wrapper).SetModel(model);
+                    ((IView)ws.Target).SetModel(model);
                 }
                 catch (Exception e)
                 {
@@ -268,7 +194,7 @@ IView
 
         private static efl_ui_view_model_set_delegate efl_ui_view_model_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -17,7 +17,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -134,6 +136,8 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
+
+        internal abstract View FindCurrentChildById(uint id);
 
     }
 } // namespace Tizen.NUI

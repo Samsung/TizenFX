@@ -292,34 +292,34 @@ void Lighting3dAbsolute(double lx, double ly, double lz, int lr, int lg, int lb,
 /// <param name="foc">The focal distance, must be greater than 0.</param>
 void Perspective3dAbsolute(double px, double py, double z0, double foc);
                                                                                                                     /// <summary>Number of points of a map.
-/// This sets the number of points of map. Currently, the number of points must be multiples of 4.
-/// (Since EFL 1.22)</summary>
-/// <value>The number of points of map</value>
+    /// This sets the number of points of map. Currently, the number of points must be multiples of 4.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The number of points of map</value>
     int MappingPointCount {
         get ;
         set ;
     }
     /// <summary>Clockwise state of a map (read-only).
-/// This determines if the output points (X and Y. Z is not used) are clockwise or counter-clockwise. This can be used for &quot;back-face culling&quot;. This is where you hide objects that &quot;face away&quot; from you. In this case objects that are not clockwise.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if clockwise, <c>false</c> if counter clockwise</value>
+    /// This determines if the output points (X and Y. Z is not used) are clockwise or counter-clockwise. This can be used for &quot;back-face culling&quot;. This is where you hide objects that &quot;face away&quot; from you. In this case objects that are not clockwise.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if clockwise, <c>false</c> if counter clockwise</value>
     bool MappingClockwise {
         get ;
     }
     /// <summary>Smoothing state for map rendering.
-/// This sets smoothing for map rendering. If the object is a type that has its own smoothing settings, then both the smooth settings for this object and the map must be turned off. By default smooth maps are enabled.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> by default.</value>
+    /// This sets smoothing for map rendering. If the object is a type that has its own smoothing settings, then both the smooth settings for this object and the map must be turned off. By default smooth maps are enabled.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> by default.</value>
     bool MappingSmooth {
         get ;
         set ;
     }
     /// <summary>Alpha flag for map rendering.
-/// This sets alpha flag for map rendering. If the object is a type that has its own alpha settings, then this will take precedence. Only image objects support this currently (<see cref="Efl.Canvas.Image"/> and its friends). Setting this to off stops alpha blending of the map area, and is useful if you know the object and/or all sub-objects is 100% solid.
-/// 
-/// Note that this may conflict with <see cref="Efl.Gfx.IMapping.MappingSmooth"/> depending on which algorithm is used for anti-aliasing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> by default.</value>
+    /// This sets alpha flag for map rendering. If the object is a type that has its own alpha settings, then this will take precedence. Only image objects support this currently (<see cref="Efl.Canvas.Image"/> and its friends). Setting this to off stops alpha blending of the map area, and is useful if you know the object and/or all sub-objects is 100% solid.
+    /// 
+    /// Note that this may conflict with <see cref="Efl.Gfx.IMapping.MappingSmooth"/> depending on which algorithm is used for anti-aliasing.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> by default.</value>
     bool MappingAlpha {
         get ;
         set ;
@@ -334,13 +334,13 @@ void Perspective3dAbsolute(double px, double py, double z0, double foc);
 /// 
 /// At the moment of writing, maps can only have 4 points (no more, no less).
 /// (Since EFL 1.22)</summary>
-sealed public class IMappingConcrete : 
-
-IMapping
+sealed public class IMappingConcrete :
+    Efl.Eo.EoWrapper
+    , IMapping
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -355,86 +355,12 @@ IMapping
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_gfx_mapping_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IMapping"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IMappingConcrete(System.IntPtr raw)
+    private IMappingConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IMappingConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Number of points of a map.
@@ -796,34 +722,34 @@ IMapping
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Number of points of a map.
-/// This sets the number of points of map. Currently, the number of points must be multiples of 4.
-/// (Since EFL 1.22)</summary>
-/// <value>The number of points of map</value>
+    /// This sets the number of points of map. Currently, the number of points must be multiples of 4.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The number of points of map</value>
     public int MappingPointCount {
         get { return GetMappingPointCount(); }
         set { SetMappingPointCount(value); }
     }
     /// <summary>Clockwise state of a map (read-only).
-/// This determines if the output points (X and Y. Z is not used) are clockwise or counter-clockwise. This can be used for &quot;back-face culling&quot;. This is where you hide objects that &quot;face away&quot; from you. In this case objects that are not clockwise.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if clockwise, <c>false</c> if counter clockwise</value>
+    /// This determines if the output points (X and Y. Z is not used) are clockwise or counter-clockwise. This can be used for &quot;back-face culling&quot;. This is where you hide objects that &quot;face away&quot; from you. In this case objects that are not clockwise.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if clockwise, <c>false</c> if counter clockwise</value>
     public bool MappingClockwise {
         get { return GetMappingClockwise(); }
     }
     /// <summary>Smoothing state for map rendering.
-/// This sets smoothing for map rendering. If the object is a type that has its own smoothing settings, then both the smooth settings for this object and the map must be turned off. By default smooth maps are enabled.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> by default.</value>
+    /// This sets smoothing for map rendering. If the object is a type that has its own smoothing settings, then both the smooth settings for this object and the map must be turned off. By default smooth maps are enabled.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> by default.</value>
     public bool MappingSmooth {
         get { return GetMappingSmooth(); }
         set { SetMappingSmooth(value); }
     }
     /// <summary>Alpha flag for map rendering.
-/// This sets alpha flag for map rendering. If the object is a type that has its own alpha settings, then this will take precedence. Only image objects support this currently (<see cref="Efl.Canvas.Image"/> and its friends). Setting this to off stops alpha blending of the map area, and is useful if you know the object and/or all sub-objects is 100% solid.
-/// 
-/// Note that this may conflict with <see cref="Efl.Gfx.IMapping.MappingSmooth"/> depending on which algorithm is used for anti-aliasing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> by default.</value>
+    /// This sets alpha flag for map rendering. If the object is a type that has its own alpha settings, then this will take precedence. Only image objects support this currently (<see cref="Efl.Canvas.Image"/> and its friends). Setting this to off stops alpha blending of the map area, and is useful if you know the object and/or all sub-objects is 100% solid.
+    /// 
+    /// Note that this may conflict with <see cref="Efl.Gfx.IMapping.MappingSmooth"/> depending on which algorithm is used for anti-aliasing.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> by default.</value>
     public bool MappingAlpha {
         get { return GetMappingAlpha(); }
         set { SetMappingAlpha(value); }
@@ -1133,7 +1059,7 @@ IMapping
             return Efl.Gfx.IMappingConcrete.efl_gfx_mapping_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_gfx_mapping_point_count_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1146,13 +1072,13 @@ IMapping
         private static int mapping_point_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_mapping_point_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)wrapper).GetMappingPointCount();
+                    _ret_var = ((IMapping)ws.Target).GetMappingPointCount();
                 }
                 catch (Exception e)
                 {
@@ -1182,13 +1108,13 @@ IMapping
         private static void mapping_point_count_set(System.IntPtr obj, System.IntPtr pd, int count)
         {
             Eina.Log.Debug("function efl_gfx_mapping_point_count_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).SetMappingPointCount(count);
+                    ((IMapping)ws.Target).SetMappingPointCount(count);
                 }
                 catch (Exception e)
                 {
@@ -1217,13 +1143,13 @@ IMapping
         private static bool mapping_clockwise_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_mapping_clockwise_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)wrapper).GetMappingClockwise();
+                    _ret_var = ((IMapping)ws.Target).GetMappingClockwise();
                 }
                 catch (Exception e)
                 {
@@ -1253,13 +1179,13 @@ IMapping
         private static bool mapping_smooth_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_mapping_smooth_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)wrapper).GetMappingSmooth();
+                    _ret_var = ((IMapping)ws.Target).GetMappingSmooth();
                 }
                 catch (Exception e)
                 {
@@ -1289,13 +1215,13 @@ IMapping
         private static void mapping_smooth_set(System.IntPtr obj, System.IntPtr pd, bool smooth)
         {
             Eina.Log.Debug("function efl_gfx_mapping_smooth_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).SetMappingSmooth(smooth);
+                    ((IMapping)ws.Target).SetMappingSmooth(smooth);
                 }
                 catch (Exception e)
                 {
@@ -1324,13 +1250,13 @@ IMapping
         private static bool mapping_alpha_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_mapping_alpha_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)wrapper).GetMappingAlpha();
+                    _ret_var = ((IMapping)ws.Target).GetMappingAlpha();
                 }
                 catch (Exception e)
                 {
@@ -1360,13 +1286,13 @@ IMapping
         private static void mapping_alpha_set(System.IntPtr obj, System.IntPtr pd, bool alpha)
         {
             Eina.Log.Debug("function efl_gfx_mapping_alpha_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).SetMappingAlpha(alpha);
+                    ((IMapping)ws.Target).SetMappingAlpha(alpha);
                 }
                 catch (Exception e)
                 {
@@ -1395,13 +1321,13 @@ IMapping
         private static void mapping_coord_absolute_get(System.IntPtr obj, System.IntPtr pd, int idx, out double x, out double y, out double z)
         {
             Eina.Log.Debug("function efl_gfx_mapping_coord_absolute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                 x = default(double);        y = default(double);        z = default(double);                                            
                 try
                 {
-                    ((IMappingConcrete)wrapper).GetMappingCoordAbsolute(idx, out x, out y, out z);
+                    ((IMapping)ws.Target).GetMappingCoordAbsolute(idx, out x, out y, out z);
                 }
                 catch (Exception e)
                 {
@@ -1430,13 +1356,13 @@ IMapping
         private static void mapping_coord_absolute_set(System.IntPtr obj, System.IntPtr pd, int idx, double x, double y, double z)
         {
             Eina.Log.Debug("function efl_gfx_mapping_coord_absolute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)wrapper).SetMappingCoordAbsolute(idx, x, y, z);
+                    ((IMapping)ws.Target).SetMappingCoordAbsolute(idx, x, y, z);
                 }
                 catch (Exception e)
                 {
@@ -1465,13 +1391,13 @@ IMapping
         private static void mapping_uv_get(System.IntPtr obj, System.IntPtr pd, int idx, out double u, out double v)
         {
             Eina.Log.Debug("function efl_gfx_mapping_uv_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         u = default(double);        v = default(double);                                    
                 try
                 {
-                    ((IMappingConcrete)wrapper).GetMappingUv(idx, out u, out v);
+                    ((IMapping)ws.Target).GetMappingUv(idx, out u, out v);
                 }
                 catch (Exception e)
                 {
@@ -1500,13 +1426,13 @@ IMapping
         private static void mapping_uv_set(System.IntPtr obj, System.IntPtr pd, int idx, double u, double v)
         {
             Eina.Log.Debug("function efl_gfx_mapping_uv_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).SetMappingUv(idx, u, v);
+                    ((IMapping)ws.Target).SetMappingUv(idx, u, v);
                 }
                 catch (Exception e)
                 {
@@ -1535,13 +1461,13 @@ IMapping
         private static void mapping_color_get(System.IntPtr obj, System.IntPtr pd, int idx, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_mapping_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                                    
                 try
                 {
-                    ((IMappingConcrete)wrapper).GetMappingColor(idx, out r, out g, out b, out a);
+                    ((IMapping)ws.Target).GetMappingColor(idx, out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -1570,13 +1496,13 @@ IMapping
         private static void mapping_color_set(System.IntPtr obj, System.IntPtr pd, int idx, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_mapping_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).SetMappingColor(idx, r, g, b, a);
+                    ((IMapping)ws.Target).SetMappingColor(idx, r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -1605,13 +1531,13 @@ IMapping
         private static bool mapping_has(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_mapping_has was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IMappingConcrete)wrapper).HasMapping();
+                    _ret_var = ((IMapping)ws.Target).HasMapping();
                 }
                 catch (Exception e)
                 {
@@ -1641,13 +1567,13 @@ IMapping
         private static void mapping_reset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_mapping_reset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IMappingConcrete)wrapper).ResetMapping();
+                    ((IMapping)ws.Target).ResetMapping();
                 }
                 catch (Exception e)
                 {
@@ -1676,13 +1602,13 @@ IMapping
         private static void translate(System.IntPtr obj, System.IntPtr pd, double dx, double dy, double dz)
         {
             Eina.Log.Debug("function efl_gfx_mapping_translate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).Translate(dx, dy, dz);
+                    ((IMapping)ws.Target).Translate(dx, dy, dz);
                 }
                 catch (Exception e)
                 {
@@ -1711,13 +1637,13 @@ IMapping
         private static void rotate(System.IntPtr obj, System.IntPtr pd, double degrees, Efl.Gfx.IEntity pivot, double cx, double cy)
         {
             Eina.Log.Debug("function efl_gfx_mapping_rotate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)wrapper).Rotate(degrees, pivot, cx, cy);
+                    ((IMapping)ws.Target).Rotate(degrees, pivot, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -1746,13 +1672,13 @@ IMapping
         private static void rotate_3d(System.IntPtr obj, System.IntPtr pd, double dx, double dy, double dz, Efl.Gfx.IEntity pivot, double cx, double cy, double cz)
         {
             Eina.Log.Debug("function efl_gfx_mapping_rotate_3d was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).Rotate3d(dx, dy, dz, pivot, cx, cy, cz);
+                    ((IMapping)ws.Target).Rotate3d(dx, dy, dz, pivot, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -1781,13 +1707,13 @@ IMapping
         private static void rotate_quat(System.IntPtr obj, System.IntPtr pd, double qx, double qy, double qz, double qw, Efl.Gfx.IEntity pivot, double cx, double cy, double cz)
         {
             Eina.Log.Debug("function efl_gfx_mapping_rotate_quat was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)wrapper).RotateQuat(qx, qy, qz, qw, pivot, cx, cy, cz);
+                    ((IMapping)ws.Target).RotateQuat(qx, qy, qz, qw, pivot, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -1816,13 +1742,13 @@ IMapping
         private static void zoom(System.IntPtr obj, System.IntPtr pd, double zoomx, double zoomy, Efl.Gfx.IEntity pivot, double cx, double cy)
         {
             Eina.Log.Debug("function efl_gfx_mapping_zoom was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).Zoom(zoomx, zoomy, pivot, cx, cy);
+                    ((IMapping)ws.Target).Zoom(zoomx, zoomy, pivot, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -1851,13 +1777,13 @@ IMapping
         private static void lighting_3d(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity pivot, double lx, double ly, double lz, int lr, int lg, int lb, int ar, int ag, int ab)
         {
             Eina.Log.Debug("function efl_gfx_mapping_lighting_3d was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)wrapper).Lighting3d(pivot, lx, ly, lz, lr, lg, lb, ar, ag, ab);
+                    ((IMapping)ws.Target).Lighting3d(pivot, lx, ly, lz, lr, lg, lb, ar, ag, ab);
                 }
                 catch (Exception e)
                 {
@@ -1886,13 +1812,13 @@ IMapping
         private static void perspective_3d(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity pivot, double px, double py, double z0, double foc)
         {
             Eina.Log.Debug("function efl_gfx_mapping_perspective_3d was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).Perspective3d(pivot, px, py, z0, foc);
+                    ((IMapping)ws.Target).Perspective3d(pivot, px, py, z0, foc);
                 }
                 catch (Exception e)
                 {
@@ -1921,13 +1847,13 @@ IMapping
         private static void rotate_absolute(System.IntPtr obj, System.IntPtr pd, double degrees, double cx, double cy)
         {
             Eina.Log.Debug("function efl_gfx_mapping_rotate_absolute was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).RotateAbsolute(degrees, cx, cy);
+                    ((IMapping)ws.Target).RotateAbsolute(degrees, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -1956,13 +1882,13 @@ IMapping
         private static void rotate_3d_absolute(System.IntPtr obj, System.IntPtr pd, double dx, double dy, double dz, double cx, double cy, double cz)
         {
             Eina.Log.Debug("function efl_gfx_mapping_rotate_3d_absolute was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)wrapper).Rotate3dAbsolute(dx, dy, dz, cx, cy, cz);
+                    ((IMapping)ws.Target).Rotate3dAbsolute(dx, dy, dz, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -1991,13 +1917,13 @@ IMapping
         private static void rotate_quat_absolute(System.IntPtr obj, System.IntPtr pd, double qx, double qy, double qz, double qw, double cx, double cy, double cz)
         {
             Eina.Log.Debug("function efl_gfx_mapping_rotate_quat_absolute was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).RotateQuatAbsolute(qx, qy, qz, qw, cx, cy, cz);
+                    ((IMapping)ws.Target).RotateQuatAbsolute(qx, qy, qz, qw, cx, cy, cz);
                 }
                 catch (Exception e)
                 {
@@ -2026,13 +1952,13 @@ IMapping
         private static void zoom_absolute(System.IntPtr obj, System.IntPtr pd, double zoomx, double zoomy, double cx, double cy)
         {
             Eina.Log.Debug("function efl_gfx_mapping_zoom_absolute was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)wrapper).ZoomAbsolute(zoomx, zoomy, cx, cy);
+                    ((IMapping)ws.Target).ZoomAbsolute(zoomx, zoomy, cx, cy);
                 }
                 catch (Exception e)
                 {
@@ -2061,13 +1987,13 @@ IMapping
         private static void lighting_3d_absolute(System.IntPtr obj, System.IntPtr pd, double lx, double ly, double lz, int lr, int lg, int lb, int ar, int ag, int ab)
         {
             Eina.Log.Debug("function efl_gfx_mapping_lighting_3d_absolute was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                                                                     
                 try
                 {
-                    ((IMappingConcrete)wrapper).Lighting3dAbsolute(lx, ly, lz, lr, lg, lb, ar, ag, ab);
+                    ((IMapping)ws.Target).Lighting3dAbsolute(lx, ly, lz, lr, lg, lb, ar, ag, ab);
                 }
                 catch (Exception e)
                 {
@@ -2096,13 +2022,13 @@ IMapping
         private static void perspective_3d_absolute(System.IntPtr obj, System.IntPtr pd, double px, double py, double z0, double foc)
         {
             Eina.Log.Debug("function efl_gfx_mapping_perspective_3d_absolute was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IMappingConcrete)wrapper).Perspective3dAbsolute(px, py, z0, foc);
+                    ((IMapping)ws.Target).Perspective3dAbsolute(px, py, z0, foc);
                 }
                 catch (Exception e)
                 {
@@ -2120,7 +2046,7 @@ IMapping
 
         private static efl_gfx_mapping_perspective_3d_absolute_delegate efl_gfx_mapping_perspective_3d_absolute_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -87,13 +87,13 @@ void DelColorClass(System.String color_class);
 void ClearColorClass();
                             }
 /// <summary>Efl Gfx Color Class mixin class</summary>
-sealed public class IColorClassConcrete : 
-
-IColorClass
+sealed public class IColorClassConcrete :
+    Efl.Eo.EoWrapper
+    , IColorClass
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -108,86 +108,12 @@ IColorClass
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_class_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IColorClass"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IColorClassConcrete(System.IntPtr raw)
+    private IColorClassConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IColorClassConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get the color of color class.
@@ -382,7 +308,7 @@ IColorClass
             return Efl.Gfx.IColorClassConcrete.efl_gfx_color_class_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_gfx_color_class_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String color_class,  Efl.Gfx.ColorClassLayer layer,  out int r,  out int g,  out int b,  out int a);
@@ -395,13 +321,13 @@ IColorClass
         private static bool color_class_get(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_color_class_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)wrapper).GetColorClass(color_class, layer, out r, out g, out b, out a);
+                    _ret_var = ((IColorClass)ws.Target).GetColorClass(color_class, layer, out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -431,13 +357,13 @@ IColorClass
         private static bool color_class_set(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_color_class_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)wrapper).SetColorClass(color_class, layer, r, g, b, a);
+                    _ret_var = ((IColorClass)ws.Target).SetColorClass(color_class, layer, r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -467,13 +393,13 @@ IColorClass
         private static System.String color_class_code_get(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer)
         {
             Eina.Log.Debug("function efl_gfx_color_class_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)wrapper).GetColorClassCode(color_class, layer);
+                    _ret_var = ((IColorClass)ws.Target).GetColorClassCode(color_class, layer);
                 }
                 catch (Exception e)
                 {
@@ -503,13 +429,13 @@ IColorClass
         private static bool color_class_code_set(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer, System.String colorcode)
         {
             Eina.Log.Debug("function efl_gfx_color_class_code_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)wrapper).SetColorClassCode(color_class, layer, colorcode);
+                    _ret_var = ((IColorClass)ws.Target).SetColorClassCode(color_class, layer, colorcode);
                 }
                 catch (Exception e)
                 {
@@ -539,13 +465,13 @@ IColorClass
         private static System.String color_class_description_get(System.IntPtr obj, System.IntPtr pd, System.String color_class)
         {
             Eina.Log.Debug("function efl_gfx_color_class_description_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IColorClassConcrete)wrapper).GetColorClassDescription(color_class);
+                    _ret_var = ((IColorClass)ws.Target).GetColorClassDescription(color_class);
                 }
                 catch (Exception e)
                 {
@@ -575,13 +501,13 @@ IColorClass
         private static void color_class_del(System.IntPtr obj, System.IntPtr pd, System.String color_class)
         {
             Eina.Log.Debug("function efl_gfx_color_class_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IColorClassConcrete)wrapper).DelColorClass(color_class);
+                    ((IColorClass)ws.Target).DelColorClass(color_class);
                 }
                 catch (Exception e)
                 {
@@ -610,13 +536,13 @@ IColorClass
         private static void color_class_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_color_class_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IColorClassConcrete)wrapper).ClearColorClass();
+                    ((IColorClass)ws.Target).ClearColorClass();
                 }
                 catch (Exception e)
                 {
@@ -634,7 +560,7 @@ IColorClass
 
         private static efl_gfx_color_class_clear_delegate efl_gfx_color_class_clear_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

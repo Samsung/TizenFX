@@ -9,7 +9,7 @@ namespace Efl {
 
 /// <summary>No description supplied.</summary>
 [Efl.Exe.NativeMethods]
-public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.ICloser,Efl.Io.IReader,Efl.Io.IWriter
+public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IReader, Efl.Io.IWriter
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -42,7 +42,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Exe(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Exe"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -53,33 +53,6 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Notifies closed, when property is marked as true
     /// (Since EFL 1.22)</summary>
     public event EventHandler ClosedEvt
@@ -88,10 +61,9 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -108,7 +80,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
                 };
 
                 string key = "_EFL_IO_CLOSER_EVENT_CLOSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -117,7 +89,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
             lock (eventLock)
             {
                 string key = "_EFL_IO_CLOSER_EVENT_CLOSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -125,7 +97,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
     public void OnClosedEvt(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -145,14 +117,13 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -166,7 +137,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
                 };
 
                 string key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -175,7 +146,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
             lock (eventLock)
             {
                 string key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -183,7 +154,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
     public void OnCanReadChangedEvt(Efl.Io.IReaderCanReadChangedEvt_Args e)
     {
         var key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -213,10 +184,9 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -233,7 +203,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
                 };
 
                 string key = "_EFL_IO_READER_EVENT_EOS";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -242,7 +212,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
             lock (eventLock)
             {
                 string key = "_EFL_IO_READER_EVENT_EOS";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -250,7 +220,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
     public void OnEosEvt(EventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_EOS";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -270,14 +240,13 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -291,7 +260,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
                 };
 
                 string key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
             }
         }
 
@@ -300,7 +269,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
             lock (eventLock)
             {
                 string key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
@@ -308,7 +277,7 @@ public class Exe : Efl.Task, Efl.Eo.IWrapper,Efl.Core.ICommandLine,Efl.Io.IClose
     public void OnCanWriteChangedEvt(Efl.Io.IWriterCanWriteChangedEvt_Args e)
     {
         var key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -531,79 +500,79 @@ array.OwnContent = false;
         set { SetExeFlags(value); }
     }
     /// <summary>The final exit signal of this task.</summary>
-/// <value>The exit signal, or -1 if no exit signal happened</value>
+    /// <value>The exit signal, or -1 if no exit signal happened</value>
     public int ExitSignal {
         get { return GetExitSignal(); }
     }
     /// <summary>If <c>env</c> is <c>null</c> then the process created by this object is going to inherit the environment of this process.
-/// In case <c>env</c> is not <c>null</c> then the environment variables declared in this object will represent the environment passed to the new process.</summary>
-/// <value><c>env</c> will be referenced until this object does not need it anymore.</value>
+    /// In case <c>env</c> is not <c>null</c> then the environment variables declared in this object will represent the environment passed to the new process.</summary>
+    /// <value><c>env</c> will be referenced until this object does not need it anymore.</value>
     public Efl.Core.Env Env {
         get { return GetEnv(); }
         set { SetEnv(value); }
     }
     /// <summary>A commandline that encodes arguments in a command string. This command is unix shell-style, thus whitespace separates arguments unless escaped. Also a semi-colon &apos;;&apos;, ampersand &apos;&amp;&apos;, pipe/bar &apos;|&apos;, hash &apos;#&apos;, bracket, square brace, brace character (&apos;(&apos;, &apos;)&apos;, &apos;[&apos;, &apos;]&apos;, &apos;{&apos;, &apos;}&apos;), exclamation mark &apos;!&apos;,  backquote &apos;`&apos;, greator or less than (&apos;&gt;&apos; &apos;&lt;&apos;) character unless escaped or in quotes would cause args_count/value to not be generated properly, because it would force complex shell interpretation which will not be supported in evaluating the arg_count/value information, but the final shell may interpret this if this is executed via a command-line shell. To not be a complex shell command, it should be simple with paths, options and variable expansions, but nothing more complex involving the above unescaped characters.
-/// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
-/// 
-/// It should not try and use &quot;complex shell features&quot; if you want the arg_count and arg_value set to be correct after setting the command string. For example none of:
-/// 
-/// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
-/// 
-/// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
+    /// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
+    /// 
+    /// It should not try and use &quot;complex shell features&quot; if you want the arg_count and arg_value set to be correct after setting the command string. For example none of:
+    /// 
+    /// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
+    /// 
+    /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
     public System.String Command {
         get { return GetCommand(); }
     }
     /// <summary>Use an array to fill this object
-/// Every element of a string is a argument.</summary>
-/// <value>An array where every array field is an argument</value>
+    /// Every element of a string is a argument.</summary>
+    /// <value>An array where every array field is an argument</value>
     public Eina.Array<System.String> CommandArray {
         set { SetCommandArray(value); }
     }
     /// <summary>Use a string to fill this object
-/// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
-/// <value>A command in form of a string</value>
+    /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
+    /// <value>A command in form of a string</value>
     public System.String CommandString {
         set { SetCommandString(value); }
     }
     /// <summary>If true will notify object was closed.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if closed, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if closed, <c>false</c> otherwise</value>
     public bool Closed {
         get { return GetClosed(); }
     }
     /// <summary>If true will automatically close resources on exec() calls.
-/// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
+    /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
     public bool CloseOnExec {
         get { return GetCloseOnExec(); }
         set { SetCloseOnExec(value); }
     }
     /// <summary>If true will automatically close() on object invalidate.
-/// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
+    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
     public bool CloseOnInvalidate {
         get { return GetCloseOnInvalidate(); }
         set { SetCloseOnInvalidate(value); }
     }
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     public bool CanRead {
         get { return GetCanRead(); }
         set { SetCanRead(value); }
     }
     /// <summary>If <c>true</c> will notify end of stream.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     public bool Eos {
         get { return GetEos(); }
         set { SetEos(value); }
     }
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
     public bool CanWrite {
         get { return GetCanWrite(); }
         set { SetCanWrite(value); }
@@ -874,7 +843,7 @@ array.OwnContent = false;
             return Efl.Exe.efl_exe_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.ExeFlags efl_exe_flags_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -887,13 +856,13 @@ array.OwnContent = false;
         private static Efl.ExeFlags exe_flags_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_exe_flags_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.ExeFlags _ret_var = default(Efl.ExeFlags);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetExeFlags();
+                    _ret_var = ((Exe)ws.Target).GetExeFlags();
                 }
                 catch (Exception e)
                 {
@@ -923,13 +892,13 @@ array.OwnContent = false;
         private static void exe_flags_set(System.IntPtr obj, System.IntPtr pd, Efl.ExeFlags flags)
         {
             Eina.Log.Debug("function efl_exe_flags_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Exe)wrapper).SetExeFlags(flags);
+                    ((Exe)ws.Target).SetExeFlags(flags);
                 }
                 catch (Exception e)
                 {
@@ -958,13 +927,13 @@ array.OwnContent = false;
         private static int exit_signal_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_exe_exit_signal_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetExitSignal();
+                    _ret_var = ((Exe)ws.Target).GetExitSignal();
                 }
                 catch (Exception e)
                 {
@@ -994,13 +963,13 @@ array.OwnContent = false;
         private static Efl.Core.Env env_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_exe_env_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Core.Env _ret_var = default(Efl.Core.Env);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetEnv();
+                    _ret_var = ((Exe)ws.Target).GetEnv();
                 }
                 catch (Exception e)
                 {
@@ -1030,13 +999,13 @@ array.OwnContent = false;
         private static void env_set(System.IntPtr obj, System.IntPtr pd, Efl.Core.Env env)
         {
             Eina.Log.Debug("function efl_exe_env_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Exe)wrapper).SetEnv(env);
+                    ((Exe)ws.Target).SetEnv(env);
                 }
                 catch (Exception e)
                 {
@@ -1065,13 +1034,13 @@ array.OwnContent = false;
         private static void signal(System.IntPtr obj, System.IntPtr pd, Efl.ExeSignal sig)
         {
             Eina.Log.Debug("function efl_exe_signal was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Exe)wrapper).Signal(sig);
+                    ((Exe)ws.Target).Signal(sig);
                 }
                 catch (Exception e)
                 {
@@ -1100,13 +1069,13 @@ array.OwnContent = false;
         private static System.String command_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_core_command_line_command_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetCommand();
+                    _ret_var = ((Exe)ws.Target).GetCommand();
                 }
                 catch (Exception e)
                 {
@@ -1136,14 +1105,14 @@ array.OwnContent = false;
         private static bool command_array_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr array)
         {
             Eina.Log.Debug("function efl_core_command_line_command_array_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_array = new Eina.Array<System.String>(array, true, true);
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).SetCommandArray(_in_array);
+                    _ret_var = ((Exe)ws.Target).SetCommandArray(_in_array);
                 }
                 catch (Exception e)
                 {
@@ -1173,13 +1142,13 @@ array.OwnContent = false;
         private static bool command_string_set(System.IntPtr obj, System.IntPtr pd, System.String str)
         {
             Eina.Log.Debug("function efl_core_command_line_command_string_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).SetCommandString(str);
+                    _ret_var = ((Exe)ws.Target).SetCommandString(str);
                 }
                 catch (Exception e)
                 {
@@ -1209,13 +1178,13 @@ array.OwnContent = false;
         private static System.IntPtr command_access(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_core_command_line_command_access was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).CommandAccess();
+                    _ret_var = ((Exe)ws.Target).CommandAccess();
                 }
                 catch (Exception e)
                 {
@@ -1245,13 +1214,13 @@ array.OwnContent = false;
         private static bool closed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_closed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetClosed();
+                    _ret_var = ((Exe)ws.Target).GetClosed();
                 }
                 catch (Exception e)
                 {
@@ -1281,13 +1250,13 @@ array.OwnContent = false;
         private static bool close_on_exec_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_exec_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetCloseOnExec();
+                    _ret_var = ((Exe)ws.Target).GetCloseOnExec();
                 }
                 catch (Exception e)
                 {
@@ -1317,13 +1286,13 @@ array.OwnContent = false;
         private static bool close_on_exec_set(System.IntPtr obj, System.IntPtr pd, bool close_on_exec)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_exec_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).SetCloseOnExec(close_on_exec);
+                    _ret_var = ((Exe)ws.Target).SetCloseOnExec(close_on_exec);
                 }
                 catch (Exception e)
                 {
@@ -1353,13 +1322,13 @@ array.OwnContent = false;
         private static bool close_on_invalidate_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_invalidate_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetCloseOnInvalidate();
+                    _ret_var = ((Exe)ws.Target).GetCloseOnInvalidate();
                 }
                 catch (Exception e)
                 {
@@ -1389,13 +1358,13 @@ array.OwnContent = false;
         private static void close_on_invalidate_set(System.IntPtr obj, System.IntPtr pd, bool close_on_invalidate)
         {
             Eina.Log.Debug("function efl_io_closer_close_on_invalidate_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Exe)wrapper).SetCloseOnInvalidate(close_on_invalidate);
+                    ((Exe)ws.Target).SetCloseOnInvalidate(close_on_invalidate);
                 }
                 catch (Exception e)
                 {
@@ -1424,13 +1393,13 @@ array.OwnContent = false;
         private static Eina.Error close(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_closer_close was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).Close();
+                    _ret_var = ((Exe)ws.Target).Close();
                 }
                 catch (Exception e)
                 {
@@ -1460,13 +1429,13 @@ array.OwnContent = false;
         private static bool can_read_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetCanRead();
+                    _ret_var = ((Exe)ws.Target).GetCanRead();
                 }
                 catch (Exception e)
                 {
@@ -1496,13 +1465,13 @@ array.OwnContent = false;
         private static void can_read_set(System.IntPtr obj, System.IntPtr pd, bool can_read)
         {
             Eina.Log.Debug("function efl_io_reader_can_read_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Exe)wrapper).SetCanRead(can_read);
+                    ((Exe)ws.Target).SetCanRead(can_read);
                 }
                 catch (Exception e)
                 {
@@ -1531,13 +1500,13 @@ array.OwnContent = false;
         private static bool eos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_reader_eos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetEos();
+                    _ret_var = ((Exe)ws.Target).GetEos();
                 }
                 catch (Exception e)
                 {
@@ -1567,13 +1536,13 @@ array.OwnContent = false;
         private static void eos_set(System.IntPtr obj, System.IntPtr pd, bool is_eos)
         {
             Eina.Log.Debug("function efl_io_reader_eos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Exe)wrapper).SetEos(is_eos);
+                    ((Exe)ws.Target).SetEos(is_eos);
                 }
                 catch (Exception e)
                 {
@@ -1602,13 +1571,13 @@ array.OwnContent = false;
         private static Eina.Error read(System.IntPtr obj, System.IntPtr pd, ref Eina.RwSlice rw_slice)
         {
             Eina.Log.Debug("function efl_io_reader_read was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).Read(ref rw_slice);
+                    _ret_var = ((Exe)ws.Target).Read(ref rw_slice);
                 }
                 catch (Exception e)
                 {
@@ -1638,13 +1607,13 @@ array.OwnContent = false;
         private static bool can_write_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_io_writer_can_write_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).GetCanWrite();
+                    _ret_var = ((Exe)ws.Target).GetCanWrite();
                 }
                 catch (Exception e)
                 {
@@ -1674,13 +1643,13 @@ array.OwnContent = false;
         private static void can_write_set(System.IntPtr obj, System.IntPtr pd, bool can_write)
         {
             Eina.Log.Debug("function efl_io_writer_can_write_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Exe)wrapper).SetCanWrite(can_write);
+                    ((Exe)ws.Target).SetCanWrite(can_write);
                 }
                 catch (Exception e)
                 {
@@ -1709,13 +1678,13 @@ array.OwnContent = false;
         private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref Eina.Slice slice, ref Eina.Slice remaining)
         {
             Eina.Log.Debug("function efl_io_writer_write was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 remaining = default(Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Exe)wrapper).Write(ref slice, ref remaining);
+                    _ret_var = ((Exe)ws.Target).Write(ref slice, ref remaining);
                 }
                 catch (Exception e)
                 {
@@ -1734,7 +1703,7 @@ array.OwnContent = false;
 
         private static efl_io_writer_write_delegate efl_io_writer_write_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

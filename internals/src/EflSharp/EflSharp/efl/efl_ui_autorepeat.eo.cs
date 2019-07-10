@@ -9,91 +9,81 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Efl UI autorepeat interface</summary>
+/// <summary>Interface for autorepeating clicks.
+/// This interface abstracts functions for enabling / disabling this feature. When enabled, keeping a button pressed will continuously emit the <c>repeated</c> event until the button is released. The time it takes until it starts emitting the event is given by <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
 [Efl.Ui.IAutorepeatConcrete.NativeMethods]
 public interface IAutorepeat : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>The initial timeout before the autorepeat event is generated
+    /// <summary>The initial timeout before the autorepeat event is generated.
 /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
 /// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <returns>Timeout in seconds</returns>
+/// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
+/// <returns>Timeout in seconds.</returns>
 double GetAutorepeatInitialTimeout();
-    /// <summary>The initial timeout before the autorepeat event is generated
+    /// <summary>The initial timeout before the autorepeat event is generated.
 /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
 /// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <param name="t">Timeout in seconds</param>
+/// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
+/// <param name="t">Timeout in seconds.</param>
 void SetAutorepeatInitialTimeout(double t);
-    /// <summary>The interval between each generated autorepeat event
+    /// <summary>The interval between each generated autorepeat event.
 /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
 /// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
-/// <returns>Interval in seconds</returns>
+/// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
+/// <returns>Time interval in seconds.</returns>
 double GetAutorepeatGapTimeout();
-    /// <summary>The interval between each generated autorepeat event
+    /// <summary>The interval between each generated autorepeat event.
 /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
 /// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
-/// <param name="t">Interval in seconds</param>
+/// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
+/// <param name="t">Time interval in seconds.</param>
 void SetAutorepeatGapTimeout(double t);
-    /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
-/// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> signal when they are clicked.
-/// 
-/// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <returns>A bool to turn on/off the event</returns>
+    /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
+/// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
+/// <returns>A bool to turn on/off the repeat event generation.</returns>
 bool GetAutorepeatEnabled();
-    /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
-/// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> signal when they are clicked.
-/// 
-/// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <param name="on">A bool to turn on/off the event</param>
+    /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
+/// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
+/// <param name="on">A bool to turn on/off the repeat event generation.</param>
 void SetAutorepeatEnabled(bool on);
-    /// <summary>Whether the button supports autorepeat.</summary>
-/// <returns><c>true</c> if autorepeat is supported, <c>false</c> otherwise</returns>
-bool GetAutorepeatSupported();
-                                /// <summary>The initial timeout before the autorepeat event is generated
-/// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
-/// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <value>Timeout in seconds</value>
+                            /// <summary>Called when a repeated event is emitted</summary>
+    event EventHandler RepeatedEvt;
+    /// <summary>The initial timeout before the autorepeat event is generated.
+    /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
+    /// 
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
+    /// <value>Timeout in seconds.</value>
     double AutorepeatInitialTimeout {
         get ;
         set ;
     }
-    /// <summary>The interval between each generated autorepeat event
-/// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
-/// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
-/// <value>Interval in seconds</value>
+    /// <summary>The interval between each generated autorepeat event.
+    /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
+    /// 
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
+    /// <value>Time interval in seconds.</value>
     double AutorepeatGapTimeout {
         get ;
         set ;
     }
-    /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
-/// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> signal when they are clicked.
-/// 
-/// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <value>A bool to turn on/off the event</value>
+    /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
+    /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
+    /// <value>A bool to turn on/off the repeat event generation.</value>
     bool AutorepeatEnabled {
         get ;
         set ;
     }
-    /// <summary>Whether the button supports autorepeat.</summary>
-/// <value><c>true</c> if autorepeat is supported, <c>false</c> otherwise</value>
-    bool AutorepeatSupported {
-        get ;
-    }
 }
-/// <summary>Efl UI autorepeat interface</summary>
-sealed public class IAutorepeatConcrete : 
-
-IAutorepeat
+/// <summary>Interface for autorepeating clicks.
+/// This interface abstracts functions for enabling / disabling this feature. When enabled, keeping a button pressed will continuously emit the <c>repeated</c> event until the button is released. The time it takes until it starts emitting the event is given by <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
+sealed public class IAutorepeatConcrete :
+    Efl.Eo.EoWrapper
+    , IAutorepeat
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -108,183 +98,143 @@ IAutorepeat
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_autorepeat_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IAutorepeat"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IAutorepeatConcrete(System.IntPtr raw)
+    private IAutorepeatConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IAutorepeatConcrete()
-    {
-        Dispose(false);
     }
 
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
+    /// <summary>Called when a repeated event is emitted</summary>
+    public event EventHandler RepeatedEvt
     {
-        if (handle != System.IntPtr.Zero)
+        add
         {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
+            lock (eventLock)
             {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
 
-                Monitor.Exit(Efl.All.InitLock);
+                string key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
 
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
+        remove
         {
-            return false;
+            lock (eventLock)
+            {
+                string key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+            }
         }
-        return this.NativeHandle == other.NativeHandle;
     }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
+    ///<summary>Method to raise event RepeatedEvt.</summary>
+    public void OnRepeatedEvt(EventArgs e)
     {
-        return this.NativeHandle.ToInt32();
-    }
+        var key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
 
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-
-    /// <summary>The initial timeout before the autorepeat event is generated
+    /// <summary>The initial timeout before the autorepeat event is generated.
     /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
     /// 
-    /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-    /// <returns>Timeout in seconds</returns>
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
+    /// <returns>Timeout in seconds.</returns>
     public double GetAutorepeatInitialTimeout() {
          var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>The initial timeout before the autorepeat event is generated
+    /// <summary>The initial timeout before the autorepeat event is generated.
     /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
     /// 
-    /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-    /// <param name="t">Timeout in seconds</param>
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
+    /// <param name="t">Timeout in seconds.</param>
     public void SetAutorepeatInitialTimeout(double t) {
                                  Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_set_ptr.Value.Delegate(this.NativeHandle,t);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>The interval between each generated autorepeat event
+    /// <summary>The interval between each generated autorepeat event.
     /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
     /// 
-    /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
-    /// <returns>Interval in seconds</returns>
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
+    /// <returns>Time interval in seconds.</returns>
     public double GetAutorepeatGapTimeout() {
          var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>The interval between each generated autorepeat event
+    /// <summary>The interval between each generated autorepeat event.
     /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
     /// 
-    /// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
-    /// <param name="t">Interval in seconds</param>
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
+    /// <param name="t">Time interval in seconds.</param>
     public void SetAutorepeatGapTimeout(double t) {
                                  Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_set_ptr.Value.Delegate(this.NativeHandle,t);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
-    /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> signal when they are clicked.
-    /// 
-    /// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-    /// <returns>A bool to turn on/off the event</returns>
+    /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
+    /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
+    /// <returns>A bool to turn on/off the repeat event generation.</returns>
     public bool GetAutorepeatEnabled() {
          var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
-    /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> signal when they are clicked.
-    /// 
-    /// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-    /// <param name="on">A bool to turn on/off the event</param>
+    /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
+    /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
+    /// <param name="on">A bool to turn on/off the repeat event generation.</param>
     public void SetAutorepeatEnabled(bool on) {
                                  Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_set_ptr.Value.Delegate(this.NativeHandle,on);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Whether the button supports autorepeat.</summary>
-    /// <returns><c>true</c> if autorepeat is supported, <c>false</c> otherwise</returns>
-    public bool GetAutorepeatSupported() {
-         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_supported_get_ptr.Value.Delegate(this.NativeHandle);
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>The initial timeout before the autorepeat event is generated
-/// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
-/// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatEnabled"/>, <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <value>Timeout in seconds</value>
+    /// <summary>The initial timeout before the autorepeat event is generated.
+    /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
+    /// 
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
+    /// <value>Timeout in seconds.</value>
     public double AutorepeatInitialTimeout {
         get { return GetAutorepeatInitialTimeout(); }
         set { SetAutorepeatInitialTimeout(value); }
     }
-    /// <summary>The interval between each generated autorepeat event
-/// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
-/// 
-/// See also <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>.</summary>
-/// <value>Interval in seconds</value>
+    /// <summary>The interval between each generated autorepeat event.
+    /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
+    /// 
+    /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
+    /// <value>Time interval in seconds.</value>
     public double AutorepeatGapTimeout {
         get { return GetAutorepeatGapTimeout(); }
         set { SetAutorepeatGapTimeout(value); }
     }
-    /// <summary>Turn on/off the autorepeat event generated when the button is kept pressed
-/// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> signal when they are clicked.
-/// 
-/// When on, keeping a button pressed will continuously emit a <c>repeated</c> signal until the button is released. The time it takes until it starts emitting the signal is given by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.SetAutorepeatGapTimeout"/>.</summary>
-/// <value>A bool to turn on/off the event</value>
+    /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
+    /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
+    /// <value>A bool to turn on/off the repeat event generation.</value>
     public bool AutorepeatEnabled {
         get { return GetAutorepeatEnabled(); }
         set { SetAutorepeatEnabled(value); }
-    }
-    /// <summary>Whether the button supports autorepeat.</summary>
-/// <value><c>true</c> if autorepeat is supported, <c>false</c> otherwise</value>
-    public bool AutorepeatSupported {
-        get { return GetAutorepeatSupported(); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -362,16 +312,6 @@ IAutorepeat
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_enabled_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_enabled_set_static_delegate) });
             }
 
-            if (efl_ui_autorepeat_supported_get_static_delegate == null)
-            {
-                efl_ui_autorepeat_supported_get_static_delegate = new efl_ui_autorepeat_supported_get_delegate(autorepeat_supported_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAutorepeatSupported") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_supported_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_supported_get_static_delegate) });
-            }
-
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -381,7 +321,7 @@ IAutorepeat
             return Efl.Ui.IAutorepeatConcrete.efl_ui_autorepeat_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_ui_autorepeat_initial_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -394,13 +334,13 @@ IAutorepeat
         private static double autorepeat_initial_timeout_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_autorepeat_initial_timeout_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IAutorepeat)wrapper).GetAutorepeatInitialTimeout();
+                    _ret_var = ((IAutorepeat)ws.Target).GetAutorepeatInitialTimeout();
                 }
                 catch (Exception e)
                 {
@@ -430,13 +370,13 @@ IAutorepeat
         private static void autorepeat_initial_timeout_set(System.IntPtr obj, System.IntPtr pd, double t)
         {
             Eina.Log.Debug("function efl_ui_autorepeat_initial_timeout_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IAutorepeat)wrapper).SetAutorepeatInitialTimeout(t);
+                    ((IAutorepeat)ws.Target).SetAutorepeatInitialTimeout(t);
                 }
                 catch (Exception e)
                 {
@@ -465,13 +405,13 @@ IAutorepeat
         private static double autorepeat_gap_timeout_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_autorepeat_gap_timeout_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IAutorepeat)wrapper).GetAutorepeatGapTimeout();
+                    _ret_var = ((IAutorepeat)ws.Target).GetAutorepeatGapTimeout();
                 }
                 catch (Exception e)
                 {
@@ -501,13 +441,13 @@ IAutorepeat
         private static void autorepeat_gap_timeout_set(System.IntPtr obj, System.IntPtr pd, double t)
         {
             Eina.Log.Debug("function efl_ui_autorepeat_gap_timeout_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IAutorepeat)wrapper).SetAutorepeatGapTimeout(t);
+                    ((IAutorepeat)ws.Target).SetAutorepeatGapTimeout(t);
                 }
                 catch (Exception e)
                 {
@@ -536,13 +476,13 @@ IAutorepeat
         private static bool autorepeat_enabled_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_autorepeat_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IAutorepeat)wrapper).GetAutorepeatEnabled();
+                    _ret_var = ((IAutorepeat)ws.Target).GetAutorepeatEnabled();
                 }
                 catch (Exception e)
                 {
@@ -572,13 +512,13 @@ IAutorepeat
         private static void autorepeat_enabled_set(System.IntPtr obj, System.IntPtr pd, bool on)
         {
             Eina.Log.Debug("function efl_ui_autorepeat_enabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IAutorepeat)wrapper).SetAutorepeatEnabled(on);
+                    ((IAutorepeat)ws.Target).SetAutorepeatEnabled(on);
                 }
                 catch (Exception e)
                 {
@@ -596,43 +536,7 @@ IAutorepeat
 
         private static efl_ui_autorepeat_enabled_set_delegate efl_ui_autorepeat_enabled_set_static_delegate;
 
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_autorepeat_supported_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_autorepeat_supported_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_autorepeat_supported_get_api_delegate> efl_ui_autorepeat_supported_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_autorepeat_supported_get_api_delegate>(Module, "efl_ui_autorepeat_supported_get");
-
-        private static bool autorepeat_supported_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_autorepeat_supported_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IAutorepeat)wrapper).GetAutorepeatSupported();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_autorepeat_supported_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_autorepeat_supported_get_delegate efl_ui_autorepeat_supported_get_static_delegate;
-
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

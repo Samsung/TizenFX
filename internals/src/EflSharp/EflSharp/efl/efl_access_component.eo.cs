@@ -63,19 +63,19 @@ bool GrabHighlight();
 /// @if MOBILE @since_tizen 4.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
 bool ClearHighlight();
                                                     /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
-/// <value>Z order of component</value>
+    /// <value>Z order of component</value>
     int ZOrder {
         get ;
     }
 }
 /// <summary>AT-SPI component mixin</summary>
-sealed public class IComponentConcrete : 
-
-IComponent
+sealed public class IComponentConcrete :
+    Efl.Eo.EoWrapper
+    , IComponent
     , Efl.Gfx.IEntity, Efl.Gfx.IStack
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -90,155 +90,12 @@ IComponent
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_component_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IComponent"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IComponentConcrete(System.IntPtr raw)
+    private IComponentConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IComponentConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
@@ -249,14 +106,13 @@ IComponent
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IEntityVisibilityChangedEvt_Args args = new Efl.Gfx.IEntityVisibilityChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Gfx.IEntityVisibilityChangedEvt_Args args = new Efl.Gfx.IEntityVisibilityChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -270,7 +126,7 @@ IComponent
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -279,7 +135,7 @@ IComponent
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -287,7 +143,7 @@ IComponent
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -312,13 +168,12 @@ IComponent
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IEntityPositionChangedEvt_Args args = new Efl.Gfx.IEntityPositionChangedEvt_Args();
+                        Efl.Gfx.IEntityPositionChangedEvt_Args args = new Efl.Gfx.IEntityPositionChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -333,7 +188,7 @@ IComponent
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -342,7 +197,7 @@ IComponent
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -350,7 +205,7 @@ IComponent
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -376,13 +231,12 @@ IComponent
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IEntitySizeChangedEvt_Args args = new Efl.Gfx.IEntitySizeChangedEvt_Args();
+                        Efl.Gfx.IEntitySizeChangedEvt_Args args = new Efl.Gfx.IEntitySizeChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -397,7 +251,7 @@ IComponent
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -406,7 +260,7 @@ IComponent
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -414,7 +268,7 @@ IComponent
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -440,10 +294,9 @@ IComponent
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -460,7 +313,7 @@ IComponent
                 };
 
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -469,7 +322,7 @@ IComponent
             lock (eventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -477,7 +330,7 @@ IComponent
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -753,75 +606,75 @@ IComponent
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
-/// <value>Z order of component</value>
+    /// <value>Z order of component</value>
     public int ZOrder {
         get { return GetZOrder(); }
     }
     /// <summary>The 2D position of a canvas object.
-/// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
-/// (Since EFL 1.22)</summary>
-/// <value>A 2D coordinate in pixel units.</value>
+    /// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
+    /// (Since EFL 1.22)</summary>
+    /// <value>A 2D coordinate in pixel units.</value>
     public Eina.Position2D Position {
         get { return GetPosition(); }
         set { SetPosition(value); }
     }
     /// <summary>The 2D size of a canvas object.
-/// (Since EFL 1.22)</summary>
-/// <value>A 2D size in pixel units.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>A 2D size in pixel units.</value>
     public Eina.Size2D Size {
         get { return GetSize(); }
         set { SetSize(value); }
     }
     /// <summary>Rectangular geometry that combines both position and size.
-/// (Since EFL 1.22)</summary>
-/// <value>The X,Y position and W,H size, in pixels.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The X,Y position and W,H size, in pixels.</value>
     public Eina.Rect Geometry {
         get { return GetGeometry(); }
         set { SetGeometry(value); }
     }
     /// <summary>The visibility of a canvas object.
-/// All canvas objects will become visible by default just before render. This means that it is not required to call <see cref="Efl.Gfx.IEntity.SetVisible"/> after creating an object unless you want to create it without showing it. Note that this behavior is new since 1.21, and only applies to canvas objects created with the EO API (i.e. not the legacy C-only API). Other types of Gfx objects may or may not be visible by default.
-/// 
-/// Note that many other parameters can prevent a visible object from actually being &quot;visible&quot; on screen. For instance if its color is fully transparent, or its parent is hidden, or it is clipped out, etc...
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if to make the object visible, <c>false</c> otherwise</value>
+    /// All canvas objects will become visible by default just before render. This means that it is not required to call <see cref="Efl.Gfx.IEntity.SetVisible"/> after creating an object unless you want to create it without showing it. Note that this behavior is new since 1.21, and only applies to canvas objects created with the EO API (i.e. not the legacy C-only API). Other types of Gfx objects may or may not be visible by default.
+    /// 
+    /// Note that many other parameters can prevent a visible object from actually being &quot;visible&quot; on screen. For instance if its color is fully transparent, or its parent is hidden, or it is clipped out, etc...
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if to make the object visible, <c>false</c> otherwise</value>
     public bool Visible {
         get { return GetVisible(); }
         set { SetVisible(value); }
     }
     /// <summary>The scaling factor of an object.
-/// This property is an individual scaling factor on the object (Edje or UI widget). This property (or Edje&apos;s global scaling factor, when applicable), will affect this object&apos;s part sizes. If scale is not zero, than the individual scaling will override any global scaling set, for the object obj&apos;s parts. Set it back to zero to get the effects of the global scaling again.
-/// 
-/// Warning: In Edje, only parts which, at EDC level, had the &quot;scale&quot; property set to 1, will be affected by this function. Check the complete &quot;syntax reference&quot; for EDC files.
-/// (Since EFL 1.22)</summary>
-/// <value>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</value>
+    /// This property is an individual scaling factor on the object (Edje or UI widget). This property (or Edje&apos;s global scaling factor, when applicable), will affect this object&apos;s part sizes. If scale is not zero, than the individual scaling will override any global scaling set, for the object obj&apos;s parts. Set it back to zero to get the effects of the global scaling again.
+    /// 
+    /// Warning: In Edje, only parts which, at EDC level, had the &quot;scale&quot; property set to 1, will be affected by this function. Check the complete &quot;syntax reference&quot; for EDC files.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</value>
     public double Scale {
         get { return GetScale(); }
         set { SetScale(value); }
     }
     /// <summary>Retrieves the layer of its canvas that the given object is part of.
-/// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
+    /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
     public short Layer {
         get { return GetLayer(); }
         set { SetLayer(value); }
     }
     /// <summary>Get the Evas object stacked right below <c>obj</c>
-/// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
-/// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
+    /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
+    /// 
+    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     public Efl.Gfx.IStack Below {
         get { return GetBelow(); }
     }
     /// <summary>Get the Evas object stacked right above <c>obj</c>
-/// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
-/// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
-/// (Since EFL 1.22)</summary>
-/// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
+    /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
+    /// 
+    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     public Efl.Gfx.IStack Above {
         get { return GetAbove(); }
     }
@@ -1150,7 +1003,7 @@ IComponent
             return Efl.Access.IComponentConcrete.efl_access_component_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_access_component_z_order_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1163,13 +1016,13 @@ IComponent
         private static int z_order_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_z_order_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetZOrder();
+                    _ret_var = ((IComponent)ws.Target).GetZOrder();
                 }
                 catch (Exception e)
                 {
@@ -1199,13 +1052,13 @@ IComponent
         private static Eina.Rect.NativeStruct extents_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords)
         {
             Eina.Log.Debug("function efl_access_component_extents_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetExtents(screen_coords);
+                    _ret_var = ((IComponent)ws.Target).GetExtents(screen_coords);
                 }
                 catch (Exception e)
                 {
@@ -1235,14 +1088,14 @@ IComponent
         private static bool extents_set(System.IntPtr obj, System.IntPtr pd, bool screen_coords, Eina.Rect.NativeStruct rect)
         {
             Eina.Log.Debug("function efl_access_component_extents_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Rect _in_rect = rect;
                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).SetExtents(screen_coords, _in_rect);
+                    _ret_var = ((IComponent)ws.Target).SetExtents(screen_coords, _in_rect);
                 }
                 catch (Exception e)
                 {
@@ -1272,13 +1125,13 @@ IComponent
         private static void screen_position_get(System.IntPtr obj, System.IntPtr pd, out int x, out int y)
         {
             Eina.Log.Debug("function efl_access_component_screen_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((IComponentConcrete)wrapper).GetScreenPosition(out x, out y);
+                    ((IComponent)ws.Target).GetScreenPosition(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1307,13 +1160,13 @@ IComponent
         private static bool screen_position_set(System.IntPtr obj, System.IntPtr pd, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_screen_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).SetScreenPosition(x, y);
+                    _ret_var = ((IComponent)ws.Target).SetScreenPosition(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1343,13 +1196,13 @@ IComponent
         private static void socket_offset_get(System.IntPtr obj, System.IntPtr pd, out int x, out int y)
         {
             Eina.Log.Debug("function efl_access_component_socket_offset_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(int);        y = default(int);                            
                 try
                 {
-                    ((IComponentConcrete)wrapper).GetSocketOffset(out x, out y);
+                    ((IComponent)ws.Target).GetSocketOffset(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1378,13 +1231,13 @@ IComponent
         private static void socket_offset_set(System.IntPtr obj, System.IntPtr pd, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_socket_offset_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IComponentConcrete)wrapper).SetSocketOffset(x, y);
+                    ((IComponent)ws.Target).SetSocketOffset(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1413,13 +1266,13 @@ IComponent
         private static bool contains(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_contains was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).Contains(screen_coords, x, y);
+                    _ret_var = ((IComponent)ws.Target).Contains(screen_coords, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1449,13 +1302,13 @@ IComponent
         private static bool focus_grab(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_focus_grab was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GrabFocus();
+                    _ret_var = ((IComponent)ws.Target).GrabFocus();
                 }
                 catch (Exception e)
                 {
@@ -1485,13 +1338,13 @@ IComponent
         private static Efl.Object accessible_at_point_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int x, int y)
         {
             Eina.Log.Debug("function efl_access_component_accessible_at_point_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetAccessibleAtPoint(screen_coords, x, y);
+                    _ret_var = ((IComponent)ws.Target).GetAccessibleAtPoint(screen_coords, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1521,13 +1374,13 @@ IComponent
         private static bool highlight_grab(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_highlight_grab was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GrabHighlight();
+                    _ret_var = ((IComponent)ws.Target).GrabHighlight();
                 }
                 catch (Exception e)
                 {
@@ -1557,13 +1410,13 @@ IComponent
         private static bool highlight_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_component_highlight_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).ClearHighlight();
+                    _ret_var = ((IComponent)ws.Target).ClearHighlight();
                 }
                 catch (Exception e)
                 {
@@ -1593,13 +1446,13 @@ IComponent
         private static Eina.Position2D.NativeStruct position_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetPosition();
+                    _ret_var = ((IComponent)ws.Target).GetPosition();
                 }
                 catch (Exception e)
                 {
@@ -1629,14 +1482,14 @@ IComponent
         private static void position_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_gfx_entity_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                             
                 try
                 {
-                    ((IComponentConcrete)wrapper).SetPosition(_in_pos);
+                    ((IComponent)ws.Target).SetPosition(_in_pos);
                 }
                 catch (Exception e)
                 {
@@ -1665,13 +1518,13 @@ IComponent
         private static Eina.Size2D.NativeStruct size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetSize();
+                    _ret_var = ((IComponent)ws.Target).GetSize();
                 }
                 catch (Exception e)
                 {
@@ -1701,14 +1554,14 @@ IComponent
         private static void size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct size)
         {
             Eina.Log.Debug("function efl_gfx_entity_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_size = size;
                             
                 try
                 {
-                    ((IComponentConcrete)wrapper).SetSize(_in_size);
+                    ((IComponent)ws.Target).SetSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -1737,13 +1590,13 @@ IComponent
         private static Eina.Rect.NativeStruct geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetGeometry();
+                    _ret_var = ((IComponent)ws.Target).GetGeometry();
                 }
                 catch (Exception e)
                 {
@@ -1773,14 +1626,14 @@ IComponent
         private static void geometry_set(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect)
         {
             Eina.Log.Debug("function efl_gfx_entity_geometry_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                             
                 try
                 {
-                    ((IComponentConcrete)wrapper).SetGeometry(_in_rect);
+                    ((IComponent)ws.Target).SetGeometry(_in_rect);
                 }
                 catch (Exception e)
                 {
@@ -1809,13 +1662,13 @@ IComponent
         private static bool visible_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_visible_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetVisible();
+                    _ret_var = ((IComponent)ws.Target).GetVisible();
                 }
                 catch (Exception e)
                 {
@@ -1845,13 +1698,13 @@ IComponent
         private static void visible_set(System.IntPtr obj, System.IntPtr pd, bool v)
         {
             Eina.Log.Debug("function efl_gfx_entity_visible_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IComponentConcrete)wrapper).SetVisible(v);
+                    ((IComponent)ws.Target).SetVisible(v);
                 }
                 catch (Exception e)
                 {
@@ -1880,13 +1733,13 @@ IComponent
         private static double scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetScale();
+                    _ret_var = ((IComponent)ws.Target).GetScale();
                 }
                 catch (Exception e)
                 {
@@ -1916,13 +1769,13 @@ IComponent
         private static void scale_set(System.IntPtr obj, System.IntPtr pd, double scale)
         {
             Eina.Log.Debug("function efl_gfx_entity_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IComponentConcrete)wrapper).SetScale(scale);
+                    ((IComponent)ws.Target).SetScale(scale);
                 }
                 catch (Exception e)
                 {
@@ -1951,13 +1804,13 @@ IComponent
         private static short layer_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_layer_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             short _ret_var = default(short);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetLayer();
+                    _ret_var = ((IComponent)ws.Target).GetLayer();
                 }
                 catch (Exception e)
                 {
@@ -1987,13 +1840,13 @@ IComponent
         private static void layer_set(System.IntPtr obj, System.IntPtr pd, short l)
         {
             Eina.Log.Debug("function efl_gfx_stack_layer_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IComponentConcrete)wrapper).SetLayer(l);
+                    ((IComponent)ws.Target).SetLayer(l);
                 }
                 catch (Exception e)
                 {
@@ -2022,13 +1875,13 @@ IComponent
         private static Efl.Gfx.IStack below_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_below_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IStack _ret_var = default(Efl.Gfx.IStack);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetBelow();
+                    _ret_var = ((IComponent)ws.Target).GetBelow();
                 }
                 catch (Exception e)
                 {
@@ -2058,13 +1911,13 @@ IComponent
         private static Efl.Gfx.IStack above_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_above_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IStack _ret_var = default(Efl.Gfx.IStack);
                 try
                 {
-                    _ret_var = ((IComponentConcrete)wrapper).GetAbove();
+                    _ret_var = ((IComponent)ws.Target).GetAbove();
                 }
                 catch (Exception e)
                 {
@@ -2094,13 +1947,13 @@ IComponent
         private static void stack_below(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IStack below)
         {
             Eina.Log.Debug("function efl_gfx_stack_below was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IComponentConcrete)wrapper).StackBelow(below);
+                    ((IComponent)ws.Target).StackBelow(below);
                 }
                 catch (Exception e)
                 {
@@ -2129,13 +1982,13 @@ IComponent
         private static void raise_to_top(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_raise_to_top was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IComponentConcrete)wrapper).RaiseToTop();
+                    ((IComponent)ws.Target).RaiseToTop();
                 }
                 catch (Exception e)
                 {
@@ -2164,13 +2017,13 @@ IComponent
         private static void stack_above(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IStack above)
         {
             Eina.Log.Debug("function efl_gfx_stack_above was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IComponentConcrete)wrapper).StackAbove(above);
+                    ((IComponent)ws.Target).StackAbove(above);
                 }
                 catch (Exception e)
                 {
@@ -2199,13 +2052,13 @@ IComponent
         private static void lower_to_bottom(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_stack_lower_to_bottom was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IComponentConcrete)wrapper).LowerToBottom();
+                    ((IComponent)ws.Target).LowerToBottom();
                 }
                 catch (Exception e)
                 {
@@ -2223,7 +2076,7 @@ IComponent
 
         private static efl_gfx_stack_lower_to_bottom_delegate efl_gfx_stack_lower_to_bottom_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

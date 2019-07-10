@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI nstate class</summary>
 [Efl.Ui.Nstate.NativeMethods]
-public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
+public class Nstate : Efl.Ui.Button
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected Nstate(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Nstate"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -61,33 +61,6 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Called when the value changed.</summary>
     public event EventHandler ChangedEvt
     {
@@ -95,10 +68,9 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -168,18 +140,18 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Activate widget</summary>
-    virtual public void Activate() {
+    virtual protected void Activate() {
          Efl.Ui.Nstate.NativeMethods.efl_ui_nstate_activate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Maximum number of states</summary>
-/// <value>The number of states.</value>
+    /// <value>The number of states.</value>
     public int Count {
         get { return GetCount(); }
         set { SetCount(value); }
     }
     /// <summary>Get the state value.</summary>
-/// <value>The state.</value>
+    /// <value>The state.</value>
     public int Value {
         get { return GetValue(); }
         set { SetValue(value); }
@@ -260,7 +232,7 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
             return Efl.Ui.Nstate.efl_ui_nstate_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_ui_nstate_count_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -273,13 +245,13 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
         private static int count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_nstate_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Nstate)wrapper).GetCount();
+                    _ret_var = ((Nstate)ws.Target).GetCount();
                 }
                 catch (Exception e)
                 {
@@ -309,13 +281,13 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
         private static void count_set(System.IntPtr obj, System.IntPtr pd, int nstate)
         {
             Eina.Log.Debug("function efl_ui_nstate_count_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Nstate)wrapper).SetCount(nstate);
+                    ((Nstate)ws.Target).SetCount(nstate);
                 }
                 catch (Exception e)
                 {
@@ -344,13 +316,13 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
         private static int value_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_nstate_value_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Nstate)wrapper).GetValue();
+                    _ret_var = ((Nstate)ws.Target).GetValue();
                 }
                 catch (Exception e)
                 {
@@ -380,13 +352,13 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
         private static void value_set(System.IntPtr obj, System.IntPtr pd, int state)
         {
             Eina.Log.Debug("function efl_ui_nstate_value_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Nstate)wrapper).SetValue(state);
+                    ((Nstate)ws.Target).SetValue(state);
                 }
                 catch (Exception e)
                 {
@@ -415,13 +387,13 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
         private static void activate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_nstate_activate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Nstate)wrapper).Activate();
+                    ((Nstate)ws.Target).Activate();
                 }
                 catch (Exception e)
                 {
@@ -439,7 +411,7 @@ public class Nstate : Efl.Ui.Button, Efl.Eo.IWrapper
 
         private static efl_ui_nstate_activate_delegate efl_ui_nstate_activate_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

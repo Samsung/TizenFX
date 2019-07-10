@@ -200,6 +200,18 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets the default window.
+        /// </summary>
+        /// <returns>The default Window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Window GetDefaultWindow()
+        {
+            return Window.Instance;
+        }
+
         internal Application ApplicationHandle
         {
             get
@@ -248,6 +260,25 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             return ((NUICoreBackend)this.Backend).AddIdle(func);
+        }
+
+        /// <summary>
+        /// Sets the number of frames per render.
+        /// </summary>
+        /// <param name="numberOfVSyncsPerRender">The number of vsyncs between successive renders.</param>
+        /// <remarks>
+        /// Suggest this is a power of two:
+        /// 1 - render each vsync frame.
+        /// 2 - render every other vsync frame.
+        /// 4 - render every fourth vsync frame.
+        /// 8 - render every eighth vsync frame. <br />
+        /// For example, if an application runs on 60 FPS and SetRenderRefreshRate(2) is called, the frames per second will be changed to 30.
+        ///</remarks>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
+        {
+            Adaptor.Instance.SetRenderRefreshRate(numberOfVSyncsPerRender);
         }
 
         /// <summary>
@@ -319,14 +350,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
-            if (_windowSize2D != null)
-            {
-                Window.Instance.WindowSize = _windowSize2D;
-            }
-            if (_windowPosition2D != null)
-            {
-                Window.Instance.WindowPosition = _windowPosition2D;
-            }
         }
 
         /// <summary>
@@ -350,7 +373,6 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
-            Device.PlatformServices = new TizenPlatformServices();
         }
     }
 

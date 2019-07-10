@@ -15,108 +15,118 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using System.ComponentModel;
+using tizenlog = Tizen.Log;
+
 namespace Tizen.NUI.BaseComponents
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-    using System.ComponentModel;
-    using Tizen.NUI;
-    using tizenlog = Tizen.Log;
-
     /// <summary>
     /// AnimatedVectorImageView renders an animated vector image
     /// </summary>
-    /// <since_tizen> none </since_tizen>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimatedVectorImageView : ImageView
     {
+        #region Constructor, Distructor, Dispose
         /// <summary>
-        /// AnimatedVectorImageView constructor
+        /// AnimatedVectorImageView
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AnimatedVectorImageView()
+        public AnimatedVectorImageView() : base()
         {
+            NUILog.Debug($"AnimatedVectorImageView() constructor!");
+            currentStates.url = "";
+            currentStates.frame = -1;
+            currentStates.loopCount = 0;
+            currentStates.loopMode = LoopModes.Forward;
+            //currentStates.stopEndAction = EndActions.Cancel;
+            currentStates.framePlayRangeMin = -1;
+            currentStates.framePlayRangeMax = -1;
+            currentStates.changed = false;
+            currentStates.totalFrame = -1;
+            currentStates.scale = 1.0f;
         }
 
         /// <summary>
-        /// Animation finished event
+        /// AnimatedVectorImageView(float scale)
         /// </summary>
-        /// <since_tizen> none </since_tizen>
+        /// <param name="scale"></param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler Finished
+        public AnimatedVectorImageView(float scale) : this()
         {
-            add
+            currentStates.scale = scale;
+        }
+
+        /// <summary>
+        /// Dispose(DisposeTypes type)
+        /// </summary>
+        /// <param name="type"></param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
             {
-                if (finishedEventHandler == null)
-                {
-                    tizenlog.Debug(debugTag, $"Finished()! add!");
-                    visualEventSignalCallback = onVisualEventSignal;
-                    VisualEventSignal().Connect(visualEventSignalCallback);
-                }
-                finishedEventHandler += value;
+                return;
             }
-            remove
+
+            NUILog.Debug($"Dispose(type={type})!");
+
+            if (type == DisposeTypes.Explicit)
             {
-                tizenlog.Debug(debugTag, $"Finished()! remove!");
-                finishedEventHandler -= value;
-                if (finishedEventHandler == null && visualEventSignalCallback != null)
-                {
-                    VisualEventSignal().Disconnect(visualEventSignalCallback);
-                }
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
-        }
 
-        /// <summary>
-        /// Enumeration for what state the vector animation is in
-        /// </summary>
-        /// <since_tizen> none </since_tizen>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum PlayStateType
-        {
-            /// <summary>
-            /// Invalid
-            /// </summary>
-            Invalid = -1,
-            /// <summary>
-            /// Vector Animation has stopped
-            /// </summary>
-            /// <since_tizen> none </since_tizen>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Stopped,
-            /// <summary>
-            /// The vector animation is playing
-            /// </summary>
-            /// <since_tizen> none </since_tizen>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Playing,
-            /// <summary>
-            /// The vector animation is paused
-            /// </summary>
-            /// <since_tizen> none </since_tizen>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Paused
-        }
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
 
+            //disconnect event signal
+            if (finishedEventHandler != null && visualEventSignalCallback != null)
+            {
+                VisualEventSignal().Disconnect(visualEventSignalCallback);
+                finishedEventHandler = null;
+                NUILog.Debug($"disconnect event signal");
+            }
+
+            base.Dispose(type);
+        }
+        #endregion Constructor, Distructor, Dispose
+
+
+        #region Property
         /// <summary>
-        /// Resource URL
+        /// URL
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string URL
         {
+            set
+            {
+                NUILog.Debug($"URL set! value={value}");
+                string ret = (value == null ? "" : value);
+                currentStates.url = ret;
+                currentStates.changed = true;
+
+                PropertyMap map = new PropertyMap();
+                map.Add(Visual.Property.Type, new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage))
+                    .Add(ImageVisualProperty.URL, new PropertyValue(currentStates.url))
+                    .Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
+                //.Add(ImageVisualProperty.StopEndAction, new PropertyValue((int)currentStates.stopEndAction))
+                //.Add(ImageVisualProperty.LoopMode, new PropertyValue((int)currentStates.loopMode));
+                Image = map;
+            }
             get
             {
                 string ret = ResourceUrl;
-                tizenlog.Debug(debugTag, $"URL get! base resource mUrl={ret}, name={Name}");
+                NUILog.Debug($"URL get! base ret={ret}, Name={Name}");
                 PropertyMap map = Image;
                 if (map != null)
                 {
@@ -125,59 +135,12 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            tizenlog.Debug(debugTag, $"gotten url={ret}");
+                            NUILog.Debug($"gotten url={ret}");
                             return ret;
                         }
                     }
                 }
-                tizenlog.Error(tag, "[ERROR] fail to get ResourceUrl from dali");
-                return ret;
-            }
-            set
-            {
-                tizenlog.Debug(debugTag, $"URL set! value={value}");
-                string ret = (value == null ? "" : value);
-                url = ret;
-                PropertyMap map = new PropertyMap();
-                map.Add(Visual.Property.Type, new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage))
-                    .Add(ImageVisualProperty.URL, new PropertyValue(ret));
-                Image = map;
-            }
-        }
-
-        /// <summary>
-        /// The number of times the AnimatedVectorImageView will be looped
-        /// </summary>
-        /// <since_tizen> none </since_tizen>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int LoopCount
-        {
-            set
-            {
-                tizenlog.Debug(debugTag, $"LoopCount set val={value}");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.LoopCount, new PropertyValue(value));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            }
-            get
-            {
-                tizenlog.Debug(debugTag, $"LoopCount get!");
-                PropertyMap map = base.Image;
-                var ret = 0;
-                if (map != null)
-                {
-                    PropertyValue val = map.Find(ImageVisualProperty.LoopCount);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            tizenlog.Debug(debugTag, $"gotten loop count={ret}");
-                            return ret;
-                        }
-                    }
-                }
-                tizenlog.Error(tag, "[ERROR] fail to get LoopCount from dali");
+                tizenlog.Error(tag, "[ERROR] fail to get URL from dali");
                 return ret;
             }
         }
@@ -185,7 +148,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The playing state
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PlayStateType PlayState
@@ -211,277 +173,320 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The animation progress
+        /// The number of total frame
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float CurrentProgress
+        public int TotalFrameNumber
         {
-            set
-            {
-                float val = value;
-                tizenlog.Debug(debugTag, $"set progress={val}");
-                DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(val));
-            }
             get
             {
-                float ret = -1.0f;
+                int ret = -1;
                 PropertyMap map = Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.CurrentProgress);
+                    PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
                     if (val != null)
                     {
                         if (val.Get(out ret))
                         {
+                            NUILog.Debug($"TotalFrameNumber get! ret={ret}");
+                            currentStates.totalFrame = ret;
                             return ret;
                         }
                     }
                 }
-                tizenlog.Error(tag, $"[ERROR] fail to get CurrentProgress from dali");
+                tizenlog.Error(tag, $"[ERROR] fail to get TotalFrameNumber from dali");
                 return ret;
             }
         }
 
         /// <summary>
-        /// The animation frame
+        /// CurrentFrameNumber
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CurrentFrame
+        public int CurrentFrameNumber
         {
             set
             {
-                currentFrame = value;
-                //to do
+                currentStates.frame = value;
+                NUILog.Debug($"set CurrentFrameNumber={currentStates.frame}");
+                DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
             }
             get
             {
-                //to do
-                return currentFrame;
-            }
-        }
-
-        /// <summary>
-        /// Animation will play between the values specified. Both values should be between 0-1, otherwise they will be ignored. 
-        /// If the range provided is not in proper order(minimum, maximum ), it will be reordered.
-        /// Default 0 and 1
-        /// </summary>
-        /// <param name="range">Vector2 type, between 0 and 1</param>
-        /// <since_tizen> none </since_tizen>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetPlayRange(Vector2 range)
-        {
-            PropertyMap map = new PropertyMap();
-            map.Add(ImageVisualProperty.PlayRange, new PropertyValue(range));
-            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-        }
-
-        /// <summary>
-        /// Get Animation play range
-        /// </summary>
-        /// <returns>Vector2 type, between 0 and 1</returns>
-        /// <since_tizen> none </since_tizen>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 GetPlayRange()
-        {
-            Vector2 ret = new Vector2(-1.0f, -1.0f);
-            PropertyMap map = Image;
-            if (map != null)
-            {
-                PropertyValue val = map.Find(ImageVisualProperty.PlayRange);
-                if (val != null)
+                int ret = 0;
+                PropertyMap map = Image;
+                if (map != null)
                 {
-                    if (val.Get(ret))
+                    PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
+                    if (val != null)
                     {
-                        return ret;
+                        if (val.Get(out ret))
+                        {
+                            NUILog.Debug($"CurrentFrameNumber get! val={ret}");
+                            return ret;
+                        }
                     }
                 }
+                tizenlog.Error(tag, $"[ERROR] fail to get CurrentFrameNumber from dali!! ret={ret}");
+                return ret;
             }
-            tizenlog.Error(tag, $"[ERROR] fail to get PlayRange from dali");
-            return ret;
-
         }
 
         /// <summary>
-        /// Play AnimatedVectorImageView
+        /// Loop Mode of animation.
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        new public void Play()
+        public LoopModes LoopMode
         {
-            tizenlog.Debug(debugTag, $"play() called! my mUrl={url}");
+            set
+            {
+                currentStates.loopMode = (LoopModes)value;
+                currentStates.changed = true;
+
+
+                NUILog.Debug($"LoopMode set val={currentStates.loopMode}");
+                //PropertyMap map = new PropertyMap();
+                //map.Add(ImageVisualProperty.LoopMode, new PropertyValue((int)currentStates.loopMode));
+                //DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            }
+            get
+            {
+                NUILog.Debug($"LoopMode get!");
+                PropertyMap map = base.Image;
+                var ret = 0;
+                //if (map != null)
+                //{
+                //    PropertyValue val = map.Find(ImageVisualProperty.LoopMode);
+                //    if (val != null)
+                //    {
+                //        if (val.Get(out ret))
+                //        {
+                //            NUILog.Debug($"gotten LoopMode={ret}");
+                //            if (ret != (int)currentStates.loopMode && ret > 0)
+                //            {
+                //                NUILog.Debug($"different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
+                //                return (int)currentStates.loopMode;
+                //            }
+                //            return ret;
+                //        }
+                //    }
+                //}
+                tizenlog.Error(tag, "[ERROR] fail to get loopMode from dali");
+                return (LoopModes)ret;
+            }
+        }
+
+        /// <summary>
+        /// LoopCount
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int LoopCount
+        {
+            set
+            {
+                currentStates.changed = true;
+                currentStates.loopCount = value;
+                NUILog.Debug($"LoopCount set! currentStates.loopCount={currentStates.loopCount}");
+                PropertyMap map = new PropertyMap();
+                map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
+                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            }
+            get
+            {
+                NUILog.Debug($"LoopCount get!");
+                PropertyMap map = base.Image;
+                var ret = 0;
+                if (map != null)
+                {
+                    PropertyValue val = map.Find(ImageVisualProperty.LoopCount);
+                    if (val != null)
+                    {
+                        if (val.Get(out ret))
+                        {
+                            NUILog.Debug($"gotten loop count={ret}");
+                            if (ret != currentStates.loopCount && ret > 0)
+                            {
+                                NUILog.Debug($"[ERR] different loop count! gotten={ret}, loopCount={currentStates.loopCount}");
+                            }
+                            return currentStates.loopCount;
+                        }
+                    }
+                }
+                tizenlog.Error(tag, $"[ERROR] fail to get LoopCount from dali  currentStates.loopCount={currentStates.loopCount}");
+                return currentStates.loopCount;
+            }
+        }
+        #endregion Property
+
+
+        #region Method
+        /// <summary>
+        /// SetPlayRange(int startFrame, int endFrame)
+        /// </summary>
+        /// <param name="startFrame"></param>
+        /// <param name="endFrame"></param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPlayRange(int startFrame, int endFrame)
+        {
+            NUILog.Debug($"SetPlayRange(startFrame={startFrame}, endFrame={endFrame})");
+
+            currentStates.changed = true;
+            currentStates.framePlayRangeMin = startFrame;
+            currentStates.framePlayRangeMax = endFrame;
+
+            PropertyArray array = new PropertyArray();
+            array.PushBack(new PropertyValue(currentStates.framePlayRangeMin));
+            array.PushBack(new PropertyValue(currentStates.framePlayRangeMax));
+
+            PropertyMap map = new PropertyMap();
+            map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
+            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            NUILog.Debug($"currentStates.framePlayRangeMin={currentStates.framePlayRangeMin}, currentStates.framePlayRangeMax={currentStates.framePlayRangeMax})");
+        }
+
+        /// <summary>
+        /// Play Animation.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Play()
+        {
+            NUILog.Debug($"Play() called!");
+            debugPrint();
             base.Play();
         }
 
         /// <summary>
-        /// Pause AnimatedVectorImageView
+        /// Pause Animation.
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        new public void Pause()
+        public new void Pause()
         {
-            tizenlog.Debug(debugTag, $"pause() called! my mUrl={url}");
+            NUILog.Debug($"Pause() called!");
+            debugPrint();
             base.Pause();
         }
 
         /// <summary>
-        /// Stop AnimatedVectorImageView
+        /// Stop Animation.
         /// </summary>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        new public void Stop()
+        public new void Stop()
         {
-            tizenlog.Debug(debugTag, $"stop() called! my mUrl={url}");
+            NUILog.Debug($"Stop()!");
+            debugPrint();
             base.Stop();
+        }
+        #endregion Method
+
+
+        #region Event, Enum, Struct, ETC
+        /// <summary>
+        /// Animation finished event
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Finished
+        {
+            add
+            {
+                if (finishedEventHandler == null)
+                {
+                    NUILog.Debug($"Finished()! add!");
+                    visualEventSignalCallback = onVisualEventSignal;
+                    VisualEventSignal().Connect(visualEventSignalCallback);
+                }
+                finishedEventHandler += value;
+            }
+            remove
+            {
+                NUILog.Debug($"Finished()! remove!");
+                finishedEventHandler -= value;
+                if (finishedEventHandler == null && visualEventSignalCallback != null)
+                {
+                    VisualEventSignal().Disconnect(visualEventSignalCallback);
+                }
+            }
         }
 
         /// <summary>
-        /// You can override it to clean-up your own resources
+        /// Loop mode
         /// </summary>
-        /// <param name="type">DisposeTypes</param>
-        /// <since_tizen> none </since_tizen>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        public enum LoopModes
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            base.Dispose(type);
+            /// <summary>
+            /// Forward
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Forward = 1,
+            /// <summary>
+            /// Reverse
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Backward = 2
         }
 
+        /// <summary>
+        /// Enumeration for what state the vector animation is in
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum PlayStateType
+        {
+            /// <summary>
+            /// Invalid
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Invalid = -1,
+            /// <summary>
+            /// Vector Animation has stopped
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Stopped = 0,
+            /// <summary>
+            /// The vector animation is playing
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Playing = 1,
+            /// <summary>
+            /// The vector animation is paused
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Paused = 2
+        }
+        #endregion Event, Enum, Struct, ETC
+
+
+        #region Internal
         internal class VisualEventSignalArgs : EventArgs
         {
             public int VisualIndex
             {
-                get
-                {
-                    return visualIndex;
-                }
-                set
-                {
-                    visualIndex = value;
-                }
+                set;
+                get;
             }
-
             public int SignalId
             {
-                get
-                {
-                    return signalId;
-                }
-                set
-                {
-                    signalId = value;
-                }
-            }
-
-            int visualIndex;
-            int signalId;
-        }
-
-        private enum actionType
-        {
-            /// <summary>
-            /// Play the animated vector image
-            /// </summary>
-            play,
-            /// <summary>
-            /// Pause the animated vector image
-            /// </summary>
-            pause,
-            /// <summary>
-            /// Stop the animated vector image. This is also Default playback mode
-            /// </summary>
-            stop,
-            /// <summary>
-            /// Jump to the specified frame. Property::FLOAT value should be passed
-            /// </summary>
-            jumpTo,
-            /// <summary>
-            /// Update the properties of the animated vector image
-            /// </summary>
-            updateProperty
-        };
-
-        private struct DevelVisual
-        {
-            internal enum Type
-            {
-                /// <summary>
-                /// Renders an animated gradient
-                /// </summary>
-                AnimatedGradient = Tizen.NUI.Visual.Type.AnimatedImage + 1,
-                /// <summary>
-                /// Renders an animated vector image
-                /// </summary>
-                AnimatedVectorImage = Tizen.NUI.Visual.Type.AnimatedImage + 2,
+                set;
+                get;
             }
         }
-
-        private const string debugTag = "NUITEST";
-        private const string tag = "NUI";
-        //DummyControl.Property.TEST_VISUAL
-        private const int vectorImageVisualIndex = 10000000 + 1000 + 2;
-        private string url;
-        private int currentFrame;
-        private event EventHandler finishedEventHandler;
-
-        private void OnFinished()
-        {
-            finishedEventHandler?.Invoke(this, null);
-        }
-
-        private void onVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
-        {
-            OnFinished();
-
-            if (targetView != IntPtr.Zero)
-            {
-                View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
-                if (v != null)
-                {
-                    tizenlog.Debug(debugTag, $"targetView is not null! name={v.Name}");
-                }
-                else
-                {
-                    tizenlog.Debug(debugTag, $"target is something created from dali");
-                }
-            }
-            VisualEventSignalArgs e = new VisualEventSignalArgs();
-            e.VisualIndex = visualIndex;
-            e.SignalId = signalId;
-            visualEventSignalHandler?.Invoke(this, e);
-
-            tizenlog.Debug(debugTag, $"@@ onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}");
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
-
-        private VisualEventSignalCallbackType visualEventSignalCallback;
-
-        private EventHandler<VisualEventSignalArgs> visualEventSignalHandler;
 
         internal event EventHandler<VisualEventSignalArgs> VisualEvent
         {
@@ -511,182 +516,91 @@ namespace Tizen.NUI.BaseComponents
 
         internal VisualEventSignal VisualEventSignal()
         {
-            VisualEventSignal ret = new VisualEventSignal(InterOp.View_VisaulEventSignal(View.getCPtr(this)), false);
+            VisualEventSignal ret = new VisualEventSignal(Interop.VisualEventSignal.NewWithView(View.getCPtr(this)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+        #endregion Internal
 
-    } // AnimatedVectorImageView : ImageView
-} // namespace Tizen.NUI.BaseComponents
 
-namespace Tizen.NUI
-{
-    using Tizen.NUI.BaseComponents;
-    using global::System;
-    using global::System.Runtime.InteropServices;
-    using System.ComponentModel;
-    using tizenlog = Tizen.Log;
-
-    internal class VisualEventSignal : IDisposable
-    {
-        public VisualEventSignal() : this(InterOp.new_VisualEventSignal(), true)
+        #region Private
+        private struct states
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
+            internal string url;
+            internal int frame;
+            internal int loopCount;
+            internal LoopModes loopMode;
+            //internal EndActions stopEndAction;
+            internal int framePlayRangeMin;
+            internal int framePlayRangeMax;
+            internal bool changed;
+            internal int totalFrame;
+            internal float scale;
+        };
+        private states currentStates;
 
-        ~VisualEventSignal()
+        private enum actionType
         {
-            if (!isDisposeQueued)
+            play,
+            pause,
+            stop,
+            jumpTo,
+            updateProperty,
+        };
+
+        private struct DevelVisual
+        {
+            internal enum Type
             {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
+                AnimatedGradient = Visual.Type.AnimatedImage + 1,
+                AnimatedVectorImage = Visual.Type.AnimatedImage + 2,
             }
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        public void Dispose()
-        {
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    InterOp.delete_VisualEventSignal(swigCPtr);
-                }
-                swigCPtr = new HandleRef(null, IntPtr.Zero);
-            }
-            disposed = true;
-        }
-
-        public bool Empty()
-        {
-            bool ret = InterOp.VisualEventSignal_Empty(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public uint GetConnectionCount()
-        {
-            uint ret = InterOp.VisualEventSignal_GetConnectionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void Connect(Delegate func)
-        {
-            tizenlog.Debug(tag, $"Connect()!");
-
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
-            {
-                InterOp.VisualEventSignal_Connect(swigCPtr, new HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Disconnect(Delegate func)
-        {
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate<Delegate>(func);
-            {
-                InterOp.VisualEventSignal_Disconnect(swigCPtr, new HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        public void Emit(View target, int visualIndex, int signalId)
-        {
-            InterOp.VisualEventSignal_Emit(swigCPtr, View.getCPtr(target), visualIndex, signalId);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal VisualEventSignal(IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new HandleRef(this, cPtr);
-        }
-
-        internal static HandleRef getCPtr(VisualEventSignal obj)
-        {
-            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
         }
 
         private const string tag = "NUI";
-        private HandleRef swigCPtr;
-        protected bool swigCMemOwn;
+        private const int vectorImageVisualIndex = 10000000 + 1000 + 2;
+        private event EventHandler finishedEventHandler;
 
-        private bool isDisposeQueued = false;
-        protected bool disposed = false;
+        private void OnFinished()
+        {
+            finishedEventHandler?.Invoke(this, null);
+        }
 
-    } // internal class VisualEventSignal : IDisposable
-} // namespace Tizen.NUI
+        private void onVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        {
+            OnFinished();
 
-namespace Tizen.NUI
-{
-    using global::System.Runtime.InteropServices;
-    using global::System;
+            if (targetView != IntPtr.Zero)
+            {
+                View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
+                if (v != null)
+                {
+                    NUILog.Debug($"targetView is not null! name={v.Name}");
+                }
+                else
+                {
+                    NUILog.Debug($"target is something created from dali");
+                }
+            }
+            VisualEventSignalArgs e = new VisualEventSignalArgs();
+            e.VisualIndex = visualIndex;
+            e.SignalId = signalId;
+            visualEventSignalHandler?.Invoke(this, e);
 
-    internal partial class InterOp
-    {
-        const string Lib = "libdali-csharp-binder.so";
+            NUILog.Debug($"@@ onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}");
+        }
 
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Empty")]
-        public static extern bool VisualEventSignal_Empty(HandleRef jarg1);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
 
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_GetConnectionCount")]
-        public static extern uint VisualEventSignal_GetConnectionCount(HandleRef jarg1);
+        private VisualEventSignalCallbackType visualEventSignalCallback;
+        private EventHandler<VisualEventSignalArgs> visualEventSignalHandler;
 
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Connect")]
-        public static extern void VisualEventSignal_Connect(HandleRef jarg1, HandleRef jarg2);
-
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Disconnect")]
-        public static extern void VisualEventSignal_Disconnect(HandleRef jarg1, HandleRef jarg2);
-
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_VisualEventSignal_Emit")]
-        public static extern void VisualEventSignal_Emit(HandleRef jarg1, HandleRef jarg2, int jarg3, int jarg4);
-
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_new_VisualEventSignal")]
-        public static extern IntPtr new_VisualEventSignal();
-
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_delete_VisualEventSignal")]
-        public static extern void delete_VisualEventSignal(HandleRef jarg1);
-
-        [DllImport(Lib, EntryPoint = "CSharp_Dali_View_VisualEventSignal")]
-        public static extern IntPtr View_VisaulEventSignal(HandleRef jarg1);
+        private void debugPrint()
+        {
+            NUILog.Debug($"======= currentStates");
+            NUILog.Debug($"url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin={currentStates.framePlayRangeMin}, framePlayRangeMax={currentStates.framePlayRangeMax} \n");
+        }
+        #endregion Private
     }
 }

@@ -66,43 +66,43 @@ void SetScale(double scale);
     /// (Since EFL 1.22)</summary>
     event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt;
     /// <summary>The 2D position of a canvas object.
-/// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
-/// (Since EFL 1.22)</summary>
-/// <value>A 2D coordinate in pixel units.</value>
+    /// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
+    /// (Since EFL 1.22)</summary>
+    /// <value>A 2D coordinate in pixel units.</value>
     Eina.Position2D Position {
         get ;
         set ;
     }
     /// <summary>The 2D size of a canvas object.
-/// (Since EFL 1.22)</summary>
-/// <value>A 2D size in pixel units.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>A 2D size in pixel units.</value>
     Eina.Size2D Size {
         get ;
         set ;
     }
     /// <summary>Rectangular geometry that combines both position and size.
-/// (Since EFL 1.22)</summary>
-/// <value>The X,Y position and W,H size, in pixels.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The X,Y position and W,H size, in pixels.</value>
     Eina.Rect Geometry {
         get ;
         set ;
     }
     /// <summary>The visibility of a canvas object.
-/// All canvas objects will become visible by default just before render. This means that it is not required to call <see cref="Efl.Gfx.IEntity.SetVisible"/> after creating an object unless you want to create it without showing it. Note that this behavior is new since 1.21, and only applies to canvas objects created with the EO API (i.e. not the legacy C-only API). Other types of Gfx objects may or may not be visible by default.
-/// 
-/// Note that many other parameters can prevent a visible object from actually being &quot;visible&quot; on screen. For instance if its color is fully transparent, or its parent is hidden, or it is clipped out, etc...
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if to make the object visible, <c>false</c> otherwise</value>
+    /// All canvas objects will become visible by default just before render. This means that it is not required to call <see cref="Efl.Gfx.IEntity.SetVisible"/> after creating an object unless you want to create it without showing it. Note that this behavior is new since 1.21, and only applies to canvas objects created with the EO API (i.e. not the legacy C-only API). Other types of Gfx objects may or may not be visible by default.
+    /// 
+    /// Note that many other parameters can prevent a visible object from actually being &quot;visible&quot; on screen. For instance if its color is fully transparent, or its parent is hidden, or it is clipped out, etc...
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if to make the object visible, <c>false</c> otherwise</value>
     bool Visible {
         get ;
         set ;
     }
     /// <summary>The scaling factor of an object.
-/// This property is an individual scaling factor on the object (Edje or UI widget). This property (or Edje&apos;s global scaling factor, when applicable), will affect this object&apos;s part sizes. If scale is not zero, than the individual scaling will override any global scaling set, for the object obj&apos;s parts. Set it back to zero to get the effects of the global scaling again.
-/// 
-/// Warning: In Edje, only parts which, at EDC level, had the &quot;scale&quot; property set to 1, will be affected by this function. Check the complete &quot;syntax reference&quot; for EDC files.
-/// (Since EFL 1.22)</summary>
-/// <value>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</value>
+    /// This property is an individual scaling factor on the object (Edje or UI widget). This property (or Edje&apos;s global scaling factor, when applicable), will affect this object&apos;s part sizes. If scale is not zero, than the individual scaling will override any global scaling set, for the object obj&apos;s parts. Set it back to zero to get the effects of the global scaling again.
+    /// 
+    /// Warning: In Edje, only parts which, at EDC level, had the &quot;scale&quot; property set to 1, will be affected by this function. Check the complete &quot;syntax reference&quot; for EDC files.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</value>
     double Scale {
         get ;
         set ;
@@ -125,13 +125,13 @@ public class IEntitySizeChangedEvt_Args : EventArgs {
 }
 /// <summary>Efl graphics interface
 /// (Since EFL 1.22)</summary>
-sealed public class IEntityConcrete : 
-
-IEntity
+sealed public class IEntityConcrete :
+    Efl.Eo.EoWrapper
+    , IEntity
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -146,155 +146,12 @@ IEntity
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_entity_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IEntity"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IEntityConcrete(System.IntPtr raw)
+    private IEntityConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IEntityConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
@@ -305,14 +162,13 @@ IEntity
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IEntityVisibilityChangedEvt_Args args = new Efl.Gfx.IEntityVisibilityChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Gfx.IEntityVisibilityChangedEvt_Args args = new Efl.Gfx.IEntityVisibilityChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -368,13 +224,12 @@ IEntity
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IEntityPositionChangedEvt_Args args = new Efl.Gfx.IEntityPositionChangedEvt_Args();
+                        Efl.Gfx.IEntityPositionChangedEvt_Args args = new Efl.Gfx.IEntityPositionChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -432,13 +287,12 @@ IEntity
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Gfx.IEntitySizeChangedEvt_Args args = new Efl.Gfx.IEntitySizeChangedEvt_Args();
+                        Efl.Gfx.IEntitySizeChangedEvt_Args args = new Efl.Gfx.IEntitySizeChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -568,43 +422,43 @@ IEntity
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The 2D position of a canvas object.
-/// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
-/// (Since EFL 1.22)</summary>
-/// <value>A 2D coordinate in pixel units.</value>
+    /// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
+    /// (Since EFL 1.22)</summary>
+    /// <value>A 2D coordinate in pixel units.</value>
     public Eina.Position2D Position {
         get { return GetPosition(); }
         set { SetPosition(value); }
     }
     /// <summary>The 2D size of a canvas object.
-/// (Since EFL 1.22)</summary>
-/// <value>A 2D size in pixel units.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>A 2D size in pixel units.</value>
     public Eina.Size2D Size {
         get { return GetSize(); }
         set { SetSize(value); }
     }
     /// <summary>Rectangular geometry that combines both position and size.
-/// (Since EFL 1.22)</summary>
-/// <value>The X,Y position and W,H size, in pixels.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The X,Y position and W,H size, in pixels.</value>
     public Eina.Rect Geometry {
         get { return GetGeometry(); }
         set { SetGeometry(value); }
     }
     /// <summary>The visibility of a canvas object.
-/// All canvas objects will become visible by default just before render. This means that it is not required to call <see cref="Efl.Gfx.IEntity.SetVisible"/> after creating an object unless you want to create it without showing it. Note that this behavior is new since 1.21, and only applies to canvas objects created with the EO API (i.e. not the legacy C-only API). Other types of Gfx objects may or may not be visible by default.
-/// 
-/// Note that many other parameters can prevent a visible object from actually being &quot;visible&quot; on screen. For instance if its color is fully transparent, or its parent is hidden, or it is clipped out, etc...
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if to make the object visible, <c>false</c> otherwise</value>
+    /// All canvas objects will become visible by default just before render. This means that it is not required to call <see cref="Efl.Gfx.IEntity.SetVisible"/> after creating an object unless you want to create it without showing it. Note that this behavior is new since 1.21, and only applies to canvas objects created with the EO API (i.e. not the legacy C-only API). Other types of Gfx objects may or may not be visible by default.
+    /// 
+    /// Note that many other parameters can prevent a visible object from actually being &quot;visible&quot; on screen. For instance if its color is fully transparent, or its parent is hidden, or it is clipped out, etc...
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if to make the object visible, <c>false</c> otherwise</value>
     public bool Visible {
         get { return GetVisible(); }
         set { SetVisible(value); }
     }
     /// <summary>The scaling factor of an object.
-/// This property is an individual scaling factor on the object (Edje or UI widget). This property (or Edje&apos;s global scaling factor, when applicable), will affect this object&apos;s part sizes. If scale is not zero, than the individual scaling will override any global scaling set, for the object obj&apos;s parts. Set it back to zero to get the effects of the global scaling again.
-/// 
-/// Warning: In Edje, only parts which, at EDC level, had the &quot;scale&quot; property set to 1, will be affected by this function. Check the complete &quot;syntax reference&quot; for EDC files.
-/// (Since EFL 1.22)</summary>
-/// <value>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</value>
+    /// This property is an individual scaling factor on the object (Edje or UI widget). This property (or Edje&apos;s global scaling factor, when applicable), will affect this object&apos;s part sizes. If scale is not zero, than the individual scaling will override any global scaling set, for the object obj&apos;s parts. Set it back to zero to get the effects of the global scaling again.
+    /// 
+    /// Warning: In Edje, only parts which, at EDC level, had the &quot;scale&quot; property set to 1, will be affected by this function. Check the complete &quot;syntax reference&quot; for EDC files.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</value>
     public double Scale {
         get { return GetScale(); }
         set { SetScale(value); }
@@ -734,7 +588,7 @@ IEntity
             return Efl.Gfx.IEntityConcrete.efl_gfx_entity_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Position2D.NativeStruct efl_gfx_entity_position_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -747,13 +601,13 @@ IEntity
         private static Eina.Position2D.NativeStruct position_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((IEntity)wrapper).GetPosition();
+                    _ret_var = ((IEntity)ws.Target).GetPosition();
                 }
                 catch (Exception e)
                 {
@@ -783,14 +637,14 @@ IEntity
         private static void position_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_gfx_entity_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                             
                 try
                 {
-                    ((IEntity)wrapper).SetPosition(_in_pos);
+                    ((IEntity)ws.Target).SetPosition(_in_pos);
                 }
                 catch (Exception e)
                 {
@@ -819,13 +673,13 @@ IEntity
         private static Eina.Size2D.NativeStruct size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IEntity)wrapper).GetSize();
+                    _ret_var = ((IEntity)ws.Target).GetSize();
                 }
                 catch (Exception e)
                 {
@@ -855,14 +709,14 @@ IEntity
         private static void size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct size)
         {
             Eina.Log.Debug("function efl_gfx_entity_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_size = size;
                             
                 try
                 {
-                    ((IEntity)wrapper).SetSize(_in_size);
+                    ((IEntity)ws.Target).SetSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -891,13 +745,13 @@ IEntity
         private static Eina.Rect.NativeStruct geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IEntity)wrapper).GetGeometry();
+                    _ret_var = ((IEntity)ws.Target).GetGeometry();
                 }
                 catch (Exception e)
                 {
@@ -927,14 +781,14 @@ IEntity
         private static void geometry_set(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect)
         {
             Eina.Log.Debug("function efl_gfx_entity_geometry_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                             
                 try
                 {
-                    ((IEntity)wrapper).SetGeometry(_in_rect);
+                    ((IEntity)ws.Target).SetGeometry(_in_rect);
                 }
                 catch (Exception e)
                 {
@@ -963,13 +817,13 @@ IEntity
         private static bool visible_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_visible_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IEntity)wrapper).GetVisible();
+                    _ret_var = ((IEntity)ws.Target).GetVisible();
                 }
                 catch (Exception e)
                 {
@@ -999,13 +853,13 @@ IEntity
         private static void visible_set(System.IntPtr obj, System.IntPtr pd, bool v)
         {
             Eina.Log.Debug("function efl_gfx_entity_visible_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IEntity)wrapper).SetVisible(v);
+                    ((IEntity)ws.Target).SetVisible(v);
                 }
                 catch (Exception e)
                 {
@@ -1034,13 +888,13 @@ IEntity
         private static double scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_entity_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IEntity)wrapper).GetScale();
+                    _ret_var = ((IEntity)ws.Target).GetScale();
                 }
                 catch (Exception e)
                 {
@@ -1070,13 +924,13 @@ IEntity
         private static void scale_set(System.IntPtr obj, System.IntPtr pd, double scale)
         {
             Eina.Log.Debug("function efl_gfx_entity_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IEntity)wrapper).SetScale(scale);
+                    ((IEntity)ws.Target).SetScale(scale);
                 }
                 catch (Exception e)
                 {
@@ -1094,7 +948,7 @@ IEntity
 
         private static efl_gfx_entity_scale_set_delegate efl_gfx_entity_scale_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

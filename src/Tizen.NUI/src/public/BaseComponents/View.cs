@@ -90,7 +90,6 @@ namespace Tizen.NUI.BaseComponents
     /// View is the base class for all views.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("Children")]
     public class View : Container, IResourcesProvider
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1294,7 +1293,20 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool layoutingDisabled{get; set;} = true;
 
-        internal readonly MergedStyle _mergedStyle;
+        private MergedStyle mergedStyle = null;
+        internal MergedStyle _mergedStyle
+        {
+            get
+            {
+                if (null == mergedStyle)
+                {
+                    mergedStyle = new MergedStyle(GetType(), this);
+                }
+
+                return mergedStyle;
+            }
+        }
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private LayoutItem _layout; // Exclusive layout assigned to this View.
         private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
@@ -1358,7 +1370,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 PositionUsesPivotPoint = false;
             }
-            _mergedStyle = new MergedStyle(GetType(), this);
 
             _onWindowSendEventCallback = SendViewAddedEventToWindow;
             this.OnWindowSignal().Connect(_onWindowSendEventCallback);
@@ -3470,7 +3481,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal Style Style
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Style XamlStyle
         {
             get
             {
@@ -3479,6 +3493,40 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(StyleProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// The Color of View. This is an RGBA value.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color Color
+        {
+            set
+            {
+                SetColor(value);
+            }
+            get
+            {
+                return GetCurrentColor();
+            }
+        }
+
+        /// <summary>
+        /// The color mode of View.
+        /// This specifies whether the View uses its own color, or inherits its parent color.
+        /// The default is ColorMode.UseOwnMultiplyParentColor.
+        /// </summary>
+        internal ColorMode ColorMode
+        {
+            set
+            {
+                SetColorMode(value);
+            }
+            get
+            {
+                return GetColorMode();
             }
         }
 
@@ -3561,7 +3609,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool BackgroundImageSynchronosLoading
+        /// <summary>
+        ///  Whether to load the BackgroundImage synchronously.
+        ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
+        ///  Note: For Normal Quad images only.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BackgroundImageSynchronosLoading
         {
             get
             {
@@ -4030,6 +4085,7 @@ namespace Tizen.NUI.BaseComponents
                     };
                     ChildAdded(this, e);
                 }
+                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 
@@ -4609,6 +4665,11 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal override View FindCurrentChildById(uint id)
+        {
+            return FindChildById(id);
         }
 
         internal void SetParentOrigin(Vector3 origin)
@@ -5595,16 +5656,21 @@ namespace Tizen.NUI.BaseComponents
 
         private View ConvertIdToView(uint id)
         {
-            View view = null;
-            if (GetParent() is View)
-            {
-                View parentView = GetParent() as View;
-                view = parentView.FindChildById(id);
-            }
+            View view = GetParent()?.FindCurrentChildById(id);
 
-            if (!view)
+            //If we can't find the parent's children, find in the top layer.
+            if (!view) 
             {
-                view = Window.Instance.GetRootLayer().FindChildById(id);
+                Container parent = GetParent();
+                while ((parent is View) && (parent != null))
+                {
+                    parent = parent.GetParent();
+                    if (parent is Layer)
+                    {
+                        view = parent.FindCurrentChildById(id);
+                        break;
+                    }
+                }
             }
 
             return view;

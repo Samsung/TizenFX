@@ -11,7 +11,7 @@ namespace Ui {
 
 /// <summary>Grid Default Item class. This class need to be sub object of list widget. Text and contents can be set using <see cref="Efl.IText"/>, <see cref="Efl.IContent"/> or <see cref="Efl.IPart"/>.</summary>
 [Efl.Ui.GridDefaultItem.NativeMethods]
-public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl.IText,Efl.ITextMarkup
+public class GridDefaultItem : Efl.Ui.GridItem, Efl.IContent, Efl.IText, Efl.ITextMarkup
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -50,7 +50,7 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
     /// <param name="raw">The native pointer to be wrapped.</param>
     protected GridDefaultItem(System.IntPtr raw) : base(raw)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="GridDefaultItem"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
@@ -61,33 +61,6 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
@@ -96,13 +69,12 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         {
             lock (eventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -117,7 +89,7 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -126,7 +98,7 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
             lock (eventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -134,7 +106,7 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -144,20 +116,28 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>No description supplied.</summary>
-    public Efl.Ui.GridDefaultItemPartEnd End
+    /// <summary>The extra content part for grid default item. extra part is the spare content of grid item. you can swallow small badge widget such as check, radio.</summary>
+    public Efl.Ui.ItemPartExtra EndPart
     {
         get
         {
-            return GetPart("end") as Efl.Ui.GridDefaultItemPartEnd;
+            return GetPart("end") as Efl.Ui.ItemPartExtra;
         }
     }
-    /// <summary>No description supplied.</summary>
-    public Efl.Ui.GridDefaultItemPartIcon Icon
+    /// <summary>The icon content part for grid default item. icon part is the main content of grid item.</summary>
+    public Efl.Ui.ItemPartIcon IconPart
     {
         get
         {
-            return GetPart("icon") as Efl.Ui.GridDefaultItemPartIcon;
+            return GetPart("icon") as Efl.Ui.ItemPartIcon;
+        }
+    }
+    /// <summary>The text part for grid default item. text part is the caption of grid item.</summary>
+    public Efl.Ui.ItemPartText TextPart
+    {
+        get
+        {
+            return GetPart("text") as Efl.Ui.ItemPartText;
         }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
@@ -220,15 +200,15 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     public System.String Markup {
         get { return GetMarkup(); }
         set { SetMarkup(value); }
@@ -329,7 +309,7 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
             return Efl.Ui.GridDefaultItem.efl_ui_grid_default_item_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -342,13 +322,13 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((GridDefaultItem)wrapper).GetContent();
+                    _ret_var = ((GridDefaultItem)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -378,13 +358,13 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((GridDefaultItem)wrapper).SetContent(content);
+                    _ret_var = ((GridDefaultItem)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -414,13 +394,13 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((GridDefaultItem)wrapper).UnsetContent();
+                    _ret_var = ((GridDefaultItem)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -450,13 +430,13 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((GridDefaultItem)wrapper).GetText();
+                    _ret_var = ((GridDefaultItem)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -486,13 +466,13 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((GridDefaultItem)wrapper).SetText(text);
+                    ((GridDefaultItem)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -521,13 +501,13 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static System.String markup_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_markup_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((GridDefaultItem)wrapper).GetMarkup();
+                    _ret_var = ((GridDefaultItem)ws.Target).GetMarkup();
                 }
                 catch (Exception e)
                 {
@@ -557,13 +537,13 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
         private static void markup_set(System.IntPtr obj, System.IntPtr pd, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((GridDefaultItem)wrapper).SetMarkup(markup);
+                    ((GridDefaultItem)ws.Target).SetMarkup(markup);
                 }
                 catch (Exception e)
                 {
@@ -581,7 +561,7 @@ public class GridDefaultItem : Efl.Ui.GridItem, Efl.Eo.IWrapper,Efl.IContent,Efl
 
         private static efl_text_markup_set_delegate efl_text_markup_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

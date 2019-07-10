@@ -38,20 +38,20 @@ void GetFocal(out double x, out double y);
 /// <param name="y">Y co-ordinate of focal point</param>
 void SetFocal(double x, double y);
                             /// <summary>Gets the center radius of this radial gradient.</summary>
-/// <value>Center radius</value>
+    /// <value>Center radius</value>
     double Radius {
         get ;
         set ;
     }
 }
 /// <summary>Efl graphics gradient radial interface</summary>
-sealed public class IGradientRadialConcrete : 
-
-IGradientRadial
+sealed public class IGradientRadialConcrete :
+    Efl.Eo.EoWrapper
+    , IGradientRadial
     , Efl.Gfx.IGradient
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -66,86 +66,12 @@ IGradientRadial
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
-    {
-        get { return handle; }
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_gradient_radial_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IGradientRadial"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IGradientRadialConcrete(System.IntPtr raw)
+    private IGradientRadialConcrete(System.IntPtr raw) : base(raw)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IGradientRadialConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the center of this radial gradient.</summary>
@@ -221,13 +147,13 @@ IGradientRadial
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the center radius of this radial gradient.</summary>
-/// <value>Center radius</value>
+    /// <value>Center radius</value>
     public double Radius {
         get { return GetRadius(); }
         set { SetRadius(value); }
     }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
-/// <value>Spread type to be used</value>
+    /// <value>Spread type to be used</value>
     public Efl.Gfx.GradientSpread Spread {
         get { return GetSpread(); }
         set { SetSpread(value); }
@@ -357,7 +283,7 @@ IGradientRadial
             return Efl.Gfx.IGradientRadialConcrete.efl_gfx_gradient_radial_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_gradient_radial_center_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double x,  out double y);
@@ -370,13 +296,13 @@ IGradientRadial
         private static void center_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_center_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IGradientRadial)wrapper).GetCenter(out x, out y);
+                    ((IGradientRadial)ws.Target).GetCenter(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -405,13 +331,13 @@ IGradientRadial
         private static void center_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_center_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IGradientRadial)wrapper).SetCenter(x, y);
+                    ((IGradientRadial)ws.Target).SetCenter(x, y);
                 }
                 catch (Exception e)
                 {
@@ -440,13 +366,13 @@ IGradientRadial
         private static double radius_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_radius_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IGradientRadial)wrapper).GetRadius();
+                    _ret_var = ((IGradientRadial)ws.Target).GetRadius();
                 }
                 catch (Exception e)
                 {
@@ -476,13 +402,13 @@ IGradientRadial
         private static void radius_set(System.IntPtr obj, System.IntPtr pd, double r)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_radius_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IGradientRadial)wrapper).SetRadius(r);
+                    ((IGradientRadial)ws.Target).SetRadius(r);
                 }
                 catch (Exception e)
                 {
@@ -511,13 +437,13 @@ IGradientRadial
         private static void focal_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_focal_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IGradientRadial)wrapper).GetFocal(out x, out y);
+                    ((IGradientRadial)ws.Target).GetFocal(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -546,13 +472,13 @@ IGradientRadial
         private static void focal_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_radial_focal_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IGradientRadial)wrapper).SetFocal(x, y);
+                    ((IGradientRadial)ws.Target).SetFocal(x, y);
                 }
                 catch (Exception e)
                 {
@@ -581,14 +507,14 @@ IGradientRadial
         private static void stop_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr colors, out uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
         length = default(uint);                            
                 try
                 {
-                    ((IGradientRadial)wrapper).GetStop(out _out_colors, out length);
+                    ((IGradientRadial)ws.Target).GetStop(out _out_colors, out length);
                 }
                 catch (Exception e)
                 {
@@ -618,14 +544,14 @@ IGradientRadial
         private static void stop_set(System.IntPtr obj, System.IntPtr pd, ref Efl.Gfx.GradientStop.NativeStruct colors, uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Gfx.GradientStop _in_colors = colors;
                                                     
                 try
                 {
-                    ((IGradientRadial)wrapper).SetStop(ref _in_colors, length);
+                    ((IGradientRadial)ws.Target).SetStop(ref _in_colors, length);
                 }
                 catch (Exception e)
                 {
@@ -655,13 +581,13 @@ IGradientRadial
         private static Efl.Gfx.GradientSpread spread_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.GradientSpread _ret_var = default(Efl.Gfx.GradientSpread);
                 try
                 {
-                    _ret_var = ((IGradientRadial)wrapper).GetSpread();
+                    _ret_var = ((IGradientRadial)ws.Target).GetSpread();
                 }
                 catch (Exception e)
                 {
@@ -691,13 +617,13 @@ IGradientRadial
         private static void spread_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.GradientSpread s)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IGradientRadial)wrapper).SetSpread(s);
+                    ((IGradientRadial)ws.Target).SetSpread(s);
                 }
                 catch (Exception e)
                 {
@@ -715,7 +641,7 @@ IGradientRadial
 
         private static efl_gfx_gradient_spread_set_delegate efl_gfx_gradient_spread_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

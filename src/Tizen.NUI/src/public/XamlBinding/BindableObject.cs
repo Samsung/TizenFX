@@ -146,13 +146,17 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="targetProperty">The BindableProperty on which to set a binding.</param>
         /// <param name="binding">The binding to set.</param>
-        internal void SetBinding(BindableProperty targetProperty, BindingBase binding)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetBinding(BindableProperty targetProperty, BindingBase binding)
         {
             SetBinding(targetProperty, binding, false);
         }
 
         private bool isCreateByXaml = false;
-        internal virtual bool IsCreateByXaml
+        /// Only used by the IL of xaml, will never changed to not hidden.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool IsCreateByXaml
         {
             get
             {
