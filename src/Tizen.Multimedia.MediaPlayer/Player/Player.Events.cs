@@ -223,10 +223,6 @@ namespace Tizen.Multimedia
         #endregion
 
         #region AudioFrameDecoded event
-        private event EventHandler<AudioFrameDecodedEventArgs> _audioFrameDecoded;
-
-        private NativePlayer.AudioFrameDecodedCallback _audioFrameDecodedCallback;
-
         /// <summary>
         /// Occurs when a audio frame is decoded.
         /// </summary>
@@ -236,17 +232,9 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <seealso cref="AudioFrameDecodedEventArgs.Packet"/>
         /// <since_tizen> 6 </since_tizen>
-        public event EventHandler<AudioFrameDecodedEventArgs> AudioFrameDecoded
-        {
-            add
-            {
-                _audioFrameDecoded += value;
-            }
-            remove
-            {
-                _audioFrameDecoded -= value;
-            }
-        }
+        public event EventHandler<AudioFrameDecodedEventArgs> AudioFrameDecoded;
+
+        private NativePlayer.AudioFrameDecodedCallback _audioFrameDecodedCallback;
         #endregion
 
         private void RegisterVideoStreamChangedCallback()

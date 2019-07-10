@@ -887,7 +887,7 @@ namespace Tizen.Multimedia
         #endregion
 
         /// <summary>
-        /// Set a media packet audio decoded callback function.
+        /// Decode an audio frame to export PCM from a data.
         /// </summary>
         /// <remarks><para>This function must be called before calling player_prepare() or player_prepare_async().
         /// A registered callback is called in a separate thread(not in the main loop).
@@ -900,9 +900,8 @@ namespace Tizen.Multimedia
         ///     Operation failed; internal error.
         ///     </exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
-        /// <seealso cref="UnsetAudioFrameDecodedCallback"/>
         /// <since_tizen> 6 </since_tizen>
-        public void SetAudioFrameDecodedCallback(AudioMediaFormat format, PlayerAudioExtractOption option)
+        public void DecodeAudioFrame(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
             ValidatePlayerState(PlayerState.Idle);
 
@@ -916,10 +915,10 @@ namespace Tizen.Multimedia
 
             _audioFrameDecodedCallback = (IntPtr packetHandle, IntPtr userData) =>
             {
-                var handler = _audioFrameDecoded;
+                var handler = AudioFrameDecoded;
                 if (handler != null)
                 {
-                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle.ToString());
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
                     handler.Invoke(this,
                         new AudioFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
                 }
@@ -933,23 +932,6 @@ namespace Tizen.Multimedia
 
             NativePlayer.SetAudioFrameDecodedCb(Handle, formatHandle, option, _audioFrameDecodedCallback, IntPtr.Zero).
                 ThrowIfFailed(this, "Failed to register the _audioFrameDecoded");
-        }
-
-        /// <summary>
-        /// Unset a media packet audio decoded callback function.
-        /// </summary>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     Operation failed; internal error.
-        ///     </exception>
-        /// <seealso cref="SetAudioFrameDecodedCallback"/>
-        /// <since_tizen> 6 </since_tizen>
-        public void UnsetAudioFrameDecodedCallback()
-        {
-            NativePlayer.UnsetAudioFrameDecodedCb(Handle).
-                ThrowIfFailed(this, "Failed to unset the AudioFrameDecoded");
-
-            _audioFrameDecodedCallback = null;
         }
     }
 }
