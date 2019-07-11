@@ -889,13 +889,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Enable to decode an audio frame for exporting PCM from a data.
         /// </summary>
-        /// <remarks><para>This function must be called before calling player_prepare() or player_prepare_async().
-        /// A registered callback is called in a separate thread(not in the main loop).
-        /// The audio PCM data can be retrieved using a registered callback as a media packet
-        /// and it is available until it's destroyed by media_packet_destroy().</para>
-        /// <para>The packet has to be destroyed as quickly as possible after rendering the data
-        /// and all the packets have to be destroyed before player_unprepare() is called.</para>
-        /// <para>The player must be in the <see cref="PlayerState.Idle"/> state.</para></remarks>
+        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.</para>
+        /// <para>A <see cref="AudioFrameDecoded"> event is called in a separate thread(not in the main loop).</para>
+        /// <para>The audio PCM data can be retrieved using a registered callback as a media packet
+        /// and it is available until it's destroyed by <see cref="MediaPacket.Dispose">.
+        /// The packet has to be destroyed as quickly as possible after rendering the data
+        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
