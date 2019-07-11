@@ -887,21 +887,25 @@ namespace Tizen.Multimedia
         #endregion
 
         /// <summary>
-        /// Decode an audio frame to export PCM from a data.
+        /// Enable to decode an audio frame for exporting PCM from a data.
         /// </summary>
         /// <remarks><para>This function must be called before calling player_prepare() or player_prepare_async().
         /// A registered callback is called in a separate thread(not in the main loop).
         /// The audio PCM data can be retrieved using a registered callback as a media packet
         /// and it is available until it's destroyed by media_packet_destroy().</para>
         /// <para>The packet has to be destroyed as quickly as possible after rendering the data
-        /// and all the packets have to be destroyed before player_unprepare() is called.</para></remarks>
+        /// and all the packets have to be destroyed before player_unprepare() is called.</para>
+        /// <para>The player must be in the <see cref="PlayerState.Idle"/> state.</para></remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The player is not in the valid state.
         ///     </exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
+        /// <seealso cref="DisableExportingAudioPCM"/>
         /// <since_tizen> 6 </since_tizen>
-        public void DecodeAudioFrame(AudioMediaFormat format, PlayerAudioExtractOption option)
+        public void EnableExportingAudioPCM(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
             ValidatePlayerState(PlayerState.Idle);
 
@@ -918,7 +922,7 @@ namespace Tizen.Multimedia
                 var handler = AudioFrameDecoded;
                 if (handler != null)
                 {
-                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle.ToString());
                     handler.Invoke(this,
                         new AudioFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
                 }
@@ -932,6 +936,25 @@ namespace Tizen.Multimedia
 
             NativePlayer.SetAudioFrameDecodedCb(Handle, formatHandle, option, _audioFrameDecodedCallback, IntPtr.Zero).
                 ThrowIfFailed(this, "Failed to register the _audioFrameDecoded");
+        }
+
+        /// <summary>
+        /// Disable to decode an audio frame.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
+        /// state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="EnableExportingAudioPCM"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void DisableExportingAudioPCM()
+        {
+            ValidatePlayerState(PlayerState.Idle, PlayerState.Ready);
+
+            NativePlayer.UnsetAudioFrameDecodedCb(Handle).
+                ThrowIfFailed(this, "Failed to unset the AudioFrameDecoded");
+
+            _audioFrameDecodedCallback = null;
         }
     }
 }
