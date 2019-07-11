@@ -904,6 +904,8 @@ namespace Tizen.Multimedia
         /// <since_tizen> 6 </since_tizen>
         public void EnableExportingVideoFrame()
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+
             ValidatePlayerState(PlayerState.Idle);
 
             if (Display != null)
