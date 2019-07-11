@@ -169,6 +169,10 @@ namespace Tizen.Multimedia
         }
 
         #region VideoFrameDecoded event
+        private EventHandler<VideoFrameDecodedEventArgs> _videoFrameDecoded;
+
+        private NativePlayer.VideoFrameDecodedCallback _videoFrameDecodedCallback;
+
         /// <summary>
         /// Occurs when a video frame is decoded.
         /// </summary>
@@ -180,8 +184,42 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <seealso cref="VideoFrameDecodedEventArgs.Packet"/>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded;
-        private NativePlayer.VideoFrameDecodedCallback _videoFrameDecodedCallback;
+        public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
+        {
+            add
+            {
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+
+                _videoFrameDecoded += value;
+            }
+            remove
+            {
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+
+                _videoFrameDecoded -= value;
+            }
+        }
+
+        private void RegisterVideoFrameDecodedCallback()
+        {
+            _videoFrameDecodedCallback = (packetHandle, _) =>
+            {
+                var handler = _videoFrameDecoded;
+                if (handler != null)
+                {
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
+                    handler.Invoke(this,
+                        new VideoFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
+                }
+                else
+                {
+                    MediaPacket.From(packetHandle).Dispose();
+                }
+            };
+
+            NativePlayer.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
+                ThrowIfFailed(this, "Failed to register the VideoFrameDecoded");
+        }
         #endregion
 
         #region AudioFrameDecoded event
