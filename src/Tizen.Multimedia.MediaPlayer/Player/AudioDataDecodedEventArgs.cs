@@ -18,15 +18,15 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="Player.AudioFrameDecoded"/> event.
+    /// Provides data for the <see cref="Player.AudioDataDecoded"/> event.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class AudioFrameDecodedEventArgs : EventArgs
+    public class AudioDataDecodedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the AudioFrameDecodedEventArgs class.
         /// </summary>
-        internal AudioFrameDecodedEventArgs(MediaPacket packet)
+        internal AudioDataDecodedEventArgs(MediaPacket packet)
         {
             Packet = packet;
         }

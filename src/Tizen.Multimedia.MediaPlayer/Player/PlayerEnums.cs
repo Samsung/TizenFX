@@ -299,7 +299,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration of audio extract option.
     /// </summary>
-    /// <seealso cref="Player.EnableExportingAudioPCM"/>
+    /// <seealso cref="Player.EnableExportingAudioData"/>
     /// <since_tizen> 6 </since_tizen>
     public enum PlayerAudioExtractOption
     {
