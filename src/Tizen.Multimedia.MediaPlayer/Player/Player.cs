@@ -902,7 +902,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingVideoFrame"/>
         /// <since_tizen> 6 </since_tizen>
-        private void EnableExportingVideoFrame()
+        public void EnableExportingVideoFrame()
         {
             ValidatePlayerState(PlayerState.Idle);
 
