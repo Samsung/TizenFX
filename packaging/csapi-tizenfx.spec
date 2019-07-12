@@ -133,7 +133,7 @@ cp %{SOURCE1} .
 
 GetFileList() {
   PROFILE=$1
-  cat pkg/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
+  cat packaging/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
 }
 
 GetFileList common > common.filelist
@@ -176,6 +176,7 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSE
 
 # Install NuGet Packages
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
+install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
@@ -196,7 +197,6 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 %attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
 
 %files debug
-%manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.pdb
 
 %files common -f common.filelist

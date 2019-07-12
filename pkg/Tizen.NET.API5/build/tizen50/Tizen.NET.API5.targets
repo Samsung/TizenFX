@@ -1,0 +1,20 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_TizenNETCoreAppPackageVersion>2.1.4</_TizenNETCoreAppPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(MSBuildThisFileDirectory)\ref\*.dll">
+      <Private>false</Private>
+      <Visible>false</Visible>
+      <NuGetPackageId>Microsoft.NETCore.App</NuGetPackageId>
+      <NuGetPackageVersion>$(_TizenNETCoreAppPackageVersion)</NuGetPackageVersion>
+    </Reference>
+  </ItemGroup>
+
+</Project>

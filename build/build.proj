@@ -17,7 +17,7 @@
 
   <!-- Nuspec files to pack -->
   <ItemGroup>
-    <NuspecFiles Include="$(ProjectRootDir)pkg\*.nuspec" />
+    <NuspecFiles Include="$(ProjectRootDir)pkg\**\*.nuspec" />
   </ItemGroup>
 
   <!--
