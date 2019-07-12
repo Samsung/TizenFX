@@ -889,6 +889,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Enable to decode an audio data for exporting PCM from a data.
         /// </summary>
+        /// <param name="format">The media format handle about required audio PCM specification.
+        /// The format has to include <see cref="AudioMediaFormat.MimeType"/>,
+        /// <see cref="AudioMediaFormat.Channel"/> and <see cref="AudioMediaFormat.SampleRate"/>.
+        /// If the format is NULL, the original PCM format or platform default PCM format will be applied.</param>
+        /// <param name="option">The audio extract option.</param>
         /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.</para>
         /// <para>A <see cref="AudioDataDecoded"/> event is called in a separate thread(not in the main loop).</para>
         /// <para>The audio PCM data can be retrieved using a <see cref="AudioDataDecoded"/> event as a media packet
