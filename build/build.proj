@@ -16,7 +16,7 @@
 
   <!-- Nuspec files to pack -->
   <ItemGroup>
-    <NuspecFiles Include="$(ProjectRootDir)pkg\*.nuspec" />
+    <NuspecFiles Include="$(ProjectRootDir)pkg\**\*.nuspec" />
   </ItemGroup>
 
   <!--
@@ -90,6 +90,22 @@
     <MSBuild Projects="$(MSBuildThisFileDirectory)pack.csproj"
              Properties="NoBuild=True;Version=$(Version);NuspecFile=%(NuspecFiles.Identity)"
              Targets="Pack" />
+
+  </Target>
+
+  <!--
+    Target : Dummy
+    ==============
+    Generate dummy assemblies of all projects.
+  -->
+  <Target Name="Dummy">
+
+    <PropertyGroup>
+      <APIToolPath>$(MSBuildThisFileDirectory)..\tools\bin\APITool.dll</APIToolPath>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(OutputDummyDir)" />
+    <Exec Command="dotnet $([System.IO.Path]::GetFullPath('$(APIToolPath)')) dummy $(OutputPublicDir)ref $(OutputDummyDir) " />
 
   </Target>
 

@@ -1,7 +1,7 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 4
-%define TIZEN_NET_RPM_VERSION 4.0.1.999
+%define TIZEN_NET_RPM_VERSION 4.0.1.999+nui402
 %define TIZEN_NET_NUGET_VERSION 4.0.1-preview1-99999
 %define TIZEN_NET_INTERNAL_NUGET_VERSION 4.0.1.999
 
@@ -134,7 +134,7 @@ cp %{SOURCE1} .
 
 GetFileList() {
   PROFILE=$1
-  cat pkg/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
+  cat packaging/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
 }
 
 GetFileList common > common.filelist
@@ -146,9 +146,11 @@ GetFileList wearable > wearable.filelist
 
 rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-./build.sh --full
-./build.sh --dummy
-./build.sh --pack %{TIZEN_NET_NUGET_VERSION} %{TIZEN_NET_INTERNAL_NUGET_VERSION}
+
+%define build_cmd ./tools/scripts/retry.sh ./tools/scripts/timeout.sh -t 600 ./build.sh
+%{build_cmd} --full
+%{build_cmd} --dummy
+%{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION} %{TIZEN_NET_INTERNAL_NUGET_VERSION}
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
