@@ -901,6 +901,7 @@ namespace Tizen.Multimedia
         /// The packet has to be destroyed as quickly as possible after rendering the data
         /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         ///     -or-<br/>
@@ -912,11 +913,7 @@ namespace Tizen.Multimedia
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
             ValidatePlayerState(PlayerState.Idle);
-
-            if (format == null)
-            {
-                throw new InvalidOperationException("Invalid media format");
-            }
+            ValidationUtil.ValidateEnum(typeof(PlayerAudioExtractOption), option, nameof(option));
 
             IntPtr formatHandle = IntPtr.Zero;
 
