@@ -884,7 +884,77 @@ namespace Tizen.Multimedia
         {
             Interlocked.Exchange(ref _isPreparing, 0);
         }
-
         #endregion
+
+        /// <summary>
+        /// Enable to decode an audio data for exporting PCM from a data.
+        /// </summary>
+        /// <param name="format">The media format handle about required audio PCM specification.
+        /// The format has to include <see cref="AudioMediaFormat.MimeType"/>,
+        /// <see cref="AudioMediaFormat.Channel"/> and <see cref="AudioMediaFormat.SampleRate"/>.
+        /// If the format is NULL, the original PCM format or platform default PCM format will be applied.</param>
+        /// <param name="option">The audio extract option.</param>
+        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.</para>
+        /// <para>A <see cref="AudioDataDecoded"/> event is called in a separate thread(not in the main loop).</para>
+        /// <para>The audio PCM data can be retrieved using a <see cref="AudioDataDecoded"/> event as a media packet
+        /// and it is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
+        /// The packet has to be destroyed as quickly as possible after rendering the data
+        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The player is not in the valid state.
+        ///     </exception>
+        /// <seealso cref="PlayerAudioExtractOption"/>
+        /// <seealso cref="DisableExportingAudioData"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
+        {
+            ValidatePlayerState(PlayerState.Idle);
+            ValidationUtil.ValidateEnum(typeof(PlayerAudioExtractOption), option, nameof(option));
+
+            IntPtr formatHandle = IntPtr.Zero;
+
+            _audioFrameDecodedCallback = (IntPtr packetHandle, IntPtr userData) =>
+            {
+                var handler = AudioDataDecoded;
+                if (handler != null)
+                {
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle.ToString());
+                    handler.Invoke(this,
+                        new AudioDataDecodedEventArgs(MediaPacket.From(packetHandle)));
+                }
+                else
+                {
+                    MediaPacket.From(packetHandle).Dispose();
+                }
+            };
+
+            formatHandle = format.AsNativeHandle();
+
+            NativePlayer.SetAudioFrameDecodedCb(Handle, formatHandle, option, _audioFrameDecodedCallback, IntPtr.Zero).
+                ThrowIfFailed(this, "Failed to register the _audioFrameDecoded");
+        }
+
+        /// <summary>
+        /// Disable to decode an audio data.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
+        /// state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="EnableExportingAudioData"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void DisableExportingAudioData()
+        {
+            ValidatePlayerState(PlayerState.Idle, PlayerState.Ready);
+
+            NativePlayer.UnsetAudioFrameDecodedCb(Handle).
+                ThrowIfFailed(this, "Failed to unset the AudioFrameDecoded");
+
+            _audioFrameDecodedCallback = null;
+        }
     }
 }
