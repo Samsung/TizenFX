@@ -246,9 +246,10 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <remarks>
         /// The size of generated thumbnail will be 320x240.<br/>
-        /// But, if input image have different ratio with 320x240 (approximately 1.33:1),<br/>
-        /// thumbnail could be generated with different size based on short axis of default size.<br/>
-        /// If you want to set the size of generated thumbnail, please use <see cref="Extract(string, Size)"/><br/>
+        /// But, if the size of <paramref name="path"/> has different ratio with 320x240 (approximately 1.33:1),<br/>
+        /// generated thumbnail could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1), the size of generated thumbnail is 432x240(1.8:1).<br/>
+        /// If you want to set the size, which is different with 320x240, please use <see cref="Extract(string, Size)"/>.<br/>
         /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
         /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
@@ -273,6 +274,12 @@ namespace Tizen.Multimedia.Util
         /// The generated thumbnail will be returned in <see cref="ThumbnailExtractionResult"/>.
         /// </summary>
         /// <remarks>
+        /// The size of generated thumbnail will be <paramref name="size"/>.<br/>
+        /// But, if the size of <paramref name="path"/> has different ratio with <paramref name="size"/>,<br/>
+        /// generated thumbnail could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1)) and <paramref name="size"/> is 320x240,<br/>
+        /// the size of generated thumbnail is 432x240(1.8:1).<br/>
+        /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
         /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
@@ -337,10 +344,11 @@ namespace Tizen.Multimedia.Util
         /// The generated thumbnail will be saved in <paramref name="resultThumbnailPath"/>.
         /// </summary>
         /// <remarks>
-        /// The size of generated thumbnail will be 320x240.<br/>
-        /// But, if input image have different ratio with 320x240 (approximately 1.33:1),<br/>
-        /// thumbnail could be generated with different size based on short axis of default size.<br/>
-        /// If you want to set the size of generated thumbnail, please use <see cref="Extract(string, Size, string)"/><br/>
+        /// The size of <paramref name="resultThumbnailPath"/> image will be 320x240.<br/>
+        /// But, if the size of <paramref name="path"/> has different ratio with 320x240 (approximately 1.33:1),<br/>
+        /// <paramref name="resultThumbnailPath"/> could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1), the size of <paramref name="resultThumbnailPath"/> is 432x240(1.8:1).<br/>
+        /// If you want to set the size, which is different with 320x240, please use <see cref="Extract(string, Size, string)"/>.<br/>
         /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
         /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
@@ -365,6 +373,12 @@ namespace Tizen.Multimedia.Util
         /// The generated thumbnail will be saved in <paramref name="resultThumbnailPath"/>.
         /// </summary>
         /// <remarks>
+        /// The size of <paramref name="resultThumbnailPath"/> image will be <paramref name="size"/>.<br/>
+        /// But, if the size of <paramref name="path"/> has different ratio with <paramref name="size"/>,<br/>
+        /// <paramref name="resultThumbnailPath"/> could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1) and <paramref name="size"/> is 320x240,<br/>
+        /// the size of <paramref name="resultThumbnailPath"/> is 432x240(1.8:1).<br/>
+        /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
         /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
         /// </remarks>
