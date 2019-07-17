@@ -246,6 +246,8 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <remarks>
         /// The size of generated thumbnail will be 320x240.<br/>
+        /// But, if input image have different ratio with 320x240 (approximately 1.33:1),<br/>
+        /// thumbnail could be generated with different size. (Modify based on short axis)<br/>
         /// If you want to set the size of generated thumbnail, please use <see cref="Extract(string, Size)"/><br/>
         /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
@@ -336,6 +338,8 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <remarks>
         /// The size of generated thumbnail will be 320x240.<br/>
+        /// But, if input image have different ratio with 320x240 (approximately 1.33:1),<br/>
+        /// thumbnail could be generated with different size. (Modify based on short axis)<br/>
         /// If you want to set the size of generated thumbnail, please use <see cref="Extract(string, Size, string)"/><br/>
         /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage. <br/>
