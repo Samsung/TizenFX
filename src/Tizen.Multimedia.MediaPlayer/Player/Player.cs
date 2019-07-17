@@ -915,8 +915,6 @@ namespace Tizen.Multimedia
             ValidatePlayerState(PlayerState.Idle);
             ValidationUtil.ValidateEnum(typeof(PlayerAudioExtractOption), option, nameof(option));
 
-            IntPtr formatHandle = IntPtr.Zero;
-
             _audioFrameDecodedCallback = (IntPtr packetHandle, IntPtr userData) =>
             {
                 var handler = AudioDataDecoded;
@@ -932,10 +930,8 @@ namespace Tizen.Multimedia
                 }
             };
 
-            formatHandle = format.AsNativeHandle();
-
-            NativePlayer.SetAudioFrameDecodedCb(Handle, formatHandle, option, _audioFrameDecodedCallback, IntPtr.Zero).
-                ThrowIfFailed(this, "Failed to register the _audioFrameDecoded");
+            NativePlayer.SetAudioFrameDecodedCb(Handle, format == null ? IntPtr.Zero : format.AsNativeHandle(), option,
+                _audioFrameDecodedCallback, IntPtr.Zero).ThrowIfFailed(this, "Failed to register the _audioFrameDecoded");
         }
 
         /// <summary>
