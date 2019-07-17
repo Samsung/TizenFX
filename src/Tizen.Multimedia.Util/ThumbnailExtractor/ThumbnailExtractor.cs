@@ -247,7 +247,7 @@ namespace Tizen.Multimedia.Util
         /// <remarks>
         /// The size of generated thumbnail will be 320x240.<br/>
         /// But, if the size of <paramref name="path"/> has different ratio with 320x240 (approximately 1.33:1),<br/>
-        /// generated thumbnail could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// thumbnail will be generated in a way to keep the ratio of <paramref name="path"/>, which based on short axis of <paramref name="path"/>.<br/>
         /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1), the size of generated thumbnail is 432x240(1.8:1).<br/>
         /// If you want to set the size, which is different with 320x240, please use <see cref="Extract(string, Size)"/>.<br/>
         /// <br/>
@@ -276,7 +276,7 @@ namespace Tizen.Multimedia.Util
         /// <remarks>
         /// The size of generated thumbnail will be <paramref name="size"/>.<br/>
         /// But, if the size of <paramref name="path"/> has different ratio with <paramref name="size"/>,<br/>
-        /// generated thumbnail could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// thumbnail will be generated in a way to keep the ratio of <paramref name="path"/>, which based on short axis of <paramref name="path"/>.<br/>
         /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1)) and <paramref name="size"/> is 320x240,<br/>
         /// the size of generated thumbnail is 432x240(1.8:1).<br/>
         /// <br/>
@@ -346,7 +346,7 @@ namespace Tizen.Multimedia.Util
         /// <remarks>
         /// The size of <paramref name="resultThumbnailPath"/> image will be 320x240.<br/>
         /// But, if the size of <paramref name="path"/> has different ratio with 320x240 (approximately 1.33:1),<br/>
-        /// <paramref name="resultThumbnailPath"/> could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// thumbnail will be generated in a way to keep the ratio of <paramref name="path"/>, which based on short axis of <paramref name="path"/>.<br/>
         /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1), the size of <paramref name="resultThumbnailPath"/> is 432x240(1.8:1).<br/>
         /// If you want to set the size, which is different with 320x240, please use <see cref="Extract(string, Size, string)"/>.<br/>
         /// <br/>
@@ -375,7 +375,7 @@ namespace Tizen.Multimedia.Util
         /// <remarks>
         /// The size of <paramref name="resultThumbnailPath"/> image will be <paramref name="size"/>.<br/>
         /// But, if the size of <paramref name="path"/> has different ratio with <paramref name="size"/>,<br/>
-        /// <paramref name="resultThumbnailPath"/> could be generated with different size, which based on short axis of <paramref name="path"/>.<br/>
+        /// thumbnail will be generated in a way to keep the ratio of <paramref name="path"/>, which based on short axis of <paramref name="path"/>.<br/>
         /// For example, if the size of <paramref name="path"/> is 900x500 (1.8:1) and <paramref name="size"/> is 320x240,<br/>
         /// the size of <paramref name="resultThumbnailPath"/> is 432x240(1.8:1).<br/>
         /// <br/>
