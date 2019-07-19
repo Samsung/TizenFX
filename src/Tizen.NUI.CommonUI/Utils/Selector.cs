@@ -164,6 +164,8 @@ namespace Tizen.NUI.CommonUI
                     return DisabledFocused != null? DisabledFocused : Other;
                 case ControlStates.DisabledSelected:
                     return DisabledSelected != null? DisabledSelected : Other;
+                case ControlStates.SelectedFocused:
+                    return SelectedFocused != null ? SelectedFocused : Other;
                 default:
                     return Other;
             }
@@ -184,6 +186,7 @@ namespace Tizen.NUI.CommonUI
             Selected = selector.Selected;
             DisabledSelected = selector.DisabledSelected;
             DisabledFocused = selector.DisabledFocused;
+            SelectedFocused = selector.SelectedFocused;
             Other = selector.Other;
         }
 

@@ -357,6 +357,22 @@ namespace Tizen.NUI.CommonUI
             CreateHandlerAnimation();
         }
 
+        /// <summary>
+        /// Theme change callback when theme is changed, this callback will be trigger.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            SwitchAttributes tempAttributes = StyleManager.Instance.GetAttributes(style) as SwitchAttributes;
+            if (tempAttributes != null)
+            {
+                attributes = switchAttributes = tempAttributes;
+                RelayoutRequest();
+            }
+        }
+
         private void CreateSwitchBackgroundImageAttributes()
         {
             if (switchAttributes.SwitchBackgroundImageAttributes == null)
