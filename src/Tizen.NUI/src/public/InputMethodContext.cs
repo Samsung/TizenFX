@@ -646,7 +646,8 @@ namespace Tizen.NUI
         /// For example, string mimeType = "text/plain,image/png,image/gif,application/pdf";
         /// </summary>
         /// <param name="mimeType">The allowed MIME type.</param>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMIMEType(string mimeType)
         {
             Interop.InputMethodContext.InputMethodContext_SetMIMEType(swigCPtr, mimeType);
@@ -1444,7 +1445,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The content, such as images, of input method
             /// </summary>
-            /// <since_tizen> 5.5 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string Content
             {
                 get;
@@ -1453,7 +1455,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The description of content
             /// </summary>
-            /// <since_tizen> 5.5 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string Description
             {
                 get;
@@ -1462,7 +1465,8 @@ namespace Tizen.NUI
             /// <summary>
             /// The mime type of content, such as jpg, png, and so on
             /// </summary>
-            /// <since_tizen> 5.5 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string MimeType
             {
                 get;
