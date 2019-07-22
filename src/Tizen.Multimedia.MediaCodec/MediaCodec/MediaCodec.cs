@@ -47,6 +47,7 @@ namespace Tizen.Multimedia.MediaCodec
 
             RegisterInputProcessed();
             RegisterErrorOccurred();
+            RegisterBufferStatusChanged();
         }
 
         #region IDisposable-support
@@ -617,11 +618,7 @@ namespace Tizen.Multimedia.MediaCodec
         {
             _bufferStatusCb = (statusCode, _) =>
             {
-                Debug.Assert(Enum.IsDefined(typeof(MediaCodecStatus), statusCode),
-                    $"{ statusCode } is not defined in MediaCodecStatus!");
-
-                BufferStatusChanged?.Invoke(this,
-                    new BufferStatusChangedEventArgs((MediaCodecStatus)statusCode));
+                BufferStatusChanged?.Invoke(this, new BufferStatusChangedEventArgs(statusCode));
             };
 
             Native.SetBufferStatusCb(_handle, _bufferStatusCb).
