@@ -62,7 +62,11 @@ namespace Tizen.NUI.CommonUI
                 ButtonAttributes = attributes.ButtonAttributes.Clone() as ButtonAttributes;
             }
 
-            ShadowOffset = new Vector4(attributes.ShadowOffset.W, attributes.ShadowOffset.X, attributes.ShadowOffset.Y, attributes.ShadowOffset.Z);
+            if(attributes.ShadowOffset != null)
+            {
+                ShadowOffset = new Vector4(attributes.ShadowOffset.W, attributes.ShadowOffset.X, attributes.ShadowOffset.Y, attributes.ShadowOffset.Z);
+            }
+
         }
 
         /// <summary>
