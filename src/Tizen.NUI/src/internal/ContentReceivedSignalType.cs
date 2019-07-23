@@ -26,8 +26,6 @@ namespace Tizen.NUI
         /// <summary>
         /// ContentReceivedSignalType
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool swigCMemOwn;
 
         internal ContentReceivedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -46,8 +44,6 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool disposed = false;
 
         /// <summary>
@@ -65,8 +61,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -89,8 +83,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -109,7 +101,6 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -127,8 +118,6 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
             bool ret = Interop.ContentReceivedSignalType.ContentReceivedSignalType_Empty(swigCPtr);
@@ -140,8 +129,6 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
             uint ret = Interop.ContentReceivedSignalType.ContentReceivedSignalType_GetConnectionCount(swigCPtr);
@@ -153,8 +140,6 @@ namespace Tizen.NUI
         /// Connects a function.
         /// </summary>
         /// <param name="func">The function to connect</param>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
@@ -168,8 +153,6 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect</param>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
@@ -185,8 +168,6 @@ namespace Tizen.NUI
         /// <param name="arg1">The member function to connect</param>
         /// <param name="arg2">The member function to connect</param>
         /// <param name="arg3">The member function to connect</param>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(string arg1, string arg2, string arg3)
         {
             Interop.ContentReceivedSignalType.ContentReceivedSignalType_Emit(swigCPtr, arg1, arg2, arg3);
@@ -196,8 +177,6 @@ namespace Tizen.NUI
         /// <summary>
         /// The contructor.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ContentReceivedSignalType() : this(Interop.ContentReceivedSignalType.new_ContentReceivedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
