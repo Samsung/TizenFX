@@ -61,6 +61,7 @@ namespace Tizen.NUI.CommonUI
 
         private EventHandler<ItemClickEventArgs> clickEventHandlers;
         private EventHandler<ItemTouchEventArgs> touchEventHandlers;
+        private EventHandler<NUI.StyleManager.StyleChangedEventArgs> styleChangedEventHandlers;
 
         /// <summary>
         /// Creates a FlexibleView instance.
@@ -122,6 +123,25 @@ namespace Tizen.NUI.CommonUI
             remove
             {
                 touchEventHandlers -= value;
+            }
+        }
+
+        /// <summary>
+        /// Style changed, for example default font size.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<NUI.StyleManager.StyleChangedEventArgs> StyleChanged
+        {
+            add
+            {
+                styleChangedEventHandlers += value;
+            }
+
+            remove
+            {
+                styleChangedEventHandlers -= value;
             }
         }
 
@@ -350,6 +370,17 @@ namespace Tizen.NUI.CommonUI
         }
 
         /// <summary>
+        /// Return the recycler instance.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Recycler GetRecycler()
+        {
+            return mRecycler;
+        }
+
+        /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
@@ -365,6 +396,8 @@ namespace Tizen.NUI.CommonUI
 
             if (type == DisposeTypes.Explicit)
             {
+                mLayout.StopScroll();
+
                 if (mAdapter != null)
                 {
                     mAdapter.ItemEvent -= OnItemEvent;
@@ -434,6 +467,26 @@ namespace Tizen.NUI.CommonUI
             mLayout.OnLayoutChildren(mRecycler);
 
             RemoveAndRecycleScrapInt();
+        }
+
+        /// <summary>
+        /// you can override it to do something for style change.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnStyleChange(NUI.StyleManager styleManager, StyleChangeType change)
+        {
+            if (change == StyleChangeType.DefaultFontSizeChange)
+            {
+                NUI.StyleManager.StyleChangedEventArgs args = new NUI.StyleManager.StyleChangedEventArgs();
+                args.StyleManager = styleManager;
+                args.StyleChange = change;
+
+                styleChangedEventHandlers?.Invoke(this, args);
+
+                RelayoutRequest();
+            }
         }
 
         private void DispatchLayoutStep1()
