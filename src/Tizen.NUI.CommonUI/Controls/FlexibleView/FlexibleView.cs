@@ -370,6 +370,17 @@ namespace Tizen.NUI.CommonUI
         }
 
         /// <summary>
+        /// Return the recycler instance.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Recycler GetRecycler()
+        {
+            return mRecycler;
+        }
+
+        /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
