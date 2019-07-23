@@ -618,6 +618,9 @@ namespace Tizen.Multimedia.MediaCodec
         {
             _bufferStatusCb = (statusCode, _) =>
             {
+                Debug.Assert(Enum.IsDefined(typeof(MediaCodecStatus), statusCode),
+                    $"{ statusCode } is not defined in MediaCodecStatus!");
+
                 BufferStatusChanged?.Invoke(this, new BufferStatusChangedEventArgs(statusCode));
             };
 
