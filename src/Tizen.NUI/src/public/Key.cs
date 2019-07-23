@@ -178,6 +178,10 @@ namespace Tizen.NUI
             {
                 return keyString;
             }
+            set
+            {
+                keyString = value;
+            }
         }
 
         /// <summary>
