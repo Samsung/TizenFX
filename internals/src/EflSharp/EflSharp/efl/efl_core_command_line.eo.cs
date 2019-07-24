@@ -12,6 +12,7 @@ namespace Core {
 /// <summary>A mixin that implements standard functions for command lines.
 /// This object parses the command line that gets passed, later the object can be accessed via accessor or the string directly.</summary>
 [Efl.Core.ICommandLineConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ICommandLine : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -28,14 +29,14 @@ System.String GetCommand();
 /// Every element of a string is a argument.</summary>
 /// <param name="array">An array where every array field is an argument</param>
 /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-bool SetCommandArray(Eina.Array<System.String> array);
+bool SetCommandArray(Eina.Array<Eina.Stringshare> array);
     /// <summary>Use a string to fill this object
 /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
 /// <param name="str">A command in form of a string</param>
 /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
 bool SetCommandString(System.String str);
     /// <summary>Get the accessor which enables access to each argument that got passed to this object.</summary>
-Eina.Accessor<System.String> CommandAccess();
+Eina.Accessor<Eina.Stringshare> CommandAccess();
                     /// <summary>A commandline that encodes arguments in a command string. This command is unix shell-style, thus whitespace separates arguments unless escaped. Also a semi-colon &apos;;&apos;, ampersand &apos;&amp;&apos;, pipe/bar &apos;|&apos;, hash &apos;#&apos;, bracket, square brace, brace character (&apos;(&apos;, &apos;)&apos;, &apos;[&apos;, &apos;]&apos;, &apos;{&apos;, &apos;}&apos;), exclamation mark &apos;!&apos;,  backquote &apos;`&apos;, greator or less than (&apos;&gt;&apos; &apos;&lt;&apos;) character unless escaped or in quotes would cause args_count/value to not be generated properly, because it would force complex shell interpretation which will not be supported in evaluating the arg_count/value information, but the final shell may interpret this if this is executed via a command-line shell. To not be a complex shell command, it should be simple with paths, options and variable expansions, but nothing more complex involving the above unescaped characters.
     /// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
     /// 
@@ -50,7 +51,7 @@ Eina.Accessor<System.String> CommandAccess();
     /// <summary>Use an array to fill this object
     /// Every element of a string is a argument.</summary>
     /// <value>An array where every array field is an argument</value>
-    Eina.Array<System.String> CommandArray {
+    Eina.Array<Eina.Stringshare> CommandArray {
         set ;
     }
     /// <summary>Use a string to fill this object
@@ -83,11 +84,18 @@ sealed public class ICommandLineConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ICommandLineConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_core_command_line_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="ICommandLine"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ICommandLineConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ICommandLineConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -108,7 +116,7 @@ sealed public class ICommandLineConcrete :
     /// Every element of a string is a argument.</summary>
     /// <param name="array">An array where every array field is an argument</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    public bool SetCommandArray(Eina.Array<System.String> array) {
+    public bool SetCommandArray(Eina.Array<Eina.Stringshare> array) {
          var _in_array = array.Handle;
 array.Own = false;
 array.OwnContent = false;
@@ -126,10 +134,10 @@ array.OwnContent = false;
                         return _ret_var;
  }
     /// <summary>Get the accessor which enables access to each argument that got passed to this object.</summary>
-    public Eina.Accessor<System.String> CommandAccess() {
+    public Eina.Accessor<Eina.Stringshare> CommandAccess() {
          var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Accessor<System.String>(_ret_var, false, false);
+        return new Eina.Accessor<Eina.Stringshare>(_ret_var, false);
  }
     /// <summary>A commandline that encodes arguments in a command string. This command is unix shell-style, thus whitespace separates arguments unless escaped. Also a semi-colon &apos;;&apos;, ampersand &apos;&amp;&apos;, pipe/bar &apos;|&apos;, hash &apos;#&apos;, bracket, square brace, brace character (&apos;(&apos;, &apos;)&apos;, &apos;[&apos;, &apos;]&apos;, &apos;{&apos;, &apos;}&apos;), exclamation mark &apos;!&apos;,  backquote &apos;`&apos;, greator or less than (&apos;&gt;&apos; &apos;&lt;&apos;) character unless escaped or in quotes would cause args_count/value to not be generated properly, because it would force complex shell interpretation which will not be supported in evaluating the arg_count/value information, but the final shell may interpret this if this is executed via a command-line shell. To not be a complex shell command, it should be simple with paths, options and variable expansions, but nothing more complex involving the above unescaped characters.
     /// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
@@ -145,7 +153,7 @@ array.OwnContent = false;
     /// <summary>Use an array to fill this object
     /// Every element of a string is a argument.</summary>
     /// <value>An array where every array field is an argument</value>
-    public Eina.Array<System.String> CommandArray {
+    public Eina.Array<Eina.Stringshare> CommandArray {
         set { SetCommandArray(value); }
     }
     /// <summary>Use a string to fill this object
@@ -160,7 +168,7 @@ array.OwnContent = false;
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -271,7 +279,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_array = new Eina.Array<System.String>(array, true, true);
+        var _in_array = new Eina.Array<Eina.Stringshare>(array, true, true);
                             bool _ret_var = default(bool);
                 try
                 {
@@ -344,7 +352,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
+            Eina.Accessor<Eina.Stringshare> _ret_var = default(Eina.Accessor<Eina.Stringshare>);
                 try
                 {
                     _ret_var = ((ICommandLine)ws.Target).CommandAccess();

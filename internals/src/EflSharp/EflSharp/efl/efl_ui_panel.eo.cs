@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary panel class</summary>
 [Efl.Ui.Panel.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui.IWidgetFocusManager, Efl.Ui.Focus.ILayer, Efl.Ui.Focus.IManager, Efl.Ui.Focus.IManagerSub, Elm.IInterfaceScrollable
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
         efl_ui_panel_class_get();
     /// <summary>Initializes a new instance of the <see cref="Panel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Panel(Efl.Object parent
-            , System.String style = null) : base(efl_ui_panel_class_get(), typeof(Panel), parent)
+            , System.String style = null) : base(efl_ui_panel_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Panel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Panel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Panel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Panel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Panel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Panel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Panel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -93,7 +99,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PANEL_EVENT_TOGGLED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -119,7 +125,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -147,7 +153,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -173,7 +179,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -200,7 +206,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -225,7 +231,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -252,7 +258,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -277,7 +283,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -304,7 +310,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -329,7 +335,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -356,7 +362,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -381,7 +387,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -408,7 +414,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -433,7 +439,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -460,7 +466,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -485,7 +491,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -512,7 +518,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -537,7 +543,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -564,7 +570,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_UP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -589,7 +595,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -616,7 +622,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -641,7 +647,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -668,7 +674,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -693,7 +699,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -720,7 +726,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -745,7 +751,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -772,7 +778,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -797,7 +803,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -824,7 +830,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -849,7 +855,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -876,7 +882,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -901,7 +907,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -928,7 +934,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -954,7 +960,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -982,7 +988,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1009,7 +1015,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1036,7 +1042,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1062,7 +1068,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1089,7 +1095,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1115,7 +1121,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1143,7 +1149,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1170,7 +1176,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1198,7 +1204,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1231,7 +1237,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1258,7 +1264,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_ELM_INTERFACE_SCROLLABLE_EVENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1281,7 +1287,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <summary>Gets the orientation of the panel.</summary>
     /// <returns>The panel orientation.</returns>
     virtual public Efl.Ui.PanelOrient GetOrient() {
-         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_orient_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_orient_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1289,51 +1295,51 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// Sets from where the panel will (dis)appear.</summary>
     /// <param name="orient">The panel orientation.</param>
     virtual public void SetOrient(Efl.Ui.PanelOrient orient) {
-                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_orient_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),orient);
+                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_orient_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),orient);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the state of the panel.</summary>
     /// <returns>If <c>true</c>, the panel will run the animation to disappear.</returns>
     virtual public bool GetHidden() {
-         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_hidden_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_hidden_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the state of the panel.</summary>
     /// <param name="hidden">If <c>true</c>, the panel will run the animation to disappear.</param>
     virtual public void SetHidden(bool hidden) {
-                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_hidden_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hidden);
+                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_hidden_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hidden);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the state of the scrollability.</summary>
     /// <returns>The scrollable state.</returns>
     virtual public bool GetScrollable() {
-         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the scrollability of the panel.</summary>
     /// <param name="scrollable">The scrollable state.</param>
     virtual public void SetScrollable(bool scrollable) {
-                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scrollable);
+                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scrollable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the size of the scrollable panel.</summary>
     /// <returns>Size ratio</returns>
     virtual public double GetScrollableContentSize() {
-         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_content_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_content_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the size of the scrollable panel.</summary>
     /// <param name="ratio">Size ratio</param>
     virtual public void SetScrollableContentSize(double ratio) {
-                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_content_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ratio);
+                                 Efl.Ui.Panel.NativeMethods.efl_ui_panel_scrollable_content_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ratio);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Toggle the hidden state of the panel from code</summary>
     virtual public void Toggle() {
-         Efl.Ui.Panel.NativeMethods.efl_ui_panel_toggle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Panel.NativeMethods.efl_ui_panel_toggle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
@@ -1341,7 +1347,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1351,7 +1357,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1359,7 +1365,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1369,35 +1375,35 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="root">The logical root object for focus.</param>
     /// <returns>The focus manager.</returns>
     virtual public Efl.Ui.Focus.IManager FocusManagerCreate(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Enable property</summary>
     /// <returns><c>true</c> to set enable the layer <c>false</c> to disable it</returns>
     virtual public bool GetEnable() {
-         var _ret_var = Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Enable property</summary>
     /// <param name="v"><c>true</c> to set enable the layer <c>false</c> to disable it</param>
     virtual public void SetEnable(bool v) {
-                                 Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),v);
+                                 Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),v);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Constructor for setting the behaviour of the layer</summary>
     /// <param name="enable_on_visible"><c>true</c> means layer will set itself once the inheriting widget becomes visible, <c>false</c> means the layer isn&apos;t enabled automatically</param>
     /// <param name="cycle">If <c>true</c> the focus will cycle in the layer, if <c>false</c></param>
     virtual public void GetBehaviour(out bool enable_on_visible, out bool cycle) {
-                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out enable_on_visible, out cycle);
+                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out enable_on_visible, out cycle);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Constructor for setting the behaviour of the layer</summary>
     /// <param name="enable_on_visible"><c>true</c> means layer will set itself once the inheriting widget becomes visible, <c>false</c> means the layer isn&apos;t enabled automatically</param>
     /// <param name="cycle">If <c>true</c> the focus will cycle in the layer, if <c>false</c></param>
     virtual public void SetBehaviour(bool enable_on_visible, bool cycle) {
-                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable_on_visible, cycle);
+                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable_on_visible, cycle);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The element which is currently focused by this manager
@@ -1405,7 +1411,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <returns>Currently focused element.</returns>
     virtual public Efl.Ui.Focus.IObject GetManagerFocus() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1414,7 +1420,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <param name="focus">Currently focused element.</param>
     virtual public void SetManagerFocus(Efl.Ui.Focus.IObject focus) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),focus);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Add another manager to serve the move requests.
@@ -1422,7 +1428,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <returns>The redirect manager.</returns>
     virtual public Efl.Ui.Focus.IManager GetRedirect() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1431,7 +1437,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <param name="redirect">The redirect manager.</param>
     virtual public void SetRedirect(Efl.Ui.Focus.IManager redirect) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),redirect);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),redirect);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The list of elements which are at the border of the graph.
@@ -1439,9 +1445,9 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <returns>An iterator over the border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Get all elements that are at the border of the viewport
     /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
@@ -1450,16 +1456,16 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <returns>The list of border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport) {
          Eina.Rect.NativeStruct _in_viewport = viewport;
-                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_viewport);
+                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Root node for all logical subtrees.
     /// This property can only be set once.
     /// (Since EFL 1.22)</summary>
     /// <returns>Will be registered into this manager object.</returns>
     virtual public Efl.Ui.Focus.IObject GetRoot() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1469,7 +1475,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="root">Will be registered into this manager object.</param>
     /// <returns>If <c>true</c>, this is the root node</returns>
     virtual public bool SetRoot(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1479,7 +1485,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="direction">The direction to move to.</param>
     /// <returns>The element which is now focused.</returns>
     virtual public Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1490,7 +1496,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="logical">Wether you want to have a logical node as result or a non-logical. Note, in a <see cref="Efl.Ui.Focus.IManager.Move"/> call no logical node will get focus.</param>
     /// <returns>Object that would receive focus if moved in the given direction.</returns>
     virtual public Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical) {
-                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, child, logical);
+                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, child, logical);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -1500,7 +1506,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="root">Parent for returned child.</param>
     /// <returns>Child of passed parameter.</returns>
     virtual public Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1510,7 +1516,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     virtual public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child);
         Eina.Error.RaiseIfUnhandledException();
                         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
         Marshal.FreeHGlobal(_ret_var);
@@ -1521,7 +1527,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// (Since EFL 1.22)</summary>
     /// <returns>Last object.</returns>
     virtual public Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1529,14 +1535,14 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// You should focus another element immediately after calling this, in order to always have a focused object.
     /// (Since EFL 1.22)</summary>
     virtual public void ResetHistory() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Remove the uppermost history element, and focus the previous one.
     /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.
     /// (Since EFL 1.22)</summary>
     virtual public void PopHistoryStack() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Called when this manager is set as redirect.
@@ -1545,21 +1551,21 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="direction">The direction in which this should be setup.</param>
     /// <param name="entry">The object that caused this manager to be redirect.</param>
     virtual public void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry) {
-                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, entry);
+                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, entry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>This disables the cache invalidation when an object is moved.
     /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widets in the set do not change and the complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.
     /// (Since EFL 1.22)</summary>
     virtual public void FreezeDirtyLogic() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>This enables the cache invalidation when an object is moved.
     /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void DirtyLogicUnfreeze() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Control scrolling gravity on the scrollable
@@ -1573,7 +1579,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="x">Horizontal scrolling gravity</param>
     /// <param name="y">Vertical scrolling gravity</param>
     virtual public void GetGravity(out double x, out double y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_gravity_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_gravity_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control scrolling gravity on the scrollable
@@ -1587,7 +1593,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="x">Horizontal scrolling gravity</param>
     /// <param name="y">Vertical scrolling gravity</param>
     virtual public void SetGravity(double x, double y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_gravity_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_gravity_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Bouncing behavior
@@ -1595,7 +1601,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="horiz">Horizontal bounce policy.</param>
     /// <param name="vert">Vertical bounce policy.</param>
     virtual public void GetBounceAllow(out bool horiz, out bool vert) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_allow_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out horiz, out vert);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out horiz, out vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Bouncing behavior
@@ -1603,20 +1609,20 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="horiz">Horizontal bounce policy.</param>
     /// <param name="vert">Vertical bounce policy.</param>
     virtual public void SetBounceAllow(bool horiz, bool vert) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_allow_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),horiz, vert);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),horiz, vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control Wheel disable Enable or disable mouse wheel to be used to scroll the scroller content. heel is enabled by default.</summary>
     /// <returns><c>true</c> if wheel is disabled, <c>false</c> otherwise</returns>
     virtual public bool GetWheelDisabled() {
-         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_wheel_disabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_wheel_disabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control Wheel disable Enable or disable mouse wheel to be used to scroll the scroller content. heel is enabled by default.</summary>
     /// <param name="disabled"><c>true</c> if wheel is disabled, <c>false</c> otherwise</param>
     virtual public void SetWheelDisabled(bool disabled) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_wheel_disabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),disabled);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_wheel_disabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),disabled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Blocking of scrolling (per axis)
@@ -1625,7 +1631,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// What makes this function different from freeze_push(), hold_push() and lock_x_set() (or lock_y_set()) is that it doesn&apos;t propagate its effects to any parent or child widget of <c>obj</c>. Only the target scrollable widget will be locked with regard to scrolling.</summary>
     /// <returns>Which axis (or axes) to block</returns>
     virtual public Efl.Ui.ScrollBlock GetMovementBlock() {
-         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_movement_block_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_movement_block_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1635,20 +1641,20 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// What makes this function different from freeze_push(), hold_push() and lock_x_set() (or lock_y_set()) is that it doesn&apos;t propagate its effects to any parent or child widget of <c>obj</c>. Only the target scrollable widget will be locked with regard to scrolling.</summary>
     /// <param name="block">Which axis (or axes) to block</param>
     virtual public void SetMovementBlock(Efl.Ui.ScrollBlock block) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_movement_block_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),block);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_movement_block_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),block);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Momentum animator</summary>
     /// <returns><c>true</c> if disabled, <c>false</c> otherwise</returns>
     virtual public bool GetMomentumAnimatorDisabled() {
-         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_momentum_animator_disabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_momentum_animator_disabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Momentum animator</summary>
     /// <param name="disabled"><c>true</c> if disabled, <c>false</c> otherwise</param>
     virtual public void SetMomentumAnimatorDisabled(bool disabled) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_momentum_animator_disabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),disabled);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_momentum_animator_disabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),disabled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Scrollbar visibility policy
@@ -1656,7 +1662,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="hbar">Horizontal scrollbar policy</param>
     /// <param name="vbar">Vertical scrollbar policy</param>
     virtual public void GetPolicy(out Elm.Scroller.Policy hbar, out Elm.Scroller.Policy vbar) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_policy_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out hbar, out vbar);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_policy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out hbar, out vbar);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar visibility policy
@@ -1664,7 +1670,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="hbar">Horizontal scrollbar policy</param>
     /// <param name="vbar">Vertical scrollbar policy</param>
     virtual public void SetPolicy(Elm.Scroller.Policy hbar, Elm.Scroller.Policy vbar) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_policy_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hbar, vbar);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_policy_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hbar, vbar);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Currently visible content region
@@ -1678,7 +1684,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="w">Width of the region</param>
     /// <param name="h">Height of the region</param>
     virtual public void GetContentRegion(out int x, out int y, out int w, out int h) {
-                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_region_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y, out w, out h);
+                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y, out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Currently visible content region
@@ -1692,20 +1698,20 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="w">Width of the region</param>
     /// <param name="h">Height of the region</param>
     virtual public void SetContentRegion(int x, int y, int w, int h) {
-                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_region_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, w, h);
+                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_region_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, w, h);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>It decides whether the scrollable object propagates the events to content object or not.</summary>
     /// <returns><c>true</c> if events are propagated, <c>false</c> otherwise</returns>
     virtual public bool GetContentEvents() {
-         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_events_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_events_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>It decides whether the scrollable object propagates the events to content object or not.</summary>
     /// <param name="repeat_events"><c>true</c> if events are propagated, <c>false</c> otherwise</param>
     virtual public void SetContentEvents(bool repeat_events) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_events_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),repeat_events);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_events_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),repeat_events);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Scroll page size relative to viewport size.
@@ -1713,7 +1719,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="x">The horizontal page relative size</param>
     /// <param name="y">The vertical page relative size</param>
     virtual public void GetPageSize(out int x, out int y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scroll page size relative to viewport size.
@@ -1721,34 +1727,34 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="x">The horizontal page relative size</param>
     /// <param name="y">The vertical page relative size</param>
     virtual public void SetPageSize(int x, int y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Bounce animator</summary>
     /// <returns><c>true</c> if bounce animation is disabled, <c>false</c> otherwise</returns>
     virtual public bool GetBounceAnimatorDisabled() {
-         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_animator_disabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_animator_disabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Bounce animator</summary>
     /// <param name="disabled"><c>true</c> if bounce animation is disabled, <c>false</c> otherwise</param>
     virtual public void SetBounceAnimatorDisabled(bool disabled) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_animator_disabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),disabled);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_bounce_animator_disabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),disabled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Page scroll limit</summary>
     /// <param name="page_limit_h">Page limit horizontal</param>
     /// <param name="page_limit_v">Page limit vertical</param>
     virtual public void GetPageScrollLimit(out int page_limit_h, out int page_limit_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_scroll_limit_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out page_limit_h, out page_limit_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_scroll_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out page_limit_h, out page_limit_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Page scroll limit</summary>
     /// <param name="page_limit_h">Page limit horizontal</param>
     /// <param name="page_limit_v">Page limit vertical</param>
     virtual public void SetPageScrollLimit(int page_limit_h, int page_limit_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_scroll_limit_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),page_limit_h, page_limit_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_scroll_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),page_limit_h, page_limit_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Page snapping behavior
@@ -1758,7 +1764,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="horiz">Allow snap horizontally</param>
     /// <param name="vert">Allow snap vertically</param>
     virtual public void GetPageSnapAllow(out bool horiz, out bool vert) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_snap_allow_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out horiz, out vert);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_snap_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out horiz, out vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Page snapping behavior
@@ -1768,7 +1774,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="horiz">Allow snap horizontally</param>
     /// <param name="vert">Allow snap vertically</param>
     virtual public void SetPageSnapAllow(bool horiz, bool vert) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_snap_allow_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),horiz, vert);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_snap_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),horiz, vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Pagin property</summary>
@@ -1777,7 +1783,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="pagesize_h">Page size horizontal</param>
     /// <param name="pagesize_v">Page size vertical</param>
     virtual public void GetPaging(out double pagerel_h, out double pagerel_v, out int pagesize_h, out int pagesize_v) {
-                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_paging_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out pagerel_h, out pagerel_v, out pagesize_h, out pagesize_v);
+                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_paging_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pagerel_h, out pagerel_v, out pagesize_h, out pagesize_v);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Pagin property</summary>
@@ -1786,7 +1792,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="pagesize_h">Page size horizontal</param>
     /// <param name="pagesize_v">Page size vertical</param>
     virtual public void SetPaging(double pagerel_h, double pagerel_v, int pagesize_h, int pagesize_v) {
-                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_paging_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pagerel_h, pagerel_v, pagesize_h, pagesize_v);
+                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_paging_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pagerel_h, pagerel_v, pagesize_h, pagesize_v);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Single direction scroll configuration
@@ -1795,7 +1801,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// The hard behavior restricts the scrolling to a single direction all of the time while the soft one will restrict depending on factors such as the movement angle. If the user scrolls roughly in one direction only, it will only move according to it while if the move was clearly wanted on both axes, it will happen on both of them.</summary>
     /// <returns>The single direction scroll policy</returns>
     virtual public Elm.Scroller.SingleDirection GetSingleDirection() {
-         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_single_direction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_single_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1805,217 +1811,217 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// The hard behavior restricts the scrolling to a single direction all of the time while the soft one will restrict depending on factors such as the movement angle. If the user scrolls roughly in one direction only, it will only move according to it while if the move was clearly wanted on both axes, it will happen on both of them.</summary>
     /// <param name="single_dir">The single direction scroll policy</param>
     virtual public void SetSingleDirection(Elm.Scroller.SingleDirection single_dir) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_single_direction_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),single_dir);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_single_direction_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),single_dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Step size</summary>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     virtual public void GetStepSize(out int x, out int y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_step_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_step_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Step size</summary>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     virtual public void SetStepSize(int x, int y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_step_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_step_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Controls an infinite loop for a scroller.</summary>
     /// <param name="loop_h">The scrolling horizontal loop</param>
     /// <param name="loop_v">The scrolling vertical loop</param>
     virtual public void GetContentLoop(out bool loop_h, out bool loop_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_loop_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out loop_h, out loop_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_loop_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out loop_h, out loop_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Controls an infinite loop for a scroller.</summary>
     /// <param name="loop_h">The scrolling horizontal loop</param>
     /// <param name="loop_v">The scrolling vertical loop</param>
     virtual public void SetContentLoop(bool loop_h, bool loop_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_loop_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),loop_h, loop_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_loop_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),loop_h, loop_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the callback to run when the content has been moved up.</summary>
     /// <param name="scroll_up_cb">The callback</param>
     virtual public void SetScrollUpCb(ElmInterfaceScrollableCb scroll_up_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_up_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scroll_up_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_up_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_up_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the horizontal scrollbar is dragged.</summary>
     /// <param name="hbar_drag_cb">The callback</param>
     virtual public void SetHbarDragCb(ElmInterfaceScrollableCb hbar_drag_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hbar_drag_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hbar_drag_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hbar_drag_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hbar_drag_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when dragging of the contents has started.</summary>
     /// <param name="drag_start_cb">The callback</param>
     virtual public void SetDragStartCb(ElmInterfaceScrollableCb drag_start_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_drag_start_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),drag_start_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_drag_start_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),drag_start_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when scrolling of the contents has started.</summary>
     /// <param name="scroll_start_cb">The callback</param>
     virtual public void SetScrollStartCb(ElmInterfaceScrollableCb scroll_start_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_start_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scroll_start_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_start_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_start_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Freeze property</summary>
     /// <param name="freeze"><c>true</c> if freeze, <c>false</c> otherwise</param>
     virtual public void SetFreeze(bool freeze) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_freeze_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),freeze);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_freeze_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),freeze);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>When the viewport is resized, the callback is called.</summary>
     /// <param name="viewport_resize_cb">The callback</param>
     virtual public void SetContentViewportResizeCb(ElmInterfaceScrollableResizeCb viewport_resize_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_viewport_resize_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),viewport_resize_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_viewport_resize_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),viewport_resize_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the content has been moved to the left</summary>
     /// <param name="scroll_left_cb">The callback</param>
     virtual public void SetScrollLeftCb(ElmInterfaceScrollableCb scroll_left_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_left_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scroll_left_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_left_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_left_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the vertical scrollbar is pressed.</summary>
     /// <param name="vbar_press_cb">The callback</param>
     virtual public void SetVbarPressCb(ElmInterfaceScrollableCb vbar_press_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_vbar_press_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),vbar_press_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_vbar_press_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),vbar_press_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the horizontal scrollbar is pressed.</summary>
     /// <param name="hbar_press_cb">The callback</param>
     virtual public void SetHbarPressCb(ElmInterfaceScrollableCb hbar_press_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hbar_press_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hbar_press_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hbar_press_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hbar_press_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the horizontal scrollbar is unpressed.</summary>
     /// <param name="hbar_unpress_cb">The callback</param>
     virtual public void SetHbarUnpressCb(ElmInterfaceScrollableCb hbar_unpress_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hbar_unpress_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hbar_unpress_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hbar_unpress_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hbar_unpress_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when dragging of the contents has stopped.</summary>
     /// <param name="drag_stop_cb">The callback</param>
     virtual public void SetDragStopCb(ElmInterfaceScrollableCb drag_stop_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_drag_stop_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),drag_stop_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_drag_stop_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),drag_stop_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when scrolling of the contents has stopped.</summary>
     /// <param name="scroll_stop_cb">The callback</param>
     virtual public void SetScrollStopCb(ElmInterfaceScrollableCb scroll_stop_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_stop_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scroll_stop_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_stop_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_stop_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Extern pan</summary>
     /// <param name="pan">Pan object</param>
     virtual public void SetExternPan(Efl.Canvas.Object pan) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_extern_pan_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pan);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_extern_pan_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pan);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the visible page changes.</summary>
     /// <param name="page_change_cb">The callback</param>
     virtual public void SetPageChangeCb(ElmInterfaceScrollableCb page_change_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_change_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),page_change_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_change_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),page_change_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Hold property</summary>
     /// <param name="hold"><c>true</c> if hold, <c>false</c> otherwise</param>
     virtual public void SetHold(bool hold) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hold_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hold);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_hold_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hold);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the scrolling animation has started.</summary>
     /// <param name="animate_start_cb">The callback</param>
     virtual public void SetAnimateStartCb(ElmInterfaceScrollableCb animate_start_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_animate_start_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),animate_start_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_animate_start_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animate_start_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the content has been moved down.</summary>
     /// <param name="scroll_down_cb">The callback</param>
     virtual public void SetScrollDownCb(ElmInterfaceScrollableCb scroll_down_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_down_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scroll_down_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_down_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_down_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set scroll page size relative to viewport size.</summary>
     /// <param name="h_pagerel">Page relation horizontal</param>
     /// <param name="v_pagerel">Page relation vertical</param>
     virtual public void SetPageRelative(double h_pagerel, double v_pagerel) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_relative_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),h_pagerel, v_pagerel);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_relative_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),h_pagerel, v_pagerel);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the callback to run when the content has been moved.</summary>
     /// <param name="scroll_cb">The callback</param>
     virtual public void SetScrollCb(ElmInterfaceScrollableCb scroll_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scroll_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the scrolling animation has stopped.</summary>
     /// <param name="animate_stop_cb">The callback</param>
     virtual public void SetAnimateStopCb(ElmInterfaceScrollableCb animate_stop_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_animate_stop_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),animate_stop_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_animate_stop_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animate_stop_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>set the callback to run on minimal limit content</summary>
     /// <param name="min_limit_cb">The callback</param>
     virtual public void SetContentMinLimitCb(ElmInterfaceScrollableMinLimitCb min_limit_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_min_limit_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),min_limit_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_min_limit_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),min_limit_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the content has been moved to the right.</summary>
     /// <param name="scroll_right_cb">The callback</param>
     virtual public void SetScrollRightCb(ElmInterfaceScrollableCb scroll_right_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_right_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scroll_right_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_scroll_right_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_right_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Content property</summary>
     /// <param name="content">Content object</param>
     virtual public void SetScrollableContent(Efl.Canvas.Object content) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the left edge of the content has been reached.</summary>
     /// <param name="edge_left_cb">The callback</param>
     virtual public void SetEdgeLeftCb(ElmInterfaceScrollableCb edge_left_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_left_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),edge_left_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_left_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),edge_left_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the horizontal scrollbar is dragged.</summary>
     /// <param name="vbar_drag_cb">The callback</param>
     virtual public void SetVbarDragCb(ElmInterfaceScrollableCb vbar_drag_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_vbar_drag_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),vbar_drag_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_vbar_drag_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),vbar_drag_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the horizontal scrollbar is unpressed.</summary>
     /// <param name="vbar_unpress_cb">The callback</param>
     virtual public void SetVbarUnpressCb(ElmInterfaceScrollableCb vbar_unpress_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_vbar_unpress_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),vbar_unpress_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_vbar_unpress_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),vbar_unpress_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the bottom edge of the content has been reached.</summary>
     /// <param name="edge_bottom_cb">The callback</param>
     virtual public void SetEdgeBottomCb(ElmInterfaceScrollableCb edge_bottom_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_bottom_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),edge_bottom_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_bottom_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),edge_bottom_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the right edge of the content has been reached.</summary>
     /// <param name="edge_right_cb">The callback</param>
     virtual public void SetEdgeRightCb(ElmInterfaceScrollableCb edge_right_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_right_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),edge_right_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_right_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),edge_right_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the callback to run when the top edge of the content has been reached.</summary>
     /// <param name="edge_top_cb">The callback</param>
     virtual public void SetEdgeTopCb(ElmInterfaceScrollableCb edge_top_cb) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_top_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),edge_top_cb);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_edge_top_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),edge_top_cb);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Object property</summary>
     /// <param name="edje_object">Edje object</param>
     /// <param name="hit_rectangle">Evas object</param>
     virtual public void SetObjects(Efl.Canvas.Object edje_object, Efl.Canvas.Object hit_rectangle) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_objects_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),edje_object, hit_rectangle);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_objects_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),edje_object, hit_rectangle);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get scroll last page number.
@@ -2025,7 +2031,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="pagenumber_h">The horizontal page number</param>
     /// <param name="pagenumber_v">The vertical page number</param>
     virtual public void GetLastPage(out int pagenumber_h, out int pagenumber_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_last_page_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out pagenumber_h, out pagenumber_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_last_page_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pagenumber_h, out pagenumber_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get scroll current page number.
@@ -2035,7 +2041,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="pagenumber_h">The horizontal page number</param>
     /// <param name="pagenumber_v">The vertical page number</param>
     virtual public void GetCurrentPage(out int pagenumber_h, out int pagenumber_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_current_page_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out pagenumber_h, out pagenumber_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_current_page_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pagenumber_h, out pagenumber_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Content viewport geometry</summary>
@@ -2044,7 +2050,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="w">Width</param>
     /// <param name="h">Height</param>
     virtual public void GetContentViewportGeometry(out int x, out int y, out int w, out int h) {
-                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_viewport_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y, out w, out h);
+                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_viewport_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y, out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Get the size of the content object
@@ -2052,20 +2058,20 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="w">Width of the content object.</param>
     /// <param name="h">Height of the content object.</param>
     virtual public void GetContentSize(out int w, out int h) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out w, out h);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Whether scrolling should loop around.</summary>
     /// <returns>True to enable looping.</returns>
     virtual public bool GetItemLoopEnabled() {
-         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_item_loop_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_item_loop_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Whether scrolling should loop around.</summary>
     /// <param name="enable">True to enable looping.</param>
     virtual public void SetItemLoopEnabled(bool enable) {
-                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_item_loop_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
+                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_item_loop_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the content position</summary>
@@ -2073,14 +2079,14 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="y">Y coordinate</param>
     /// <param name="sig">Send signals to the theme corresponding to the scroll direction, or if an edge was reached.</param>
     virtual public void SetContentPos(int x, int y, bool sig) {
-                                                                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_pos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, sig);
+                                                                                 Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_pos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, sig);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Get content position</summary>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     virtual public void GetContentPos(out int x, out int y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_pos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_pos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Show a specific virtual region within the scroller content object by page number.
@@ -2090,7 +2096,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="pagenumber_h">The horizontal page number</param>
     /// <param name="pagenumber_v">The vertical page number</param>
     virtual public void ShowPage(int pagenumber_h, int pagenumber_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_show_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pagenumber_h, pagenumber_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_show_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pagenumber_h, pagenumber_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Show a specific virtual region within the scroller content object.
@@ -2102,7 +2108,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="w">Width of the region</param>
     /// <param name="h">Height of the region</param>
     virtual public void RegionBringIn(int x, int y, int w, int h) {
-                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_region_bring_in_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, w, h);
+                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_region_bring_in_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, w, h);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Show a specific virtual region within the scroller content object by page number.
@@ -2112,7 +2118,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="pagenumber_h">The horizontal page number</param>
     /// <param name="pagenumber_v">The vertical page number</param>
     virtual public void PageBringIn(int pagenumber_h, int pagenumber_v) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_bring_in_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pagenumber_h, pagenumber_v);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_page_bring_in_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pagenumber_h, pagenumber_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Show a specific virtual region within the scroller content object
@@ -2122,7 +2128,7 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="w">Width of the region</param>
     /// <param name="h">Height of the region</param>
     virtual public void ShowContentRegion(int x, int y, int w, int h) {
-                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_region_show_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, w, h);
+                                                                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_region_show_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, w, h);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Prevent the scrollable from being smaller than the minimum size of the content.
@@ -2130,17 +2136,17 @@ public class Panel : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IScrollable, Efl.Ui
     /// <param name="w">Whether to limit the minimum horizontal size</param>
     /// <param name="h">Whether to limit the minimum vertical size</param>
     virtual public void ContentMinLimit(bool w, bool h) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_min_limit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),w, h);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_content_min_limit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),w, h);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     virtual public void SetWantedRegion(int x, int y) {
-                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_wanted_region_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_wanted_region_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     virtual public void CustomPanPosAdjust(int x, int y) {
          var _in_x = Eina.PrimitiveConversion.ManagedToPointerAlloc(x);
         var _in_y = Eina.PrimitiveConversion.ManagedToPointerAlloc(y);
-                                        Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_custom_pan_pos_adjust_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_x, _in_y);
+                                        Elm.IInterfaceScrollableConcrete.NativeMethods.elm_interface_scrollable_custom_pan_pos_adjust_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_x, _in_y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets the orientation of the panel.</summary>
@@ -7511,6 +7517,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Panel orientation mode</summary>
+[Efl.Eo.BindingEntity]
 public enum PanelOrient
 {
 /// <summary>Panel (dis)appears from the top</summary>
@@ -7533,6 +7540,7 @@ namespace Ui {
 
 /// <summary>Panel scroll information</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct PanelScrollInfo
 {
     /// <summary>content scrolled position (0.0 ~ 1.0) in the panel</summary>

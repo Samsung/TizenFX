@@ -28,7 +28,7 @@ namespace Efl
                     _handle = Interop.Eext.eext_circle_surface_layout_add(layout.NativeHandle);
                 }
 
-                public CircleUIManager(Efl.Ui.ActiveView.Container container)
+                public CircleUIManager(Efl.Ui.Spotlight.Container container)
                 {
                     _handle = Interop.Eext.eext_circle_surface_naviframe_add(container.NativeHandle);
                 }

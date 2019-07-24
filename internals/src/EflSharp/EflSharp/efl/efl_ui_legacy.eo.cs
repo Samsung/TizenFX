@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>The bg (background) widget is used for setting (solid) background decorations
 /// in a window (unless it has transparency enabled) or on any container object. It works just like an image but has some properties useful for backgrounds, such as setting it to tiled, centered, scaled or stretched.</summary>
 [Efl.Ui.ILegacyConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ILegacy : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -39,11 +40,18 @@ sealed public class ILegacyConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ILegacyConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_legacy_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ILegacy"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ILegacyConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ILegacyConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -53,7 +61,7 @@ sealed public class ILegacyConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>

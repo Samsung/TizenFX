@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>EFL Gesture Triple Tap class</summary>
 [Efl.Canvas.GestureTripleTap.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GestureTripleTap : Efl.Canvas.Gesture
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class GestureTripleTap : Efl.Canvas.Gesture
     /// <summary>Initializes a new instance of the <see cref="GestureTripleTap"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureTripleTap(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_triple_tap_class_get(), typeof(GestureTripleTap), parent)
+            ) : base(efl_canvas_gesture_triple_tap_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GestureTripleTap(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GestureTripleTap"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GestureTripleTap(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GestureTripleTap(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GestureTripleTap"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GestureTripleTap(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GestureTripleTap(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

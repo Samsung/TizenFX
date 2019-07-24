@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Datepicker widget
 /// This is a widget which allows the user to pick a date using internal spinner. User can use the internal spinner to select year, month, day or user can input value using internal entry.</summary>
 [Efl.Ui.Datepicker.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Datepicker : Efl.Ui.LayoutBase
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class Datepicker : Efl.Ui.LayoutBase
         efl_ui_datepicker_class_get();
     /// <summary>Initializes a new instance of the <see cref="Datepicker"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Datepicker(Efl.Object parent
-            , System.String style = null) : base(efl_ui_datepicker_class_get(), typeof(Datepicker), parent)
+            , System.String style = null) : base(efl_ui_datepicker_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +47,24 @@ public class Datepicker : Efl.Ui.LayoutBase
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Datepicker(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Datepicker"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Datepicker(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Datepicker(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Datepicker"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Datepicker(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Datepicker(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -67,7 +73,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -94,7 +100,7 @@ public class Datepicker : Efl.Ui.LayoutBase
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DATEPICKER_EVENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -124,7 +130,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
     virtual public void GetMin(out int year, out int month, out int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out year, out month, out day);
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The lower boundary of date.
@@ -137,7 +143,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
     virtual public void SetMin(int year, int month, int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_min_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),year, month, day);
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The upper boundary of date.
@@ -150,7 +156,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
     virtual public void GetMax(out int year, out int month, out int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out year, out month, out day);
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The upper boundary of date.
@@ -163,7 +169,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
     virtual public void SetMax(int year, int month, int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_max_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),year, month, day);
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The current value of date.
@@ -176,7 +182,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
     virtual public void GetDate(out int year, out int month, out int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out year, out month, out day);
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The current value of date.
@@ -189,7 +195,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
     virtual public void SetDate(int year, int month, int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),year, month, day);
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     private static IntPtr GetEflClassStatic()

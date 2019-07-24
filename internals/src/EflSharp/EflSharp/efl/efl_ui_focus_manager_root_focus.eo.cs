@@ -13,6 +13,7 @@ namespace Focus {
 
 /// <summary>This class ensures that the root is at least focusable, if nothing else is focusable</summary>
 [Efl.Ui.Focus.ManagerRootFocus.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -36,38 +37,43 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
     /// <summary>Initializes a new instance of the <see cref="ManagerRootFocus"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ManagerRootFocus(Efl.Object parent= null
-            ) : base(efl_ui_focus_manager_root_focus_class_get(), typeof(ManagerRootFocus), parent)
+            ) : base(efl_ui_focus_manager_root_focus_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ManagerRootFocus(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ManagerRootFocus"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ManagerRootFocus(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ManagerRootFocus(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="ManagerRootFocus"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ManagerRootFocus(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ManagerRootFocus(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>
     /// <returns>Canvas object</returns>
     virtual public Efl.Canvas.Object GetCanvasObject() {
-         var _ret_var = Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>
     /// <param name="canvas_object">Canvas object</param>
     virtual public void SetCanvasObject(Efl.Canvas.Object canvas_object) {
-                                 Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),canvas_object);
+                                 Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),canvas_object);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>

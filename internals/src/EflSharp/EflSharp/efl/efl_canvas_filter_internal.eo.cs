@@ -13,6 +13,7 @@ namespace Filter {
 
 /// <summary>Evas internal implementation of filters.</summary>
 [Efl.Canvas.Filter.IInternalConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IInternal : 
     Efl.Gfx.IFilter ,
     Efl.Eo.IWrapper, IDisposable
@@ -91,11 +92,18 @@ sealed public class IInternalConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IInternalConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_filter_internal_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IInternal"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IInternalConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IInternalConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -275,7 +283,7 @@ sealed public class IInternalConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1048,6 +1056,7 @@ namespace Gfx {
 
 /// <summary>32 bit color data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Color32
 {
     /// <summary>Red component of the color</summary>
@@ -1133,6 +1142,7 @@ namespace Filter {
 
 /// <summary>Filter state name structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct StateName
 {
     /// <summary>Filter state name</summary>
@@ -1204,6 +1214,7 @@ namespace Filter {
 
 /// <summary>Filter state text structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct StateText
 {
     /// <summary>Text outline color</summary>
@@ -1291,6 +1302,7 @@ namespace Filter {
 
 /// <summary>Internal structure representing the state of a Gfx Filter</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct State
 {
     /// <summary>Text state</summary>

@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Efl model interface</summary>
 [Efl.IModelConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IModel : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -118,16 +119,19 @@ void DelChild(Efl.Object child);
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IModelPropertiesChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.ModelPropertyEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.IModel.ChildAddedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IModelChildAddedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.ModelChildrenEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.IModel.ChildRemovedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IModelChildRemovedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.ModelChildrenEvent arg { get; set; }
@@ -154,11 +158,18 @@ sealed public class IModelConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IModelConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_model_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IModel"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IModelConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IModelConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -167,7 +178,7 @@ sealed public class IModelConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -195,7 +206,7 @@ sealed public class IModelConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_MODEL_EVENT_PROPERTIES_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -229,7 +240,7 @@ sealed public class IModelConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -257,7 +268,7 @@ sealed public class IModelConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_MODEL_EVENT_CHILD_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -291,7 +302,7 @@ sealed public class IModelConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -319,7 +330,7 @@ sealed public class IModelConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_MODEL_EVENT_CHILD_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -353,7 +364,7 @@ sealed public class IModelConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -380,7 +391,7 @@ sealed public class IModelConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_MODEL_EVENT_CHILDREN_COUNT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -408,7 +419,7 @@ sealed public class IModelConcrete :
     public Eina.Iterator<System.String> GetProperties() {
          var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_properties_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<System.String>(_ret_var, true, false);
+        return new Eina.Iterator<System.String>(_ret_var, true);
  }
     /// <summary>Retrieve the value of a given property name.
     /// At this point the caller is free to get values from properties. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> may be raised to notify listeners of the property/value.
@@ -545,7 +556,7 @@ sealed public class IModelConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -943,16 +954,17 @@ namespace Efl {
 
 /// <summary>EFL model property event data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ModelPropertyEvent
 {
     /// <summary>List of changed properties</summary>
-    public Eina.Array<System.String> Changed_properties;
+    public Eina.Array<Eina.Stringshare> Changed_properties;
     /// <summary>Removed properties identified by name</summary>
-    public Eina.Array<System.String> Invalidated_properties;
+    public Eina.Array<Eina.Stringshare> Invalidated_properties;
     ///<summary>Constructor for ModelPropertyEvent.</summary>
     public ModelPropertyEvent(
-        Eina.Array<System.String> Changed_properties = default(Eina.Array<System.String>),
-        Eina.Array<System.String> Invalidated_properties = default(Eina.Array<System.String>)    )
+        Eina.Array<Eina.Stringshare> Changed_properties = default(Eina.Array<Eina.Stringshare>),
+        Eina.Array<Eina.Stringshare> Invalidated_properties = default(Eina.Array<Eina.Stringshare>)    )
     {
         this.Changed_properties = Changed_properties;
         this.Invalidated_properties = Invalidated_properties;
@@ -989,8 +1001,8 @@ public struct ModelPropertyEvent
         public static implicit operator ModelPropertyEvent(ModelPropertyEvent.NativeStruct _internal_struct)
         {
             var _external_struct = new ModelPropertyEvent();
-            _external_struct.Changed_properties = new Eina.Array<System.String>(_internal_struct.Changed_properties, false, false);
-            _external_struct.Invalidated_properties = new Eina.Array<System.String>(_internal_struct.Invalidated_properties, false, false);
+            _external_struct.Changed_properties = new Eina.Array<Eina.Stringshare>(_internal_struct.Changed_properties, false, false);
+            _external_struct.Invalidated_properties = new Eina.Array<Eina.Stringshare>(_internal_struct.Invalidated_properties, false, false);
             return _external_struct;
         }
 
@@ -1006,6 +1018,7 @@ namespace Efl {
 
 /// <summary>Every time a child is added the event <see cref="Efl.IModel.ChildAddedEvt"/> is dispatched passing along this structure.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ModelChildrenEvent
 {
     /// <summary>index is a hint and is intended to provide a way for applications to control/know children relative positions through listings.</summary>

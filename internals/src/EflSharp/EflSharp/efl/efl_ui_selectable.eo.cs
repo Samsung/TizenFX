@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI selectable interface</summary>
 [Efl.Ui.ISelectableConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ISelectable : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -32,11 +33,13 @@ public interface ISelectable :
     event EventHandler SelectionClearedEvt;
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ISelectable.ItemSelectedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISelectableItemSelectedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ISelectable.ItemUnselectedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISelectableItemUnselectedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
@@ -63,11 +66,18 @@ sealed public class ISelectableConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISelectableConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_selectable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISelectable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISelectableConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISelectableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -76,7 +86,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -104,7 +114,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_SELECTED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -130,7 +140,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -158,7 +168,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -184,7 +194,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -211,7 +221,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_PASTE";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -236,7 +246,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -263,7 +273,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_COPY";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -288,7 +298,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -315,7 +325,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CUT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -340,7 +350,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -367,7 +377,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -392,7 +402,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -419,7 +429,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -444,7 +454,7 @@ sealed public class ISelectableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -471,7 +481,7 @@ sealed public class ISelectableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -497,7 +507,7 @@ sealed public class ISelectableConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>

@@ -11,6 +11,7 @@ namespace Access {
 
 /// <summary>Elementary accessible text interface</summary>
 [Efl.Access.ITextConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IText : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -134,11 +135,13 @@ bool SelectionRemove(int selection_number);
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextInsertedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ITextAccessTextInsertedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Access.TextChangeInfo arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextRemovedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ITextAccessTextRemovedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Access.TextChangeInfo arg { get; set; }
@@ -165,11 +168,18 @@ sealed public class ITextConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_text_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IText"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -178,7 +188,7 @@ sealed public class ITextConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -205,7 +215,7 @@ sealed public class ITextConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -230,7 +240,7 @@ sealed public class ITextConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -258,7 +268,7 @@ sealed public class ITextConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_INSERTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -292,7 +302,7 @@ sealed public class ITextConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -320,7 +330,7 @@ sealed public class ITextConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -354,7 +364,7 @@ sealed public class ITextConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -381,7 +391,7 @@ sealed public class ITextConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -599,7 +609,7 @@ sealed public class ITextConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1471,6 +1481,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Text accessibility granularity</summary>
+[Efl.Eo.BindingEntity]
 public enum TextGranularity
 {
 /// <summary>Character granularity</summary>
@@ -1494,6 +1505,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Text clip type</summary>
+[Efl.Eo.BindingEntity]
 public enum TextClipType
 {
 /// <summary>No clip type</summary>
@@ -1516,6 +1528,7 @@ namespace Access {
 
 /// <summary>Text attribute</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct TextAttribute
 {
     /// <summary>Text attribute name</summary>
@@ -1583,6 +1596,7 @@ namespace Access {
 
 /// <summary>Text range</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct TextRange
 {
     /// <summary>Range start offset</summary>
@@ -1658,6 +1672,7 @@ namespace Access {
 
 /// <summary>Text change information</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct TextChangeInfo
 {
     /// <summary>Change content</summary>

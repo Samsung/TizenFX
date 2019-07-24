@@ -9,17 +9,18 @@ namespace Efl {
 
 namespace Ui {
 
-namespace ActiveView {
+namespace Spotlight {
 
-[Efl.Ui.ActiveView.ViewManagerScroll.NativeMethods]
-public class ViewManagerScroll : Efl.Ui.ActiveView.ViewManager
+[Efl.Ui.Spotlight.ManagerScroll.NativeMethods]
+[Efl.Eo.BindingEntity]
+public class ManagerScroll : Efl.Ui.Spotlight.Manager
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
         {
-            if (((object)this).GetType() == typeof(ViewManagerScroll))
+            if (((object)this).GetType() == typeof(ManagerScroll))
             {
                 return GetEflClassStatic();
             }
@@ -31,38 +32,43 @@ public class ViewManagerScroll : Efl.Ui.ActiveView.ViewManager
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
-        efl_ui_active_view_view_manager_scroll_class_get();
-    /// <summary>Initializes a new instance of the <see cref="ViewManagerScroll"/> class.</summary>
+        efl_ui_spotlight_manager_scroll_class_get();
+    /// <summary>Initializes a new instance of the <see cref="ManagerScroll"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    public ViewManagerScroll(Efl.Object parent= null
-            ) : base(efl_ui_active_view_view_manager_scroll_class_get(), typeof(ViewManagerScroll), parent)
+    public ManagerScroll(Efl.Object parent= null
+            ) : base(efl_ui_spotlight_manager_scroll_class_get(), parent)
     {
         FinishInstantiation();
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ViewManagerScroll"/> class.
-    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ViewManagerScroll(System.IntPtr raw) : base(raw)
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ManagerScroll(ConstructingHandle ch) : base(ch)
     {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ViewManagerScroll"/> class.
+    /// <summary>Initializes a new instance of the <see cref="ManagerScroll"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ManagerScroll(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    {
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="ManagerScroll"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ViewManagerScroll(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ManagerScroll(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.ActiveView.ViewManagerScroll.efl_ui_active_view_view_manager_scroll_class_get();
+        return Efl.Ui.Spotlight.ManagerScroll.efl_ui_spotlight_manager_scroll_class_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public new class NativeMethods : Efl.Ui.ActiveView.ViewManager.NativeMethods
+    public new class NativeMethods : Efl.Ui.Spotlight.Manager.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
@@ -76,7 +82,7 @@ public class ViewManagerScroll : Efl.Ui.ActiveView.ViewManager
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.ActiveView.ViewManagerScroll.efl_ui_active_view_view_manager_scroll_class_get();
+            return Efl.Ui.Spotlight.ManagerScroll.efl_ui_spotlight_manager_scroll_class_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600

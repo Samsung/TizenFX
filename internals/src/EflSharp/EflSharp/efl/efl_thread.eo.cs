@@ -8,6 +8,7 @@ using System.ComponentModel;
 namespace Efl {
 
 [Efl.Thread.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IReader, Efl.Io.IWriter
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -31,24 +32,29 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     /// <summary>Initializes a new instance of the <see cref="Thread"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Thread(Efl.Object parent= null
-            ) : base(efl_thread_class_get(), typeof(Thread), parent)
+            ) : base(efl_thread_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Thread(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Thread"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Thread(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Thread(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Thread"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Thread(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Thread(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -58,7 +64,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -85,7 +91,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_IO_CLOSER_EVENT_CLOSED";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -114,7 +120,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -142,7 +148,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -181,7 +187,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -208,7 +214,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_IO_READER_EVENT_EOS";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -237,7 +243,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -265,7 +271,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -295,37 +301,37 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     }
     /// <returns>No description supplied.</returns>
     virtual public System.IntPtr GetIndata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <param name="data">No description supplied.</param>
     virtual public void SetIndata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),data);
+                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <returns>No description supplied.</returns>
     virtual public System.IntPtr GetOutdata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <param name="data">No description supplied.</param>
     virtual public void SetOutdata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),data);
+                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <param name="func">No description supplied.</param>
     virtual public void Call(EFlThreadIOCall func) {
                          GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),GCHandle.ToIntPtr(func_handle), EFlThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EFlThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <param name="func">No description supplied.</param>
     /// <returns>No description supplied.</returns>
     virtual public System.IntPtr CallSync(EFlThreadIOCallSync func) {
                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),GCHandle.ToIntPtr(func_handle), EFlThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EFlThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -338,7 +344,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     /// 
     /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
     virtual public System.String GetCommand() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -346,11 +352,11 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     /// Every element of a string is a argument.</summary>
     /// <param name="array">An array where every array field is an argument</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandArray(Eina.Array<System.String> array) {
+    virtual public bool SetCommandArray(Eina.Array<Eina.Stringshare> array) {
          var _in_array = array.Handle;
 array.Own = false;
 array.OwnContent = false;
-                        var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_array);
+                        var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_array);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -359,21 +365,21 @@ array.OwnContent = false;
     /// <param name="str">A command in form of a string</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
     virtual public bool SetCommandString(System.String str) {
-                                 var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),str);
+                                 var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Get the accessor which enables access to each argument that got passed to this object.</summary>
-    virtual public Eina.Accessor<System.String> CommandAccess() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public Eina.Accessor<Eina.Stringshare> CommandAccess() {
+         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Accessor<System.String>(_ret_var, false, false);
+        return new Eina.Accessor<Eina.Stringshare>(_ret_var, false);
  }
     /// <summary>If true will notify object was closed.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if closed, <c>false</c> otherwise</returns>
     virtual public bool GetClosed() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_closed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_closed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -382,7 +388,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if close on exec(), <c>false</c> otherwise</returns>
     virtual public bool GetCloseOnExec() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -391,7 +397,7 @@ array.OwnContent = false;
     /// <param name="close_on_exec"><c>true</c> if close on exec(), <c>false</c> otherwise</param>
     /// <returns><c>true</c> if could set, <c>false</c> if not supported or failed.</returns>
     virtual public bool SetCloseOnExec(bool close_on_exec) {
-                                 var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),close_on_exec);
+                                 var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),close_on_exec);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -400,7 +406,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if close on invalidate, <c>false</c> otherwise</returns>
     virtual public bool GetCloseOnInvalidate() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -409,7 +415,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <param name="close_on_invalidate"><c>true</c> if close on invalidate, <c>false</c> otherwise</param>
     virtual public void SetCloseOnInvalidate(bool close_on_invalidate) {
-                                 Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),close_on_invalidate);
+                                 Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),close_on_invalidate);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Closes the Input/Output object.
@@ -419,7 +425,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
     virtual public Eina.Error Close() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -427,7 +433,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</returns>
     virtual public bool GetCanRead() {
-         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -435,14 +441,14 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <param name="can_read"><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</param>
     virtual public void SetCanRead(bool can_read) {
-                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),can_read);
+                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_read);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>If <c>true</c> will notify end of stream.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if end of stream, <c>false</c> otherwise</returns>
     virtual public bool GetEos() {
-         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -450,7 +456,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <param name="is_eos"><c>true</c> if end of stream, <c>false</c> otherwise</param>
     virtual public void SetEos(bool is_eos) {
-                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),is_eos);
+                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_eos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Reads data into a pre-allocated buffer.
@@ -460,8 +466,8 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <param name="rw_slice">Provides a pre-allocated memory to be filled up to rw_slice.len. It will be populated and the length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
-    virtual public Eina.Error Read(ref Eina.RwSlice rw_slice) {
-                                 var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_read_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref rw_slice);
+    virtual public Eina.Error Read(ref  Eina.RwSlice rw_slice) {
+                                 var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_read_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref rw_slice);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -469,7 +475,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</returns>
     virtual public bool GetCanWrite() {
-         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -477,7 +483,7 @@ array.OwnContent = false;
     /// (Since EFL 1.22)</summary>
     /// <param name="can_write"><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</param>
     virtual public void SetCanWrite(bool can_write) {
-                                 Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),can_write);
+                                 Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_write);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Writes data from a pre-populated buffer.
@@ -488,8 +494,8 @@ array.OwnContent = false;
     /// <param name="slice">Provides a pre-populated memory to be used up to slice.len. The returned slice will be adapted as length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
     /// <param name="remaining">Convenience to output the remaining parts of slice that was not written. If the full slice was written, this will be a slice of zero-length.</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
-    virtual public Eina.Error Write(ref Eina.Slice slice, ref Eina.Slice remaining) {
-                                                         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_write_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref slice, ref remaining);
+    virtual public Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining) {
+                                                         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_write_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref slice, ref remaining);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -517,7 +523,7 @@ array.OwnContent = false;
     /// <summary>Use an array to fill this object
     /// Every element of a string is a argument.</summary>
     /// <value>An array where every array field is an argument</value>
-    public Eina.Array<System.String> CommandArray {
+    public Eina.Array<Eina.Stringshare> CommandArray {
         set { SetCommandArray(value); }
     }
     /// <summary>Use a string to fill this object
@@ -1102,7 +1108,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_array = new Eina.Array<System.String>(array, true, true);
+        var _in_array = new Eina.Array<Eina.Stringshare>(array, true, true);
                             bool _ret_var = default(bool);
                 try
                 {
@@ -1175,7 +1181,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
+            Eina.Accessor<Eina.Stringshare> _ret_var = default(Eina.Accessor<Eina.Stringshare>);
                 try
                 {
                     _ret_var = ((Thread)ws.Target).CommandAccess();
@@ -1555,14 +1561,14 @@ array.OwnContent = false;
         private static efl_io_reader_eos_set_delegate efl_io_reader_eos_set_static_delegate;
 
         
-        private delegate Eina.Error efl_io_reader_read_delegate(System.IntPtr obj, System.IntPtr pd,  ref Eina.RwSlice rw_slice);
+        private delegate Eina.Error efl_io_reader_read_delegate(System.IntPtr obj, System.IntPtr pd,  ref  Eina.RwSlice rw_slice);
 
         
-        public delegate Eina.Error efl_io_reader_read_api_delegate(System.IntPtr obj,  ref Eina.RwSlice rw_slice);
+        public delegate Eina.Error efl_io_reader_read_api_delegate(System.IntPtr obj,  ref  Eina.RwSlice rw_slice);
 
         public static Efl.Eo.FunctionWrapper<efl_io_reader_read_api_delegate> efl_io_reader_read_ptr = new Efl.Eo.FunctionWrapper<efl_io_reader_read_api_delegate>(Module, "efl_io_reader_read");
 
-        private static Eina.Error read(System.IntPtr obj, System.IntPtr pd, ref Eina.RwSlice rw_slice)
+        private static Eina.Error read(System.IntPtr obj, System.IntPtr pd, ref  Eina.RwSlice rw_slice)
         {
             Eina.Log.Debug("function efl_io_reader_read was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -1662,20 +1668,20 @@ array.OwnContent = false;
         private static efl_io_writer_can_write_set_delegate efl_io_writer_can_write_set_static_delegate;
 
         
-        private delegate Eina.Error efl_io_writer_write_delegate(System.IntPtr obj, System.IntPtr pd,  ref Eina.Slice slice,  ref Eina.Slice remaining);
+        private delegate Eina.Error efl_io_writer_write_delegate(System.IntPtr obj, System.IntPtr pd,  ref  Eina.Slice slice,  ref  Eina.Slice remaining);
 
         
-        public delegate Eina.Error efl_io_writer_write_api_delegate(System.IntPtr obj,  ref Eina.Slice slice,  ref Eina.Slice remaining);
+        public delegate Eina.Error efl_io_writer_write_api_delegate(System.IntPtr obj,  ref  Eina.Slice slice,  ref  Eina.Slice remaining);
 
         public static Efl.Eo.FunctionWrapper<efl_io_writer_write_api_delegate> efl_io_writer_write_ptr = new Efl.Eo.FunctionWrapper<efl_io_writer_write_api_delegate>(Module, "efl_io_writer_write");
 
-        private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref Eina.Slice slice, ref Eina.Slice remaining)
+        private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref  Eina.Slice slice, ref  Eina.Slice remaining)
         {
             Eina.Log.Debug("function efl_io_writer_write was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                remaining = default(Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
+                                remaining = default( Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
                     _ret_var = ((Thread)ws.Target).Write(ref slice, ref remaining);

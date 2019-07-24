@@ -8,6 +8,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Bidirectionaltext type</summary>
+[Efl.Eo.BindingEntity]
 public enum TextBidirectionalType
 {
 /// <summary>Natural text type, same as neutral</summary>
@@ -33,6 +34,7 @@ namespace Ui {
 /// <summary>This structure includes all the information about content changes.
 /// It&apos;s meant to be used to implement undo/redo.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct TextChangeInfo
 {
     /// <summary>The content added/removed</summary>

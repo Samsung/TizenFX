@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>EFL Gesture Momentum class</summary>
 [Efl.Canvas.GestureMomentum.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GestureMomentum : Efl.Canvas.Gesture
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,31 +35,36 @@ public class GestureMomentum : Efl.Canvas.Gesture
     /// <summary>Initializes a new instance of the <see cref="GestureMomentum"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureMomentum(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_momentum_class_get(), typeof(GestureMomentum), parent)
+            ) : base(efl_canvas_gesture_momentum_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GestureMomentum(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GestureMomentum"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GestureMomentum(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GestureMomentum(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GestureMomentum"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GestureMomentum(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GestureMomentum(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Gets momentum value</summary>
     /// <returns>The momentum vector</returns>
     virtual public Eina.Vector2 GetMomentum() {
-         var _ret_var = Efl.Canvas.GestureMomentum.NativeMethods.efl_gesture_momentum_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.GestureMomentum.NativeMethods.efl_gesture_momentum_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }

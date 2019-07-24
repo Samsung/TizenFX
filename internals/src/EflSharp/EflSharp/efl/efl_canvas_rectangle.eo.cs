@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>Evas canvas rectangle class</summary>
 [Efl.Canvas.Rectangle.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Rectangle : Efl.Canvas.Object
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class Rectangle : Efl.Canvas.Object
     /// <summary>Initializes a new instance of the <see cref="Rectangle"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Rectangle(Efl.Object parent= null
-            ) : base(efl_canvas_rectangle_class_get(), typeof(Rectangle), parent)
+            ) : base(efl_canvas_rectangle_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Rectangle(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Rectangle"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Rectangle(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Rectangle(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Rectangle"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Rectangle(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Rectangle(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

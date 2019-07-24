@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>EFL UI Text Alert Popup class</summary>
 [Efl.Ui.TextAlertPopup.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.IText
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.IText
         efl_ui_text_alert_popup_class_get();
     /// <summary>Initializes a new instance of the <see cref="TextAlertPopup"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public TextAlertPopup(Efl.Object parent
-            , System.String style = null) : base(efl_ui_text_alert_popup_class_get(), typeof(TextAlertPopup), parent)
+            , System.String style = null) : base(efl_ui_text_alert_popup_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.IText
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TextAlertPopup(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TextAlertPopup"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TextAlertPopup(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TextAlertPopup(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="TextAlertPopup"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TextAlertPopup(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TextAlertPopup(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.IText
     /// <param name="max_size">A 2D max size in pixel units.</param>
     virtual public void SetExpandable(Eina.Size2D max_size) {
          Eina.Size2D.NativeStruct _in_max_size = max_size;
-                        Efl.Ui.TextAlertPopup.NativeMethods.efl_ui_text_alert_popup_expandable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_max_size);
+                        Efl.Ui.TextAlertPopup.NativeMethods.efl_ui_text_alert_popup_expandable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_max_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the text string currently being displayed by the given text object.
@@ -76,7 +82,7 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.IText
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -85,7 +91,7 @@ public class TextAlertPopup : Efl.Ui.AlertPopup, Efl.IText
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the expandable of popup.

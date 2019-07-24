@@ -11,6 +11,7 @@ namespace Access {
 
 /// <summary>Elementary access selection interface</summary>
 [Efl.Access.ISelectionConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ISelection : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -73,11 +74,18 @@ sealed public class ISelectionConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISelectionConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_selection_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISelection"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISelectionConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISelectionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -86,7 +94,7 @@ sealed public class ISelectionConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -113,7 +121,7 @@ sealed public class ISelectionConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_SELECTION_EVENT_ACCESS_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -205,7 +213,7 @@ sealed public class ISelectionConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

@@ -9,17 +9,18 @@ namespace Efl {
 
 namespace Ui {
 
-namespace ActiveView {
+namespace Spotlight {
 
-[Efl.Ui.ActiveView.ViewManagerStack.NativeMethods]
-public class ViewManagerStack : Efl.Ui.ActiveView.ViewManager
+[Efl.Ui.Spotlight.IndicatorIcon.NativeMethods]
+[Efl.Eo.BindingEntity]
+public class IndicatorIcon : Efl.Ui.Spotlight.Indicator
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
         {
-            if (((object)this).GetType() == typeof(ViewManagerStack))
+            if (((object)this).GetType() == typeof(IndicatorIcon))
             {
                 return GetEflClassStatic();
             }
@@ -31,38 +32,43 @@ public class ViewManagerStack : Efl.Ui.ActiveView.ViewManager
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
-        efl_ui_active_view_view_manager_stack_class_get();
-    /// <summary>Initializes a new instance of the <see cref="ViewManagerStack"/> class.</summary>
+        efl_ui_spotlight_indicator_icon_class_get();
+    /// <summary>Initializes a new instance of the <see cref="IndicatorIcon"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    public ViewManagerStack(Efl.Object parent= null
-            ) : base(efl_ui_active_view_view_manager_stack_class_get(), typeof(ViewManagerStack), parent)
+    public IndicatorIcon(Efl.Object parent= null
+            ) : base(efl_ui_spotlight_indicator_icon_class_get(), parent)
     {
         FinishInstantiation();
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ViewManagerStack"/> class.
-    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ViewManagerStack(System.IntPtr raw) : base(raw)
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected IndicatorIcon(ConstructingHandle ch) : base(ch)
     {
     }
 
-    /// <summary>Initializes a new instance of the <see cref="ViewManagerStack"/> class.
+    /// <summary>Initializes a new instance of the <see cref="IndicatorIcon"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected IndicatorIcon(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    {
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="IndicatorIcon"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ViewManagerStack(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected IndicatorIcon(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.ActiveView.ViewManagerStack.efl_ui_active_view_view_manager_stack_class_get();
+        return Efl.Ui.Spotlight.IndicatorIcon.efl_ui_spotlight_indicator_icon_class_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public new class NativeMethods : Efl.Ui.ActiveView.ViewManager.NativeMethods
+    public new class NativeMethods : Efl.Ui.Spotlight.Indicator.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
@@ -76,7 +82,7 @@ public class ViewManagerStack : Efl.Ui.ActiveView.ViewManager
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.ActiveView.ViewManagerStack.efl_ui_active_view_view_manager_stack_class_get();
+            return Efl.Ui.Spotlight.IndicatorIcon.efl_ui_spotlight_indicator_icon_class_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600

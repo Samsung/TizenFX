@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
 [Efl.Ui.IL10nConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IL10n : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -55,11 +56,18 @@ sealed public class IL10nConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IL10nConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_l10n_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IL10n"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IL10nConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IL10nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -95,7 +103,7 @@ sealed public class IL10nConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

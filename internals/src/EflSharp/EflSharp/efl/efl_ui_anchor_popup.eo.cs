@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>EFL UI Anchor Popup class</summary>
 [Efl.Ui.AnchorPopup.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class AnchorPopup : Efl.Ui.Popup
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class AnchorPopup : Efl.Ui.Popup
         efl_ui_anchor_popup_class_get();
     /// <summary>Initializes a new instance of the <see cref="AnchorPopup"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public AnchorPopup(Efl.Object parent
-            , System.String style = null) : base(efl_ui_anchor_popup_class_get(), typeof(AnchorPopup), parent)
+            , System.String style = null) : base(efl_ui_anchor_popup_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,33 +46,38 @@ public class AnchorPopup : Efl.Ui.Popup
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AnchorPopup(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AnchorPopup"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AnchorPopup(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AnchorPopup(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="AnchorPopup"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AnchorPopup(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AnchorPopup(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Returns the anchor object which the popup is following.</summary>
     /// <returns>The object which popup is following.</returns>
     virtual public Efl.Canvas.Object GetAnchor() {
-         var _ret_var = Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_anchor_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_anchor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set anchor popup to follow an anchor object. If anchor object is moved or parent window is resized, the anchor popup moves to the new position. If anchor object is set to NULL, the anchor popup stops following the anchor object. When the popup is moved by using gfx_position_set, anchor is set NULL.</summary>
     /// <param name="anchor">The object which popup is following.</param>
     virtual public void SetAnchor(Efl.Canvas.Object anchor) {
-                                 Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_anchor_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),anchor);
+                                 Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_anchor_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),anchor);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the align priority of a popup.</summary>
@@ -81,7 +87,7 @@ public class AnchorPopup : Efl.Ui.Popup
     /// <param name="fourth">Fourth align priority</param>
     /// <param name="fifth">Fifth align priority</param>
     virtual public void GetAlignPriority(out Efl.Ui.PopupAlign first, out Efl.Ui.PopupAlign second, out Efl.Ui.PopupAlign third, out Efl.Ui.PopupAlign fourth, out Efl.Ui.PopupAlign fifth) {
-                                                                                                                                 Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_align_priority_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out first, out second, out third, out fourth, out fifth);
+                                                                                                                                 Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_align_priority_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out first, out second, out third, out fourth, out fifth);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Set the align priority of a popup.</summary>
@@ -91,7 +97,7 @@ public class AnchorPopup : Efl.Ui.Popup
     /// <param name="fourth">Fourth align priority</param>
     /// <param name="fifth">Fifth align priority</param>
     virtual public void SetAlignPriority(Efl.Ui.PopupAlign first, Efl.Ui.PopupAlign second, Efl.Ui.PopupAlign third, Efl.Ui.PopupAlign fourth, Efl.Ui.PopupAlign fifth) {
-                                                                                                                                 Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_align_priority_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),first, second, third, fourth, fifth);
+                                                                                                                                 Efl.Ui.AnchorPopup.NativeMethods.efl_ui_anchor_popup_align_priority_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),first, second, third, fourth, fifth);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Returns the anchor object which the popup is following.</summary>

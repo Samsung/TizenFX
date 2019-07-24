@@ -18,6 +18,7 @@ namespace Canvas {
 /// 
 /// No child objects should be stacked above the event grabber parent while the grabber is visible. A critical error will be raised if this is detected.</summary>
 [Efl.Canvas.EventGrabber.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class EventGrabber : Efl.Canvas.Group
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -41,38 +42,43 @@ public class EventGrabber : Efl.Canvas.Group
     /// <summary>Initializes a new instance of the <see cref="EventGrabber"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public EventGrabber(Efl.Object parent= null
-            ) : base(efl_canvas_event_grabber_class_get(), typeof(EventGrabber), parent)
+            ) : base(efl_canvas_event_grabber_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected EventGrabber(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="EventGrabber"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected EventGrabber(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected EventGrabber(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="EventGrabber"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected EventGrabber(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected EventGrabber(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Stops the grabber from updating its internal stacking order while visible</summary>
     /// <returns>If <c>true</c>, stop updating</returns>
     virtual public bool GetFreezeWhenVisible() {
-         var _ret_var = Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Stops the grabber from updating its internal stacking order while visible</summary>
     /// <param name="set">If <c>true</c>, stop updating</param>
     virtual public void SetFreezeWhenVisible(bool set) {
-                                 Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),set);
+                                 Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),set);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Stops the grabber from updating its internal stacking order while visible</summary>

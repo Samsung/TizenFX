@@ -33,20 +33,11 @@ public class Iterator<T> : IEnumerable<T>, IDisposable
 {
     public IntPtr Handle {get;set;} = IntPtr.Zero;
     public bool Own {get;set;} = true;
-    public bool OwnContent {get;set;} = false;
 
     public Iterator(IntPtr handle, bool own)
     {
         Handle = handle;
         Own = own;
-        OwnContent = own;
-    }
-
-    public Iterator(IntPtr handle, bool own, bool ownContent)
-    {
-        Handle = handle;
-        Own = own;
-        OwnContent = ownContent;
     }
 
     ~Iterator()
@@ -61,14 +52,6 @@ public class Iterator<T> : IEnumerable<T>, IDisposable
         if (h == IntPtr.Zero)
         {
             return;
-        }
-
-        if (OwnContent)
-        {
-            for (IntPtr data; eina_iterator_next(h, out data);)
-            {
-                NativeFree<T>(data);
-            }
         }
 
         if (Own)
@@ -102,16 +85,9 @@ public class Iterator<T> : IEnumerable<T>, IDisposable
         return h;
     }
 
-    public void SetOwnership(bool ownAll)
-    {
-        Own = ownAll;
-        OwnContent = ownAll;
-    }
-
-    public void SetOwnership(bool own, bool ownContent)
+    public void SetOwnership(bool own)
     {
         Own = own;
-        OwnContent = ownContent;
     }
 
     public bool Next(out T res)
@@ -124,11 +100,6 @@ public class Iterator<T> : IEnumerable<T>, IDisposable
         }
 
         res = NativeToManaged<T>(data);
-
-        if (OwnContent)
-        {
-            NativeFree<T>(data);
-        }
 
         return true;
     }

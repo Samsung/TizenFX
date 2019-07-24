@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl Ui Theme class</summary>
 [Efl.Ui.Theme.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Theme : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class Theme : Efl.Object
     /// <summary>Initializes a new instance of the <see cref="Theme"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Theme(Efl.Object parent= null
-            ) : base(efl_ui_theme_class_get(), typeof(Theme), parent)
+            ) : base(efl_ui_theme_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Theme(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Theme"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Theme(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Theme(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Theme"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Theme(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Theme(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -65,25 +71,25 @@ public class Theme : Efl.Object
     /// <summary>Appends a theme extension to the list of extensions. This is intended when an application needs more styles of widgets or new widget themes that the default does not provide (or may not provide). The application has &quot;extended&quot; usage by coming up with new custom style names for widgets for specific uses, but as these are not &quot;standard&quot;, they are not guaranteed to be provided by a default theme. This means the application is required to provide these extra elements itself in specific Edje files. This call adds one of those Edje files to the theme search path to be searched after the default theme. The use of this call is encouraged when default styles do not meet the needs of the application. Use this call instead of <see cref="Efl.Ui.Theme.AddOverlay"/> for almost all cases.</summary>
     /// <param name="item">The Edje file path to be used</param>
     virtual public void AddExtension(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),item);
+                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Deletes a theme extension from the list of extensions.</summary>
     /// <param name="item">The Edje file path not to be used</param>
     virtual public void DelExtension(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),item);
+                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Prepends a theme overlay to the list of overlays. Use this if your application needs to provide some custom overlay theme (An Edje file that replaces some default styles of widgets) where adding new styles, or changing system theme configuration is not possible. Do NOT use this instead of a proper system theme configuration. Use proper configuration files, profiles, environment variables etc. to set a theme so that the theme can be altered by simple configuration by a user. Using this call to achieve that effect is abusing the API and will create lots of trouble.</summary>
     /// <param name="item">The Edje file path to be used</param>
     virtual public void AddOverlay(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),item);
+                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Delete a theme overlay from the list of overlays.</summary>
     /// <param name="item">The Edje file path not to be used</param>
     virtual public void DelOverlay(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),item);
+                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This is the default theme.

@@ -14,6 +14,7 @@ namespace Core {
 /// 
 /// A object can be forked, which will only copy its values, changes to the returned object will not change the object where it is forked off.</summary>
 [Efl.Core.Env.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Env : Efl.Object, Efl.IDuplicate
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -37,24 +38,29 @@ public class Env : Efl.Object, Efl.IDuplicate
     /// <summary>Initializes a new instance of the <see cref="Env"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Env(Efl.Object parent= null
-            ) : base(efl_core_env_class_get(), typeof(Env), parent)
+            ) : base(efl_core_env_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Env(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Env"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Env(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Env(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Env"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Env(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Env(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -62,7 +68,7 @@ public class Env : Efl.Object, Efl.IDuplicate
     /// <param name="var">The name of the variable</param>
     /// <returns>Set var to this value if not <c>NULL</c>, otherwise clear this env value if value is <c>NULL</c> or if it is an empty string</returns>
     virtual public System.String GetEnv(System.String var) {
-                                 var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),var);
+                                 var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),var);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -70,32 +76,32 @@ public class Env : Efl.Object, Efl.IDuplicate
     /// <param name="var">The name of the variable</param>
     /// <param name="value">Set var to this value if not <c>NULL</c>, otherwise clear this env value if value is <c>NULL</c> or if it is an empty string</param>
     virtual public void SetEnv(System.String var, System.String value) {
-                                                         Efl.Core.Env.NativeMethods.efl_core_env_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),var, value);
+                                                         Efl.Core.Env.NativeMethods.efl_core_env_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),var, value);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the content of this object.
     /// This will return a iterator that contains all keys that are part of this object.</summary>
     virtual public Eina.Iterator<System.String> GetContent() {
-         var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<System.String>(_ret_var, false, false);
+        return new Eina.Iterator<System.String>(_ret_var, false);
  }
     /// <summary>Remove the pair with the matching <c>var</c> from this object</summary>
     /// <param name="var">The name of the variable</param>
     virtual public void Unset(System.String var) {
-                                 Efl.Core.Env.NativeMethods.efl_core_env_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),var);
+                                 Efl.Core.Env.NativeMethods.efl_core_env_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),var);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Remove all pairs from this object</summary>
     virtual public void Clear() {
-         Efl.Core.Env.NativeMethods.efl_core_env_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Core.Env.NativeMethods.efl_core_env_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Creates a carbon copy of this object and returns it.
     /// The newly created object will have no event handlers or anything of the sort.</summary>
     /// <returns>Returned carbon copy</returns>
     virtual public Efl.IDuplicate Duplicate() {
-         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }

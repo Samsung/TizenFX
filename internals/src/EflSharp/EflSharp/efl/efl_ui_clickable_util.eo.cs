@@ -9,7 +9,10 @@ namespace Efl {
 
 namespace Ui {
 
+/// <summary>Helper class that connects theme signals or object events to the <see cref="Efl.Ui.IClickable"/> interface.
+/// This simplifies creating widgets that implement the <see cref="Efl.Ui.IClickable"/> interface.</summary>
 [Efl.Ui.ClickableUtil.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class ClickableUtil : Efl.Eo.EoWrapper
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,39 +36,48 @@ public class ClickableUtil : Efl.Eo.EoWrapper
     /// <summary>Initializes a new instance of the <see cref="ClickableUtil"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ClickableUtil(Efl.Object parent= null
-            ) : base(efl_ui_clickable_util_class_get(), typeof(ClickableUtil), parent)
+            ) : base(efl_ui_clickable_util_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ClickableUtil(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ClickableUtil"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ClickableUtil(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ClickableUtil(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="ClickableUtil"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ClickableUtil(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ClickableUtil(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
-    /// <summary>This will listen to the standard events of a theme, and emit the events on clickable
-    /// This means, widgets themselfs do not neccessarily need to listen to the theme signals. This function does this, and calls the correct clickable functions.</summary>
-    /// <param name="kw_object">The object to listen on</param>
-    /// <param name="clickable">The object to call the clickable events on</param>
+    /// <summary>This will listen to the standard &quot;click&quot; events on a theme and emit the appropriate events through the <see cref="Efl.Ui.IClickable"/> interface.
+    /// Using these methods widgets do not need to listen to the theme signals. This class does it and calls the correct clickable functions.
+    /// 
+    /// This handles theme signals &quot;efl,action,press&quot;, &quot;efl,action,unpress&quot; and &quot;efl,action,mouse_out&quot;, and the <see cref="Efl.Input.IInterface.PointerMoveEvt"/> event.</summary>
+    /// <param name="kw_object">The object to listen on.</param>
+    /// <param name="clickable">The object to call the clickable methods on.</param>
     public static void BindToTheme(Efl.Canvas.Layout kw_object, Efl.Ui.IClickable clickable) {
                                                          Efl.Ui.ClickableUtil.NativeMethods.efl_ui_clickable_util_bind_to_theme_ptr.Value.Delegate(kw_object, clickable);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>This will listen to the standard events on a object, and call the correct methods on clickable
-    /// This means, widgets themselfs do not neccessarily need to listen to the events on the object. This function does this, and calls the correct clickable functions.</summary>
-    /// <param name="kw_object">The object to listen on</param>
-    /// <param name="clickable">The object to call the clickable events on</param>
+    /// <summary>This will listen to the standard &quot;click&quot; events on an object, and emit the appropriate events through the <see cref="Efl.Ui.IClickable"/> interface.
+    /// Using these methods widgets do not need to listen to the object events. This class does it and calls the correct clickable functions.
+    /// 
+    /// The handled events are <see cref="Efl.Input.IInterface.PointerUpEvt"/> and <see cref="Efl.Input.IInterface.PointerDownEvt"/>.</summary>
+    /// <param name="kw_object">The object to listen on.</param>
+    /// <param name="clickable">The object to call the clickable methods on.</param>
     public static void BindToObject(Efl.Input.IInterface kw_object, Efl.Ui.IClickable clickable) {
                                                          Efl.Ui.ClickableUtil.NativeMethods.efl_ui_clickable_util_bind_to_object_ptr.Value.Delegate(kw_object, clickable);
         Eina.Error.RaiseIfUnhandledException();
@@ -76,7 +88,7 @@ public class ClickableUtil : Efl.Eo.EoWrapper
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -84,6 +96,7 @@ public class ClickableUtil : Efl.Eo.EoWrapper
         public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            descs.AddRange(base.GetEoOps(type));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
