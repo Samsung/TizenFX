@@ -221,6 +221,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLocale")]
             public static extern string InputMethodContext_GetInputPanelLocale(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetMIMEType")]
+            public static extern void InputMethodContext_SetMIMEType(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_AllowTextPrediction")]
             public static extern void InputMethodContext_AllowTextPrediction(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
@@ -252,6 +254,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_KeyboardTypeChangedSignal")]
             public static extern global::System.IntPtr InputMethodContext_KeyboardTypeChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ContentReceivedSignal")]
+            public static extern global::System.IntPtr InputMethodContext_ContentReceivedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         }
     }
