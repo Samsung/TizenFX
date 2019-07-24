@@ -58,6 +58,15 @@ namespace Tizen.NUI
             public static extern string Key_keyPressed_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_set")]
+            public static extern void Key_keyString_set(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_get")]
+            public static extern string Key_keyString_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyCode_set")]
             public static extern void Key_keyCode_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
