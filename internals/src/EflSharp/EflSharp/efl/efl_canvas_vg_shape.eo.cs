@@ -13,6 +13,7 @@ namespace Vg {
 
 /// <summary>Efl vector graphics shape class</summary>
 [Efl.Canvas.Vg.Shape.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -36,77 +37,82 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// <summary>Initializes a new instance of the <see cref="Shape"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Shape(Efl.Object parent= null
-            ) : base(efl_canvas_vg_shape_class_get(), typeof(Shape), parent)
+            ) : base(efl_canvas_vg_shape_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Shape(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Shape"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Shape(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Shape(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Shape"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Shape(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Shape(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Fill of the shape object</summary>
     /// <returns>Fill object</returns>
     virtual public Efl.Canvas.Vg.Node GetFill() {
-         var _ret_var = Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_fill_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_fill_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Fill of the shape object</summary>
     /// <param name="f">Fill object</param>
     virtual public void SetFill(Efl.Canvas.Vg.Node f) {
-                                 Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_fill_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_fill_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Stroke fill of the shape object</summary>
     /// <returns>Stroke fill object</returns>
     virtual public Efl.Canvas.Vg.Node GetStrokeFill() {
-         var _ret_var = Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_fill_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_fill_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Stroke fill of the shape object</summary>
     /// <param name="f">Stroke fill object</param>
     virtual public void SetStrokeFill(Efl.Canvas.Vg.Node f) {
-                                 Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_fill_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_fill_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Stroke marker of the shape object</summary>
     /// <returns>Stroke marker object</returns>
     virtual public Efl.Canvas.Vg.Node GetStrokeMarker() {
-         var _ret_var = Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_marker_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_marker_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Stroke marker of the shape object</summary>
     /// <param name="m">Stroke marker object</param>
     virtual public void SetStrokeMarker(Efl.Canvas.Vg.Node m) {
-                                 Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_marker_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),m);
+                                 Efl.Canvas.Vg.Shape.NativeMethods.efl_canvas_vg_shape_stroke_marker_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),m);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
     /// <returns>Stroke scale value</returns>
     virtual public double GetStrokeScale() {
-         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
     /// <param name="s">Stroke scale value</param>
     virtual public void SetStrokeScale(double s) {
-                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),s);
+                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),s);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The color to be used for stroking the path.</summary>
@@ -115,7 +121,7 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// <param name="b">The blue component of the given color.</param>
     /// <param name="a">The alpha component of the given color.</param>
     virtual public void GetStrokeColor(out int r, out int g, out int b, out int a) {
-                                                                                                         Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>The color to be used for stroking the path.</summary>
@@ -124,33 +130,33 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// <param name="b">The blue component of the given color.</param>
     /// <param name="a">The alpha component of the given color.</param>
     virtual public void SetStrokeColor(int r, int g, int b, int a) {
-                                                                                                         Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>The stroke width to be used for stroking the path.</summary>
     /// <returns>Stroke width to be used</returns>
     virtual public double GetStrokeWidth() {
-         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_width_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_width_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The stroke width to be used for stroking the path.</summary>
     /// <param name="w">Stroke width to be used</param>
     virtual public void SetStrokeWidth(double w) {
-                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_width_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),w);
+                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_width_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),w);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Not implemented</summary>
     /// <returns>Centered stroke location</returns>
     virtual public double GetStrokeLocation() {
-         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_location_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_location_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Not implemented</summary>
     /// <param name="centered">Centered stroke location</param>
     virtual public void SetStrokeLocation(double centered) {
-                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_location_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),centered);
+                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_location_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),centered);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set stroke dash pattern. A dash pattern is specified by dashes, an array of <see cref="Efl.Gfx.Dash"/>. <see cref="Efl.Gfx.Dash"/> values(length, gap) must be positive.
@@ -159,7 +165,7 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// <param name="length">Stroke dash length</param>
     virtual public void GetStrokeDash(out Efl.Gfx.Dash dash, out uint length) {
                          var _out_dash = new System.IntPtr();
-                                Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_dash_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_dash, out length);
+                                Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_dash_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_dash, out length);
         Eina.Error.RaiseIfUnhandledException();
         dash = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.Dash>(_out_dash);
                                  }
@@ -169,7 +175,7 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// <param name="length">Stroke dash length</param>
     virtual public void SetStrokeDash(ref Efl.Gfx.Dash dash, uint length) {
          Efl.Gfx.Dash.NativeStruct _in_dash = dash;
-                                                Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_dash_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_dash, length);
+                                                Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_dash_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref _in_dash, length);
         Eina.Error.RaiseIfUnhandledException();
                         dash = _in_dash;
                  }
@@ -177,7 +183,7 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// See also <see cref="Efl.Gfx.Cap"/>.</summary>
     /// <returns>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></returns>
     virtual public Efl.Gfx.Cap GetStrokeCap() {
-         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_cap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_cap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -185,14 +191,14 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// See also <see cref="Efl.Gfx.Cap"/>.</summary>
     /// <param name="c">Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></param>
     virtual public void SetStrokeCap(Efl.Gfx.Cap c) {
-                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_cap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),c);
+                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_cap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),c);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The join style to be used for stroking the path. The join style will be used for joining the two line segment while stroking the path.
     /// See also <see cref="Efl.Gfx.Join"/>.</summary>
     /// <returns>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></returns>
     virtual public Efl.Gfx.Join GetStrokeJoin() {
-         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_join_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_join_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -200,20 +206,20 @@ public class Shape : Efl.Canvas.Vg.Node, Efl.Gfx.IShape
     /// See also <see cref="Efl.Gfx.Join"/>.</summary>
     /// <param name="j">Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></param>
     virtual public void SetStrokeJoin(Efl.Gfx.Join j) {
-                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_join_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),j);
+                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_join_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),j);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
     /// <returns>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></returns>
     virtual public Efl.Gfx.FillRule GetFillRule() {
-         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_fill_rule_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_fill_rule_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
     /// <param name="fill_rule">The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></param>
     virtual public void SetFillRule(Efl.Gfx.FillRule fill_rule) {
-                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_fill_rule_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fill_rule);
+                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_fill_rule_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fill_rule);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Fill of the shape object</summary>

@@ -12,6 +12,7 @@ namespace Canvas {
 /// <summary>Represents a TEXT part of a layout
 /// Its lifetime is limited to one function call only, unless an extra reference is explicitly held.</summary>
 [Efl.Canvas.LayoutPartText.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor, Efl.ITextFont, Efl.ITextFormat, Efl.ITextMarkup, Efl.ITextMarkupInteractive, Efl.ITextStyle
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -35,38 +36,45 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <summary>Initializes a new instance of the <see cref="LayoutPartText"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LayoutPartText(Efl.Object parent= null
-            ) : base(efl_canvas_layout_part_text_class_get(), typeof(LayoutPartText), parent)
+            ) : base(efl_canvas_layout_part_text_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LayoutPartText(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LayoutPartText"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LayoutPartText(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LayoutPartText(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPartText"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LayoutPartText(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LayoutPartText(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Sizing policy for text parts.
     /// This will determine whether to consider height or width constraints, if text-specific behaviors occur (such as ellipsis, line-wrapping etc.</summary>
+    /// <returns>Desired sizing policy.</returns>
     virtual public Efl.Canvas.LayoutPartTextExpand GetTextExpand() {
-         var _ret_var = Efl.Canvas.LayoutPartText.NativeMethods.efl_canvas_layout_part_text_expand_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.LayoutPartText.NativeMethods.efl_canvas_layout_part_text_expand_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sizing policy for text parts.
     /// This will determine whether to consider height or width constraints, if text-specific behaviors occur (such as ellipsis, line-wrapping etc.</summary>
+    /// <param name="type">Desired sizing policy.</param>
     virtual public void SetTextExpand(Efl.Canvas.LayoutPartTextExpand type) {
-                                 Efl.Canvas.LayoutPartText.NativeMethods.efl_canvas_layout_part_text_expand_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.Canvas.LayoutPartText.NativeMethods.efl_canvas_layout_part_text_expand_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the text string currently being displayed by the given text object.
@@ -76,7 +84,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -85,14 +93,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The object&apos;s main cursor.</summary>
     /// <param name="get_type">Cursor type</param>
     /// <returns>Text cursor object</returns>
     virtual public Efl.TextCursorCursor GetTextCursor(Efl.TextCursorGetType get_type) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),get_type);
+                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),get_type);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -100,7 +108,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="cur">Cursor object</param>
     /// <returns>Cursor position</returns>
     virtual public int GetCursorPosition(Efl.TextCursorCursor cur) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -108,14 +116,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="cur">Cursor object</param>
     /// <param name="position">Cursor position</param>
     virtual public void SetCursorPosition(Efl.TextCursorCursor cur, int position) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, position);
+                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, position);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The content of the cursor (the character under the cursor)</summary>
     /// <param name="cur">Cursor object</param>
     /// <returns>The unicode codepoint of the character</returns>
     virtual public Eina.Unicode GetCursorContent(Efl.TextCursorCursor cur) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -133,21 +141,21 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="ch2">The height of the lower cursor</param>
     /// <returns><c>true</c> if split cursor, <c>false</c> otherwise.</returns>
     virtual public bool GetCursorGeometry(Efl.TextCursorCursor cur, Efl.TextCursorType ctype, out int cx, out int cy, out int cw, out int ch, out int cx2, out int cy2, out int cw2, out int ch2) {
-                                                                                                                                                                                                                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
+                                                                                                                                                                                                                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                                                                         return _ret_var;
  }
     /// <summary>Create new cursor</summary>
     /// <returns>Cursor object</returns>
     virtual public Efl.TextCursorCursor NewCursor() {
-         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Free existing cursor</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorFree(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_free_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_free_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Check if two cursors are equal</summary>
@@ -155,7 +163,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="cur2">Cursor 2 object</param>
     /// <returns><c>true</c> if cursors are equal, <c>false</c> otherwise</returns>
     virtual public bool CursorEqual(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_equal_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur1, cur2);
+                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_equal_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur1, cur2);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -164,7 +172,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="cur2">Cursor 2 object</param>
     /// <returns>Difference between cursors</returns>
     virtual public int CursorCompare(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_compare_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur1, cur2);
+                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_compare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur1, cur2);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -172,98 +180,98 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="dst">Destination cursor</param>
     /// <param name="src">Source cursor</param>
     virtual public void CursorCopy(Efl.TextCursorCursor dst, Efl.TextCursorCursor src) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_copy_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dst, src);
+                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_copy_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dst, src);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Advances to the next character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorCharNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_next_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the previous character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorCharPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_prev_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_prev_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the next grapheme cluster</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorClusterNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_next_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the previous grapheme cluster</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorClusterPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_prev_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_prev_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the first character in this paragraph</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphCharFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_first_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_first_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the last character in this paragraph</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphCharLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_last_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_last_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current word start</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorWordStart(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current word end</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorWordEnd(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current line first character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorLineCharFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_first_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_first_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current line last character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorLineCharLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_last_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_last_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current paragraph first character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_first_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_first_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current paragraph last character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_last_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_last_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the start of the next text node</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_next_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the end of the previous text node</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_prev_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_prev_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Jump the cursor by the given number of lines</summary>
     /// <param name="cur">Cursor object</param>
     /// <param name="by">Number of lines</param>
     virtual public void CursorLineJumpBy(Efl.TextCursorCursor cur, int by) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_jump_by_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, by);
+                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_jump_by_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, by);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set cursor coordinates</summary>
@@ -271,7 +279,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="x">X coord to set by.</param>
     /// <param name="y">Y coord to set by.</param>
     virtual public void SetCursorCoord(Efl.TextCursorCursor cur, int x, int y) {
-                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_coord_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, x, y);
+                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_coord_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Set cursor coordinates according to grapheme clusters. It does not allow to put a cursor to the middle of a grapheme cluster.</summary>
@@ -279,7 +287,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="x">X coord to set by.</param>
     /// <param name="y">Y coord to set by.</param>
     virtual public void SetCursorClusterCoord(Efl.TextCursorCursor cur, int x, int y) {
-                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_coord_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, x, y);
+                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_coord_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Adds text to the current cursor position and set the cursor to *after* the start of the text just added.</summary>
@@ -287,14 +295,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="text">Text to append (UTF-8 format).</param>
     /// <returns>Length of the appended text.</returns>
     virtual public int CursorTextInsert(Efl.TextCursorCursor cur, System.String text) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_text_insert_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, text);
+                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_text_insert_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, text);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Deletes a single character from position pointed by given cursor.</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorCharDelete(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_delete_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_delete_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieve the font family and size in use on a given text object.
@@ -304,7 +312,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="font">The font family name or filename.</param>
     /// <param name="size">The font size, in points.</param>
     virtual public void GetFont(out System.String font, out Efl.Font.Size size) {
-                                                         Efl.ITextFontConcrete.NativeMethods.efl_text_font_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out font, out size);
+                                                         Efl.ITextFontConcrete.NativeMethods.efl_text_font_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out font, out size);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the font family, filename and size for a given text object.
@@ -314,14 +322,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="font">The font family name or filename.</param>
     /// <param name="size">The font size, in points.</param>
     virtual public void SetFont(System.String font, Efl.Font.Size size) {
-                                                         Efl.ITextFontConcrete.NativeMethods.efl_text_font_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),font, size);
+                                                         Efl.ITextFontConcrete.NativeMethods.efl_text_font_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),font, size);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
     /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
     /// <returns>The font file&apos;s path.</returns>
     virtual public System.String GetFontSource() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_source_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_source_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -331,14 +339,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
     /// <param name="font_source">The font file&apos;s path.</param>
     virtual public void SetFontSource(System.String font_source) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_source_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),font_source);
+                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_source_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),font_source);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Comma-separated list of font fallbacks
     /// Will be used in case the primary font isn&apos;t available.</summary>
     /// <returns>Font name fallbacks</returns>
     virtual public System.String GetFontFallbacks() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_fallbacks_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_fallbacks_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -346,14 +354,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// Will be used in case the primary font isn&apos;t available.</summary>
     /// <param name="font_fallbacks">Font name fallbacks</param>
     virtual public void SetFontFallbacks(System.String font_fallbacks) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_fallbacks_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),font_fallbacks);
+                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_fallbacks_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),font_fallbacks);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Type of weight of the displayed font
     /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
     /// <returns>Font weight</returns>
     virtual public Efl.TextFontWeight GetFontWeight() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_weight_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_weight_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -361,14 +369,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
     /// <param name="font_weight">Font weight</param>
     virtual public void SetFontWeight(Efl.TextFontWeight font_weight) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_weight_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),font_weight);
+                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_weight_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),font_weight);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Type of slant of the displayed font
     /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
     /// <returns>Font slant</returns>
     virtual public Efl.TextFontSlant GetFontSlant() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_slant_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_slant_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -376,14 +384,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
     /// <param name="style">Font slant</param>
     virtual public void SetFontSlant(Efl.TextFontSlant style) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_slant_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),style);
+                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_slant_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Type of width of the displayed font
     /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
     /// <returns>Font width</returns>
     virtual public Efl.TextFontWidth GetFontWidth() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_width_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_width_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -391,14 +399,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
     /// <param name="width">Font width</param>
     virtual public void SetFontWidth(Efl.TextFontWidth width) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_width_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),width);
+                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_width_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),width);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specific language of the displayed font
     /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
     /// <returns>Language</returns>
     virtual public System.String GetFontLang() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_lang_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_lang_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -406,14 +414,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
     /// <param name="lang">Language</param>
     virtual public void SetFontLang(System.String lang) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_lang_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),lang);
+                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_lang_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),lang);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The bitmap fonts have fixed size glyphs for several available sizes. Basically, it is not scalable. But, it needs to be scalable for some use cases. (ex. colorful emoji fonts)
     /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
     /// <returns>Scalable</returns>
     virtual public Efl.TextFontBitmapScalable GetFontBitmapScalable() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -421,92 +429,92 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
     /// <param name="scalable">Scalable</param>
     virtual public void SetFontBitmapScalable(Efl.TextFontBitmapScalable scalable) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scalable);
+                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scalable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
     /// <returns>Ellipsis value</returns>
     virtual public double GetEllipsis() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_ellipsis_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_ellipsis_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
     /// <param name="value">Ellipsis value</param>
     virtual public void SetEllipsis(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_ellipsis_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_ellipsis_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Wrap mode for use in the text</summary>
     /// <returns>Wrap mode</returns>
     virtual public Efl.TextFormatWrap GetWrap() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_wrap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_wrap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Wrap mode for use in the text</summary>
     /// <param name="wrap">Wrap mode</param>
     virtual public void SetWrap(Efl.TextFormatWrap wrap) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_wrap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),wrap);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_wrap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),wrap);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Multiline is enabled or not</summary>
     /// <returns><c>true</c> if multiline is enabled, <c>false</c> otherwise</returns>
     virtual public bool GetMultiline() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_multiline_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_multiline_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Multiline is enabled or not</summary>
     /// <param name="enabled"><c>true</c> if multiline is enabled, <c>false</c> otherwise</param>
     virtual public void SetMultiline(bool enabled) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_multiline_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enabled);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_multiline_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enabled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Horizontal alignment of text</summary>
     /// <returns>Alignment type</returns>
     virtual public Efl.TextFormatHorizontalAlignmentAutoType GetHalignAutoType() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_auto_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_auto_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Horizontal alignment of text</summary>
     /// <param name="value">Alignment type</param>
     virtual public void SetHalignAutoType(Efl.TextFormatHorizontalAlignmentAutoType value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_auto_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_auto_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Horizontal alignment of text</summary>
     /// <returns>Horizontal alignment value</returns>
     virtual public double GetHalign() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Horizontal alignment of text</summary>
     /// <param name="value">Horizontal alignment value</param>
     virtual public void SetHalign(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Vertical alignment of text</summary>
     /// <returns>Vertical alignment value</returns>
     virtual public double GetValign() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_valign_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_valign_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Vertical alignment of text</summary>
     /// <param name="value">Vertical alignment value</param>
     virtual public void SetValign(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_valign_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_valign_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Minimal line gap (top and bottom) for each line in the text
     /// <c>value</c> is absolute size.</summary>
     /// <returns>Line gap value</returns>
     virtual public double GetLinegap() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_linegap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_linegap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -514,14 +522,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <c>value</c> is absolute size.</summary>
     /// <param name="value">Line gap value</param>
     virtual public void SetLinegap(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_linegap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_linegap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Relative line gap (top and bottom) for each line in the text
     /// The original line gap value is multiplied by <c>value</c>.</summary>
     /// <returns>Relative line gap value</returns>
     virtual public double GetLinerelgap() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_linerelgap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_linerelgap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -529,40 +537,40 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// The original line gap value is multiplied by <c>value</c>.</summary>
     /// <param name="value">Relative line gap value</param>
     virtual public void SetLinerelgap(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_linerelgap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_linerelgap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Tabstops value</summary>
     /// <returns>Tapstops value</returns>
     virtual public int GetTabstops() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_tabstops_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_tabstops_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Tabstops value</summary>
     /// <param name="value">Tapstops value</param>
     virtual public void SetTabstops(int value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_tabstops_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_tabstops_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether text is a password</summary>
     /// <returns><c>true</c> if the text is a password, <c>false</c> otherwise</returns>
     virtual public bool GetPassword() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_password_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_password_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Whether text is a password</summary>
     /// <param name="enabled"><c>true</c> if the text is a password, <c>false</c> otherwise</param>
     virtual public void SetPassword(bool enabled) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_password_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enabled);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_password_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enabled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The character used to replace characters that can&apos;t be displayed
     /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
     /// <returns>Replacement character</returns>
     virtual public System.String GetReplacementChar() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_replacement_char_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_replacement_char_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -570,20 +578,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
     /// <param name="repch">Replacement character</param>
     virtual public void SetReplacementChar(System.String repch) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_replacement_char_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),repch);
+                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_replacement_char_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),repch);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup property</summary>
     /// <returns>The markup-text representation set to this text.</returns>
     virtual public System.String GetMarkup() {
-         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Markup property</summary>
     /// <param name="markup">The markup-text representation set to this text.</param>
     virtual public void SetMarkup(System.String markup) {
-                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),markup);
+                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),markup);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup of a given range in the text</summary>
@@ -591,7 +599,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="end">End of markup region</param>
     /// <returns>The markup-text representation set to this text of a given range</returns>
     virtual public System.String GetMarkupRange(Efl.TextCursorCursor start, Efl.TextCursorCursor end) {
-                                                         var _ret_var = Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),start, end);
+                                                         var _ret_var = Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),start, end);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -600,14 +608,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="end">End of markup region</param>
     /// <param name="markup">The markup-text representation set to this text of a given range</param>
     virtual public void SetMarkupRange(Efl.TextCursorCursor start, Efl.TextCursorCursor end, System.String markup) {
-                                                                                 Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),start, end, markup);
+                                                                                 Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),start, end, markup);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Inserts a markup text to the text object in a given cursor position</summary>
     /// <param name="cur">Cursor position to insert markup</param>
     /// <param name="markup">The markup text to insert</param>
     virtual public void CursorMarkupInsert(Efl.TextCursorCursor cur, System.String markup) {
-                                                         Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_cursor_markup_insert_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, markup);
+                                                         Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_cursor_markup_insert_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, markup);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Color of text, excluding style</summary>
@@ -616,7 +624,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetNormalColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_normal_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_normal_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of text, excluding style</summary>
@@ -625,20 +633,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetNormalColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_normal_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_normal_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Enable or disable backing type</summary>
     /// <returns>Backing type</returns>
     virtual public Efl.TextStyleBackingType GetBackingType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Enable or disable backing type</summary>
     /// <param name="type">Backing type</param>
     virtual public void SetBackingType(Efl.TextStyleBackingType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Backing color</summary>
@@ -647,7 +655,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetBackingColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Backing color</summary>
@@ -656,20 +664,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetBackingColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Sets an underline style on the text</summary>
     /// <returns>Underline type</returns>
     virtual public Efl.TextStyleUnderlineType GetUnderlineType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets an underline style on the text</summary>
     /// <param name="type">Underline type</param>
     virtual public void SetUnderlineType(Efl.TextStyleUnderlineType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of normal underline style</summary>
@@ -678,7 +686,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetUnderlineColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of normal underline style</summary>
@@ -687,20 +695,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetUnderlineColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Height of underline style</summary>
     /// <returns>Height</returns>
     virtual public double GetUnderlineHeight() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_height_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_height_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Height of underline style</summary>
     /// <param name="height">Height</param>
     virtual public void SetUnderlineHeight(double height) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_height_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),height);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_height_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),height);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of dashed underline style</summary>
@@ -709,7 +717,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetUnderlineDashedColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of dashed underline style</summary>
@@ -718,33 +726,33 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetUnderlineDashedColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Width of dashed underline style</summary>
     /// <returns>Width</returns>
     virtual public int GetUnderlineDashedWidth() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Width of dashed underline style</summary>
     /// <param name="width">Width</param>
     virtual public void SetUnderlineDashedWidth(int width) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),width);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),width);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gap of dashed underline style</summary>
     /// <returns>Gap</returns>
     virtual public int GetUnderlineDashedGap() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gap of dashed underline style</summary>
     /// <param name="gap">Gap</param>
     virtual public void SetUnderlineDashedGap(int gap) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),gap);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),gap);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of underline2 style</summary>
@@ -753,7 +761,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetUnderline2Color(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline2_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline2_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of underline2 style</summary>
@@ -762,20 +770,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetUnderline2Color(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline2_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline2_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Type of strikethrough style</summary>
     /// <returns>Strikethrough type</returns>
     virtual public Efl.TextStyleStrikethroughType GetStrikethroughType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Type of strikethrough style</summary>
     /// <param name="type">Strikethrough type</param>
     virtual public void SetStrikethroughType(Efl.TextStyleStrikethroughType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of strikethrough_style</summary>
@@ -784,7 +792,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetStrikethroughColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of strikethrough_style</summary>
@@ -793,20 +801,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetStrikethroughColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <returns>Effect type</returns>
     virtual public Efl.TextStyleEffectType GetEffectType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_effect_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_effect_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <param name="type">Effect type</param>
     virtual public void SetEffectType(Efl.TextStyleEffectType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_effect_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_effect_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of outline effect</summary>
@@ -815,7 +823,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetOutlineColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_outline_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_outline_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of outline effect</summary>
@@ -824,20 +832,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetOutlineColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_outline_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_outline_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Direction of shadow effect</summary>
     /// <returns>Shadow direction</returns>
     virtual public Efl.TextStyleShadowDirection GetShadowDirection() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_direction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Direction of shadow effect</summary>
     /// <param name="type">Shadow direction</param>
     virtual public void SetShadowDirection(Efl.TextStyleShadowDirection type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_direction_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_direction_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of shadow effect</summary>
@@ -846,7 +854,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetShadowColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of shadow effect</summary>
@@ -855,7 +863,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetShadowColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of glow effect</summary>
@@ -864,7 +872,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetGlowColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of glow effect</summary>
@@ -873,7 +881,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetGlowColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Second color of the glow effect</summary>
@@ -882,7 +890,7 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void GetGlow2Color(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow2_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow2_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Second color of the glow effect</summary>
@@ -891,14 +899,14 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     virtual public void SetGlow2Color(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow2_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow2_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Program that applies a special filter
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
     /// <returns>Filter code</returns>
     virtual public System.String GetGfxFilter() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_gfx_filter_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_gfx_filter_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -906,11 +914,12 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
     /// <param name="code">Filter code</param>
     virtual public void SetGfxFilter(System.String code) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_gfx_filter_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),code);
+                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_gfx_filter_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),code);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sizing policy for text parts.
     /// This will determine whether to consider height or width constraints, if text-specific behaviors occur (such as ellipsis, line-wrapping etc.</summary>
+    /// <value>Desired sizing policy.</value>
     public Efl.Canvas.LayoutPartTextExpand TextExpand {
         get { return GetTextExpand(); }
         set { SetTextExpand(value); }
@@ -6305,14 +6314,19 @@ namespace Efl {
 
 namespace Canvas {
 
-/// <summary>Text layout policy to enforce. If none is set, min/max descriptions are taken in considerations solely.</summary>
+/// <summary>Text layout policy to enforce. If none is set, only min/max descriptions are taken into account.</summary>
+[Efl.Eo.BindingEntity]
 public enum LayoutPartTextExpand
 {
 /// <summary>No policy. Use default description parameters.</summary>
 None = 0,
+/// <summary>Text is tied to the left side of the container.</summary>
 MinX = 1,
+/// <summary>Text is tied to the top side of the container.</summary>
 MinY = 2,
+/// <summary>Text is tied to the right side of the container.</summary>
 MaxX = 4,
+/// <summary>Text is tied to the bottom side of the container.</summary>
 MaxY = 8,
 }
 

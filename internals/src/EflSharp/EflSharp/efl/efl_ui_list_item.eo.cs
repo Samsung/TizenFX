@@ -10,6 +10,7 @@ namespace Efl {
 namespace Ui {
 
 [Efl.Ui.ListItem.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class ListItem : Efl.Ui.Item
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -32,9 +33,9 @@ public abstract class ListItem : Efl.Ui.Item
         efl_ui_list_item_class_get();
     /// <summary>Initializes a new instance of the <see cref="ListItem"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public ListItem(Efl.Object parent
-            , System.String style = null) : base(efl_ui_list_item_class_get(), typeof(ListItem), parent)
+            , System.String style = null) : base(efl_ui_list_item_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -44,26 +45,31 @@ public abstract class ListItem : Efl.Ui.Item
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ListItem(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ListItem"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ListItem(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ListItem(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class ListItemRealized : ListItem
     {
-        private ListItemRealized(IntPtr ptr) : base(ptr)
+        private ListItemRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="ListItem"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ListItem(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ListItem(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

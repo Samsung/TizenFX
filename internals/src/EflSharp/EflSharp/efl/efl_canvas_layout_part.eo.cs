@@ -12,6 +12,7 @@ namespace Canvas {
 /// <summary>Common class for part proxy objects for <see cref="Efl.Canvas.Layout"/>.
 /// As an <see cref="Efl.IPart"/> implementation class, all objects of this class are meant to be used for one and only one function call. In pseudo-code, the use of object of this type looks like the following: rect = layout.part(&quot;somepart&quot;).geometry_get();</summary>
 [Efl.Canvas.LayoutPart.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -35,24 +36,29 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <summary>Initializes a new instance of the <see cref="LayoutPart"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LayoutPart(Efl.Object parent= null
-            ) : base(efl_canvas_layout_part_class_get(), typeof(LayoutPart), parent)
+            ) : base(efl_canvas_layout_part_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LayoutPart(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LayoutPart"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LayoutPart(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LayoutPart(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPart"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LayoutPart(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LayoutPart(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -62,7 +68,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -90,7 +96,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -124,7 +130,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -152,7 +158,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -187,7 +193,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -215,7 +221,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -249,13 +255,13 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="state">The name of the state.</param>
     /// <param name="val">The value of the state.</param>
     virtual public void GetState(out System.String state, out double val) {
-                                                         Efl.Canvas.LayoutPart.NativeMethods.efl_canvas_layout_part_state_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out state, out val);
+                                                         Efl.Canvas.LayoutPart.NativeMethods.efl_canvas_layout_part_state_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out state, out val);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Returns the type of the part.</summary>
     /// <returns>One of the types or <c>none</c> if not an existing part.</returns>
     virtual public Efl.Canvas.LayoutPartType GetPartType() {
-         var _ret_var = Efl.Canvas.LayoutPart.NativeMethods.efl_canvas_layout_part_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.LayoutPart.NativeMethods.efl_canvas_layout_part_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -263,7 +269,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// (Since EFL 1.22)</summary>
     /// <returns>A 2D coordinate in pixel units.</returns>
     virtual public Eina.Position2D GetPosition() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -272,14 +278,14 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="pos">A 2D coordinate in pixel units.</param>
     virtual public void SetPosition(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the (rectangular) size of the given Evas object.
     /// (Since EFL 1.22)</summary>
     /// <returns>A 2D size in pixel units.</returns>
     virtual public Eina.Size2D GetSize() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -289,14 +295,14 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="size">A 2D size in pixel units.</param>
     virtual public void SetSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Rectangular geometry that combines both position and size.
     /// (Since EFL 1.22)</summary>
     /// <returns>The X,Y position and W,H size, in pixels.</returns>
     virtual public Eina.Rect GetGeometry() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -305,14 +311,14 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="rect">The X,Y position and W,H size, in pixels.</param>
     virtual public void SetGeometry(Eina.Rect rect) {
          Eina.Rect.NativeStruct _in_rect = rect;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_rect);
+                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_rect);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves whether or not the given canvas object is visible.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if to make the object visible, <c>false</c> otherwise</returns>
     virtual public bool GetVisible() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -320,14 +326,14 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// (Since EFL 1.22)</summary>
     /// <param name="v"><c>true</c> if to make the object visible, <c>false</c> otherwise</param>
     virtual public void SetVisible(bool v) {
-                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),v);
+                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),v);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets an object&apos;s scaling factor.
     /// (Since EFL 1.22)</summary>
     /// <returns>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</returns>
     virtual public double GetScale() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -335,7 +341,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// (Since EFL 1.22)</summary>
     /// <param name="scale">The scaling factor (the default value is 0.0, meaning individual scaling is not set)</param>
     virtual public void SetScale(double scale) {
-                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scale);
+                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the draggable object location.</summary>
@@ -343,7 +349,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The y relative position, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetDragValue(out double dx, out double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out dx, out dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out dx, out dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -353,7 +359,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The y relative position, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool SetDragValue(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dx, dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -362,7 +368,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dh">The drag relative height, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetDragSize(out double dw, out double dh) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out dw, out dh);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out dw, out dh);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -371,14 +377,14 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dh">The drag relative height, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool SetDragSize(double dw, double dh) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dw, dh);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dw, dh);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Gets the draggable direction.</summary>
     /// <returns>The direction(s) premitted for drag.</returns>
     virtual public Efl.Ui.DragDir GetDragDir() {
-         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_dir_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_dir_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -387,7 +393,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The y step relative amount, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetDragStep(out double dx, out double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out dx, out dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out dx, out dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -396,7 +402,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The y step relative amount, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool SetDragStep(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dx, dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -405,7 +411,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The y page step increment</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetDragPage(out double dx, out double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out dx, out dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out dx, out dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -414,7 +420,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The y page step increment</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool SetDragPage(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dx, dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -426,7 +432,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The number of steps vertically.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool MoveDragStep(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dx, dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -440,7 +446,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     /// <param name="dy">The number of pages vertically.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool MoveDragPage(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dx, dy);
+                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }

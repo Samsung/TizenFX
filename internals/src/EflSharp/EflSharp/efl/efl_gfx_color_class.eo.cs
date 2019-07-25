@@ -11,6 +11,7 @@ namespace Gfx {
 
 /// <summary>Efl Gfx Color Class mixin class</summary>
 [Efl.Gfx.IColorClassConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IColorClass : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -108,11 +109,18 @@ sealed public class IColorClassConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IColorClassConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_class_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IColorClass"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IColorClassConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IColorClassConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -219,7 +227,7 @@ sealed public class IColorClassConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

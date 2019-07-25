@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>Low-level APIs for object that can lay their children out.
 /// Used for containers (box, grid).</summary>
 [Efl.IPackLayoutConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IPackLayout : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -47,11 +48,18 @@ sealed public class IPackLayoutConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IPackLayoutConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_pack_layout_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IPackLayout"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IPackLayoutConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IPackLayoutConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -60,7 +68,7 @@ sealed public class IPackLayoutConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -87,7 +95,7 @@ sealed public class IPackLayoutConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -127,7 +135,7 @@ sealed public class IPackLayoutConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

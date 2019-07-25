@@ -10,6 +10,7 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Animation repeat mode</summary>
+[Efl.Eo.BindingEntity]
 public enum AnimationRepeatMode
 {
 /// <summary>Restart animation when the animation ends.</summary>
@@ -28,6 +29,7 @@ namespace Canvas {
 
 /// <summary>Information of event running</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct AnimationPlayerEventRunning
 {
     ///<summary>Placeholder field</summary>

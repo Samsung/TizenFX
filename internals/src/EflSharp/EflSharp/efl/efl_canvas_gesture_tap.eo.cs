@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>EFL Gesture Tap class</summary>
 [Efl.Canvas.GestureTap.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GestureTap : Efl.Canvas.Gesture
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class GestureTap : Efl.Canvas.Gesture
     /// <summary>Initializes a new instance of the <see cref="GestureTap"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureTap(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_tap_class_get(), typeof(GestureTap), parent)
+            ) : base(efl_canvas_gesture_tap_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GestureTap(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GestureTap"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GestureTap(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GestureTap(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GestureTap"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GestureTap(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GestureTap(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

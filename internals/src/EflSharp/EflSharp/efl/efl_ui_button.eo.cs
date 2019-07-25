@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Push-button widget
 /// Press it and run some function. It can contain a simple label and icon object and it also has an autorepeat feature.</summary>
 [Efl.Ui.Button.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutorepeat, Efl.Ui.IClickable
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
         efl_ui_button_class_get();
     /// <summary>Initializes a new instance of the <see cref="Button"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Button(Efl.Object parent
-            , System.String style = null) : base(efl_ui_button_class_get(), typeof(Button), parent)
+            , System.String style = null) : base(efl_ui_button_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +47,24 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Button(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Button"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Button(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Button(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Button"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Button(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Button(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -68,7 +74,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -96,7 +102,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -122,7 +128,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -149,7 +155,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -174,7 +180,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -202,7 +208,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -236,7 +242,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -264,7 +270,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED_ANY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -298,7 +304,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -326,7 +332,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_PRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -359,7 +365,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -387,7 +393,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_UNPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -420,7 +426,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -448,7 +454,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -481,7 +487,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -491,7 +497,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -499,7 +505,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -510,7 +516,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -519,7 +525,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The initial timeout before the autorepeat event is generated.
@@ -528,7 +534,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
     /// <returns>Timeout in seconds.</returns>
     virtual public double GetAutorepeatInitialTimeout() {
-         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -538,7 +544,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
     /// <param name="t">Timeout in seconds.</param>
     virtual public void SetAutorepeatInitialTimeout(double t) {
-                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),t);
+                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_initial_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),t);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The interval between each generated autorepeat event.
@@ -547,7 +553,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
     /// <returns>Time interval in seconds.</returns>
     virtual public double GetAutorepeatGapTimeout() {
-         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -557,14 +563,14 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
     /// <param name="t">Time interval in seconds.</param>
     virtual public void SetAutorepeatGapTimeout(double t) {
-                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),t);
+                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_gap_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),t);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
     /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
     /// <returns>A bool to turn on/off the repeat event generation.</returns>
     virtual public bool GetAutorepeatEnabled() {
-         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -572,27 +578,27 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
     /// <param name="on">A bool to turn on/off the repeat event generation.</param>
     virtual public void SetAutorepeatEnabled(bool on) {
-                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),on);
+                                 Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),on);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got pressed.
     /// When the button is already pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Press(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got unpressed.
     /// When the button is not pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Unpress(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts the internal state after a press call.
     /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
     virtual public void ResetButtonState(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.

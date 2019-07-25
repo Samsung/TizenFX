@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI Property_Bind interface. view object can have <see cref="Efl.IModel"/> to manage the data, the interface can help loading and tracking child data from the model property. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
 [Efl.Ui.IPropertyBindConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IPropertyBind : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -25,11 +26,13 @@ Eina.Error PropertyBind(System.String key, System.String property);
     event EventHandler<Efl.Ui.IPropertyBindPropertyBoundEvt_Args> PropertyBoundEvt;
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertiesChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IPropertyBindPropertiesChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.PropertyEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertyBoundEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IPropertyBindPropertyBoundEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
@@ -56,11 +59,18 @@ sealed public class IPropertyBindConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IPropertyBindConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_property_bind_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IPropertyBind"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IPropertyBindConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IPropertyBindConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -69,7 +79,7 @@ sealed public class IPropertyBindConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -97,7 +107,7 @@ sealed public class IPropertyBindConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -131,7 +141,7 @@ sealed public class IPropertyBindConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -159,7 +169,7 @@ sealed public class IPropertyBindConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -202,7 +212,7 @@ sealed public class IPropertyBindConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -283,13 +293,14 @@ namespace Ui {
 
 /// <summary>EFL Ui property event data structure triggered when an object property change due to the interaction on the object.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct PropertyEvent
 {
     /// <summary>List of changed properties</summary>
-    public Eina.Array<System.String> Changed_properties;
+    public Eina.Array<Eina.Stringshare> Changed_properties;
     ///<summary>Constructor for PropertyEvent.</summary>
     public PropertyEvent(
-        Eina.Array<System.String> Changed_properties = default(Eina.Array<System.String>)    )
+        Eina.Array<Eina.Stringshare> Changed_properties = default(Eina.Array<Eina.Stringshare>)    )
     {
         this.Changed_properties = Changed_properties;
     }
@@ -322,7 +333,7 @@ public struct PropertyEvent
         public static implicit operator PropertyEvent(PropertyEvent.NativeStruct _internal_struct)
         {
             var _external_struct = new PropertyEvent();
-            _external_struct.Changed_properties = new Eina.Array<System.String>(_internal_struct.Changed_properties, false, false);
+            _external_struct.Changed_properties = new Eina.Array<Eina.Stringshare>(_internal_struct.Changed_properties, false, false);
             return _external_struct;
         }
 

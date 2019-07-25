@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl Ui Textpath class</summary>
 [Efl.Ui.Textpath.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
         efl_ui_textpath_class_get();
     /// <summary>Initializes a new instance of the <see cref="Textpath"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Textpath(Efl.Object parent
-            , System.String style = null) : base(efl_ui_textpath_class_get(), typeof(Textpath), parent)
+            , System.String style = null) : base(efl_ui_textpath_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Textpath(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Textpath"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Textpath(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Textpath(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Textpath"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Textpath(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Textpath(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -65,7 +71,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// @internal</summary>
     /// <returns>Number of slices</returns>
     virtual public int GetSliceNumber() {
-         var _ret_var = Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_slice_number_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_slice_number_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -73,14 +79,14 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// @internal</summary>
     /// <param name="slice_no">Number of slices</param>
     virtual public void SetSliceNumber(int slice_no) {
-                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_slice_number_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),slice_no);
+                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_slice_number_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),slice_no);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the ellipsis behavior of the textpath.
     /// @since_tizen 5.5</summary>
     /// <returns>To ellipsis text or not</returns>
     virtual public bool GetEllipsis() {
-         var _ret_var = Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_ellipsis_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_ellipsis_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -88,7 +94,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// @since_tizen 5.5</summary>
     /// <param name="ellipsis">To ellipsis text or not</param>
     virtual public void SetEllipsis(bool ellipsis) {
-                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_ellipsis_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ellipsis);
+                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_ellipsis_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ellipsis);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set a circle with given center, radius, and start angle.
@@ -99,7 +105,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="start_angle">Start angle of the circle</param>
     /// <param name="direction">Textpath direction</param>
     virtual public void SetCircle(double x, double y, double radius, double start_angle, Efl.Ui.TextpathDirection direction) {
-                                                                                                                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_circle_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, radius, start_angle, direction);
+                                                                                                                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_circle_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, radius, start_angle, direction);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Retrieves the text string currently being displayed by the given text object.
@@ -109,7 +115,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -118,7 +124,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
@@ -127,7 +133,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     virtual public void GetPath(out Efl.Gfx.PathCommandType op, out double points) {
                          System.IntPtr _out_op = System.IntPtr.Zero;
         System.IntPtr _out_points = System.IntPtr.Zero;
-                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_op, out _out_points);
+                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_op, out _out_points);
         Eina.Error.RaiseIfUnhandledException();
         op = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.PathCommandType>(_out_op);
         points = Eina.PrimitiveConversion.PointerToManaged<double>(_out_points);
@@ -138,47 +144,47 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     virtual public void SetPath(Efl.Gfx.PathCommandType op, double points) {
          var _in_op = Eina.PrimitiveConversion.ManagedToPointerAlloc(op);
         var _in_points = Eina.PrimitiveConversion.ManagedToPointerAlloc(points);
-                                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_op, _in_points);
+                                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_op, _in_points);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Path length property</summary>
     /// <param name="commands">Commands</param>
     /// <param name="points">Points</param>
     virtual public void GetLength(out uint commands, out uint points) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_length_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out commands, out points);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out commands, out points);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Current point coordinates</summary>
     /// <param name="x">X co-ordinate of the current point.</param>
     /// <param name="y">Y co-ordinate of the current point.</param>
     virtual public void GetCurrent(out double x, out double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Current control point coordinates</summary>
     /// <param name="x">X co-ordinate of control point.</param>
     /// <param name="y">Y co-ordinate of control point.</param>
     virtual public void GetCurrentCtrl(out double x, out double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_ctrl_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_ctrl_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Copy the path data from the object specified.</summary>
     /// <param name="dup_from">Shape object from where data will be copied.</param>
     virtual public void CopyFrom(Efl.Object dup_from) {
-                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_copy_from_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dup_from);
+                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_copy_from_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dup_from);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Compute and return the bounding box of the currently set path</summary>
     /// <param name="r">Contain the bounding box of the currently set path</param>
     virtual public void GetBounds(out Eina.Rect r) {
                  var _out_r = new Eina.Rect.NativeStruct();
-                Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_bounds_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_r);
+                Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_bounds_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_r);
         Eina.Error.RaiseIfUnhandledException();
         r = _out_r;
                  }
     /// <summary>Reset the path data of the path object.</summary>
     virtual public void Reset() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Moves the current point to the given point,  implicitly starting a new subpath and closing the previous one.
@@ -186,7 +192,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="x">X co-ordinate of the current point.</param>
     /// <param name="y">Y co-ordinate of the current point.</param>
     virtual public void AppendMoveTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_move_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_move_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a straight line from the current position to the given end point. After the line is drawn, the current position is updated to be at the end point of the line.
@@ -196,7 +202,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     virtual public void AppendLineTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_line_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_line_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a quadratic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x, ctrl_y). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
@@ -205,7 +211,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="ctrl_x">X co-ordinate of control point.</param>
     /// <param name="ctrl_y">Y co-ordinate of control point.</param>
     virtual public void AppendQuadraticTo(double x, double y, double ctrl_x, double ctrl_y) {
-                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_quadratic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, ctrl_x, ctrl_y);
+                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_quadratic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, ctrl_x, ctrl_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Same as efl_gfx_path_append_quadratic_to() api only difference is that it uses the current control point to draw the bezier.
@@ -213,7 +219,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     virtual public void AppendSquadraticTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_squadratic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_squadratic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a cubic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x0, ctrl_y0), and (ctrl_x1, ctrl_y1). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
@@ -224,7 +230,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     virtual public void AppendCubicTo(double ctrl_x0, double ctrl_y0, double ctrl_x1, double ctrl_y1, double x, double y) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_cubic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
+                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_cubic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Same as efl_gfx_path_append_cubic_to() api only difference is that it uses the current control point to draw the bezier.
@@ -234,7 +240,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="ctrl_x">X co-ordinate of 2nd control point.</param>
     /// <param name="ctrl_y">Y co-ordinate of 2nd control point.</param>
     virtual public void AppendScubicTo(double x, double y, double ctrl_x, double ctrl_y) {
-                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_scubic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, ctrl_x, ctrl_y);
+                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_scubic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, ctrl_x, ctrl_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Append an arc that connects from the current point int the point list to the given point (x,y). The arc is defined by the given radius in  x-direction (rx) and radius in y direction (ry).
@@ -247,7 +253,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="large_arc">Defines whether to draw the larger arc or smaller arc joining two point.</param>
     /// <param name="sweep">Defines whether the arc will be drawn counter-clockwise or clockwise from current point to the end point taking into account the large_arc property.</param>
     virtual public void AppendArcTo(double x, double y, double rx, double ry, double angle, bool large_arc, bool sweep) {
-                                                                                                                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, rx, ry, angle, large_arc, sweep);
+                                                                                                                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, rx, ry, angle, large_arc, sweep);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
     /// <summary>Append an arc that enclosed in the given rectangle (x, y, w, h). The angle is defined in counter clock wise , use -ve angle for clockwise arc.</summary>
@@ -258,13 +264,13 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="start_angle">Angle at which the arc will start</param>
     /// <param name="sweep_length">@ Length of the arc.</param>
     virtual public void AppendArc(double x, double y, double w, double h, double start_angle, double sweep_length) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, w, h, start_angle, sweep_length);
+                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, w, h, start_angle, sweep_length);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Closes the current subpath by drawing a line to the beginning of the subpath, automatically starting a new path. The current point of the new path is (0, 0).
     /// If the subpath does not contain any points, this function does nothing.</summary>
     virtual public void CloseAppend() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_close_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_close_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Append a circle with given center and radius.</summary>
@@ -272,7 +278,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="y">Y co-ordinate of the center of the circle.</param>
     /// <param name="radius">Radius of the circle.</param>
     virtual public void AppendCircle(double x, double y, double radius) {
-                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_circle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, radius);
+                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_circle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, radius);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Append the given rectangle with rounded corner to the path.
@@ -288,13 +294,13 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="rx">The x radius of the rounded corner and should be in range [ 0 to w/2 ]</param>
     /// <param name="ry">The y radius of the rounded corner and should be in range [ 0 to h/2 ]</param>
     virtual public void AppendRect(double x, double y, double w, double h, double rx, double ry) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_rect_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, w, h, rx, ry);
+                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_rect_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, w, h, rx, ry);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Append SVG path data</summary>
     /// <param name="svg_path_data">SVG path data to append</param>
     virtual public void AppendSvgPath(System.String svg_path_data) {
-                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_svg_path_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),svg_path_data);
+                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_svg_path_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),svg_path_data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Creates intermediary path part-way between two paths
@@ -306,7 +312,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="pos_map">Position map in range 0.0 to 1.0</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool Interpolate(Efl.Object from, Efl.Object to, double pos_map) {
-                                                                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from, to, pos_map);
+                                                                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from, to, pos_map);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -314,7 +320,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="with">Object</param>
     /// <returns>True on success, <c>false</c> otherwise</returns>
     virtual public bool EqualCommands(Efl.Object with) {
-                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_equal_commands_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),with);
+                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_equal_commands_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),with);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -322,13 +328,13 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     /// <param name="cmd_count">Commands count to reserve</param>
     /// <param name="pts_count">Pointers count to reserve</param>
     virtual public void Reserve(uint cmd_count, uint pts_count) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reserve_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cmd_count, pts_count);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reserve_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cmd_count, pts_count);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Request to update the path object.
     /// One path object may get appending several path calls (such as append_cubic, append_rect, etc) to construct the final path data. Here commit means all path data is prepared and now object could update its own internal status based on the last path information.</summary>
     virtual public void Commit() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_commit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_commit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The number of slices. The larger the number of slice_num is, The better the text follows the path.
@@ -1795,6 +1801,7 @@ namespace Ui {
 
 /// <summary>Textpath direction
 /// @since_tizen 5.5</summary>
+[Efl.Eo.BindingEntity]
 public enum TextpathDirection
 {
 /// <summary>Clockwise</summary>

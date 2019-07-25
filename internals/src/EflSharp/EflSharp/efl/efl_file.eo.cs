@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>Efl file interface
 /// (Since EFL 1.22)</summary>
 [Efl.IFileConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IFile : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -118,11 +119,18 @@ sealed public class IFileConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IFileConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_file_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IFile"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFileConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IFileConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -247,7 +255,7 @@ sealed public class IFileConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

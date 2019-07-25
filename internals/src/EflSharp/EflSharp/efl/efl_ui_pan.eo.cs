@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary pan class</summary>
 [Efl.Ui.Pan.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Pan : Efl.Canvas.Group, Efl.IContent
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     /// <summary>Initializes a new instance of the <see cref="Pan"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Pan(Efl.Object parent= null
-            ) : base(efl_ui_pan_class_get(), typeof(Pan), parent)
+            ) : base(efl_ui_pan_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Pan(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Pan"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Pan(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Pan(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Pan"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Pan(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Pan(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -60,7 +66,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -87,7 +93,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PAN_EVENT_PAN_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -112,7 +118,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -139,7 +145,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PAN_EVENT_PAN_VIEWPORT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -164,7 +170,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -191,7 +197,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PAN_EVENT_PAN_POSITION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -217,7 +223,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -245,7 +251,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -268,31 +274,31 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     }
     /// <summary>Position</summary>
     virtual public Eina.Position2D GetPanPosition() {
-         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Position</summary>
     virtual public void SetPanPosition(Eina.Position2D position) {
          Eina.Position2D.NativeStruct _in_position = position;
-                        Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_position);
+                        Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_position);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Content size</summary>
     virtual public Eina.Size2D GetContentSize() {
-         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_content_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_content_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The minimal position to scroll</summary>
     virtual public Eina.Position2D GetPanPositionMin() {
-         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The maximal position to scroll</summary>
     virtual public Eina.Position2D GetPanPositionMax() {
-         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Pan.NativeMethods.efl_ui_pan_position_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -301,7 +307,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -311,7 +317,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -319,7 +325,7 @@ public class Pan : Efl.Canvas.Group, Efl.IContent
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }

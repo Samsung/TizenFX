@@ -16,6 +16,7 @@ namespace Ui {
 /// 
 /// The cache might decide to flush itself when the application event pause is triggered.</summary>
 [Efl.Ui.CachingFactory.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class CachingFactory : Efl.Ui.WidgetFactory
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -38,9 +39,9 @@ public class CachingFactory : Efl.Ui.WidgetFactory
         efl_ui_caching_factory_class_get();
     /// <summary>Initializes a new instance of the <see cref="CachingFactory"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass"/></param>
+    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
     public CachingFactory(Efl.Object parent
-            , Type itemClass = null) : base(efl_ui_caching_factory_class_get(), typeof(CachingFactory), parent)
+            , Type itemClass = null) : base(efl_ui_caching_factory_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(itemClass))
         {
@@ -50,46 +51,51 @@ public class CachingFactory : Efl.Ui.WidgetFactory
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected CachingFactory(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="CachingFactory"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected CachingFactory(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected CachingFactory(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="CachingFactory"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected CachingFactory(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected CachingFactory(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
     /// <returns>When set to zero, there is no limit on the amount of memory the cache will use.</returns>
     virtual public uint GetMemoryLimit() {
-         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
     /// <param name="limit">When set to zero, there is no limit on the amount of memory the cache will use.</param>
     virtual public void SetMemoryLimit(uint limit) {
-                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),limit);
+                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Define how many maximum number of items are waiting on standby in the cache.</summary>
     /// <returns>When set to zero, there is no limit to the amount of items stored in the cache.</returns>
     virtual public uint GetItemsLimit() {
-         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Define how many maximum number of items are waiting on standby in the cache.</summary>
     /// <param name="limit">When set to zero, there is no limit to the amount of items stored in the cache.</param>
     virtual public void SetItemsLimit(uint limit) {
-                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),limit);
+                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>

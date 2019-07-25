@@ -11,6 +11,7 @@ namespace Efl {
 /// This is used for the default content part of widgets, as well as for individual parts through <see cref="Efl.IPart"/>.
 /// (Since EFL 1.22)</summary>
 [Efl.IContentConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IContent : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -42,6 +43,7 @@ Efl.Gfx.IEntity UnsetContent();
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.IContent.ContentChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IContentContentChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Gfx.IEntity arg { get; set; }
@@ -70,11 +72,18 @@ sealed public class IContentConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IContentConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_content_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IContent"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IContentConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IContentConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -84,7 +93,7 @@ sealed public class IContentConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -112,7 +121,7 @@ sealed public class IContentConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -174,7 +183,7 @@ sealed public class IContentConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

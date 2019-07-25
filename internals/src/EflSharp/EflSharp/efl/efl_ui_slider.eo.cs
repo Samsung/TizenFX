@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary slider class</summary>
 [Efl.Ui.Slider.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeDisplay, Efl.Ui.IRangeInteractive
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
         efl_ui_slider_class_get();
     /// <summary>Initializes a new instance of the <see cref="Slider"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Slider(Efl.Object parent
-            , System.String style = null) : base(efl_ui_slider_class_get(), typeof(Slider), parent)
+            , System.String style = null) : base(efl_ui_slider_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Slider(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Slider"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Slider(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Slider(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Slider"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Slider(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Slider(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -93,7 +99,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SLIDER_EVENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -118,7 +124,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -145,7 +151,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SLIDER_EVENT_STEADY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -170,7 +176,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -197,7 +203,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SLIDER_EVENT_SLIDER_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -222,7 +228,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -249,7 +255,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SLIDER_EVENT_SLIDER_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -273,7 +279,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// <param name="value">Value of widget casted to floating point number.</param>
     /// <param name="text">string describing value in given context eg. small, enough</param>
     virtual public void GetValueAndText(out double value, out System.String text) {
-                                                         Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out value, out text);
+                                                         Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out value, out text);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Value and text property</summary>
@@ -281,7 +287,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// <param name="text">string describing value in given context eg. small, enough</param>
     /// <returns><c>true</c> if setting widgets value has succeeded, otherwise <c>false</c> .</returns>
     virtual public bool SetValueAndText(double value, System.String text) {
-                                                         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value, text);
+                                                         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value, text);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -290,13 +296,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// <param name="upper_limit">Upper limit of the range</param>
     /// <param name="description">Description of the range</param>
     virtual public void GetRange(out double lower_limit, out double upper_limit, out System.String description) {
-                                                                                 Efl.Access.IValueConcrete.NativeMethods.efl_access_value_range_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out lower_limit, out upper_limit, out description);
+                                                                                 Efl.Access.IValueConcrete.NativeMethods.efl_access_value_range_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out lower_limit, out upper_limit, out description);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Gets an minimal incrementation value</summary>
     /// <returns>Minimal incrementation value</returns>
     virtual public double GetIncrement() {
-         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_increment_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_increment_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -306,7 +312,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -316,7 +322,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the range value (in percentage) on a given range widget
@@ -325,7 +331,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
     /// <returns>The range value (must be between $0.0 and 1.0)</returns>
     virtual public double GetRangeValue() {
-         var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -335,7 +341,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
     /// <param name="val">The range value (must be between $0.0 and 1.0)</param>
     virtual public void SetRangeValue(double val) {
-                                 Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the minimum and maximum values of the given range widget.
@@ -343,7 +349,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     virtual public void GetRangeLimits(out double min, out double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out min, out max);
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out min, out max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the minimum and maximum values for given range widget.
@@ -357,7 +363,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     virtual public void SetRangeLimits(double min, double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),min, max);
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),min, max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the step used to increment or decrement values for given widget.
@@ -368,7 +374,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Warning: The step value should be bigger than 0.</summary>
     /// <returns>The step value.</returns>
     virtual public double GetRangeStep() {
-         var _ret_var = Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -380,7 +386,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrient
     /// Warning: The step value should be bigger than 0.</summary>
     /// <param name="step">The step value.</param>
     virtual public void SetRangeStep(double step) {
-                                 Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),step);
+                                 Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),step);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets an minimal incrementation value</summary>

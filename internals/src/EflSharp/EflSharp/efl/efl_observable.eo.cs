@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Efl observable class</summary>
 [Efl.Observable.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Observable : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -32,24 +33,29 @@ public class Observable : Efl.Object
     /// <summary>Initializes a new instance of the <see cref="Observable"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Observable(Efl.Object parent= null
-            ) : base(efl_observable_class_get(), typeof(Observable), parent)
+            ) : base(efl_observable_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Observable(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Observable"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Observable(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Observable(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Observable"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Observable(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Observable(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -58,7 +64,7 @@ public class Observable : Efl.Object
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="obs">An observer object</param>
     virtual public void AddObserver(System.String key, Efl.IObserver obs) {
-                                                         Efl.Observable.NativeMethods.efl_observable_observer_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, obs);
+                                                         Efl.Observable.NativeMethods.efl_observable_observer_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, obs);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Delete an observer from a group of observers.
@@ -66,36 +72,36 @@ public class Observable : Efl.Object
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="obs">An observer object</param>
     virtual public void DelObserver(System.String key, Efl.IObserver obs) {
-                                                         Efl.Observable.NativeMethods.efl_observable_observer_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, obs);
+                                                         Efl.Observable.NativeMethods.efl_observable_observer_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, obs);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Clear an observer from all groups of observers.</summary>
     /// <param name="obs">An observer object</param>
     virtual public void ObserverClean(Efl.IObserver obs) {
-                                 Efl.Observable.NativeMethods.efl_observable_observer_clean_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),obs);
+                                 Efl.Observable.NativeMethods.efl_observable_observer_clean_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),obs);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Return a new iterator associated with a group of observers.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <returns>Iterator for observers group</returns>
     virtual public Eina.Iterator<Efl.IObserver> NewObserversIterator(System.String key) {
-                                 var _ret_var = Efl.Observable.NativeMethods.efl_observable_observers_iterator_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Observable.NativeMethods.efl_observable_observers_iterator_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.IObserver>(_ret_var, true, false);
+                        return new Eina.Iterator<Efl.IObserver>(_ret_var, true);
  }
     /// <summary>Update all observers in a group by calling their update() method.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="data">Required data to update observer</param>
     virtual public void UpdateObservers(System.String key, System.IntPtr data) {
-                                                         Efl.Observable.NativeMethods.efl_observable_observers_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, data);
+                                                         Efl.Observable.NativeMethods.efl_observable_observers_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Return a new iterator associated to this observable.</summary>
     /// <returns>Iterator for observer</returns>
     virtual public Eina.Iterator<Efl.ObservableTuple> NewIteratorTuple() {
-         var _ret_var = Efl.Observable.NativeMethods.efl_observable_iterator_tuple_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Observable.NativeMethods.efl_observable_iterator_tuple_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.ObservableTuple>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.ObservableTuple>(_ret_var, true);
  }
     private static IntPtr GetEflClassStatic()
     {
@@ -407,6 +413,7 @@ namespace Efl {
 
 /// <summary>This type describes an observable touple</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ObservableTuple
 {
     /// <summary>Touple key</summary>
@@ -454,7 +461,7 @@ public struct ObservableTuple
         {
             var _external_struct = new ObservableTuple();
             _external_struct.Key = Eina.StringConversion.NativeUtf8ToManagedString(_internal_struct.Key);
-            _external_struct.Data = new Eina.Iterator<Efl.IObserver>(_internal_struct.Data, false, false);
+            _external_struct.Data = new Eina.Iterator<Efl.IObserver>(_internal_struct.Data, false);
             return _external_struct;
         }
 

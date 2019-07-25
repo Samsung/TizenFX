@@ -12,6 +12,7 @@ namespace Efl {
 /// 
 /// It does not model anything in particular and does not affect anything else in the system.</summary>
 [Efl.GenericModel.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GenericModel : Efl.LoopModel
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -35,24 +36,29 @@ public class GenericModel : Efl.LoopModel
     /// <summary>Initializes a new instance of the <see cref="GenericModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GenericModel(Efl.Object parent= null
-            ) : base(efl_generic_model_class_get(), typeof(GenericModel), parent)
+            ) : base(efl_generic_model_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GenericModel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GenericModel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GenericModel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GenericModel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GenericModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GenericModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GenericModel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

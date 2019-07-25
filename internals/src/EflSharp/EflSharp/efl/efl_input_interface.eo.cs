@@ -18,6 +18,7 @@ namespace Input {
 /// 
 /// A &quot;key&quot; is a key press from a keyboard or equivalent type of input device. Long, repeated, key presses will always happen like this: down...up,down...up,down...up (not down...up or down...down...down...up).</summary>
 [Efl.Input.IInterfaceConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IInterface : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -63,81 +64,97 @@ void SetSeatEventFilter(Efl.Input.Device seat, bool enable);
     event EventHandler<Efl.Input.IInterfaceFocusOutEvt_Args> FocusOutEvt;
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerMoveEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerMoveEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerDownEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerDownEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerUpEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerUpEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerCancelEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerCancelEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerInEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerInEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerOutEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerOutEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerWheelEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerWheelEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerAxisEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfacePointerAxisEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerMoveEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceFingerMoveEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerDownEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceFingerDownEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerUpEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceFingerUpEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Pointer arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.KeyDownEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceKeyDownEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Key arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.KeyUpEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceKeyUpEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Key arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.HoldEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceHoldEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Hold arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FocusInEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceFocusInEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Focus arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FocusOutEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IInterfaceFocusOutEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Focus arg { get; set; }
@@ -171,11 +188,18 @@ sealed public class IInterfaceConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IInterfaceConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_input_interface_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IInterface"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IInterfaceConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IInterfaceConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -184,7 +208,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -212,7 +236,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_MOVE";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -238,7 +262,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -266,7 +290,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -292,7 +316,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -320,7 +344,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_UP";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -346,7 +370,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -374,7 +398,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_CANCEL";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -400,7 +424,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -428,7 +452,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_IN";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -454,7 +478,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -482,7 +506,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_OUT";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -508,7 +532,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -536,7 +560,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_WHEEL";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -562,7 +586,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -590,7 +614,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_POINTER_AXIS";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -616,7 +640,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -644,7 +668,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_FINGER_MOVE";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -670,7 +694,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -698,7 +722,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_FINGER_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -724,7 +748,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -752,7 +776,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_FINGER_UP";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -778,7 +802,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -806,7 +830,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_KEY_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -832,7 +856,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -860,7 +884,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_KEY_UP";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -886,7 +910,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -914,7 +938,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_HOLD";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -940,7 +964,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -968,7 +992,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_FOCUS_IN";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -994,7 +1018,7 @@ sealed public class IInterfaceConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1022,7 +1046,7 @@ sealed public class IInterfaceConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_FOCUS_OUT";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -1064,7 +1088,7 @@ sealed public class IInterfaceConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>

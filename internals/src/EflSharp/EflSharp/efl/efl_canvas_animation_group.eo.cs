@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>Efl group animation abstract class</summary>
 [Efl.Canvas.AnimationGroup.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class AnimationGroup : Efl.Canvas.Animation
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,50 +35,55 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
     /// <summary>Initializes a new instance of the <see cref="AnimationGroup"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationGroup(Efl.Object parent= null
-            ) : base(efl_canvas_animation_group_class_get(), typeof(AnimationGroup), parent)
+            ) : base(efl_canvas_animation_group_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AnimationGroup(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AnimationGroup"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AnimationGroup(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AnimationGroup(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class AnimationGroupRealized : AnimationGroup
     {
-        private AnimationGroupRealized(IntPtr ptr) : base(ptr)
+        private AnimationGroupRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="AnimationGroup"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AnimationGroup(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AnimationGroup(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Add the given animation to the animation group.</summary>
     /// <param name="animation">The animation which needs to be added to the animation group</param>
     virtual public void AddAnimation(Efl.Canvas.Animation animation) {
-                                 Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),animation);
+                                 Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animation);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Delete the given animation from the animation group.</summary>
     /// <param name="animation">The animation which needs to be deleted from the animation group</param>
     virtual public void DelAnimation(Efl.Canvas.Animation animation) {
-                                 Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),animation);
+                                 Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animation);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the animations of the animation group.</summary>
     /// <returns>The animations of the animation group</returns>
     virtual public Eina.List<Efl.Canvas.Animation> GetAnimations() {
-         var _ret_var = Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animations_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animations_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Canvas.Animation>(_ret_var, false, false);
  }

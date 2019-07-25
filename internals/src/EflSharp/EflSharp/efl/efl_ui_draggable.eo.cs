@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI draggable interface</summary>
 [Efl.Ui.IDraggableConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IDraggable : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -47,31 +48,37 @@ void SetDragTarget(bool set);
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDraggable.DragEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDraggableDragEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDraggable.DragStopEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDraggableDragStopEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDraggable.DragStartUpEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDraggableDragStartUpEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDraggable.DragStartDownEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDraggableDragStartDownEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDraggable.DragStartRightEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDraggableDragStartRightEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDraggable.DragStartLeftEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDraggableDragStartLeftEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
@@ -98,11 +105,18 @@ sealed public class IDraggableConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IDraggableConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_draggable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IDraggable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IDraggableConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IDraggableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -111,7 +125,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -139,7 +153,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -165,7 +179,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -192,7 +206,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -217,7 +231,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -245,7 +259,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -271,7 +285,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -298,7 +312,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_END";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -323,7 +337,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -351,7 +365,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_UP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -377,7 +391,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -405,7 +419,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -431,7 +445,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -459,7 +473,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -485,7 +499,7 @@ sealed public class IDraggableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -513,7 +527,7 @@ sealed public class IDraggableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -562,7 +576,7 @@ sealed public class IDraggableConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

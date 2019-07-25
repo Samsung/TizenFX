@@ -12,6 +12,7 @@ namespace Canvas {
 /// <summary>Common class for part proxy objects for <see cref="Efl.Canvas.Layout"/>.
 /// As an <see cref="Efl.IPart"/> implementation class, all objects of this class are meant to be used for one and only one function call. In pseudo-code, the use of object of this type looks like the following: rect = layout.part(&quot;somepart&quot;).geometry_get();</summary>
 [Efl.Canvas.LayoutPartInvalid.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IContent, Efl.IPack, Efl.IPackLinear, Efl.IPackTable, Efl.IText, Efl.ITextCursor, Efl.ITextMarkup, Efl.ITextMarkupInteractive, Efl.Ui.ILayoutOrientable, Efl.Ui.ILayoutOrientableReadonly
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -35,24 +36,29 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <summary>Initializes a new instance of the <see cref="LayoutPartInvalid"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LayoutPartInvalid(Efl.Object parent= null
-            ) : base(efl_canvas_layout_part_invalid_class_get(), typeof(LayoutPartInvalid), parent)
+            ) : base(efl_canvas_layout_part_invalid_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LayoutPartInvalid(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LayoutPartInvalid"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LayoutPartInvalid(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LayoutPartInvalid(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPartInvalid"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LayoutPartInvalid(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LayoutPartInvalid(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -62,7 +68,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -90,7 +96,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -117,7 +123,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -145,7 +151,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -172,7 +178,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -200,7 +206,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -225,15 +231,15 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -242,7 +248,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -252,7 +258,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -260,14 +266,14 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -275,7 +281,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -283,7 +289,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
     virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -294,7 +300,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -305,7 +311,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="subobj">Object to pack at the beginning.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBegin(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -316,7 +322,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="subobj">Object to pack at the end.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackEnd(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -326,7 +332,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -336,7 +342,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -350,7 +356,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAt(Efl.Gfx.IEntity subobj, int index) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, index);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -361,7 +367,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="index">Index of the existing sub-object to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object contained at the given <c>index</c>.</returns>
     virtual public Efl.Gfx.IEntity GetPackContent(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -369,7 +375,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="subobj">An existing sub-object in this container.</param>
     /// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range 0 to (<c>count</c>-1).</returns>
     virtual public int GetPackIndex(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -380,7 +386,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="index">Index of the sub-object to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object if it could be removed.</returns>
     virtual public Efl.Gfx.IEntity PackUnpackAt(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -392,7 +398,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="rowspan">Row span</param>
     /// <returns>Returns false if item is not a child</returns>
     virtual public bool GetTablePosition(Efl.Gfx.IEntity subobj, out int col, out int row, out int colspan, out int rowspan) {
-                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, out col, out row, out colspan, out rowspan);
+                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out col, out row, out colspan, out rowspan);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -400,40 +406,40 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="cols">Number of columns</param>
     /// <param name="rows">Number of rows</param>
     virtual public void GetTableSize(out int cols, out int rows) {
-                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out cols, out rows);
+                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out cols, out rows);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Combines <see cref="Efl.IPackTable.TableColumns"/> and <see cref="Efl.IPackTable.TableRows"/></summary>
     /// <param name="cols">Number of columns</param>
     /// <param name="rows">Number of rows</param>
     virtual public void SetTableSize(int cols, int rows) {
-                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cols, rows);
+                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols, rows);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>
     /// <returns>Amount of columns.</returns>
     virtual public int GetTableColumns() {
-         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>
     /// <param name="cols">Amount of columns.</param>
     virtual public void SetTableColumns(int cols) {
-                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cols);
+                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specifies the amount of rows the table will have when the fill direction is vertical. If it is horizontal, the amount of rows depends on the amount of cells added and <see cref="Efl.IPackTable.TableColumns"/>.</summary>
     /// <returns>Amount of rows.</returns>
     virtual public int GetTableRows() {
-         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Specifies the amount of rows the table will have when the fill direction is vertical. If it is horizontal, the amount of rows depends on the amount of cells added and <see cref="Efl.IPackTable.TableColumns"/>.</summary>
     /// <param name="rows">Amount of rows.</param>
     virtual public void SetTableRows(int rows) {
-                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),rows);
+                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rows);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Pack object at a given location in the table.
@@ -445,7 +451,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="rowspan">0 means 1, -1 means <see cref="Efl.IPackTable.TableRows"/></param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool PackTable(Efl.Gfx.IEntity subobj, int col, int row, int colspan, int rowspan) {
-                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, col, row, colspan, rowspan);
+                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, col, row, colspan, rowspan);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -455,16 +461,16 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="below">If <c>true</c> get objects spanning over this cell.</param>
     /// <returns>Iterator to table contents</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> GetTableContents(int col, int row, bool below) {
-                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_contents_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),col, row, below);
+                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_contents_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row, below);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns a child at a given position, see <see cref="Efl.IPackTable.GetTableContents"/>.</summary>
     /// <param name="col">Column number</param>
     /// <param name="row">Row number</param>
     /// <returns>Child object</returns>
     virtual public Efl.Gfx.IEntity GetTableContent(int col, int row) {
-                                                         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),col, row);
+                                                         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -475,7 +481,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -484,14 +490,14 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The object&apos;s main cursor.</summary>
     /// <param name="get_type">Cursor type</param>
     /// <returns>Text cursor object</returns>
     virtual public Efl.TextCursorCursor GetTextCursor(Efl.TextCursorGetType get_type) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),get_type);
+                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),get_type);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -499,7 +505,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="cur">Cursor object</param>
     /// <returns>Cursor position</returns>
     virtual public int GetCursorPosition(Efl.TextCursorCursor cur) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -507,14 +513,14 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="cur">Cursor object</param>
     /// <param name="position">Cursor position</param>
     virtual public void SetCursorPosition(Efl.TextCursorCursor cur, int position) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, position);
+                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, position);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The content of the cursor (the character under the cursor)</summary>
     /// <param name="cur">Cursor object</param>
     /// <returns>The unicode codepoint of the character</returns>
     virtual public Eina.Unicode GetCursorContent(Efl.TextCursorCursor cur) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -532,21 +538,21 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="ch2">The height of the lower cursor</param>
     /// <returns><c>true</c> if split cursor, <c>false</c> otherwise.</returns>
     virtual public bool GetCursorGeometry(Efl.TextCursorCursor cur, Efl.TextCursorType ctype, out int cx, out int cy, out int cw, out int ch, out int cx2, out int cy2, out int cw2, out int ch2) {
-                                                                                                                                                                                                                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
+                                                                                                                                                                                                                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                                                                         return _ret_var;
  }
     /// <summary>Create new cursor</summary>
     /// <returns>Cursor object</returns>
     virtual public Efl.TextCursorCursor NewCursor() {
-         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Free existing cursor</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorFree(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_free_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_free_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Check if two cursors are equal</summary>
@@ -554,7 +560,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="cur2">Cursor 2 object</param>
     /// <returns><c>true</c> if cursors are equal, <c>false</c> otherwise</returns>
     virtual public bool CursorEqual(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_equal_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur1, cur2);
+                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_equal_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur1, cur2);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -563,7 +569,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="cur2">Cursor 2 object</param>
     /// <returns>Difference between cursors</returns>
     virtual public int CursorCompare(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_compare_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur1, cur2);
+                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_compare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur1, cur2);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -571,98 +577,98 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="dst">Destination cursor</param>
     /// <param name="src">Source cursor</param>
     virtual public void CursorCopy(Efl.TextCursorCursor dst, Efl.TextCursorCursor src) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_copy_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dst, src);
+                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_copy_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dst, src);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Advances to the next character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorCharNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_next_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the previous character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorCharPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_prev_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_prev_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the next grapheme cluster</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorClusterNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_next_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the previous grapheme cluster</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorClusterPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_prev_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_prev_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the first character in this paragraph</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphCharFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_first_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_first_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the last character in this paragraph</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphCharLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_last_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_last_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current word start</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorWordStart(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current word end</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorWordEnd(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current line first character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorLineCharFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_first_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_first_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current line last character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorLineCharLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_last_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_last_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current paragraph first character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_first_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_first_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advance to current paragraph last character</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_last_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_last_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the start of the next text node</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_next_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Advances to the end of the previous text node</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorParagraphPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_prev_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_prev_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Jump the cursor by the given number of lines</summary>
     /// <param name="cur">Cursor object</param>
     /// <param name="by">Number of lines</param>
     virtual public void CursorLineJumpBy(Efl.TextCursorCursor cur, int by) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_jump_by_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, by);
+                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_jump_by_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, by);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set cursor coordinates</summary>
@@ -670,7 +676,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="x">X coord to set by.</param>
     /// <param name="y">Y coord to set by.</param>
     virtual public void SetCursorCoord(Efl.TextCursorCursor cur, int x, int y) {
-                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_coord_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, x, y);
+                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_coord_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Set cursor coordinates according to grapheme clusters. It does not allow to put a cursor to the middle of a grapheme cluster.</summary>
@@ -678,7 +684,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="x">X coord to set by.</param>
     /// <param name="y">Y coord to set by.</param>
     virtual public void SetCursorClusterCoord(Efl.TextCursorCursor cur, int x, int y) {
-                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_coord_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, x, y);
+                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_coord_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Adds text to the current cursor position and set the cursor to *after* the start of the text just added.</summary>
@@ -686,27 +692,27 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="text">Text to append (UTF-8 format).</param>
     /// <returns>Length of the appended text.</returns>
     virtual public int CursorTextInsert(Efl.TextCursorCursor cur, System.String text) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_text_insert_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, text);
+                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_text_insert_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, text);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Deletes a single character from position pointed by given cursor.</summary>
     /// <param name="cur">Cursor object</param>
     virtual public void CursorCharDelete(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_delete_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur);
+                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_delete_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup property</summary>
     /// <returns>The markup-text representation set to this text.</returns>
     virtual public System.String GetMarkup() {
-         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Markup property</summary>
     /// <param name="markup">The markup-text representation set to this text.</param>
     virtual public void SetMarkup(System.String markup) {
-                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),markup);
+                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),markup);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup of a given range in the text</summary>
@@ -714,7 +720,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="end">End of markup region</param>
     /// <returns>The markup-text representation set to this text of a given range</returns>
     virtual public System.String GetMarkupRange(Efl.TextCursorCursor start, Efl.TextCursorCursor end) {
-                                                         var _ret_var = Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),start, end);
+                                                         var _ret_var = Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),start, end);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -723,14 +729,14 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// <param name="end">End of markup region</param>
     /// <param name="markup">The markup-text representation set to this text of a given range</param>
     virtual public void SetMarkupRange(Efl.TextCursorCursor start, Efl.TextCursorCursor end, System.String markup) {
-                                                                                 Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),start, end, markup);
+                                                                                 Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_markup_range_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),start, end, markup);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Inserts a markup text to the text object in a given cursor position</summary>
     /// <param name="cur">Cursor position to insert markup</param>
     /// <param name="markup">The markup text to insert</param>
     virtual public void CursorMarkupInsert(Efl.TextCursorCursor cur, System.String markup) {
-                                                         Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_cursor_markup_insert_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur, markup);
+                                                         Efl.ITextMarkupInteractiveConcrete.NativeMethods.efl_text_markup_interactive_cursor_markup_insert_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur, markup);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the direction of a given widget.
@@ -739,7 +745,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -749,7 +755,7 @@ public class LayoutPartInvalid : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.ICon
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.

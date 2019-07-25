@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Widget container that arranges its elements in a grid.
 /// The amount of rows and columns can be controlled with <see cref="Efl.IPackTable.TableRows"/> and <see cref="Efl.IPackTable.TableColumns"/>, and elements can be manually positioned with <see cref="Efl.IPackTable.PackTable"/>. Additionally, a fill direction can be defined with <see cref="Efl.Ui.ILayoutOrientable.Orientation"/> and elements added with <see cref="Efl.IPack.Pack"/>. Elements are then added following this direction (horizontal or vertical) and when the amount of columns or rows has been reached, a step is taken in the orthogonal direction. In this second case there is no need to define both the amount of columns and rows, as the table will expand as needed. The default fill direction is <see cref="Efl.Ui.LayoutOrientation.Horizontal"/>.</summary>
 [Efl.Ui.Table.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Efl.IPackTable, Efl.Gfx.IArrangement, Efl.Ui.ILayoutOrientable
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         efl_ui_table_class_get();
     /// <summary>Initializes a new instance of the <see cref="Table"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Table(Efl.Object parent
-            , System.String style = null) : base(efl_ui_table_class_get(), typeof(Table), parent)
+            , System.String style = null) : base(efl_ui_table_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +47,24 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Table(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Table"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Table(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Table(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Table"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Table(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Table(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -68,7 +74,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -96,7 +102,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -123,7 +129,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -151,7 +157,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -177,7 +183,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -204,7 +210,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -229,7 +235,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="homogeneoush"><c>true</c> if the box is homogeneous horizontally, <c>false</c> otherwise</param>
     /// <param name="homogeneousv"><c>true</c> if the box is homogeneous vertically, <c>false</c> otherwise</param>
     virtual public void GetHomogeneous(out bool homogeneoush, out bool homogeneousv) {
-                                                         Efl.Ui.Table.NativeMethods.efl_ui_table_homogeneous_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out homogeneoush, out homogeneousv);
+                                                         Efl.Ui.Table.NativeMethods.efl_ui_table_homogeneous_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out homogeneoush, out homogeneousv);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control homogeneous mode.
@@ -237,29 +243,29 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="homogeneoush"><c>true</c> if the box is homogeneous horizontally, <c>false</c> otherwise</param>
     /// <param name="homogeneousv"><c>true</c> if the box is homogeneous vertically, <c>false</c> otherwise</param>
     virtual public void SetHomogeneous(bool homogeneoush, bool homogeneousv) {
-                                                         Efl.Ui.Table.NativeMethods.efl_ui_table_homogeneous_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),homogeneoush, homogeneousv);
+                                                         Efl.Ui.Table.NativeMethods.efl_ui_table_homogeneous_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),homogeneoush, homogeneousv);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -267,7 +273,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -275,7 +281,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
     virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -286,14 +292,14 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Requests EFL to call the <see cref="Efl.IPackLayout.UpdateLayout"/> method on this object.
     /// This <see cref="Efl.IPackLayout.UpdateLayout"/> may be called asynchronously.</summary>
     virtual public void LayoutRequest() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Implementation of this container&apos;s layout algorithm.
@@ -301,7 +307,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// 
     /// This can be overriden to implement custom layout behaviors.</summary>
     virtual public void UpdateLayout() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Position and span of the <c>subobj</c> in this container, may be modified to move the <c>subobj</c></summary>
@@ -312,7 +318,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="rowspan">Row span</param>
     /// <returns>Returns false if item is not a child</returns>
     virtual public bool GetTablePosition(Efl.Gfx.IEntity subobj, out int col, out int row, out int colspan, out int rowspan) {
-                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, out col, out row, out colspan, out rowspan);
+                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out col, out row, out colspan, out rowspan);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -320,40 +326,40 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="cols">Number of columns</param>
     /// <param name="rows">Number of rows</param>
     virtual public void GetTableSize(out int cols, out int rows) {
-                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out cols, out rows);
+                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out cols, out rows);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Combines <see cref="Efl.IPackTable.TableColumns"/> and <see cref="Efl.IPackTable.TableRows"/></summary>
     /// <param name="cols">Number of columns</param>
     /// <param name="rows">Number of rows</param>
     virtual public void SetTableSize(int cols, int rows) {
-                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cols, rows);
+                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols, rows);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>
     /// <returns>Amount of columns.</returns>
     virtual public int GetTableColumns() {
-         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>
     /// <param name="cols">Amount of columns.</param>
     virtual public void SetTableColumns(int cols) {
-                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cols);
+                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specifies the amount of rows the table will have when the fill direction is vertical. If it is horizontal, the amount of rows depends on the amount of cells added and <see cref="Efl.IPackTable.TableColumns"/>.</summary>
     /// <returns>Amount of rows.</returns>
     virtual public int GetTableRows() {
-         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Specifies the amount of rows the table will have when the fill direction is vertical. If it is horizontal, the amount of rows depends on the amount of cells added and <see cref="Efl.IPackTable.TableColumns"/>.</summary>
     /// <param name="rows">Amount of rows.</param>
     virtual public void SetTableRows(int rows) {
-                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),rows);
+                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rows);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Pack object at a given location in the table.
@@ -365,7 +371,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="rowspan">0 means 1, -1 means <see cref="Efl.IPackTable.TableRows"/></param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool PackTable(Efl.Gfx.IEntity subobj, int col, int row, int colspan, int rowspan) {
-                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, col, row, colspan, rowspan);
+                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, col, row, colspan, rowspan);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -375,16 +381,16 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="below">If <c>true</c> get objects spanning over this cell.</param>
     /// <returns>Iterator to table contents</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> GetTableContents(int col, int row, bool below) {
-                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_contents_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),col, row, below);
+                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_contents_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row, below);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns a child at a given position, see <see cref="Efl.IPackTable.GetTableContents"/>.</summary>
     /// <param name="col">Column number</param>
     /// <param name="row">Row number</param>
     /// <returns>Child object</returns>
     virtual public Efl.Gfx.IEntity GetTableContent(int col, int row) {
-                                                         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),col, row);
+                                                         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -392,14 +398,14 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="align_horiz">Horizontal alignment</param>
     /// <param name="align_vert">Vertical alignment</param>
     virtual public void GetContentAlign(out double align_horiz, out double align_vert) {
-                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out align_horiz, out align_vert);
+                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out align_horiz, out align_vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Alignment of the container within its bounds</summary>
     /// <param name="align_horiz">Horizontal alignment</param>
     /// <param name="align_vert">Vertical alignment</param>
     virtual public void SetContentAlign(double align_horiz, double align_vert) {
-                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),align_horiz, align_vert);
+                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),align_horiz, align_vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Padding between items contained in this object.</summary>
@@ -407,7 +413,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="pad_vert">Vertical padding</param>
     /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
     virtual public void GetContentPadding(out double pad_horiz, out double pad_vert, out bool scalable) {
-                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out pad_horiz, out pad_vert, out scalable);
+                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pad_horiz, out pad_vert, out scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Padding between items contained in this object.</summary>
@@ -415,7 +421,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="pad_vert">Vertical padding</param>
     /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
     virtual public void SetContentPadding(double pad_horiz, double pad_vert, bool scalable) {
-                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pad_horiz, pad_vert, scalable);
+                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pad_horiz, pad_vert, scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Control the direction of a given widget.
@@ -424,7 +430,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -434,7 +440,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>

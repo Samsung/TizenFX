@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI scrollable interface</summary>
 [Efl.Ui.IScrollableConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IScrollable : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -67,11 +68,18 @@ sealed public class IScrollableConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IScrollableConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_scrollable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IScrollable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IScrollableConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IScrollableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -80,7 +88,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -107,7 +115,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -132,7 +140,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -159,7 +167,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -184,7 +192,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -211,7 +219,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -236,7 +244,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -263,7 +271,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -288,7 +296,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -315,7 +323,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -340,7 +348,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -367,7 +375,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -392,7 +400,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -419,7 +427,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -444,7 +452,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -471,7 +479,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_UP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -496,7 +504,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -523,7 +531,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -548,7 +556,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -575,7 +583,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -600,7 +608,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -627,7 +635,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -652,7 +660,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -679,7 +687,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -704,7 +712,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -731,7 +739,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -756,7 +764,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -783,7 +791,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -808,7 +816,7 @@ sealed public class IScrollableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -835,7 +843,7 @@ sealed public class IScrollableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -861,7 +869,7 @@ sealed public class IScrollableConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
@@ -893,6 +901,7 @@ namespace Ui {
 
 /// <summary>Direction in which a scroller should be blocked.
 /// Note: These options may be effective only in case of thumbscroll (i.e. when scrolling by dragging).</summary>
+[Efl.Eo.BindingEntity]
 public enum ScrollBlock
 {
 /// <summary>Don&apos;t block any movement.</summary>

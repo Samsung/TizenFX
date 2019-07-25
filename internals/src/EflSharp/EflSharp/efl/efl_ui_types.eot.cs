@@ -10,6 +10,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Permitted directions for dragging objects.</summary>
+[Efl.Eo.BindingEntity]
 public enum DragDir
 {
 /// <summary>Not draggable in any direction.</summary>

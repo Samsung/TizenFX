@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>This is an interface interactive text inputs should implement</summary>
 [Efl.ITextInteractiveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextInteractive : 
     Efl.IText ,
     Efl.ITextFont ,
@@ -77,11 +78,18 @@ sealed public class ITextInteractiveConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextInteractiveConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_text_interactive_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextInteractive"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextInteractiveConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextInteractiveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -90,7 +98,7 @@ sealed public class ITextInteractiveConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -117,7 +125,7 @@ sealed public class ITextInteractiveConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_TEXT_INTERACTIVE_EVENT_TEXT_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -966,7 +974,7 @@ sealed public class ITextInteractiveConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
