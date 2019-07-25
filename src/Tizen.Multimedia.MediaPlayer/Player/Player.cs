@@ -354,7 +354,7 @@ namespace Tizen.Multimedia
         /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
         /// and a source must be set.
         /// The state must be <see cref="PlayerState.Preparing"/> to cancel preparing.
-        /// When preparing is cancelled, a state will be changed to <see cref="PlayerState.Idle"/> from <see cref="PlayerState.Preparing"/>.
+        /// When preparing is cancelled, a state will be changed to <see cref="PlayerState.Idle"/> from <see cref="PlayerState.Preparing"/>.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
@@ -363,9 +363,8 @@ namespace Tizen.Multimedia
         ///     </exception>
         /// <seealso cref="PrepareAsync()"/>
         /// <seealso cref="Unprepare()"/>
-        /// <seealso cref="Prepared"/>
         /// <since_tizen> 6 </since_tizen>
-        public async Task PrepareAsync(CancellationToken cancellationToken)
+        public virtual async Task PrepareAsync(CancellationToken cancellationToken)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
@@ -389,23 +388,21 @@ namespace Tizen.Multimedia
                 NativePlayer.Unprepare(Handle).ThrowIfFailed(this, "Failed to unprepare the player");
 
                 taskCompletionSource.TrySetCanceled();
-
-                ClearPreparing();
             });
 
-            _prepareCallback = _ =>
+            _prepareCallback = _ => taskCompletionSource.TrySetResult(true);
+
+            try
             {
-                Log.Warn(PlayerLog.Tag, $"prepared callback is called.");
-                Prepared?.Invoke(this, EventArgs.Empty);
+                NativePlayer.PrepareAsync(Handle, _prepareCallback, IntPtr.Zero).
+                    ThrowIfFailed(this, "Failed to prepare the player");
 
+                await taskCompletionSource.Task;
+            }
+            finally
+            {
                 ClearPreparing();
-
-                taskCompletionSource.TrySetResult(true);
-            };
-
-            NativePlayer.PrepareAsync(Handle, _prepareCallback, IntPtr.Zero).ThrowIfFailed(this, "Failed to prepare the player");
-
-            await taskCompletionSource.Task;
+            }
         }
 
         /// <summary>
