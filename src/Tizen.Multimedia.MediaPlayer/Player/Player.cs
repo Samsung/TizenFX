@@ -390,14 +390,18 @@ namespace Tizen.Multimedia
                 taskCompletionSource.TrySetCanceled();
             });
 
-            _prepareCallback = _ => taskCompletionSource.TrySetResult(true);
+            _prepareCallback = _ =>
+            {
+                Log.Warn(PlayerLog.Tag, $"prepared callback is called.");
+                taskCompletionSource.TrySetResult(true);
+            };
 
             try
             {
                 NativePlayer.PrepareAsync(Handle, _prepareCallback, IntPtr.Zero).
                     ThrowIfFailed(this, "Failed to prepare the player");
 
-                await taskCompletionSource.Task.ConfigureAwait(false) ;
+                await taskCompletionSource.Task.ConfigureAwait(false);
             }
             finally
             {
