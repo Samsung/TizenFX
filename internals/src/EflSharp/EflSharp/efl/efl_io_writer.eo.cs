@@ -15,6 +15,7 @@ namespace Io {
 /// Calls to <see cref="Efl.Io.IWriter.Write"/> may or may not block: that&apos;s not up to this interface to specify. The user can check with event &quot;can_write,changed&quot; or property <see cref="Efl.Io.IWriter.CanWrite"/> to known whenever a write could push more data.
 /// (Since EFL 1.22)</summary>
 [Efl.Io.IWriterConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IWriter : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -34,7 +35,7 @@ void SetCanWrite(bool can_write);
 /// <param name="slice">Provides a pre-populated memory to be used up to slice.len. The returned slice will be adapted as length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
 /// <param name="remaining">Convenience to output the remaining parts of slice that was not written. If the full slice was written, this will be a slice of zero-length.</param>
 /// <returns>0 on succeed, a mapping of errno otherwise</returns>
-Eina.Error Write(ref Eina.Slice slice, ref Eina.Slice remaining);
+Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining);
                 /// <summary>Notifies can_write property changed.
     /// If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>true</c> there is data to <see cref="Efl.Io.IWriter.Write"/> without blocking/error. If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>false</c>, <see cref="Efl.Io.IWriter.Write"/> would either block or fail.
     /// 
@@ -50,6 +51,7 @@ Eina.Error Write(ref Eina.Slice slice, ref Eina.Slice remaining);
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Io.IWriter.CanWriteChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IWriterCanWriteChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
@@ -80,11 +82,18 @@ sealed public class IWriterConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IWriterConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_io_writer_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IWriter"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IWriterConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IWriterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -97,7 +106,7 @@ sealed public class IWriterConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -125,7 +134,7 @@ sealed public class IWriterConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -176,7 +185,7 @@ sealed public class IWriterConcrete :
     /// <param name="slice">Provides a pre-populated memory to be used up to slice.len. The returned slice will be adapted as length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
     /// <param name="remaining">Convenience to output the remaining parts of slice that was not written. If the full slice was written, this will be a slice of zero-length.</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
-    public Eina.Error Write(ref Eina.Slice slice, ref Eina.Slice remaining) {
+    public Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining) {
                                                          var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_write_ptr.Value.Delegate(this.NativeHandle,ref slice, ref remaining);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
@@ -194,7 +203,7 @@ sealed public class IWriterConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -317,20 +326,20 @@ sealed public class IWriterConcrete :
         private static efl_io_writer_can_write_set_delegate efl_io_writer_can_write_set_static_delegate;
 
         
-        private delegate Eina.Error efl_io_writer_write_delegate(System.IntPtr obj, System.IntPtr pd,  ref Eina.Slice slice,  ref Eina.Slice remaining);
+        private delegate Eina.Error efl_io_writer_write_delegate(System.IntPtr obj, System.IntPtr pd,  ref  Eina.Slice slice,  ref  Eina.Slice remaining);
 
         
-        public delegate Eina.Error efl_io_writer_write_api_delegate(System.IntPtr obj,  ref Eina.Slice slice,  ref Eina.Slice remaining);
+        public delegate Eina.Error efl_io_writer_write_api_delegate(System.IntPtr obj,  ref  Eina.Slice slice,  ref  Eina.Slice remaining);
 
         public static Efl.Eo.FunctionWrapper<efl_io_writer_write_api_delegate> efl_io_writer_write_ptr = new Efl.Eo.FunctionWrapper<efl_io_writer_write_api_delegate>(Module, "efl_io_writer_write");
 
-        private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref Eina.Slice slice, ref Eina.Slice remaining)
+        private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref  Eina.Slice slice, ref  Eina.Slice remaining)
         {
             Eina.Log.Debug("function efl_io_writer_write was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                remaining = default(Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
+                                remaining = default( Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
                     _ret_var = ((IWriter)ws.Target).Write(ref slice, ref remaining);

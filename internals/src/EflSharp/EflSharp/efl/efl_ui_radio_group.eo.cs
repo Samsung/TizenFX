@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Interface for manually handling a group of <see cref="Efl.Ui.Radio"/> buttons.
 /// See the documentation of <see cref="Efl.Ui.Radio"/> for an explanation of radio button grouping.</summary>
 [Efl.Ui.IRadioGroupConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IRadioGroup : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -61,6 +62,7 @@ void Unregister(Efl.Ui.Radio radio);
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IRadioGroup.ValueChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IRadioGroupValueChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public int arg { get; set; }
@@ -88,11 +90,18 @@ sealed public class IRadioGroupConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IRadioGroupConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_radio_group_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IRadioGroup"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IRadioGroupConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IRadioGroupConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -101,7 +110,7 @@ sealed public class IRadioGroupConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -129,7 +138,7 @@ sealed public class IRadioGroupConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_RADIO_GROUP_EVENT_VALUE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -225,7 +234,7 @@ sealed public class IRadioGroupConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

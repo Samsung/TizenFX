@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>This type is a alias for struct tm. It is intended to be a standard way to reference it in .eo files.
 /// (Since EFL 1.18)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Time
 {
     /// <summary>Seconds.	[0-60] (1 leap second)</summary>
@@ -131,6 +132,7 @@ namespace Efl {
 /// This may be used to query the current running version of EFL. Or it can be passed by applications at startup time to inform EFL of the version a certain application was built for.
 /// (Since EFL 1.18)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Version
 {
     /// <summary>Major component of the version (&gt;= 1).</summary>

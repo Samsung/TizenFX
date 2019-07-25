@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Frame widget
 /// The Frame widget allows for collapsing and expanding the content widget by clicking on the frame label. the label and content can be set using text_set and content_set api.</summary>
 [Efl.Ui.Frame.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup, Efl.Ui.IClickable
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
         efl_ui_frame_class_get();
     /// <summary>Initializes a new instance of the <see cref="Frame"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Frame(Efl.Object parent
-            , System.String style = null) : base(efl_ui_frame_class_get(), typeof(Frame), parent)
+            , System.String style = null) : base(efl_ui_frame_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +47,24 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Frame(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Frame"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Frame(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Frame(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Frame"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Frame(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Frame(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -68,7 +74,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -96,7 +102,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -122,7 +128,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -150,7 +156,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -184,7 +190,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -212,7 +218,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED_ANY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -246,7 +252,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -274,7 +280,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_PRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -307,7 +313,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -335,7 +341,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_UNPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -368,7 +374,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -396,7 +402,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -427,34 +433,34 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     /// <summary>Determine the collapse state of a frame Use this to determine the collapse state of a frame.</summary>
     /// <returns><c>true</c> to collapse, <c>false</c> to expand.</returns>
     virtual public bool GetCollapse() {
-         var _ret_var = Efl.Ui.Frame.NativeMethods.efl_ui_frame_collapse_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Frame.NativeMethods.efl_ui_frame_collapse_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Manually collapse a frame without animations Use this to toggle the collapsed state of a frame, bypassing animations.</summary>
     /// <param name="collapse"><c>true</c> to collapse, <c>false</c> to expand.</param>
     virtual public void SetCollapse(bool collapse) {
-                                 Efl.Ui.Frame.NativeMethods.efl_ui_frame_collapse_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),collapse);
+                                 Efl.Ui.Frame.NativeMethods.efl_ui_frame_collapse_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),collapse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Determine autocollapsing of a frame
     /// When this returns <c>true</c>, clicking a frame&apos;s label will collapse the frame vertically, shrinking it to the height of the label. By default, this is DISABLED.</summary>
     /// <returns>Whether to enable autocollapse.</returns>
     virtual public bool GetAutocollapse() {
-         var _ret_var = Efl.Ui.Frame.NativeMethods.efl_ui_frame_autocollapse_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Frame.NativeMethods.efl_ui_frame_autocollapse_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Toggle autocollapsing of a frame When <c>enable</c> is <c>true</c>, clicking a frame&apos;s label will collapse the frame vertically, shrinking it to the height of the label. By default, this is DISABLED.</summary>
     /// <param name="autocollapse">Whether to enable autocollapse.</param>
     virtual public void SetAutocollapse(bool autocollapse) {
-                                 Efl.Ui.Frame.NativeMethods.efl_ui_frame_autocollapse_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),autocollapse);
+                                 Efl.Ui.Frame.NativeMethods.efl_ui_frame_autocollapse_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),autocollapse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Manually collapse a frame with animations Use this to toggle the collapsed state of a frame, triggering animations.</summary>
     /// <param name="collapse"><c>true</c> to collapse, <c>false</c> to expand.</param>
     virtual public void CollapseGo(bool collapse) {
-                                 Efl.Ui.Frame.NativeMethods.efl_ui_frame_collapse_go_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),collapse);
+                                 Efl.Ui.Frame.NativeMethods.efl_ui_frame_collapse_go_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),collapse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
@@ -462,7 +468,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -472,7 +478,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -480,7 +486,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -491,7 +497,7 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -500,40 +506,40 @@ public class Frame : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup property</summary>
     /// <returns>The markup-text representation set to this text.</returns>
     virtual public System.String GetMarkup() {
-         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Markup property</summary>
     /// <param name="markup">The markup-text representation set to this text.</param>
     virtual public void SetMarkup(System.String markup) {
-                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),markup);
+                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),markup);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got pressed.
     /// When the button is already pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Press(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got unpressed.
     /// When the button is not pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Unpress(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts the internal state after a press call.
     /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
     virtual public void ResetButtonState(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Determine the collapse state of a frame Use this to determine the collapse state of a frame.</summary>

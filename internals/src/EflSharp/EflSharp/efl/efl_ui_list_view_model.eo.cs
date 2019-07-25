@@ -10,6 +10,7 @@ namespace Efl {
 namespace Ui {
 
 [Efl.Ui.IListViewModelConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IListViewModel : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -51,11 +52,18 @@ sealed public class IListViewModelConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IListViewModelConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_list_view_model_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IListViewModel"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IListViewModelConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IListViewModelConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -109,7 +117,7 @@ sealed public class IListViewModelConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

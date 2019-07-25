@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Efl linear interpolator class</summary>
 [Efl.LinearInterpolator.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LinearInterpolator : Efl.Object, Efl.IInterpolator
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -32,24 +33,29 @@ public class LinearInterpolator : Efl.Object, Efl.IInterpolator
     /// <summary>Initializes a new instance of the <see cref="LinearInterpolator"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LinearInterpolator(Efl.Object parent= null
-            ) : base(efl_linear_interpolator_class_get(), typeof(LinearInterpolator), parent)
+            ) : base(efl_linear_interpolator_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LinearInterpolator(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LinearInterpolator"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LinearInterpolator(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LinearInterpolator(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LinearInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LinearInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LinearInterpolator(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -57,7 +63,7 @@ public class LinearInterpolator : Efl.Object, Efl.IInterpolator
     /// <param name="progress">Input value mapped from 0.0 to 1.0.</param>
     /// <returns>Output value calculated by interpolating the input value.</returns>
     virtual public double Interpolate(double progress) {
-                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),progress);
+                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }

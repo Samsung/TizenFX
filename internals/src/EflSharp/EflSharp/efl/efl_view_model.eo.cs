@@ -7,6 +7,7 @@ using System.Threading;
 using System.ComponentModel;
 /// <param name="view_model">The ViewModel object the @.property.get is issued on.</param>
 /// <param name="property">The property name the @.property.get is issued on.</param>
+[Efl.Eo.BindingEntity]
 public delegate Eina.Value EflViewModelPropertyGet(Efl.ViewModel view_model, System.String property);
 [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueMarshaler))]public delegate Eina.Value EflViewModelPropertyGetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.ViewModel view_model, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringshareKeepOwnershipMarshaler))] System.String property);
 internal class EflViewModelPropertyGetWrapper : IDisposable
@@ -78,6 +79,7 @@ internal class EflViewModelPropertyGetWrapper : IDisposable
 /// <param name="view_model">The ViewModel object the @.property.set is issued on.</param>
 /// <param name="property">The property name the @.property.set is issued on.</param>
 /// <param name="value">The new value to set.</param>
+[Efl.Eo.BindingEntity]
 public delegate  Eina.Future EflViewModelPropertySet(Efl.ViewModel view_model, System.String property, Eina.Value value);
 [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]public delegate  Eina.Future EflViewModelPropertySetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.ViewModel view_model, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringshareKeepOwnershipMarshaler))] System.String property, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueMarshalerOwn))] Eina.Value value);
 internal class EflViewModelPropertySetWrapper : IDisposable
@@ -151,6 +153,7 @@ namespace Efl {
 /// <summary>Efl model providing helpers for custom properties used when linking a model to a view and you need to generate/adapt values for display.
 /// There is two ways to use this class, you can either inherit from it and have a custom constructor for example. Or you can just instantiate it and manually define your property on it via callbacks.</summary>
 [Efl.ViewModel.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class ViewModel : Efl.CompositeModel
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -173,11 +176,11 @@ public class ViewModel : Efl.CompositeModel
         efl_view_model_class_get();
     /// <summary>Initializes a new instance of the <see cref="ViewModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel"/></param>
-    /// <param name="childrenBind">Define if we will intercept all childrens object reference and bind them through the ViewModel with the same property logic as this one. Be careful of recursivity. See <see cref="Efl.ViewModel.SetChildrenBind"/></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex"/></param>
+    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+    /// <param name="childrenBind">Define if we will intercept all childrens object reference and bind them through the ViewModel with the same property logic as this one. Be careful of recursivity. See <see cref="Efl.ViewModel.SetChildrenBind" /></param>
+    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public ViewModel(Efl.Object parent
-            , Efl.IModel model, bool? childrenBind = null, uint? index = null) : base(efl_view_model_class_get(), typeof(ViewModel), parent)
+            , Efl.IModel model, bool? childrenBind = null, uint? index = null) : base(efl_view_model_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(model))
         {
@@ -197,33 +200,38 @@ public class ViewModel : Efl.CompositeModel
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ViewModel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ViewModel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ViewModel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ViewModel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="ViewModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ViewModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ViewModel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Get the state of the automatic binding of children object.</summary>
     /// <returns>Do you automatically bind children. Default to true.</returns>
     virtual public bool GetChildrenBind() {
-         var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_children_bind_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_children_bind_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set the state of the automatic binding of children object.</summary>
     /// <param name="enable">Do you automatically bind children. Default to true.</param>
     virtual public void SetChildrenBind(bool enable) {
-                                 Efl.ViewModel.NativeMethods.efl_view_model_children_bind_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
+                                 Efl.ViewModel.NativeMethods.efl_view_model_children_bind_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Adds a synthetic string property, generated from a <c>definition</c> string and other properties in the model.
@@ -237,7 +245,7 @@ public class ViewModel : Efl.CompositeModel
     /// <param name="not_ready">The text to be used if any of the properties used in <c>definition</c> is not ready yet. If set to <c>null</c>, no check against EAGAIN will be done.</param>
     /// <param name="on_error">The text to be used if any of the properties used in <c>definition</c> is in error. It takes precedence over <c>not_ready</c>. If set to <c>null</c>, no error checks are performed.</param>
     virtual public Eina.Error AddPropertyString(System.String name, System.String definition, System.String not_ready, System.String on_error) {
-                                                                                                         var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_string_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, definition, not_ready, on_error);
+                                                                                                         var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_string_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, definition, not_ready, on_error);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
@@ -245,7 +253,7 @@ public class ViewModel : Efl.CompositeModel
     /// See <see cref="Efl.ViewModel.AddPropertyString"/></summary>
     /// <param name="name">The name of the synthetic property to delete.</param>
     virtual public Eina.Error DelPropertyString(System.String name) {
-                                 var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_string_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_string_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -261,7 +269,7 @@ public class ViewModel : Efl.CompositeModel
                                  var _in_binded = binded.Handle;
                                                 GCHandle get_handle = GCHandle.Alloc(get);
         GCHandle set_handle = GCHandle.Alloc(set);
-                var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_logic_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),property, GCHandle.ToIntPtr(get_handle), EflViewModelPropertyGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(set_handle), EflViewModelPropertySetWrapper.Cb, Efl.Eo.Globals.free_gchandle, _in_binded);
+                var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_logic_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),property, GCHandle.ToIntPtr(get_handle), EflViewModelPropertyGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(set_handle), EflViewModelPropertySetWrapper.Cb, Efl.Eo.Globals.free_gchandle, _in_binded);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
@@ -271,7 +279,7 @@ public class ViewModel : Efl.CompositeModel
     /// See <see cref="Efl.ViewModel.AddPropertyLogic"/></summary>
     /// <param name="property">The property to bind on to.</param>
     virtual public Eina.Error DelPropertyLogic(System.String property) {
-                                 var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_logic_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),property);
+                                 var _ret_var = Efl.ViewModel.NativeMethods.efl_view_model_property_logic_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),property);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -280,14 +288,14 @@ public class ViewModel : Efl.CompositeModel
     /// <param name="source">Property name in the composited model.</param>
     /// <param name="destination">Property name in the <see cref="Efl.ViewModel"/></param>
     virtual public void PropertyBind(System.String source, System.String destination) {
-                                                         Efl.ViewModel.NativeMethods.efl_view_model_property_bind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),source, destination);
+                                                         Efl.ViewModel.NativeMethods.efl_view_model_property_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),source, destination);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Stop automatically updating the field for the event <see cref="Efl.IModel.PropertiesChangedEvt"/> to include property that are impacted with change in a property from the composited model.</summary>
     /// <param name="source">Property name in the composited model.</param>
     /// <param name="destination">Property name in the <see cref="Efl.ViewModel"/></param>
     virtual public void PropertyUnbind(System.String source, System.String destination) {
-                                                         Efl.ViewModel.NativeMethods.efl_view_model_property_unbind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),source, destination);
+                                                         Efl.ViewModel.NativeMethods.efl_view_model_property_unbind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),source, destination);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Define if we will intercept all childrens object reference and bind them through the ViewModel with the same property logic as this one. Be careful of recursivity.
@@ -562,7 +570,7 @@ public class ViewModel : Efl.CompositeModel
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                var _in_binded = new Eina.Iterator<System.String>(binded, false, false);
+                                var _in_binded = new Eina.Iterator<System.String>(binded, false);
                                                     EflViewModelPropertyGetWrapper get_wrapper = new EflViewModelPropertyGetWrapper(get, get_data, get_free_cb);
             EflViewModelPropertySetWrapper set_wrapper = new EflViewModelPropertySetWrapper(set, set_data, set_free_cb);
                     Eina.Error _ret_var = default(Eina.Error);

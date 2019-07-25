@@ -73,6 +73,7 @@ namespace Access {
 
 /// <summary>Accessibility accessible mixin</summary>
 [Efl.Access.IObjectConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IObject : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -304,26 +305,31 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.PropertyChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectPropertyChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ChildrenChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectChildrenChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Access.Event.ChildrenChanged.Data arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.StateChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectStateChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Access.Event.StateChanged.Data arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.BoundsChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectBoundsChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Access.Event.GeometryChanged.Data arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ActiveDescendantChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectActiveDescendantChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Object arg { get; set; }
@@ -350,11 +356,18 @@ sealed public class IObjectConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IObjectConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_object_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IObjectConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -363,7 +376,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -391,7 +404,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -424,7 +437,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -452,7 +465,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -486,7 +499,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -514,7 +527,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -548,7 +561,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -576,7 +589,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -610,7 +623,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -637,7 +650,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -662,7 +675,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -690,7 +703,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -716,7 +729,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -743,7 +756,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -768,7 +781,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -795,7 +808,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -819,7 +832,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -846,7 +859,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1230,7 +1243,7 @@ sealed public class IObjectConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -2856,6 +2869,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Type of accessibility object</summary>
+[Efl.Eo.BindingEntity]
 public enum Type
 {
 /// <summary>default accessible object</summary>
@@ -2875,6 +2889,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Describes the role of an object visible to Accessibility Clients.</summary>
+[Efl.Eo.BindingEntity]
 public enum Role
 {
 /// <summary>Role: invalid</summary>
@@ -3096,6 +3111,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Describes the possible states for an object visible to accessibility clients.</summary>
+[Efl.Eo.BindingEntity]
 public enum StateType
 {
 /// <summary>State: invalid</summary>
@@ -3203,6 +3219,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Describes the relationship between two objects.</summary>
+[Efl.Eo.BindingEntity]
 public enum RelationType
 {
 /// <summary>No relation</summary>
@@ -3260,6 +3277,7 @@ namespace Reading {
 namespace Info {
 
 /// <summary>The accessible Reading information type that can be read.</summary>
+[Efl.Eo.BindingEntity]
 public enum Type
 {
 /// <summary>Name should be read</summary>
@@ -3284,6 +3302,7 @@ namespace Efl {
 
 namespace Access {
 
+[Efl.Eo.BindingEntity]
 public enum Gesture
 {
 OneFingerHover = 0,
@@ -3332,6 +3351,7 @@ namespace Efl {
 
 namespace Access {
 
+[Efl.Eo.BindingEntity]
 public enum GestureState
 {
 Start = 0,
@@ -3352,6 +3372,7 @@ namespace Event {
 
 /// <summary>Accessibility event listener</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Handler
 {
     ///<summary>Placeholder field</summary>
@@ -3407,6 +3428,7 @@ namespace StateChanged {
 
 /// <summary>Accessibility state changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Data
 {
     /// <summary>Type of the state changed event</summary>
@@ -3482,6 +3504,7 @@ namespace GeometryChanged {
 
 /// <summary>Accessibility geometry changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Data
 {
     /// <summary>X coordinate</summary>
@@ -3573,6 +3596,7 @@ namespace ChildrenChanged {
 
 /// <summary>Accessibility children changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Data
 {
     /// <summary>Child is added or not</summary>
@@ -3645,6 +3669,7 @@ namespace Access {
 
 /// <summary>Accessibility Attribute</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Attribute
 {
     /// <summary>Attribute key</summary>
@@ -3712,6 +3737,7 @@ namespace Access {
 
 /// <summary>Accessibility Relation</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Relation
 {
     /// <summary>Relation type</summary>
@@ -3778,6 +3804,7 @@ namespace Efl {
 namespace Access {
 
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct GestureInfo
 {
     /// <summary>Gesture type</summary>

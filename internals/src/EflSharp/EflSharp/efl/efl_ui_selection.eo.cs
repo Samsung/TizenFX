@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl Ui Selection class</summary>
 [Efl.Ui.ISelectionConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ISelection : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -49,6 +50,7 @@ bool HasOwner(Efl.Ui.SelectionType type, uint seat);
     event EventHandler<Efl.Ui.ISelectionWmSelectionChangedEvt_Args> WmSelectionChangedEvt;
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ISelection.WmSelectionChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISelectionWmSelectionChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.SelectionChanged arg { get; set; }
@@ -75,11 +77,18 @@ sealed public class ISelectionConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISelectionConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_selection_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="ISelection"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISelectionConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISelectionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -88,7 +97,7 @@ sealed public class ISelectionConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -116,7 +125,7 @@ sealed public class ISelectionConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SELECTION_EVENT_WM_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -201,7 +210,7 @@ sealed public class ISelectionConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

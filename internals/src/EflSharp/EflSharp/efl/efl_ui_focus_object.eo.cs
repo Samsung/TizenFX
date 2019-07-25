@@ -14,6 +14,7 @@ namespace Focus {
 /// <summary>Functions of focusable objects.
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Focus.IObjectConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IObject : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -105,26 +106,31 @@ bool UpdateOnFocus();
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusManagerChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusManagerChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.Focus.IManager arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusParentChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusParentChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.Focus.IObject arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.ChildFocusChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectChildFocusChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusGeometryChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusGeometryChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Eina.Rect arg { get; set; }
@@ -152,11 +158,18 @@ sealed public class IObjectConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IObjectConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_object_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IObjectConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -166,7 +179,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -194,7 +207,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -228,7 +241,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -256,7 +269,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -283,7 +296,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -311,7 +324,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -338,7 +351,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -366,7 +379,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -400,7 +413,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -428,7 +441,7 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -570,7 +583,7 @@ sealed public class IObjectConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

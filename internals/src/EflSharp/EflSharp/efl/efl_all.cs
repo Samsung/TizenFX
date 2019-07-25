@@ -55,7 +55,6 @@ public static class All
         Efl.Eo.Config.Init();
         ecore_init();
         evas_init();
-        eldbus.Config.Init();
 
         if (components == Efl.Csharp.Components.Ui)
         {
@@ -90,7 +89,6 @@ public static class All
         }
 
         Eina.Log.Debug("Shutting down Eldbus");
-        eldbus.Config.Shutdown();
         Eina.Log.Debug("Shutting down Evas");
         evas_shutdown();
         Eina.Log.Debug("Shutting down Ecore");

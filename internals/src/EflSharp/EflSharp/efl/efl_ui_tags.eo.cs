@@ -10,37 +10,44 @@ namespace Efl {
 namespace Ui {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemSelectedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class TagsItemSelectedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemAddedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class TagsItemAddedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemDeletedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class TagsItemDeletedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemClickedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class TagsItemClickedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemLongpressedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class TagsItemLongpressedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ExpandStateChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class TagsExpandStateChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public int arg { get; set; }
 }
 /// <summary>A widget displaying a list of tags. The user can remove tags by clicking on each tag &quot;close&quot; button and add new tags by typing text in the text entry at the end of the list.</summary>
 [Efl.Ui.Tags.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -63,9 +70,9 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         efl_ui_tags_class_get();
     /// <summary>Initializes a new instance of the <see cref="Tags"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Tags(Efl.Object parent
-            , System.String style = null) : base(efl_ui_tags_class_get(), typeof(Tags), parent)
+            , System.String style = null) : base(efl_ui_tags_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -75,19 +82,24 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Tags(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Tags"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Tags(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Tags(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Tags"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Tags(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Tags(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -96,7 +108,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -124,7 +136,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_ITEM_SELECTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -157,7 +169,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -185,7 +197,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_ITEM_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -218,7 +230,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -246,7 +258,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_ITEM_DELETED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -279,7 +291,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -307,7 +319,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_ITEM_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -340,7 +352,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -368,7 +380,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_ITEM_LONGPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -401,7 +413,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -428,7 +440,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_EXPANDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -453,7 +465,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -480,7 +492,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_CONTRACTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -505,7 +517,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -533,7 +545,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TAGS_EVENT_EXPAND_STATE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -564,21 +576,21 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     /// <summary>Control if the tag list is to be editable by the user or not.</summary>
     /// <returns>If <c>true</c>, the user can add/delete tags to the tag list, if not, the tag list is non-editable.</returns>
     virtual public bool GetEditable() {
-         var _ret_var = Efl.Ui.Tags.NativeMethods.efl_ui_tags_editable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Tags.NativeMethods.efl_ui_tags_editable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control if the tag list is to be editable by the user or not.</summary>
     /// <param name="editable">If <c>true</c>, the user can add/delete tags to the tag list, if not, the tag list is non-editable.</param>
     virtual public void SetEditable(bool editable) {
-                                 Efl.Ui.Tags.NativeMethods.efl_ui_tags_editable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),editable);
+                                 Efl.Ui.Tags.NativeMethods.efl_ui_tags_editable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),editable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control whether the tag list is expanded or not.
     /// In the expanded state, all tags will be displayed. Otherwise, only a single line of tags will be displayed with a marker to indicate that there is more content.</summary>
     /// <returns>The expanded state. Set this to <c>true</c> to allow multiple lines of tags. Set to <c>false</c> for a single line.</returns>
     virtual public bool GetExpanded() {
-         var _ret_var = Efl.Ui.Tags.NativeMethods.efl_ui_tags_expanded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Tags.NativeMethods.efl_ui_tags_expanded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -586,13 +598,13 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     /// In the expanded state, all tags will be displayed. Otherwise, only a single line of tags will be displayed with a marker to indicate that there is more content.</summary>
     /// <param name="expanded">The expanded state. Set this to <c>true</c> to allow multiple lines of tags. Set to <c>false</c> for a single line.</param>
     virtual public void SetExpanded(bool expanded) {
-                                 Efl.Ui.Tags.NativeMethods.efl_ui_tags_expanded_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),expanded);
+                                 Efl.Ui.Tags.NativeMethods.efl_ui_tags_expanded_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),expanded);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>List of tags in the tag list. Tags can be added and removed by the user using the UI, and by the program by modifying this property.</summary>
     /// <returns>The array of items, or NULL if none.</returns>
     virtual public Eina.Array<System.String> GetItems() {
-         var _ret_var = Efl.Ui.Tags.NativeMethods.efl_ui_tags_items_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Tags.NativeMethods.efl_ui_tags_items_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Array<System.String>(_ret_var, false, false);
  }
@@ -600,7 +612,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     /// <param name="items">The array of items, or NULL if none.</param>
     virtual public void SetItems(Eina.Array<System.String> items) {
          var _in_items = items.Handle;
-                        Efl.Ui.Tags.NativeMethods.efl_ui_tags_items_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_items);
+                        Efl.Ui.Tags.NativeMethods.efl_ui_tags_items_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_items);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the text string currently being displayed by the given text object.
@@ -610,7 +622,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -619,35 +631,87 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Set the format function pointer to format the string.</summary>
-    /// <param name="func">The format function callback</param>
-    virtual public void SetFormatCb(Efl.Ui.FormatFuncCb func) {
-                         GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),GCHandle.ToIntPtr(func_handle), Efl.Ui.FormatFuncCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Control the format string for a given units label
-    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-    /// 
-    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-    /// <returns>The format string for <c>obj</c>&apos;s units label.</returns>
-    virtual public System.String GetFormatString() {
-         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
+    /// <returns>User-provided formatting function.</returns>
+    virtual public Efl.Ui.FormatFunc GetFormatFunc() {
+         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_func_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Control the format string for a given units label
-    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-    /// 
-    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-    /// <param name="units">The format string for <c>obj</c>&apos;s units label.</param>
-    virtual public void SetFormatString(System.String units) {
-                                 Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),units);
+    /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
+    /// <param name="func">User-provided formatting function.</param>
+    virtual public void SetFormatFunc(Efl.Ui.FormatFunc func) {
+                         GCHandle func_handle = GCHandle.Alloc(func);
+        Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_func_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), Efl.Ui.FormatFuncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
+    /// <returns>Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</returns>
+    virtual public Eina.Accessor<Efl.Ui.FormatValue> GetFormatValues() {
+         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_values_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return new Eina.Accessor<Efl.Ui.FormatValue>(_ret_var, false);
+ }
+    /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
+    /// <param name="values">Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</param>
+    virtual public void SetFormatValues(Eina.Accessor<Efl.Ui.FormatValue> values) {
+         var _in_values = values.Handle;
+                        Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_values_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_values);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>A user-provided, string used to format the numerical value.
+    /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
+    /// 
+    /// This is the simplest formatting mechanism, working pretty much like <c>printf</c>.
+    /// 
+    /// Different format specifiers (the character after the %) are available, depending on the <c>type</c> used. Use <see cref="Efl.Ui.FormatStringType.Simple"/> for simple numerical values and <see cref="Efl.Ui.FormatStringType.Time"/> for time and date values. For instance, %d means &quot;integer&quot; when the first type is used, but it means &quot;day of the month as a decimal number&quot; in the second.
+    /// 
+    /// Pass <c>NULL</c> to disable this mechanism.</summary>
+    /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
+    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
+    virtual public void GetFormatString(out System.String kw_string, out Efl.Ui.FormatStringType type) {
+                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out kw_string, out type);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
+    /// <summary>A user-provided, string used to format the numerical value.
+    /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
+    /// 
+    /// This is the simplest formatting mechanism, working pretty much like <c>printf</c>.
+    /// 
+    /// Different format specifiers (the character after the %) are available, depending on the <c>type</c> used. Use <see cref="Efl.Ui.FormatStringType.Simple"/> for simple numerical values and <see cref="Efl.Ui.FormatStringType.Time"/> for time and date values. For instance, %d means &quot;integer&quot; when the first type is used, but it means &quot;day of the month as a decimal number&quot; in the second.
+    /// 
+    /// Pass <c>NULL</c> to disable this mechanism.</summary>
+    /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
+    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
+    virtual public void SetFormatString(System.String kw_string, Efl.Ui.FormatStringType type) {
+                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_string, type);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
+    /// <summary>Internal method to be used by widgets including this mixin to perform the conversion from the internal numerical value into the text representation (Users of these widgets do not need to call this method).
+    /// <see cref="Efl.Ui.IFormat.GetFormattedValue"/> uses any user-provided mechanism to perform the conversion, according to their priorities, and implements a simple fallback if all mechanisms fail.</summary>
+    /// <param name="str">Output formatted string. Its contents will be overwritten by this method.</param>
+    /// <param name="value">The <see cref="Eina.Value"/> to convert to text.</param>
+    virtual public void GetFormattedValue(Eina.Strbuf str, Eina.Value value) {
+                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_formatted_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str, value);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
+    /// <summary>Internal method to be used by widgets including this mixin. It can only be used when a <see cref="Efl.Ui.IFormat.GetFormatString"/> has been supplied, and it returns the number of decimal places that the format string will produce for floating point values.
+    /// For example, &quot;%.2f&quot; returns 2, and &quot;%d&quot; returns 0;</summary>
+    /// <returns>Number of decimal places, or 0 for non-floating point types.</returns>
+    virtual public int GetDecimalPlaces() {
+         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_decimal_places_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Internal method to be implemented by widgets including this mixin.
+    /// The mixin will call this method to signal the widget that the formatting has changed and therefore the current value should be converted and rendered again. Widgets must typically call <see cref="Efl.Ui.IFormat.GetFormattedValue"/> and display the returned string. This is something they are already doing (whenever the value changes, for example) so there should be no extra code written to implement this method.</summary>
+    virtual public void ApplyFormattedValue() {
+         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_apply_formatted_value_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+         }
     /// <summary>Control if the tag list is to be editable by the user or not.</summary>
     /// <value>If <c>true</c>, the user can add/delete tags to the tag list, if not, the tag list is non-editable.</value>
     public bool Editable {
@@ -667,19 +731,17 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         get { return GetItems(); }
         set { SetItems(value); }
     }
-    /// <summary>Set the format function pointer to format the string.</summary>
-    /// <value>The format function callback</value>
-    public Efl.Ui.FormatFuncCb FormatCb {
-        set { SetFormatCb(value); }
+    /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
+    /// <value>User-provided formatting function.</value>
+    public Efl.Ui.FormatFunc FormatFunc {
+        get { return GetFormatFunc(); }
+        set { SetFormatFunc(value); }
     }
-    /// <summary>Control the format string for a given units label
-    /// If <c>NULL</c> is passed to <c>format</c>, it will hide <c>obj</c>&apos;s units area completely. If not, it&apos;ll set the &lt;b&gt;format string&lt;/b&gt; for the units label text. The units label is provided as a floating point value, so the units text can display at most one floating point value. Note that the units label is optional. Use a format string such as &quot;%1.2f meters&quot; for example.
-    /// 
-    /// Note: The default format string is an integer percentage, as in $&quot;%.0f %%&quot;.</summary>
-    /// <value>The format string for <c>obj</c>&apos;s units label.</value>
-    public System.String FormatString {
-        get { return GetFormatString(); }
-        set { SetFormatString(value); }
+    /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
+    /// <value>Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</value>
+    public Eina.Accessor<Efl.Ui.FormatValue> FormatValues {
+        get { return GetFormatValues(); }
+        set { SetFormatValues(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -777,14 +839,44 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_set_static_delegate) });
             }
 
-            if (efl_ui_format_cb_set_static_delegate == null)
+            if (efl_ui_format_func_get_static_delegate == null)
             {
-                efl_ui_format_cb_set_static_delegate = new efl_ui_format_cb_set_delegate(format_cb_set);
+                efl_ui_format_func_get_static_delegate = new efl_ui_format_func_get_delegate(format_func_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetFormatCb") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetFormatFunc") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_cb_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_func_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_func_get_static_delegate) });
+            }
+
+            if (efl_ui_format_func_set_static_delegate == null)
+            {
+                efl_ui_format_func_set_static_delegate = new efl_ui_format_func_set_delegate(format_func_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetFormatFunc") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_func_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_func_set_static_delegate) });
+            }
+
+            if (efl_ui_format_values_get_static_delegate == null)
+            {
+                efl_ui_format_values_get_static_delegate = new efl_ui_format_values_get_delegate(format_values_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetFormatValues") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_values_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_values_get_static_delegate) });
+            }
+
+            if (efl_ui_format_values_set_static_delegate == null)
+            {
+                efl_ui_format_values_set_static_delegate = new efl_ui_format_values_set_delegate(format_values_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetFormatValues") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_values_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_values_set_static_delegate) });
             }
 
             if (efl_ui_format_string_get_static_delegate == null)
@@ -805,6 +897,36 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             if (methods.FirstOrDefault(m => m.Name == "SetFormatString") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_string_set_static_delegate) });
+            }
+
+            if (efl_ui_format_formatted_value_get_static_delegate == null)
+            {
+                efl_ui_format_formatted_value_get_static_delegate = new efl_ui_format_formatted_value_get_delegate(formatted_value_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetFormattedValue") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_formatted_value_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_formatted_value_get_static_delegate) });
+            }
+
+            if (efl_ui_format_decimal_places_get_static_delegate == null)
+            {
+                efl_ui_format_decimal_places_get_static_delegate = new efl_ui_format_decimal_places_get_delegate(decimal_places_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetDecimalPlaces") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_decimal_places_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_decimal_places_get_static_delegate) });
+            }
+
+            if (efl_ui_format_apply_formatted_value_static_delegate == null)
+            {
+                efl_ui_format_apply_formatted_value_static_delegate = new efl_ui_format_apply_formatted_value_delegate(apply_formatted_value);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ApplyFormattedValue") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_apply_formatted_value"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_apply_formatted_value_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -1105,59 +1227,23 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         private static efl_text_set_delegate efl_text_set_static_delegate;
 
         
-        private delegate void efl_ui_format_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb);
+        private delegate Efl.Ui.FormatFunc efl_ui_format_func_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
-        public delegate void efl_ui_format_cb_set_api_delegate(System.IntPtr obj,  IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb);
+        public delegate Efl.Ui.FormatFunc efl_ui_format_func_get_api_delegate(System.IntPtr obj);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_cb_set_api_delegate> efl_ui_format_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_cb_set_api_delegate>(Module, "efl_ui_format_cb_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_func_get_api_delegate> efl_ui_format_func_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_func_get_api_delegate>(Module, "efl_ui_format_func_get");
 
-        private static void format_cb_set(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, Efl.Ui.FormatFuncCbInternal func, EinaFreeCb func_free_cb)
+        private static Efl.Ui.FormatFunc format_func_get(System.IntPtr obj, System.IntPtr pd)
         {
-            Eina.Log.Debug("function efl_ui_format_cb_set was called");
+            Eina.Log.Debug("function efl_ui_format_func_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                            Efl.Ui.FormatFuncCbWrapper func_wrapper = new Efl.Ui.FormatFuncCbWrapper(func, func_data, func_free_cb);
-            
+            Efl.Ui.FormatFunc _ret_var = default(Efl.Ui.FormatFunc);
                 try
                 {
-                    ((Tags)ws.Target).SetFormatCb(func_wrapper.ManagedCb);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_format_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), func_data, func, func_free_cb);
-            }
-        }
-
-        private static efl_ui_format_cb_set_delegate efl_ui_format_cb_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_ui_format_string_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_ui_format_string_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_string_get_api_delegate> efl_ui_format_string_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_string_get_api_delegate>(Module, "efl_ui_format_string_get");
-
-        private static System.String format_string_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_format_string_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Tags)ws.Target).GetFormatString();
+                    _ret_var = ((Tags)ws.Target).GetFormatFunc();
                 }
                 catch (Exception e)
                 {
@@ -1170,30 +1256,31 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
             else
             {
-                return efl_ui_format_string_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_ui_format_func_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_ui_format_string_get_delegate efl_ui_format_string_get_static_delegate;
+        private static efl_ui_format_func_get_delegate efl_ui_format_func_get_static_delegate;
 
         
-        private delegate void efl_ui_format_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String units);
+        private delegate void efl_ui_format_func_set_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, Efl.Ui.FormatFuncInternal func, EinaFreeCb func_free_cb);
 
         
-        public delegate void efl_ui_format_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String units);
+        public delegate void efl_ui_format_func_set_api_delegate(System.IntPtr obj,  IntPtr func_data, Efl.Ui.FormatFuncInternal func, EinaFreeCb func_free_cb);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_string_set_api_delegate> efl_ui_format_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_string_set_api_delegate>(Module, "efl_ui_format_string_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_func_set_api_delegate> efl_ui_format_func_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_func_set_api_delegate>(Module, "efl_ui_format_func_set");
 
-        private static void format_string_set(System.IntPtr obj, System.IntPtr pd, System.String units)
+        private static void format_func_set(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, Efl.Ui.FormatFuncInternal func, EinaFreeCb func_free_cb)
         {
-            Eina.Log.Debug("function efl_ui_format_string_set was called");
+            Eina.Log.Debug("function efl_ui_format_func_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                            Efl.Ui.FormatFuncWrapper func_wrapper = new Efl.Ui.FormatFuncWrapper(func, func_data, func_free_cb);
+            
                 try
                 {
-                    ((Tags)ws.Target).SetFormatString(units);
+                    ((Tags)ws.Target).SetFormatFunc(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -1205,11 +1292,261 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
             else
             {
-                efl_ui_format_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), units);
+                efl_ui_format_func_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), func_data, func, func_free_cb);
+            }
+        }
+
+        private static efl_ui_format_func_set_delegate efl_ui_format_func_set_static_delegate;
+
+        
+        private delegate System.IntPtr efl_ui_format_values_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_ui_format_values_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_values_get_api_delegate> efl_ui_format_values_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_values_get_api_delegate>(Module, "efl_ui_format_values_get");
+
+        private static System.IntPtr format_values_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_format_values_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Accessor<Efl.Ui.FormatValue> _ret_var = default(Eina.Accessor<Efl.Ui.FormatValue>);
+                try
+                {
+                    _ret_var = ((Tags)ws.Target).GetFormatValues();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var.Handle;
+
+            }
+            else
+            {
+                return efl_ui_format_values_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_format_values_get_delegate efl_ui_format_values_get_static_delegate;
+
+        
+        private delegate void efl_ui_format_values_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr values);
+
+        
+        public delegate void efl_ui_format_values_set_api_delegate(System.IntPtr obj,  System.IntPtr values);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_values_set_api_delegate> efl_ui_format_values_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_values_set_api_delegate>(Module, "efl_ui_format_values_set");
+
+        private static void format_values_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr values)
+        {
+            Eina.Log.Debug("function efl_ui_format_values_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+        var _in_values = new Eina.Accessor<Efl.Ui.FormatValue>(values, false);
+                            
+                try
+                {
+                    ((Tags)ws.Target).SetFormatValues(_in_values);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_format_values_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), values);
+            }
+        }
+
+        private static efl_ui_format_values_set_delegate efl_ui_format_values_set_static_delegate;
+
+        
+        private delegate void efl_ui_format_string_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String kw_string,  out Efl.Ui.FormatStringType type);
+
+        
+        public delegate void efl_ui_format_string_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String kw_string,  out Efl.Ui.FormatStringType type);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_string_get_api_delegate> efl_ui_format_string_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_string_get_api_delegate>(Module, "efl_ui_format_string_get");
+
+        private static void format_string_get(System.IntPtr obj, System.IntPtr pd, out System.String kw_string, out Efl.Ui.FormatStringType type)
+        {
+            Eina.Log.Debug("function efl_ui_format_string_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                        System.String _out_kw_string = default(System.String);
+        type = default(Efl.Ui.FormatStringType);                            
+                try
+                {
+                    ((Tags)ws.Target).GetFormatString(out _out_kw_string, out type);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        kw_string = _out_kw_string;
+                                
+            }
+            else
+            {
+                efl_ui_format_string_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out kw_string, out type);
+            }
+        }
+
+        private static efl_ui_format_string_get_delegate efl_ui_format_string_get_static_delegate;
+
+        
+        private delegate void efl_ui_format_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_string,  Efl.Ui.FormatStringType type);
+
+        
+        public delegate void efl_ui_format_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_string,  Efl.Ui.FormatStringType type);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_string_set_api_delegate> efl_ui_format_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_string_set_api_delegate>(Module, "efl_ui_format_string_set");
+
+        private static void format_string_set(System.IntPtr obj, System.IntPtr pd, System.String kw_string, Efl.Ui.FormatStringType type)
+        {
+            Eina.Log.Debug("function efl_ui_format_string_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                            
+                try
+                {
+                    ((Tags)ws.Target).SetFormatString(kw_string, type);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_ui_format_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), kw_string, type);
             }
         }
 
         private static efl_ui_format_string_set_delegate efl_ui_format_string_set_static_delegate;
+
+        
+        private delegate void efl_ui_format_formatted_value_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StrbufKeepOwnershipMarshaler))] Eina.Strbuf str,  Eina.ValueNative value);
+
+        
+        public delegate void efl_ui_format_formatted_value_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StrbufKeepOwnershipMarshaler))] Eina.Strbuf str,  Eina.ValueNative value);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_formatted_value_get_api_delegate> efl_ui_format_formatted_value_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_formatted_value_get_api_delegate>(Module, "efl_ui_format_formatted_value_get");
+
+        private static void formatted_value_get(System.IntPtr obj, System.IntPtr pd, Eina.Strbuf str, Eina.ValueNative value)
+        {
+            Eina.Log.Debug("function efl_ui_format_formatted_value_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                            
+                try
+                {
+                    ((Tags)ws.Target).GetFormattedValue(str, value);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_ui_format_formatted_value_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), str, value);
+            }
+        }
+
+        private static efl_ui_format_formatted_value_get_delegate efl_ui_format_formatted_value_get_static_delegate;
+
+        
+        private delegate int efl_ui_format_decimal_places_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate int efl_ui_format_decimal_places_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_decimal_places_get_api_delegate> efl_ui_format_decimal_places_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_decimal_places_get_api_delegate>(Module, "efl_ui_format_decimal_places_get");
+
+        private static int decimal_places_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_format_decimal_places_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            int _ret_var = default(int);
+                try
+                {
+                    _ret_var = ((Tags)ws.Target).GetDecimalPlaces();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_format_decimal_places_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_format_decimal_places_get_delegate efl_ui_format_decimal_places_get_static_delegate;
+
+        
+        private delegate void efl_ui_format_apply_formatted_value_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate void efl_ui_format_apply_formatted_value_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_format_apply_formatted_value_api_delegate> efl_ui_format_apply_formatted_value_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_apply_formatted_value_api_delegate>(Module, "efl_ui_format_apply_formatted_value");
+
+        private static void apply_formatted_value(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_format_apply_formatted_value was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            
+                try
+                {
+                    ((Tags)ws.Target).ApplyFormattedValue();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        
+            }
+            else
+            {
+                efl_ui_format_apply_formatted_value_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_format_apply_formatted_value_delegate efl_ui_format_apply_formatted_value_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

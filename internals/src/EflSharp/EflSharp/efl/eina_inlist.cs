@@ -314,7 +314,7 @@ public class Inlist<T> : IEnumerable<T>, IDisposable
 
     public Eina.Iterator<T> GetIterator()
     {
-        return new Eina.Iterator<T>(eina_inlist_iterator_wrapper_new_custom_export_mono(Handle), true, false);
+        return new Eina.Iterator<T>(eina_inlist_iterator_wrapper_new_custom_export_mono(Handle), true);
     }
 
     public IEnumerator<T> GetEnumerator()

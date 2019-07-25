@@ -47,7 +47,6 @@ public abstract class Application
         Efl.Eo.Config.Init();
         ecore_init();
         evas_init();
-        eldbus.Config.Init();
 
         if (component == Components.Ui)
         {
@@ -82,7 +81,6 @@ public abstract class Application
             elm_shutdown();
         }
 
-        eldbus.Config.Shutdown();
         evas_shutdown();
         ecore_shutdown();
         Efl.Eo.Config.Shutdown();
@@ -92,7 +90,7 @@ public abstract class Application
     /// <summary>
     /// Called when the application is started. Arguments from the command line are passed here.
     /// </summary>
-    protected abstract void OnInitialize(Eina.Array<System.String> args);
+    protected abstract void OnInitialize(string[] args);
 
     /// <summary>
     /// Arguments are passed here, Additional calls to this function may occure,
@@ -134,8 +132,8 @@ public abstract class Application
     {
         Init(components);
         Efl.App app = Efl.App.AppMain;
-        Eina.Array<String> command_line = new Eina.Array<String>();
-        command_line.Append(Environment.GetCommandLineArgs());
+        var command_line = new Eina.Array<Eina.Stringshare>();
+        command_line.Append(Array.ConvertAll(Environment.GetCommandLineArgs(), s => (Eina.Stringshare)s));
 #if EFL_BETA
         app.SetCommandArray(command_line);
 #endif
@@ -143,7 +141,15 @@ public abstract class Application
         {
             if (evt.arg.Initialization)
             {
-                OnInitialize(evt.arg.Argv);
+                var evtArgv = evt.arg.Argv;
+                int n = evtArgv.Length;
+                var argv = new string[n];
+                for (int i = 0; i < n; ++i)
+                {
+                    argv[i] = evtArgv[i];
+                }
+
+                OnInitialize(argv);
             }
 
             OnArguments(evt.arg);

@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Elementary layout abstract
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.LayoutBase.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal, Efl.Ui.IFactoryBind
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
         efl_ui_layout_base_class_get();
     /// <summary>Initializes a new instance of the <see cref="LayoutBase"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public LayoutBase(Efl.Object parent
-            , System.String style = null) : base(efl_ui_layout_base_class_get(), typeof(LayoutBase), parent)
+            , System.String style = null) : base(efl_ui_layout_base_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,26 +47,31 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LayoutBase(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LayoutBase"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LayoutBase(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LayoutBase(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class LayoutBaseRealized : LayoutBase
     {
-        private LayoutBaseRealized(IntPtr ptr) : base(ptr)
+        private LayoutBaseRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="LayoutBase"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LayoutBase(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LayoutBase(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -75,7 +81,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -102,7 +108,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_LAYOUT_EVENT_THEME_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -128,7 +134,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -156,7 +162,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -183,7 +189,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -211,7 +217,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -238,7 +244,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -265,7 +271,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -291,7 +297,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -319,7 +325,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -353,7 +359,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <param name="group">The group, eg. &quot;base&quot;.</param>
     /// <param name="style">The style to use, eg &quot;default&quot;.</param>
     virtual public void GetTheme(out System.String klass, out System.String group, out System.String style) {
-                                                                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out klass, out group, out style);
+                                                                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out klass, out group, out style);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The theme of this widget, defines which edje group will be used.
@@ -370,7 +376,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <param name="style">The style to use, eg &quot;default&quot;.</param>
     /// <returns>Whether the theme was successfully applied or not, see the Efl.Ui.Theme.Apply_Error subset of <see cref="Eina.Error"/> for more information.</returns>
     virtual public Eina.Error SetTheme(System.String klass, System.String group, System.String style) {
-                                                                                 var _ret_var = Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),klass, group, style);
+                                                                                 var _ret_var = Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, group, style);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -378,7 +384,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</returns>
     virtual public bool GetAutomaticThemeRotation() {
-         var _ret_var = Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -386,29 +392,29 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <param name="automatic"><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</param>
     virtual public void SetAutomaticThemeRotation(bool automatic) {
-                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),automatic);
+                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Apply a new rotation value to this object.
     /// (Since EFL 1.22)</summary>
     /// <param name="orientation">The new rotation angle, in degrees.</param>
     virtual public void ThemeRotationApply(int orientation) {
-                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_rotation_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),orientation);
+                                 Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_rotation_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),orientation);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -416,7 +422,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether or not update the size hints.</returns>
     virtual public bool GetCalcAutoUpdateHints() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -424,7 +430,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <param name="update">Whether or not update the size hints.</param>
     virtual public void SetCalcAutoUpdateHints(bool update) {
-                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),update);
+                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),update);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Calculates the minimum required size for a given layout object.
@@ -438,7 +444,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <returns>The minimum required size.</returns>
     virtual public Eina.Size2D CalcSizeMin(Eina.Size2D restricted) {
          Eina.Size2D.NativeStruct _in_restricted = restricted;
-                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_restricted);
+                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_restricted);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -449,7 +455,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <returns>The calculated region.</returns>
     virtual public Eina.Rect CalcPartsExtends() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -460,7 +466,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 on error</returns>
     virtual public int FreezeCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -473,7 +479,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
     virtual public int ThawCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -483,7 +489,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void CalcForce() {
-         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
@@ -497,7 +503,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <returns>The minimum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMin() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -512,7 +518,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <returns>The maximum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMax() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -528,7 +534,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <param name="key">The data field&apos;s key string</param>
     /// <returns>The data&apos;s value string.</returns>
     virtual public System.String GetGroupData(System.String key) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -537,7 +543,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <param name="part">The part name to check.</param>
     /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
     virtual public bool GetPartExist(System.String part) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -551,7 +557,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
     virtual public void MessageSend(int id, Eina.Value msg) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id, msg);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id, msg);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
@@ -577,7 +583,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -592,7 +598,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -606,7 +612,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     virtual public void EmitSignal(System.String emission, System.String source) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Processes an object&apos;s messages and signals queue.
@@ -616,14 +622,14 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// (Since EFL 1.22)</summary>
     /// <param name="recurse">Whether to process messages on children objects.</param>
     virtual public void SignalProcess(bool recurse) {
-                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recurse);
+                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),recurse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>bind the factory with the given key string. when the data is ready or changed, factory create the object and bind the data to the key action and process promised work. Note: the input <see cref="Efl.Ui.IFactory"/> need to be <see cref="Efl.Ui.IPropertyBind.PropertyBind"/> at least once.</summary>
     /// <param name="key">Key string for bind model property data</param>
     /// <param name="factory"><see cref="Efl.Ui.IFactory"/> for create and bind model property data</param>
     virtual public void FactoryBind(System.String key, Efl.Ui.IFactory factory) {
-                                                         Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, factory);
+                                                         Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, factory);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>This flag tells if this object will automatically mirror the rotation changes of the window to this object.

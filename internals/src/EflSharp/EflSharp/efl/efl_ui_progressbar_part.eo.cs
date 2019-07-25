@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary progressbar internal part class</summary>
 [Efl.Ui.ProgressbarPart.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Ui.IRangeDisplay
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Ui.IRangeDisplay
     /// <summary>Initializes a new instance of the <see cref="ProgressbarPart"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ProgressbarPart(Efl.Object parent= null
-            ) : base(efl_ui_progressbar_part_class_get(), typeof(ProgressbarPart), parent)
+            ) : base(efl_ui_progressbar_part_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ProgressbarPart(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ProgressbarPart"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ProgressbarPart(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ProgressbarPart(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="ProgressbarPart"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ProgressbarPart(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ProgressbarPart(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -61,7 +67,7 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Ui.IRangeDisplay
     /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
     /// <returns>The range value (must be between $0.0 and 1.0)</returns>
     virtual public double GetRangeValue() {
-         var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -71,7 +77,7 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Ui.IRangeDisplay
     /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
     /// <param name="val">The range value (must be between $0.0 and 1.0)</param>
     virtual public void SetRangeValue(double val) {
-                                 Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the minimum and maximum values of the given range widget.
@@ -79,7 +85,7 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Ui.IRangeDisplay
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     virtual public void GetRangeLimits(out double min, out double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out min, out max);
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out min, out max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the minimum and maximum values for given range widget.
@@ -93,7 +99,7 @@ public class ProgressbarPart : Efl.Ui.LayoutPart, Efl.Ui.IRangeDisplay
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     virtual public void SetRangeLimits(double min, double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),min, max);
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),min, max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the range value (in percentage) on a given range widget

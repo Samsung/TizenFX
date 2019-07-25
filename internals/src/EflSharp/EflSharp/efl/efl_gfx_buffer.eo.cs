@@ -11,6 +11,7 @@ namespace Gfx {
 
 /// <summary>Common APIs for all objects representing images and 2D pixel buffers.</summary>
 [Efl.Gfx.IBufferConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IBuffer : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -153,11 +154,18 @@ sealed public class IBufferConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IBufferConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_buffer_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IBuffer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IBufferConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IBufferConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -340,7 +348,7 @@ sealed public class IBufferConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -977,6 +985,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Graphics buffer access mode</summary>
+[Efl.Eo.BindingEntity]
 public enum BufferAccessMode
 {
 /// <summary>No buffer access</summary>

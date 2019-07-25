@@ -37,6 +37,7 @@ namespace Eina {
 namespace Xattr {
 
 /// <summary>Eina file extended attributes flags</summary>
+[Efl.Eo.BindingEntity]
 public enum Flags
 {
 /// <summary>This is the default behaviour, it will either create or replace the extended attribute</summary>
@@ -55,6 +56,7 @@ namespace Eina {
 
 /// <summary>A rectangle in pixel dimensions.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Rect
 {
     /// <summary>X coordinate of the rectangle, from the top-left corner.</summary>
@@ -134,6 +136,7 @@ namespace Eina {
 
 /// <summary>A 2D location in pixels.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Position2D
 {
     /// <summary>X position in pixels, from the top-left corner.</summary>
@@ -197,6 +200,7 @@ namespace Eina {
 
 /// <summary>A 2D size in pixels.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Size2D
 {
     /// <summary>X position in pixels, from the top-left corner.</summary>
@@ -260,6 +264,7 @@ namespace Eina {
 
 /// <summary>Eina file data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct File
 {
     ///<summary>Placeholder field</summary>
@@ -305,6 +310,7 @@ namespace Eina {
 
 /// <summary>A simple 2D vector type using floating point values.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Vector2
 {
     /// <summary>X coordinate.</summary>
@@ -368,6 +374,7 @@ namespace Eina {
 
 /// <summary>Eina 3x3 Matrix</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Matrix3
 {
     /// <summary>XX matrix value</summary>
@@ -487,6 +494,7 @@ namespace Eina {
 
 /// <summary>Eina file direct information data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct FileDirectInfo
 {
     ///<summary>Placeholder field</summary>
@@ -532,6 +540,7 @@ namespace Eina {
 
 /// <summary>The structure to store some file statistics.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Stat
 {
     /// <summary>The device where this file is located</summary>

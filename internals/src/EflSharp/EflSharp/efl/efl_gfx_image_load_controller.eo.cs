@@ -11,6 +11,7 @@ namespace Gfx {
 
 /// <summary>Common APIs for all loadable 2D images.</summary>
 [Efl.Gfx.IImageLoadControllerConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IImageLoadController : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -131,6 +132,7 @@ void LoadAsyncCancel();
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Gfx.IImageLoadController.LoadErrorEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IImageLoadControllerLoadErrorEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Eina.Error arg { get; set; }
@@ -157,11 +159,18 @@ sealed public class IImageLoadControllerConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IImageLoadControllerConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_image_load_controller_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IImageLoadController"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IImageLoadControllerConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IImageLoadControllerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -170,7 +179,7 @@ sealed public class IImageLoadControllerConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -197,7 +206,7 @@ sealed public class IImageLoadControllerConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -222,7 +231,7 @@ sealed public class IImageLoadControllerConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -250,7 +259,7 @@ sealed public class IImageLoadControllerConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -449,7 +458,7 @@ sealed public class IImageLoadControllerConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

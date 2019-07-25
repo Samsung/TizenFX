@@ -12,6 +12,7 @@ namespace Canvas {
 /// <summary>Interface containing basic canvas-related methods and events.
 /// (Since EFL 1.22)</summary>
 [Efl.Canvas.ISceneConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IScene : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -140,31 +141,37 @@ Eina.Iterator<Efl.Input.Device> Seats();
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusInEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISceneObjectFocusInEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Focus arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusOutEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISceneObjectFocusOutEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Focus arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.RenderPostEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISceneRenderPostEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Gfx.Event.RenderPost arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISceneDeviceChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Device arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceAddedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISceneDeviceAddedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Device arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceRemovedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISceneDeviceRemovedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Input.Device arg { get; set; }
@@ -192,11 +199,18 @@ sealed public class ISceneConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISceneConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_canvas_scene_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IScene"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISceneConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISceneConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -206,7 +220,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -233,7 +247,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -259,7 +273,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -286,7 +300,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -312,7 +326,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -340,7 +354,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -367,7 +381,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -395,7 +409,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -422,7 +436,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -449,7 +463,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -475,7 +489,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -503,7 +517,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -538,7 +552,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -566,7 +580,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -593,7 +607,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -621,7 +635,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -648,7 +662,7 @@ sealed public class ISceneConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -676,7 +690,7 @@ sealed public class ISceneConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -777,7 +791,7 @@ sealed public class ISceneConcrete :
          Eina.Position2D.NativeStruct _in_pos = pos;
                                                                         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_objects_at_xy_get_ptr.Value.Delegate(this.NativeHandle,_in_pos, include_pass_events_objects, include_hidden_objects);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Retrieve the object stacked at the top of a given position in a canvas.
     /// This function will traverse all the layers of the given canvas, from top to bottom, querying for objects with areas covering the given position. The user can exclude from the query objects which are hidden and/or which are set to pass events.
@@ -807,7 +821,7 @@ sealed public class ISceneConcrete :
          Eina.Rect.NativeStruct _in_rect = rect;
                                                                         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_objects_in_rectangle_get_ptr.Value.Delegate(this.NativeHandle,_in_rect, include_pass_events_objects, include_hidden_objects);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Retrieve the canvas object stacked at the top of a given rectangular region in a canvas
     /// This function will traverse all the layers of the given canvas, from top to bottom, querying for objects with areas overlapping with the given rectangular region. The user can exclude from the query objects which are hidden and/or which are set to pass events.
@@ -831,7 +845,7 @@ sealed public class ISceneConcrete :
     public Eina.Iterator<Efl.Input.Device> Seats() {
          var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seats_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Input.Device>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Input.Device>(_ret_var, true);
  }
     /// <summary>Get if the canvas is currently calculating group objects.
     /// (Since EFL 1.22)</summary>
@@ -854,7 +868,7 @@ sealed public class ISceneConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

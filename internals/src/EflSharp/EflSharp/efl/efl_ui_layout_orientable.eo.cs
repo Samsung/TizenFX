@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Interface for UI objects which can have more than one orientation.
 /// For example, sliders, which can be horizontal or vertical, or container boxes, which can arrange their elements in a horizontal or vertical fashion.</summary>
 [Efl.Ui.ILayoutOrientableConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ILayoutOrientable : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -60,11 +61,18 @@ sealed public class ILayoutOrientableConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ILayoutOrientableConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_layout_orientable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ILayoutOrientable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ILayoutOrientableConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ILayoutOrientableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -102,7 +110,7 @@ sealed public class ILayoutOrientableConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -232,6 +240,7 @@ namespace Ui {
 /// Not to be confused with <see cref="Efl.Gfx.ImageOrientation"/> which is for images and canvases. This enum is used to define how widgets should expand and orient themselves, not to rotate images.
 /// 
 /// See also <see cref="Efl.Ui.ILayoutOrientable"/>.</summary>
+[Efl.Eo.BindingEntity]
 public enum LayoutOrientation
 {
 /// <summary>Default direction. Each widget may have a different default.</summary>

@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>Interface for 2D containers which arrange their elements on a table with rows and columns.
 /// Elements can be positioned on a specific row and column, or they can be simply added to the table using <see cref="Efl.IPack.Pack"/> and the container will chose where to put them.</summary>
 [Efl.IPackTableConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IPackTable : 
     Efl.IPack ,
     Efl.Eo.IWrapper, IDisposable
@@ -98,11 +99,18 @@ sealed public class IPackTableConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IPackTableConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_pack_table_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IPackTable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IPackTableConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IPackTableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -112,7 +120,7 @@ sealed public class IPackTableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -140,7 +148,7 @@ sealed public class IPackTableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -167,7 +175,7 @@ sealed public class IPackTableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -195,7 +203,7 @@ sealed public class IPackTableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -289,7 +297,7 @@ sealed public class IPackTableConcrete :
     public Eina.Iterator<Efl.Gfx.IEntity> GetTableContents(int col, int row, bool below) {
                                                                                  var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_contents_get_ptr.Value.Delegate(this.NativeHandle,col, row, below);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns a child at a given position, see <see cref="Efl.IPackTable.GetTableContents"/>.</summary>
     /// <param name="col">Column number</param>
@@ -306,7 +314,7 @@ sealed public class IPackTableConcrete :
     public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
          var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
@@ -368,7 +376,7 @@ sealed public class IPackTableConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

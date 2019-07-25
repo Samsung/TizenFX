@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>An object that describes an low-level source of I/O to listen to for available data to be read or written, depending on the OS and data source type. When I/O becomes available various events are produced and the callbacks attached to them will be called.</summary>
 [Efl.LoopHandler.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LoopHandler : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -32,24 +33,29 @@ public class LoopHandler : Efl.Object
     /// <summary>Initializes a new instance of the <see cref="LoopHandler"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopHandler(Efl.Object parent= null
-            ) : base(efl_loop_handler_class_get(), typeof(LoopHandler), parent)
+            ) : base(efl_loop_handler_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopHandler(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopHandler"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopHandler(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopHandler(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LoopHandler"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopHandler(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopHandler(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -58,7 +64,7 @@ public class LoopHandler : Efl.Object
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -85,7 +91,7 @@ public class LoopHandler : Efl.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_HANDLER_EVENT_READ";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -110,7 +116,7 @@ public class LoopHandler : Efl.Object
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -137,7 +143,7 @@ public class LoopHandler : Efl.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_HANDLER_EVENT_WRITE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -162,7 +168,7 @@ public class LoopHandler : Efl.Object
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -189,7 +195,7 @@ public class LoopHandler : Efl.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_HANDLER_EVENT_ERROR";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -214,7 +220,7 @@ public class LoopHandler : Efl.Object
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -241,7 +247,7 @@ public class LoopHandler : Efl.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_HANDLER_EVENT_BUFFER";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -266,7 +272,7 @@ public class LoopHandler : Efl.Object
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -293,7 +299,7 @@ public class LoopHandler : Efl.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_HANDLER_EVENT_PREPARE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -316,53 +322,53 @@ public class LoopHandler : Efl.Object
     /// <summary>This sets what kind of I/O should be listened to only when using a fd or fd_file for the handler</summary>
     /// <returns>The flags that indicate what kind of I/O should be listened for like read, write or error channels.</returns>
     virtual public Efl.LoopHandlerFlags GetActive() {
-         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_active_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_active_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This sets what kind of I/O should be listened to only when using a fd or fd_file for the handler</summary>
     /// <param name="flags">The flags that indicate what kind of I/O should be listened for like read, write or error channels.</param>
     virtual public void SetActive(Efl.LoopHandlerFlags flags) {
-                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_active_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),flags);
+                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_active_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),flags);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Controls a file descriptor to listen to for I/O, which points to a data pipe such as a device, socket or pipe etc.</summary>
     /// <returns>The file descriptor</returns>
     virtual public int GetFd() {
-         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Controls a file descriptor to listen to for I/O, which points to a data pipe such as a device, socket or pipe etc.</summary>
     /// <param name="fd">The file descriptor</param>
     virtual public void SetFd(int fd) {
-                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fd);
+                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fd);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Controls a file descriptor to listen to for I/O that specifically points to a file in storage and not a device, socket or pipe etc.</summary>
     /// <returns>The file descriptor</returns>
     virtual public int GetFdFile() {
-         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Controls a file descriptor to listen to for I/O that specifically points to a file in storage and not a device, socket or pipe etc.</summary>
     /// <param name="fd">The file descriptor</param>
     virtual public void SetFdFile(int fd) {
-                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fd);
+                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_fd_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fd);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Controls a windows win32 object handle to listen to for I/O. When it becomes available for any data the read event will be produced.</summary>
     /// <returns>A win32 object handle</returns>
     virtual public System.IntPtr GetWin32() {
-         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_win32_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopHandler.NativeMethods.efl_loop_handler_win32_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Controls a windows win32 object handle to listen to for I/O. When it becomes available for any data the read event will be produced.</summary>
     /// <param name="handle">A win32 object handle</param>
     virtual public void SetWin32(System.IntPtr handle) {
-                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_win32_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),handle);
+                                 Efl.LoopHandler.NativeMethods.efl_loop_handler_win32_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),handle);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This sets what kind of I/O should be listened to only when using a fd or fd_file for the handler</summary>
@@ -790,6 +796,7 @@ public class LoopHandler : Efl.Object
 namespace Efl {
 
 /// <summary>A set of flags that can be OR&apos;d together to indicate which are desired</summary>
+[Efl.Eo.BindingEntity]
 public enum LoopHandlerFlags
 {
 /// <summary>No I/O is desired (generally useless)</summary>

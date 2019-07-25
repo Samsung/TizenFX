@@ -14,6 +14,7 @@ namespace TextFactory {
 /// <summary>Factory that creates images given key string
 /// The key can be either a full image path, or associated with one. The factory will fallback if key was not matches with an image, and try to load it as a full path.</summary>
 [Efl.Ui.TextFactory.Images.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Images : Efl.Object, Efl.Canvas.ITextFactory
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -37,24 +38,29 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <summary>Initializes a new instance of the <see cref="Images"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Images(Efl.Object parent= null
-            ) : base(efl_ui_text_factory_images_class_get(), typeof(Images), parent)
+            ) : base(efl_ui_text_factory_images_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Images(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Images"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Images(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Images(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Images"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Images(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Images(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -69,7 +75,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="key">the key to use (in cases of loading an EET file</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
     virtual public bool AddMatches(System.String name, System.String path, System.String key) {
-                                                                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, path, key);
+                                                                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, path, key);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -78,7 +84,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="key">the entry&apos;s key to delete</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
     virtual public bool DelMatches(System.String key) {
-                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -89,7 +95,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="key">the key to use (in cases of loading an EET file</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
     virtual public bool AddMatchesMmap(System.String name, Eina.File file, System.String key) {
-                                                                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_mmap_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, file, key);
+                                                                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_mmap_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, file, key);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -98,7 +104,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="key">the entry&apos;s key to delete</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
     virtual public bool DelMatchesMmap(System.String key) {
-                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_mmap_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_mmap_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -106,7 +112,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="kw_object">The parent of the created object</param>
     /// <param name="key">Key that is associated to an item object</param>
     virtual public Efl.Canvas.Object Create(Efl.Canvas.Object kw_object, System.String key) {
-                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_object, key);
+                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_object, key);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }

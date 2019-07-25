@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Used internally for futures on the loop</summary>
 [Efl.LoopMessageFuture.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LoopMessageFuture : Efl.LoopMessage
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -32,38 +33,43 @@ public class LoopMessageFuture : Efl.LoopMessage
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageFuture(Efl.Object parent= null
-            ) : base(efl_loop_message_future_class_get(), typeof(LoopMessageFuture), parent)
+            ) : base(efl_loop_message_future_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessageFuture(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessageFuture(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessageFuture(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessageFuture(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessageFuture(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>No description supplied.</summary>
     /// <returns>No description supplied.</returns>
     virtual public System.IntPtr GetData() {
-         var _ret_var = Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>No description supplied.</summary>
     /// <param name="data">No description supplied.</param>
     virtual public void SetData(System.IntPtr data) {
-                                 Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),data);
+                                 Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>No description supplied.</summary>

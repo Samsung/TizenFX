@@ -8,12 +8,14 @@ using System.ComponentModel;
 namespace Efl {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LoopMessageFutureHandlerMessageFutureEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.LoopMessageFuture arg { get; set; }
 }
 /// <summary>Internal use for future on an efl loop - replacing legacy ecore events</summary>
 [Efl.LoopMessageFutureHandler.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -37,24 +39,29 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageFutureHandler(Efl.Object parent= null
-            ) : base(efl_loop_message_future_handler_class_get(), typeof(LoopMessageFutureHandler), parent)
+            ) : base(efl_loop_message_future_handler_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessageFutureHandler(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessageFutureHandler(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessageFutureHandler(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessageFutureHandler(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessageFutureHandler(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -63,7 +70,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -91,7 +98,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_MESSAGE_FUTURE_HANDLER_EVENT_MESSAGE_FUTURE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -115,7 +122,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
     /// <summary>No description supplied.</summary>
     /// <returns>No description supplied.</returns>
     virtual public Efl.LoopMessageFuture AddMessageType() {
-         var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }

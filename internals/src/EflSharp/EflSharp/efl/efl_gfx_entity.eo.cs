@@ -12,6 +12,7 @@ namespace Gfx {
 /// <summary>Efl graphics interface
 /// (Since EFL 1.22)</summary>
 [Efl.Gfx.IEntityConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IEntity : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -109,16 +110,19 @@ void SetScale(double scale);
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.VisibilityChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEntityVisibilityChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.PositionChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEntityPositionChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Eina.Position2D arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.SizeChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEntitySizeChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Eina.Size2D arg { get; set; }
@@ -146,11 +150,18 @@ sealed public class IEntityConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IEntityConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_entity_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IEntity"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IEntityConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IEntityConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -160,7 +171,7 @@ sealed public class IEntityConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -188,7 +199,7 @@ sealed public class IEntityConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -222,7 +233,7 @@ sealed public class IEntityConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -250,7 +261,7 @@ sealed public class IEntityConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -285,7 +296,7 @@ sealed public class IEntityConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -313,7 +324,7 @@ sealed public class IEntityConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -469,7 +480,7 @@ sealed public class IEntityConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

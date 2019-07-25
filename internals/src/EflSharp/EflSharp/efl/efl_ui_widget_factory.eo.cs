@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Efl Ui Factory that provides <see cref="Efl.Ui.Widget"/>.
 /// This factory is designed to build <see cref="Efl.Ui.Widget"/> and optionally set their <see cref="Efl.Ui.Widget.Style"/> if it was connected with <see cref="Efl.Ui.IPropertyBind.PropertyBind"/> &quot;<c>style</c>&quot;.</summary>
 [Efl.Ui.WidgetFactory.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryBind, Efl.Ui.IPropertyBind
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
         efl_ui_widget_factory_class_get();
     /// <summary>Initializes a new instance of the <see cref="WidgetFactory"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass"/></param>
+    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
     public WidgetFactory(Efl.Object parent
-            , Type itemClass = null) : base(efl_ui_widget_factory_class_get(), typeof(WidgetFactory), parent)
+            , Type itemClass = null) : base(efl_ui_widget_factory_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(itemClass))
         {
@@ -46,19 +47,24 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected WidgetFactory(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="WidgetFactory"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected WidgetFactory(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected WidgetFactory(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="WidgetFactory"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected WidgetFactory(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected WidgetFactory(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -67,7 +73,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -95,7 +101,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FACTORY_EVENT_CREATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -129,7 +135,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -157,7 +163,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -191,7 +197,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -219,7 +225,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -250,14 +256,14 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     /// <summary>Define the class of the item returned by this factory.</summary>
     /// <returns>The class identifier to create item from.</returns>
     virtual public Type GetItemClass() {
-         var _ret_var = Efl.Ui.WidgetFactory.NativeMethods.efl_ui_widget_factory_item_class_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.WidgetFactory.NativeMethods.efl_ui_widget_factory_item_class_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Define the class of the item returned by this factory.</summary>
     /// <param name="klass">The class identifier to create item from.</param>
     virtual public void SetItemClass(Type klass) {
-                                 Efl.Ui.WidgetFactory.NativeMethods.efl_ui_widget_factory_item_class_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),klass);
+                                 Efl.Ui.WidgetFactory.NativeMethods.efl_ui_widget_factory_item_class_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Create a UI object from the necessary properties in the specified model.</summary>
@@ -265,21 +271,21 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     /// <param name="parent">Efl canvas</param>
     /// <returns>Created UI object</returns>
     virtual public  Eina.Future Create(Efl.IModel model, Efl.Gfx.IEntity parent) {
-                                                         var _ret_var = Efl.Ui.IFactoryConcrete.NativeMethods.efl_ui_factory_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),model, parent);
+                                                         var _ret_var = Efl.Ui.IFactoryConcrete.NativeMethods.efl_ui_factory_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),model, parent);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Release a UI object and disconnect from models.</summary>
     /// <param name="ui_view">Efl canvas</param>
     virtual public void Release(Efl.Gfx.IEntity ui_view) {
-                                 Efl.Ui.IFactoryConcrete.NativeMethods.efl_ui_factory_release_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ui_view);
+                                 Efl.Ui.IFactoryConcrete.NativeMethods.efl_ui_factory_release_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ui_view);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>bind the factory with the given key string. when the data is ready or changed, factory create the object and bind the data to the key action and process promised work. Note: the input <see cref="Efl.Ui.IFactory"/> need to be <see cref="Efl.Ui.IPropertyBind.PropertyBind"/> at least once.</summary>
     /// <param name="key">Key string for bind model property data</param>
     /// <param name="factory"><see cref="Efl.Ui.IFactory"/> for create and bind model property data</param>
     virtual public void FactoryBind(System.String key, Efl.Ui.IFactory factory) {
-                                                         Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, factory);
+                                                         Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, factory);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>bind property data with the given key string. when the data is ready or changed, bind the data to the key action and process promised work.</summary>
@@ -287,7 +293,7 @@ public class WidgetFactory : Efl.LoopConsumer, Efl.Ui.IFactory, Efl.Ui.IFactoryB
     /// <param name="property">Model property name</param>
     /// <returns>0 when it succeed, an error code otherwise.</returns>
     virtual public Eina.Error PropertyBind(System.String key, System.String property) {
-                                                         var _ret_var = Efl.Ui.IPropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, property);
+                                                         var _ret_var = Efl.Ui.IPropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, property);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }

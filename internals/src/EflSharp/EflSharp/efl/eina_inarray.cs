@@ -358,12 +358,12 @@ public class Inarray<T> : IEnumerable<T>, IDisposable
 
     public Eina.Iterator<T> GetIterator()
     {
-        return new Eina.Iterator<T>(eina_inarray_iterator_new(Handle), true, false);
+        return new Eina.Iterator<T>(eina_inarray_iterator_new(Handle), true);
     }
 
     public Eina.Iterator<T> GetReversedIterator()
     {
-        return new Eina.Iterator<T>(eina_inarray_iterator_reversed_new(Handle), true, false);
+        return new Eina.Iterator<T>(eina_inarray_iterator_reversed_new(Handle), true);
     }
 
     public IEnumerator<T> GetEnumerator()

@@ -16,6 +16,7 @@ namespace Ui {
 /// 
 /// To handle button grouping, you can either use an <see cref="Efl.Ui.RadioGroupImpl"/> object or use more convenient widgets like <see cref="Efl.Ui.RadioBox"/>.</summary>
 [Efl.Ui.Radio.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Radio : Efl.Ui.Check
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -38,9 +39,9 @@ public class Radio : Efl.Ui.Check
         efl_ui_radio_class_get();
     /// <summary>Initializes a new instance of the <see cref="Radio"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Radio(Efl.Object parent
-            , System.String style = null) : base(efl_ui_radio_class_get(), typeof(Radio), parent)
+            , System.String style = null) : base(efl_ui_radio_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -50,19 +51,24 @@ public class Radio : Efl.Ui.Check
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Radio(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Radio"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Radio(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Radio(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Radio"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Radio(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Radio(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -72,7 +78,7 @@ public class Radio : Efl.Ui.Check
     /// All non-negative values are legal but keep in mind that 0 is the starting value for all new groups: If no button in the group has this value, then no button in the group is initially selected. -1 is the value that <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> returns when no button is selected and therefore cannot be used.</summary>
     /// <returns>The value to use when this radio button is selected. Any value can be used but 0 and -1 have special meanings as described above.</returns>
     virtual public int GetStateValue() {
-         var _ret_var = Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -82,7 +88,7 @@ public class Radio : Efl.Ui.Check
     /// All non-negative values are legal but keep in mind that 0 is the starting value for all new groups: If no button in the group has this value, then no button in the group is initially selected. -1 is the value that <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> returns when no button is selected and therefore cannot be used.</summary>
     /// <param name="value">The value to use when this radio button is selected. Any value can be used but 0 and -1 have special meanings as described above.</param>
     virtual public void SetStateValue(int value) {
-                                 Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Integer value that this radio button represents.

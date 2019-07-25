@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI text editable class</summary>
 [Efl.Ui.TextEditable.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class TextEditable : Efl.Ui.Text
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class TextEditable : Efl.Ui.Text
         efl_ui_text_editable_class_get();
     /// <summary>Initializes a new instance of the <see cref="TextEditable"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public TextEditable(Efl.Object parent
-            , System.String style = null) : base(efl_ui_text_editable_class_get(), typeof(TextEditable), parent)
+            , System.String style = null) : base(efl_ui_text_editable_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class TextEditable : Efl.Ui.Text
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TextEditable(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TextEditable"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TextEditable(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TextEditable(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="TextEditable"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TextEditable(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TextEditable(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

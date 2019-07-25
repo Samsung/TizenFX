@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Simple grid widget with Pack interface.</summary>
 [Efl.Ui.Grid.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLinear, Efl.Gfx.IArrangement, Efl.Ui.ILayoutOrientable, Efl.Ui.IMultiSelectable, Efl.Ui.IScrollable, Efl.Ui.IScrollableInteractive, Efl.Ui.IScrollbar, Efl.Ui.ISelectable
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
         efl_ui_grid_class_get();
     /// <summary>Initializes a new instance of the <see cref="Grid"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Grid(Efl.Object parent
-            , System.String style = null) : base(efl_ui_grid_class_get(), typeof(Grid), parent)
+            , System.String style = null) : base(efl_ui_grid_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Grid(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Grid"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Grid(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Grid(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Grid"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Grid(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Grid(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -93,7 +99,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -118,7 +124,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -145,7 +151,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -170,7 +176,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -197,7 +203,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -222,7 +228,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -249,7 +255,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -274,7 +280,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -301,7 +307,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -326,7 +332,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -353,7 +359,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -378,7 +384,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -405,7 +411,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -430,7 +436,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -457,7 +463,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -482,7 +488,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -509,7 +515,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_UP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -534,7 +540,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -561,7 +567,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -586,7 +592,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -613,7 +619,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -638,7 +644,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -665,7 +671,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -690,7 +696,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -717,7 +723,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -742,7 +748,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -769,7 +775,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -794,7 +800,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -821,7 +827,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -846,7 +852,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -873,7 +879,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -893,12 +899,12 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when bar is pressed</summary>
+    /// <summary>Called when bar is pressed.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarPressEvt_Args> BarPressEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -906,7 +912,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarPressEvt_Args args = new Efl.Ui.IScrollbarBarPressEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -926,7 +932,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -954,12 +960,12 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar is unpressed</summary>
+    /// <summary>Called when bar is unpressed.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarUnpressEvt_Args> BarUnpressEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -967,7 +973,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarUnpressEvt_Args args = new Efl.Ui.IScrollbarBarUnpressEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -987,7 +993,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1015,12 +1021,12 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar is dragged</summary>
+    /// <summary>Called when bar is dragged.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarDragEvt_Args> BarDragEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1028,7 +1034,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarDragEvt_Args args = new Efl.Ui.IScrollbarBarDragEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1048,7 +1054,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1076,12 +1082,12 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar size is changed</summary>
+    /// <summary>Called when bar size is changed.</summary>
     public event EventHandler BarSizeChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1108,7 +1114,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1128,12 +1134,12 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when bar position is changed</summary>
+    /// <summary>Called when bar position is changed.</summary>
     public event EventHandler BarPosChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1160,7 +1166,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1180,12 +1186,12 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Callend when bar is shown</summary>
+    /// <summary>Callend when bar is shown.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarShowEvt_Args> BarShowEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1193,7 +1199,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarShowEvt_Args args = new Efl.Ui.IScrollbarBarShowEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1213,7 +1219,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1241,12 +1247,12 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar is hidden</summary>
+    /// <summary>Called when bar is hidden.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarHideEvt_Args> BarHideEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1254,7 +1260,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarHideEvt_Args args = new Efl.Ui.IScrollbarBarHideEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1274,7 +1280,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1307,7 +1313,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1335,7 +1341,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_SELECTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1361,7 +1367,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1389,7 +1395,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1415,7 +1421,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1442,7 +1448,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_PASTE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1467,7 +1473,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1494,7 +1500,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_COPY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1519,7 +1525,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1546,7 +1552,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CUT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1571,7 +1577,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1598,7 +1604,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1623,7 +1629,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1650,7 +1656,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1675,7 +1681,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1702,7 +1708,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1725,7 +1731,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <summary>Property data of item size.</summary>
     /// <returns>last selected item of grid.</returns>
     virtual public Eina.Size2D GetItemSize() {
-         var _ret_var = Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1733,13 +1739,13 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="size">last selected item of grid.</param>
     virtual public void SetItemSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Property data of last selected item.</summary>
     /// <returns>last selected item of grid.</returns>
     virtual public Efl.Ui.GridItem GetLastSelectedItem() {
-         var _ret_var = Efl.Ui.Grid.NativeMethods.efl_ui_grid_last_selected_item_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Grid.NativeMethods.efl_ui_grid_last_selected_item_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1747,7 +1753,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="item">Target item.</param>
     /// <param name="animation">Boolean value for animation of scroll move.</param>
     virtual public void ItemScroll(Efl.Ui.GridItem item, bool animation) {
-                                                         Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_scroll_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),item, animation);
+                                                         Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_scroll_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item, animation);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>scroll move the item to show at the align position of the viewport.</summary>
@@ -1755,20 +1761,20 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="align">align value in Viewport.</param>
     /// <param name="animation">Boolean value for animation of scroll move.</param>
     virtual public void ItemScrollAlign(Efl.Ui.GridItem item, double align, bool animation) {
-                                                                                 Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_scroll_align_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),item, align, animation);
+                                                                                 Efl.Ui.Grid.NativeMethods.efl_ui_grid_item_scroll_align_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item, align, animation);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Get the selected items iterator. The iterator sequence will be decided by selection.</summary>
     /// <returns>Iterator covered by selected items list. user have to free the iterator after used.</returns>
     virtual public Eina.Iterator<Efl.Ui.GridItem> GetSelectedItems() {
-         var _ret_var = Efl.Ui.Grid.NativeMethods.efl_ui_grid_selected_items_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Grid.NativeMethods.efl_ui_grid_selected_items_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Ui.GridItem>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Ui.GridItem>(_ret_var, true);
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1776,7 +1782,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1784,7 +1790,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
     virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1795,14 +1801,14 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Requests EFL to call the <see cref="Efl.IPackLayout.UpdateLayout"/> method on this object.
     /// This <see cref="Efl.IPackLayout.UpdateLayout"/> may be called asynchronously.</summary>
     virtual public void LayoutRequest() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Implementation of this container&apos;s layout algorithm.
@@ -1810,7 +1816,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// 
     /// This can be overriden to implement custom layout behaviors.</summary>
     virtual public void UpdateLayout() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Prepend an object at the beginning of this container.
@@ -1820,7 +1826,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="subobj">Object to pack at the beginning.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBegin(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1831,7 +1837,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="subobj">Object to pack at the end.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackEnd(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1841,7 +1847,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -1851,7 +1857,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -1865,7 +1871,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAt(Efl.Gfx.IEntity subobj, int index) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, index);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -1876,7 +1882,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="index">Index of the existing sub-object to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object contained at the given <c>index</c>.</returns>
     virtual public Efl.Gfx.IEntity GetPackContent(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1884,7 +1890,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="subobj">An existing sub-object in this container.</param>
     /// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range 0 to (<c>count</c>-1).</returns>
     virtual public int GetPackIndex(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1895,7 +1901,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="index">Index of the sub-object to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object if it could be removed.</returns>
     virtual public Efl.Gfx.IEntity PackUnpackAt(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1903,14 +1909,14 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="align_horiz">Horizontal alignment</param>
     /// <param name="align_vert">Vertical alignment</param>
     virtual public void GetContentAlign(out double align_horiz, out double align_vert) {
-                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out align_horiz, out align_vert);
+                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out align_horiz, out align_vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Alignment of the container within its bounds</summary>
     /// <param name="align_horiz">Horizontal alignment</param>
     /// <param name="align_vert">Vertical alignment</param>
     virtual public void SetContentAlign(double align_horiz, double align_vert) {
-                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),align_horiz, align_vert);
+                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),align_horiz, align_vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Padding between items contained in this object.</summary>
@@ -1918,7 +1924,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="pad_vert">Vertical padding</param>
     /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
     virtual public void GetContentPadding(out double pad_horiz, out double pad_vert, out bool scalable) {
-                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out pad_horiz, out pad_vert, out scalable);
+                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pad_horiz, out pad_vert, out scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Padding between items contained in this object.</summary>
@@ -1926,7 +1932,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="pad_vert">Vertical padding</param>
     /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
     virtual public void SetContentPadding(double pad_horiz, double pad_vert, bool scalable) {
-                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),pad_horiz, pad_vert, scalable);
+                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pad_horiz, pad_vert, scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Control the direction of a given widget.
@@ -1935,7 +1941,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1945,26 +1951,26 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The mode type for children selection.</summary>
     /// <returns>Type of selection of children</returns>
     virtual public Efl.Ui.SelectMode GetSelectMode() {
-         var _ret_var = Efl.Ui.IMultiSelectableConcrete.NativeMethods.efl_ui_select_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IMultiSelectableConcrete.NativeMethods.efl_ui_select_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The mode type for children selection.</summary>
     /// <param name="mode">Type of selection of children</param>
     virtual public void SetSelectMode(Efl.Ui.SelectMode mode) {
-                                 Efl.Ui.IMultiSelectableConcrete.NativeMethods.efl_ui_select_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode);
+                                 Efl.Ui.IMultiSelectableConcrete.NativeMethods.efl_ui_select_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The content position</summary>
     /// <returns>The position is virtual value, (0, 0) starting at the top-left.</returns>
     virtual public Eina.Position2D GetContentPos() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1972,20 +1978,20 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="pos">The position is virtual value, (0, 0) starting at the top-left.</param>
     virtual public void SetContentPos(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The content size</summary>
     /// <returns>The content size in pixels.</returns>
     virtual public Eina.Size2D GetContentSize() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The viewport geometry</summary>
     /// <returns>It is absolute geometry.</returns>
     virtual public Eina.Rect GetViewportGeometry() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_viewport_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_viewport_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1994,7 +2000,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="horiz">Horizontal bounce policy.</param>
     /// <param name="vert">Vertical bounce policy.</param>
     virtual public void GetBounceEnabled(out bool horiz, out bool vert) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out horiz, out vert);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out horiz, out vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Bouncing behavior
@@ -2002,54 +2008,54 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="horiz">Horizontal bounce policy.</param>
     /// <param name="vert">Vertical bounce policy.</param>
     virtual public void SetBounceEnabled(bool horiz, bool vert) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),horiz, vert);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),horiz, vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
     /// <returns><c>true</c> if freeze, <c>false</c> otherwise</returns>
     virtual public bool GetScrollFreeze() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
     /// <param name="freeze"><c>true</c> if freeze, <c>false</c> otherwise</param>
     virtual public void SetScrollFreeze(bool freeze) {
-                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),freeze);
+                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),freeze);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
     /// <returns><c>true</c> if hold, <c>false</c> otherwise</returns>
     virtual public bool GetScrollHold() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
     /// <param name="hold"><c>true</c> if hold, <c>false</c> otherwise</param>
     virtual public void SetScrollHold(bool hold) {
-                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hold);
+                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hold);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Controls an infinite loop for a scroller.</summary>
     /// <param name="loop_h">The scrolling horizontal loop</param>
     /// <param name="loop_v">The Scrolling vertical loop</param>
     virtual public void GetLooping(out bool loop_h, out bool loop_v) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out loop_h, out loop_v);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out loop_h, out loop_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Controls an infinite loop for a scroller.</summary>
     /// <param name="loop_h">The scrolling horizontal loop</param>
     /// <param name="loop_v">The Scrolling vertical loop</param>
     virtual public void SetLooping(bool loop_h, bool loop_v) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),loop_h, loop_v);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),loop_h, loop_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Blocking of scrolling (per axis)
     /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
     /// <returns>Which axis (or axes) to block</returns>
     virtual public Efl.Ui.ScrollBlock GetMovementBlock() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2057,7 +2063,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
     /// <param name="block">Which axis (or axes) to block</param>
     virtual public void SetMovementBlock(Efl.Ui.ScrollBlock block) {
-                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),block);
+                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),block);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control scrolling gravity on the scrollable
@@ -2071,7 +2077,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="x">Horizontal scrolling gravity</param>
     /// <param name="y">Vertical scrolling gravity</param>
     virtual public void GetGravity(out double x, out double y) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control scrolling gravity on the scrollable
@@ -2085,7 +2091,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="x">Horizontal scrolling gravity</param>
     /// <param name="y">Vertical scrolling gravity</param>
     virtual public void SetGravity(double x, double y) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Prevent the scrollable from being smaller than the minimum size of the content.
@@ -2093,14 +2099,14 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="w">Whether to limit the minimum horizontal size</param>
     /// <param name="h">Whether to limit the minimum vertical size</param>
     virtual public void SetMatchContent(bool w, bool h) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_match_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),w, h);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_match_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),w, h);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the step size
     /// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
     /// <returns>The step size in pixels</returns>
     virtual public Eina.Position2D GetStepSize() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2109,7 +2115,7 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="step">The step size in pixels</param>
     virtual public void SetStepSize(Eina.Position2D step) {
          Eina.Position2D.NativeStruct _in_step = step;
-                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_step);
+                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_step);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Show a specific virtual region within the scroller content object.
@@ -2118,48 +2124,48 @@ public class Grid : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLayout, Efl.IPackLine
     /// <param name="animation">Whether to scroll with animation or not</param>
     virtual public void Scroll(Eina.Rect rect, bool animation) {
          Eina.Rect.NativeStruct _in_rect = rect;
-                                                Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_rect, animation);
+                                                Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_rect, animation);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar visibility policy</summary>
-    /// <param name="hbar">Horizontal scrollbar</param>
-    /// <param name="vbar">Vertical scrollbar</param>
+    /// <param name="hbar">Horizontal scrollbar.</param>
+    /// <param name="vbar">Vertical scrollbar.</param>
     virtual public void GetBarMode(out Efl.Ui.ScrollbarMode hbar, out Efl.Ui.ScrollbarMode vbar) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out hbar, out vbar);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out hbar, out vbar);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar visibility policy</summary>
-    /// <param name="hbar">Horizontal scrollbar</param>
-    /// <param name="vbar">Vertical scrollbar</param>
+    /// <param name="hbar">Horizontal scrollbar.</param>
+    /// <param name="vbar">Vertical scrollbar.</param>
     virtual public void SetBarMode(Efl.Ui.ScrollbarMode hbar, Efl.Ui.ScrollbarMode vbar) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hbar, vbar);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hbar, vbar);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar size. It is calculated based on viewport size-content sizes.</summary>
-    /// <param name="width">Value between 0.0 and 1.0</param>
-    /// <param name="height">Value between 0.0 and 1.0</param>
+    /// <param name="width">Value between 0.0 and 1.0.</param>
+    /// <param name="height">Value between 0.0 and 1.0.</param>
     virtual public void GetBarSize(out double width, out double height) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out width, out height);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out width, out height);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar position. It is calculated based on current position-maximum positions.</summary>
-    /// <param name="posx">Value between 0.0 and 1.0</param>
-    /// <param name="posy">Value between 0.0 and 1.0</param>
+    /// <param name="posx">Value between 0.0 and 1.0.</param>
+    /// <param name="posy">Value between 0.0 and 1.0.</param>
     virtual public void GetBarPosition(out double posx, out double posy) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out posx, out posy);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out posx, out posy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar position. It is calculated based on current position-maximum positions.</summary>
-    /// <param name="posx">Value between 0.0 and 1.0</param>
-    /// <param name="posy">Value between 0.0 and 1.0</param>
+    /// <param name="posx">Value between 0.0 and 1.0.</param>
+    /// <param name="posy">Value between 0.0 and 1.0.</param>
     virtual public void SetBarPosition(double posx, double posy) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),posx, posy);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),posx, posy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Update bar visibility.
-    /// The object will call this function whenever the bar need to be shown or hidden.</summary>
+    /// The object will call this function whenever the bar needs to be shown or hidden.</summary>
     virtual public void UpdateBarVisibility() {
-         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_visibility_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_visibility_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Property data of item size.</summary>

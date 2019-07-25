@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>EFL UI popup class</summary>
 [Efl.Ui.Popup.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager, Efl.Ui.Focus.ILayer, Efl.Ui.Focus.IManager
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         efl_ui_popup_class_get();
     /// <summary>Initializes a new instance of the <see cref="Popup"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Popup(Efl.Object parent
-            , System.String style = null) : base(efl_ui_popup_class_get(), typeof(Popup), parent)
+            , System.String style = null) : base(efl_ui_popup_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Popup(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Popup"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Popup(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Popup(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Popup"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Popup(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Popup(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -93,7 +99,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_POPUP_EVENT_BACKWALL_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -118,7 +124,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -145,7 +151,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_POPUP_EVENT_TIMEOUT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -171,7 +177,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -199,7 +205,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -226,7 +232,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -254,7 +260,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -281,7 +287,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -308,7 +314,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -334,7 +340,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -361,7 +367,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -387,7 +393,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -415,7 +421,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -442,7 +448,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -470,7 +476,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -509,39 +515,39 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <summary>Get the current popup alignment.</summary>
     /// <returns>Alignment type</returns>
     virtual public Efl.Ui.PopupAlign GetAlign() {
-         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set the popup alignment.</summary>
     /// <param name="type">Alignment type</param>
     virtual public void SetAlign(Efl.Ui.PopupAlign type) {
-                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the currently set timeout seconds.</summary>
     /// <returns>Timeout in seconds</returns>
     virtual public double GetTimeout() {
-         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set the timeout seconds. After timeout seconds, popup will be deleted automatically.</summary>
     /// <param name="time">Timeout in seconds</param>
     virtual public void SetTimeout(double time) {
-                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),time);
+                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>get the current popup size.</summary>
     virtual public Eina.Size2D GetPopupSize() {
-         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set the popup size.</summary>
     virtual public void SetPopupSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Ui.Popup.NativeMethods.efl_ui_popup_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Ui.Popup.NativeMethods.efl_ui_popup_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
@@ -549,7 +555,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -559,7 +565,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -567,7 +573,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -577,35 +583,35 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="root">The logical root object for focus.</param>
     /// <returns>The focus manager.</returns>
     virtual public Efl.Ui.Focus.IManager FocusManagerCreate(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Enable property</summary>
     /// <returns><c>true</c> to set enable the layer <c>false</c> to disable it</returns>
     virtual public bool GetEnable() {
-         var _ret_var = Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Enable property</summary>
     /// <param name="v"><c>true</c> to set enable the layer <c>false</c> to disable it</param>
     virtual public void SetEnable(bool v) {
-                                 Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),v);
+                                 Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),v);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Constructor for setting the behaviour of the layer</summary>
     /// <param name="enable_on_visible"><c>true</c> means layer will set itself once the inheriting widget becomes visible, <c>false</c> means the layer isn&apos;t enabled automatically</param>
     /// <param name="cycle">If <c>true</c> the focus will cycle in the layer, if <c>false</c></param>
     virtual public void GetBehaviour(out bool enable_on_visible, out bool cycle) {
-                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out enable_on_visible, out cycle);
+                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out enable_on_visible, out cycle);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Constructor for setting the behaviour of the layer</summary>
     /// <param name="enable_on_visible"><c>true</c> means layer will set itself once the inheriting widget becomes visible, <c>false</c> means the layer isn&apos;t enabled automatically</param>
     /// <param name="cycle">If <c>true</c> the focus will cycle in the layer, if <c>false</c></param>
     virtual public void SetBehaviour(bool enable_on_visible, bool cycle) {
-                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable_on_visible, cycle);
+                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable_on_visible, cycle);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The element which is currently focused by this manager
@@ -613,7 +619,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <returns>Currently focused element.</returns>
     virtual public Efl.Ui.Focus.IObject GetManagerFocus() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -622,7 +628,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <param name="focus">Currently focused element.</param>
     virtual public void SetManagerFocus(Efl.Ui.Focus.IObject focus) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),focus);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Add another manager to serve the move requests.
@@ -630,7 +636,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <returns>The redirect manager.</returns>
     virtual public Efl.Ui.Focus.IManager GetRedirect() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -639,7 +645,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <param name="redirect">The redirect manager.</param>
     virtual public void SetRedirect(Efl.Ui.Focus.IManager redirect) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),redirect);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),redirect);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The list of elements which are at the border of the graph.
@@ -647,9 +653,9 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <returns>An iterator over the border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Get all elements that are at the border of the viewport
     /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
@@ -658,16 +664,16 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <returns>The list of border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport) {
          Eina.Rect.NativeStruct _in_viewport = viewport;
-                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_viewport);
+                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Root node for all logical subtrees.
     /// This property can only be set once.
     /// (Since EFL 1.22)</summary>
     /// <returns>Will be registered into this manager object.</returns>
     virtual public Efl.Ui.Focus.IObject GetRoot() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -677,7 +683,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="root">Will be registered into this manager object.</param>
     /// <returns>If <c>true</c>, this is the root node</returns>
     virtual public bool SetRoot(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -687,7 +693,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="direction">The direction to move to.</param>
     /// <returns>The element which is now focused.</returns>
     virtual public Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -698,7 +704,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="logical">Wether you want to have a logical node as result or a non-logical. Note, in a <see cref="Efl.Ui.Focus.IManager.Move"/> call no logical node will get focus.</param>
     /// <returns>Object that would receive focus if moved in the given direction.</returns>
     virtual public Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical) {
-                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, child, logical);
+                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, child, logical);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -708,7 +714,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="root">Parent for returned child.</param>
     /// <returns>Child of passed parameter.</returns>
     virtual public Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -718,7 +724,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     virtual public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child);
         Eina.Error.RaiseIfUnhandledException();
                         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
         Marshal.FreeHGlobal(_ret_var);
@@ -729,7 +735,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// (Since EFL 1.22)</summary>
     /// <returns>Last object.</returns>
     virtual public Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -737,14 +743,14 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// You should focus another element immediately after calling this, in order to always have a focused object.
     /// (Since EFL 1.22)</summary>
     virtual public void ResetHistory() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Remove the uppermost history element, and focus the previous one.
     /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.
     /// (Since EFL 1.22)</summary>
     virtual public void PopHistoryStack() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Called when this manager is set as redirect.
@@ -753,21 +759,21 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     /// <param name="direction">The direction in which this should be setup.</param>
     /// <param name="entry">The object that caused this manager to be redirect.</param>
     virtual public void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry) {
-                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, entry);
+                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, entry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>This disables the cache invalidation when an object is moved.
     /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widets in the set do not change and the complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.
     /// (Since EFL 1.22)</summary>
     virtual public void FreezeDirtyLogic() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>This enables the cache invalidation when an object is moved.
     /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void DirtyLogicUnfreeze() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the current popup alignment.</summary>
@@ -2334,6 +2340,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Popup alignment type</summary>
+[Efl.Eo.BindingEntity]
 public enum PopupAlign
 {
 /// <summary>Popup not aligned</summary>

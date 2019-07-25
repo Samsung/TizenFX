@@ -12,6 +12,7 @@ namespace Canvas {
 /// <summary>Represents a Box created as part of a layout.
 /// Its lifetime is limited to one function call only, unless an extra reference is explicitly held.</summary>
 [Efl.Canvas.LayoutPartBox.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, Efl.IPackLinear, Efl.Ui.ILayoutOrientable, Efl.Ui.ILayoutOrientableReadonly
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -35,24 +36,29 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <summary>Initializes a new instance of the <see cref="LayoutPartBox"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LayoutPartBox(Efl.Object parent= null
-            ) : base(efl_canvas_layout_part_box_class_get(), typeof(LayoutPartBox), parent)
+            ) : base(efl_canvas_layout_part_box_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LayoutPartBox(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LayoutPartBox"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LayoutPartBox(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LayoutPartBox(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPartBox"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LayoutPartBox(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LayoutPartBox(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -62,7 +68,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -90,7 +96,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -117,7 +123,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -145,7 +151,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -170,22 +176,22 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -193,7 +199,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -201,7 +207,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
     virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -212,7 +218,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -223,7 +229,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="subobj">Object to pack at the beginning.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBegin(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -234,7 +240,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="subobj">Object to pack at the end.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackEnd(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -244,7 +250,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -254,7 +260,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -268,7 +274,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAt(Efl.Gfx.IEntity subobj, int index) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, index);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -279,7 +285,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="index">Index of the existing sub-object to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object contained at the given <c>index</c>.</returns>
     virtual public Efl.Gfx.IEntity GetPackContent(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -287,7 +293,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="subobj">An existing sub-object in this container.</param>
     /// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range 0 to (<c>count</c>-1).</returns>
     virtual public int GetPackIndex(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -298,7 +304,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// <param name="index">Index of the sub-object to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object if it could be removed.</returns>
     virtual public Efl.Gfx.IEntity PackUnpackAt(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -308,7 +314,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -318,7 +324,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the direction of a given widget.

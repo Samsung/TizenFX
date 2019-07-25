@@ -12,6 +12,7 @@ namespace Dnd {
 /// <param name="win">The window to create the objects relative to</param>
 /// <param name="drag_obj">The drag object</param>
 /// <param name="off">Offset from the icon position to the cursor</param>
+[Efl.Eo.BindingEntity]
 public delegate Efl.Canvas.Object DragIconCreate(Efl.Canvas.Object win, Efl.Canvas.Object drag_obj, out Eina.Position2D off);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Canvas.Object DragIconCreateInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object win, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object drag_obj,  out Eina.Position2D.NativeStruct off);
 internal class DragIconCreateWrapper : IDisposable
@@ -94,6 +95,7 @@ namespace Dnd {
 /// <param name="format">Data format</param>
 /// <param name="drag_data">Data</param>
 /// <param name="action">The drag action</param>
+[Efl.Eo.BindingEntity]
 public delegate void DragDataGet(Efl.Canvas.Object obj, out Efl.Ui.SelectionFormat format, ref Eina.RwSlice drag_data, out Efl.Ui.SelectionAction action);
 public delegate void DragDataGetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  out Efl.Ui.SelectionFormat format,  ref Eina.RwSlice drag_data,  out Efl.Ui.SelectionAction action);
 internal class DragDataGetWrapper : IDisposable
@@ -169,6 +171,7 @@ namespace Dnd {
 /// <param name="obj">The container object</param>
 /// <param name="pos">The coordinates to get item</param>
 /// <param name="posret">position relative to item (left (-1), middle (0), right (1)</param>
+[Efl.Eo.BindingEntity]
 public delegate Efl.Object ItemGet(Efl.Canvas.Object obj, Eina.Position2D pos, out Eina.Position2D posret);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Object ItemGetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Position2D.NativeStruct pos,  out Eina.Position2D.NativeStruct posret);
 internal class ItemGetWrapper : IDisposable
@@ -250,6 +253,7 @@ namespace Efl {
 namespace Dnd {
 
 /// <param name="obj">The container object</param>
+[Efl.Eo.BindingEntity]
 public delegate Eina.List<Efl.Canvas.Object> DragIconListCreate(Efl.Canvas.Object obj);
 public delegate System.IntPtr DragIconListCreateInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj);
 internal class DragIconListCreateWrapper : IDisposable
@@ -325,6 +329,7 @@ namespace Efl {
 namespace Dnd {
 
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct DragAccept
 {
     public bool Accepted;
@@ -381,7 +386,9 @@ namespace Efl {
 
 namespace Dnd {
 
+/// <summary>Dragging position information.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct DragPos
 {
     /// <summary>Evas Coordinate</summary>
@@ -464,7 +471,9 @@ namespace Efl {
 
 namespace Dnd {
 
+/// <summary>Drop information for a drag&amp;drop operation.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct DragItemContainerDrop
 {
     /// <summary>The item object</summary>

@@ -10,6 +10,7 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Type of a part in an Efl.Canvas.Layout object (edje object).</summary>
+[Efl.Eo.BindingEntity]
 public enum LayoutPartType
 {
 /// <summary>None type value, indicates invalid parts.</summary>
@@ -61,6 +62,7 @@ Last = 18,
 
 namespace Edje {
 
+[Efl.Eo.BindingEntity]
 public enum Cursor
 {
 Main = 0,
