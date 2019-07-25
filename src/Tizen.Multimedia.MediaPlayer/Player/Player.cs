@@ -397,7 +397,7 @@ namespace Tizen.Multimedia
                 NativePlayer.PrepareAsync(Handle, _prepareCallback, IntPtr.Zero).
                     ThrowIfFailed(this, "Failed to prepare the player");
 
-                await taskCompletionSource.Task;
+                await taskCompletionSource.Task.ConfigureAwait(false) ;
             }
             finally
             {
