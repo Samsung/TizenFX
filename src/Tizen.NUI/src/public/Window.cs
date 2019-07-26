@@ -71,57 +71,11 @@ namespace Tizen.NUI
         /// This creates an extra window in addition to the default main window<br />
         /// </summary>
         /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
-        /// <param name="isTransparent">Whether Window is transparent.</param>
+        /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name, bool isTransparent) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates a new Window.<br />
-        /// This creates an extra window in addition to the default main window<br />
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
-        /// <returns>A new Window.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name) : this(Interop.Window.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates a new Window.<br />
-        /// This creates an extra window in addition to the default main window<br />
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
-        /// <param name="className">The Window class name.</param>
-        /// <param name="isTransparent">Whether Window is transparent.</param>
-        /// <returns>A new Window.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(Interop.Window.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates a new Window.<br />
-        /// This creates an extra window in addition to the default main window<br />
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
-        /// <param name="className">The Window class name.</param>
-        /// <returns>A new Window.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name, string className) : this(Interop.Window.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
+        public Window(Rectangle windowPosition = null , bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
