@@ -19,15 +19,15 @@ Tizen.Applications.Notification.dll                #common #mobile #mobile-emul 
 Tizen.Applications.NotificationEventListener.dll   #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.PackageManager.dll              #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.Preference.dll                  #common #mobile #mobile-emul #tv #wearable
-Tizen.Applications.RemoteView.dll                  #mobile #mobile-emul #tv #wearable
+Tizen.Applications.RemoteView.dll                  #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.Service.dll                     #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.Shortcut.dll                    #mobile #mobile-emul
 Tizen.Applications.ToastMessage.dll                #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.UI.dll                          #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.WatchApplication.dll            #wearable
 Tizen.Applications.WatchfaceComplication.dll       #wearable
-Tizen.Applications.WidgetApplication.dll           #mobile #mobile-emul #tv #wearable
-Tizen.Applications.WidgetControl.dll               #mobile #mobile-emul #tv #wearable
+Tizen.Applications.WidgetApplication.dll           #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.WidgetControl.dll               #common #mobile #mobile-emul #tv #wearable
 Tizen.Content.Download.dll                         #common #mobile #mobile-emul #tv #wearable
 Tizen.Content.MediaContent.dll                     #common #mobile #mobile-emul #tv #wearable
 Tizen.Content.MimeType.dll                         #common #mobile #mobile-emul #tv #wearable
