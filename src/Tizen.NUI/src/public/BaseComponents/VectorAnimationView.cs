@@ -17,6 +17,9 @@
 
 using global::System;
 using System.ComponentModel;
+#if (NUI_DEBUG_ON)
+using tlog = Tizen.Log;
+#endif
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -35,6 +38,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VectorAnimationViewTBD() : base()
         {
+            tlog.Fatal(tag, $"<<< VectorAnimationView() constuctor objId={GetId()} >>>");
         }
 
         /// <summary>
@@ -45,6 +49,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VectorAnimationViewTBD(float scale) : base(scale)
         {
+            tlog.Fatal(tag, $"<<< VectorAnimationView(scale={scale}) constuctor objId={GetId()}>>>");
         }
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-            NUILog.Debug($"Dispose(type={type})!");
+            tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.Dispose(type={type})");
 
             if (type == DisposeTypes.Explicit)
             {
@@ -73,6 +78,8 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
 
             base.Dispose(type);
+
+            tlog.Fatal(tag, $"[{GetId()}] VectorAnimationView.Dispose() >>>");
         }
         #endregion Constructor, Distructor, Dispose
 
@@ -87,15 +94,18 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.ResourceURL SET");
+
                 if (value == mResourceURL)
                 {
-                    NUILog.Debug($"set same URL! just return!");
-                    return;
+                    tlog.Fatal(tag, $"set same URL! ");
+                    //return;
                 }
-                NUILog.Debug($"Object : {GetId()} URL : {ResourceURL} New URL: {value}");
                 mResourceURL = (value == null) ? "" : value;
                 URL = mResourceURL;
                 mIsMinMaxSet = false;
+
+                tlog.Fatal(tag, $" [{GetId()}] VectorAnimationView.ResourceURL SET mResourceURL={mResourceURL}) >>>");
             }
             get => mResourceURL;
         }
@@ -113,8 +123,13 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.RepeatCount SET");
+
                 mRepeatCount = (value < -1) ? -1 : value;
-                LoopCount = mRepeatCount;
+                //LoopCount = mRepeatCount;
+                LoopCount = (mRepeatCount < 0) ? mRepeatCount : mRepeatCount + 1;
+
+                tlog.Fatal(tag, $"[{GetId()}] VectorAnimationView.RepeatCount SET mRepeatCount={mRepeatCount} >>>");
             }
             get => mRepeatCount;
         }
@@ -129,6 +144,8 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.CurrentFrame SET");
+
                 if (mResourceURL == null || mResourceURL == String.Empty)
                 {
                     throw new InvalidOperationException("Resource Url not yet Set");
@@ -144,12 +161,14 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value = mFrameCount - 1;
                 }
-                NUILog.Debug($"Object : {GetId()} URL : {ResourceURL} New Frame: {value}, Old Frame : {mCurrentFrame}");
+
                 mCurrentFrame = value;
                 AnimationState = AnimationStates.Paused;
 
                 SetPlayRange(mCurrentFrame, mCurrentFrame);
                 CurrentFrameNumber = mCurrentFrame;
+
+                tlog.Fatal(tag, $" [{GetId()}] VectorAnimationView.CurrentFrame SET mCurrentFrame={mCurrentFrame}) >>>");
             }
             get => mCurrentFrame;
         }
@@ -163,8 +182,23 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.RepeatMode SET");
                 mRepeatMode = value;
-                LoopMode = (AnimatedVectorImageView.LoopModes)mRepeatMode;
+
+                switch (mRepeatMode)
+                {
+                    case RepeatModes.Restart:
+                        LoopMode = LoopingModeType.Restart;
+                        break;
+                    case RepeatModes.Reverse:
+                        LoopMode = LoopingModeType.AutoReverse;
+                        break;
+                    default:
+                        LoopMode = LoopingModeType.Restart;
+                        break;
+                }
+
+                tlog.Fatal(tag, $" [{GetId()}] VectorAnimationView.RepeatMode SET mRepeatMode={mRepeatMode}) >>>");
             }
             get => mRepeatMode;
         }
@@ -192,6 +226,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinAndMaxFrame(int minFrame, int maxFrame)
         {
+            tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.SetMinAndMaxFrame({minFrame}, {maxFrame})");
+
             mMinFrame = (minFrame) > 0 ? minFrame : 0;
             mMaxFrame = (maxFrame) > 0 ? maxFrame : 0;
             mIsMinMaxSet = true;
@@ -211,9 +247,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-            NUILog.Debug($"SetMinAndMaxFrame({mMinFrame}, {mMaxFrame})");
 
+            base.Stop();
             SetPlayRange(mMinFrame, mMaxFrame);
+            CurrentFrameNumber = mMinFrame;
+
+            tlog.Fatal(tag, $" [{GetId()}] VectorAnimationView.SetMinAndMaxFrame(m: {mMinFrame}, {mMaxFrame}) >>>");
         }
 
         /// <summary>
@@ -223,6 +262,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play()
         {
+            tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.Play()");
+
             if (mResourceURL == null || mResourceURL == String.Empty)
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
@@ -230,15 +271,21 @@ namespace Tizen.NUI.BaseComponents
 
             if (mIsMinMaxSet)
             {
+                //if(mRepeatCount > 0 )
+                //{
+                //    StopBehavior = StopBehaviorType.FirstFrame;
+                //}
                 SetPlayRange(mMinFrame, mMaxFrame);
             }
             else
             {
-                SetPlayRange(0, TotalFrameNumber - 1);
+                //SetPlayRange(0, TotalFrameNumber - 1);
             }
 
             base.Play();
             AnimationState = AnimationStates.Playing;
+
+            tlog.Fatal(tag, $" [{GetId()}] VectorAnimationView.Play(mIsMinMaxSet={mIsMinMaxSet}) >>>");
         }
 
         /// <summary>
@@ -248,6 +295,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Pause()
         {
+            tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.Pause() AnimationState={AnimationState}");
+
             if (mResourceURL == null || mResourceURL == String.Empty)
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
@@ -255,6 +304,8 @@ namespace Tizen.NUI.BaseComponents
 
             base.Pause();
             AnimationState = AnimationStates.Paused;
+
+            tlog.Fatal(tag, $" [{GetId()}] VectorAnimationView.Pause() >>>");
         }
 
         /// <summary>
@@ -269,6 +320,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop(EndActions endAction = EndActions.Cancel)
         {
+            tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.Stop({endAction})");
+
             if (mResourceURL == null || mResourceURL == String.Empty)
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
@@ -279,17 +332,38 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (endAction == EndActions.Discard)
+            if (mEndAction != endAction)
             {
-                CurrentFrame = mMinFrame;
-            }
-            else if (endAction == EndActions.StopFinal)
+                mEndAction = endAction;
+                switch (endAction)
             {
-                CurrentFrame = mMaxFrame;
+                    case EndActions.Cancel:
+                        StopBehavior = StopBehaviorType.CurrentFrame;
+                        break;
+                    case EndActions.Discard:
+                        StopBehavior = StopBehaviorType.FirstFrame;
+                        break;
+                    case EndActions.StopFinal:
+                        StopBehavior = StopBehaviorType.LastFrame;
+                        break;
+                    default:
+                        tlog.Fatal(tag, $" [{GetId()}] no endAction : default set");
+                        break;
             }
+            }
+            //if (endAction == EndActions.Discard)
+            //{
+            //    CurrentFrame = mMinFrame;
+            //}
+            //else if (endAction == EndActions.StopFinal)
+            //{
+            //    CurrentFrame = mMaxFrame;
+            //}
             AnimationState = AnimationStates.Stopped;
 
             base.Stop();
+
+            tlog.Fatal(tag, $" [{GetId()}] VectorAnimationView.Stop(endaction={endAction}) >>>");
         }
         #endregion Method
 
@@ -372,6 +446,9 @@ namespace Tizen.NUI.BaseComponents
         private int mMinFrame = -1, mMaxFrame = -1;
         private bool mIsMinMaxSet = false;
         private int mCurrentFrame = -1;
+        private EndActions mEndAction = EndActions.Cancel;
+
+        private string tag = "NUITEST";
         #endregion Private
     }
 }
