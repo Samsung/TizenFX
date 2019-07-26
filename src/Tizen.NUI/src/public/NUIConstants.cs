@@ -1851,6 +1851,28 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int TotalFrameNumber = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 7;
+
+        /// <summary>
+        /// @brief  The stop behavior the AnimatedVectorImageVisual will use.
+        /// @details Name "stopBehavior", Type StopBehavior::Type (Property::INTEGER)
+        /// @note Default value is StopBehavior::CURRENT_FRAME.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int StopBehavior = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 8;
+
+        /// <summary>
+        /// @brief  The looping mode the AnimatedVectorImageVisual will use.
+        /// @details Name "loopingMode", Type LoopingMode::Type (Property::INTEGER) 
+        /// @note Default value is LoopingMode::RESTART.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int LoopingMode = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 9;
     }
 
     /// <summary>
