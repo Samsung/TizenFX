@@ -18,7 +18,9 @@
 using global::System;
 using global::System.Runtime.InteropServices;
 using System.ComponentModel;
-using tizenlog = Tizen.Log;
+#if (NUI_DEBUG_ON)
+using tlog = Tizen.Log;
+#endif
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -37,12 +39,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView() : base()
         {
-            NUILog.Debug($"AnimatedVectorImageView() constructor!");
+            tlog.Fatal(tag, $"  <<< AnimatedVectorImageView() constructor GetId={GetId()} >>>");
             currentStates.url = "";
             currentStates.frame = -1;
             currentStates.loopCount = 0;
-            currentStates.loopMode = LoopModes.Forward;
-            //currentStates.stopEndAction = EndActions.Cancel;
+            currentStates.loopMode = LoopingModeType.Restart;
+            currentStates.stopEndAction = StopBehaviorType.CurrentFrame;
             currentStates.framePlayRangeMin = -1;
             currentStates.framePlayRangeMax = -1;
             currentStates.changed = false;
@@ -59,6 +61,7 @@ namespace Tizen.NUI.BaseComponents
         public AnimatedVectorImageView(float scale) : this()
         {
             currentStates.scale = scale;
+            tlog.Fatal(tag, $"  <<< AnimatedVectorImageView(scale={scale}) constructor GetId={GetId()} >>>");
         }
 
         /// <summary>
@@ -74,7 +77,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            NUILog.Debug($"Dispose(type={type})!");
+            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Dispose(type={type})!");
 
             if (type == DisposeTypes.Explicit)
             {
@@ -92,10 +95,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 VisualEventSignal().Disconnect(visualEventSignalCallback);
                 finishedEventHandler = null;
-                NUILog.Debug($"disconnect event signal");
+                tlog.Fatal(tag, $"disconnect event signal");
             }
 
             base.Dispose(type);
+            tlog.Fatal(tag, $"  [{GetId()}]AnimatedVectorImageView.Dispose(type={type}) >>>");
         }
         #endregion Constructor, Distructor, Dispose
 
@@ -110,23 +114,25 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                NUILog.Debug($"URL set! value={value}");
                 string ret = (value == null ? "" : value);
                 currentStates.url = ret;
                 currentStates.changed = true;
 
+                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.URL SET url={currentStates.url} >>>");
+
                 PropertyMap map = new PropertyMap();
                 map.Add(Visual.Property.Type, new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage))
                     .Add(ImageVisualProperty.URL, new PropertyValue(currentStates.url))
-                    .Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                //.Add(ImageVisualProperty.StopEndAction, new PropertyValue((int)currentStates.stopEndAction))
-                //.Add(ImageVisualProperty.LoopMode, new PropertyValue((int)currentStates.loopMode));
+                    .Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount))
+                    .Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction))
+                    .Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
                 Image = map;
             }
             get
             {
-                string ret = ResourceUrl;
-                NUILog.Debug($"URL get! base ret={ret}, Name={Name}");
+                string ret = currentStates.url;
+                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.URL GET");
+
                 PropertyMap map = Image;
                 if (map != null)
                 {
@@ -135,12 +141,12 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            NUILog.Debug($"gotten url={ret}");
+                            tlog.Fatal(tag, $"  gotten url={ret} >>>");
                             return ret;
                         }
                     }
                 }
-                tizenlog.Error(tag, "[ERROR] fail to get URL from dali");
+                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get URL from dali >>>");
                 return ret;
             }
         }
@@ -167,7 +173,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                     }
                 }
-                tizenlog.Error(tag, $"[ERROR] fail to get PlayState from dali");
+                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get PlayState from dali");
                 return (PlayStateType)ret;
             }
         }
@@ -190,13 +196,13 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            NUILog.Debug($"TotalFrameNumber get! ret={ret}");
+                            //tlog.Fatal(tag, $"TotalFrameNumber get! ret={ret}");
                             currentStates.totalFrame = ret;
                             return ret;
                         }
                     }
                 }
-                tizenlog.Error(tag, $"[ERROR] fail to get TotalFrameNumber from dali");
+                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get TotalFrameNumber from dali");
                 return ret;
             }
         }
@@ -211,7 +217,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 currentStates.frame = value;
-                NUILog.Debug($"set CurrentFrameNumber={currentStates.frame}");
+                tlog.Fatal(tag, $"   <<< [{GetId()}]AnimatedVectorImageView.CurrentFrameNumber SET frame={currentStates.frame} >>>");
                 DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
             }
             get
@@ -225,12 +231,12 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            NUILog.Debug($"CurrentFrameNumber get! val={ret}");
+                            //tlog.Fatal(tag, $"CurrentFrameNumber get! val={ret}");
                             return ret;
                         }
                     }
                 }
-                tizenlog.Error(tag, $"[ERROR] fail to get CurrentFrameNumber from dali!! ret={ret}");
+                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get CurrentFrameNumber from dali!! ret={ret}");
                 return ret;
             }
         }
@@ -240,43 +246,41 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LoopModes LoopMode
+        public LoopingModeType LoopMode
         {
             set
             {
-                currentStates.loopMode = (LoopModes)value;
+                currentStates.loopMode = (LoopingModeType)value;
                 currentStates.changed = true;
 
-
-                NUILog.Debug($"LoopMode set val={currentStates.loopMode}");
-                //PropertyMap map = new PropertyMap();
-                //map.Add(ImageVisualProperty.LoopMode, new PropertyValue((int)currentStates.loopMode));
-                //DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.LoopMode SET loopMode={currentStates.loopMode} >>>");
+                PropertyMap map = new PropertyMap();
+                map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
+                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
-                NUILog.Debug($"LoopMode get!");
+                //tlog.Fatal(tag, $"LoopMode get!");
                 PropertyMap map = base.Image;
                 var ret = 0;
-                //if (map != null)
-                //{
-                //    PropertyValue val = map.Find(ImageVisualProperty.LoopMode);
-                //    if (val != null)
-                //    {
-                //        if (val.Get(out ret))
-                //        {
-                //            NUILog.Debug($"gotten LoopMode={ret}");
-                //            if (ret != (int)currentStates.loopMode && ret > 0)
-                //            {
-                //                NUILog.Debug($"different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
-                //                return (int)currentStates.loopMode;
-                //            }
-                //            return ret;
-                //        }
-                //    }
-                //}
-                tizenlog.Error(tag, "[ERROR] fail to get loopMode from dali");
-                return (LoopModes)ret;
+                if (map != null)
+                {
+                    PropertyValue val = map.Find(ImageVisualProperty.LoopingMode);
+                    if (val != null)
+                    {
+                        if (val.Get(out ret))
+                        {
+                            //tlog.Fatal(tag, $"gotten LoopMode={ret}");
+                            if (ret != (int)currentStates.loopMode && ret > 0)
+                            {
+                                tlog.Fatal(tag, $" [ERROR][{GetId()}](AnimatedVectorImageView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
+                            }
+                            return (LoopingModeType)ret;
+                        }
+                    }
+                }
+                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get loopMode from dali");
+                return currentStates.loopMode;
             }
         }
 
@@ -291,14 +295,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 currentStates.changed = true;
                 currentStates.loopCount = value;
-                NUILog.Debug($"LoopCount set! currentStates.loopCount={currentStates.loopCount}");
+                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.LoopCount SET currentStates.loopCount={currentStates.loopCount} >>>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
                 DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
-                NUILog.Debug($"LoopCount get!");
+                //tlog.Fatal(tag, $"LoopCount get!");
                 PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
@@ -308,17 +312,60 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            NUILog.Debug($"gotten loop count={ret}");
+                            //tlog.Fatal(tag, $"gotten loop count={ret}");
                             if (ret != currentStates.loopCount && ret > 0)
                             {
-                                NUILog.Debug($"[ERR] different loop count! gotten={ret}, loopCount={currentStates.loopCount}");
+                                tlog.Fatal(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}");
                             }
                             return currentStates.loopCount;
                         }
                     }
                 }
-                tizenlog.Error(tag, $"[ERROR] fail to get LoopCount from dali  currentStates.loopCount={currentStates.loopCount}");
+                tlog.Error(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get LoopCount from dali  currentStates.loopCount={currentStates.loopCount}");
                 return currentStates.loopCount;
+            }
+        }
+
+        /// <summary>
+        /// Stop Behavior (Stop End Action)
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StopBehaviorType StopBehavior
+        {
+            set
+            {
+                currentStates.stopEndAction = (StopBehaviorType)value;
+                currentStates.changed = true;
+
+                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.StopBehavior SET val={currentStates.stopEndAction} >>>");
+                PropertyMap map = new PropertyMap();
+                map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
+                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            }
+            get
+            {
+                //tlog.Fatal(tag, $"StopBehavior get!");
+                PropertyMap map = base.Image;
+                var ret = 0;
+                if (map != null)
+                {
+                    PropertyValue val = map.Find(ImageVisualProperty.StopBehavior);
+                    if (val != null)
+                    {
+                        if (val.Get(out ret))
+                        {
+                            //tlog.Fatal(tag, $"gotten StopBehavior={ret}");
+                            if (ret != (int)currentStates.stopEndAction)
+                            {
+                                tlog.Fatal(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}");
+                            }
+                            return (StopBehaviorType)ret;
+                        }
+                    }
+                }
+                tlog.Error(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get StopBehavior from dali");
+                return currentStates.stopEndAction;
             }
         }
         #endregion Property
@@ -334,7 +381,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPlayRange(int startFrame, int endFrame)
         {
-            NUILog.Debug($"SetPlayRange(startFrame={startFrame}, endFrame={endFrame})");
+            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.SetPlayRange({startFrame}, {endFrame})");
 
             currentStates.changed = true;
             currentStates.framePlayRangeMin = startFrame;
@@ -347,7 +394,7 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
             DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            NUILog.Debug($"currentStates.framePlayRangeMin={currentStates.framePlayRangeMin}, currentStates.framePlayRangeMax={currentStates.framePlayRangeMax})");
+            tlog.Fatal(tag, $"  [{GetId()}](AnimatedVectorImageView) currentStates=({currentStates.framePlayRangeMin}, {currentStates.framePlayRangeMax}) >>>");
         }
 
         /// <summary>
@@ -357,7 +404,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play()
         {
-            NUILog.Debug($"Play() called!");
+            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Play() called >>>");
             debugPrint();
             base.Play();
         }
@@ -369,7 +416,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Pause()
         {
-            NUILog.Debug($"Pause() called!");
+            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Pause() called >>>");
             debugPrint();
             base.Pause();
         }
@@ -381,7 +428,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Stop()
         {
-            NUILog.Debug($"Stop()!");
+            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Stop() called >>>");
             debugPrint();
             base.Stop();
         }
@@ -400,7 +447,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (finishedEventHandler == null)
                 {
-                    NUILog.Debug($"Finished()! add!");
+                    tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Finished eventhandler added >>>");
                     visualEventSignalCallback = onVisualEventSignal;
                     VisualEventSignal().Connect(visualEventSignalCallback);
                 }
@@ -408,7 +455,7 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                NUILog.Debug($"Finished()! remove!");
+                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Finished eventhandler removed >>>");
                 finishedEventHandler -= value;
                 if (finishedEventHandler == null && visualEventSignalCallback != null)
                 {
@@ -470,6 +517,54 @@ namespace Tizen.NUI.BaseComponents
             [EditorBrowsable(EditorBrowsableState.Never)]
             Paused = 2
         }
+
+        /// <summary>
+        /// @brief Enumeration for what to do when the animation is stopped.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum StopBehaviorType
+        {
+            /// <summary>
+            /// When the animation is stopped, the current frame is shown.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            CurrentFrame,
+            /// <summary>
+            /// When the animation is stopped, the first frame is shown.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            FirstFrame,
+            /// <summary>
+            /// When the animation is stopped, the last frame is shown.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            LastFrame
+        }
+
+        /// <summary>
+        /// @brief Enumeration for what looping mode is in.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        public enum LoopingModeType
+        {
+            /// <summary>
+            /// When the animation arrives at the end in looping mode, the animation restarts from the beginning.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            Restart,
+            /// <summary>
+            /// When the animation arrives at the end in looping mode, the animation reverses direction and runs backwards again.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            AutoReverse
+        }
         #endregion Event, Enum, Struct, ETC
 
 
@@ -529,8 +624,8 @@ namespace Tizen.NUI.BaseComponents
             internal string url;
             internal int frame;
             internal int loopCount;
-            internal LoopModes loopMode;
-            //internal EndActions stopEndAction;
+            internal LoopingModeType loopMode;
+            internal StopBehaviorType stopEndAction;
             internal int framePlayRangeMin;
             internal int framePlayRangeMax;
             internal bool changed;
@@ -557,12 +652,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private const string tag = "NUI";
+        private const string tag = "NUITEST";
         private const int vectorImageVisualIndex = 10000000 + 1000 + 2;
         private event EventHandler finishedEventHandler;
 
         private void OnFinished()
         {
+            tlog.Fatal(tag, $"  <<<[{GetId()}] OnFinished() called >>>");
             finishedEventHandler?.Invoke(this, null);
         }
 
@@ -575,11 +671,11 @@ namespace Tizen.NUI.BaseComponents
                 View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
                 if (v != null)
                 {
-                    NUILog.Debug($"targetView is not null! name={v.Name}");
+                    tlog.Fatal(tag, $"targetView is not null! name={v.Name}");
                 }
                 else
                 {
-                    NUILog.Debug($"target is something created from dali");
+                    tlog.Fatal(tag, $"target is something created from dali");
                 }
             }
             VisualEventSignalArgs e = new VisualEventSignalArgs();
@@ -587,7 +683,7 @@ namespace Tizen.NUI.BaseComponents
             e.SignalId = signalId;
             visualEventSignalHandler?.Invoke(this, e);
 
-            NUILog.Debug($"@@ onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}");
+            tlog.Fatal(tag, $"  [{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -598,8 +694,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void debugPrint()
         {
-            NUILog.Debug($"======= currentStates");
-            NUILog.Debug($"url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin={currentStates.framePlayRangeMin}, framePlayRangeMax={currentStates.framePlayRangeMax} \n");
+            tlog.Fatal(tag, $"  <<< [{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
+            tlog.Fatal(tag, $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopMode}, LoopCount={LoopCount} >>>");
         }
         #endregion Private
     }
