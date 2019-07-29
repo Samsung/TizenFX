@@ -15,10 +15,14 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
-    internal enum DefaultItemLayoutProperty
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum DefaultItemLayoutProperty
     {
         TYPE = 0,
         ITEM_SIZE,

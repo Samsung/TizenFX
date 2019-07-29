@@ -115,18 +115,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return selectButtonAttributes?.CheckImageAttributes?.ResourceUrl?.All;
+                return selectButtonAttributes?.CheckImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateCheckImageAttributes();
-                    if (selectButtonAttributes.CheckImageAttributes.ResourceUrl == null)
+                    if (selectButtonAttributes.CheckImageAttributes.ResourceURL == null)
                     {
-                        selectButtonAttributes.CheckImageAttributes.ResourceUrl = new StringSelector();
+                        selectButtonAttributes.CheckImageAttributes.ResourceURL = new StringSelector();
                     }
-                    selectButtonAttributes.CheckImageAttributes.ResourceUrl.All = value;
+                    selectButtonAttributes.CheckImageAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
@@ -142,14 +142,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return selectButtonAttributes?.CheckImageAttributes?.ResourceUrl;
+                return selectButtonAttributes?.CheckImageAttributes?.ResourceURL;
             }
             set
             {
                 if (value != null)
                 {
                     CreateCheckImageAttributes();
-                    selectButtonAttributes.CheckImageAttributes.ResourceUrl = value.Clone() as StringSelector;
+                    selectButtonAttributes.CheckImageAttributes.ResourceURL = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -232,18 +232,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return selectButtonAttributes?.CheckBackgroundImageAttributes?.ResourceUrl?.All;
+                return selectButtonAttributes?.CheckBackgroundImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateCheckBackgroundImageAttributes();
-                    if (selectButtonAttributes.CheckBackgroundImageAttributes.ResourceUrl == null)
+                    if (selectButtonAttributes.CheckBackgroundImageAttributes.ResourceURL == null)
                     {
-                        selectButtonAttributes.CheckBackgroundImageAttributes.ResourceUrl = new StringSelector();
+                        selectButtonAttributes.CheckBackgroundImageAttributes.ResourceURL = new StringSelector();
                     }
-                    selectButtonAttributes.CheckBackgroundImageAttributes.ResourceUrl.All = value;
+                    selectButtonAttributes.CheckBackgroundImageAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
@@ -259,14 +259,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return selectButtonAttributes?.CheckBackgroundImageAttributes?.ResourceUrl;
+                return selectButtonAttributes?.CheckBackgroundImageAttributes?.ResourceURL;
             }
             set
             {
                 if (value != null)
                 {
                     CreateCheckBackgroundImageAttributes();
-                    selectButtonAttributes.CheckBackgroundImageAttributes.ResourceUrl = value.Clone() as StringSelector;
+                    selectButtonAttributes.CheckBackgroundImageAttributes.ResourceURL = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -329,18 +329,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return selectButtonAttributes?.CheckShadowImageAttributes?.ResourceUrl?.All;
+                return selectButtonAttributes?.CheckShadowImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateCheckShadowImageAttributes();
-                    if (selectButtonAttributes.CheckShadowImageAttributes.ResourceUrl == null)
+                    if (selectButtonAttributes.CheckShadowImageAttributes.ResourceURL == null)
                     {
-                        selectButtonAttributes.CheckShadowImageAttributes.ResourceUrl = new StringSelector();
+                        selectButtonAttributes.CheckShadowImageAttributes.ResourceURL = new StringSelector();
                     }
-                    selectButtonAttributes.CheckShadowImageAttributes.ResourceUrl.All = value;
+                    selectButtonAttributes.CheckShadowImageAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
@@ -356,14 +356,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return selectButtonAttributes?.CheckShadowImageAttributes?.ResourceUrl;
+                return selectButtonAttributes?.CheckShadowImageAttributes?.ResourceURL;
             }
             set
             {
                 if (value != null)
                 {
                     CreateCheckShadowImageAttributes();
-                    selectButtonAttributes.CheckShadowImageAttributes.ResourceUrl = value.Clone() as StringSelector;
+                    selectButtonAttributes.CheckShadowImageAttributes.ResourceURL = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }

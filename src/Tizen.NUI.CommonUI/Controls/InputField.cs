@@ -351,18 +351,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return inputFieldAttrs.BackgroundImageAttributes?.ResourceUrl?.All;
+                return inputFieldAttrs.BackgroundImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateBackgroundAttributes();
-                    if (inputFieldAttrs.BackgroundImageAttributes.ResourceUrl == null)
+                    if (inputFieldAttrs.BackgroundImageAttributes.ResourceURL == null)
                     {
-                        inputFieldAttrs.BackgroundImageAttributes.ResourceUrl = new StringSelector();
+                        inputFieldAttrs.BackgroundImageAttributes.ResourceURL = new StringSelector();
                     }
-                    inputFieldAttrs.BackgroundImageAttributes.ResourceUrl.All = value;
+                    inputFieldAttrs.BackgroundImageAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }

@@ -241,6 +241,12 @@ namespace Tizen.NUI
 
             // Populate all members of "e" (DetectedEventArgs) with real data
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+
+            if (null == e.View)
+            {
+                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+            }
+
             e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
 
             if (_tapGestureEventHandler != null)
