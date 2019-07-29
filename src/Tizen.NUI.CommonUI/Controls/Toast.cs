@@ -212,13 +212,16 @@ namespace Tizen.NUI.CommonUI
                 if (null != value)
                 {
                     CreateBackgroundAttributes();
-                    if (null == toastAttributes.BackgroundImageAttributes?.ResourceUrl)
-                    {
-                        toastAttributes.BackgroundImageAttributes.ResourceUrl = new StringSelector();
-                    }
-
-                    toastAttributes.BackgroundImageAttributes.ResourceUrl.All = value;
-                    SetToastBackground();
+					if (toastAttributes.BackgroundImageAttributes != null)
+					{
+                        if (null == toastAttributes.BackgroundImageAttributes?.ResourceUrl)
+                        {
+                            toastAttributes.BackgroundImageAttributes.ResourceUrl = new StringSelector();
+                        }
+    
+                        toastAttributes.BackgroundImageAttributes.ResourceUrl.All = value;
+                        SetToastBackground();
+					}
                 }
             }
         }
@@ -240,12 +243,15 @@ namespace Tizen.NUI.CommonUI
                 if (null != value)
                 {
                     CreateBackgroundAttributes();
-                    if (null == toastAttributes.BackgroundImageAttributes.Border)
+                    if (toastAttributes.BackgroundImageAttributes != null)
                     {
-                        toastAttributes.BackgroundImageAttributes.Border = new RectangleSelector();
+                        if (null == toastAttributes.BackgroundImageAttributes.Border)
+                        {
+                            toastAttributes.BackgroundImageAttributes.Border = new RectangleSelector();
+                        }
+                        toastAttributes.BackgroundImageAttributes.Border.All = value;
+                        SetToastBackground();
                     }
-                    toastAttributes.BackgroundImageAttributes.Border.All = value;
-                    SetToastBackground();
                 }
             }
         }
@@ -532,23 +538,29 @@ namespace Tizen.NUI.CommonUI
 
         private void SetToastText()
         {
-            for (int i = 0; i < textLabels?.Length; i++)
+            if (textLabels != null)
             {
-                if (null != textLabels[i])
+                for (int i = 0; i < textLabels?.Length; i++)
                 {
-                    this.Remove(textLabels[i]);
-                    textLabels[i].Dispose();
-                    textLabels[i] = null;
+                    if (null != textLabels[i])
+                    {
+                        this.Remove(textLabels[i]);
+                        textLabels[i].Dispose();
+                        textLabels[i] = null;
+                    }
                 }
             }
 
             textLabels = new TextLabel[textArray.Length];
-            for (int i = 0; i < textArray.Length; i++)
+            if (textLabels != null)
             {
-                textLabels[i] = new TextLabel();
-                textLabels[i].Text = textArray[i];
-                textLabels[i].BackgroundColor = Color.Blue;
-                this.Add(textLabels[i]);
+                for (int i = 0; i < textArray.Length; i++)
+                {
+                    textLabels[i] = new TextLabel();
+                    textLabels[i].Text = textArray[i];
+                    textLabels[i].BackgroundColor = Color.Blue;
+                    this.Add(textLabels[i]);
+                }
             }
         }
 

@@ -569,7 +569,7 @@ namespace Tizen.NUI.CommonUI
                     int w = Size2D.Width;
                     for (int i = 0; i < totalNum; i++)
                     {
-                        preW = itemList[i].TextItem.NaturalSize2D.Width;
+                        preW = (itemList[i].TextItem.NaturalSize2D != null ? itemList[i].TextItem.NaturalSize2D.Width : 0);
                         itemList[i].Position2D.X = w - preW - preX;
                         itemList[i].Size2D.Width = preW;
                         preX = w - itemList[i].Position2D.X + itemGap;

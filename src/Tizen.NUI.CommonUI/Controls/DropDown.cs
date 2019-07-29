@@ -2021,14 +2021,20 @@ namespace Tizen.NUI.CommonUI
                     {
                         listItemView.IconResourceUrl = listItemData.IconResourceUrl;
                         listItemView.IconSize2D = listItemData.IconSize2D;
-                        listItemView.IconPosition2D = new Position2D(listItemData.IconPosition2D.X, (listItemView.Size2D.Height - listItemView.IconSize2D.Height) / 2);
+                        if (listItemView.IconSize2D != null)
+                        {
+                            listItemView.IconPosition2D = new Position2D(listItemData.IconPosition2D.X, (listItemView.Size2D.Height - listItemView.IconSize2D.Height) / 2);
+                        }
                     }
 
                     if (listItemData.CheckImageResourceUrl != null)
                     {
                         listItemView.CheckResourceUrl = listItemData.CheckImageResourceUrl;
                         listItemView.CheckImageSize2D = listItemData.CheckImageSize2D;
-                        listItemView.CheckPosition2D = new Position2D(listItemView.Size2D.Width - listItemData.CheckImageRightSpace - listItemView.CheckImageSize2D.Width, (listItemView.Size2D.Height - listItemView.CheckImageSize2D.Height) / 2);
+                        if (listItemView.CheckImageSize2D != null)
+                        {
+                            listItemView.CheckPosition2D = new Position2D(listItemView.Size2D.Width - listItemData.CheckImageRightSpace - listItemView.CheckImageSize2D.Width, (listItemView.Size2D.Height - listItemView.CheckImageSize2D.Height) / 2);
+                        }
                     }
 
                     listItemView.IsSelected = listItemData.IsSelected;

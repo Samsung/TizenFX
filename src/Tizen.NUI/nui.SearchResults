@@ -1,0 +1,33 @@
+---- LayoutParamPolicies Matches (32 in 5 files) ----
+LayoutController.cs (src\internal\layouting):                else if (root.WidthSpecification == LayoutParamPolicies.MatchParent)
+LayoutController.cs (src\internal\layouting):                else if (root.HeightSpecification == LayoutParamPolicies.MatchParent)
+LayoutGroup.cs (src\internal\layouting):                if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
+LayoutGroup.cs (src\internal\layouting):                else if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
+LayoutGroup.cs (src\internal\layouting):                if (childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
+LayoutGroup.cs (src\internal\layouting):                else if (childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
+LayoutGroup.cs (src\internal\layouting):                if ((childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent))
+LayoutGroup.cs (src\internal\layouting):                else if (childDimension.AsRoundedValue() == (LayoutParamPolicies.WrapContent))
+LayoutItem.cs (src\internal\layouting):        /// 2. If the owner's View.LayoutWidthSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
+LayoutItem.cs (src\internal\layouting):        /// 3. If the owner's View.LayoutWidthSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent width takes precedence over the minimum width.<br />
+LayoutItem.cs (src\internal\layouting):        /// 2. If the owner's View.LayoutHeightSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
+LayoutItem.cs (src\internal\layouting):        /// 3. If the owner's View.LayoutHeightSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent height takes precedence over the minimum height.<br />
+LinearLayout.cs (src\internal\layouting):                                                                    new LayoutLength(LayoutParamPolicies.WrapContent) );
+LinearLayout.cs (src\internal\layouting):                if(heightMode != MeasureSpecification.ModeType.Exactly && (int)childDesiredHeight.AsRoundedValue() == LayoutParamPolicies.MatchParent)
+LinearLayout.cs (src\internal\layouting):                allFillParent = ( allFillParent && childDesiredHeight.AsRoundedValue() == LayoutParamPolicies.MatchParent );
+LinearLayout.cs (src\internal\layouting):                                                                      new LayoutLength(LayoutParamPolicies.WrapContent) );
+LinearLayout.cs (src\internal\layouting):                if( widthMode != MeasureSpecification.ModeType.Exactly && childDesiredWidth ==  new LayoutLength(LayoutParamPolicies.MatchParent) )
+LinearLayout.cs (src\internal\layouting):                allFillParent = (allFillParent && (childDesiredWidth == new LayoutLength(LayoutParamPolicies.MatchParent)));
+LinearLayout.cs (src\internal\layouting):                if (desiredHeight.AsRoundedValue() == LayoutParamPolicies.MatchParent)
+LinearLayout.cs (src\internal\layouting):                    if( desiredWidth.AsRoundedValue()  == LayoutParamPolicies.MatchParent)
+View.cs (src\public\basecomponents):    public static class LayoutParamPolicies
+View.cs (src\public\basecomponents):    /// [Draft] Replaced by LayoutParamPolicies, will be removed once occurrences replaced.
+View.cs (src\public\basecomponents):        MatchParent = LayoutParamPolicies.MatchParent,
+View.cs (src\public\basecomponents):        WrapContent = LayoutParamPolicies.WrapContent,
+View.cs (src\public\basecomponents):        private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
+View.cs (src\public\basecomponents):        private int _heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
+View.cs (src\public\basecomponents):                        WidthSpecification = LayoutParamPolicies.WrapContent;
+View.cs (src\public\basecomponents):                        WidthSpecification = LayoutParamPolicies.MatchParent;
+View.cs (src\public\basecomponents):                        WidthSpecification = LayoutParamPolicies.WrapContent;
+View.cs (src\public\basecomponents):                        HeightSpecification = LayoutParamPolicies.WrapContent;
+View.cs (src\public\basecomponents):                        HeightSpecification = LayoutParamPolicies.MatchParent;
+View.cs (src\public\basecomponents):                        HeightSpecification = LayoutParamPolicies.WrapContent;
