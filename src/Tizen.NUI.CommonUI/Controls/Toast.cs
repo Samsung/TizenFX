@@ -205,7 +205,7 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return toastAttributes.BackgroundImageAttributes?.ResourceUrl?.All;
+                return toastAttributes.BackgroundImageAttributes?.ResourceURL?.All;
             }
             set
             {
@@ -214,12 +214,12 @@ namespace Tizen.NUI.CommonUI
                     CreateBackgroundAttributes();
 					if (toastAttributes.BackgroundImageAttributes != null)
 					{
-                        if (null == toastAttributes.BackgroundImageAttributes?.ResourceUrl)
+                        if (null == toastAttributes.BackgroundImageAttributes?.ResourceURL)
                         {
-                            toastAttributes.BackgroundImageAttributes.ResourceUrl = new StringSelector();
+                            toastAttributes.BackgroundImageAttributes.ResourceURL = new StringSelector();
                         }
     
-                        toastAttributes.BackgroundImageAttributes.ResourceUrl.All = value;
+                        toastAttributes.BackgroundImageAttributes.ResourceURL.All = value;
                         SetToastBackground();
 					}
                 }
@@ -566,9 +566,9 @@ namespace Tizen.NUI.CommonUI
 
         private void SetToastBackground()
         {
-            if (null != toastAttributes?.BackgroundImageAttributes?.ResourceUrl)
+            if (null != toastAttributes?.BackgroundImageAttributes?.ResourceURL)
             {
-                toastBackground.URL = toastAttributes.BackgroundImageAttributes.ResourceUrl.All;
+                toastBackground.URL = toastAttributes.BackgroundImageAttributes.ResourceURL.All;
             }
             if (null != toastAttributes?.BackgroundImageAttributes?.Border)
             {

@@ -1275,7 +1275,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StyleProperty = BindableProperty.Create("Style", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
+        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
 
         /// <summary>
         /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
@@ -3488,11 +3488,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Style)GetValue(StyleProperty);
+                return (Style)GetValue(XamlStyleProperty);
             }
             set
             {
-                SetValue(StyleProperty, value);
+                SetValue(XamlStyleProperty, value);
             }
         }
 
@@ -5020,7 +5020,9 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void SetColorMode(ColorMode colorMode)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetColorMode(ColorMode colorMode)
         {
             Interop.ActorInternal.Actor_SetColorMode(swigCPtr, (int)colorMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -5334,6 +5336,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
+
+            //_mergedStyle = null;
 
             if (type == DisposeTypes.Explicit)
             {

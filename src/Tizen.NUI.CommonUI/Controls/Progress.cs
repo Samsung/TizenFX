@@ -123,16 +123,16 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return progressAttrs.TrackImageAttributes?.ResourceUrl?.All;
+                return progressAttrs.TrackImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 CreateTrackImageAttributes();
-                if (progressAttrs.TrackImageAttributes.ResourceUrl == null)
+                if (progressAttrs.TrackImageAttributes.ResourceURL == null)
                 {
-                    progressAttrs.TrackImageAttributes.ResourceUrl = new StringSelector();
+                    progressAttrs.TrackImageAttributes.ResourceURL = new StringSelector();
                 }
-                progressAttrs.TrackImageAttributes.ResourceUrl.All = value;
+                progressAttrs.TrackImageAttributes.ResourceURL.All = value;
                 RelayoutRequest();
             }
         }
@@ -147,16 +147,16 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return progressAttrs.ProgressImageAttributes?.ResourceUrl?.All;
+                return progressAttrs.ProgressImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 CreateProgressImageAttributes();
-                if (progressAttrs.ProgressImageAttributes.ResourceUrl == null)
+                if (progressAttrs.ProgressImageAttributes.ResourceURL == null)
                 {
-                    progressAttrs.ProgressImageAttributes.ResourceUrl = new StringSelector();
+                    progressAttrs.ProgressImageAttributes.ResourceURL = new StringSelector();
                 }
-                progressAttrs.ProgressImageAttributes.ResourceUrl.All = value;
+                progressAttrs.ProgressImageAttributes.ResourceURL.All = value;
                 RelayoutRequest();
             }
         }
@@ -171,16 +171,16 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return progressAttrs.BufferImageAttributes?.ResourceUrl?.All;
+                return progressAttrs.BufferImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 CreateBufferImageAttributes();
-                if (progressAttrs.BufferImageAttributes.ResourceUrl == null)
+                if (progressAttrs.BufferImageAttributes.ResourceURL == null)
                 {
-                    progressAttrs.BufferImageAttributes.ResourceUrl = new StringSelector();
+                    progressAttrs.BufferImageAttributes.ResourceURL = new StringSelector();
                 }
-                progressAttrs.BufferImageAttributes.ResourceUrl.All = value;
+                progressAttrs.BufferImageAttributes.ResourceURL.All = value;
                 RelayoutRequest();
             }
         }

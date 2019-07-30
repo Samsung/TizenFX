@@ -1318,6 +1318,26 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Set ruler X
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRulerX(RulerPtr ruler)
+        {
+            Interop.ScrollView.ScrollView_SetRulerX(swigCPtr, RulerPtr.getCPtr(ruler));
+        }
+
+        /// <summary>
+        /// Set ruler Y
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRulerY(RulerPtr ruler)
+        {
+            Interop.ScrollView.ScrollView_SetRulerY(swigCPtr, RulerPtr.getCPtr(ruler));
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollView obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;

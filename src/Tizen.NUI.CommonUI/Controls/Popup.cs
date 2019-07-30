@@ -151,18 +151,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return popupAttributes?.ShadowImageAttributes?.ResourceUrl?.All;
+                return popupAttributes?.ShadowImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateShadowAttributes();
-                    if (popupAttributes.ShadowImageAttributes.ResourceUrl == null)
+                    if (popupAttributes.ShadowImageAttributes.ResourceURL == null)
                     {
-                        popupAttributes.ShadowImageAttributes.ResourceUrl = new StringSelector();
+                        popupAttributes.ShadowImageAttributes.ResourceURL = new StringSelector();
                     }
-                    popupAttributes.ShadowImageAttributes.ResourceUrl.All = value;
+                    popupAttributes.ShadowImageAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
@@ -205,18 +205,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return popupAttributes?.BackgroundImageAttributes?.ResourceUrl?.All;
+                return popupAttributes?.BackgroundImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateBackgroundAttributes();
-                    if (popupAttributes.BackgroundImageAttributes.ResourceUrl == null)
+                    if (popupAttributes.BackgroundImageAttributes.ResourceURL == null)
                     {
-                        popupAttributes.BackgroundImageAttributes.ResourceUrl = new StringSelector();
+                        popupAttributes.BackgroundImageAttributes.ResourceURL = new StringSelector();
                     }
-                    popupAttributes.BackgroundImageAttributes.ResourceUrl.All = value;
+                    popupAttributes.BackgroundImageAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
@@ -544,18 +544,18 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return popupAttributes?.ButtonAttributes?.BackgroundImageAttributes?.ResourceUrl?.All;
+                return popupAttributes?.ButtonAttributes?.BackgroundImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateButtonAttributes();
-                    if (popupAttributes.ButtonAttributes.BackgroundImageAttributes.ResourceUrl == null)
+                    if (popupAttributes.ButtonAttributes.BackgroundImageAttributes.ResourceURL == null)
                     {
-                        popupAttributes.ButtonAttributes.BackgroundImageAttributes.ResourceUrl = new StringSelector();
+                        popupAttributes.ButtonAttributes.BackgroundImageAttributes.ResourceURL = new StringSelector();
                     }
-                    popupAttributes.ButtonAttributes.BackgroundImageAttributes.ResourceUrl.All = value;
+                    popupAttributes.ButtonAttributes.BackgroundImageAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
