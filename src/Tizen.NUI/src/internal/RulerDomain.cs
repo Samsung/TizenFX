@@ -15,10 +15,14 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
-    internal class RulerDomain : global::System.IDisposable
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class RulerDomain : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
@@ -49,6 +53,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -101,16 +107,22 @@ namespace Tizen.NUI
         }
 
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RulerDomain(float min, float max, bool enabled) : this(Interop.Ruler.new_RulerDomain__SWIG_0(min, max, enabled), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RulerDomain(float min, float max) : this(Interop.Ruler.new_RulerDomain__SWIG_1(min, max), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float min
         {
             set
@@ -126,6 +138,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float max
         {
             set
@@ -141,6 +155,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool enabled
         {
             set
@@ -156,6 +172,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length, float scale)
         {
             float ret = Interop.Ruler.RulerDomain_Clamp__SWIG_0(swigCPtr, x, length, scale);
@@ -163,6 +181,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x, float length)
         {
             float ret = Interop.Ruler.RulerDomain_Clamp__SWIG_1(swigCPtr, x, length);
@@ -170,6 +190,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Clamp(float x)
         {
             float ret = Interop.Ruler.RulerDomain_Clamp__SWIG_2(swigCPtr, x);
@@ -184,6 +206,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetSize()
         {
             float ret = Interop.Ruler.RulerDomain_GetSize(swigCPtr);

@@ -683,7 +683,12 @@ namespace Tizen.NUI.UIComponents
         /// <returns>The object of the slider type.</returns>
         internal static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
         {
-            Slider ret = new Slider(cPtr, false);
+            Slider ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Slider;
+            if (null == ret)
+            {
+                ret = Registry.GetManagedBaseHandleFromRefObject(cPtr) as Slider;
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

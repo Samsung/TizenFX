@@ -175,9 +175,9 @@ namespace Tizen.NUI.CommonUI
             ImageAttributes imageAttrs = attrs as ImageAttributes;
             if (image != null && imageAttrs != null)
             {
-                if (imageAttrs.ResourceUrl?.GetValue(State) != null)
+                if (imageAttrs.ResourceURL?.GetValue(State) != null)
                 {
-                    image.ResourceUrl = imageAttrs.ResourceUrl.GetValue(State);
+                    image.ResourceUrl = imageAttrs.ResourceURL.GetValue(State);
                 }
                 if (imageAttrs.Border?.GetValue(State) != null)
                 {

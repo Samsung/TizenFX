@@ -1454,9 +1454,9 @@ namespace Tizen.NUI.CommonUI
                 else if (mScrollAni.State == Animation.States.Playing)
                 {
                     //StopScroll();
-                    mScrollAni.Stop();
+                    mScrollAni.Stop(Animation.EndActions.StopFinal);
                 }
-                mScrollAni.Duration = 2000;
+                mScrollAni.Duration = 500;
                 mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
 
                 mScrollAni.Clear();
@@ -1504,9 +1504,9 @@ namespace Tizen.NUI.CommonUI
                 else if (mScrollAni.State == Animation.States.Playing)
                 {
                     //StopScroll();
-                    mScrollAni.Stop();
+                    mScrollAni.Stop(Animation.EndActions.StopFinal);
                 }
-                mScrollAni.Duration = 2000;
+                mScrollAni.Duration = 500;
                 mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
 
                 mScrollAni.Clear();
@@ -1731,7 +1731,7 @@ namespace Tizen.NUI.CommonUI
             {
                 if (mScrollAni != null && mScrollAni.State == Animation.States.Playing)
                 {
-                    mScrollAni.Stop();
+                    mScrollAni.Stop(Animation.EndActions.StopFinal);
                     mScrollAni.Clear();
                     OnScrollAnimationFinished(mScrollAni, null);
                 }

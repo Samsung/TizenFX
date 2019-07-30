@@ -355,14 +355,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return sliderAttrs.ThumbBackgroundAttributes?.ResourceUrl;
+                return sliderAttrs.ThumbBackgroundAttributes?.ResourceURL;
             }
             set
             {
                 CreateThumbBackgroundAttributes();
                 if (value != null)
                 {
-                    sliderAttrs.ThumbBackgroundAttributes.ResourceUrl = value.Clone() as StringSelector;
+                    sliderAttrs.ThumbBackgroundAttributes.ResourceURL = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -378,16 +378,16 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return sliderAttrs.ThumbAttributes?.ResourceUrl?.All;
+                return sliderAttrs.ThumbAttributes?.ResourceURL?.All;
             }
             set
             {
                 CreateThumbAttributes();
-                if (sliderAttrs.ThumbAttributes.ResourceUrl == null)
+                if (sliderAttrs.ThumbAttributes.ResourceURL == null)
                 {
-                    sliderAttrs.ThumbAttributes.ResourceUrl = new StringSelector(); 
+                    sliderAttrs.ThumbAttributes.ResourceURL = new StringSelector(); 
                 }
-                sliderAttrs.ThumbAttributes.ResourceUrl.All = value;
+                sliderAttrs.ThumbAttributes.ResourceURL.All = value;
                 RelayoutRequest();
             }
         }
@@ -402,14 +402,14 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return sliderAttrs.ThumbAttributes?.ResourceUrl;
+                return sliderAttrs.ThumbAttributes?.ResourceURL;
             }
             set
             {
                 CreateThumbAttributes();
                 if (value != null)
                 {
-                    sliderAttrs.ThumbAttributes.ResourceUrl = value.Clone() as StringSelector;
+                    sliderAttrs.ThumbAttributes.ResourceURL = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -513,16 +513,16 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return sliderAttrs.LowIndicatorImageAttributes?.ResourceUrl?.All;
+                return sliderAttrs.LowIndicatorImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 CreateLowIndicatorImageAttributes();
-                if (sliderAttrs.LowIndicatorImageAttributes.ResourceUrl == null)
+                if (sliderAttrs.LowIndicatorImageAttributes.ResourceURL == null)
                 {
-                    sliderAttrs.LowIndicatorImageAttributes.ResourceUrl = new StringSelector();
+                    sliderAttrs.LowIndicatorImageAttributes.ResourceURL = new StringSelector();
                 }
-                sliderAttrs.LowIndicatorImageAttributes.ResourceUrl.All = value;
+                sliderAttrs.LowIndicatorImageAttributes.ResourceURL.All = value;
                 RelayoutRequest();
             }
         }
@@ -537,16 +537,16 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return sliderAttrs.HighIndicatorImageAttributes?.ResourceUrl?.All;
+                return sliderAttrs.HighIndicatorImageAttributes?.ResourceURL?.All;
             }
             set
             {
                 CreateHighIndicatorImageAttributes();
-                if (sliderAttrs.HighIndicatorImageAttributes.ResourceUrl == null)
+                if (sliderAttrs.HighIndicatorImageAttributes.ResourceURL == null)
                 {
-                    sliderAttrs.HighIndicatorImageAttributes.ResourceUrl = new StringSelector();
+                    sliderAttrs.HighIndicatorImageAttributes.ResourceURL = new StringSelector();
                 }
-                sliderAttrs.HighIndicatorImageAttributes.ResourceUrl.All = value;
+                sliderAttrs.HighIndicatorImageAttributes.ResourceURL.All = value;
                 RelayoutRequest();
             }
         }

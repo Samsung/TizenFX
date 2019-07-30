@@ -175,17 +175,17 @@ namespace Tizen.NUI.CommonUI
         {
             get
             {
-                return scrollBarAttrs.TrackImageAttributes.ResourceUrl.All;
+                return scrollBarAttrs.TrackImageAttributes.ResourceURL.All;
             }
             set
             {
                 if (trackImage != null)
                 {
-                    if (scrollBarAttrs.TrackImageAttributes.ResourceUrl == null)
+                    if (scrollBarAttrs.TrackImageAttributes.ResourceURL == null)
                     {
-                        scrollBarAttrs.TrackImageAttributes.ResourceUrl = new StringSelector();
+                        scrollBarAttrs.TrackImageAttributes.ResourceURL = new StringSelector();
                     }
-                    scrollBarAttrs.TrackImageAttributes.ResourceUrl.All = value;
+                    scrollBarAttrs.TrackImageAttributes.ResourceURL.All = value;
                 }
                 RelayoutRequest();
             }

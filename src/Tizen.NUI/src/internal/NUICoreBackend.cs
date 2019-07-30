@@ -127,6 +127,11 @@ namespace Tizen.NUI
             NDalicPINVOKE.SWIGStringHelper.RegistCallback();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            if ("" == args[0])
+            {
+                args[0] = this.GetType().Assembly.FullName;
+            }
+
             if (args.Length == 1)
             {
                 _application = Application.NewApplication();
