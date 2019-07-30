@@ -392,6 +392,9 @@ namespace Tizen.Multimedia
 
             _prepareCallback = _ =>
             {
+                // a user can get the state before finally block is called.
+                ClearPreparing();
+
                 Log.Warn(PlayerLog.Tag, $"prepared callback is called.");
                 taskCompletionSource.TrySetResult(true);
             };
