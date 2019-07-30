@@ -1043,6 +1043,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Destroy the window immediately.
+        /// </summary>
+        public void Destroy()
+        {
+            this.Dispose();
+        }
+
+        /// <summary>
         /// Keep rendering for at least the given amount of time.
         /// </summary>
         /// <param name="durationSeconds">Time to keep rendering, 0 means render at least one more frame.</param>
@@ -1512,6 +1520,14 @@ namespace Tizen.NUI
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
+                _rootLayer.Dispose();
+                localController.Dispose();
+
+                foreach(var layer in _childLayers)
+                {
+                    layer.Dispose();
+                }
+                _childLayers.Clear();
             }
 
             this.DisconnectNativeSignals();
