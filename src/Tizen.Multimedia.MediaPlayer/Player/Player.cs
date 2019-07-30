@@ -384,6 +384,9 @@ namespace Tizen.Multimedia
             {
                 ValidatePlayerState(PlayerState.Preparing);
 
+                // a user can get the state before finally block is called.
+                ClearPreparing();
+
                 Log.Warn(PlayerLog.Tag, $"preparing will be cancelled.");
                 NativePlayer.Unprepare(Handle).ThrowIfFailed(this, "Failed to unprepare the player");
 
@@ -392,9 +395,6 @@ namespace Tizen.Multimedia
 
             _prepareCallback = _ =>
             {
-                // a user can get the state before finally block is called.
-                ClearPreparing();
-
                 Log.Warn(PlayerLog.Tag, $"prepared callback is called.");
                 taskCompletionSource.TrySetResult(true);
             };
