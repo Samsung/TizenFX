@@ -75,6 +75,10 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_prepare")]
         internal static extern PlayerErrorCode Prepare(IntPtr player);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_prepare_async")]
+        internal static extern PlayerErrorCode PrepareAsync(IntPtr player, PrepareCallback callback,
+            IntPtr userData = default(IntPtr));
+
         [DllImport(Libraries.Player, EntryPoint = "player_unprepare")]
         internal static extern PlayerErrorCode Unprepare(IntPtr player);
 

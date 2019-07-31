@@ -74,6 +74,8 @@ namespace Tizen.Multimedia
         public event EventHandler<BufferingProgressChangedEventArgs> BufferingProgressChanged;
         private NativePlayer.BufferingProgressCallback _bufferingProgressCallback;
 
+        private NativePlayer.PrepareCallback _prepareCallback;
+
         internal event EventHandler<MediaStreamBufferStatusChangedEventArgs> MediaStreamAudioBufferStatusChanged;
         private NativePlayer.MediaStreamBufferStatusCallback _mediaStreamAudioBufferStatusChangedCallback;
 
