@@ -346,6 +346,75 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Prepares the cancellable media player for playback, asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token to cancel preparing.</param>
+        /// <seealso cref="CancellationToken"/>
+        /// <returns>A task that represents the asynchronous prepare operation.</returns>
+        /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
+        /// and a source must be set.
+        /// The state must be <see cref="PlayerState.Preparing"/> to cancel preparing.
+        /// When preparing is cancelled, a state will be changed to <see cref="PlayerState.Idle"/> from <see cref="PlayerState.Preparing"/>.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The player is not in the valid state.
+        ///     </exception>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="Unprepare()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public virtual async Task PrepareAsync(CancellationToken cancellationToken)
+        {
+            ValidateNotDisposed();
+
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+
+            if (_source == null)
+            {
+                throw new InvalidOperationException("No source is set.");
+            }
+
+            ValidatePlayerState(PlayerState.Idle);
+
+            OnPreparing();
+
+            SetPreparing();
+
+            // register a callback to handle cancellation token anytime it occurs
+            cancellationToken.Register(() =>
+            {
+                ValidatePlayerState(PlayerState.Preparing);
+
+                // a user can get the state before finally block is called.
+                ClearPreparing();
+
+                Log.Warn(PlayerLog.Tag, $"preparing will be cancelled.");
+                NativePlayer.Unprepare(Handle).ThrowIfFailed(this, "Failed to unprepare the player");
+
+                taskCompletionSource.TrySetCanceled();
+            });
+
+            _prepareCallback = _ =>
+            {
+                Log.Warn(PlayerLog.Tag, $"prepared callback is called.");
+                taskCompletionSource.TrySetResult(true);
+            };
+
+            try
+            {
+                NativePlayer.PrepareAsync(Handle, _prepareCallback, IntPtr.Zero).
+                    ThrowIfFailed(this, "Failed to prepare the player");
+
+                await taskCompletionSource.Task.ConfigureAwait(false);
+            }
+            finally
+            {
+                ClearPreparing();
+            }
+        }
+
+        /// <summary>
         /// Unprepares the player.
         /// </summary>
         /// <remarks>
