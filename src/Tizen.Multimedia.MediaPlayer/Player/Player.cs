@@ -366,6 +366,8 @@ namespace Tizen.Multimedia
         /// <since_tizen> 6 </since_tizen>
         public virtual async Task PrepareAsync(CancellationToken cancellationToken)
         {
+            ValidateNotDisposed();
+
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
             if (_source == null)
