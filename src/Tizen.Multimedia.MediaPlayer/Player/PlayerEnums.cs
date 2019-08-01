@@ -304,22 +304,22 @@ namespace Tizen.Multimedia
     public enum PlayerAudioExtractOption
     {
         /// <summary>
-        /// Sync with the playback clock and multichannel audio stream
+        /// Sync multi-channel audio stream with the playback clock.
         /// </summary>
         Default = 0x00,
 
         /// <summary>
-        /// No sync with the playback clock
+        /// No sync with the playback clock.
         /// </summary>
         NoSyncWithClock = 0x01,
 
         /// <summary>
-        /// Splits one interleaved multichannel audio stream into many mono audio streams
+        /// Splits one interleaved multi-channel audio stream into several mono audio streams.
         /// </summary>
         Deinterleave = 0x02,
 
         /// <summary>
-        /// No sync with clock and splits into mono streams
+        /// Doesn't sync with clock and doesn't split multi-channel audio stream into several mono audio streams.
         /// </summary>
         NoSyncAndDeinterleave = 0x03,
     }
