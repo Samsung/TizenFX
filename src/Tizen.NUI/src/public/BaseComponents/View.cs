@@ -5129,25 +5129,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void SetBackgroundColor(Vector4 color)
-        {
-            Interop.ViewInternal.View_SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Vector4 GetBackgroundColor()
-        {
-            Vector4 ret = new Vector4(Interop.ViewInternal.View_GetBackgroundColor(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetBackgroundImage(Image image)
-        {
-            Interop.ViewInternal.View_SetBackgroundImage(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal ControlKeySignal KeyEventSignal()
         {
             ControlKeySignal ret = new ControlKeySignal(Interop.ViewSignal.View_KeyEventSignal(swigCPtr), false);

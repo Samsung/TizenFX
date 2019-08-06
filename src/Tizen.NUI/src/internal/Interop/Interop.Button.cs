@@ -32,34 +32,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_SELECTED_get")]
             public static extern int Button_Property_SELECTED_get();
 
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_UNSELECTED_STATE_IMAGE_get")]
-            public static extern int Button_Property_UNSELECTED_STATE_IMAGE_get();
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_SELECTED_STATE_IMAGE_get")]
-            public static extern int Button_Property_SELECTED_STATE_IMAGE_get();
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_DISABLED_STATE_IMAGE_get")]
-            public static extern int Button_Property_DISABLED_STATE_IMAGE_get();
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_UNSELECTED_COLOR_get")]
-            public static extern int Button_Property_UNSELECTED_COLOR_get();
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_SELECTED_COLOR_get")]
-            public static extern int Button_Property_SELECTED_COLOR_get();
-
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_LABEL_get")]
             public static extern int Button_Property_LABEL_get();
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_LABEL_TEXT_get")]
-            public static extern int Button_Property_LABEL_TEXT_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Button_Property")]
             public static extern global::System.IntPtr new_Button_Property();
@@ -111,35 +85,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_IsSelected")]
             public static extern bool Button_IsSelected(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_GetAnimationTime")]
-            public static extern float Button_GetAnimationTime(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_GetLabelText")]
-            public static extern string Button_GetLabelText(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_SetLabel")]
-            public static extern void Button_SetLabel(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_SetButtonImage")]
-            public static extern void Button_SetButtonImage(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_SetSelectedImage")]
-            public static extern void Button_SetSelectedImage(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_GetButtonImage")]
-            public static extern global::System.IntPtr Button_GetButtonImage(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_GetSelectedImage")]
-            public static extern global::System.IntPtr Button_GetSelectedImage(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_PressedSignal")]
             public static extern global::System.IntPtr Button_PressedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -199,7 +144,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_VISUAL_PADDING_get")]
             public static extern int Button_Property_VISUAL_PADDING_get();
-            
+
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_SWIGUpcast")]
             public static extern global::System.IntPtr Button_SWIGUpcast(global::System.IntPtr jarg1);
