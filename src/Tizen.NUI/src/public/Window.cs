@@ -1481,6 +1481,7 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+
                 _rootLayer.Dispose();
                 localController.Dispose();
 

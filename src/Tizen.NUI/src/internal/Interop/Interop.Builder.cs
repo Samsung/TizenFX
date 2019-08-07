@@ -93,10 +93,6 @@ namespace Tizen.NUI
             public static extern void Builder_CreateRenderTask(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetFrameBufferImage")]
-            public static extern global::System.IntPtr Builder_GetFrameBufferImage(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetPath")]
             public static extern global::System.IntPtr Builder_GetPath(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 

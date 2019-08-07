@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -272,13 +272,6 @@ namespace Tizen.NUI
         {
             Interop.Builder.Builder_CreateRenderTask(swigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal FrameBufferImage GetFrameBufferImage(string name)
-        {
-            FrameBufferImage ret = new FrameBufferImage(Interop.Builder.Builder_GetFrameBufferImage(swigCPtr, name), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public Path GetPath(string name)

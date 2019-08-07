@@ -3414,6 +3414,9 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, ChildLayoutData enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remarks>
+        /// Previously named LayoutWidthSpecification
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int WidthSpecification
         {
@@ -3427,7 +3430,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_widthPolicy >= 0)
                 {
                     _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-                    Size2D.Width = _widthPolicy;
+                    Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue(value));
                 }
                 _layout?.RequestLayout();
             }
@@ -3437,6 +3440,9 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, ChildLayoutData enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <remarks>
+        /// Previously named LayoutHeightSpecification
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int HeightSpecification
         {
@@ -3450,7 +3456,7 @@ namespace Tizen.NUI.BaseComponents
                 if (_heightPolicy >= 0)
                 {
                     _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-                    Size2D.Height = _heightPolicy;
+                    Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue(value));
                 }
                _layout?.RequestLayout();
             }
@@ -3531,42 +3537,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Child property to specify desired width
-        /// </summary>
-        internal int LayoutWidthSpecificationFixed
-        {
-            get
-            {
-                return _widthPolicy;
-            }
-            set
-            {
-                _widthPolicy = value;
-                _measureSpecificationWidth = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
-                Size2D.Width = value;
-                _layout?.RequestLayout();
-            }
-        }
-
-        /// <summary>
-        /// Child property to specify desired height
-        /// </summary>
-        internal int LayoutHeightSpecificationFixed
-        {
-            get
-            {
-                return _heightPolicy;
-            }
-            set
-            {
-                _heightPolicy = value;
-                _measureSpecificationHeight = new MeasureSpecification(new LayoutLength(value), MeasureSpecification.ModeType.Exactly);
-                Size2D.Height = value;
-                _layout?.RequestLayout();
-            }
-        }
-
-        /// <summary>
         /// Child property to specify desired width, use MatchParent/WrapContent)
         /// </summary>
         internal ChildLayoutData LayoutWidthSpecification
@@ -3605,7 +3575,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _weight = value;
-                _layout.RequestLayout();
+                _layout?.RequestLayout();
             }
         }
 
@@ -4053,7 +4023,7 @@ namespace Tizen.NUI.BaseComponents
         public override void Add(View child)
         {
             bool hasLayout = (_layout != null);
-            Log.Info("NUI", "Add:" + child.Name + " to View:" + Name + "which has layout[" + hasLayout + "] + \n");
+            Log.Info("NUI", "Add:" + child.Name + " to View:" + Name + " which has layout[" + hasLayout + "] + \n");
 
             if (null == child)
             {
