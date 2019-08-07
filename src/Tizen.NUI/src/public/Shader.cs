@@ -147,19 +147,9 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Enumeration for instances of properties belonging to the Shader class.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class Property
+        internal class Property
         {
-            /// <summary>
-            /// The default value is empty.
-            /// Format: {"vertex":"","fragment":"",hints:"","vertexPrefix":"","fragmentPrefix":""}
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int PROGRAM = Interop.Shader.Shader_Property_PROGRAM_get();
+            internal static readonly int PROGRAM = Interop.Shader.Shader_Property_PROGRAM_get();
         }
-
     }
 }

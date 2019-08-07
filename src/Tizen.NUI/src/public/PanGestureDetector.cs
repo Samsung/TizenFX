@@ -628,108 +628,15 @@ namespace Tizen.NUI
             }
         }
 
-        internal class Property : global::System.IDisposable
+        internal class Property
         {
-            public static readonly int SCREEN_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_POSITION_get();
-
-            public static readonly int SCREEN_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
-
-            public static readonly int SCREEN_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_VELOCITY_get();
-
-            public static readonly int LOCAL_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_POSITION_get();
-
-            public static readonly int LOCAL_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
-
-            public static readonly int LOCAL_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_VELOCITY_get();
-
-            public static readonly int PANNING = Interop.PanGestureDetector.PanGestureDetector_Property_PANNING_get();
-
-            protected bool swigCMemOwn;
-            //A Flat to check if it is already disposed.
-            protected bool disposed = false;
-
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-
-            public Property() : this(Interop.PanGestureDetector.new_PanGestureDetector_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.PanGestureDetector.delete_PanGestureDetector_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-
+            internal static readonly int SCREEN_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_POSITION_get();
+            internal static readonly int SCREEN_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
+            internal static readonly int SCREEN_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_SCREEN_VELOCITY_get();
+            internal static readonly int LOCAL_POSITION = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_POSITION_get();
+            internal static readonly int LOCAL_DISPLACEMENT = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
+            internal static readonly int LOCAL_VELOCITY = Interop.PanGestureDetector.PanGestureDetector_Property_LOCAL_VELOCITY_get();
+            internal static readonly int PANNING = Interop.PanGestureDetector.PanGestureDetector_Property_PANNING_get();
         }
     }
 
