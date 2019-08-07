@@ -23,7 +23,6 @@ namespace Tizen.NUI
         public static extern global::System.IntPtr GetImplementation__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetImplementation__SWIG_2")]
-        public static extern global::System.IntPtr GetImplementation__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
-        
+        public static extern global::System.IntPtr GetImplementation__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);       
 	  }
 }

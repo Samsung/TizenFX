@@ -8,8 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class LayoutGroupWrapperImpl
         {
-
-
         }
     }
 }

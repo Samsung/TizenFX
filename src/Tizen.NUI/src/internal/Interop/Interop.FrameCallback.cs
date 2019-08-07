@@ -8,7 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class FrameCallback
         {
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameUpdateCallback_New")]
             public static extern global::System.IntPtr FrameUpdateCallback_New();
 
