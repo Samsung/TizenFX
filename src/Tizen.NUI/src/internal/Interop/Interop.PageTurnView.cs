@@ -14,8 +14,8 @@ namespace Tizen.NUI
                        
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PageTurnView_Property_PAGE_SIZE_get")]
-            public static extern int PageTurnView_Property_PAGE_SIZE_get();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PageTurnView_Property_VIEW_PAGE_SIZE_get")]
+            public static extern int PageTurnView_Property_VIEW_PAGE_SIZE_get();
 
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PageTurnView_Property_CURRENT_PAGE_ID_get")]

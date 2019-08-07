@@ -70,28 +70,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SWIGUpcast")]
             public static extern global::System.IntPtr View_SWIGUpcast(global::System.IntPtr jarg1);
 
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetLayout")]
-            public static extern void View_SetLayout(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetLayout")]
-            public static extern global::System.IntPtr View_GetLayout(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetLayoutingRequired")]
-            public static extern void View_SetLayoutingRequired(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_IsLayoutingRequired")]
-            public static extern bool View_IsLayoutingRequired(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IsResourceReady")]
             public static extern bool IsResourceReady(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ResourceReadySignal")]
             public static extern global::System.IntPtr ResourceReadySignal(global::System.Runtime.InteropServices.HandleRef jarg1);

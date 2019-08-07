@@ -349,16 +349,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets whether the frame count per render is managed using the hardware vsync or manually timed.
-        /// </summary>
-        /// <param name="useHardware">True if the hardware vsync should be used.</param>
-        internal void SetUseHardwareVSync(bool useHardware)
-        {
-            Interop.Adaptor.Adaptor_SetUseHardwareVSync(swigCPtr, useHardware);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Calls this method to notify DALi when a scene is created and initialized.
         /// Notify the adaptor that the scene has been created.
         /// </summary>
