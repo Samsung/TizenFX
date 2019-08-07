@@ -760,82 +760,22 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// Enumeration for the instance of properties belonging to the Scrollable class.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public new class Property
+        internal new class Property
         {
-            /// <summary>
-            /// The color of the overshoot effect.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT_EFFECT_COLOR = Interop.Scrollable.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
-            /// <summary>
-            /// The speed of overshoot animation in pixels per second.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT_ANIMATION_SPEED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
-            /// <summary>
-            /// Whether to enables or disable scroll overshoot.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT_ENABLED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ENABLED_get();
-            /// <summary>
-            /// The size of the overshoot.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT_SIZE = Interop.Scrollable.Scrollable_Property_OVERSHOOT_SIZE_get();
-            /// <summary>
-            /// scrollToAlphaFunction.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_TO_ALPHA_FUNCTION = Interop.Scrollable.Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get();
-            /// <summary>
-            /// scrollRelativePosition
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_RELATIVE_POSITION = Interop.Scrollable.Scrollable_Property_SCROLL_RELATIVE_POSITION_get();
-            /// <summary>
-            /// scrollPositionMin
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION_MIN = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_get();
-            /// <summary>
-            /// scrollPositionMinX.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION_MIN_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_X_get();
-            /// <summary>
-            /// scrollPositionMinY.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION_MIN_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_Y_get();
-            /// <summary>
-            /// scrollPositionMax.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION_MAX = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_get();
-            /// <summary>
-            /// scrollPositionMaxX.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION_MAX_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_X_get();
-            /// <summary>
-            /// scrollPositionMaxY.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION_MAX_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_Y_get();
-            /// <summary>
-            /// canScrollVertical
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int CAN_SCROLL_VERTICAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_VERTICAL_get();
-            /// <summary>
-            /// canScrollHorizontal.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int CAN_SCROLL_HORIZONTAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_HORIZONTAL_get();
+            internal static readonly int OVERSHOOT_EFFECT_COLOR = Interop.Scrollable.Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get();
+            internal static readonly int OVERSHOOT_ANIMATION_SPEED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get();
+            internal static readonly int OVERSHOOT_ENABLED = Interop.Scrollable.Scrollable_Property_OVERSHOOT_ENABLED_get();
+            internal static readonly int OVERSHOOT_SIZE = Interop.Scrollable.Scrollable_Property_OVERSHOOT_SIZE_get();
+            internal static readonly int SCROLL_TO_ALPHA_FUNCTION = Interop.Scrollable.Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get();
+            internal static readonly int SCROLL_RELATIVE_POSITION = Interop.Scrollable.Scrollable_Property_SCROLL_RELATIVE_POSITION_get();
+            internal static readonly int SCROLL_POSITION_MIN = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_get();
+            internal static readonly int SCROLL_POSITION_MIN_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_X_get();
+            internal static readonly int SCROLL_POSITION_MIN_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MIN_Y_get();
+            internal static readonly int SCROLL_POSITION_MAX = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_get();
+            internal static readonly int SCROLL_POSITION_MAX_X = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_X_get();
+            internal static readonly int SCROLL_POSITION_MAX_Y = Interop.Scrollable.Scrollable_Property_SCROLL_POSITION_MAX_Y_get();
+            internal static readonly int CAN_SCROLL_VERTICAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_VERTICAL_get();
+            internal static readonly int CAN_SCROLL_HORIZONTAL = Interop.Scrollable.Scrollable_Property_CAN_SCROLL_HORIZONTAL_get();
         }
     }
 }

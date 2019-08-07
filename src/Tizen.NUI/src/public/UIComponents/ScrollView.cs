@@ -1413,142 +1413,34 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// This should be internal, please do not use.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public new class Property
+        internal new class Property
         {
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int WRAP_ENABLED = Interop.ScrollView.ScrollView_Property_WRAP_ENABLED_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int PANNING_ENABLED = Interop.ScrollView.ScrollView_Property_PANNING_ENABLED_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int AXIS_AUTO_LOCK_ENABLED = Interop.ScrollView.ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int WHEEL_SCROLL_DISTANCE_STEP = Interop.ScrollView.ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_MODE = Interop.ScrollView.ScrollView_Property_SCROLL_MODE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION = Interop.ScrollView.ScrollView_Property_SCROLL_POSITION_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_PRE_POSITION = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_PRE_POSITION_X = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_X_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_PRE_POSITION_Y = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_Y_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_PRE_POSITION_MAX = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_PRE_POSITION_MAX_X = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_X_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_PRE_POSITION_MAX_Y = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_Y_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT_X = Interop.ScrollView.ScrollView_Property_OVERSHOOT_X_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int OVERSHOOT_Y = Interop.ScrollView.ScrollView_Property_OVERSHOOT_Y_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_FINAL = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_FINAL_X = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_X_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_FINAL_Y = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_Y_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int WRAP = Interop.ScrollView.ScrollView_Property_WRAP_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int PANNING = Interop.ScrollView.ScrollView_Property_PANNING_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLLING = Interop.ScrollView.ScrollView_Property_SCROLLING_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_DOMAIN_SIZE = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_DOMAIN_SIZE_X = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_X_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_DOMAIN_SIZE_Y = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_Y_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_DOMAIN_OFFSET = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_OFFSET_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int SCROLL_POSITION_DELTA = Interop.ScrollView.ScrollView_Property_SCROLL_POSITION_DELTA_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int START_PAGE_POSITION = Interop.ScrollView.ScrollView_Property_START_PAGE_POSITION_get();
+            internal static readonly int WRAP_ENABLED = Interop.ScrollView.ScrollView_Property_WRAP_ENABLED_get();
+            internal static readonly int PANNING_ENABLED = Interop.ScrollView.ScrollView_Property_PANNING_ENABLED_get();
+            internal static readonly int AXIS_AUTO_LOCK_ENABLED = Interop.ScrollView.ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get();
+            internal static readonly int WHEEL_SCROLL_DISTANCE_STEP = Interop.ScrollView.ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
+            internal static readonly int SCROLL_MODE = Interop.ScrollView.ScrollView_Property_SCROLL_MODE_get();
+            internal static readonly int SCROLL_POSITION = Interop.ScrollView.ScrollView_Property_SCROLL_POSITION_get();
+            internal static readonly int SCROLL_PRE_POSITION = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_get();
+            internal static readonly int SCROLL_PRE_POSITION_X = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_X_get();
+            internal static readonly int SCROLL_PRE_POSITION_Y = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_Y_get();
+            internal static readonly int SCROLL_PRE_POSITION_MAX = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_get();
+            internal static readonly int SCROLL_PRE_POSITION_MAX_X = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_X_get();
+            internal static readonly int SCROLL_PRE_POSITION_MAX_Y = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_Y_get();
+            internal static readonly int OVERSHOOT_X = Interop.ScrollView.ScrollView_Property_OVERSHOOT_X_get();
+            internal static readonly int OVERSHOOT_Y = Interop.ScrollView.ScrollView_Property_OVERSHOOT_Y_get();
+            internal static readonly int SCROLL_FINAL = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_get();
+            internal static readonly int SCROLL_FINAL_X = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_X_get();
+            internal static readonly int SCROLL_FINAL_Y = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_Y_get();
+            internal static readonly int WRAP = Interop.ScrollView.ScrollView_Property_WRAP_get();
+            internal static readonly int PANNING = Interop.ScrollView.ScrollView_Property_PANNING_get();
+            internal static readonly int SCROLLING = Interop.ScrollView.ScrollView_Property_SCROLLING_get();
+            internal static readonly int SCROLL_DOMAIN_SIZE = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_get();
+            internal static readonly int SCROLL_DOMAIN_SIZE_X = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_X_get();
+            internal static readonly int SCROLL_DOMAIN_SIZE_Y = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_Y_get();
+            internal static readonly int SCROLL_DOMAIN_OFFSET = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_OFFSET_get();
+            internal static readonly int SCROLL_POSITION_DELTA = Interop.ScrollView.ScrollView_Property_SCROLL_POSITION_DELTA_get();
+            internal static readonly int START_PAGE_POSITION = Interop.ScrollView.ScrollView_Property_START_PAGE_POSITION_get();
         }
 
         /// <summary>
