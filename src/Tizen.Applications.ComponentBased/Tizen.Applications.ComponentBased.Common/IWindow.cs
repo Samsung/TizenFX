@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
@@ -15,5 +13,10 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <returns></returns>
         int GetResId();
 
+        /// <summary>
+        /// Gets window raw pointer
+        /// </summary>
+        /// <returns></returns>
+        IntPtr GetRaw();
     }
 }

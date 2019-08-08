@@ -7,32 +7,16 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// This is a base class for components
     /// </summary>
-    public abstract class ComponentBase
+    public abstract class BaseComponent
     {
-        /// <summary>
-        /// Occurs when the system memory is low.
-        /// </summary>
-        public EventHandler<LowMemoryEventArgs> LowMemory;
+        internal IntPtr Handle;
 
         /// <summary>
-        /// Occurs when the system battery is low.
+        /// ID for this component instance.
+        /// It will be created after OnCreate method is invoked.
         /// </summary>
-        public EventHandler<LowBatteryEventArgs> LowBattery;
-
-        /// <summary>
-        /// Occurs when the system language is chagned.
-        /// </summary>
-        public EventHandler<LocaleChangedEventArgs> LocaleChanged;
-
-        /// <summary>
-        /// Occurs when the region format is changed.
-        /// </summary>
-        public EventHandler<RegionFormatChangedEventArgs> RegionFormatChanged;
-
-        /// <summary>
-        /// Occurs when the device orientation is changed.
-        /// </summary>
-        public EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
+        /// <since_tizen> 6 </since_tizen>
+        public string Id { get; private set; }
 
         /// <summary>
         /// Component ID
@@ -51,11 +35,17 @@ namespace Tizen.Applications.ComponentBased.Common
         {
         }
 
+        internal void Bind(IntPtr handle, string id)
+        {
+            Handle = handle;
+            Id = id;
+        }
+
         /// <summary>
         /// Overrides this method if want to handle behavior to restore the previous status.
         /// </summary>
         /// <param name="c">Contents</param>
-        protected virtual void OnRestoreContents(Bundle c)
+        public virtual void OnRestoreContents(Bundle c)
         {
         }
 
@@ -63,7 +53,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Overrides this method if want to handle behavior to save current status.
         /// </summary>
         /// <param name="c">Contents</param>
-        protected virtual void OnSaveContent(Bundle c)
+        public virtual void OnSaveContent(Bundle c)
         {
         }
     }
