@@ -31,7 +31,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewLayoutDirectionSignal_Emit")]
             public static extern void ViewLayoutDirectionChangedSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-            
+
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ViewLayoutDirectionSignal")]
             public static extern global::System.IntPtr new_ViewLayoutDirectionChangedSignal();
@@ -39,22 +39,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ViewLayoutDirectionSignal")]
             public static extern void delete_ViewLayoutDirectionChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetLayout__SWIG_0")]
-            public static extern global::System.IntPtr GetLayout__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetLayout__SWIG_1")]
-            public static extern global::System.IntPtr GetLayout__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetLayout__SWIG_0")]
-            public static extern void SetLayout__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetLayout__SWIG_1")]
-            public static extern void SetLayout__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
         }
     }

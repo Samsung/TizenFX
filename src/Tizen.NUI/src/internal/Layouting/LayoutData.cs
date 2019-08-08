@@ -16,55 +16,95 @@
  */
 
 using System.Collections.Generic;
+using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// The conditions for transitions.
+    /// </summary>
+    [FlagsAttribute]
+    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TransitionCondition
+    {
+        /// <summary>
+        /// Default when a condition has not been set.
+        /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Unspecified = 0,
+
+        /// <summary>
+        /// Animate changing layout to another layout.
+        /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        LayoutChanged = 1,
+
+        /// <summary>
+        /// Animate adding item.
+        /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Add = 2,
+
+        /// <summary>
+        /// Animate removing item.
+        /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Remove = 4,
+
+        /// <summary>
+        /// Animation when an item changes due to a sibbling being added.
+        /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ChangeOnAdd = 8,
+
+        /// <summary>
+        /// Animation when an item changes due to a sibbling being removed.
+        /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ChangeOnRemove = 16
+    }
 
     /// <summary>
-    /// [Draft] Class to hold layout position data
+    /// [Draft] Class to hold layout animation and position data
     /// </summary>
-    internal struct LayoutPositionData
+    internal struct LayoutData
     {
         /// <summary>
         /// [Draft] Initialized constructor
         /// </summary>
+        /// <param name="item">Layout item.</param>
+        /// <param name="condition">Condition for the position values.</param>
         /// <param name="left">Left position.</param>
         /// <param name="top">Top position.</param>
         /// <param name="right">Right position.</param>
         /// <param name="bottom">Bottom position.</param>
-        /// <param name="animated">If an animation is required to the given positions.</param>
-        public LayoutPositionData( float left, float top, float right, float bottom, bool animated )
+        public LayoutData( LayoutItem item, TransitionCondition condition, float left, float top, float right, float bottom )
         {
-            _left = left;
-            _top = top;
-            _right = right;
-            _bottom = bottom;
-            _animated = animated;
+            Item = item;
+            ConditionForAnimation = condition;
+            Left = left;
+            Top = top;
+            Right = right;
+            Bottom = bottom;
         }
 
-        private float _left;
-        private float _top;
-        private float _right;
-        private float _bottom;
-        private bool _animated;
+        public LayoutItem Item{ get;}
+
+        public TransitionCondition ConditionForAnimation{get;}
+
+        public float Left{get;}
+        public float Top{get;}
+        public float Right{get;}
+        public float Bottom{get;}
+
     };
-
-    /// <summary>
-    /// [Draft] Class to hold Layout data for each entity being laid out.
-    /// </summary>
-    internal class LayoutData
-    {
-        /// <summary>
-        /// [Draft] Constructor
-        /// </summary>
-        public LayoutData()
-        {
-            LayoutPositionDataList = new List<LayoutPositionData>();
-        }
-
-        private List<LayoutPositionData> layoutPositionDataList;
-
-        internal List<LayoutPositionData> LayoutPositionDataList { get => layoutPositionDataList; set => layoutPositionDataList = value; }
-    } // LayoutData
 
 } // namespace Tizen.NUI

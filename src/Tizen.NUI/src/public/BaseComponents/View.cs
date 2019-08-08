@@ -63,21 +63,6 @@ namespace Tizen.NUI.BaseComponents
         public const int WrapContent = -2;
     }
 
-    /// <summary>
-    /// [Draft] Replaced by LayoutParamPolicies, will be removed once occurrences replaced.
-    /// </summary>
-    internal enum ChildLayoutData
-    {
-        /// <summary>
-        /// Constant which indicates child size should match parent size
-        /// </summary>
-        MatchParent = LayoutParamPolicies.MatchParent,
-        /// <summary>
-        /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
-        /// </summary>
-        WrapContent = LayoutParamPolicies.WrapContent,
-    }
-
     internal enum ResourceLoadingStatusType
     {
         Invalid = -1,
@@ -1309,6 +1294,9 @@ namespace Tizen.NUI.BaseComponents
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private LayoutItem _layout; // Exclusive layout assigned to this View.
+
+        // List of transitions paired with the condition that uses the transition.
+        private Dictionary<TransitionCondition, TransitionList> _layoutTransitions;
         private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int _heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private float _weight = 0.0f; // Weighting of child View in a Layout
@@ -2278,7 +2266,7 @@ namespace Tizen.NUI.BaseComponents
         /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
         /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
         /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
-        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
+        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimum size is set. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D Size2D
@@ -2295,6 +2283,9 @@ namespace Tizen.NUI.BaseComponents
                 // All Views are currently Layouts.
                 MeasureSpecificationWidth = new MeasureSpecification(new LayoutLength(value.Width), MeasureSpecification.ModeType.Exactly);
                 MeasureSpecificationHeight = new MeasureSpecification(new LayoutLength(value.Height), MeasureSpecification.ModeType.Exactly);
+                _widthPolicy = value.Width;
+                _heightPolicy = value.Height;
+                _layout?.RequestLayout();
                 NotifyPropertyChanged();
             }
         }
@@ -3411,7 +3402,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, ChildLayoutData enum or exact value.
+        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         /// <remarks>
@@ -3437,7 +3428,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///<summary>
-        /// The required policy for this dimension, ChildLayoutData enum or exact value.
+        /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         /// <remarks>
@@ -3462,6 +3453,36 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        ///<summary>
+        /// Gets the List of transitions for this View.
+        ///</summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<TransitionCondition, TransitionList> LayoutTransitions
+        {
+            get
+            {
+                if (_layoutTransitions == null)
+                {
+                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                }
+                return _layoutTransitions;
+            }
+        }
+
+        internal LayoutTransition LayoutTransition
+        {
+            set
+            {
+                if (_layoutTransitions == null)
+                {
+                    _layoutTransitions = new Dictionary<TransitionCondition, TransitionList>();
+                }
+                LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions,value.Condition,value, true);
+
+                AttachTransitionsToChildren(value);
+            }
+        }
 
         /// <summary>
         /// [Obsolete("Please do not use! this will be deprecated")]
@@ -3533,36 +3554,6 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return GetColorMode();
-            }
-        }
-
-        /// <summary>
-        /// Child property to specify desired width, use MatchParent/WrapContent)
-        /// </summary>
-        internal ChildLayoutData LayoutWidthSpecification
-        {
-            get
-            {
-                return (ChildLayoutData)_widthPolicy;
-            }
-            set
-            {
-                _widthPolicy = (int)value;
-            }
-        }
-
-        /// <summary>
-        /// Child property to specify desired height, use MatchParent/WrapContent)
-        /// </summary>
-        internal ChildLayoutData LayoutHeightSpecification
-        {
-            get
-            {
-                return (ChildLayoutData)_heightPolicy;
-            }
-            set
-            {
-                _heightPolicy = (int)value;
             }
         }
 
@@ -3659,8 +3650,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Set the layout on this View. Replaces any existing Layout.
         /// </summary>
-        /// <remarks>
-        /// </remarks>
         internal LayoutItem Layout
         {
             get
@@ -3780,6 +3769,17 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return _measureSpecificationHeight;
+            }
+        }
+
+        internal void AttachTransitionsToChildren(LayoutTransition transition)
+        {
+            // Iterate children, adding the transition unless a transition
+            // for the same condition and property has already been
+            // explicitly added.
+            foreach (View view in Children)
+            {
+                LayoutTransitionsHelper.AddTransitionForCondition(view.LayoutTransitions,transition.Condition, transition, false);
             }
         }
 
@@ -4066,23 +4066,22 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
+            if (!child || child.GetParent()==null) // Early out if child null.
+                return;
+
             bool hasLayout = (_layout != null);
             Log.Info("NUI","Removing View:" + child.Name + "layout[" + hasLayout.ToString() +"]\n");
 
-            Interop.Actor.Actor_Remove(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            Children.Remove(child);
-            child.InternalParent = null;
-
-            if (ChildRemoved != null)
+            // If View has a layout then do a deferred child removal
+            // Actual child removal is performed by the layouting system so
+            // transitions can be completed.
+            if (hasLayout)
             {
-                ChildRemovedEventArgs e = new ChildRemovedEventArgs
+                (_layout as LayoutGroup)?.RemoveChildFromLayoutGroup( child );
+            }
+            else
                 {
-                    Removed = child
-                };
-                ChildRemoved(this, e);
+                RemoveChild(child);
             }
         }
 
@@ -5280,6 +5279,26 @@ namespace Tizen.NUI.BaseComponents
         internal IntPtr GetPtrfromView()
         {
             return (IntPtr)swigCPtr;
+        }
+
+        internal void RemoveChild(View child)
+        {
+            // Do actual child removal
+            Interop.Actor.Actor_Remove(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Remove(child);
+            child.InternalParent = null;
+
+            if (ChildRemoved != null)
+            {
+                ChildRemovedEventArgs e = new ChildRemovedEventArgs
+                {
+                    Removed = child
+                };
+                ChildRemoved(this, e);
+            }
         }
 
         /// <summary>
