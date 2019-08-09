@@ -4070,7 +4070,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
 
             bool hasLayout = (_layout != null);
-            Log.Info("NUI","Removing View:" + child.Name + "layout[" + hasLayout.ToString() +"]\n");
+            Log.Info("NUI","Removing View:" + child.Name + " layout[" + hasLayout.ToString() +"]\n");
 
             // If View has a layout then do a deferred child removal
             // Actual child removal is performed by the layouting system so
@@ -4080,7 +4080,7 @@ namespace Tizen.NUI.BaseComponents
                 (_layout as LayoutGroup)?.RemoveChildFromLayoutGroup( child );
             }
             else
-                {
+            {
                 RemoveChild(child);
             }
         }
@@ -5234,25 +5234,6 @@ namespace Tizen.NUI.BaseComponents
             LongPressGestureDetector ret = new LongPressGestureDetector(Interop.ViewInternal.View_GetLongPressGestureDetector(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void SetBackgroundColor(Vector4 color)
-        {
-            Interop.ViewInternal.View_SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Vector4 GetBackgroundColor()
-        {
-            Vector4 ret = new Vector4(Interop.ViewInternal.View_GetBackgroundColor(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal void SetBackgroundImage(Image image)
-        {
-            Interop.ViewInternal.View_SetBackgroundImage(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ControlKeySignal KeyEventSignal()

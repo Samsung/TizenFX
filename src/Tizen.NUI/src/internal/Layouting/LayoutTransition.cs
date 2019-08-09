@@ -95,14 +95,12 @@ namespace Tizen.NUI
         /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Duration;
-
         /// <summary>
         /// Delay before the transition executes. Milliseconds.
         /// </summary>
         /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Delay;
-
         /// <summary>
         /// Function to alter the transition path over time.
         /// </summary>
@@ -130,7 +128,6 @@ namespace Tizen.NUI
           Animator = null;
           TargetValue = 0;
         }
-
         /// <summary>
         /// LayoutTransition constructor.
         /// </summary>
@@ -157,21 +154,18 @@ namespace Tizen.NUI
         /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionCondition Condition{get; set;}
-
         /// <summary>
         /// Property to animate.
         /// </summary>
         /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatableProperties AnimatableProperty{get; set;}
-
         /// <summary>
         /// Components of the Animator.
         /// </summary>
         /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionComponents Animator{get; set;}
-
         /// <summary>
         /// Target value to animate to.
         /// </summary>

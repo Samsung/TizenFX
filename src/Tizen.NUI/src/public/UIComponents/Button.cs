@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -336,14 +336,20 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
+                PropertyMap background = new PropertyMap();
+                background.Add( Visual.Property.Type, new PropertyValue((int)Visual.Type.Color) )
+                          .Add( ColorVisualProperty.MixColor, new PropertyValue((Color)newValue) );
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
             }
         },
         defaultValueCreator:(bindable) =>
         {
             var button = (Button)bindable;
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_COLOR).Get(temp);
+            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.UNSELECTED_BACKGROUND_VISUAL).Get(map);
+            Tizen.NUI.PropertyValue value = map.Find( Visual.Property.MixColor);
+            value?.Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -353,14 +359,20 @@ namespace Tizen.NUI.UIComponents
             var button = (Button)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
+                PropertyMap background = new PropertyMap();
+                background.Add( Visual.Property.Type, new PropertyValue((int)Visual.Type.Color) )
+                          .Add( ColorVisualProperty.MixColor, new PropertyValue((Color)newValue) );
+                Tizen.NUI.Object.SetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL, new Tizen.NUI.PropertyValue(background));
             }
         },
         defaultValueCreator:(bindable) =>
         {
             var button = (Button)bindable;
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_COLOR).Get(temp);
+            Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty(button.swigCPtr, Button.Property.SELECTED_BACKGROUND_VISUAL).Get(map);
+            Tizen.NUI.PropertyValue value = map.Find( Visual.Property.MixColor);
+            value?.Get(temp);
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1051,8 +1063,6 @@ namespace Tizen.NUI.UIComponents
             internal static readonly int NEXT_AUTO_REPEATING_DELAY = Interop.Button.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
             internal static readonly int TOGGLABLE = Interop.Button.Button_Property_TOGGLABLE_get();
             internal static readonly int SELECTED = Interop.Button.Button_Property_SELECTED_get();
-            internal static readonly int UNSELECTED_COLOR = Interop.Button.Button_Property_UNSELECTED_COLOR_get();
-            internal static readonly int SELECTED_COLOR = Interop.Button.Button_Property_SELECTED_COLOR_get();
             internal static readonly int LABEL = Interop.Button.Button_Property_LABEL_get();
         }
     }

@@ -8,10 +8,6 @@ namespace Tizen.NUI
     {
         internal static partial class ImageView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_RESOURCE_URL_get")]
-            public static extern int ImageView_Property_RESOURCE_URL_get();
-
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_IMAGE_get")]
             public static extern int ImageView_Property_IMAGE_get();
 
