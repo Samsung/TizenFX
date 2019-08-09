@@ -14,20 +14,18 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Runtime.InteropServices;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Tizen.NUI.Binding;
-    using Tizen.NUI.Binding.Internals;
-
     /**
       * @brief Event arguments that passed via NUIApplicationInit signal
       *
@@ -474,14 +472,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -1452,7 +1442,5 @@ namespace Tizen.NUI
             Opaque = 0,
             Transparent = 1
         }
-
     }
-
 }

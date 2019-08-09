@@ -26,22 +26,13 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
-    public class Size : global::System.IDisposable
+    public class Size : Disposable
     {
         /// <summary>swigCMemOwn.</summary>
         /// <since_tizen> 5 </since_tizen>
         protected bool swigCMemOwn;
 
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        protected bool disposed = false;
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The constructor.
@@ -72,18 +63,6 @@ namespace Tizen.NUI
         public Size(Size2D size2d) : this(Interop.Vector3.new_Vector3__SWIG_3(Size2D.getCPtr(size2d)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        ~Size()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
@@ -256,29 +235,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
@@ -332,8 +288,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-
-
         /// <summary>
         /// The type cast operator, Size to Vector3.
         /// </summary>
@@ -376,19 +330,11 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -405,7 +351,7 @@ namespace Tizen.NUI
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
-            disposed = true;
+            base.Dispose(type);
         }
 
         private Size Add(Size rhs)

@@ -138,6 +138,5 @@ namespace Tizen.NUI
         }
 
         internal abstract View FindCurrentChildById(uint id);
-
     }
 } // namespace Tizen.NUI

@@ -36,7 +36,6 @@ namespace Tizen.NUI
         public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(Interop.Shader.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -48,7 +47,6 @@ namespace Tizen.NUI
         public Shader(string vertexShader, string fragmentShader) : this(Interop.Shader.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -88,14 +86,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.

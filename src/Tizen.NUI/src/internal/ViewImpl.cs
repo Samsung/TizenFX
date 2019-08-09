@@ -22,7 +22,6 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
     internal class ViewImpl : CustomActorImpl
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -44,14 +43,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -68,7 +59,6 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
 
         public static View New()
         {
@@ -1020,5 +1010,4 @@ namespace Tizen.NUI
         private static global::System.Type[] swigMethodTypes39 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
         private static global::System.Type[] swigMethodTypes40 = new global::System.Type[] { typeof(SlotObserver), typeof(SWIGTYPE_p_Dali__CallbackBase) };
     }
-
 }

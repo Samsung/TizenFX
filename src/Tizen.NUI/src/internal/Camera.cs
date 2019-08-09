@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     internal class Camera : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -37,14 +36,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -85,13 +76,13 @@ namespace Tizen.NUI
         public Camera() : this(Interop.CameraActor.CameraActor_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public Camera(Vector2 size) : this(Interop.CameraActor.CameraActor_New__SWIG_1(Vector2.getCPtr(size)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public static Camera DownCast(BaseHandle handle)
         {
             Camera ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Camera;
@@ -407,7 +398,5 @@ namespace Tizen.NUI
                 SetProperty(Camera.Property.INVERT_Y_AXIS, new Tizen.NUI.PropertyValue(value));
             }
         }
-
     }
-
 }

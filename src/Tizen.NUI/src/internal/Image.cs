@@ -14,14 +14,11 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
-
     internal class Image : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -43,14 +40,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -67,8 +56,6 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
-
 
         /**
           * @brief Event arguments that passed via Uploaded signal
@@ -151,14 +138,12 @@ namespace Tizen.NUI
             }
         }
 
-
         public static Image GetImageFromPtr(global::System.IntPtr cPtr)
         {
             Image ret = new Image(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
 
         public Image() : this(Interop.Image.new_Image__SWIG_0(), true)
         {
@@ -204,7 +189,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

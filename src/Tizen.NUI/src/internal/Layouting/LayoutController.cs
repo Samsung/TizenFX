@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// [Draft] The class that initiates the Measuring and Layouting of the tree,
     ///         It sets a callback that becomes the entry point into the C# Layouting.
     /// </summary>
-    internal class LayoutController : global::System.IDisposable
+    internal class LayoutController : Disposable
     {
         private global::System.Runtime.InteropServices.HandleRef unmanagedLayoutController;
 
@@ -35,9 +35,6 @@ namespace Tizen.NUI
         internal delegate void Callback(int id);
 
         event Callback _instance;
-
-        // A Flag to check if it is already disposed.
-        protected bool disposed = false;
 
         private Window _window;
 
@@ -91,21 +88,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Destructor which adds LayoutController to the Dispose queue.
-        /// </summary>
-        ~LayoutController()
-        {
-        }
-
-        /// <summary>
-        /// Explict Dispose.
-        /// </summary>
-        public void Dispose()
-        {
-           Dispose(DisposeTypes.Explicit);
-        }
-
-        /// <summary>
         /// Add transition data for a LayoutItem to the transition stack.
         /// </summary>
         /// <param name="transitionDataEntry">Transition data for a LayoutItem.</param>
@@ -130,18 +112,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose Explict or Implicit
         /// </summary>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User code
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -154,7 +129,7 @@ namespace Tizen.NUI
                 unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
-            disposed = true;
+            base.Dispose(type);
         }
 
         // Traverse through children from the provided root.
@@ -554,5 +529,4 @@ namespace Tizen.NUI
         }
 
     } // class LayoutController
-
 } // namespace Tizen.NUI

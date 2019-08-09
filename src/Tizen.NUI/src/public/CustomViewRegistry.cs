@@ -496,8 +496,6 @@ namespace Tizen.NUI
             {
                 throw new global::System.InvalidOperationException("failed to find the control to write a property to: cptr = " + refObjectPtr);
             }
-
         }
-
     }
 }

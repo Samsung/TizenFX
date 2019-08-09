@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     internal class PathConstrainer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -37,14 +36,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.

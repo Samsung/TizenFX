@@ -14,14 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
     internal class PageTurnView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -43,14 +41,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -67,9 +57,6 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
-
-
 
         /// <since_tizen> 3 </since_tizen>
         public class PagePanStartedEventArgs : EventArgs
@@ -523,7 +510,5 @@ namespace Tizen.NUI
                 SetProperty(PageTurnView.Property.SPINE_SHADOW, new Tizen.NUI.PropertyValue(value));
             }
         }
-
     }
-
 }

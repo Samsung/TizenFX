@@ -531,6 +531,5 @@ namespace Tizen.NUI
 
             return changed;
         }
-
     }
 }
