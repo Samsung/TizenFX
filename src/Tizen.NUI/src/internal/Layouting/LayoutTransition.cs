@@ -17,41 +17,56 @@
 
 using System.Collections.Generic;
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// Define a List of LayoutTransitions
     /// </summary>
+    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionList : List<LayoutTransition> {}
 
     /// <summary>
     /// The properties that can be animated.
     /// </summary>
+    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AnimatableProperties
     {
         /// <summary>
         /// Position property.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Position,
         /// <summary>
         /// Size property.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Size,
         /// <summary>
         /// Opacity property.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Opacity
     }
 
     /// <summary>
     /// Parts of the transition that can be configured to provide a custom effect.
     /// </summary>
+    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionComponents
     {
         /// <summary>
         /// TransitionComponents default constructor.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionComponents()
         {
             Delay = 0;
@@ -65,6 +80,8 @@ namespace Tizen.NUI
         /// <param name="delay">The delay before the animator starts.</param>
         /// <param name="duration">the duration fo the animator.</param>
         /// <param name="alphaFunction">alpha function to use .</param>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionComponents(int delay, int duration, AlphaFunction alphaFunction)
         {
             Delay = delay;
@@ -75,25 +92,35 @@ namespace Tizen.NUI
         /// <summary>
         /// Time the transition should execute. Milliseconds.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Duration;
         /// <summary>
         /// Delay before the transition executes. Milliseconds.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Delay;
         /// <summary>
         /// Function to alter the transition path over time.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AlphaFunction AlphaFunction;
     }
 
     /// <summary>
     /// LayoutTransition stores the aninmation setting for a transition conidition.
     /// </summary>
+    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LayoutTransition
     {
         /// <summary>
         /// LayoutTransition default constructor.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutTransition()
         {
           Condition = TransitionCondition.Unspecified;
@@ -108,6 +135,8 @@ namespace Tizen.NUI
         /// <param name="animatableProperty">the property to animate.</param>
         /// <param name="targetValue">target value of the property.</param>
         /// <param name="animator">Components to define the animator.</param>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutTransition( TransitionCondition condition,
                                  AnimatableProperties animatableProperty,
                                  object targetValue,
@@ -122,18 +151,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Condition for this Transition
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionCondition Condition{get; set;}
         /// <summary>
         /// Property to animate.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatableProperties AnimatableProperty{get; set;}
         /// <summary>
         /// Components of the Animator.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionComponents Animator{get; set;}
         /// <summary>
         /// Target value to animate to.
         /// </summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object TargetValue{get; set;}
     }
 
