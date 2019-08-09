@@ -3456,6 +3456,8 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// Gets the List of transitions for this View.
         ///</summary>
+        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Dictionary<TransitionCondition, TransitionList> LayoutTransitions
         {
             get
