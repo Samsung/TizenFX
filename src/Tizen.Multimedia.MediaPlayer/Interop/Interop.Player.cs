@@ -37,6 +37,9 @@ internal static partial class Interop
         internal delegate void VideoFrameDecodedCallback(IntPtr packetHandle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AudioFrameDecodedCallback(IntPtr packetHandle, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SubtitleUpdatedCallback(uint duration, string text, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -71,6 +74,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_prepare")]
         internal static extern PlayerErrorCode Prepare(IntPtr player);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_prepare_async")]
+        internal static extern PlayerErrorCode PrepareAsync(IntPtr player, PrepareCallback callback,
+            IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.Player, EntryPoint = "player_unprepare")]
         internal static extern PlayerErrorCode Unprepare(IntPtr player);
@@ -171,6 +178,13 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_unset_media_packet_video_frame_decoded_cb")]
         internal static extern PlayerErrorCode UnsetVideoFrameDecodedCb(IntPtr player);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_media_packet_audio_frame_decoded_cb")]
+        internal static extern PlayerErrorCode SetAudioFrameDecodedCb(IntPtr player, IntPtr format, PlayerAudioExtractOption opt,
+            AudioFrameDecodedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.Player, EntryPoint = "player_unset_media_packet_audio_frame_decoded_cb")]
+        internal static extern PlayerErrorCode UnsetAudioFrameDecodedCb(IntPtr player);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_cookie")]
         internal static extern PlayerErrorCode SetStreamingCookie(IntPtr player, string cookie, int size);

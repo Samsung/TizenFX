@@ -11,7 +11,8 @@ namespace Canvas {
 
 /// <summary>Native X11 surface for Efl canvas</summary>
 [Efl.Canvas.SurfaceX11.NativeMethods]
-public class SurfaceX11 : Efl.Canvas.Surface, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class SurfaceX11 : Efl.Canvas.Surface
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,59 +35,37 @@ public class SurfaceX11 : Efl.Canvas.Surface, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="SurfaceX11"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public SurfaceX11(Efl.Object parent= null
-            ) : base(efl_canvas_surface_x11_class_get(), typeof(SurfaceX11), parent)
+            ) : base(efl_canvas_surface_x11_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected SurfaceX11(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="SurfaceX11"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected SurfaceX11(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected SurfaceX11(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="SurfaceX11"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected SurfaceX11(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected SurfaceX11(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>This is a helper for <see cref="Efl.Canvas.Surface.NativeBuffer"/>.</summary>
     /// <param name="visual">X11 Visual for this Pixmap.</param>
     /// <param name="pixmap">X11 Pixmap ID.</param>
     virtual public void GetPixmap(out System.IntPtr visual, out uint pixmap) {
-                                                         Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out visual, out pixmap);
+                                                         Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out visual, out pixmap);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>This is a helper for <see cref="Efl.Canvas.Surface.NativeBuffer"/>.</summary>
@@ -94,7 +73,7 @@ public class SurfaceX11 : Efl.Canvas.Surface, Efl.Eo.IWrapper
     /// <param name="pixmap">X11 Pixmap ID.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool SetPixmap(System.IntPtr visual, uint pixmap) {
-                                                         var _ret_var = Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),visual, pixmap);
+                                                         var _ret_var = Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),visual, pixmap);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -144,7 +123,7 @@ public class SurfaceX11 : Efl.Canvas.Surface, Efl.Eo.IWrapper
             return Efl.Canvas.SurfaceX11.efl_canvas_surface_x11_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_canvas_surface_x11_pixmap_get_delegate(System.IntPtr obj, System.IntPtr pd,  out System.IntPtr visual,  out uint pixmap);
@@ -157,13 +136,13 @@ public class SurfaceX11 : Efl.Canvas.Surface, Efl.Eo.IWrapper
         private static void pixmap_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr visual, out uint pixmap)
         {
             Eina.Log.Debug("function efl_canvas_surface_x11_pixmap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         visual = default(System.IntPtr);        pixmap = default(uint);                            
                 try
                 {
-                    ((SurfaceX11)wrapper).GetPixmap(out visual, out pixmap);
+                    ((SurfaceX11)ws.Target).GetPixmap(out visual, out pixmap);
                 }
                 catch (Exception e)
                 {
@@ -192,13 +171,13 @@ public class SurfaceX11 : Efl.Canvas.Surface, Efl.Eo.IWrapper
         private static bool pixmap_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr visual, uint pixmap)
         {
             Eina.Log.Debug("function efl_canvas_surface_x11_pixmap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((SurfaceX11)wrapper).SetPixmap(visual, pixmap);
+                    _ret_var = ((SurfaceX11)ws.Target).SetPixmap(visual, pixmap);
                 }
                 catch (Exception e)
                 {
@@ -217,7 +196,7 @@ public class SurfaceX11 : Efl.Canvas.Surface, Efl.Eo.IWrapper
 
         private static efl_canvas_surface_x11_pixmap_set_delegate efl_canvas_surface_x11_pixmap_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -231,6 +210,7 @@ namespace Canvas {
 
 /// <summary>The type used by <see cref="Efl.Canvas.Surface.NativeBuffer"/>.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct SurfaceX11Pixmap
 {
     /// <summary>X11 Visual for this Pixmap.</summary>
@@ -246,11 +226,15 @@ public struct SurfaceX11Pixmap
         this.Pixmap = Pixmap;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator SurfaceX11Pixmap(IntPtr ptr)
     {
         var tmp = (SurfaceX11Pixmap.NativeStruct)Marshal.PtrToStructure(ptr, typeof(SurfaceX11Pixmap.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct SurfaceX11Pixmap.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -279,6 +263,8 @@ public struct SurfaceX11Pixmap
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

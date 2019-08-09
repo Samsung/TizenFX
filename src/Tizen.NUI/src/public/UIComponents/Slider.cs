@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.UIComponents
 {
@@ -64,7 +65,7 @@ namespace Tizen.NUI.UIComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -437,7 +438,7 @@ namespace Tizen.NUI.UIComponents
             }
             set
             {
-                SetValue(ValueProperty, value);
+                SetValueAndForceSendChangeSignal(ValueProperty, value);
             }
         }
 
@@ -633,6 +634,28 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
+        /// Only used by the IL of xaml, will never changed to not hidden.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsCreateByXaml
+        {
+            get
+            {
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
+                {
+                    this.ValueChanged += (obj, e) => {
+                        this.Value = e.SlideValue;
+                        return true;
+                    };
+                }
+            }
+        }
+
         /// <summary>
         /// Downcasts an object handle to the slider.<br />
         /// If the handle points to a slider, then the downcast produces a valid handle.<br />
@@ -660,7 +683,12 @@ namespace Tizen.NUI.UIComponents
         /// <returns>The object of the slider type.</returns>
         internal static Slider GetSliderFromPtr(global::System.IntPtr cPtr)
         {
-            Slider ret = new Slider(cPtr, false);
+            Slider ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Slider;
+            if (null == ret)
+            {
+                ret = Registry.GetManagedBaseHandleFromRefObject(cPtr) as Slider;
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

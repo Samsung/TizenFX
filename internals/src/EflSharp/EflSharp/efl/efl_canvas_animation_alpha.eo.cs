@@ -11,7 +11,8 @@ namespace Canvas {
 
 /// <summary>Efl alpha animation class</summary>
 [Efl.Canvas.AnimationAlpha.NativeMethods]
-public class AnimationAlpha : Efl.Canvas.Animation, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class AnimationAlpha : Efl.Canvas.Animation
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,66 +35,44 @@ public class AnimationAlpha : Efl.Canvas.Animation, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="AnimationAlpha"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationAlpha(Efl.Object parent= null
-            ) : base(efl_canvas_animation_alpha_class_get(), typeof(AnimationAlpha), parent)
+            ) : base(efl_canvas_animation_alpha_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AnimationAlpha(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AnimationAlpha"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AnimationAlpha(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AnimationAlpha(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationAlpha"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AnimationAlpha(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AnimationAlpha(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Alpha property</summary>
     /// <param name="from_alpha">Alpha value when animation starts</param>
     /// <param name="to_alpha">Alpha value when animation ends</param>
     virtual public void GetAlpha(out double from_alpha, out double to_alpha) {
-                                                         Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from_alpha, out to_alpha);
+                                                         Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_alpha, out to_alpha);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Alpha property</summary>
     /// <param name="from_alpha">Alpha value when animation starts</param>
     /// <param name="to_alpha">Alpha value when animation ends</param>
     virtual public void SetAlpha(double from_alpha, double to_alpha) {
-                                                         Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from_alpha, to_alpha);
+                                                         Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_alpha, to_alpha);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     private static IntPtr GetEflClassStatic()
@@ -142,7 +121,7 @@ public class AnimationAlpha : Efl.Canvas.Animation, Efl.Eo.IWrapper
             return Efl.Canvas.AnimationAlpha.efl_canvas_animation_alpha_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_animation_alpha_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double from_alpha,  out double to_alpha);
@@ -155,13 +134,13 @@ public class AnimationAlpha : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void alpha_get(System.IntPtr obj, System.IntPtr pd, out double from_alpha, out double to_alpha)
         {
             Eina.Log.Debug("function efl_animation_alpha_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         from_alpha = default(double);        to_alpha = default(double);                            
                 try
                 {
-                    ((AnimationAlpha)wrapper).GetAlpha(out from_alpha, out to_alpha);
+                    ((AnimationAlpha)ws.Target).GetAlpha(out from_alpha, out to_alpha);
                 }
                 catch (Exception e)
                 {
@@ -190,13 +169,13 @@ public class AnimationAlpha : Efl.Canvas.Animation, Efl.Eo.IWrapper
         private static void alpha_set(System.IntPtr obj, System.IntPtr pd, double from_alpha, double to_alpha)
         {
             Eina.Log.Debug("function efl_animation_alpha_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((AnimationAlpha)wrapper).SetAlpha(from_alpha, to_alpha);
+                    ((AnimationAlpha)ws.Target).SetAlpha(from_alpha, to_alpha);
                 }
                 catch (Exception e)
                 {
@@ -214,7 +193,7 @@ public class AnimationAlpha : Efl.Canvas.Animation, Efl.Eo.IWrapper
 
         private static efl_animation_alpha_set_delegate efl_animation_alpha_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

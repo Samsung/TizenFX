@@ -106,7 +106,7 @@ namespace Efl
                     _handle = Interop.Eext.eext_circle_object_progressbar_add(parent.NativeHandle, IntPtr.Zero);
 
                     Bar = new CircleProgressBarBar(_handle);
-                    BarBackground = new CircleProgressBarBarBackground(handle);
+                    BarBackground = new CircleProgressBarBarBackground(_handle);
 
                     elm_layout_content_set(this.NativeHandle, "efl.swallow.vg", CircleHandle);
                 }

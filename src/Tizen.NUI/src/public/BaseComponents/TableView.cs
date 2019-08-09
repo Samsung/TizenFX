@@ -266,6 +266,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+
         /// <summary>
         /// Adds a child to the table.<br />
         /// If the row or column index is outside the table, the table gets resized bigger.<br />
@@ -277,6 +278,7 @@ namespace Tizen.NUI.BaseComponents
         public bool AddChild(View child, TableView.CellPosition position)
         {
             bool ret = Interop.TableView.TableView_AddChild(swigCPtr, View.getCPtr(child), TableView.CellPosition.getCPtr(position));
+            Children.Add(child);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -316,6 +318,9 @@ namespace Tizen.NUI.BaseComponents
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Remove(ret);
+
             return ret;
         }
 

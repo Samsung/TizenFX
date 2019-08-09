@@ -9,7 +9,8 @@ namespace Efl {
 
 /// <summary>Efl cubic_bezier interpolator class</summary>
 [Efl.CubicBezierInterpolator.NativeMethods]
-public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
+[Efl.Eo.BindingEntity]
+public class CubicBezierInterpolator : Efl.Object, Efl.IInterpolator
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -32,52 +33,30 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
     /// <summary>Initializes a new instance of the <see cref="CubicBezierInterpolator"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public CubicBezierInterpolator(Efl.Object parent= null
-            ) : base(efl_cubic_bezier_interpolator_class_get(), typeof(CubicBezierInterpolator), parent)
+            ) : base(efl_cubic_bezier_interpolator_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected CubicBezierInterpolator(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="CubicBezierInterpolator"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected CubicBezierInterpolator(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected CubicBezierInterpolator(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="CubicBezierInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected CubicBezierInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected CubicBezierInterpolator(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Factors property</summary>
@@ -86,7 +65,7 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
     /// <param name="factor3">Third factor of the interpolation function.</param>
     /// <param name="factor4">Fourth factor of the interpolation function.</param>
     virtual public void GetFactors(out double factor1, out double factor2, out double factor3, out double factor4) {
-                                                                                                         Efl.CubicBezierInterpolator.NativeMethods.efl_cubic_bezier_interpolator_factors_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out factor1, out factor2, out factor3, out factor4);
+                                                                                                         Efl.CubicBezierInterpolator.NativeMethods.efl_cubic_bezier_interpolator_factors_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out factor1, out factor2, out factor3, out factor4);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Factors property</summary>
@@ -95,14 +74,14 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
     /// <param name="factor3">Third factor of the interpolation function.</param>
     /// <param name="factor4">Fourth factor of the interpolation function.</param>
     virtual public void SetFactors(double factor1, double factor2, double factor3, double factor4) {
-                                                                                                         Efl.CubicBezierInterpolator.NativeMethods.efl_cubic_bezier_interpolator_factors_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),factor1, factor2, factor3, factor4);
+                                                                                                         Efl.CubicBezierInterpolator.NativeMethods.efl_cubic_bezier_interpolator_factors_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),factor1, factor2, factor3, factor4);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Interpolate the given value.</summary>
     /// <param name="progress">Input value mapped from 0.0 to 1.0.</param>
     /// <returns>Output value calculated by interpolating the input value.</returns>
     virtual public double Interpolate(double progress) {
-                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),progress);
+                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -162,7 +141,7 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
             return Efl.CubicBezierInterpolator.efl_cubic_bezier_interpolator_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_cubic_bezier_interpolator_factors_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double factor1,  out double factor2,  out double factor3,  out double factor4);
@@ -175,13 +154,13 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
         private static void factors_get(System.IntPtr obj, System.IntPtr pd, out double factor1, out double factor2, out double factor3, out double factor4)
         {
             Eina.Log.Debug("function efl_cubic_bezier_interpolator_factors_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         factor1 = default(double);        factor2 = default(double);        factor3 = default(double);        factor4 = default(double);                                            
                 try
                 {
-                    ((CubicBezierInterpolator)wrapper).GetFactors(out factor1, out factor2, out factor3, out factor4);
+                    ((CubicBezierInterpolator)ws.Target).GetFactors(out factor1, out factor2, out factor3, out factor4);
                 }
                 catch (Exception e)
                 {
@@ -210,13 +189,13 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
         private static void factors_set(System.IntPtr obj, System.IntPtr pd, double factor1, double factor2, double factor3, double factor4)
         {
             Eina.Log.Debug("function efl_cubic_bezier_interpolator_factors_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((CubicBezierInterpolator)wrapper).SetFactors(factor1, factor2, factor3, factor4);
+                    ((CubicBezierInterpolator)ws.Target).SetFactors(factor1, factor2, factor3, factor4);
                 }
                 catch (Exception e)
                 {
@@ -245,13 +224,13 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
         private static double interpolate(System.IntPtr obj, System.IntPtr pd, double progress)
         {
             Eina.Log.Debug("function efl_interpolator_interpolate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((CubicBezierInterpolator)wrapper).Interpolate(progress);
+                    _ret_var = ((CubicBezierInterpolator)ws.Target).Interpolate(progress);
                 }
                 catch (Exception e)
                 {
@@ -270,7 +249,7 @@ public class CubicBezierInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpol
 
         private static efl_interpolator_interpolate_delegate efl_interpolator_interpolate_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

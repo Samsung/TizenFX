@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI
 {
@@ -437,16 +438,6 @@ namespace Tizen.NUI
             RefObject ret = (cPtr == global::System.IntPtr.Zero) ? null : new RefObject(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal object GetValue(BindableProperty property)
-        {
-            return property.DefaultValueCreator?.Invoke(this);
-        }
-
-        internal void SetValue(BindableProperty property, object value)
-        {
-            property.PropertyChanged?.Invoke(this, null, value);
         }
 
         /// <summary>

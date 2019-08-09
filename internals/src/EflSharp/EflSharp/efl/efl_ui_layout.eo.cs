@@ -13,7 +13,8 @@ namespace Ui {
 /// When loading layouts from a file, use the <see cref="Efl.IFile.Key"/> property to specify the group that the data belongs to, in case it&apos;s an EET file (including Edje files).
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Layout.NativeMethods]
-public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
+[Efl.Eo.BindingEntity]
+public class Layout : Efl.Ui.LayoutBase, Efl.IFile
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -35,9 +36,9 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         efl_ui_layout_class_get();
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Layout(Efl.Object parent
-            , System.String style = null) : base(efl_ui_layout_class_get(), typeof(Layout), parent)
+            , System.String style = null) : base(efl_ui_layout_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -47,54 +48,32 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Layout(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Layout(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Layout(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Layout(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Layout(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
     /// (Since EFL 1.22)</summary>
     /// <returns>The handle to the <see cref="Eina.File"/> that will be used</returns>
     virtual public Eina.File GetMmap() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -104,7 +83,7 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
     /// <param name="f">The handle to the <see cref="Eina.File"/> that will be used</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetMmap(Eina.File f) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -113,7 +92,7 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The file path.</returns>
     virtual public System.String GetFile() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -123,7 +102,7 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
     /// <param name="file">The file path.</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetFile(System.String file) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -134,7 +113,7 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</returns>
     virtual public System.String GetKey() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -143,14 +122,14 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</param>
     virtual public void SetKey(System.String key) {
-                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is loaded, <c>false</c> otherwise.</returns>
     virtual public bool GetLoaded() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -161,7 +140,7 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error Load() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -171,37 +150,37 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
     /// Calling <see cref="Efl.IFile.Unload"/> on an object which is not currently loaded will have no effect.
     /// (Since EFL 1.22)</summary>
     virtual public void Unload() {
-         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
-/// (Since EFL 1.22)</summary>
-/// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
     public Eina.File Mmap {
         get { return GetMmap(); }
         set { SetMmap(value); }
     }
     /// <summary>Retrieve the file path from where an object is to fetch the data.
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The file path.</value>
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The file path.</value>
     public System.String File {
         get { return GetFile(); }
         set { SetFile(value); }
     }
     /// <summary>Get the previously-set key which corresponds to the target data within a file.
-/// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
-/// 
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
+    /// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
+    /// 
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
     public System.String Key {
         get { return GetKey(); }
         set { SetKey(value); }
     }
     /// <summary>Get the load state of the object.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
     public bool Loaded {
         get { return GetLoaded(); }
     }
@@ -321,7 +300,7 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
             return Efl.Ui.Layout.efl_ui_layout_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.File efl_file_mmap_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -334,13 +313,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.File mmap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_mmap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.File _ret_var = default(Eina.File);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetMmap();
+                    _ret_var = ((Layout)ws.Target).GetMmap();
                 }
                 catch (Exception e)
                 {
@@ -370,13 +349,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.Error mmap_set(System.IntPtr obj, System.IntPtr pd, Eina.File f)
         {
             Eina.Log.Debug("function efl_file_mmap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetMmap(f);
+                    _ret_var = ((Layout)ws.Target).SetMmap(f);
                 }
                 catch (Exception e)
                 {
@@ -406,13 +385,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static System.String file_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetFile();
+                    _ret_var = ((Layout)ws.Target).GetFile();
                 }
                 catch (Exception e)
                 {
@@ -442,13 +421,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.Error file_set(System.IntPtr obj, System.IntPtr pd, System.String file)
         {
             Eina.Log.Debug("function efl_file_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetFile(file);
+                    _ret_var = ((Layout)ws.Target).SetFile(file);
                 }
                 catch (Exception e)
                 {
@@ -478,13 +457,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static System.String key_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_key_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetKey();
+                    _ret_var = ((Layout)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -514,13 +493,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static void key_set(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_file_key_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetKey(key);
+                    ((Layout)ws.Target).SetKey(key);
                 }
                 catch (Exception e)
                 {
@@ -549,13 +528,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static bool loaded_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_loaded_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetLoaded();
+                    _ret_var = ((Layout)ws.Target).GetLoaded();
                 }
                 catch (Exception e)
                 {
@@ -585,13 +564,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static Eina.Error load(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_load was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).Load();
+                    _ret_var = ((Layout)ws.Target).Load();
                 }
                 catch (Exception e)
                 {
@@ -621,13 +600,13 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
         private static void unload(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_unload was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Layout)wrapper).Unload();
+                    ((Layout)ws.Target).Unload();
                 }
                 catch (Exception e)
                 {
@@ -645,7 +624,7 @@ public class Layout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IFile
 
         private static efl_file_unload_delegate efl_file_unload_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

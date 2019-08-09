@@ -13,7 +13,8 @@ namespace Focus {
 
 /// <summary>EFL UI Focus Util class</summary>
 [Efl.Ui.Focus.Util.NativeMethods]
-public class Util : Efl.Object, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class Util : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -36,52 +37,30 @@ public class Util : Efl.Object, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="Util"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Util(Efl.Object parent= null
-            ) : base(efl_ui_focus_util_class_get(), typeof(Util), parent)
+            ) : base(efl_ui_focus_util_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Util(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Util"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Util(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Util(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Util"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Util(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Util(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Focus helper method</summary>
@@ -125,7 +104,7 @@ public class Util : Efl.Object, Efl.Eo.IWrapper
             return Efl.Ui.Focus.Util.efl_ui_focus_util_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_ui_focus_util_focus_delegate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject focus_elem);
@@ -138,8 +117,8 @@ public class Util : Efl.Object, Efl.Eo.IWrapper
         private static void focus(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject focus_elem)
         {
             Eina.Log.Debug("function efl_ui_focus_util_focus was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
@@ -171,8 +150,8 @@ public class Util : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Ui.Focus.IManager active_manager(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IManager manager)
         {
             Eina.Log.Debug("function efl_ui_focus_util_active_manager was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
@@ -205,8 +184,8 @@ public class Util : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Ui.Focus.Direction direction_complement(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction dir)
         {
             Eina.Log.Debug("function efl_ui_focus_util_direction_complement was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.Direction _ret_var = default(Efl.Ui.Focus.Direction);
                 try
@@ -228,7 +207,7 @@ public class Util : Efl.Object, Efl.Eo.IWrapper
             }
         }
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -11,7 +11,8 @@ namespace Input {
 
 /// <summary>Event data sent when inputs are put on hold or resumed.</summary>
 [Efl.Input.Hold.NativeMethods]
-public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
+[Efl.Eo.BindingEntity]
+public class Hold : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,72 +35,50 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
     /// <summary>Initializes a new instance of the <see cref="Hold"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Hold(Efl.Object parent= null
-            ) : base(efl_input_hold_class_get(), typeof(Hold), parent)
+            ) : base(efl_input_hold_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Hold(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Hold"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Hold(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Hold(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Hold"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Hold(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Hold(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Property to show if inputs are now on hold.</summary>
     /// <returns><c>true</c> if inputs are on hold, <c>false</c> otherwise</returns>
     virtual public bool GetHold() {
-         var _ret_var = Efl.Input.Hold.NativeMethods.efl_input_hold_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Hold.NativeMethods.efl_input_hold_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Property to show if inputs are now on hold.</summary>
     /// <param name="val"><c>true</c> if inputs are on hold, <c>false</c> otherwise</param>
     virtual public void SetHold(bool val) {
-                                 Efl.Input.Hold.NativeMethods.efl_input_hold_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Input.Hold.NativeMethods.efl_input_hold_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Creates a carbon copy of this object and returns it.
     /// The newly created object will have no event handlers or anything of the sort.</summary>
     /// <returns>Returned carbon copy</returns>
     virtual public Efl.IDuplicate Duplicate() {
-         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -107,113 +86,113 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
     /// If the event is generated by a server (eg. X.org or Wayland), then the time may be set by the server. Usually this time will be based on the monotonic clock, if available, but this class can not guarantee it.</summary>
     /// <returns>Time in milliseconds when the event happened.</returns>
     virtual public double GetTimestamp() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Call this when generating events manually.</summary>
     /// <param name="ms">Time in milliseconds when the event happened.</param>
     virtual public void SetTimestamp(double ms) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ms);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ms);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Input device that originated this event.</summary>
     /// <returns>Input device origin</returns>
     virtual public Efl.Input.Device GetDevice() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_device_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_device_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Input device that originated this event.</summary>
     /// <param name="dev">Input device origin</param>
     virtual public void SetDevice(Efl.Input.Device dev) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_device_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dev);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_device_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dev);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Extra flags for this event, may be changed by the user.</summary>
     /// <returns>Input event flags</returns>
     virtual public Efl.Input.Flags GetEventFlags() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Extra flags for this event, may be changed by the user.</summary>
     /// <param name="flags">Input event flags</param>
     virtual public void SetEventFlags(Efl.Input.Flags flags) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),flags);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),flags);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event is on hold.</summary>
     /// <returns><c>true</c> if the event is on hold, <c>false</c> otherwise</returns>
     virtual public bool GetProcessed() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event is on hold.</summary>
     /// <param name="val"><c>true</c> if the event is on hold, <c>false</c> otherwise</param>
     virtual public void SetProcessed(bool val) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event happened while scrolling.</summary>
     /// <returns><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</returns>
     virtual public bool GetScrolling() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event happened while scrolling.</summary>
     /// <param name="val"><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</param>
     virtual public void SetScrolling(bool val) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if the event was fake, not triggered by real hardware.</summary>
     /// <returns><c>true</c> if the event was not from real hardware, <c>false</c> otherwise</returns>
     virtual public bool GetFake() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_fake_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_fake_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Resets the internal data to 0 or default values.</summary>
     virtual public void Reset() {
-         Efl.Input.IEventConcrete.NativeMethods.efl_input_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Input.IEventConcrete.NativeMethods.efl_input_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The time at which an event was generated.
-/// If the event is generated by a server (eg. X.org or Wayland), then the time may be set by the server. Usually this time will be based on the monotonic clock, if available, but this class can not guarantee it.</summary>
-/// <value>Time in milliseconds when the event happened.</value>
+    /// If the event is generated by a server (eg. X.org or Wayland), then the time may be set by the server. Usually this time will be based on the monotonic clock, if available, but this class can not guarantee it.</summary>
+    /// <value>Time in milliseconds when the event happened.</value>
     public double Timestamp {
         get { return GetTimestamp(); }
         set { SetTimestamp(value); }
     }
     /// <summary>Input device that originated this event.</summary>
-/// <value>Input device origin</value>
+    /// <value>Input device origin</value>
     public Efl.Input.Device Device {
         get { return GetDevice(); }
         set { SetDevice(value); }
     }
     /// <summary>Extra flags for this event, may be changed by the user.</summary>
-/// <value>Input event flags</value>
+    /// <value>Input event flags</value>
     public Efl.Input.Flags EventFlags {
         get { return GetEventFlags(); }
         set { SetEventFlags(value); }
     }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event is on hold.</summary>
-/// <value><c>true</c> if the event is on hold, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the event is on hold, <c>false</c> otherwise</value>
     public bool Processed {
         get { return GetProcessed(); }
         set { SetProcessed(value); }
     }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event happened while scrolling.</summary>
-/// <value><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</value>
     public bool Scrolling {
         get { return GetScrolling(); }
         set { SetScrolling(value); }
     }
     /// <summary><c>true</c> if the event was fake, not triggered by real hardware.</summary>
-/// <value><c>true</c> if the event was not from real hardware, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the event was not from real hardware, <c>false</c> otherwise</value>
     public bool Fake {
         get { return GetFake(); }
     }
@@ -393,7 +372,7 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
             return Efl.Input.Hold.efl_input_hold_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_input_hold_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -406,13 +385,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static bool hold_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_hold_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).GetHold();
+                    _ret_var = ((Hold)ws.Target).GetHold();
                 }
                 catch (Exception e)
                 {
@@ -442,13 +421,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static void hold_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function efl_input_hold_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Hold)wrapper).SetHold(val);
+                    ((Hold)ws.Target).SetHold(val);
                 }
                 catch (Exception e)
                 {
@@ -477,13 +456,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static Efl.IDuplicate duplicate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_duplicate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.IDuplicate _ret_var = default(Efl.IDuplicate);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).Duplicate();
+                    _ret_var = ((Hold)ws.Target).Duplicate();
                 }
                 catch (Exception e)
                 {
@@ -513,13 +492,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static double timestamp_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_timestamp_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).GetTimestamp();
+                    _ret_var = ((Hold)ws.Target).GetTimestamp();
                 }
                 catch (Exception e)
                 {
@@ -549,13 +528,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static void timestamp_set(System.IntPtr obj, System.IntPtr pd, double ms)
         {
             Eina.Log.Debug("function efl_input_timestamp_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Hold)wrapper).SetTimestamp(ms);
+                    ((Hold)ws.Target).SetTimestamp(ms);
                 }
                 catch (Exception e)
                 {
@@ -584,13 +563,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static Efl.Input.Device device_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_device_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).GetDevice();
+                    _ret_var = ((Hold)ws.Target).GetDevice();
                 }
                 catch (Exception e)
                 {
@@ -620,13 +599,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static void device_set(System.IntPtr obj, System.IntPtr pd, Efl.Input.Device dev)
         {
             Eina.Log.Debug("function efl_input_device_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Hold)wrapper).SetDevice(dev);
+                    ((Hold)ws.Target).SetDevice(dev);
                 }
                 catch (Exception e)
                 {
@@ -655,13 +634,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static Efl.Input.Flags event_flags_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_event_flags_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Flags _ret_var = default(Efl.Input.Flags);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).GetEventFlags();
+                    _ret_var = ((Hold)ws.Target).GetEventFlags();
                 }
                 catch (Exception e)
                 {
@@ -691,13 +670,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static void event_flags_set(System.IntPtr obj, System.IntPtr pd, Efl.Input.Flags flags)
         {
             Eina.Log.Debug("function efl_input_event_flags_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Hold)wrapper).SetEventFlags(flags);
+                    ((Hold)ws.Target).SetEventFlags(flags);
                 }
                 catch (Exception e)
                 {
@@ -726,13 +705,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static bool processed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_processed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).GetProcessed();
+                    _ret_var = ((Hold)ws.Target).GetProcessed();
                 }
                 catch (Exception e)
                 {
@@ -762,13 +741,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static void processed_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function efl_input_processed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Hold)wrapper).SetProcessed(val);
+                    ((Hold)ws.Target).SetProcessed(val);
                 }
                 catch (Exception e)
                 {
@@ -797,13 +776,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static bool scrolling_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_scrolling_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).GetScrolling();
+                    _ret_var = ((Hold)ws.Target).GetScrolling();
                 }
                 catch (Exception e)
                 {
@@ -833,13 +812,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static void scrolling_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function efl_input_scrolling_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Hold)wrapper).SetScrolling(val);
+                    ((Hold)ws.Target).SetScrolling(val);
                 }
                 catch (Exception e)
                 {
@@ -868,13 +847,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static bool fake_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_fake_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Hold)wrapper).GetFake();
+                    _ret_var = ((Hold)ws.Target).GetFake();
                 }
                 catch (Exception e)
                 {
@@ -904,13 +883,13 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
         private static void reset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_input_reset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Hold)wrapper).Reset();
+                    ((Hold)ws.Target).Reset();
                 }
                 catch (Exception e)
                 {
@@ -928,7 +907,7 @@ public class Hold : Efl.Object, Efl.Eo.IWrapper,Efl.IDuplicate,Efl.Input.IEvent
 
         private static efl_input_reset_delegate efl_input_reset_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

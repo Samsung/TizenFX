@@ -8,13 +8,15 @@ using System.ComponentModel;
 namespace Efl {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.LoopMessageHandler.MessageEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LoopMessageHandlerMessageEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.LoopMessage arg { get; set; }
 }
 /// <summary>Message handlers represent a single message type on the Efl.Loop parent object. These message handlers can be used to listen for that message type by listening to the message event for the generic case or a class specific event type to get specific message object typing correct.</summary>
 [Efl.LoopMessageHandler.NativeMethods]
-public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class LoopMessageHandler : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -37,52 +39,30 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="LoopMessageHandler"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageHandler(Efl.Object parent= null
-            ) : base(efl_loop_message_handler_class_get(), typeof(LoopMessageHandler), parent)
+            ) : base(efl_loop_message_handler_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessageHandler(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageHandler"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessageHandler(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessageHandler(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessageHandler"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessageHandler(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessageHandler(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The message payload data</summary>
@@ -90,15 +70,14 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.LoopMessageHandlerMessageEvt_Args args = new Efl.LoopMessageHandlerMessageEvt_Args();
+                        Efl.LoopMessageHandlerMessageEvt_Args args = new Efl.LoopMessageHandlerMessageEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessage);
                         try
                         {
@@ -119,7 +98,7 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_MESSAGE_HANDLER_EVENT_MESSAGE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -143,26 +122,26 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
     /// <summary>Creates a new message object of the correct type for this message type.</summary>
     /// <returns>The new message payload object.</returns>
     virtual public Efl.LoopMessage AddMessage() {
-         var _ret_var = Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Place the message on the queue to be called later when message_process() is called on the loop object.</summary>
     /// <param name="message">The message to place on the queue.</param>
     virtual public void MessageSend(Efl.LoopMessage message) {
-                                 Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),message);
+                                 Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_send_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),message);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Overide me (implement) then call super after calling the right callback type if you specialize the message type.</summary>
     /// <param name="message">Generic message event type</param>
     virtual public void CallMessage(Efl.LoopMessage message) {
-                                 Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_call_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),message);
+                                 Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_call_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),message);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Delete all queued messages belonging to this message handler that are pending on the queue so they are not processed later.</summary>
     /// <returns>True if any messages of this type were cleared.</returns>
     virtual public bool ClearMessage() {
-         var _ret_var = Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageHandler.NativeMethods.efl_loop_message_handler_message_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -232,7 +211,7 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
             return Efl.LoopMessageHandler.efl_loop_message_handler_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.LoopMessage efl_loop_message_handler_message_add_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -245,13 +224,13 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
         private static Efl.LoopMessage message_add(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_message_handler_message_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.LoopMessage _ret_var = default(Efl.LoopMessage);
                 try
                 {
-                    _ret_var = ((LoopMessageHandler)wrapper).AddMessage();
+                    _ret_var = ((LoopMessageHandler)ws.Target).AddMessage();
                 }
                 catch (Exception e)
                 {
@@ -281,13 +260,13 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
         private static void message_send(System.IntPtr obj, System.IntPtr pd, Efl.LoopMessage message)
         {
             Eina.Log.Debug("function efl_loop_message_handler_message_send was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LoopMessageHandler)wrapper).MessageSend(message);
+                    ((LoopMessageHandler)ws.Target).MessageSend(message);
                 }
                 catch (Exception e)
                 {
@@ -316,13 +295,13 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
         private static void message_call(System.IntPtr obj, System.IntPtr pd, Efl.LoopMessage message)
         {
             Eina.Log.Debug("function efl_loop_message_handler_message_call was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LoopMessageHandler)wrapper).CallMessage(message);
+                    ((LoopMessageHandler)ws.Target).CallMessage(message);
                 }
                 catch (Exception e)
                 {
@@ -351,13 +330,13 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
         private static bool message_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_message_handler_message_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LoopMessageHandler)wrapper).ClearMessage();
+                    _ret_var = ((LoopMessageHandler)ws.Target).ClearMessage();
                 }
                 catch (Exception e)
                 {
@@ -376,7 +355,7 @@ public class LoopMessageHandler : Efl.Object, Efl.Eo.IWrapper
 
         private static efl_loop_message_handler_message_clear_delegate efl_loop_message_handler_message_clear_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -224,9 +224,11 @@ namespace ElmSharp
         /// Get false if you cannot put it in the direction. Get true if it's possible.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        /// [Obsolete("IsAvailableDirection is obsolete as of API6 and is no longer supported.")]
         public bool IsAvailableDirection(ContextPopupDirection direction)
         {
-            return Interop.Elementary.elm_ctxpopup_direction_available_get(RealHandle, (int)direction);
+            Console.WriteLine("ContextPopup.IsAvailableDirection is obsolete as of API6 and is no longer supported.");
+            return false;
         }
 
         /// <summary>

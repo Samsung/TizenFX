@@ -53,5 +53,11 @@ internal static partial class Interop
         internal static extern void eext_rotary_selector_add_item_enabled_set(IntPtr obj, bool enabled);
         [DllImport(efl.Libs.Eext)]
         internal static extern bool eext_rotary_selector_add_item_enabled_get(IntPtr obj);
+        [DllImport(efl.Libs.Eext)]
+        internal static extern void eext_rotary_selector_item_delete_enabled_set(IntPtr item, bool enabled);
+        [DllImport(efl.Libs.Eext)]
+        internal static extern bool eext_rotary_selector_item_delete_enabled_get(IntPtr item);
+        [DllImport(efl.Libs.Eext)]
+        internal static extern IntPtr eext_rotary_selector_items_get(IntPtr item);
     }
 }

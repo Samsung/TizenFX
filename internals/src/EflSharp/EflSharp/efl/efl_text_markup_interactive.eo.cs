@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Markup data that populates the text object&apos;s style and format</summary>
 [Efl.ITextMarkupInteractiveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextMarkupInteractive : 
     Efl.ITextCursor ,
     Efl.Eo.IWrapper, IDisposable
@@ -29,13 +30,13 @@ void SetMarkupRange(Efl.TextCursorCursor start, Efl.TextCursorCursor end, System
 void CursorMarkupInsert(Efl.TextCursorCursor cur, System.String markup);
             }
 /// <summary>Markup data that populates the text object&apos;s style and format</summary>
-sealed public class ITextMarkupInteractiveConcrete : 
-
-ITextMarkupInteractive
+sealed public class ITextMarkupInteractiveConcrete :
+    Efl.Eo.EoWrapper
+    , ITextMarkupInteractive
     , Efl.ITextCursor
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -50,86 +51,19 @@ ITextMarkupInteractive
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextMarkupInteractiveConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_markup_interactive_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextMarkupInteractive"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextMarkupInteractiveConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextMarkupInteractiveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ITextMarkupInteractiveConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Markup of a given range in the text</summary>
@@ -371,7 +305,7 @@ ITextMarkupInteractive
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -710,7 +644,7 @@ ITextMarkupInteractive
             return Efl.ITextMarkupInteractiveConcrete.efl_text_markup_interactive_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringPassOwnershipMarshaler))]
         private delegate System.String efl_text_markup_interactive_markup_range_get_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.TextCursorCursor start,  Efl.TextCursorCursor end);
@@ -723,13 +657,13 @@ ITextMarkupInteractive
         private static System.String markup_range_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor start, Efl.TextCursorCursor end)
         {
             Eina.Log.Debug("function efl_text_markup_interactive_markup_range_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).GetMarkupRange(start, end);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).GetMarkupRange(start, end);
                 }
                 catch (Exception e)
                 {
@@ -759,13 +693,13 @@ ITextMarkupInteractive
         private static void markup_range_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor start, Efl.TextCursorCursor end, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_interactive_markup_range_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).SetMarkupRange(start, end, markup);
+                    ((ITextMarkupInteractive)ws.Target).SetMarkupRange(start, end, markup);
                 }
                 catch (Exception e)
                 {
@@ -794,13 +728,13 @@ ITextMarkupInteractive
         private static void cursor_markup_insert(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_interactive_cursor_markup_insert was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorMarkupInsert(cur, markup);
+                    ((ITextMarkupInteractive)ws.Target).CursorMarkupInsert(cur, markup);
                 }
                 catch (Exception e)
                 {
@@ -829,13 +763,13 @@ ITextMarkupInteractive
         private static Efl.TextCursorCursor text_cursor_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorGetType get_type)
         {
             Eina.Log.Debug("function efl_text_cursor_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).GetTextCursor(get_type);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).GetTextCursor(get_type);
                 }
                 catch (Exception e)
                 {
@@ -865,13 +799,13 @@ ITextMarkupInteractive
         private static int cursor_position_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).GetCursorPosition(cur);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).GetCursorPosition(cur);
                 }
                 catch (Exception e)
                 {
@@ -901,13 +835,13 @@ ITextMarkupInteractive
         private static void cursor_position_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int position)
         {
             Eina.Log.Debug("function efl_text_cursor_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).SetCursorPosition(cur, position);
+                    ((ITextMarkupInteractive)ws.Target).SetCursorPosition(cur, position);
                 }
                 catch (Exception e)
                 {
@@ -936,13 +870,13 @@ ITextMarkupInteractive
         private static Eina.Unicode cursor_content_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Unicode _ret_var = default(Eina.Unicode);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).GetCursorContent(cur);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).GetCursorContent(cur);
                 }
                 catch (Exception e)
                 {
@@ -972,13 +906,13 @@ ITextMarkupInteractive
         private static bool cursor_geometry_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, Efl.TextCursorType ctype, out int cx, out int cy, out int cw, out int ch, out int cx2, out int cy2, out int cw2, out int ch2)
         {
             Eina.Log.Debug("function efl_text_cursor_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                         cx = default(int);        cy = default(int);        cw = default(int);        ch = default(int);        cx2 = default(int);        cy2 = default(int);        cw2 = default(int);        ch2 = default(int);                                                                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).GetCursorGeometry(cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).GetCursorGeometry(cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
                 }
                 catch (Exception e)
                 {
@@ -1008,13 +942,13 @@ ITextMarkupInteractive
         private static Efl.TextCursorCursor cursor_new(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_cursor_new was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).NewCursor();
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).NewCursor();
                 }
                 catch (Exception e)
                 {
@@ -1044,13 +978,13 @@ ITextMarkupInteractive
         private static void cursor_free(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_free was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorFree(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorFree(cur);
                 }
                 catch (Exception e)
                 {
@@ -1079,13 +1013,13 @@ ITextMarkupInteractive
         private static bool cursor_equal(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2)
         {
             Eina.Log.Debug("function efl_text_cursor_equal was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).CursorEqual(cur1, cur2);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).CursorEqual(cur1, cur2);
                 }
                 catch (Exception e)
                 {
@@ -1115,13 +1049,13 @@ ITextMarkupInteractive
         private static int cursor_compare(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2)
         {
             Eina.Log.Debug("function efl_text_cursor_compare was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).CursorCompare(cur1, cur2);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).CursorCompare(cur1, cur2);
                 }
                 catch (Exception e)
                 {
@@ -1151,13 +1085,13 @@ ITextMarkupInteractive
         private static void cursor_copy(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor dst, Efl.TextCursorCursor src)
         {
             Eina.Log.Debug("function efl_text_cursor_copy was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorCopy(dst, src);
+                    ((ITextMarkupInteractive)ws.Target).CursorCopy(dst, src);
                 }
                 catch (Exception e)
                 {
@@ -1186,13 +1120,13 @@ ITextMarkupInteractive
         private static void cursor_char_next(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_char_next was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorCharNext(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorCharNext(cur);
                 }
                 catch (Exception e)
                 {
@@ -1221,13 +1155,13 @@ ITextMarkupInteractive
         private static void cursor_char_prev(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_char_prev was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorCharPrev(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorCharPrev(cur);
                 }
                 catch (Exception e)
                 {
@@ -1256,13 +1190,13 @@ ITextMarkupInteractive
         private static void cursor_cluster_next(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_cluster_next was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorClusterNext(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorClusterNext(cur);
                 }
                 catch (Exception e)
                 {
@@ -1291,13 +1225,13 @@ ITextMarkupInteractive
         private static void cursor_cluster_prev(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_cluster_prev was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorClusterPrev(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorClusterPrev(cur);
                 }
                 catch (Exception e)
                 {
@@ -1326,13 +1260,13 @@ ITextMarkupInteractive
         private static void cursor_paragraph_char_first(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_char_first was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorParagraphCharFirst(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorParagraphCharFirst(cur);
                 }
                 catch (Exception e)
                 {
@@ -1361,13 +1295,13 @@ ITextMarkupInteractive
         private static void cursor_paragraph_char_last(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_char_last was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorParagraphCharLast(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorParagraphCharLast(cur);
                 }
                 catch (Exception e)
                 {
@@ -1396,13 +1330,13 @@ ITextMarkupInteractive
         private static void cursor_word_start(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_word_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorWordStart(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorWordStart(cur);
                 }
                 catch (Exception e)
                 {
@@ -1431,13 +1365,13 @@ ITextMarkupInteractive
         private static void cursor_word_end(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_word_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorWordEnd(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorWordEnd(cur);
                 }
                 catch (Exception e)
                 {
@@ -1466,13 +1400,13 @@ ITextMarkupInteractive
         private static void cursor_line_char_first(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_line_char_first was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorLineCharFirst(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorLineCharFirst(cur);
                 }
                 catch (Exception e)
                 {
@@ -1501,13 +1435,13 @@ ITextMarkupInteractive
         private static void cursor_line_char_last(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_line_char_last was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorLineCharLast(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorLineCharLast(cur);
                 }
                 catch (Exception e)
                 {
@@ -1536,13 +1470,13 @@ ITextMarkupInteractive
         private static void cursor_paragraph_first(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_first was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorParagraphFirst(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorParagraphFirst(cur);
                 }
                 catch (Exception e)
                 {
@@ -1571,13 +1505,13 @@ ITextMarkupInteractive
         private static void cursor_paragraph_last(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_last was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorParagraphLast(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorParagraphLast(cur);
                 }
                 catch (Exception e)
                 {
@@ -1606,13 +1540,13 @@ ITextMarkupInteractive
         private static void cursor_paragraph_next(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_next was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorParagraphNext(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorParagraphNext(cur);
                 }
                 catch (Exception e)
                 {
@@ -1641,13 +1575,13 @@ ITextMarkupInteractive
         private static void cursor_paragraph_prev(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_paragraph_prev was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorParagraphPrev(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorParagraphPrev(cur);
                 }
                 catch (Exception e)
                 {
@@ -1676,13 +1610,13 @@ ITextMarkupInteractive
         private static void cursor_line_jump_by(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int by)
         {
             Eina.Log.Debug("function efl_text_cursor_line_jump_by was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorLineJumpBy(cur, by);
+                    ((ITextMarkupInteractive)ws.Target).CursorLineJumpBy(cur, by);
                 }
                 catch (Exception e)
                 {
@@ -1711,13 +1645,13 @@ ITextMarkupInteractive
         private static void cursor_coord_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int x, int y)
         {
             Eina.Log.Debug("function efl_text_cursor_coord_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).SetCursorCoord(cur, x, y);
+                    ((ITextMarkupInteractive)ws.Target).SetCursorCoord(cur, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1746,13 +1680,13 @@ ITextMarkupInteractive
         private static void cursor_cluster_coord_set(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, int x, int y)
         {
             Eina.Log.Debug("function efl_text_cursor_cluster_coord_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).SetCursorClusterCoord(cur, x, y);
+                    ((ITextMarkupInteractive)ws.Target).SetCursorClusterCoord(cur, x, y);
                 }
                 catch (Exception e)
                 {
@@ -1781,13 +1715,13 @@ ITextMarkupInteractive
         private static int cursor_text_insert(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, System.String text)
         {
             Eina.Log.Debug("function efl_text_cursor_text_insert was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ITextMarkupInteractive)wrapper).CursorTextInsert(cur, text);
+                    _ret_var = ((ITextMarkupInteractive)ws.Target).CursorTextInsert(cur, text);
                 }
                 catch (Exception e)
                 {
@@ -1817,13 +1751,13 @@ ITextMarkupInteractive
         private static void cursor_char_delete(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_char_delete was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextMarkupInteractive)wrapper).CursorCharDelete(cur);
+                    ((ITextMarkupInteractive)ws.Target).CursorCharDelete(cur);
                 }
                 catch (Exception e)
                 {
@@ -1841,7 +1775,7 @@ ITextMarkupInteractive
 
         private static efl_text_cursor_char_delete_delegate efl_text_cursor_char_delete_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

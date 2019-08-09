@@ -63,27 +63,26 @@ internal static partial class Interop
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_resolution")]
             internal static extern ImageUtilError SetResolution(TransformHandle handle, uint width, uint height);
         }
-
-        internal class TransformHandle : SafeHandle
-        {
-            protected TransformHandle() : base(IntPtr.Zero, true)
-            {
-            }
-
-            public override bool IsInvalid => handle == IntPtr.Zero;
-
-            protected override bool ReleaseHandle()
-            {
-                var ret = Transform.Destroy(handle);
-                if (ret != ImageUtilError.None)
-                {
-                    Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
-                    return false;
-                }
-
-                return true;
-            }
-        }
     }
 
+    internal class TransformHandle : SafeHandle
+    {
+        protected TransformHandle() : base(IntPtr.Zero, true)
+        {
+        }
+
+        public override bool IsInvalid => handle == IntPtr.Zero;
+
+        protected override bool ReleaseHandle()
+        {
+            var ret = ImageUtil.Transform.Destroy(handle);
+            if (ret != ImageUtilError.None)
+            {
+                Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
+                return false;
+            }
+
+            return true;
+        }
+    }
 }

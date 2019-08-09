@@ -8,13 +8,15 @@ using System.ComponentModel;
 namespace Efl {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LoopMessageFutureHandlerMessageFutureEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.LoopMessageFuture arg { get; set; }
 }
 /// <summary>Internal use for future on an efl loop - replacing legacy ecore events</summary>
 [Efl.LoopMessageFutureHandler.NativeMethods]
-public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -37,52 +39,30 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageFutureHandler(Efl.Object parent= null
-            ) : base(efl_loop_message_future_handler_class_get(), typeof(LoopMessageFutureHandler), parent)
+            ) : base(efl_loop_message_future_handler_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessageFutureHandler(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessageFutureHandler(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessageFutureHandler(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessageFutureHandler(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessageFutureHandler(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>No description supplied.</summary>
@@ -90,15 +70,14 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.LoopMessageFutureHandlerMessageFutureEvt_Args args = new Efl.LoopMessageFutureHandlerMessageFutureEvt_Args();
+                        Efl.LoopMessageFutureHandlerMessageFutureEvt_Args args = new Efl.LoopMessageFutureHandlerMessageFutureEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessageFuture);
                         try
                         {
@@ -119,7 +98,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_MESSAGE_FUTURE_HANDLER_EVENT_MESSAGE_FUTURE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -143,7 +122,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
     /// <summary>No description supplied.</summary>
     /// <returns>No description supplied.</returns>
     virtual public Efl.LoopMessageFuture AddMessageType() {
-         var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -183,7 +162,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
             return Efl.LoopMessageFutureHandler.efl_loop_message_future_handler_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.LoopMessageFuture efl_loop_message_future_handler_message_type_add_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -196,13 +175,13 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
         private static Efl.LoopMessageFuture message_type_add(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_message_future_handler_message_type_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.LoopMessageFuture _ret_var = default(Efl.LoopMessageFuture);
                 try
                 {
-                    _ret_var = ((LoopMessageFutureHandler)wrapper).AddMessageType();
+                    _ret_var = ((LoopMessageFutureHandler)ws.Target).AddMessageType();
                 }
                 catch (Exception e)
                 {
@@ -221,7 +200,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler, Efl.Eo.IWrapper
 
         private static efl_loop_message_future_handler_message_type_add_delegate efl_loop_message_future_handler_message_type_add_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -11,7 +11,8 @@ namespace Canvas {
 
 /// <summary>Efl canvas internal image class</summary>
 [Efl.Canvas.ImageInternal.NativeMethods]
-public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFileSave,Efl.IOrientation,Efl.Canvas.Filter.IInternal,Efl.Gfx.IBuffer,Efl.Gfx.IFill,Efl.Gfx.IFilter,Efl.Gfx.IImage,Efl.Gfx.IView
+[Efl.Eo.BindingEntity]
+public abstract class ImageInternal : Efl.Canvas.Object, Efl.IFileSave, Efl.Canvas.Filter.IInternal, Efl.Gfx.IBuffer, Efl.Gfx.IFill, Efl.Gfx.IFilter, Efl.Gfx.IImage, Efl.Gfx.IImageOrientable, Efl.Gfx.IView
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,59 +35,37 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <summary>Initializes a new instance of the <see cref="ImageInternal"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ImageInternal(Efl.Object parent= null
-            ) : base(efl_canvas_image_internal_class_get(), typeof(ImageInternal), parent)
+            ) : base(efl_canvas_image_internal_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ImageInternal(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ImageInternal"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ImageInternal(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ImageInternal(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class ImageInternalRealized : ImageInternal
     {
-        private ImageInternalRealized(IntPtr ptr) : base(ptr)
+        private ImageInternalRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="ImageInternal"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ImageInternal(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ImageInternal(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Image data has been preloaded.</summary>
@@ -94,12 +73,11 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -116,16 +94,16 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -133,7 +111,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     public void OnImagePreloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -147,12 +125,11 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -169,16 +146,16 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -186,7 +163,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     public void OnImageResizeEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -200,12 +177,11 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -222,16 +198,16 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
                 };
 
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Evas, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
@@ -239,7 +215,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     public void OnImageUnloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -259,65 +235,35 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool Save(System.String file, System.String key, ref Efl.FileSaveInfo info) {
                          Efl.FileSaveInfo.NativeStruct _in_info = info;
-                                                        var _ret_var = Efl.IFileSaveConcrete.NativeMethods.efl_file_save_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file, key, ref _in_info);
+                                                        var _ret_var = Efl.IFileSaveConcrete.NativeMethods.efl_file_save_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file, key, ref _in_info);
         Eina.Error.RaiseIfUnhandledException();
                                                 info = _in_info;
         return _ret_var;
  }
-    /// <summary>Control the orientation of a given object.
-    /// This can be used to set the rotation on an image or a window, for instance.</summary>
-    /// <returns>The rotation angle (CCW), see <see cref="Efl.Orient"/>.</returns>
-    virtual public Efl.Orient GetOrientation() {
-         var _ret_var = Efl.IOrientationConcrete.NativeMethods.efl_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Control the orientation of a given object.
-    /// This can be used to set the rotation on an image or a window, for instance.</summary>
-    /// <param name="dir">The rotation angle (CCW), see <see cref="Efl.Orient"/>.</param>
-    virtual public void SetOrientation(Efl.Orient dir) {
-                                 Efl.IOrientationConcrete.NativeMethods.efl_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Control the flip of the given image
-    /// Use this function to change how your image is to be flipped: vertically or horizontally or transpose or traverse.</summary>
-    /// <returns>Flip method</returns>
-    virtual public Efl.Flip GetFlip() {
-         var _ret_var = Efl.IOrientationConcrete.NativeMethods.efl_orientation_flip_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Control the flip of the given image
-    /// Use this function to change how your image is to be flipped: vertically or horizontally or transpose or traverse.</summary>
-    /// <param name="flip">Flip method</param>
-    virtual public void SetFlip(Efl.Flip flip) {
-                                 Efl.IOrientationConcrete.NativeMethods.efl_orientation_flip_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),flip);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
     /// <summary>Marks this filter as changed.</summary>
     /// <param name="val"><c>true</c> if filter changed, <c>false</c> otherwise</param>
     virtual public void SetFilterChanged(bool val) {
-                                 Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_changed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_changed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Marks this filter as invalid.</summary>
     /// <param name="val"><c>true</c> if filter is invalid, <c>false</c> otherwise</param>
     virtual public void SetFilterInvalid(bool val) {
-                                 Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_invalid_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_invalid_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieve cached output buffer, if any.
     /// Does not increment the reference count.</summary>
     /// <returns>Output buffer</returns>
     virtual public System.IntPtr GetFilterOutputBuffer() {
-         var _ret_var = Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_output_buffer_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_output_buffer_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Called by Efl.Canvas.Filter.Internal to determine whether the input is alpha or rgba.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool FilterInputAlpha() {
-         var _ret_var = Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_input_alpha_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_input_alpha_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -326,7 +272,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="data">Private data for the class</param>
     virtual public void FilterStatePrepare(out Efl.Canvas.Filter.State state, System.IntPtr data) {
                          var _out_state = new Efl.Canvas.Filter.State.NativeStruct();
-                                Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_state_prepare_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_state, data);
+                                Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_state_prepare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_state, data);
         Eina.Error.RaiseIfUnhandledException();
         state = _out_state;
                                  }
@@ -345,20 +291,20 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="do_async"><c>true</c> when the operation should be done asynchronously, <c>false</c> otherwise</param>
     /// <returns>Indicates success from the object render function.</returns>
     virtual public bool FilterInputRender(System.IntPtr filter, System.IntPtr engine, System.IntPtr output, System.IntPtr drawctx, System.IntPtr data, int l, int r, int t, int b, int x, int y, bool do_async) {
-                                                                                                                                                                                                                                                                                                         var _ret_var = Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_input_render_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),filter, engine, output, drawctx, data, l, r, t, b, x, y, do_async);
+                                                                                                                                                                                                                                                                                                         var _ret_var = Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_input_render_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),filter, engine, output, drawctx, data, l, r, t, b, x, y, do_async);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                                                                                                         return _ret_var;
  }
     /// <summary>Called when filter changes must trigger a redraw of the object.
     /// Virtual, to be implemented in the parent class.</summary>
     virtual public void FilterDirty() {
-         Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_dirty_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Canvas.Filter.IInternalConcrete.NativeMethods.evas_filter_dirty_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Rectangular size of the pixel buffer as allocated in memory.</summary>
     /// <returns>Size of the buffer in pixels.</returns>
     virtual public Eina.Size2D GetBufferSize() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -366,21 +312,21 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="sz">Size of the buffer in pixels.</param>
     virtual public void SetBufferSize(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_sz);
+                        Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the current encoding of this buffer&apos;s pixels.
     /// See <see cref="Efl.Gfx.Colorspace"/> for more information on the supported formats.</summary>
     /// <returns>Colorspace</returns>
     virtual public Efl.Gfx.Colorspace GetColorspace() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_colorspace_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_colorspace_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Retrieve whether alpha channel data is used on this object.</summary>
     /// <returns>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</returns>
     virtual public bool GetAlpha() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_alpha_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_alpha_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -388,7 +334,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// This function sets a flag on an image object indicating whether or not to use alpha channel data. A value of <c>true</c> makes it use alpha channel data, and <c>false</c> makes it ignore that data. Note that this has nothing to do with an object&apos;s color as manipulated by <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
     /// <param name="alpha">Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</param>
     virtual public void SetAlpha(bool alpha) {
-                                 Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_alpha_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),alpha);
+                                 Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_alpha_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),alpha);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Length in bytes of one row of pixels in memory.
@@ -397,7 +343,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
     /// <returns>Stride</returns>
     virtual public int GetStride() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_stride_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_stride_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -408,7 +354,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="t">Top border pixels, usually 0 or 1</param>
     /// <param name="b">Bottom border pixels, usually 0 or 1</param>
     virtual public void GetBufferBorders(out uint l, out uint r, out uint t, out uint b) {
-                                                                                                         Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_borders_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_borders_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Mark a sub-region of the given image object to be redrawn.
@@ -416,7 +362,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="region">The updated region.</param>
     virtual public void AddBufferUpdate(ref Eina.Rect region) {
          Eina.Rect.NativeStruct _in_region = region;
-                        Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_update_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_region);
+                        Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_update_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref _in_region);
         Eina.Error.RaiseIfUnhandledException();
                 region = _in_region;
          }
@@ -432,7 +378,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <returns>The data slice. In case of failure, the memory pointer will be <c>null</c>.</returns>
     virtual public Eina.RwSlice BufferMap(Efl.Gfx.BufferAccessMode mode, ref Eina.Rect region, Efl.Gfx.Colorspace cspace, int plane, out int stride) {
                  Eina.Rect.NativeStruct _in_region = region;
-                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_map_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode, ref _in_region, cspace, plane, out stride);
+                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_map_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode, ref _in_region, cspace, plane, out stride);
         Eina.Error.RaiseIfUnhandledException();
                                                         region = _in_region;
                                 return _ret_var;
@@ -444,7 +390,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="slice">Data slice returned by a previous call to map.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool BufferUnmap(Eina.RwSlice slice) {
-                                 var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_unmap_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),slice);
+                                 var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_unmap_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),slice);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -465,7 +411,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     virtual public bool SetBufferCopy(Eina.Slice slice, Eina.Size2D size, int stride, Efl.Gfx.Colorspace cspace, int plane) {
          var _in_slice = Eina.PrimitiveConversion.ManagedToPointerAlloc(slice);
         Eina.Size2D.NativeStruct _in_size = size;
-                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_copy_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_slice, _in_size, stride, cspace, plane);
+                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_copy_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_slice, _in_size, stride, cspace, plane);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -486,7 +432,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     virtual public bool SetBufferManaged(Eina.Slice slice, Eina.Size2D size, int stride, Efl.Gfx.Colorspace cspace, int plane) {
          var _in_slice = Eina.PrimitiveConversion.ManagedToPointerAlloc(slice);
         Eina.Size2D.NativeStruct _in_size = size;
-                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_managed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_slice, _in_size, stride, cspace, plane);
+                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_managed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_slice, _in_size, stride, cspace, plane);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -495,7 +441,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="plane">Plane ID. 0 by default. Useful for planar formats only.</param>
     /// <returns>The data slice. The memory pointer will be <c>null</c> in case of failure.</returns>
     virtual public Eina.Slice GetBufferManaged(int plane) {
-                                 var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_managed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),plane);
+                                 var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_managed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),plane);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -507,7 +453,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
     /// <returns><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</returns>
     virtual public bool GetFillAuto() {
-         var _ret_var = Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_auto_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_auto_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -519,7 +465,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
     /// <param name="filled"><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</param>
     virtual public void SetFillAuto(bool filled) {
-                                 Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_auto_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),filled);
+                                 Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_auto_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),filled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
@@ -528,7 +474,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
     /// <returns>The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</returns>
     virtual public Eina.Rect GetFill() {
-         var _ret_var = Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -539,14 +485,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="fill">The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</param>
     virtual public void SetFill(Eina.Rect fill) {
          Eina.Rect.NativeStruct _in_fill = fill;
-                        Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_fill);
+                        Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_fill);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     virtual public void GetFilterProgram(out System.String code, out System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out code, out name);
+                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out code, out name);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set a graphical filter program on this object.
@@ -558,7 +504,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     virtual public void SetFilterProgram(System.String code, System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),code, name);
+                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),code, name);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the current state of the filter.
@@ -571,7 +517,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     virtual public void GetFilterState(out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out cur_state, out cur_val, out next_state, out next_val, out pos);
+                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out cur_state, out cur_val, out next_state, out next_val, out pos);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Set the current state of the filter.
@@ -584,7 +530,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     virtual public void SetFilterState(System.String cur_state, double cur_val, System.String next_state, double next_val, double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur_state, cur_val, next_state, next_val, pos);
+                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur_state, cur_val, next_state, next_val, pos);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Gets the padding required to apply this filter.</summary>
@@ -593,7 +539,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="t">Padding on the top</param>
     /// <param name="b">Padding on the bottom</param>
     virtual public void GetFilterPadding(out int l, out int r, out int t, out int b) {
-                                                                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Bind an object to use as a mask or texture in a filter program.
@@ -601,7 +547,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="name">Buffer name as used in the program.</param>
     /// <returns>Object to use as a source of pixels.</returns>
     virtual public Efl.Gfx.IEntity GetFilterSource(System.String name) {
-                                 var _ret_var = Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -610,7 +556,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="name">Buffer name as used in the program.</param>
     /// <param name="source">Object to use as a source of pixels.</param>
     virtual public void SetFilterSource(System.String name, Efl.Gfx.IEntity source) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, source);
+                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Extra data used by the filter program.
@@ -621,7 +567,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="value">String value to use as data</param>
     /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
     virtual public void GetFilterData(System.String name, out System.String value, out bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, out value, out execute);
+                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, out value, out execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Extra data used by the filter program.
@@ -632,7 +578,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="value">String value to use as data</param>
     /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
     virtual public void SetFilterData(System.String name, System.String value, bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, value, execute);
+                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, value, execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Whether to use high-quality image scaling algorithm for this image.
@@ -641,7 +587,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <c>true</c> by default</summary>
     /// <returns>Whether to use smooth scale or not.</returns>
     virtual public bool GetSmoothScale() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -651,26 +597,36 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <c>true</c> by default</summary>
     /// <param name="smooth_scale">Whether to use smooth scale or not.</param>
     virtual public void SetSmoothScale(bool smooth_scale) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),smooth_scale);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),smooth_scale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control how the image is scaled.</summary>
     /// <returns>Image scale type</returns>
     virtual public Efl.Gfx.ImageScaleType GetScaleType() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control how the image is scaled.</summary>
     /// <param name="scale_type">Image scale type</param>
     virtual public void SetScaleType(Efl.Gfx.ImageScaleType scale_type) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scale_type);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scale_type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns 1.0 if not applicable (eg. height = 0).</summary>
     /// <returns>The image&apos;s ratio.</returns>
     virtual public double GetRatio() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_ratio_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_ratio_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+    /// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+    /// 
+    /// The geometry of the area is expressed relative to the geometry of the object.</summary>
+    /// <returns>A rectangle inside the object boundary that where content is expected.</returns>
+    virtual public Eina.Rect GetContentRegion() {
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -689,7 +645,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="t">The border&apos;s top height.</param>
     /// <param name="b">The border&apos;s bottom height.</param>
     virtual public void GetBorder(out int l, out int r, out int t, out int b) {
-                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Dimensions of this image&apos;s border, a region that does not scale with the center area.
@@ -707,7 +663,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="t">The border&apos;s top height.</param>
     /// <param name="b">The border&apos;s bottom height.</param>
     virtual public void SetBorder(int l, int r, int t, int b) {
-                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),l, r, t, b);
+                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),l, r, t, b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Scaling factor applied to the image borders.
@@ -716,7 +672,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// Default value is 1.0 (no scaling).</summary>
     /// <returns>The scale factor.</returns>
     virtual public double GetBorderScale() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -726,7 +682,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// Default value is 1.0 (no scaling).</summary>
     /// <param name="scale">The scale factor.</param>
     virtual public void SetBorderScale(double scale) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scale);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specifies how the center part of the object (not the borders) should be drawn when EFL is rendering it.
@@ -735,7 +691,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
     /// <returns>Fill mode of the center region.</returns>
     virtual public Efl.Gfx.BorderFillMode GetBorderCenterFill() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -745,16 +701,40 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
     /// <param name="fill">Fill mode of the center region.</param>
     virtual public void SetBorderCenterFill(Efl.Gfx.BorderFillMode fill) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fill);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fill);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+    /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+    virtual public void GetStretchRegion(out Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, out Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical) {
+                         System.IntPtr _out_horizontal = System.IntPtr.Zero;
+        System.IntPtr _out_vertical = System.IntPtr.Zero;
+                        Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_horizontal, out _out_vertical);
+        Eina.Error.RaiseIfUnhandledException();
+        horizontal = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(_out_horizontal, false);
+        vertical = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(_out_vertical, false);
+                         }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+    /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+    /// <returns>return an error code if the stretch_region provided are incorrect.</returns>
+    virtual public Eina.Error SetStretchRegion(Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical) {
+         var _in_horizontal = horizontal.Handle;
+        var _in_vertical = vertical.Handle;
+                                        var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_horizontal, _in_vertical);
+        Eina.Error.RaiseIfUnhandledException();
+                                        return _ret_var;
+ }
     /// <summary>This represents the size of the original image in pixels.
     /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
     /// 
     /// This is a read-only property, and may return 0x0.</summary>
     /// <returns>The size in pixels.</returns>
     virtual public Eina.Size2D GetImageSize() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -762,7 +742,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
     /// <returns>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></returns>
     virtual public Efl.Gfx.ImageContentHint GetContentHint() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -770,14 +750,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// This function sets the content hint value of the given image of the canvas. For example, if you&apos;re on the GL engine and your driver implementation supports it, setting this hint to #EVAS_IMAGE_CONTENT_HINT_DYNAMIC will make it need zero copies at texture upload time, which is an &quot;expensive&quot; operation.</summary>
     /// <param name="hint">Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></param>
     virtual public void SetContentHint(Efl.Gfx.ImageContentHint hint) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hint);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hint);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the scale hint of a given image of the canvas.
     /// This function returns the scale hint value of the given image object of the canvas.</summary>
     /// <returns>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></returns>
     virtual public Efl.Gfx.ImageScaleHint GetScaleHint() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -785,16 +765,31 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// This function sets the scale hint value of the given image object in the canvas, which will affect how Evas is to cache scaled versions of its original source image.</summary>
     /// <param name="hint">Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></param>
     virtual public void SetScaleHint(Efl.Gfx.ImageScaleHint hint) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hint);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hint);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
     /// <returns>The load error code.</returns>
     virtual public Eina.Error GetImageLoadError() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_load_error_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_load_error_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
+    /// <summary>Control the orientation (rotation and flipping) of a visual object.
+    /// This can be used to set the rotation on an image or a window, for instance.</summary>
+    /// <returns>The final orientation of the object.</returns>
+    virtual public Efl.Gfx.ImageOrientation GetImageOrientation() {
+         var _ret_var = Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Control the orientation (rotation and flipping) of a visual object.
+    /// This can be used to set the rotation on an image or a window, for instance.</summary>
+    /// <param name="dir">The final orientation of the object.</param>
+    virtual public void SetImageOrientation(Efl.Gfx.ImageOrientation dir) {
+                                 Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
     /// <summary>The dimensions of this object&apos;s viewport.
     /// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
     /// 
@@ -807,7 +802,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// Refer to each implementing class specific documentation for more details.</summary>
     /// <returns>Size of the view.</returns>
     virtual public Eina.Size2D GetViewSize() {
-         var _ret_var = Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -824,164 +819,165 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
     /// <param name="size">Size of the view.</param>
     virtual public void SetViewSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Control the orientation of a given object.
-/// This can be used to set the rotation on an image or a window, for instance.</summary>
-/// <value>The rotation angle (CCW), see <see cref="Efl.Orient"/>.</value>
-    public Efl.Orient Orientation {
-        get { return GetOrientation(); }
-        set { SetOrientation(value); }
-    }
-    /// <summary>Control the flip of the given image
-/// Use this function to change how your image is to be flipped: vertically or horizontally or transpose or traverse.</summary>
-/// <value>Flip method</value>
-    public Efl.Flip Flip {
-        get { return GetFlip(); }
-        set { SetFlip(value); }
-    }
     /// <summary>Marks this filter as changed.</summary>
-/// <value><c>true</c> if filter changed, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if filter changed, <c>false</c> otherwise</value>
     public bool FilterChanged {
         set { SetFilterChanged(value); }
     }
     /// <summary>Marks this filter as invalid.</summary>
-/// <value><c>true</c> if filter is invalid, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if filter is invalid, <c>false</c> otherwise</value>
     public bool FilterInvalid {
         set { SetFilterInvalid(value); }
     }
     /// <summary>Retrieve cached output buffer, if any.
-/// Does not increment the reference count.</summary>
-/// <value>Output buffer</value>
+    /// Does not increment the reference count.</summary>
+    /// <value>Output buffer</value>
     public System.IntPtr FilterOutputBuffer {
         get { return GetFilterOutputBuffer(); }
     }
     /// <summary>Rectangular size of the pixel buffer as allocated in memory.</summary>
-/// <value>Size of the buffer in pixels.</value>
+    /// <value>Size of the buffer in pixels.</value>
     public Eina.Size2D BufferSize {
         get { return GetBufferSize(); }
         set { SetBufferSize(value); }
     }
     /// <summary>The colorspace defines how pixels are encoded in the image in memory.
-/// By default, images are encoded in 32-bit BGRA, ie. each pixel takes 4 bytes in memory, with each channel B,G,R,A encoding the color with values from 0 to 255.
-/// 
-/// All images used in EFL use alpha-premultipied BGRA values, which means that for each pixel, B &lt;= A, G &lt;= A and R &lt;= A.</summary>
-/// <value>Colorspace</value>
+    /// By default, images are encoded in 32-bit BGRA, ie. each pixel takes 4 bytes in memory, with each channel B,G,R,A encoding the color with values from 0 to 255.
+    /// 
+    /// All images used in EFL use alpha-premultipied BGRA values, which means that for each pixel, B &lt;= A, G &lt;= A and R &lt;= A.</summary>
+    /// <value>Colorspace</value>
     public Efl.Gfx.Colorspace Colorspace {
         get { return GetColorspace(); }
     }
     /// <summary>Indicates whether the alpha channel should be used.
-/// This does not indicate whether the image source file contains an alpha channel, only whether to respect it or discard it.</summary>
-/// <value>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</value>
+    /// This does not indicate whether the image source file contains an alpha channel, only whether to respect it or discard it.</summary>
+    /// <value>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</value>
     public bool Alpha {
         get { return GetAlpha(); }
         set { SetAlpha(value); }
     }
     /// <summary>Length in bytes of one row of pixels in memory.
-/// Usually this will be equal to width * 4, with a plain BGRA image. This may return 0 if the stride is not applicable.
-/// 
-/// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
-/// <value>Stride</value>
+    /// Usually this will be equal to width * 4, with a plain BGRA image. This may return 0 if the stride is not applicable.
+    /// 
+    /// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
+    /// <value>Stride</value>
     public int Stride {
         get { return GetStride(); }
     }
     /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
-/// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
-/// 
-/// This property takes precedence over <see cref="Efl.Gfx.IFill.Fill"/>. If set to <c>false</c>, then <see cref="Efl.Gfx.IFill.Fill"/> should be set.
-/// 
-/// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
-/// <value><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</value>
+    /// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
+    /// 
+    /// This property takes precedence over <see cref="Efl.Gfx.IFill.Fill"/>. If set to <c>false</c>, then <see cref="Efl.Gfx.IFill.Fill"/> should be set.
+    /// 
+    /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
+    /// <value><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</value>
     public bool FillAuto {
         get { return GetFillAuto(); }
         set { SetFillAuto(value); }
     }
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
-/// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
-/// 
-/// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
-/// <value>The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</value>
+    /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
+    /// 
+    /// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
+    /// <value>The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</value>
     public Eina.Rect Fill {
         get { return GetFill(); }
         set { SetFill(value); }
     }
     /// <summary>Whether to use high-quality image scaling algorithm for this image.
-/// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
-/// 
-/// <c>true</c> by default</summary>
-/// <value>Whether to use smooth scale or not.</value>
+    /// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
+    /// 
+    /// <c>true</c> by default</summary>
+    /// <value>Whether to use smooth scale or not.</value>
     public bool SmoothScale {
         get { return GetSmoothScale(); }
         set { SetSmoothScale(value); }
     }
     /// <summary>Control how the image is scaled.</summary>
-/// <value>Image scale type</value>
+    /// <value>Image scale type</value>
     public Efl.Gfx.ImageScaleType ScaleType {
         get { return GetScaleType(); }
         set { SetScaleType(value); }
     }
     /// <summary>The native width/height ratio of the image.</summary>
-/// <value>The image&apos;s ratio.</value>
+    /// <value>The image&apos;s ratio.</value>
     public double Ratio {
         get { return GetRatio(); }
     }
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+    /// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+    /// 
+    /// The geometry of the area is expressed relative to the geometry of the object.</summary>
+    /// <value>A rectangle inside the object boundary that where content is expected.</value>
+    public Eina.Rect ContentRegion {
+        get { return GetContentRegion(); }
+    }
     /// <summary>Scaling factor applied to the image borders.
-/// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
-/// 
-/// Default value is 1.0 (no scaling).</summary>
-/// <value>The scale factor.</value>
+    /// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
+    /// 
+    /// Default value is 1.0 (no scaling).</summary>
+    /// <value>The scale factor.</value>
     public double BorderScale {
         get { return GetBorderScale(); }
         set { SetBorderScale(value); }
     }
     /// <summary>Specifies how the center part of the object (not the borders) should be drawn when EFL is rendering it.
-/// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
-/// 
-/// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
-/// <value>Fill mode of the center region.</value>
+    /// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
+    /// 
+    /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
+    /// <value>Fill mode of the center region.</value>
     public Efl.Gfx.BorderFillMode BorderCenterFill {
         get { return GetBorderCenterFill(); }
         set { SetBorderCenterFill(value); }
     }
     /// <summary>This represents the size of the original image in pixels.
-/// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
-/// 
-/// This is a read-only property, and may return 0x0.</summary>
-/// <value>The size in pixels.</value>
+    /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
+    /// 
+    /// This is a read-only property, and may return 0x0.</summary>
+    /// <value>The size in pixels.</value>
     public Eina.Size2D ImageSize {
         get { return GetImageSize(); }
     }
     /// <summary>Get the content hint setting of a given image object of the canvas.
-/// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
-/// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
+    /// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
+    /// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
     public Efl.Gfx.ImageContentHint ContentHint {
         get { return GetContentHint(); }
         set { SetContentHint(value); }
     }
     /// <summary>Get the scale hint of a given image of the canvas.
-/// This function returns the scale hint value of the given image object of the canvas.</summary>
-/// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
+    /// This function returns the scale hint value of the given image object of the canvas.</summary>
+    /// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
     public Efl.Gfx.ImageScaleHint ScaleHint {
         get { return GetScaleHint(); }
         set { SetScaleHint(value); }
     }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
-/// <value>The load error code.</value>
+    /// <value>The load error code.</value>
     public Eina.Error ImageLoadError {
         get { return GetImageLoadError(); }
     }
+    /// <summary>Control the orientation (rotation and flipping) of a visual object.
+    /// This can be used to set the rotation on an image or a window, for instance.</summary>
+    /// <value>The final orientation of the object.</value>
+    public Efl.Gfx.ImageOrientation ImageOrientation {
+        get { return GetImageOrientation(); }
+        set { SetImageOrientation(value); }
+    }
     /// <summary>The dimensions of this object&apos;s viewport.
-/// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
-/// 
-/// For scalable scenes (vector graphics, 3D or GL), this means scaling the contents of the scene and drawing more pixels as a result; For pixmaps this means zooming and stretching up or down the backing buffer to fit this view.
-/// 
-/// In most cases the view should have the same dimensions as the object on the canvas, for best quality.
-/// 
-/// <see cref="Efl.Gfx.IView.SetViewSize"/> may not be implemented. If it is, it might trigger a complete recalculation of the scene, or reload of the pixel data.
-/// 
-/// Refer to each implementing class specific documentation for more details.</summary>
-/// <value>Size of the view.</value>
+    /// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
+    /// 
+    /// For scalable scenes (vector graphics, 3D or GL), this means scaling the contents of the scene and drawing more pixels as a result; For pixmaps this means zooming and stretching up or down the backing buffer to fit this view.
+    /// 
+    /// In most cases the view should have the same dimensions as the object on the canvas, for best quality.
+    /// 
+    /// <see cref="Efl.Gfx.IView.SetViewSize"/> may not be implemented. If it is, it might trigger a complete recalculation of the scene, or reload of the pixel data.
+    /// 
+    /// Refer to each implementing class specific documentation for more details.</summary>
+    /// <value>Size of the view.</value>
     public Eina.Size2D ViewSize {
         get { return GetViewSize(); }
         set { SetViewSize(value); }
@@ -1010,46 +1006,6 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
             if (methods.FirstOrDefault(m => m.Name == "Save") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_file_save"), func = Marshal.GetFunctionPointerForDelegate(efl_file_save_static_delegate) });
-            }
-
-            if (efl_orientation_get_static_delegate == null)
-            {
-                efl_orientation_get_static_delegate = new efl_orientation_get_delegate(orientation_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_orientation_get_static_delegate) });
-            }
-
-            if (efl_orientation_set_static_delegate == null)
-            {
-                efl_orientation_set_static_delegate = new efl_orientation_set_delegate(orientation_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_orientation_set_static_delegate) });
-            }
-
-            if (efl_orientation_flip_get_static_delegate == null)
-            {
-                efl_orientation_flip_get_static_delegate = new efl_orientation_flip_get_delegate(flip_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFlip") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_orientation_flip_get"), func = Marshal.GetFunctionPointerForDelegate(efl_orientation_flip_get_static_delegate) });
-            }
-
-            if (efl_orientation_flip_set_static_delegate == null)
-            {
-                efl_orientation_flip_set_static_delegate = new efl_orientation_flip_set_delegate(flip_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetFlip") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_orientation_flip_set"), func = Marshal.GetFunctionPointerForDelegate(efl_orientation_flip_set_static_delegate) });
             }
 
             if (evas_filter_changed_set_static_delegate == null)
@@ -1432,6 +1388,16 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_ratio_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_ratio_get_static_delegate) });
             }
 
+            if (efl_gfx_image_content_region_get_static_delegate == null)
+            {
+                efl_gfx_image_content_region_get_static_delegate = new efl_gfx_image_content_region_get_delegate(content_region_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetContentRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_content_region_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_content_region_get_static_delegate) });
+            }
+
             if (efl_gfx_image_border_get_static_delegate == null)
             {
                 efl_gfx_image_border_get_static_delegate = new efl_gfx_image_border_get_delegate(border_get);
@@ -1490,6 +1456,26 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
             if (methods.FirstOrDefault(m => m.Name == "SetBorderCenterFill") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_border_center_fill_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_border_center_fill_set_static_delegate) });
+            }
+
+            if (efl_gfx_image_stretch_region_get_static_delegate == null)
+            {
+                efl_gfx_image_stretch_region_get_static_delegate = new efl_gfx_image_stretch_region_get_delegate(stretch_region_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetStretchRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_stretch_region_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_stretch_region_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_stretch_region_set_static_delegate == null)
+            {
+                efl_gfx_image_stretch_region_set_static_delegate = new efl_gfx_image_stretch_region_set_delegate(stretch_region_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetStretchRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_stretch_region_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_stretch_region_set_static_delegate) });
             }
 
             if (efl_gfx_image_size_get_static_delegate == null)
@@ -1552,6 +1538,26 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_load_error_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_load_error_get_static_delegate) });
             }
 
+            if (efl_gfx_image_orientation_get_static_delegate == null)
+            {
+                efl_gfx_image_orientation_get_static_delegate = new efl_gfx_image_orientation_get_delegate(image_orientation_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetImageOrientation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_orientation_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_orientation_set_static_delegate == null)
+            {
+                efl_gfx_image_orientation_set_static_delegate = new efl_gfx_image_orientation_set_delegate(image_orientation_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetImageOrientation") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_orientation_set_static_delegate) });
+            }
+
             if (efl_gfx_view_size_get_static_delegate == null)
             {
                 efl_gfx_view_size_get_static_delegate = new efl_gfx_view_size_get_delegate(view_size_get);
@@ -1582,7 +1588,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
             return Efl.Canvas.ImageInternal.efl_canvas_image_internal_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_file_save_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String file, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key,  ref Efl.FileSaveInfo.NativeStruct info);
@@ -1595,14 +1601,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool save(System.IntPtr obj, System.IntPtr pd, System.String file, System.String key, ref Efl.FileSaveInfo.NativeStruct info)
         {
             Eina.Log.Debug("function efl_file_save was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.FileSaveInfo _in_info = info;
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).Save(file, key, ref _in_info);
+                    _ret_var = ((ImageInternal)ws.Target).Save(file, key, ref _in_info);
                 }
                 catch (Exception e)
                 {
@@ -1623,148 +1629,6 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static efl_file_save_delegate efl_file_save_static_delegate;
 
         
-        private delegate Efl.Orient efl_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Orient efl_orientation_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_orientation_get_api_delegate> efl_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_orientation_get_api_delegate>(Module, "efl_orientation_get");
-
-        private static Efl.Orient orientation_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_orientation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-            Efl.Orient _ret_var = default(Efl.Orient);
-                try
-                {
-                    _ret_var = ((ImageInternal)wrapper).GetOrientation();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_orientation_get_delegate efl_orientation_get_static_delegate;
-
-        
-        private delegate void efl_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Orient dir);
-
-        
-        public delegate void efl_orientation_set_api_delegate(System.IntPtr obj,  Efl.Orient dir);
-
-        public static Efl.Eo.FunctionWrapper<efl_orientation_set_api_delegate> efl_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_orientation_set_api_delegate>(Module, "efl_orientation_set");
-
-        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Orient dir)
-        {
-            Eina.Log.Debug("function efl_orientation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-                                    
-                try
-                {
-                    ((ImageInternal)wrapper).SetOrientation(dir);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
-            }
-        }
-
-        private static efl_orientation_set_delegate efl_orientation_set_static_delegate;
-
-        
-        private delegate Efl.Flip efl_orientation_flip_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Flip efl_orientation_flip_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_orientation_flip_get_api_delegate> efl_orientation_flip_get_ptr = new Efl.Eo.FunctionWrapper<efl_orientation_flip_get_api_delegate>(Module, "efl_orientation_flip_get");
-
-        private static Efl.Flip flip_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_orientation_flip_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-            Efl.Flip _ret_var = default(Efl.Flip);
-                try
-                {
-                    _ret_var = ((ImageInternal)wrapper).GetFlip();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_orientation_flip_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_orientation_flip_get_delegate efl_orientation_flip_get_static_delegate;
-
-        
-        private delegate void efl_orientation_flip_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Flip flip);
-
-        
-        public delegate void efl_orientation_flip_set_api_delegate(System.IntPtr obj,  Efl.Flip flip);
-
-        public static Efl.Eo.FunctionWrapper<efl_orientation_flip_set_api_delegate> efl_orientation_flip_set_ptr = new Efl.Eo.FunctionWrapper<efl_orientation_flip_set_api_delegate>(Module, "efl_orientation_flip_set");
-
-        private static void flip_set(System.IntPtr obj, System.IntPtr pd, Efl.Flip flip)
-        {
-            Eina.Log.Debug("function efl_orientation_flip_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-                                    
-                try
-                {
-                    ((ImageInternal)wrapper).SetFlip(flip);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_orientation_flip_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), flip);
-            }
-        }
-
-        private static efl_orientation_flip_set_delegate efl_orientation_flip_set_static_delegate;
-
-        
         private delegate void evas_filter_changed_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool val);
 
         
@@ -1775,13 +1639,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_changed_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function evas_filter_changed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetFilterChanged(val);
+                    ((ImageInternal)ws.Target).SetFilterChanged(val);
                 }
                 catch (Exception e)
                 {
@@ -1810,13 +1674,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_invalid_set(System.IntPtr obj, System.IntPtr pd, bool val)
         {
             Eina.Log.Debug("function evas_filter_invalid_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetFilterInvalid(val);
+                    ((ImageInternal)ws.Target).SetFilterInvalid(val);
                 }
                 catch (Exception e)
                 {
@@ -1845,13 +1709,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static System.IntPtr filter_output_buffer_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function evas_filter_output_buffer_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetFilterOutputBuffer();
+                    _ret_var = ((ImageInternal)ws.Target).GetFilterOutputBuffer();
                 }
                 catch (Exception e)
                 {
@@ -1881,13 +1745,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool filter_input_alpha(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function evas_filter_input_alpha was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).FilterInputAlpha();
+                    _ret_var = ((ImageInternal)ws.Target).FilterInputAlpha();
                 }
                 catch (Exception e)
                 {
@@ -1917,14 +1781,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_state_prepare(System.IntPtr obj, System.IntPtr pd, out Efl.Canvas.Filter.State.NativeStruct state, System.IntPtr data)
         {
             Eina.Log.Debug("function evas_filter_state_prepare was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Canvas.Filter.State _out_state = default(Efl.Canvas.Filter.State);
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).FilterStatePrepare(out _out_state, data);
+                    ((ImageInternal)ws.Target).FilterStatePrepare(out _out_state, data);
                 }
                 catch (Exception e)
                 {
@@ -1954,13 +1818,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool filter_input_render(System.IntPtr obj, System.IntPtr pd, System.IntPtr filter, System.IntPtr engine, System.IntPtr output, System.IntPtr drawctx, System.IntPtr data, int l, int r, int t, int b, int x, int y, bool do_async)
         {
             Eina.Log.Debug("function evas_filter_input_render was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                                                                                                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).FilterInputRender(filter, engine, output, drawctx, data, l, r, t, b, x, y, do_async);
+                    _ret_var = ((ImageInternal)ws.Target).FilterInputRender(filter, engine, output, drawctx, data, l, r, t, b, x, y, do_async);
                 }
                 catch (Exception e)
                 {
@@ -1990,13 +1854,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_dirty(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function evas_filter_dirty was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ImageInternal)wrapper).FilterDirty();
+                    ((ImageInternal)ws.Target).FilterDirty();
                 }
                 catch (Exception e)
                 {
@@ -2025,13 +1889,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Eina.Size2D.NativeStruct buffer_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetBufferSize();
+                    _ret_var = ((ImageInternal)ws.Target).GetBufferSize();
                 }
                 catch (Exception e)
                 {
@@ -2061,14 +1925,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void buffer_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_gfx_buffer_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_sz = sz;
                             
                 try
                 {
-                    ((ImageInternal)wrapper).SetBufferSize(_in_sz);
+                    ((ImageInternal)ws.Target).SetBufferSize(_in_sz);
                 }
                 catch (Exception e)
                 {
@@ -2097,13 +1961,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Efl.Gfx.Colorspace colorspace_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_colorspace_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.Colorspace _ret_var = default(Efl.Gfx.Colorspace);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetColorspace();
+                    _ret_var = ((ImageInternal)ws.Target).GetColorspace();
                 }
                 catch (Exception e)
                 {
@@ -2133,13 +1997,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool alpha_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_alpha_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetAlpha();
+                    _ret_var = ((ImageInternal)ws.Target).GetAlpha();
                 }
                 catch (Exception e)
                 {
@@ -2169,13 +2033,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void alpha_set(System.IntPtr obj, System.IntPtr pd, bool alpha)
         {
             Eina.Log.Debug("function efl_gfx_buffer_alpha_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetAlpha(alpha);
+                    ((ImageInternal)ws.Target).SetAlpha(alpha);
                 }
                 catch (Exception e)
                 {
@@ -2204,13 +2068,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static int stride_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_buffer_stride_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetStride();
+                    _ret_var = ((ImageInternal)ws.Target).GetStride();
                 }
                 catch (Exception e)
                 {
@@ -2240,13 +2104,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void buffer_borders_get(System.IntPtr obj, System.IntPtr pd, out uint l, out uint r, out uint t, out uint b)
         {
             Eina.Log.Debug("function efl_gfx_buffer_borders_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(uint);        r = default(uint);        t = default(uint);        b = default(uint);                                            
                 try
                 {
-                    ((ImageInternal)wrapper).GetBufferBorders(out l, out r, out t, out b);
+                    ((ImageInternal)ws.Target).GetBufferBorders(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -2275,14 +2139,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void buffer_update_add(System.IntPtr obj, System.IntPtr pd, ref Eina.Rect.NativeStruct region)
         {
             Eina.Log.Debug("function efl_gfx_buffer_update_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_region = region;
                             
                 try
                 {
-                    ((ImageInternal)wrapper).AddBufferUpdate(ref _in_region);
+                    ((ImageInternal)ws.Target).AddBufferUpdate(ref _in_region);
                 }
                 catch (Exception e)
                 {
@@ -2312,14 +2176,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Eina.RwSlice buffer_map(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.BufferAccessMode mode, ref Eina.Rect.NativeStruct region, Efl.Gfx.Colorspace cspace, int plane, out int stride)
         {
             Eina.Log.Debug("function efl_gfx_buffer_map was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Rect _in_region = region;
                                                                 stride = default(int);                                                    Eina.RwSlice _ret_var = default(Eina.RwSlice);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).BufferMap(mode, ref _in_region, cspace, plane, out stride);
+                    _ret_var = ((ImageInternal)ws.Target).BufferMap(mode, ref _in_region, cspace, plane, out stride);
                 }
                 catch (Exception e)
                 {
@@ -2350,13 +2214,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool buffer_unmap(System.IntPtr obj, System.IntPtr pd, Eina.RwSlice slice)
         {
             Eina.Log.Debug("function efl_gfx_buffer_unmap was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).BufferUnmap(slice);
+                    _ret_var = ((ImageInternal)ws.Target).BufferUnmap(slice);
                 }
                 catch (Exception e)
                 {
@@ -2386,15 +2250,15 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool buffer_copy_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr slice, Eina.Size2D.NativeStruct size, int stride, Efl.Gfx.Colorspace cspace, int plane)
         {
             Eina.Log.Debug("function efl_gfx_buffer_copy_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_slice = Eina.PrimitiveConversion.PointerToManaged<Eina.Slice>(slice);
         Eina.Size2D _in_size = size;
                                                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).SetBufferCopy(_in_slice, _in_size, stride, cspace, plane);
+                    _ret_var = ((ImageInternal)ws.Target).SetBufferCopy(_in_slice, _in_size, stride, cspace, plane);
                 }
                 catch (Exception e)
                 {
@@ -2424,15 +2288,15 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool buffer_managed_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr slice, Eina.Size2D.NativeStruct size, int stride, Efl.Gfx.Colorspace cspace, int plane)
         {
             Eina.Log.Debug("function efl_gfx_buffer_managed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_slice = Eina.PrimitiveConversion.PointerToManaged<Eina.Slice>(slice);
         Eina.Size2D _in_size = size;
                                                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).SetBufferManaged(_in_slice, _in_size, stride, cspace, plane);
+                    _ret_var = ((ImageInternal)ws.Target).SetBufferManaged(_in_slice, _in_size, stride, cspace, plane);
                 }
                 catch (Exception e)
                 {
@@ -2462,13 +2326,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Eina.Slice buffer_managed_get(System.IntPtr obj, System.IntPtr pd, int plane)
         {
             Eina.Log.Debug("function efl_gfx_buffer_managed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Slice _ret_var = default(Eina.Slice);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetBufferManaged(plane);
+                    _ret_var = ((ImageInternal)ws.Target).GetBufferManaged(plane);
                 }
                 catch (Exception e)
                 {
@@ -2498,13 +2362,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool fill_auto_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_fill_auto_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetFillAuto();
+                    _ret_var = ((ImageInternal)ws.Target).GetFillAuto();
                 }
                 catch (Exception e)
                 {
@@ -2534,13 +2398,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void fill_auto_set(System.IntPtr obj, System.IntPtr pd, bool filled)
         {
             Eina.Log.Debug("function efl_gfx_fill_auto_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetFillAuto(filled);
+                    ((ImageInternal)ws.Target).SetFillAuto(filled);
                 }
                 catch (Exception e)
                 {
@@ -2569,13 +2433,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Eina.Rect.NativeStruct fill_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_fill_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetFill();
+                    _ret_var = ((ImageInternal)ws.Target).GetFill();
                 }
                 catch (Exception e)
                 {
@@ -2605,14 +2469,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void fill_set(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct fill)
         {
             Eina.Log.Debug("function efl_gfx_fill_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_fill = fill;
                             
                 try
                 {
-                    ((ImageInternal)wrapper).SetFill(_in_fill);
+                    ((ImageInternal)ws.Target).SetFill(_in_fill);
                 }
                 catch (Exception e)
                 {
@@ -2641,15 +2505,15 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_program_get(System.IntPtr obj, System.IntPtr pd, out System.String code, out System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_program_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         System.String _out_code = default(System.String);
         System.String _out_name = default(System.String);
                             
                 try
                 {
-                    ((ImageInternal)wrapper).GetFilterProgram(out _out_code, out _out_name);
+                    ((ImageInternal)ws.Target).GetFilterProgram(out _out_code, out _out_name);
                 }
                 catch (Exception e)
                 {
@@ -2680,13 +2544,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_program_set(System.IntPtr obj, System.IntPtr pd, System.String code, System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_program_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageInternal)wrapper).SetFilterProgram(code, name);
+                    ((ImageInternal)ws.Target).SetFilterProgram(code, name);
                 }
                 catch (Exception e)
                 {
@@ -2715,15 +2579,15 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_state_get(System.IntPtr obj, System.IntPtr pd, out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos)
         {
             Eina.Log.Debug("function efl_gfx_filter_state_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                 System.String _out_cur_state = default(System.String);
         cur_val = default(double);        System.String _out_next_state = default(System.String);
         next_val = default(double);        pos = default(double);                                                    
                 try
                 {
-                    ((ImageInternal)wrapper).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
+                    ((ImageInternal)ws.Target).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
                 }
                 catch (Exception e)
                 {
@@ -2754,13 +2618,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_state_set(System.IntPtr obj, System.IntPtr pd, System.String cur_state, double cur_val, System.String next_state, double next_val, double pos)
         {
             Eina.Log.Debug("function efl_gfx_filter_state_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
+                    ((ImageInternal)ws.Target).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
                 }
                 catch (Exception e)
                 {
@@ -2789,13 +2653,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_padding_get(System.IntPtr obj, System.IntPtr pd, out int l, out int r, out int t, out int b)
         {
             Eina.Log.Debug("function efl_gfx_filter_padding_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((ImageInternal)wrapper).GetFilterPadding(out l, out r, out t, out b);
+                    ((ImageInternal)ws.Target).GetFilterPadding(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -2824,13 +2688,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Efl.Gfx.IEntity filter_source_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_source_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetFilterSource(name);
+                    _ret_var = ((ImageInternal)ws.Target).GetFilterSource(name);
                 }
                 catch (Exception e)
                 {
@@ -2860,13 +2724,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_source_set(System.IntPtr obj, System.IntPtr pd, System.String name, Efl.Gfx.IEntity source)
         {
             Eina.Log.Debug("function efl_gfx_filter_source_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ImageInternal)wrapper).SetFilterSource(name, source);
+                    ((ImageInternal)ws.Target).SetFilterSource(name, source);
                 }
                 catch (Exception e)
                 {
@@ -2895,14 +2759,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_data_get(System.IntPtr obj, System.IntPtr pd, System.String name, out System.String value, out bool execute)
         {
             Eina.Log.Debug("function efl_gfx_filter_data_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         System.String _out_value = default(System.String);
         execute = default(bool);                                    
                 try
                 {
-                    ((ImageInternal)wrapper).GetFilterData(name, out _out_value, out execute);
+                    ((ImageInternal)ws.Target).GetFilterData(name, out _out_value, out execute);
                 }
                 catch (Exception e)
                 {
@@ -2932,13 +2796,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void filter_data_set(System.IntPtr obj, System.IntPtr pd, System.String name, System.String value, bool execute)
         {
             Eina.Log.Debug("function efl_gfx_filter_data_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetFilterData(name, value, execute);
+                    ((ImageInternal)ws.Target).SetFilterData(name, value, execute);
                 }
                 catch (Exception e)
                 {
@@ -2967,13 +2831,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static bool smooth_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_smooth_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetSmoothScale();
+                    _ret_var = ((ImageInternal)ws.Target).GetSmoothScale();
                 }
                 catch (Exception e)
                 {
@@ -3003,13 +2867,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void smooth_scale_set(System.IntPtr obj, System.IntPtr pd, bool smooth_scale)
         {
             Eina.Log.Debug("function efl_gfx_image_smooth_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetSmoothScale(smooth_scale);
+                    ((ImageInternal)ws.Target).SetSmoothScale(smooth_scale);
                 }
                 catch (Exception e)
                 {
@@ -3038,13 +2902,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Efl.Gfx.ImageScaleType scale_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageScaleType _ret_var = default(Efl.Gfx.ImageScaleType);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetScaleType();
+                    _ret_var = ((ImageInternal)ws.Target).GetScaleType();
                 }
                 catch (Exception e)
                 {
@@ -3074,13 +2938,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void scale_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageScaleType scale_type)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetScaleType(scale_type);
+                    ((ImageInternal)ws.Target).SetScaleType(scale_type);
                 }
                 catch (Exception e)
                 {
@@ -3109,13 +2973,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static double ratio_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_ratio_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetRatio();
+                    _ret_var = ((ImageInternal)ws.Target).GetRatio();
                 }
                 catch (Exception e)
                 {
@@ -3135,6 +2999,42 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static efl_gfx_image_ratio_get_delegate efl_gfx_image_ratio_get_static_delegate;
 
         
+        private delegate Eina.Rect.NativeStruct efl_gfx_image_content_region_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Rect.NativeStruct efl_gfx_image_content_region_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_content_region_get_api_delegate> efl_gfx_image_content_region_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_content_region_get_api_delegate>(Module, "efl_gfx_image_content_region_get");
+
+        private static Eina.Rect.NativeStruct content_region_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_content_region_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Rect _ret_var = default(Eina.Rect);
+                try
+                {
+                    _ret_var = ((ImageInternal)ws.Target).GetContentRegion();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_content_region_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_content_region_get_delegate efl_gfx_image_content_region_get_static_delegate;
+
+        
         private delegate void efl_gfx_image_border_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int l,  out int r,  out int t,  out int b);
 
         
@@ -3145,13 +3045,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void border_get(System.IntPtr obj, System.IntPtr pd, out int l, out int r, out int t, out int b)
         {
             Eina.Log.Debug("function efl_gfx_image_border_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((ImageInternal)wrapper).GetBorder(out l, out r, out t, out b);
+                    ((ImageInternal)ws.Target).GetBorder(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -3180,13 +3080,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void border_set(System.IntPtr obj, System.IntPtr pd, int l, int r, int t, int b)
         {
             Eina.Log.Debug("function efl_gfx_image_border_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ImageInternal)wrapper).SetBorder(l, r, t, b);
+                    ((ImageInternal)ws.Target).SetBorder(l, r, t, b);
                 }
                 catch (Exception e)
                 {
@@ -3215,13 +3115,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static double border_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_border_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetBorderScale();
+                    _ret_var = ((ImageInternal)ws.Target).GetBorderScale();
                 }
                 catch (Exception e)
                 {
@@ -3251,13 +3151,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void border_scale_set(System.IntPtr obj, System.IntPtr pd, double scale)
         {
             Eina.Log.Debug("function efl_gfx_image_border_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetBorderScale(scale);
+                    ((ImageInternal)ws.Target).SetBorderScale(scale);
                 }
                 catch (Exception e)
                 {
@@ -3286,13 +3186,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Efl.Gfx.BorderFillMode border_center_fill_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_border_center_fill_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.BorderFillMode _ret_var = default(Efl.Gfx.BorderFillMode);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetBorderCenterFill();
+                    _ret_var = ((ImageInternal)ws.Target).GetBorderCenterFill();
                 }
                 catch (Exception e)
                 {
@@ -3322,13 +3222,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void border_center_fill_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.BorderFillMode fill)
         {
             Eina.Log.Debug("function efl_gfx_image_border_center_fill_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetBorderCenterFill(fill);
+                    ((ImageInternal)ws.Target).SetBorderCenterFill(fill);
                 }
                 catch (Exception e)
                 {
@@ -3347,6 +3247,83 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static efl_gfx_image_border_center_fill_set_delegate efl_gfx_image_border_center_fill_set_static_delegate;
 
         
+        private delegate void efl_gfx_image_stretch_region_get_delegate(System.IntPtr obj, System.IntPtr pd,  out System.IntPtr horizontal,  out System.IntPtr vertical);
+
+        
+        public delegate void efl_gfx_image_stretch_region_get_api_delegate(System.IntPtr obj,  out System.IntPtr horizontal,  out System.IntPtr vertical);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_get_api_delegate> efl_gfx_image_stretch_region_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_get_api_delegate>(Module, "efl_gfx_image_stretch_region_get");
+
+        private static void stretch_region_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr horizontal, out System.IntPtr vertical)
+        {
+            Eina.Log.Debug("function efl_gfx_image_stretch_region_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                        Eina.Iterator<Efl.Gfx.Image.StretchRegion> _out_horizontal = default(Eina.Iterator<Efl.Gfx.Image.StretchRegion>);
+        Eina.Iterator<Efl.Gfx.Image.StretchRegion> _out_vertical = default(Eina.Iterator<Efl.Gfx.Image.StretchRegion>);
+                            
+                try
+                {
+                    ((ImageInternal)ws.Target).GetStretchRegion(out _out_horizontal, out _out_vertical);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        horizontal = _out_horizontal.Handle;
+        vertical = _out_vertical.Handle;
+                        
+            }
+            else
+            {
+                efl_gfx_image_stretch_region_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out horizontal, out vertical);
+            }
+        }
+
+        private static efl_gfx_image_stretch_region_get_delegate efl_gfx_image_stretch_region_get_static_delegate;
+
+        
+        private delegate Eina.Error efl_gfx_image_stretch_region_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr horizontal,  System.IntPtr vertical);
+
+        
+        public delegate Eina.Error efl_gfx_image_stretch_region_set_api_delegate(System.IntPtr obj,  System.IntPtr horizontal,  System.IntPtr vertical);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_set_api_delegate> efl_gfx_image_stretch_region_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_set_api_delegate>(Module, "efl_gfx_image_stretch_region_set");
+
+        private static Eina.Error stretch_region_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr horizontal, System.IntPtr vertical)
+        {
+            Eina.Log.Debug("function efl_gfx_image_stretch_region_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+        var _in_horizontal = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(horizontal, false);
+        var _in_vertical = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(vertical, false);
+                                            Eina.Error _ret_var = default(Eina.Error);
+                try
+                {
+                    _ret_var = ((ImageInternal)ws.Target).SetStretchRegion(_in_horizontal, _in_vertical);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_stretch_region_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), horizontal, vertical);
+            }
+        }
+
+        private static efl_gfx_image_stretch_region_set_delegate efl_gfx_image_stretch_region_set_static_delegate;
+
+        
         private delegate Eina.Size2D.NativeStruct efl_gfx_image_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
@@ -3357,13 +3334,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Eina.Size2D.NativeStruct image_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetImageSize();
+                    _ret_var = ((ImageInternal)ws.Target).GetImageSize();
                 }
                 catch (Exception e)
                 {
@@ -3393,13 +3370,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Efl.Gfx.ImageContentHint content_hint_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_content_hint_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageContentHint _ret_var = default(Efl.Gfx.ImageContentHint);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetContentHint();
+                    _ret_var = ((ImageInternal)ws.Target).GetContentHint();
                 }
                 catch (Exception e)
                 {
@@ -3429,13 +3406,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void content_hint_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageContentHint hint)
         {
             Eina.Log.Debug("function efl_gfx_image_content_hint_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetContentHint(hint);
+                    ((ImageInternal)ws.Target).SetContentHint(hint);
                 }
                 catch (Exception e)
                 {
@@ -3464,13 +3441,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Efl.Gfx.ImageScaleHint scale_hint_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_hint_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageScaleHint _ret_var = default(Efl.Gfx.ImageScaleHint);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetScaleHint();
+                    _ret_var = ((ImageInternal)ws.Target).GetScaleHint();
                 }
                 catch (Exception e)
                 {
@@ -3500,13 +3477,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void scale_hint_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageScaleHint hint)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_hint_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ImageInternal)wrapper).SetScaleHint(hint);
+                    ((ImageInternal)ws.Target).SetScaleHint(hint);
                 }
                 catch (Exception e)
                 {
@@ -3535,13 +3512,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Eina.Error image_load_error_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_error_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetImageLoadError();
+                    _ret_var = ((ImageInternal)ws.Target).GetImageLoadError();
                 }
                 catch (Exception e)
                 {
@@ -3561,6 +3538,77 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static efl_gfx_image_load_error_get_delegate efl_gfx_image_load_error_get_static_delegate;
 
         
+        private delegate Efl.Gfx.ImageOrientation efl_gfx_image_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Efl.Gfx.ImageOrientation efl_gfx_image_orientation_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_get_api_delegate> efl_gfx_image_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_get_api_delegate>(Module, "efl_gfx_image_orientation_get");
+
+        private static Efl.Gfx.ImageOrientation image_orientation_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_orientation_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Efl.Gfx.ImageOrientation _ret_var = default(Efl.Gfx.ImageOrientation);
+                try
+                {
+                    _ret_var = ((ImageInternal)ws.Target).GetImageOrientation();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_orientation_get_delegate efl_gfx_image_orientation_get_static_delegate;
+
+        
+        private delegate void efl_gfx_image_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Gfx.ImageOrientation dir);
+
+        
+        public delegate void efl_gfx_image_orientation_set_api_delegate(System.IntPtr obj,  Efl.Gfx.ImageOrientation dir);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_set_api_delegate> efl_gfx_image_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_set_api_delegate>(Module, "efl_gfx_image_orientation_set");
+
+        private static void image_orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageOrientation dir)
+        {
+            Eina.Log.Debug("function efl_gfx_image_orientation_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((ImageInternal)ws.Target).SetImageOrientation(dir);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gfx_image_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
+            }
+        }
+
+        private static efl_gfx_image_orientation_set_delegate efl_gfx_image_orientation_set_static_delegate;
+
+        
         private delegate Eina.Size2D.NativeStruct efl_gfx_view_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
@@ -3571,13 +3619,13 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static Eina.Size2D.NativeStruct view_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_view_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((ImageInternal)wrapper).GetViewSize();
+                    _ret_var = ((ImageInternal)ws.Target).GetViewSize();
                 }
                 catch (Exception e)
                 {
@@ -3607,14 +3655,14 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
         private static void view_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct size)
         {
             Eina.Log.Debug("function efl_gfx_view_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_size = size;
                             
                 try
                 {
-                    ((ImageInternal)wrapper).SetViewSize(_in_size);
+                    ((ImageInternal)ws.Target).SetViewSize(_in_size);
                 }
                 catch (Exception e)
                 {
@@ -3632,7 +3680,7 @@ public abstract class ImageInternal : Efl.Canvas.Object, Efl.Eo.IWrapper,Efl.IFi
 
         private static efl_gfx_view_size_set_delegate efl_gfx_view_size_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

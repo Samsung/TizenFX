@@ -11,7 +11,8 @@ namespace Ui {
 
 /// <summary>Tab Bar class</summary>
 [Efl.Ui.TabBar.NativeMethods]
-public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
+[Efl.Eo.BindingEntity]
+public class TabBar : Efl.Ui.LayoutBase
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -33,9 +34,9 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         efl_ui_tab_bar_class_get();
     /// <summary>Initializes a new instance of the <see cref="TabBar"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public TabBar(Efl.Object parent
-            , System.String style = null) : base(efl_ui_tab_bar_class_get(), typeof(TabBar), parent)
+            , System.String style = null) : base(efl_ui_tab_bar_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,512 +46,58 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TabBar(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TabBar"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TabBar(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TabBar(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="TabBar"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TabBar(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TabBar(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    /// <summary>Called when object is clicked</summary>
-    public event EventHandler ClickedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a double click</summary>
-    public event EventHandler ClickedDoubleEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedDoubleEvt.</summary>
-    public void OnClickedDoubleEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a triple click</summary>
-    public event EventHandler ClickedTripleEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedTripleEvt.</summary>
-    public void OnClickedTripleEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a right click</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedRightEvt_Args> ClickedRightEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickableClickedRightEvt_Args args = new Efl.Ui.IClickableClickedRightEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedRightEvt.</summary>
-    public void OnClickedRightEvt(Efl.Ui.IClickableClickedRightEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object is pressed</summary>
-    public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_PRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_PRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event PressedEvt.</summary>
-    public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_PRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object is no longer pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event UnpressedEvt.</summary>
-    public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_UNPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object receives a long press</summary>
-    public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event LongpressedEvt.</summary>
-    public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_LONGPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object receives repeated presses/clicks</summary>
-    public event EventHandler RepeatedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_REPEATED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_REPEATED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event RepeatedEvt.</summary>
-    public void OnRepeatedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_REPEATED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
     virtual public int GetCurrentTab() {
-         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public void SetCurrentTab(int index) {
-                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                          }
     virtual public uint TabCount() {
-         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public void AddTab(int index, System.String label, System.String icon) {
-                                                                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index, label, icon);
+                                                                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index, label, icon);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     virtual public void TabRemove(int index) {
-                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_remove_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                          }
     virtual public void SetTabLabel(int index, System.String label) {
-                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_label_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index, label);
+                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_label_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index, label);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     virtual public void SetTabIcon(int index, System.String icon) {
-                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_icon_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index, icon);
+                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_icon_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index, icon);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-        public int CurrentTab {
+    public int CurrentTab {
         get { return GetCurrentTab(); }
         set { SetCurrentTab(value); }
     }
@@ -650,7 +197,7 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
             return Efl.Ui.TabBar.efl_ui_tab_bar_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_ui_tab_bar_current_tab_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -663,13 +210,13 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         private static int current_tab_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_tab_bar_current_tab_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((TabBar)wrapper).GetCurrentTab();
+                    _ret_var = ((TabBar)ws.Target).GetCurrentTab();
                 }
                 catch (Exception e)
                 {
@@ -699,13 +246,13 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         private static void current_tab_set(System.IntPtr obj, System.IntPtr pd, int index)
         {
             Eina.Log.Debug("function efl_ui_tab_bar_current_tab_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((TabBar)wrapper).SetCurrentTab(index);
+                    ((TabBar)ws.Target).SetCurrentTab(index);
                 }
                 catch (Exception e)
                 {
@@ -734,13 +281,13 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         private static uint tab_count(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_tab_bar_tab_count was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             uint _ret_var = default(uint);
                 try
                 {
-                    _ret_var = ((TabBar)wrapper).TabCount();
+                    _ret_var = ((TabBar)ws.Target).TabCount();
                 }
                 catch (Exception e)
                 {
@@ -770,13 +317,13 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         private static void tab_add(System.IntPtr obj, System.IntPtr pd, int index, System.String label, System.String icon)
         {
             Eina.Log.Debug("function efl_ui_tab_bar_tab_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((TabBar)wrapper).AddTab(index, label, icon);
+                    ((TabBar)ws.Target).AddTab(index, label, icon);
                 }
                 catch (Exception e)
                 {
@@ -805,13 +352,13 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         private static void tab_remove(System.IntPtr obj, System.IntPtr pd, int index)
         {
             Eina.Log.Debug("function efl_ui_tab_bar_tab_remove was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((TabBar)wrapper).TabRemove(index);
+                    ((TabBar)ws.Target).TabRemove(index);
                 }
                 catch (Exception e)
                 {
@@ -840,13 +387,13 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         private static void tab_label_set(System.IntPtr obj, System.IntPtr pd, int index, System.String label)
         {
             Eina.Log.Debug("function efl_ui_tab_bar_tab_label_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((TabBar)wrapper).SetTabLabel(index, label);
+                    ((TabBar)ws.Target).SetTabLabel(index, label);
                 }
                 catch (Exception e)
                 {
@@ -875,13 +422,13 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
         private static void tab_icon_set(System.IntPtr obj, System.IntPtr pd, int index, System.String icon)
         {
             Eina.Log.Debug("function efl_ui_tab_bar_tab_icon_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((TabBar)wrapper).SetTabIcon(index, icon);
+                    ((TabBar)ws.Target).SetTabIcon(index, icon);
                 }
                 catch (Exception e)
                 {
@@ -899,7 +446,7 @@ public class TabBar : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Ui.IClickable
 
         private static efl_ui_tab_bar_tab_icon_set_delegate efl_ui_tab_bar_tab_icon_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -17,9 +17,10 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 using System.Windows.Input;
 using System.Collections.Generic;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.UIComponents
 {
@@ -31,10 +32,12 @@ namespace Tizen.NUI.UIComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(PushButton), null, null);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(PushButton), null,
+                BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(PushButton), null, null);
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(PushButton), null,
+                BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
 
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -78,6 +81,33 @@ namespace Tizen.NUI.UIComponents
             set
             {
                 base.SetValue(PushButton.CommandParameterProperty, value);
+            }
+        }
+
+        /// Only used by the IL of xaml, will never changed to not hidden.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsCreateByXaml
+        {
+            get
+            {
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
+                {
+                    this.Clicked += (sender, e) =>
+                    {
+                        ICommand command = this.Command;
+                        if (command != null)
+                        {
+                            command.Execute(this.CommandParameter);
+                        }
+                        return true;
+                    };
+                }
             }
         }
 

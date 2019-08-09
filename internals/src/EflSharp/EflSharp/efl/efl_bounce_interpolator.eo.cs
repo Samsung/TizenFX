@@ -9,7 +9,8 @@ namespace Efl {
 
 /// <summary>Efl bounce interpolator class</summary>
 [Efl.BounceInterpolator.NativeMethods]
-public class BounceInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
+[Efl.Eo.BindingEntity]
+public class BounceInterpolator : Efl.Object, Efl.IInterpolator
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -32,73 +33,51 @@ public class BounceInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
     /// <summary>Initializes a new instance of the <see cref="BounceInterpolator"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public BounceInterpolator(Efl.Object parent= null
-            ) : base(efl_bounce_interpolator_class_get(), typeof(BounceInterpolator), parent)
+            ) : base(efl_bounce_interpolator_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected BounceInterpolator(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="BounceInterpolator"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected BounceInterpolator(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected BounceInterpolator(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="BounceInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected BounceInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected BounceInterpolator(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Factors property</summary>
     /// <param name="factor1">First factor of the interpolation function.</param>
     /// <param name="factor2">Second factor of the interpolation function.</param>
     virtual public void GetFactors(out double factor1, out double factor2) {
-                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out factor1, out factor2);
+                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out factor1, out factor2);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Factors property</summary>
     /// <param name="factor1">First factor of the interpolation function.</param>
     /// <param name="factor2">Second factor of the interpolation function.</param>
     virtual public void SetFactors(double factor1, double factor2) {
-                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),factor1, factor2);
+                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),factor1, factor2);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Interpolate the given value.</summary>
     /// <param name="progress">Input value mapped from 0.0 to 1.0.</param>
     /// <returns>Output value calculated by interpolating the input value.</returns>
     virtual public double Interpolate(double progress) {
-                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),progress);
+                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -158,7 +137,7 @@ public class BounceInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
             return Efl.BounceInterpolator.efl_bounce_interpolator_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_bounce_interpolator_factors_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double factor1,  out double factor2);
@@ -171,13 +150,13 @@ public class BounceInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
         private static void factors_get(System.IntPtr obj, System.IntPtr pd, out double factor1, out double factor2)
         {
             Eina.Log.Debug("function efl_bounce_interpolator_factors_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         factor1 = default(double);        factor2 = default(double);                            
                 try
                 {
-                    ((BounceInterpolator)wrapper).GetFactors(out factor1, out factor2);
+                    ((BounceInterpolator)ws.Target).GetFactors(out factor1, out factor2);
                 }
                 catch (Exception e)
                 {
@@ -206,13 +185,13 @@ public class BounceInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
         private static void factors_set(System.IntPtr obj, System.IntPtr pd, double factor1, double factor2)
         {
             Eina.Log.Debug("function efl_bounce_interpolator_factors_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((BounceInterpolator)wrapper).SetFactors(factor1, factor2);
+                    ((BounceInterpolator)ws.Target).SetFactors(factor1, factor2);
                 }
                 catch (Exception e)
                 {
@@ -241,13 +220,13 @@ public class BounceInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
         private static double interpolate(System.IntPtr obj, System.IntPtr pd, double progress)
         {
             Eina.Log.Debug("function efl_interpolator_interpolate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((BounceInterpolator)wrapper).Interpolate(progress);
+                    _ret_var = ((BounceInterpolator)ws.Target).Interpolate(progress);
                 }
                 catch (Exception e)
                 {
@@ -266,7 +245,7 @@ public class BounceInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
 
         private static efl_interpolator_interpolate_delegate efl_interpolator_interpolate_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

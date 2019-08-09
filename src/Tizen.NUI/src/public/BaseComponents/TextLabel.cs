@@ -505,6 +505,24 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
+        /// Only for XAML. No need of public API. Make hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextFitProperty = BindableProperty.Create(nameof(TextFit), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.TEXT_FIT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            PropertyMap temp = new PropertyMap();
+            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.TEXT_FIT).Get(temp);
+            return temp;
+        });
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private string textLabelSid = null;
         private bool systemlangTextFlag = false;
@@ -1212,6 +1230,30 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The text fit parameters.<br />
+        /// The textFit map contains the following keys :<br />
+        /// - enable (bool type) : True to enable the text fit or false to disable(the default value is false)<br />
+        /// - minSize (float type) : Minimum Size for text fit(the default value is 10.f)<br />
+        /// - maxSize (float type) : Maximum Size for text fit(the default value is 100.f)<br />
+        /// - stepSize (float type) : Step Size for font increase(the default value is 1.f)<br />
+        /// - fontSize (string type) : The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")<br />
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap TextFit
+        {
+            get
+            {
+                return (PropertyMap)GetValue(TextFitProperty);
+            }
+            set
+            {
+                SetValue(TextFitProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Downcasts a handle to textLabel handle
         /// </summary>
         /// <param name="handle"></param>
@@ -1275,10 +1317,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Invoked whenever the binding context of the textlabel changes. Implement this method to add class handling for this event.
         /// </summary>
-        /// Deprecated. Do not use.
-        protected void OnBindingContextChanged()
+        protected override void OnBindingContextChanged()
         {
-
+            base.OnBindingContextChanged();
         }
 
         private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
@@ -1322,6 +1363,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int TEXT_DIRECTION = Interop.TextLabel.TextLabel_Property_TEXT_DIRECTION_get();
             internal static readonly int VERTICAL_LINE_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextLabel.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
+            internal static readonly int TEXT_FIT = Interop.TextLabel.TextLabel_Property_TEXT_FIT_get();
         }
     }
 }

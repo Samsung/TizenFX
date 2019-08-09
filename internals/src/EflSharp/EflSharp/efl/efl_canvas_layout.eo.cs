@@ -10,13 +10,15 @@ namespace Efl {
 namespace Canvas {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Layout.PartInvalidEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LayoutPartInvalidEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public System.String arg { get; set; }
 }
 /// <summary>Edje object class</summary>
 [Efl.Canvas.Layout.NativeMethods]
-public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile,Efl.IObserver,Efl.IPart,Efl.IPlayer,Efl.Gfx.IColorClass,Efl.Gfx.ISizeClass,Efl.Gfx.ITextClass,Efl.Layout.ICalc,Efl.Layout.IGroup,Efl.Layout.ISignal
+[Efl.Eo.BindingEntity]
+public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver, Efl.IPart, Efl.IPlayer, Efl.Gfx.IColorClass, Efl.Gfx.ISizeClass, Efl.Gfx.ITextClass, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -39,52 +41,30 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Layout(Efl.Object parent= null
-            ) : base(efl_canvas_layout_class_get(), typeof(Layout), parent)
+            ) : base(efl_canvas_layout_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Layout(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Layout(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Layout(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Layout(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Layout(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Emitted when trying to use an invalid part. The value passed is the part name.</summary>
@@ -92,15 +72,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.LayoutPartInvalidEvt_Args args = new Efl.Canvas.LayoutPartInvalidEvt_Args();
+                        Efl.Canvas.LayoutPartInvalidEvt_Args args = new Efl.Canvas.LayoutPartInvalidEvt_Args();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -121,7 +100,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_PART_INVALID";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -149,21 +128,20 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
             Eina.MemoryNative.Free(info);
         }
     }
-    /// <summary>Sent after a new item was added.
+    /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
+                        Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -178,16 +156,16 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
@@ -195,7 +173,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -205,21 +183,20 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Sent after an item was removed, before unref.
+    /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
+                        Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -234,16 +211,16 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
                 };
 
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Edje, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
@@ -251,7 +228,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -267,12 +244,11 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -295,7 +271,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -321,15 +297,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Layout.ICalcCircularDependencyEvt_Args args = new Efl.Layout.ICalcCircularDependencyEvt_Args();
+                        Efl.Layout.ICalcCircularDependencyEvt_Args args = new Efl.Layout.ICalcCircularDependencyEvt_Args();
                         args.arg = new Eina.Array<System.String>(evt.Info, false, false);
                         try
                         {
@@ -350,7 +325,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -374,14 +349,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <summary>Get the current state of animation, <c>true</c> by default.</summary>
     /// <returns>The animation state, <c>true</c> by default.</returns>
     virtual public bool GetAnimation() {
-         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start or stop animating this object.</summary>
     /// <param name="on">The animation state, <c>true</c> by default.</param>
     virtual public void SetAnimation(bool on) {
-                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),on);
+                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),on);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the seat device given its Edje&apos;s name.
@@ -389,7 +364,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="name">The name&apos;s character string.</param>
     /// <returns>The seat device or <c>null</c> if not found.</returns>
     virtual public Efl.Input.Device GetSeat(System.String name) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -398,14 +373,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="device">The seat device</param>
     /// <returns>The name&apos;s character string or <c>null</c> if not found.</returns>
     virtual public System.String GetSeatName(Efl.Input.Device device) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),device);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),device);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
     /// <returns>The load error code.</returns>
     virtual public Eina.Error GetLayoutLoadError() {
-         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_load_error_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_load_error_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -419,7 +394,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="min_y">The min height policy</param>
     /// <returns><c>true</c> on success, or <c>false</c> on error</returns>
     virtual public bool GetPartTextMinPolicy(System.String part, System.String state_name, out bool min_x, out bool min_y) {
-                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, state_name, out min_x, out min_y);
+                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, state_name, out min_x, out min_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
@@ -433,7 +408,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="min_y">The min height policy</param>
     /// <returns><c>true</c> on success, or <c>false</c> on error</returns>
     virtual public bool SetPartTextMinPolicy(System.String part, System.String state_name, bool min_x, bool min_y) {
-                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, state_name, min_x, min_y);
+                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, state_name, min_x, min_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
@@ -442,7 +417,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="part">The part name</param>
     /// <returns>The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</returns>
     virtual public double GetPartTextValign(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -452,7 +427,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="valign">The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextValign(System.String part, double valign) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, valign);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, valign);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -461,7 +436,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="part">The part name</param>
     /// <returns>The duration. 0.0 for respect EDC&apos;s duration value.</returns>
     virtual public double GetPartTextMarqueeDuration(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -471,7 +446,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="duration">The duration. 0.0 for respect EDC&apos;s duration value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextMarqueeDuration(System.String part, double duration) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, duration);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, duration);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -480,7 +455,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="part">The part name</param>
     /// <returns>The speed. 0.0 for respect EDC&apos;s speed value.</returns>
     virtual public double GetPartTextMarqueeSpeed(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -490,7 +465,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="speed">The speed. 0.0 for respect EDC&apos;s speed value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextMarqueeSpeed(System.String part, double speed) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, speed);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, speed);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -499,7 +474,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="part">The part name</param>
     /// <returns>The always mode</returns>
     virtual public bool GetPartTextMarqueeAlways(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -509,7 +484,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="always">The always mode</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextMarqueeAlways(System.String part, bool always) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, always);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, always);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -518,7 +493,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="part">The part name</param>
     /// <returns>The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</returns>
     virtual public double GetPartValign(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -528,22 +503,22 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="valign">The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartValign(System.String part, double valign) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, valign);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, valign);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Iterates over all accessibility-enabled part names.</summary>
     /// <returns>Part name iterator</returns>
     virtual public Eina.Iterator<System.String> AccessPartIterate() {
-         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_access_part_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_access_part_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<System.String>(_ret_var, true, false);
+        return new Eina.Iterator<System.String>(_ret_var, true);
  }
     /// <summary>Unswallow an object from this Edje.</summary>
     /// <param name="content">To be removed content.</param>
     /// <returns><c>false</c> if <c>content</c> was not a child or can not be removed.</returns>
     virtual public bool ContentRemove(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_content_remove_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_content_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -551,13 +526,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
     /// <param name="parent">The parent object for color class</param>
     virtual public void SetColorClassParent(Efl.Object parent) {
-                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),parent);
+                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Unsets the parent object for color class.
     /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
     virtual public void UnsetColorClassParent() {
-         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get a position of the given cursor
@@ -567,7 +542,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="x">w</param>
     /// <param name="y">h</param>
     virtual public void GetPartTextCursorCoord(System.String part, Edje.Cursor cur, out int x, out int y) {
-                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_coord_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, cur, out x, out y);
+                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_coord_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, cur, out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Get a size of the given cursor
@@ -577,7 +552,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="w">w</param>
     /// <param name="h">h</param>
     virtual public void GetPartTextCursorSize(System.String part, Edje.Cursor cur, out int w, out int h) {
-                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, cur, out w, out h);
+                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, cur, out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Returns the cursor geometry of the part relative to the edje object. The cursor geometry is kept in mouse down and move.
@@ -588,22 +563,22 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="w">Cursor width</param>
     /// <param name="h">Cursor height</param>
     virtual public void GetPartTextCursorOnMouseGeometry(System.String part, out int x, out int y, out int w, out int h) {
-                                                                                                                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_on_mouse_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, out x, out y, out w, out h);
+                                                                                                                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_on_mouse_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, out x, out y, out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
-    /// <returns>Iterator to object content</returns>
+    /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
-    /// <summary>Returns the number of UI elements packed in this container.
+    /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
-    /// <returns>Number of packed UI elements</returns>
+    /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -611,7 +586,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The handle to the <see cref="Eina.File"/> that will be used</returns>
     virtual public Eina.File GetMmap() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -621,7 +596,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="f">The handle to the <see cref="Eina.File"/> that will be used</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetMmap(Eina.File f) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -630,7 +605,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The file path.</returns>
     virtual public System.String GetFile() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -640,7 +615,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="file">The file path.</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetFile(System.String file) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -651,7 +626,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</returns>
     virtual public System.String GetKey() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -660,14 +635,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</param>
     virtual public void SetKey(System.String key) {
-                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is loaded, <c>false</c> otherwise.</returns>
     virtual public bool GetLoaded() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -678,7 +653,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error Load() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -688,7 +663,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// Calling <see cref="Efl.IFile.Unload"/> on an object which is not currently loaded will have no effect.
     /// (Since EFL 1.22)</summary>
     virtual public void Unload() {
-         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Update observer according to the changes of observable object.</summary>
@@ -696,7 +671,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="data">Required data to update the observer, usually passed by observable object</param>
     virtual public void Update(Efl.Object obs, System.String key, System.IntPtr data) {
-                                                                                 Efl.IObserverConcrete.NativeMethods.efl_observer_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),obs, key, data);
+                                                                                 Efl.IObserverConcrete.NativeMethods.efl_observer_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),obs, key, data);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Get a proxy object referring to a part of an object.
@@ -704,21 +679,21 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="name">The part name.</param>
     /// <returns>A (proxy) object, valid for a single call.</returns>
     virtual public Efl.Object GetPart(System.String name) {
-                                 var _ret_var = Efl.IPartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.IPartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Whether or not the playable can be played.</summary>
     /// <returns><c>true</c> if the object have playable data, <c>false</c> otherwise</returns>
     virtual public bool GetPlayable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get play/pause state of the media file.</summary>
     /// <returns><c>true</c> if playing, <c>false</c> otherwise.</returns>
     virtual public bool GetPlay() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -726,14 +701,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// This functions sets the currently playing status of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <param name="play"><c>true</c> if playing, <c>false</c> otherwise.</param>
     virtual public void SetPlay(bool play) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),play);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),play);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the position in the media file.
     /// The position is returned as the number of seconds since the beginning of the media file.</summary>
     /// <returns>The position (in seconds).</returns>
     virtual public double GetPos() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -741,14 +716,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// This functions sets the current position of the media file to &quot;sec&quot;, this only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <param name="sec">The position (in seconds).</param>
     virtual public void SetPos(double sec) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sec);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get how much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <returns>The progress within the [0, 1] range.</returns>
     virtual public double GetProgress() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -756,7 +731,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <returns>The play speed in the [0, infinity) range.</returns>
     virtual public double GetPlaySpeed() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -764,14 +739,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <param name="speed">The play speed in the [0, infinity) range.</param>
     virtual public void SetPlaySpeed(double speed) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),speed);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),speed);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the audio volume.
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <returns>The volume level</returns>
     virtual public double GetVolume() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -779,44 +754,44 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <param name="volume">The volume level</param>
     virtual public void SetVolume(double volume) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),volume);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),volume);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This property controls the audio mute state.</summary>
     /// <returns>The mute state. <c>true</c> or <c>false</c>.</returns>
     virtual public bool GetMute() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property controls the audio mute state.</summary>
     /// <param name="mute">The mute state. <c>true</c> or <c>false</c>.</param>
     virtual public void SetMute(bool mute) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mute);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mute);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the length of play for the media file.</summary>
     /// <returns>The length of the stream in seconds.</returns>
     virtual public double GetLength() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get whether the media file is seekable.</summary>
     /// <returns><c>true</c> if seekable.</returns>
     virtual public bool GetSeekable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start a playing playable object.</summary>
     virtual public void Start() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Stop playable object.</summary>
     virtual public void Stop() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the color of color class.
@@ -833,7 +808,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="a">The alpha value</param>
     /// <returns><c>true</c> if getting the color succeeded, <c>false</c> otherwise</returns>
     virtual public bool GetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, out int r, out int g, out int b, out int a) {
-                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer, out r, out g, out b, out a);
+                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer, out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                         return _ret_var;
  }
@@ -853,7 +828,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="a">The alpha value</param>
     /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
     virtual public bool SetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, int r, int g, int b, int a) {
-                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer, r, g, b, a);
+                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer, r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                         return _ret_var;
  }
@@ -869,7 +844,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="layer">The layer to set the color</param>
     /// <returns>the hex color code.</returns>
     virtual public System.String GetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer) {
-                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer);
+                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -886,7 +861,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="colorcode">the hex color code.</param>
     /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
     virtual public bool SetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer, System.String colorcode) {
-                                                                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer, colorcode);
+                                                                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer, colorcode);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -895,7 +870,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="color_class">The name of color class</param>
     /// <returns>The description of the target color class or <c>null</c> if not found</returns>
     virtual public System.String GetColorClassDescription(System.String color_class) {
-                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_description_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class);
+                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_description_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -907,13 +882,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// Deleting the color class will emit the signal &quot;color_class,del&quot; for the given Edje object.</summary>
     /// <param name="color_class">The name of color_class</param>
     virtual public void DelColorClass(System.String color_class) {
-                                 Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class);
+                                 Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Delete all color classes defined in object level.
     /// This function deletes any color classes defined in object level. Clearing color classes will revert the color of all edje parts to the values defined in global level or theme file.</summary>
     virtual public void ClearColorClass() {
-         Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get width and height of size class.
@@ -925,7 +900,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="maxh">maximum height</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool GetSizeClass(System.String size_class, out int minw, out int minh, out int maxw, out int maxh) {
-                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),size_class, out minw, out minh, out maxw, out maxh);
+                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size_class, out minw, out minh, out maxw, out maxh);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -938,7 +913,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="maxh">maximum height</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetSizeClass(System.String size_class, int minw, int minh, int maxw, int maxh) {
-                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),size_class, minw, minh, maxw, maxh);
+                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size_class, minw, minh, maxw, maxh);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -948,7 +923,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// Deleting the size class will revert it to the values defined by <see cref="Efl.Gfx.ISizeClass.GetSizeClass"/> or the size class defined in the theme file.</summary>
     /// <param name="size_class">The size class to be deleted.</param>
     virtual public void DelSizeClass(System.String size_class) {
-                                 Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),size_class);
+                                 Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size_class);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get font and font size from edje text class.
@@ -958,7 +933,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="size">Font Size</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool GetTextClass(System.String text_class, out System.String font, out Efl.Font.Size size) {
-                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text_class, out font, out size);
+                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text_class, out font, out size);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -969,7 +944,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="size">Font Size</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetTextClass(System.String text_class, System.String font, Efl.Font.Size size) {
-                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text_class, font, size);
+                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text_class, font, size);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -979,14 +954,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// Deleting the text class will revert it to the values defined by <see cref="Efl.Gfx.ITextClass.GetTextClass"/> or the text class defined in the theme file.</summary>
     /// <param name="text_class">The text class to be deleted.</param>
     virtual public void DelTextClass(System.String text_class) {
-                                 Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text_class);
+                                 Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text_class);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether this object updates its size hints automatically.
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether or not update the size hints.</returns>
     virtual public bool GetCalcAutoUpdateHints() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -994,7 +969,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <param name="update">Whether or not update the size hints.</param>
     virtual public void SetCalcAutoUpdateHints(bool update) {
-                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),update);
+                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),update);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Calculates the minimum required size for a given layout object.
@@ -1008,7 +983,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <returns>The minimum required size.</returns>
     virtual public Eina.Size2D CalcSizeMin(Eina.Size2D restricted) {
          Eina.Size2D.NativeStruct _in_restricted = restricted;
-                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_restricted);
+                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_restricted);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1019,7 +994,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The calculated region.</returns>
     virtual public Eina.Rect CalcPartsExtends() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1030,7 +1005,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 on error</returns>
     virtual public int FreezeCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1043,7 +1018,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
     virtual public int ThawCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1053,7 +1028,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void CalcForce() {
-         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
@@ -1067,7 +1042,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The minimum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMin() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1082,7 +1057,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The maximum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMax() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1098,7 +1073,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="key">The data field&apos;s key string</param>
     /// <returns>The data&apos;s value string.</returns>
     virtual public System.String GetGroupData(System.String key) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1107,7 +1082,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="part">The part name to check.</param>
     /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
     virtual public bool GetPartExist(System.String part) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1121,7 +1096,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
     virtual public void MessageSend(int id, Eina.Value msg) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id, msg);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id, msg);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
@@ -1147,7 +1122,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -1162,7 +1137,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -1176,7 +1151,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     virtual public void EmitSignal(System.String emission, System.String source) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Processes an object&apos;s messages and signals queue.
@@ -1186,141 +1161,141 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <param name="recurse">Whether to process messages on children objects.</param>
     virtual public void SignalProcess(bool recurse) {
-                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recurse);
+                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),recurse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether this object is animating or not.
-/// This property indicates whether animations are stopped or not. Animations here refer to transitions between states.
-/// 
-/// If animations are disabled, transitions between states (as defined in EDC) are then instantaneous. This is conceptually similar to setting the <see cref="Efl.IPlayer.PlaySpeed"/> to an infinitely high value.</summary>
-/// <value>The animation state, <c>true</c> by default.</value>
+    /// This property indicates whether animations are stopped or not. Animations here refer to transitions between states.
+    /// 
+    /// If animations are disabled, transitions between states (as defined in EDC) are then instantaneous. This is conceptually similar to setting the <see cref="Efl.IPlayer.PlaySpeed"/> to an infinitely high value.</summary>
+    /// <value>The animation state, <c>true</c> by default.</value>
     public bool Animation {
         get { return GetAnimation(); }
         set { SetAnimation(value); }
     }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
-/// <value>The load error code.</value>
+    /// <value>The load error code.</value>
     public Eina.Error LayoutLoadError {
         get { return GetLayoutLoadError(); }
     }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
-/// (Since EFL 1.22)</summary>
-/// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
     public Eina.File Mmap {
         get { return GetMmap(); }
         set { SetMmap(value); }
     }
     /// <summary>Retrieve the file path from where an object is to fetch the data.
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The file path.</value>
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The file path.</value>
     public System.String File {
         get { return GetFile(); }
         set { SetFile(value); }
     }
     /// <summary>Get the previously-set key which corresponds to the target data within a file.
-/// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
-/// 
-/// You must not modify the strings on the returned pointers.
-/// (Since EFL 1.22)</summary>
-/// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
+    /// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
+    /// 
+    /// You must not modify the strings on the returned pointers.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
     public System.String Key {
         get { return GetKey(); }
         set { SetKey(value); }
     }
     /// <summary>Get the load state of the object.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
     public bool Loaded {
         get { return GetLoaded(); }
     }
     /// <summary>Whether or not the playable can be played.</summary>
-/// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
     public bool Playable {
         get { return GetPlayable(); }
     }
     /// <summary>Get play/pause state of the media file.</summary>
-/// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
+    /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     public bool Play {
         get { return GetPlay(); }
         set { SetPlay(value); }
     }
     /// <summary>Get the position in the media file.
-/// The position is returned as the number of seconds since the beginning of the media file.</summary>
-/// <value>The position (in seconds).</value>
+    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <value>The position (in seconds).</value>
     public double Pos {
         get { return GetPos(); }
         set { SetPos(value); }
     }
     /// <summary>Get how much of the file has been played.
-/// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
-/// <value>The progress within the [0, 1] range.</value>
+    /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
+    /// <value>The progress within the [0, 1] range.</value>
     public double Progress {
         get { return GetProgress(); }
     }
     /// <summary>Control the play speed of the media file.
-/// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
-/// <value>The play speed in the [0, infinity) range.</value>
+    /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
+    /// <value>The play speed in the [0, infinity) range.</value>
     public double PlaySpeed {
         get { return GetPlaySpeed(); }
         set { SetPlaySpeed(value); }
     }
     /// <summary>Control the audio volume.
-/// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
-/// <value>The volume level</value>
+    /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
+    /// <value>The volume level</value>
     public double Volume {
         get { return GetVolume(); }
         set { SetVolume(value); }
     }
     /// <summary>This property controls the audio mute state.</summary>
-/// <value>The mute state. <c>true</c> or <c>false</c>.</value>
+    /// <value>The mute state. <c>true</c> or <c>false</c>.</value>
     public bool Mute {
         get { return GetMute(); }
         set { SetMute(value); }
     }
     /// <summary>Get the length of play for the media file.</summary>
-/// <value>The length of the stream in seconds.</value>
+    /// <value>The length of the stream in seconds.</value>
     public double Length {
         get { return GetLength(); }
     }
     /// <summary>Get whether the media file is seekable.</summary>
-/// <value><c>true</c> if seekable.</value>
+    /// <value><c>true</c> if seekable.</value>
     public bool Seekable {
         get { return GetSeekable(); }
     }
     /// <summary>Whether this object updates its size hints automatically.
-/// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
-/// 
-/// A layout recalculation can be triggered by <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcPartsExtends"/> or even any other internal event.
-/// (Since EFL 1.22)</summary>
-/// <value>Whether or not update the size hints.</value>
+    /// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
+    /// 
+    /// A layout recalculation can be triggered by <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcPartsExtends"/> or even any other internal event.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Whether or not update the size hints.</value>
     public bool CalcAutoUpdateHints {
         get { return GetCalcAutoUpdateHints(); }
         set { SetCalcAutoUpdateHints(value); }
     }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
-/// 
-/// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
-/// 
-/// Note: On failure, this function also return 0x0.
-/// 
-/// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMax"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The minimum size as set in EDC.</value>
+    /// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
+    /// 
+    /// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
+    /// 
+    /// Note: On failure, this function also return 0x0.
+    /// 
+    /// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMax"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The minimum size as set in EDC.</value>
     public Eina.Size2D GroupSizeMin {
         get { return GetGroupSizeMin(); }
     }
     /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
-/// 
-/// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
-/// 
-/// Note: On failure, this function will return 0x0.
-/// 
-/// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMin"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The maximum size as set in EDC.</value>
+    /// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
+    /// 
+    /// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
+    /// 
+    /// Note: On failure, this function will return 0x0.
+    /// 
+    /// See also <see cref="Efl.Layout.IGroup.GetGroupSizeMin"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The maximum size as set in EDC.</value>
     public Eina.Size2D GroupSizeMax {
         get { return GetGroupSizeMax(); }
     }
@@ -2170,7 +2145,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
             return Efl.Canvas.Layout.efl_canvas_layout_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_canvas_layout_animation_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -2183,13 +2158,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool animation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_layout_animation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetAnimation();
+                    _ret_var = ((Layout)ws.Target).GetAnimation();
                 }
                 catch (Exception e)
                 {
@@ -2219,13 +2194,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void animation_set(System.IntPtr obj, System.IntPtr pd, bool on)
         {
             Eina.Log.Debug("function efl_canvas_layout_animation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetAnimation(on);
+                    ((Layout)ws.Target).SetAnimation(on);
                 }
                 catch (Exception e)
                 {
@@ -2254,13 +2229,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Efl.Input.Device seat_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_canvas_layout_seat_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetSeat(name);
+                    _ret_var = ((Layout)ws.Target).GetSeat(name);
                 }
                 catch (Exception e)
                 {
@@ -2290,13 +2265,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.String seat_name_get(System.IntPtr obj, System.IntPtr pd, Efl.Input.Device device)
         {
             Eina.Log.Debug("function efl_canvas_layout_seat_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetSeatName(device);
+                    _ret_var = ((Layout)ws.Target).GetSeatName(device);
                 }
                 catch (Exception e)
                 {
@@ -2326,13 +2301,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Error layout_load_error_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_layout_load_error_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetLayoutLoadError();
+                    _ret_var = ((Layout)ws.Target).GetLayoutLoadError();
                 }
                 catch (Exception e)
                 {
@@ -2362,13 +2337,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_text_min_policy_get(System.IntPtr obj, System.IntPtr pd, System.String part, System.String state_name, out bool min_x, out bool min_y)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_min_policy_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         min_x = default(bool);        min_y = default(bool);                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPartTextMinPolicy(part, state_name, out min_x, out min_y);
+                    _ret_var = ((Layout)ws.Target).GetPartTextMinPolicy(part, state_name, out min_x, out min_y);
                 }
                 catch (Exception e)
                 {
@@ -2398,13 +2373,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_text_min_policy_set(System.IntPtr obj, System.IntPtr pd, System.String part, System.String state_name, bool min_x, bool min_y)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_min_policy_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetPartTextMinPolicy(part, state_name, min_x, min_y);
+                    _ret_var = ((Layout)ws.Target).SetPartTextMinPolicy(part, state_name, min_x, min_y);
                 }
                 catch (Exception e)
                 {
@@ -2434,13 +2409,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double part_text_valign_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_valign_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPartTextValign(part);
+                    _ret_var = ((Layout)ws.Target).GetPartTextValign(part);
                 }
                 catch (Exception e)
                 {
@@ -2470,13 +2445,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_text_valign_set(System.IntPtr obj, System.IntPtr pd, System.String part, double valign)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_valign_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetPartTextValign(part, valign);
+                    _ret_var = ((Layout)ws.Target).SetPartTextValign(part, valign);
                 }
                 catch (Exception e)
                 {
@@ -2506,13 +2481,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double part_text_marquee_duration_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_marquee_duration_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPartTextMarqueeDuration(part);
+                    _ret_var = ((Layout)ws.Target).GetPartTextMarqueeDuration(part);
                 }
                 catch (Exception e)
                 {
@@ -2542,13 +2517,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_text_marquee_duration_set(System.IntPtr obj, System.IntPtr pd, System.String part, double duration)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_marquee_duration_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetPartTextMarqueeDuration(part, duration);
+                    _ret_var = ((Layout)ws.Target).SetPartTextMarqueeDuration(part, duration);
                 }
                 catch (Exception e)
                 {
@@ -2578,13 +2553,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double part_text_marquee_speed_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_marquee_speed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPartTextMarqueeSpeed(part);
+                    _ret_var = ((Layout)ws.Target).GetPartTextMarqueeSpeed(part);
                 }
                 catch (Exception e)
                 {
@@ -2614,13 +2589,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_text_marquee_speed_set(System.IntPtr obj, System.IntPtr pd, System.String part, double speed)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_marquee_speed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetPartTextMarqueeSpeed(part, speed);
+                    _ret_var = ((Layout)ws.Target).SetPartTextMarqueeSpeed(part, speed);
                 }
                 catch (Exception e)
                 {
@@ -2650,13 +2625,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_text_marquee_always_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_marquee_always_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPartTextMarqueeAlways(part);
+                    _ret_var = ((Layout)ws.Target).GetPartTextMarqueeAlways(part);
                 }
                 catch (Exception e)
                 {
@@ -2686,13 +2661,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_text_marquee_always_set(System.IntPtr obj, System.IntPtr pd, System.String part, bool always)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_marquee_always_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetPartTextMarqueeAlways(part, always);
+                    _ret_var = ((Layout)ws.Target).SetPartTextMarqueeAlways(part, always);
                 }
                 catch (Exception e)
                 {
@@ -2722,13 +2697,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double part_valign_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_valign_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPartValign(part);
+                    _ret_var = ((Layout)ws.Target).GetPartValign(part);
                 }
                 catch (Exception e)
                 {
@@ -2758,13 +2733,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_valign_set(System.IntPtr obj, System.IntPtr pd, System.String part, double valign)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_valign_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetPartValign(part, valign);
+                    _ret_var = ((Layout)ws.Target).SetPartValign(part, valign);
                 }
                 catch (Exception e)
                 {
@@ -2794,13 +2769,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.IntPtr access_part_iterate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_layout_access_part_iterate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<System.String> _ret_var = default(Eina.Iterator<System.String>);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).AccessPartIterate();
+                    _ret_var = ((Layout)ws.Target).AccessPartIterate();
                 }
                 catch (Exception e)
                 {
@@ -2830,13 +2805,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool content_remove(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_canvas_layout_content_remove was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).ContentRemove(content);
+                    _ret_var = ((Layout)ws.Target).ContentRemove(content);
                 }
                 catch (Exception e)
                 {
@@ -2866,13 +2841,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void color_class_parent_set(System.IntPtr obj, System.IntPtr pd, Efl.Object parent)
         {
             Eina.Log.Debug("function efl_canvas_layout_color_class_parent_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetColorClassParent(parent);
+                    ((Layout)ws.Target).SetColorClassParent(parent);
                 }
                 catch (Exception e)
                 {
@@ -2901,13 +2876,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void color_class_parent_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_layout_color_class_parent_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Layout)wrapper).UnsetColorClassParent();
+                    ((Layout)ws.Target).UnsetColorClassParent();
                 }
                 catch (Exception e)
                 {
@@ -2936,13 +2911,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void part_text_cursor_coord_get(System.IntPtr obj, System.IntPtr pd, System.String part, Edje.Cursor cur, out int x, out int y)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_cursor_coord_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         x = default(int);        y = default(int);                                            
                 try
                 {
-                    ((Layout)wrapper).GetPartTextCursorCoord(part, cur, out x, out y);
+                    ((Layout)ws.Target).GetPartTextCursorCoord(part, cur, out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -2971,13 +2946,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void part_text_cursor_size_get(System.IntPtr obj, System.IntPtr pd, System.String part, Edje.Cursor cur, out int w, out int h)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_cursor_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         w = default(int);        h = default(int);                                            
                 try
                 {
-                    ((Layout)wrapper).GetPartTextCursorSize(part, cur, out w, out h);
+                    ((Layout)ws.Target).GetPartTextCursorSize(part, cur, out w, out h);
                 }
                 catch (Exception e)
                 {
@@ -3006,13 +2981,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void part_text_cursor_on_mouse_geometry_get(System.IntPtr obj, System.IntPtr pd, System.String part, out int x, out int y, out int w, out int h)
         {
             Eina.Log.Debug("function efl_canvas_layout_part_text_cursor_on_mouse_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         x = default(int);        y = default(int);        w = default(int);        h = default(int);                                                    
                 try
                 {
-                    ((Layout)wrapper).GetPartTextCursorOnMouseGeometry(part, out x, out y, out w, out h);
+                    ((Layout)ws.Target).GetPartTextCursorOnMouseGeometry(part, out x, out y, out w, out h);
                 }
                 catch (Exception e)
                 {
@@ -3041,13 +3016,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.IntPtr content_iterate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_iterate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).ContentIterate();
+                    _ret_var = ((Layout)ws.Target).ContentIterate();
                 }
                 catch (Exception e)
                 {
@@ -3077,13 +3052,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static int content_count(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_count was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).ContentCount();
+                    _ret_var = ((Layout)ws.Target).ContentCount();
                 }
                 catch (Exception e)
                 {
@@ -3113,13 +3088,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.File mmap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_mmap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.File _ret_var = default(Eina.File);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetMmap();
+                    _ret_var = ((Layout)ws.Target).GetMmap();
                 }
                 catch (Exception e)
                 {
@@ -3149,13 +3124,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Error mmap_set(System.IntPtr obj, System.IntPtr pd, Eina.File f)
         {
             Eina.Log.Debug("function efl_file_mmap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetMmap(f);
+                    _ret_var = ((Layout)ws.Target).SetMmap(f);
                 }
                 catch (Exception e)
                 {
@@ -3185,13 +3160,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.String file_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetFile();
+                    _ret_var = ((Layout)ws.Target).GetFile();
                 }
                 catch (Exception e)
                 {
@@ -3221,13 +3196,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Error file_set(System.IntPtr obj, System.IntPtr pd, System.String file)
         {
             Eina.Log.Debug("function efl_file_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetFile(file);
+                    _ret_var = ((Layout)ws.Target).SetFile(file);
                 }
                 catch (Exception e)
                 {
@@ -3257,13 +3232,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.String key_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_key_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetKey();
+                    _ret_var = ((Layout)ws.Target).GetKey();
                 }
                 catch (Exception e)
                 {
@@ -3293,13 +3268,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void key_set(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_file_key_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetKey(key);
+                    ((Layout)ws.Target).SetKey(key);
                 }
                 catch (Exception e)
                 {
@@ -3328,13 +3303,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool loaded_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_loaded_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetLoaded();
+                    _ret_var = ((Layout)ws.Target).GetLoaded();
                 }
                 catch (Exception e)
                 {
@@ -3364,13 +3339,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Error load(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_load was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).Load();
+                    _ret_var = ((Layout)ws.Target).Load();
                 }
                 catch (Exception e)
                 {
@@ -3400,13 +3375,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void unload(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_file_unload was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Layout)wrapper).Unload();
+                    ((Layout)ws.Target).Unload();
                 }
                 catch (Exception e)
                 {
@@ -3435,13 +3410,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void update(System.IntPtr obj, System.IntPtr pd, Efl.Object obs, System.String key, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_observer_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((Layout)wrapper).Update(obs, key, data);
+                    ((Layout)ws.Target).Update(obs, key, data);
                 }
                 catch (Exception e)
                 {
@@ -3470,13 +3445,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Efl.Object part_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_part_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPart(name);
+                    _ret_var = ((Layout)ws.Target).GetPart(name);
                 }
                 catch (Exception e)
                 {
@@ -3506,13 +3481,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool playable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_playable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPlayable();
+                    _ret_var = ((Layout)ws.Target).GetPlayable();
                 }
                 catch (Exception e)
                 {
@@ -3542,13 +3517,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool play_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPlay();
+                    _ret_var = ((Layout)ws.Target).GetPlay();
                 }
                 catch (Exception e)
                 {
@@ -3578,13 +3553,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void play_set(System.IntPtr obj, System.IntPtr pd, bool play)
         {
             Eina.Log.Debug("function efl_player_play_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetPlay(play);
+                    ((Layout)ws.Target).SetPlay(play);
                 }
                 catch (Exception e)
                 {
@@ -3613,13 +3588,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double pos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_pos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPos();
+                    _ret_var = ((Layout)ws.Target).GetPos();
                 }
                 catch (Exception e)
                 {
@@ -3649,13 +3624,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void pos_set(System.IntPtr obj, System.IntPtr pd, double sec)
         {
             Eina.Log.Debug("function efl_player_pos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetPos(sec);
+                    ((Layout)ws.Target).SetPos(sec);
                 }
                 catch (Exception e)
                 {
@@ -3684,13 +3659,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double progress_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_progress_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetProgress();
+                    _ret_var = ((Layout)ws.Target).GetProgress();
                 }
                 catch (Exception e)
                 {
@@ -3720,13 +3695,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double play_speed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_speed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPlaySpeed();
+                    _ret_var = ((Layout)ws.Target).GetPlaySpeed();
                 }
                 catch (Exception e)
                 {
@@ -3756,13 +3731,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void play_speed_set(System.IntPtr obj, System.IntPtr pd, double speed)
         {
             Eina.Log.Debug("function efl_player_play_speed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetPlaySpeed(speed);
+                    ((Layout)ws.Target).SetPlaySpeed(speed);
                 }
                 catch (Exception e)
                 {
@@ -3791,13 +3766,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double volume_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_volume_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetVolume();
+                    _ret_var = ((Layout)ws.Target).GetVolume();
                 }
                 catch (Exception e)
                 {
@@ -3827,13 +3802,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void volume_set(System.IntPtr obj, System.IntPtr pd, double volume)
         {
             Eina.Log.Debug("function efl_player_volume_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetVolume(volume);
+                    ((Layout)ws.Target).SetVolume(volume);
                 }
                 catch (Exception e)
                 {
@@ -3862,13 +3837,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool mute_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_mute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetMute();
+                    _ret_var = ((Layout)ws.Target).GetMute();
                 }
                 catch (Exception e)
                 {
@@ -3898,13 +3873,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void mute_set(System.IntPtr obj, System.IntPtr pd, bool mute)
         {
             Eina.Log.Debug("function efl_player_mute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetMute(mute);
+                    ((Layout)ws.Target).SetMute(mute);
                 }
                 catch (Exception e)
                 {
@@ -3933,13 +3908,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static double length_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_length_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetLength();
+                    _ret_var = ((Layout)ws.Target).GetLength();
                 }
                 catch (Exception e)
                 {
@@ -3969,13 +3944,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool seekable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_seekable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetSeekable();
+                    _ret_var = ((Layout)ws.Target).GetSeekable();
                 }
                 catch (Exception e)
                 {
@@ -4005,13 +3980,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void start(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Layout)wrapper).Start();
+                    ((Layout)ws.Target).Start();
                 }
                 catch (Exception e)
                 {
@@ -4040,13 +4015,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void stop(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_stop was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Layout)wrapper).Stop();
+                    ((Layout)ws.Target).Stop();
                 }
                 catch (Exception e)
                 {
@@ -4075,13 +4050,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool color_class_get(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_color_class_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetColorClass(color_class, layer, out r, out g, out b, out a);
+                    _ret_var = ((Layout)ws.Target).GetColorClass(color_class, layer, out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4111,13 +4086,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool color_class_set(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_color_class_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetColorClass(color_class, layer, r, g, b, a);
+                    _ret_var = ((Layout)ws.Target).SetColorClass(color_class, layer, r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4147,13 +4122,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.String color_class_code_get(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer)
         {
             Eina.Log.Debug("function efl_gfx_color_class_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetColorClassCode(color_class, layer);
+                    _ret_var = ((Layout)ws.Target).GetColorClassCode(color_class, layer);
                 }
                 catch (Exception e)
                 {
@@ -4183,13 +4158,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool color_class_code_set(System.IntPtr obj, System.IntPtr pd, System.String color_class, Efl.Gfx.ColorClassLayer layer, System.String colorcode)
         {
             Eina.Log.Debug("function efl_gfx_color_class_code_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetColorClassCode(color_class, layer, colorcode);
+                    _ret_var = ((Layout)ws.Target).SetColorClassCode(color_class, layer, colorcode);
                 }
                 catch (Exception e)
                 {
@@ -4219,13 +4194,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.String color_class_description_get(System.IntPtr obj, System.IntPtr pd, System.String color_class)
         {
             Eina.Log.Debug("function efl_gfx_color_class_description_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetColorClassDescription(color_class);
+                    _ret_var = ((Layout)ws.Target).GetColorClassDescription(color_class);
                 }
                 catch (Exception e)
                 {
@@ -4255,13 +4230,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void color_class_del(System.IntPtr obj, System.IntPtr pd, System.String color_class)
         {
             Eina.Log.Debug("function efl_gfx_color_class_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).DelColorClass(color_class);
+                    ((Layout)ws.Target).DelColorClass(color_class);
                 }
                 catch (Exception e)
                 {
@@ -4290,13 +4265,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void color_class_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_color_class_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Layout)wrapper).ClearColorClass();
+                    ((Layout)ws.Target).ClearColorClass();
                 }
                 catch (Exception e)
                 {
@@ -4325,13 +4300,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool size_class_get(System.IntPtr obj, System.IntPtr pd, System.String size_class, out int minw, out int minh, out int maxw, out int maxh)
         {
             Eina.Log.Debug("function efl_gfx_size_class_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         minw = default(int);        minh = default(int);        maxw = default(int);        maxh = default(int);                                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetSizeClass(size_class, out minw, out minh, out maxw, out maxh);
+                    _ret_var = ((Layout)ws.Target).GetSizeClass(size_class, out minw, out minh, out maxw, out maxh);
                 }
                 catch (Exception e)
                 {
@@ -4361,13 +4336,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool size_class_set(System.IntPtr obj, System.IntPtr pd, System.String size_class, int minw, int minh, int maxw, int maxh)
         {
             Eina.Log.Debug("function efl_gfx_size_class_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetSizeClass(size_class, minw, minh, maxw, maxh);
+                    _ret_var = ((Layout)ws.Target).SetSizeClass(size_class, minw, minh, maxw, maxh);
                 }
                 catch (Exception e)
                 {
@@ -4397,13 +4372,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void size_class_del(System.IntPtr obj, System.IntPtr pd, System.String size_class)
         {
             Eina.Log.Debug("function efl_gfx_size_class_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).DelSizeClass(size_class);
+                    ((Layout)ws.Target).DelSizeClass(size_class);
                 }
                 catch (Exception e)
                 {
@@ -4432,14 +4407,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool text_class_get(System.IntPtr obj, System.IntPtr pd, System.String text_class, out System.String font, out Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_gfx_text_class_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         System.String _out_font = default(System.String);
         size = default(Efl.Font.Size);                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetTextClass(text_class, out _out_font, out size);
+                    _ret_var = ((Layout)ws.Target).GetTextClass(text_class, out _out_font, out size);
                 }
                 catch (Exception e)
                 {
@@ -4470,13 +4445,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool text_class_set(System.IntPtr obj, System.IntPtr pd, System.String text_class, System.String font, Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_gfx_text_class_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).SetTextClass(text_class, font, size);
+                    _ret_var = ((Layout)ws.Target).SetTextClass(text_class, font, size);
                 }
                 catch (Exception e)
                 {
@@ -4506,13 +4481,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void text_class_del(System.IntPtr obj, System.IntPtr pd, System.String text_class)
         {
             Eina.Log.Debug("function efl_gfx_text_class_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).DelTextClass(text_class);
+                    ((Layout)ws.Target).DelTextClass(text_class);
                 }
                 catch (Exception e)
                 {
@@ -4541,13 +4516,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool calc_auto_update_hints_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_calc_auto_update_hints_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetCalcAutoUpdateHints();
+                    _ret_var = ((Layout)ws.Target).GetCalcAutoUpdateHints();
                 }
                 catch (Exception e)
                 {
@@ -4577,13 +4552,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void calc_auto_update_hints_set(System.IntPtr obj, System.IntPtr pd, bool update)
         {
             Eina.Log.Debug("function efl_layout_calc_auto_update_hints_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SetCalcAutoUpdateHints(update);
+                    ((Layout)ws.Target).SetCalcAutoUpdateHints(update);
                 }
                 catch (Exception e)
                 {
@@ -4612,14 +4587,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Size2D.NativeStruct calc_size_min(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct restricted)
         {
             Eina.Log.Debug("function efl_layout_calc_size_min was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_restricted = restricted;
                             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).CalcSizeMin(_in_restricted);
+                    _ret_var = ((Layout)ws.Target).CalcSizeMin(_in_restricted);
                 }
                 catch (Exception e)
                 {
@@ -4649,13 +4624,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Rect.NativeStruct calc_parts_extends(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_calc_parts_extends was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).CalcPartsExtends();
+                    _ret_var = ((Layout)ws.Target).CalcPartsExtends();
                 }
                 catch (Exception e)
                 {
@@ -4685,13 +4660,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static int calc_freeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_calc_freeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).FreezeCalc();
+                    _ret_var = ((Layout)ws.Target).FreezeCalc();
                 }
                 catch (Exception e)
                 {
@@ -4721,13 +4696,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static int calc_thaw(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_calc_thaw was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).ThawCalc();
+                    _ret_var = ((Layout)ws.Target).ThawCalc();
                 }
                 catch (Exception e)
                 {
@@ -4757,13 +4732,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void calc_force(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_calc_force was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Layout)wrapper).CalcForce();
+                    ((Layout)ws.Target).CalcForce();
                 }
                 catch (Exception e)
                 {
@@ -4792,13 +4767,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Size2D.NativeStruct group_size_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_group_size_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetGroupSizeMin();
+                    _ret_var = ((Layout)ws.Target).GetGroupSizeMin();
                 }
                 catch (Exception e)
                 {
@@ -4828,13 +4803,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static Eina.Size2D.NativeStruct group_size_max_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_layout_group_size_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetGroupSizeMax();
+                    _ret_var = ((Layout)ws.Target).GetGroupSizeMax();
                 }
                 catch (Exception e)
                 {
@@ -4864,13 +4839,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static System.String group_data_get(System.IntPtr obj, System.IntPtr pd, System.String key)
         {
             Eina.Log.Debug("function efl_layout_group_data_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetGroupData(key);
+                    _ret_var = ((Layout)ws.Target).GetGroupData(key);
                 }
                 catch (Exception e)
                 {
@@ -4900,13 +4875,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool part_exist_get(System.IntPtr obj, System.IntPtr pd, System.String part)
         {
             Eina.Log.Debug("function efl_layout_group_part_exist_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).GetPartExist(part);
+                    _ret_var = ((Layout)ws.Target).GetPartExist(part);
                 }
                 catch (Exception e)
                 {
@@ -4936,13 +4911,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void message_send(System.IntPtr obj, System.IntPtr pd, int id, Eina.ValueNative msg)
         {
             Eina.Log.Debug("function efl_layout_signal_message_send was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Layout)wrapper).MessageSend(id, msg);
+                    ((Layout)ws.Target).MessageSend(id, msg);
                 }
                 catch (Exception e)
                 {
@@ -4971,14 +4946,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool signal_callback_add(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_layout_signal_callback_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                             EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).AddSignalCallback(emission, source, func_wrapper.ManagedCb);
+                    _ret_var = ((Layout)ws.Target).AddSignalCallback(emission, source, func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -5008,14 +4983,14 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static bool signal_callback_del(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source, IntPtr func_data, EflLayoutSignalCbInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_layout_signal_callback_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                             EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Layout)wrapper).DelSignalCallback(emission, source, func_wrapper.ManagedCb);
+                    _ret_var = ((Layout)ws.Target).DelSignalCallback(emission, source, func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -5045,13 +5020,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void signal_emit(System.IntPtr obj, System.IntPtr pd, System.String emission, System.String source)
         {
             Eina.Log.Debug("function efl_layout_signal_emit was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Layout)wrapper).EmitSignal(emission, source);
+                    ((Layout)ws.Target).EmitSignal(emission, source);
                 }
                 catch (Exception e)
                 {
@@ -5080,13 +5055,13 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
         private static void signal_process(System.IntPtr obj, System.IntPtr pd, bool recurse)
         {
             Eina.Log.Debug("function efl_layout_signal_process was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Layout)wrapper).SignalProcess(recurse);
+                    ((Layout)ws.Target).SignalProcess(recurse);
                 }
                 catch (Exception e)
                 {
@@ -5104,7 +5079,7 @@ public class Layout : Efl.Canvas.Group, Efl.Eo.IWrapper,Efl.IContainer,Efl.IFile
 
         private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

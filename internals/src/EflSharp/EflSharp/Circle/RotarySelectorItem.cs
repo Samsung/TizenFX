@@ -85,6 +85,7 @@ namespace Efl
                 Image _disabledBgImage;
                 Image _selectedBgImage;
                 Image _selectorIconImage;
+                bool _isRemovable;
 
                 /// <summary>
                 /// Sets or gets the color of the main text.
@@ -155,6 +156,8 @@ namespace Efl
                         SetPart(BgPartName, ItemState.Normal, SelectedBgColor);
 
                         SetPart(SelectorIconPartName, ItemState.Normal, _selectorIconImage);
+
+                        SetRemovable(_isRemovable);
                     }
                     get
                     {
@@ -190,6 +193,12 @@ namespace Efl
                     }
                 }
 
+                void SetRemovable(bool isRemovable)
+                {
+                    if (NativeHandle != null)
+                        Interop.Eext.eext_rotary_selector_item_delete_enabled_set(NativeHandle, isRemovable);
+                }
+
                 /// <summary>
                 /// Sets or gets the main text.
                 /// </summary>
@@ -215,6 +224,20 @@ namespace Efl
                     {
                         _subText = value;
                         SetPart(SubTextPartName, value);
+                    }
+                }
+
+                /// <summary>
+                /// Sets or gets whether the item can be deleted in the edit mode or not.
+                /// </summary>
+                /// <since_tizen> 6 </since_tizen>
+                public bool IsRemovable
+                {
+                    get { return _isRemovable; }
+                    set
+                    {
+                        _isRemovable = value;
+                        SetRemovable(value);
                     }
                 }
 

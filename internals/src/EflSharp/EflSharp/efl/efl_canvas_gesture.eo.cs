@@ -9,9 +9,13 @@ namespace Efl {
 
 namespace Canvas {
 
-/// <summary>EFL Gesture abstract class</summary>
+/// <summary>EFL Gesture abstract class
+/// A gesture class defines a method that spcific gesture event and privides information about the gesture&apos;s type, state, and associated pointer information.
+/// 
+/// For cetain gesture types, additional methods are defined to provide meaningful gesture information to the user.</summary>
 [Efl.Canvas.Gesture.NativeMethods]
-public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public abstract class Gesture : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,113 +38,96 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="Gesture"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Gesture(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_class_get(), typeof(Gesture), parent)
+            ) : base(efl_canvas_gesture_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Gesture(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Gesture"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Gesture(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Gesture(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class GestureRealized : Gesture
     {
-        private GestureRealized(IntPtr ptr) : base(ptr)
+        private GestureRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Gesture"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Gesture(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Gesture(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    /// <summary>This property holds the type of the gesture.</summary>
-    /// <returns>gesture type</returns>
-    virtual public Efl.EventDescription GetGestureType() {
-         var _ret_var = Efl.Canvas.Gesture.NativeMethods.efl_gesture_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
-        Eina.Error.RaiseIfUnhandledException();
-        var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(_ret_var);
-        
-        return __ret_tmp;
- }
     /// <summary>This property holds the current state of the gesture.</summary>
     /// <returns>gesture state</returns>
     virtual public Efl.Canvas.GestureState GetState() {
-         var _ret_var = Efl.Canvas.Gesture.NativeMethods.efl_gesture_state_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Gesture.NativeMethods.efl_gesture_state_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property holds the current state of the gesture.</summary>
     /// <param name="state">gesture state</param>
     virtual public void SetState(Efl.Canvas.GestureState state) {
-                                 Efl.Canvas.Gesture.NativeMethods.efl_gesture_state_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),state);
+                                 Efl.Canvas.Gesture.NativeMethods.efl_gesture_state_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),state);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This property holds the hotspot of the current gesture.</summary>
     /// <returns>hotspot co-ordinate</returns>
-    virtual public Eina.Vector2 GetHotspot() {
-         var _ret_var = Efl.Canvas.Gesture.NativeMethods.efl_gesture_hotspot_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public Eina.Position2D GetHotspot() {
+         var _ret_var = Efl.Canvas.Gesture.NativeMethods.efl_gesture_hotspot_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property holds the hotspot of the current gesture.</summary>
     /// <param name="hotspot">hotspot co-ordinate</param>
-    virtual public void SetHotspot(Eina.Vector2 hotspot) {
-         Eina.Vector2.NativeStruct _in_hotspot = hotspot;
-                        Efl.Canvas.Gesture.NativeMethods.efl_gesture_hotspot_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_hotspot);
+    virtual public void SetHotspot(Eina.Position2D hotspot) {
+         Eina.Position2D.NativeStruct _in_hotspot = hotspot;
+                        Efl.Canvas.Gesture.NativeMethods.efl_gesture_hotspot_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_hotspot);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>This property holds the type of the gesture.</summary>
-/// <value>gesture type</value>
-    public Efl.EventDescription GestureType {
-        get { return GetGestureType(); }
-    }
+    /// <summary>This property holds the timestamp of the current gesture.</summary>
+    /// <returns>The timestamp</returns>
+    virtual public uint GetTimestamp() {
+         var _ret_var = Efl.Canvas.Gesture.NativeMethods.efl_gesture_timestamp_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>This property holds the timestamp of the current gesture.</summary>
+    /// <param name="timestamp">The timestamp</param>
+    virtual public void SetTimestamp(uint timestamp) {
+                                 Efl.Canvas.Gesture.NativeMethods.efl_gesture_timestamp_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),timestamp);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
     /// <summary>This property holds the current state of the gesture.</summary>
-/// <value>gesture state</value>
+    /// <value>gesture state</value>
     public Efl.Canvas.GestureState State {
         get { return GetState(); }
         set { SetState(value); }
     }
     /// <summary>This property holds the hotspot of the current gesture.</summary>
-/// <value>hotspot co-ordinate</value>
-    public Eina.Vector2 Hotspot {
+    /// <value>hotspot co-ordinate</value>
+    public Eina.Position2D Hotspot {
         get { return GetHotspot(); }
         set { SetHotspot(value); }
+    }
+    /// <summary>This property holds the timestamp of the current gesture.</summary>
+    /// <value>The timestamp</value>
+    public uint Timestamp {
+        get { return GetTimestamp(); }
+        set { SetTimestamp(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -157,16 +144,6 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
-
-            if (efl_gesture_type_get_static_delegate == null)
-            {
-                efl_gesture_type_get_static_delegate = new efl_gesture_type_get_delegate(type_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetGestureType") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_type_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_type_get_static_delegate) });
-            }
 
             if (efl_gesture_state_get_static_delegate == null)
             {
@@ -208,6 +185,26 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_hotspot_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_hotspot_set_static_delegate) });
             }
 
+            if (efl_gesture_timestamp_get_static_delegate == null)
+            {
+                efl_gesture_timestamp_get_static_delegate = new efl_gesture_timestamp_get_delegate(timestamp_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetTimestamp") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_timestamp_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_timestamp_get_static_delegate) });
+            }
+
+            if (efl_gesture_timestamp_set_static_delegate == null)
+            {
+                efl_gesture_timestamp_set_static_delegate = new efl_gesture_timestamp_set_delegate(timestamp_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetTimestamp") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_timestamp_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_timestamp_set_static_delegate) });
+            }
+
             descs.AddRange(base.GetEoOps(type));
             return descs;
         }
@@ -218,43 +215,7 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
             return Efl.Canvas.Gesture.efl_canvas_gesture_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
-
-        
-        private delegate System.IntPtr efl_gesture_type_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_gesture_type_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_gesture_type_get_api_delegate> efl_gesture_type_get_ptr = new Efl.Eo.FunctionWrapper<efl_gesture_type_get_api_delegate>(Module, "efl_gesture_type_get");
-
-        private static System.IntPtr type_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_gesture_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
-            {
-            Efl.EventDescription _ret_var = default(Efl.EventDescription);
-                try
-                {
-                    _ret_var = ((Gesture)wrapper).GetGestureType();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return Eina.PrimitiveConversion.ManagedToPointerAlloc(_ret_var);
-
-            }
-            else
-            {
-                return efl_gesture_type_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_gesture_type_get_delegate efl_gesture_type_get_static_delegate;
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.Canvas.GestureState efl_gesture_state_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -267,13 +228,13 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
         private static Efl.Canvas.GestureState state_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gesture_state_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.GestureState _ret_var = default(Efl.Canvas.GestureState);
                 try
                 {
-                    _ret_var = ((Gesture)wrapper).GetState();
+                    _ret_var = ((Gesture)ws.Target).GetState();
                 }
                 catch (Exception e)
                 {
@@ -303,13 +264,13 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
         private static void state_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.GestureState state)
         {
             Eina.Log.Debug("function efl_gesture_state_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Gesture)wrapper).SetState(state);
+                    ((Gesture)ws.Target).SetState(state);
                 }
                 catch (Exception e)
                 {
@@ -328,23 +289,23 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
         private static efl_gesture_state_set_delegate efl_gesture_state_set_static_delegate;
 
         
-        private delegate Eina.Vector2.NativeStruct efl_gesture_hotspot_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        private delegate Eina.Position2D.NativeStruct efl_gesture_hotspot_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
-        public delegate Eina.Vector2.NativeStruct efl_gesture_hotspot_get_api_delegate(System.IntPtr obj);
+        public delegate Eina.Position2D.NativeStruct efl_gesture_hotspot_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_gesture_hotspot_get_api_delegate> efl_gesture_hotspot_get_ptr = new Efl.Eo.FunctionWrapper<efl_gesture_hotspot_get_api_delegate>(Module, "efl_gesture_hotspot_get");
 
-        private static Eina.Vector2.NativeStruct hotspot_get(System.IntPtr obj, System.IntPtr pd)
+        private static Eina.Position2D.NativeStruct hotspot_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gesture_hotspot_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
-            Eina.Vector2 _ret_var = default(Eina.Vector2);
+            Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((Gesture)wrapper).GetHotspot();
+                    _ret_var = ((Gesture)ws.Target).GetHotspot();
                 }
                 catch (Exception e)
                 {
@@ -364,24 +325,24 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
         private static efl_gesture_hotspot_get_delegate efl_gesture_hotspot_get_static_delegate;
 
         
-        private delegate void efl_gesture_hotspot_set_delegate(System.IntPtr obj, System.IntPtr pd,  Eina.Vector2.NativeStruct hotspot);
+        private delegate void efl_gesture_hotspot_set_delegate(System.IntPtr obj, System.IntPtr pd,  Eina.Position2D.NativeStruct hotspot);
 
         
-        public delegate void efl_gesture_hotspot_set_api_delegate(System.IntPtr obj,  Eina.Vector2.NativeStruct hotspot);
+        public delegate void efl_gesture_hotspot_set_api_delegate(System.IntPtr obj,  Eina.Position2D.NativeStruct hotspot);
 
         public static Efl.Eo.FunctionWrapper<efl_gesture_hotspot_set_api_delegate> efl_gesture_hotspot_set_ptr = new Efl.Eo.FunctionWrapper<efl_gesture_hotspot_set_api_delegate>(Module, "efl_gesture_hotspot_set");
 
-        private static void hotspot_set(System.IntPtr obj, System.IntPtr pd, Eina.Vector2.NativeStruct hotspot)
+        private static void hotspot_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct hotspot)
         {
             Eina.Log.Debug("function efl_gesture_hotspot_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
-        Eina.Vector2 _in_hotspot = hotspot;
+        Eina.Position2D _in_hotspot = hotspot;
                             
                 try
                 {
-                    ((Gesture)wrapper).SetHotspot(_in_hotspot);
+                    ((Gesture)ws.Target).SetHotspot(_in_hotspot);
                 }
                 catch (Exception e)
                 {
@@ -399,7 +360,78 @@ public abstract class Gesture : Efl.Object, Efl.Eo.IWrapper
 
         private static efl_gesture_hotspot_set_delegate efl_gesture_hotspot_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        
+        private delegate uint efl_gesture_timestamp_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate uint efl_gesture_timestamp_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gesture_timestamp_get_api_delegate> efl_gesture_timestamp_get_ptr = new Efl.Eo.FunctionWrapper<efl_gesture_timestamp_get_api_delegate>(Module, "efl_gesture_timestamp_get");
+
+        private static uint timestamp_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gesture_timestamp_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            uint _ret_var = default(uint);
+                try
+                {
+                    _ret_var = ((Gesture)ws.Target).GetTimestamp();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gesture_timestamp_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gesture_timestamp_get_delegate efl_gesture_timestamp_get_static_delegate;
+
+        
+        private delegate void efl_gesture_timestamp_set_delegate(System.IntPtr obj, System.IntPtr pd,  uint timestamp);
+
+        
+        public delegate void efl_gesture_timestamp_set_api_delegate(System.IntPtr obj,  uint timestamp);
+
+        public static Efl.Eo.FunctionWrapper<efl_gesture_timestamp_set_api_delegate> efl_gesture_timestamp_set_ptr = new Efl.Eo.FunctionWrapper<efl_gesture_timestamp_set_api_delegate>(Module, "efl_gesture_timestamp_set");
+
+        private static void timestamp_set(System.IntPtr obj, System.IntPtr pd, uint timestamp)
+        {
+            Eina.Log.Debug("function efl_gesture_timestamp_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Gesture)ws.Target).SetTimestamp(timestamp);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gesture_timestamp_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), timestamp);
+            }
+        }
+
+        private static efl_gesture_timestamp_set_delegate efl_gesture_timestamp_set_static_delegate;
+
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

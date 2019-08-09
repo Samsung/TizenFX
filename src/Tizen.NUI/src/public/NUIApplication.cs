@@ -21,6 +21,8 @@ using System.Threading;
 using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
@@ -224,6 +226,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public static void RegisterAssembly(Assembly assembly)
         {
+            XamlParser.s_assemblies.Add(assembly);
         }
 
         /// <summary>
@@ -257,6 +260,25 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             return ((NUICoreBackend)this.Backend).AddIdle(func);
+        }
+
+        /// <summary>
+        /// Sets the number of frames per render.
+        /// </summary>
+        /// <param name="numberOfVSyncsPerRender">The number of vsyncs between successive renders.</param>
+        /// <remarks>
+        /// Suggest this is a power of two:
+        /// 1 - render each vsync frame.
+        /// 2 - render every other vsync frame.
+        /// 4 - render every fourth vsync frame.
+        /// 8 - render every eighth vsync frame. <br />
+        /// For example, if an application runs on 60 FPS and SetRenderRefreshRate(2) is called, the frames per second will be changed to 30.
+        ///</remarks>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
+        {
+            Adaptor.Instance.SetRenderRefreshRate(numberOfVSyncsPerRender);
         }
 
         /// <summary>

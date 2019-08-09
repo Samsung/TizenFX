@@ -11,6 +11,7 @@ namespace Access {
 
 /// <summary>Elementary access selection interface</summary>
 [Efl.Access.ISelectionConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ISelection : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -46,19 +47,19 @@ bool ChildDeselect(int child_index);
                                     /// <summary>Called when selection has been changed.</summary>
     event EventHandler AccessSelectionChangedEvt;
     /// <summary>Gets the number of currently selected children</summary>
-/// <value>Number of currently selected children</value>
+    /// <value>Number of currently selected children</value>
     int SelectedChildrenCount {
         get ;
     }
 }
 /// <summary>Elementary access selection interface</summary>
-sealed public class ISelectionConcrete : 
-
-ISelection
+sealed public class ISelectionConcrete :
+    Efl.Eo.EoWrapper
+    , ISelection
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -73,155 +74,19 @@ ISelection
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISelectionConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_selection_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISelection"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISelectionConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISelectionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ISelectionConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Called when selection has been changed.</summary>
@@ -229,12 +94,11 @@ ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -257,7 +121,7 @@ ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_SELECTION_EVENT_ACCESS_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -339,7 +203,7 @@ ISelection
                         return _ret_var;
  }
     /// <summary>Gets the number of currently selected children</summary>
-/// <value>Number of currently selected children</value>
+    /// <value>Number of currently selected children</value>
     public int SelectedChildrenCount {
         get { return GetSelectedChildrenCount(); }
     }
@@ -349,7 +213,7 @@ ISelection
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -448,7 +312,7 @@ ISelection
             return Efl.Access.ISelectionConcrete.efl_access_selection_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_access_selection_selected_children_count_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -461,13 +325,13 @@ ISelection
         private static int selected_children_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_selection_selected_children_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).GetSelectedChildrenCount();
+                    _ret_var = ((ISelection)ws.Target).GetSelectedChildrenCount();
                 }
                 catch (Exception e)
                 {
@@ -497,13 +361,13 @@ ISelection
         private static Efl.Object selected_child_get(System.IntPtr obj, System.IntPtr pd, int selected_child_index)
         {
             Eina.Log.Debug("function efl_access_selection_selected_child_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).GetSelectedChild(selected_child_index);
+                    _ret_var = ((ISelection)ws.Target).GetSelectedChild(selected_child_index);
                 }
                 catch (Exception e)
                 {
@@ -533,13 +397,13 @@ ISelection
         private static bool child_select(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_child_select was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).ChildSelect(child_index);
+                    _ret_var = ((ISelection)ws.Target).ChildSelect(child_index);
                 }
                 catch (Exception e)
                 {
@@ -569,13 +433,13 @@ ISelection
         private static bool selected_child_deselect(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_selected_child_deselect was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).SelectedChildDeselect(child_index);
+                    _ret_var = ((ISelection)ws.Target).SelectedChildDeselect(child_index);
                 }
                 catch (Exception e)
                 {
@@ -605,13 +469,13 @@ ISelection
         private static bool is_child_selected(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_is_child_selected was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).IsChildSelected(child_index);
+                    _ret_var = ((ISelection)ws.Target).IsChildSelected(child_index);
                 }
                 catch (Exception e)
                 {
@@ -641,13 +505,13 @@ ISelection
         private static bool all_children_select(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_selection_all_children_select was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).AllChildrenSelect();
+                    _ret_var = ((ISelection)ws.Target).AllChildrenSelect();
                 }
                 catch (Exception e)
                 {
@@ -677,13 +541,13 @@ ISelection
         private static bool access_selection_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_selection_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).ClearAccessSelection();
+                    _ret_var = ((ISelection)ws.Target).ClearAccessSelection();
                 }
                 catch (Exception e)
                 {
@@ -713,13 +577,13 @@ ISelection
         private static bool child_deselect(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_child_deselect was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ISelection)wrapper).ChildDeselect(child_index);
+                    _ret_var = ((ISelection)ws.Target).ChildDeselect(child_index);
                 }
                 catch (Exception e)
                 {
@@ -738,7 +602,7 @@ ISelection
 
         private static efl_access_selection_child_deselect_delegate efl_access_selection_child_deselect_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen;
 using Tizen.Multimedia.Util;
 
 internal static partial class Interop
@@ -34,5 +35,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_extract_color_from_memory")]
         internal static extern ImageUtilError ExtractColorFromMemory(byte[] buffer, int width, int height, out byte rgbR, out byte rgbG, out byte rgbB);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_get_image")]
+        internal static extern ImageUtilError GetImage(IntPtr handle, out int width, out int height,
+            out ImageColorSpace colorspace, out IntPtr data, out int size);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_destroy_image")]
+        internal static extern ImageUtilError Destroy(IntPtr handle);
     }
 }

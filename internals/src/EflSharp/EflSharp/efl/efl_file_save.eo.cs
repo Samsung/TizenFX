@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>Efl file saving interface
 /// (Since EFL 1.22)</summary>
 [Efl.IFileSaveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IFileSave : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -26,13 +27,13 @@ bool Save(System.String file, System.String key, ref Efl.FileSaveInfo info);
     }
 /// <summary>Efl file saving interface
 /// (Since EFL 1.22)</summary>
-sealed public class IFileSaveConcrete : 
-
-IFileSave
+sealed public class IFileSaveConcrete :
+    Efl.Eo.EoWrapper
+    , IFileSave
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -47,86 +48,19 @@ IFileSave
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IFileSaveConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_file_save_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFileSave"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFileSaveConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IFileSaveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IFileSaveConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Save the given image object&apos;s contents to an (image) file.
@@ -151,7 +85,7 @@ IFileSave
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -180,7 +114,7 @@ IFileSave
             return Efl.IFileSaveConcrete.efl_file_save_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_file_save_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String file, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key,  ref Efl.FileSaveInfo.NativeStruct info);
@@ -193,14 +127,14 @@ IFileSave
         private static bool save(System.IntPtr obj, System.IntPtr pd, System.String file, System.String key, ref Efl.FileSaveInfo.NativeStruct info)
         {
             Eina.Log.Debug("function efl_file_save was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.FileSaveInfo _in_info = info;
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IFileSave)wrapper).Save(file, key, ref _in_info);
+                    _ret_var = ((IFileSave)ws.Target).Save(file, key, ref _in_info);
                 }
                 catch (Exception e)
                 {
@@ -220,7 +154,7 @@ IFileSave
 
         private static efl_file_save_delegate efl_file_save_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -231,6 +165,7 @@ namespace Efl {
 /// <summary>Info used to determine various attributes when saving a file.
 /// (Since EFL 1.22)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct FileSaveInfo
 {
     /// <summary>The quality level (0-100) to save the file with; commonly used when saving image files.</summary>
@@ -250,11 +185,15 @@ public struct FileSaveInfo
         this.Encoding = Encoding;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator FileSaveInfo(IntPtr ptr)
     {
         var tmp = (FileSaveInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(FileSaveInfo.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct FileSaveInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -287,6 +226,8 @@ public struct FileSaveInfo
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

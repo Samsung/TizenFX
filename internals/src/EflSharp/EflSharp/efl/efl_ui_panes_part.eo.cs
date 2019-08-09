@@ -11,7 +11,8 @@ namespace Ui {
 
 /// <summary>Elementary Panes internal part class</summary>
 [Efl.Ui.PanesPart.NativeMethods]
-public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class PanesPart : Efl.Ui.LayoutPartContent
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,72 +35,50 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="PanesPart"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public PanesPart(Efl.Object parent= null
-            ) : base(efl_ui_panes_part_class_get(), typeof(PanesPart), parent)
+            ) : base(efl_ui_panes_part_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected PanesPart(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="PanesPart"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected PanesPart(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected PanesPart(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="PanesPart"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected PanesPart(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected PanesPart(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Allows the user to set size hints to be respected and ignored combined with a minimum size. If this flag is set, the minimum size set by <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is respected forcefully.</summary>
     /// <returns>If <c>true</c> minimum size is forced</returns>
     virtual public bool GetHintMinAllow() {
-         var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Allows the user to set size hints to be respected and ignored combined with a minimum size. If this flag is set, the minimum size set by <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is respected forcefully.</summary>
     /// <param name="allow">If <c>true</c> minimum size is forced</param>
     virtual public void SetHintMinAllow(bool allow) {
-                                 Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),allow);
+                                 Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Controls the relative minimum size of panes widget&apos;s part.
     /// If <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is also used along with <see cref="Efl.Ui.PanesPart.SetSplitRatioMin"/>, maximum value is set as minimum size to part.</summary>
     /// <returns>Value between 0.0 and 1.0 representing size proportion of first part&apos;s minimum size.</returns>
     virtual public double GetSplitRatioMin() {
-         var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -107,18 +86,18 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
     /// If <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is also used along with <see cref="Efl.Ui.PanesPart.SetSplitRatioMin"/>, maximum value is set as minimum size to part.</summary>
     /// <param name="size">Value between 0.0 and 1.0 representing size proportion of first part&apos;s minimum size.</param>
     virtual public void SetSplitRatioMin(double size) {
-                                 Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),size);
+                                 Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Allows the user to set size hints to be respected and ignored combined with a minimum size. If this flag is set, the minimum size set by <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is respected forcefully.</summary>
-/// <value>If <c>true</c> minimum size is forced</value>
+    /// <value>If <c>true</c> minimum size is forced</value>
     public bool HintMinAllow {
         get { return GetHintMinAllow(); }
         set { SetHintMinAllow(value); }
     }
     /// <summary>Controls the relative minimum size of panes widget&apos;s part.
-/// If <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is also used along with <see cref="Efl.Ui.PanesPart.SetSplitRatioMin"/>, maximum value is set as minimum size to part.</summary>
-/// <value>Value between 0.0 and 1.0 representing size proportion of first part&apos;s minimum size.</value>
+    /// If <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is also used along with <see cref="Efl.Ui.PanesPart.SetSplitRatioMin"/>, maximum value is set as minimum size to part.</summary>
+    /// <value>Value between 0.0 and 1.0 representing size proportion of first part&apos;s minimum size.</value>
     public double SplitRatioMin {
         get { return GetSplitRatioMin(); }
         set { SetSplitRatioMin(value); }
@@ -189,7 +168,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
             return Efl.Ui.PanesPart.efl_ui_panes_part_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_panes_part_hint_min_allow_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -202,13 +181,13 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
         private static bool hint_min_allow_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_panes_part_hint_min_allow_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((PanesPart)wrapper).GetHintMinAllow();
+                    _ret_var = ((PanesPart)ws.Target).GetHintMinAllow();
                 }
                 catch (Exception e)
                 {
@@ -238,13 +217,13 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
         private static void hint_min_allow_set(System.IntPtr obj, System.IntPtr pd, bool allow)
         {
             Eina.Log.Debug("function efl_ui_panes_part_hint_min_allow_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((PanesPart)wrapper).SetHintMinAllow(allow);
+                    ((PanesPart)ws.Target).SetHintMinAllow(allow);
                 }
                 catch (Exception e)
                 {
@@ -273,13 +252,13 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
         private static double split_ratio_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_panes_part_split_ratio_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((PanesPart)wrapper).GetSplitRatioMin();
+                    _ret_var = ((PanesPart)ws.Target).GetSplitRatioMin();
                 }
                 catch (Exception e)
                 {
@@ -309,13 +288,13 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
         private static void split_ratio_min_set(System.IntPtr obj, System.IntPtr pd, double size)
         {
             Eina.Log.Debug("function efl_ui_panes_part_split_ratio_min_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((PanesPart)wrapper).SetSplitRatioMin(size);
+                    ((PanesPart)ws.Target).SetSplitRatioMin(size);
                 }
                 catch (Exception e)
                 {
@@ -333,7 +312,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent, Efl.Eo.IWrapper
 
         private static efl_ui_panes_part_split_ratio_min_set_delegate efl_ui_panes_part_split_ratio_min_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

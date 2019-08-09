@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 using Tizen.Common;
-using static Interop.ImageUtil;
+using NativeUtil = Interop.ImageUtil;
 
 namespace Tizen.Multimedia.Util
 {
@@ -40,7 +40,7 @@ namespace Tizen.Multimedia.Util
 
             var colorspaces = new List<ColorSpace>();
 
-            ForeachSupportedColorspace(format,
+            NativeUtil.ForeachSupportedColorspace(format,
                 (colorspace, _) => { colorspaces.Add(colorspace.ToCommonColorSpace()); return true; }).
                 ThrowIfFailed("Failed to get supported color-space list from native handle");
 
@@ -123,7 +123,7 @@ namespace Tizen.Multimedia.Util
                     "height can't be less than or equal to zero.");
             }
 
-            ExtractColorFromMemory(buffer, size.Width, size.Height, out var r, out var g, out var b)
+            NativeUtil.ExtractColorFromMemory(buffer, size.Width, size.Height, out var r, out var g, out var b)
                 .ThrowIfFailed("Failed to extract color from buffer");
 
             return Color.FromRgb(r, g, b);

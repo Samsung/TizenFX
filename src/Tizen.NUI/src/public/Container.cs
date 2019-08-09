@@ -17,7 +17,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -55,7 +57,7 @@ namespace Tizen.NUI
         /// <pre>The child container has been initialized.</pre>
         /// <returns>The parent container.</returns>
         /// <since_tizen> 4 </since_tizen>
-        public Container Parent
+        public new Container Parent
         {
             get
             {
@@ -134,6 +136,8 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
+
+        internal abstract View FindCurrentChildById(uint id);
 
     }
 } // namespace Tizen.NUI

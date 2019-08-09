@@ -13,7 +13,8 @@ namespace Vg {
 
 /// <summary>Efl vector graphics gradient linear class</summary>
 [Efl.Canvas.Vg.GradientLinear.NativeMethods]
-public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IGradientLinear
+[Efl.Eo.BindingEntity]
+public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientLinear
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -36,80 +37,58 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
     /// <summary>Initializes a new instance of the <see cref="GradientLinear"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GradientLinear(Efl.Object parent= null
-            ) : base(efl_canvas_vg_gradient_linear_class_get(), typeof(GradientLinear), parent)
+            ) : base(efl_canvas_vg_gradient_linear_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GradientLinear(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GradientLinear"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GradientLinear(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GradientLinear(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="GradientLinear"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GradientLinear(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GradientLinear(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the start point of this linear gradient.</summary>
     /// <param name="x">X co-ordinate of start point</param>
     /// <param name="y">Y co-ordinate of start point</param>
     virtual public void GetStart(out double x, out double y) {
-                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_start_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_start_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets the start point of this linear gradient.</summary>
     /// <param name="x">X co-ordinate of start point</param>
     /// <param name="y">Y co-ordinate of start point</param>
     virtual public void SetStart(double x, double y) {
-                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_start_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_start_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets the end point of this linear gradient.</summary>
     /// <param name="x">X co-ordinate of end point</param>
     /// <param name="y">Y co-ordinate of end point</param>
     virtual public void GetEnd(out double x, out double y) {
-                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_end_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_end_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets the end point of this linear gradient.</summary>
     /// <param name="x">X co-ordinate of end point</param>
     /// <param name="y">Y co-ordinate of end point</param>
     virtual public void SetEnd(double x, double y) {
-                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_end_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_end_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     private static IntPtr GetEflClassStatic()
@@ -178,7 +157,7 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
             return Efl.Canvas.Vg.GradientLinear.efl_canvas_vg_gradient_linear_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_gradient_linear_start_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double x,  out double y);
@@ -191,13 +170,13 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void start_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_start_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((GradientLinear)wrapper).GetStart(out x, out y);
+                    ((GradientLinear)ws.Target).GetStart(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -226,13 +205,13 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void start_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_start_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((GradientLinear)wrapper).SetStart(x, y);
+                    ((GradientLinear)ws.Target).SetStart(x, y);
                 }
                 catch (Exception e)
                 {
@@ -261,13 +240,13 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void end_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_end_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((GradientLinear)wrapper).GetEnd(out x, out y);
+                    ((GradientLinear)ws.Target).GetEnd(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -296,13 +275,13 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
         private static void end_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_end_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((GradientLinear)wrapper).SetEnd(x, y);
+                    ((GradientLinear)ws.Target).SetEnd(x, y);
                 }
                 catch (Exception e)
                 {
@@ -320,7 +299,7 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Eo.IWrapper,Efl.Gfx.IG
 
         private static efl_gfx_gradient_linear_end_set_delegate efl_gfx_gradient_linear_end_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

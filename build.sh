@@ -41,6 +41,7 @@ cmd_full_build() {
   $RUN_BUILD /t:clean
   $RUN_BUILD /t:restore $NUGET_SOURCE_OPT $@
   $RUN_BUILD /t:build /fl $@
+  $RUN_BUILD /t:dummy
 }
 
 cmd_dummy_build() {

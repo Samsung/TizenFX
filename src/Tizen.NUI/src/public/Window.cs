@@ -999,6 +999,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Destroy the window immediately.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Destroy()
         {
             this.Dispose();

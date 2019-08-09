@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>A generic configuration interface, that holds key-value pairs.</summary>
 [Efl.IConfigConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IConfig : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -23,13 +24,13 @@ Eina.Value GetConfig(System.String name);
 bool SetConfig(System.String name, Eina.Value value);
         }
 /// <summary>A generic configuration interface, that holds key-value pairs.</summary>
-sealed public class IConfigConcrete : 
-
-IConfig
+sealed public class IConfigConcrete :
+    Efl.Eo.EoWrapper
+    , IConfig
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -44,86 +45,19 @@ IConfig
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IConfigConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_config_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IConfig"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IConfigConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IConfigConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IConfigConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>A generic configuration value, referred to by name.</summary>
@@ -149,7 +83,7 @@ IConfig
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -188,7 +122,7 @@ IConfig
             return Efl.IConfigConcrete.efl_config_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueMarshalerOwn))]
         private delegate Eina.Value efl_config_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
@@ -201,13 +135,13 @@ IConfig
         private static Eina.Value config_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_config_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Value _ret_var = default(Eina.Value);
                 try
                 {
-                    _ret_var = ((IConfig)wrapper).GetConfig(name);
+                    _ret_var = ((IConfig)ws.Target).GetConfig(name);
                 }
                 catch (Exception e)
                 {
@@ -237,13 +171,13 @@ IConfig
         private static bool config_set(System.IntPtr obj, System.IntPtr pd, System.String name, Eina.Value value)
         {
             Eina.Log.Debug("function efl_config_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IConfig)wrapper).SetConfig(name, value);
+                    _ret_var = ((IConfig)ws.Target).SetConfig(name, value);
                 }
                 catch (Exception e)
                 {
@@ -262,7 +196,7 @@ IConfig
 
         private static efl_config_set_delegate efl_config_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

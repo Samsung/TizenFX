@@ -8,6 +8,7 @@ using System.ComponentModel;
 namespace Efl {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.Loop.ArgumentsEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LoopArgumentsEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.LoopArguments arg { get; set; }
@@ -16,7 +17,8 @@ public class LoopArgumentsEvt_Args : EventArgs {
 /// The Efl main loop provides a clean and tiny event loop library with many modules to do lots of convenient things for a programmer, saving time and effort. It&apos;s lean and designed to work on anything from embedded systems all the way up to large and powerful multi-cpu workstations. The main loop has a number of primitives you can use. It serializes these and allows for greater responsiveness without the need for threads (or any other concurrency). However you can provide these if you need to.
 /// (Since EFL 1.22)</summary>
 [Efl.Loop.NativeMethods]
-public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public abstract class Loop : Efl.Task
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -39,59 +41,37 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="Loop"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Loop(Efl.Object parent= null
-            ) : base(efl_loop_class_get(), typeof(Loop), parent)
+            ) : base(efl_loop_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Loop(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Loop"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Loop(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Loop(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class LoopRealized : Loop
     {
-        private LoopRealized(IntPtr ptr) : base(ptr)
+        private LoopRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Loop"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Loop(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Loop(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Event occurs once the main loop enters the idle state.
@@ -100,12 +80,11 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -128,7 +107,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_IDLE_ENTER";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -154,12 +133,11 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -182,7 +160,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_IDLE_EXIT";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -208,12 +186,11 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -236,7 +213,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_IDLE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -262,15 +239,14 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.LoopArgumentsEvt_Args args = new Efl.LoopArgumentsEvt_Args();
+                        Efl.LoopArgumentsEvt_Args args = new Efl.LoopArgumentsEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -291,7 +267,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_ARGUMENTS";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -326,12 +302,11 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -354,7 +329,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_POLL_HIGH";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -380,12 +355,11 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -408,7 +382,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_POLL_MEDIUM";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -434,12 +408,11 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -462,7 +435,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_POLL_LOW";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -488,12 +461,11 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -516,7 +488,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_EVENT_QUIT";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -540,7 +512,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// (Since EFL 1.22)</summary>
     /// <returns>Time to sleep for each &quot;loop iteration&quot;</returns>
     virtual public double GetThrottle() {
-         var _ret_var = Efl.Loop.NativeMethods.efl_loop_throttle_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Loop.NativeMethods.efl_loop_throttle_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -548,14 +520,14 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// (Since EFL 1.22)</summary>
     /// <param name="amount">Time to sleep for each &quot;loop iteration&quot;</param>
     virtual public void SetThrottle(double amount) {
-                                 Efl.Loop.NativeMethods.efl_loop_throttle_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),amount);
+                                 Efl.Loop.NativeMethods.efl_loop_throttle_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),amount);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This gets the time that the main loop ceased waiting for timouts and/or events to come in or for signals or any other interrupt source. This should be considered a reference point for all time based activity that should calculate its timepoint from the return of ecore_loop_time_get(). Note that this time is meant to be used as relative to other times obtained on this run. If you need absolute time references, use a unix timestamp instead.
     /// (Since EFL 1.22)</summary>
     /// <returns>Time in seconds</returns>
     virtual public double GetTime() {
-         var _ret_var = Efl.Loop.NativeMethods.efl_loop_time_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Loop.NativeMethods.efl_loop_time_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -563,14 +535,14 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// Note: The time point must match whatever zero time you get from ecore_time_get() and <see cref="Efl.Loop.GetTime"/> (same 0 point). What this point is is undefined, so unless your source uses the same 0 time, then you may have to adjust and do some guessing.
     /// (Since EFL 1.22)</summary>
     /// <param name="timepoint">Time in seconds</param>
-    virtual public void SetTime(double timepoint) {
-                                 Efl.Loop.NativeMethods.efl_loop_time_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),timepoint);
+    virtual protected void SetTime(double timepoint) {
+                                 Efl.Loop.NativeMethods.efl_loop_time_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),timepoint);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Runs a single iteration of the main loop to process everything on the queue.
     /// (Since EFL 1.22)</summary>
     virtual public void Iterate() {
-         Efl.Loop.NativeMethods.efl_loop_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Loop.NativeMethods.efl_loop_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Runs a single iteration of the main loop to process everything on the queue with block/non-blocking status.
@@ -578,7 +550,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// <param name="may_block">A flag if the main loop has a possibility of blocking.</param>
     /// <returns>Return from single iteration run</returns>
     virtual public int IterateMayBlock(int may_block) {
-                                 var _ret_var = Efl.Loop.NativeMethods.efl_loop_iterate_may_block_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),may_block);
+                                 var _ret_var = Efl.Loop.NativeMethods.efl_loop_iterate_may_block_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),may_block);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -586,7 +558,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// (Since EFL 1.22)</summary>
     /// <returns>Value set by quit()</returns>
     virtual public Eina.Value Begin() {
-         var _ret_var = Efl.Loop.NativeMethods.efl_loop_begin_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Loop.NativeMethods.efl_loop_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -595,7 +567,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// <param name="exit_code">Returned value by begin()</param>
     virtual public void Quit(Eina.Value exit_code) {
          var _in_exit_code = exit_code.GetNative();
-                        Efl.Loop.NativeMethods.efl_loop_quit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_exit_code);
+                        Efl.Loop.NativeMethods.efl_loop_quit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_exit_code);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>A future promise that will be resolved from a clean main loop context as soon as possible.
@@ -603,7 +575,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// (Since EFL 1.22)</summary>
     /// <returns>The future handle.</returns>
     virtual public  Eina.Future Job() {
-         var _ret_var = Efl.Loop.NativeMethods.efl_loop_job_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Loop.NativeMethods.efl_loop_job_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -612,7 +584,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// (Since EFL 1.22)</summary>
     /// <returns>The future handle.</returns>
     virtual public  Eina.Future Idle() {
-         var _ret_var = Efl.Loop.NativeMethods.efl_loop_idle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Loop.NativeMethods.efl_loop_idle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -621,7 +593,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// <param name="time">The time from now in second that the main loop will wait before triggering it.</param>
     /// <returns>The future handle.</returns>
     virtual public  Eina.Future Timeout(double time) {
-                                 var _ret_var = Efl.Loop.NativeMethods.efl_loop_timeout_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),time);
+                                 var _ret_var = Efl.Loop.NativeMethods.efl_loop_timeout_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -631,7 +603,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// <param name="provider">The provider for the newly registered class that has to provide that said Efl.Class.</param>
     /// <returns><c>true</c> if successfully register, <c>false</c> otherwise.</returns>
     virtual public bool Register(Type klass, Efl.Object provider) {
-                                                         var _ret_var = Efl.Loop.NativeMethods.efl_loop_register_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),klass, provider);
+                                                         var _ret_var = Efl.Loop.NativeMethods.efl_loop_register_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -641,38 +613,51 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
     /// <param name="provider">The provider for the registered class to unregister.</param>
     /// <returns><c>true</c> if successfully unregistered, <c>false</c> otherwise.</returns>
     virtual public bool Unregister(Type klass, Efl.Object provider) {
-                                                         var _ret_var = Efl.Loop.NativeMethods.efl_loop_unregister_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),klass, provider);
+                                                         var _ret_var = Efl.Loop.NativeMethods.efl_loop_unregister_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+    /// <summary>Async wrapper for <see cref="Job" />.</summary>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> JobAsync( System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = Job();
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
+    /// <summary>Async wrapper for <see cref="Idle" />.</summary>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> IdleAsync( System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = Idle();
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
+    /// <summary>Async wrapper for <see cref="Timeout" />.</summary>
+    /// <param name="time">The time from now in second that the main loop will wait before triggering it.</param>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> TimeoutAsync(double time, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = Timeout( time);
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
     /// <summary>Slow down the loop execution by forcing sleep for a small period of time every time the loop iterates/loops.
-/// (Since EFL 1.22)</summary>
-/// <value>Time to sleep for each &quot;loop iteration&quot;</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>Time to sleep for each &quot;loop iteration&quot;</value>
     public double Throttle {
         get { return GetThrottle(); }
         set { SetThrottle(value); }
     }
     /// <summary>Retrieves the time at which the last loop stopped waiting for timeouts or events.
-/// (Since EFL 1.22)</summary>
-/// <value>Time in seconds</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>Time in seconds</value>
     public double Time {
         get { return GetTime(); }
-        set { SetTime(value); }
+        protected set { SetTime(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -830,7 +815,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
             return Efl.Loop.efl_loop_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_loop_throttle_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -843,13 +828,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static double throttle_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_throttle_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).GetThrottle();
+                    _ret_var = ((Loop)ws.Target).GetThrottle();
                 }
                 catch (Exception e)
                 {
@@ -879,13 +864,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static void throttle_set(System.IntPtr obj, System.IntPtr pd, double amount)
         {
             Eina.Log.Debug("function efl_loop_throttle_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Loop)wrapper).SetThrottle(amount);
+                    ((Loop)ws.Target).SetThrottle(amount);
                 }
                 catch (Exception e)
                 {
@@ -914,13 +899,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static double time_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_time_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).GetTime();
+                    _ret_var = ((Loop)ws.Target).GetTime();
                 }
                 catch (Exception e)
                 {
@@ -950,13 +935,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static void time_set(System.IntPtr obj, System.IntPtr pd, double timepoint)
         {
             Eina.Log.Debug("function efl_loop_time_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Loop)wrapper).SetTime(timepoint);
+                    ((Loop)ws.Target).SetTime(timepoint);
                 }
                 catch (Exception e)
                 {
@@ -985,13 +970,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static void iterate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_iterate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Loop)wrapper).Iterate();
+                    ((Loop)ws.Target).Iterate();
                 }
                 catch (Exception e)
                 {
@@ -1020,13 +1005,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static int iterate_may_block(System.IntPtr obj, System.IntPtr pd, int may_block)
         {
             Eina.Log.Debug("function efl_loop_iterate_may_block was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).IterateMayBlock(may_block);
+                    _ret_var = ((Loop)ws.Target).IterateMayBlock(may_block);
                 }
                 catch (Exception e)
                 {
@@ -1056,13 +1041,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static Eina.Value begin(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_begin was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Value _ret_var = default(Eina.Value);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).Begin();
+                    _ret_var = ((Loop)ws.Target).Begin();
                 }
                 catch (Exception e)
                 {
@@ -1092,14 +1077,14 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static void quit(System.IntPtr obj, System.IntPtr pd, Eina.ValueNative exit_code)
         {
             Eina.Log.Debug("function efl_loop_quit was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_exit_code = new Eina.Value(exit_code);
                             
                 try
                 {
-                    ((Loop)wrapper).Quit(_in_exit_code);
+                    ((Loop)ws.Target).Quit(_in_exit_code);
                 }
                 catch (Exception e)
                 {
@@ -1128,13 +1113,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static  Eina.Future job(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_job was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).Job();
+                    _ret_var = ((Loop)ws.Target).Job();
                 }
                 catch (Exception e)
                 {
@@ -1164,13 +1149,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static  Eina.Future idle(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_idle was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).Idle();
+                    _ret_var = ((Loop)ws.Target).Idle();
                 }
                 catch (Exception e)
                 {
@@ -1200,13 +1185,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static  Eina.Future timeout(System.IntPtr obj, System.IntPtr pd, double time)
         {
             Eina.Log.Debug("function efl_loop_timeout was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                      Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).Timeout(time);
+                    _ret_var = ((Loop)ws.Target).Timeout(time);
                 }
                 catch (Exception e)
                 {
@@ -1236,13 +1221,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static bool register(System.IntPtr obj, System.IntPtr pd, Type klass, Efl.Object provider)
         {
             Eina.Log.Debug("function efl_loop_register was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).Register(klass, provider);
+                    _ret_var = ((Loop)ws.Target).Register(klass, provider);
                 }
                 catch (Exception e)
                 {
@@ -1272,13 +1257,13 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
         private static bool unregister(System.IntPtr obj, System.IntPtr pd, Type klass, Efl.Object provider)
         {
             Eina.Log.Debug("function efl_loop_unregister was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Loop)wrapper).Unregister(klass, provider);
+                    _ret_var = ((Loop)ws.Target).Unregister(klass, provider);
                 }
                 catch (Exception e)
                 {
@@ -1297,7 +1282,7 @@ public abstract class Loop : Efl.Task, Efl.Eo.IWrapper
 
         private static efl_loop_unregister_delegate efl_loop_unregister_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -1308,26 +1293,31 @@ namespace Efl {
 /// <summary>EFL loop arguments data structure
 /// (Since EFL 1.22)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct LoopArguments
 {
     /// <summary>Array with loop arguments</summary>
-    public Eina.Array<System.String> Argv;
+    public Eina.Array<Eina.Stringshare> Argv;
     /// <summary>Set to <c>true</c> when the program should initialize its internal state. This happen once per process instance.</summary>
     public bool Initialization;
     ///<summary>Constructor for LoopArguments.</summary>
     public LoopArguments(
-        Eina.Array<System.String> Argv = default(Eina.Array<System.String>),
+        Eina.Array<Eina.Stringshare> Argv = default(Eina.Array<Eina.Stringshare>),
         bool Initialization = default(bool)    )
     {
         this.Argv = Argv;
         this.Initialization = Initialization;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator LoopArguments(IntPtr ptr)
     {
         var tmp = (LoopArguments.NativeStruct)Marshal.PtrToStructure(ptr, typeof(LoopArguments.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct LoopArguments.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1350,12 +1340,14 @@ public struct LoopArguments
         public static implicit operator LoopArguments(LoopArguments.NativeStruct _internal_struct)
         {
             var _external_struct = new LoopArguments();
-            _external_struct.Argv = new Eina.Array<System.String>(_internal_struct.Argv, false, false);
+            _external_struct.Argv = new Eina.Array<Eina.Stringshare>(_internal_struct.Argv, false, false);
             _external_struct.Initialization = _internal_struct.Initialization != 0;
             return _external_struct;
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

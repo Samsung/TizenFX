@@ -10,16 +10,19 @@ namespace Efl {
 namespace Ui {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Win.FullscreenChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class WinFullscreenChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Win.MaximizedChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class WinMaximizedChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Win.WinRotationChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class WinWinRotationChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public int arg { get; set; }
@@ -27,7 +30,8 @@ public class WinWinRotationChangedEvt_Args : EventArgs {
 /// <summary>Efl UI window class
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Win.NativeMethods]
-public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.IScreen,Efl.IText,Efl.Access.IWindow,Efl.Canvas.IScene,Efl.Input.IState,Efl.Ui.IWidgetFocusManager,Efl.Ui.Focus.IManager,Efl.Ui.Focus.IManagerWindowRoot
+[Efl.Eo.BindingEntity]
+public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IText, Efl.Access.IWindow, Efl.Canvas.IScene, Efl.Input.IState, Efl.Ui.IWidgetFocusManager, Efl.Ui.Focus.IManager, Efl.Ui.Focus.IManagerWindowRoot
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -49,12 +53,12 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         efl_ui_win_class_get();
     /// <summary>Initializes a new instance of the <see cref="Win"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName"/></param>
-    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType"/></param>
-    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference"/></param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName" /></param>
+    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType" /></param>
+    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference" /></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Win(Efl.Object parent
-            , System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null, System.String style = null) : base(efl_ui_win_class_get(), typeof(Win), parent)
+            , System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null, System.String style = null) : base(efl_ui_win_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(winName))
         {
@@ -79,47 +83,25 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Win(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Win"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Win(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Win(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Win"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Win(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Win(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Called when the window receives a delete request
@@ -128,12 +110,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -156,7 +137,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_DELETE_REQUEST";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -182,12 +163,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -210,7 +190,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_WITHDRAWN";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -236,12 +216,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -264,7 +243,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_MINIMIZED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -290,12 +269,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -318,7 +296,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_NORMAL";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -344,12 +322,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -372,7 +349,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_STICK";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -398,12 +375,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -426,7 +402,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_UNSTICK";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -452,16 +428,15 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.WinFullscreenChangedEvt_Args args = new Efl.Ui.WinFullscreenChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.WinFullscreenChangedEvt_Args args = new Efl.Ui.WinFullscreenChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -481,7 +456,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_FULLSCREEN_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -515,16 +490,15 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.WinMaximizedChangedEvt_Args args = new Efl.Ui.WinMaximizedChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.WinMaximizedChangedEvt_Args args = new Efl.Ui.WinMaximizedChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -544,7 +518,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_MAXIMIZED_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -578,12 +552,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -606,7 +579,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_INDICATOR_PROP_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -632,16 +605,15 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.WinWinRotationChangedEvt_Args args = new Efl.Ui.WinWinRotationChangedEvt_Args();
-                        args.arg = evt.Info.ToInt32();
+                        Efl.Ui.WinWinRotationChangedEvt_Args args = new Efl.Ui.WinWinRotationChangedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -661,7 +633,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_WIN_ROTATION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -695,12 +667,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -723,7 +694,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_PROFILE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -749,12 +720,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -777,7 +747,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_WM_ROTATION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -803,12 +773,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -831,7 +800,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_THEME_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -857,12 +826,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -885,7 +853,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_ELM_ACTION_BLOCK_MENU";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -911,12 +879,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -939,7 +906,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_PAUSE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -965,12 +932,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -993,7 +959,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIN_EVENT_RESUME";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1019,15 +985,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -1042,16 +1007,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1059,7 +1024,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1074,12 +1039,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1102,7 +1066,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_CREATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1127,12 +1091,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1155,7 +1118,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DESTROYED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1180,12 +1143,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1208,7 +1170,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_ACTIVATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1233,12 +1195,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1261,7 +1222,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DEACTIVATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1286,12 +1247,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1314,7 +1274,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MAXIMIZED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1339,12 +1299,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1367,7 +1326,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MINIMIZED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1392,12 +1351,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1420,7 +1378,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_RESTORED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1442,20 +1400,18 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     }
     /// <summary>Called when scene got focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusInEvt_Args> SceneFocusInEvt
+    public event EventHandler SceneFocusInEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneSceneFocusInEvt_Args args = new Efl.Canvas.ISceneSceneFocusInEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1469,49 +1425,46 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event SceneFocusInEvt.</summary>
-    public void OnSceneFocusInEvt(Efl.Canvas.ISceneSceneFocusInEvt_Args e)
+    public void OnSceneFocusInEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scene lost focus
     /// (Since EFL 1.22)</summary>
-    public event EventHandler<Efl.Canvas.ISceneSceneFocusOutEvt_Args> SceneFocusOutEvt
+    public event EventHandler SceneFocusOutEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneSceneFocusOutEvt_Args args = new Efl.Canvas.ISceneSceneFocusOutEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
+                        EventArgs args = EventArgs.Empty;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1525,32 +1478,31 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
     ///<summary>Method to raise event SceneFocusOutEvt.</summary>
-    public void OnSceneFocusOutEvt(Efl.Canvas.ISceneSceneFocusOutEvt_Args e)
+    public void OnSceneFocusOutEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
@@ -1558,15 +1510,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneObjectFocusInEvt_Args args = new Efl.Canvas.ISceneObjectFocusInEvt_Args();
+                        Efl.Canvas.ISceneObjectFocusInEvt_Args args = new Efl.Canvas.ISceneObjectFocusInEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
                         try
                         {
@@ -1581,16 +1532,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1598,7 +1549,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnObjectFocusInEvt(Efl.Canvas.ISceneObjectFocusInEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1614,15 +1565,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneObjectFocusOutEvt_Args args = new Efl.Canvas.ISceneObjectFocusOutEvt_Args();
+                        Efl.Canvas.ISceneObjectFocusOutEvt_Args args = new Efl.Canvas.ISceneObjectFocusOutEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
                         try
                         {
@@ -1637,16 +1587,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1654,7 +1604,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnObjectFocusOutEvt(Efl.Canvas.ISceneObjectFocusOutEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1670,12 +1620,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1692,16 +1641,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1709,7 +1658,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnRenderPreEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1724,15 +1673,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneRenderPostEvt_Args args = new Efl.Canvas.ISceneRenderPostEvt_Args();
+                        Efl.Canvas.ISceneRenderPostEvt_Args args = new Efl.Canvas.ISceneRenderPostEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1747,16 +1695,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1764,7 +1712,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnRenderPostEvt(Efl.Canvas.ISceneRenderPostEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1788,15 +1736,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneDeviceChangedEvt_Args args = new Efl.Canvas.ISceneDeviceChangedEvt_Args();
+                        Efl.Canvas.ISceneDeviceChangedEvt_Args args = new Efl.Canvas.ISceneDeviceChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Device);
                         try
                         {
@@ -1811,16 +1758,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1828,7 +1775,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnDeviceChangedEvt(Efl.Canvas.ISceneDeviceChangedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1844,15 +1791,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneDeviceAddedEvt_Args args = new Efl.Canvas.ISceneDeviceAddedEvt_Args();
+                        Efl.Canvas.ISceneDeviceAddedEvt_Args args = new Efl.Canvas.ISceneDeviceAddedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Device);
                         try
                         {
@@ -1867,16 +1813,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1884,7 +1830,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnDeviceAddedEvt(Efl.Canvas.ISceneDeviceAddedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1900,15 +1846,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.ISceneDeviceRemovedEvt_Args args = new Efl.Canvas.ISceneDeviceRemovedEvt_Args();
+                        Efl.Canvas.ISceneDeviceRemovedEvt_Args args = new Efl.Canvas.ISceneDeviceRemovedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Device);
                         try
                         {
@@ -1923,16 +1868,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
                 };
 
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1940,7 +1885,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     public void OnDeviceRemovedEvt(Efl.Canvas.ISceneDeviceRemovedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1956,15 +1901,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
                         try
                         {
@@ -1985,7 +1929,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2012,12 +1956,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2040,7 +1983,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2066,12 +2009,11 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2094,7 +2036,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2120,15 +2062,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
                         try
                         {
@@ -2149,7 +2090,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2176,16 +2117,15 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -2205,7 +2145,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2238,7 +2178,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The type, one of <see cref="Efl.Ui.WinIndicatorMode"/>.</returns>
     virtual public Efl.Ui.WinIndicatorMode GetIndicatorMode() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_indicator_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_indicator_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2247,14 +2187,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="type">The type, one of <see cref="Efl.Ui.WinIndicatorMode"/>.</param>
     virtual public void SetIndicatorMode(Efl.Ui.WinIndicatorMode type) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_indicator_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_indicator_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the keyboard mode of the window.
     /// (Since EFL 1.22)</summary>
     /// <returns>The mode, one of <see cref="Efl.Ui.WinKeyboardMode"/>.</returns>
     virtual public Efl.Ui.WinKeyboardMode GetKeyboardMode() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_keyboard_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_keyboard_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2262,7 +2202,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="mode">The mode, one of <see cref="Efl.Ui.WinKeyboardMode"/>.</param>
     virtual public void SetKeyboardMode(Efl.Ui.WinKeyboardMode mode) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_keyboard_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_keyboard_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines which rotations this window supports.
@@ -2274,7 +2214,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="allow_270">Rotated 270 degrees CCW (i.e. 90 CW).</param>
     /// <returns>Returns <c>false</c> if available rotations were not specified.</returns>
     virtual public bool GetWmAvailableRotations(out bool allow_0, out bool allow_90, out bool allow_180, out bool allow_270) {
-                                                                                                         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_rotations_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out allow_0, out allow_90, out allow_180, out allow_270);
+                                                                                                         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_rotations_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out allow_0, out allow_90, out allow_180, out allow_270);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
@@ -2286,14 +2226,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="allow_180">Rotated 180 degrees.</param>
     /// <param name="allow_270">Rotated 270 degrees CCW (i.e. 90 CW).</param>
     virtual public void SetWmAvailableRotations(bool allow_0, bool allow_90, bool allow_180, bool allow_270) {
-                                                                                                         Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_rotations_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),allow_0, allow_90, allow_180, allow_270);
+                                                                                                         Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_rotations_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow_0, allow_90, allow_180, allow_270);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Available profiles on a window.
     /// (Since EFL 1.22)</summary>
     /// <returns>A list of profiles.</returns>
     virtual public Eina.Array<System.String> GetWmAvailableProfiles() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_profiles_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_profiles_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Array<System.String>(_ret_var, false, false);
  }
@@ -2302,7 +2242,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="profiles">A list of profiles.</param>
     virtual public void SetWmAvailableProfiles(Eina.Array<System.String> profiles) {
          var _in_profiles = profiles.Handle;
-                        Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_profiles_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_profiles);
+                        Efl.Ui.Win.NativeMethods.efl_ui_win_wm_available_profiles_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_profiles);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the constraints on the maximum width and height of a window relative to the width and height of the screen.
@@ -2310,7 +2250,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> to restrict the window&apos;s maximum size.</returns>
     virtual public bool GetScreenConstrain() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_screen_constrain_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_screen_constrain_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2319,7 +2259,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="constrain"><c>true</c> to restrict the window&apos;s maximum size.</param>
     virtual public void SetScreenConstrain(bool constrain) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_screen_constrain_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),constrain);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_screen_constrain_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),constrain);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the window to be skipped by keyboard focus.
@@ -2331,7 +2271,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="skip">The skip flag state (<c>true</c> if it is to be skipped).</param>
     virtual public void SetPropFocusSkip(bool skip) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_prop_focus_skip_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),skip);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_prop_focus_skip_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),skip);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Window&apos;s autohide state.
@@ -2345,7 +2285,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>If <c>true</c>, the window will automatically hide itself when closed.</returns>
     virtual public bool GetAutohide() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_autohide_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_autohide_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2360,7 +2300,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="autohide">If <c>true</c>, the window will automatically hide itself when closed.</param>
     virtual public void SetAutohide(bool autohide) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_autohide_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),autohide);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_autohide_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),autohide);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Enable quitting the main loop when this window is closed.
@@ -2372,7 +2312,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The exit code to use when exiting</returns>
     virtual public Eina.Value GetExitOnClose() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_exit_on_close_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_exit_on_close_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2385,7 +2325,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="exit_code">The exit code to use when exiting</param>
     virtual public void SetExitOnClose(Eina.Value exit_code) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_exit_on_close_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),exit_code);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_exit_on_close_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),exit_code);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the icon object used for the window.
@@ -2393,7 +2333,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The Evas image object to use for an icon.</returns>
     virtual public Efl.Canvas.Object GetIconObject() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_icon_object_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_icon_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2402,14 +2342,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="icon">The image object to use for an icon.</param>
     virtual public void SetIconObject(Efl.Canvas.Object icon) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_icon_object_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),icon);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_icon_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),icon);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the minimized state of a window.
     /// (Since EFL 1.22)</summary>
     /// <returns>If <c>true</c>, the window is minimized.</returns>
     virtual public bool GetMinimized() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_minimized_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_minimized_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2417,14 +2357,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="state">If <c>true</c>, the window is minimized.</param>
     virtual public void SetMinimized(bool state) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_minimized_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),state);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_minimized_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),state);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the maximized state of a window.
     /// (Since EFL 1.22)</summary>
     /// <returns>If <c>true</c>, the window is maximized.</returns>
     virtual public bool GetMaximized() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_maximized_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_maximized_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2432,14 +2372,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="maximized">If <c>true</c>, the window is maximized.</param>
     virtual public void SetMaximized(bool maximized) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_maximized_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),maximized);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_maximized_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),maximized);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the fullscreen state of a window.
     /// (Since EFL 1.22)</summary>
     /// <returns>If <c>true</c>, the window is fullscreen.</returns>
     virtual public bool GetFullscreen() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_fullscreen_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_fullscreen_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2447,14 +2387,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="fullscreen">If <c>true</c>, the window is fullscreen.</param>
     virtual public void SetFullscreen(bool fullscreen) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_fullscreen_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fullscreen);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_fullscreen_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fullscreen);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the sticky state of the window.
     /// (Since EFL 1.22)</summary>
     /// <returns>If <c>true</c>, the window&apos;s sticky state is enabled.</returns>
     virtual public bool GetSticky() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_sticky_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_sticky_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2463,14 +2403,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="sticky">If <c>true</c>, the window&apos;s sticky state is enabled.</param>
     virtual public void SetSticky(bool sticky) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_sticky_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sticky);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_sticky_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sticky);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the urgent state of a window.
     /// (Since EFL 1.22)</summary>
     /// <returns>The mode of a urgent window, one of <see cref="Efl.Ui.WinUrgentMode"/>.</returns>
     virtual public Efl.Ui.WinUrgentMode GetUrgent() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_urgent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_urgent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2478,14 +2418,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="urgent">The mode of a urgent window, one of <see cref="Efl.Ui.WinUrgentMode"/>.</param>
     virtual public void SetUrgent(Efl.Ui.WinUrgentMode urgent) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_urgent_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),urgent);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_urgent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),urgent);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the modal state of a window.
     /// (Since EFL 1.22)</summary>
     /// <returns>The mode of a window, one of <see cref="Efl.Ui.WinModalMode"/>.</returns>
     virtual public Efl.Ui.WinModalMode GetModal() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_modal_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_modal_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2493,14 +2433,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="modal">The mode of a window, one of <see cref="Efl.Ui.WinModalMode"/>.</param>
     virtual public void SetModal(Efl.Ui.WinModalMode modal) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_modal_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),modal);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_modal_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),modal);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the borderless state of a window.
     /// (Since EFL 1.22)</summary>
     /// <returns>If <c>true</c>, the window is borderless.</returns>
     virtual public bool GetBorderless() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_borderless_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_borderless_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2509,7 +2449,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="borderless">If <c>true</c>, the window is borderless.</param>
     virtual public void SetBorderless(bool borderless) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_borderless_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),borderless);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_borderless_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),borderless);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the role of the window.
@@ -2517,7 +2457,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The role to set.</returns>
     virtual public System.String GetWinRole() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_role_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_role_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2525,7 +2465,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="role">The role to set.</param>
     virtual public void SetWinRole(System.String role) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_role_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),role);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_role_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),role);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The window name.
@@ -2537,7 +2477,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Window name</returns>
     virtual public System.String GetWinName() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2545,14 +2485,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="name">Window name</param>
     virtual public void SetWinName(System.String name) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_name_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_name_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>If the object is not window object, returns <c>unknown</c>.
     /// (Since EFL 1.22)</summary>
     /// <returns>Window type</returns>
     virtual public Efl.Ui.WinType GetWinType() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2560,14 +2500,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="type">Window type</param>
     virtual public void SetWinType(Efl.Ui.WinType type) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This will return the value of &quot;accel_preference&quot; when the window was created.
     /// (Since EFL 1.22)</summary>
     /// <returns>Acceleration</returns>
     virtual public System.String GetAccelPreference() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_accel_preference_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_accel_preference_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2592,14 +2532,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="accel">Acceleration</param>
     virtual public void SetAccelPreference(System.String accel) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_accel_preference_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),accel);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_accel_preference_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),accel);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the alpha channel state of a window.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the window alpha channel is enabled, <c>false</c> otherwise.</returns>
     virtual public bool GetAlpha() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_alpha_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_alpha_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2610,7 +2550,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="alpha"><c>true</c> if the window alpha channel is enabled, <c>false</c> otherwise.</param>
     virtual public void SetAlpha(bool alpha) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_alpha_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),alpha);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_alpha_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),alpha);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the stack ID string of the window as an opaque string.
@@ -2620,7 +2560,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>An opaque string that has no specific format but identifies a specific unique window on the display.</returns>
     virtual public System.String GetStackId() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_stack_id_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_stack_id_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2628,7 +2568,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>An opaque string that has no specific format, but identifies a specific unique window on the display.</returns>
     virtual public System.String GetStackMasterId() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_stack_master_id_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_stack_master_id_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2637,7 +2577,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="id">An opaque string that has no specific format, but identifies a specific unique window on the display.</param>
     virtual public void SetStackMasterId(System.String id) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_stack_master_id_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_stack_master_id_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The stack base state of this window
@@ -2647,7 +2587,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if this is a stack base window, <c>false</c> otherwise.</returns>
     virtual public bool GetStackBase() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_stack_base_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_stack_base_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2658,7 +2598,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="kw_base"><c>true</c> if this is a stack base window, <c>false</c> otherwise.</param>
     virtual public void SetStackBase(bool kw_base) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_stack_base_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_base);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_stack_base_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Enable quitting the main loop when all windows are closed.
@@ -2695,7 +2635,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Base size (hint) in pixels.</returns>
     virtual public Eina.Size2D GetHintBase() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_hint_base_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_hint_base_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2709,7 +2649,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="sz">Base size (hint) in pixels.</param>
     virtual public void SetHintBase(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Ui.Win.NativeMethods.efl_ui_win_hint_base_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_sz);
+                        Efl.Ui.Win.NativeMethods.efl_ui_win_hint_base_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Step size for objects with sizing restrictions.
@@ -2721,7 +2661,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Step size (hint) in pixels.</returns>
     virtual public Eina.Size2D GetHintStep() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_hint_step_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_hint_step_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2735,7 +2675,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="sz">Step size (hint) in pixels.</param>
     virtual public void SetHintStep(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Ui.Win.NativeMethods.efl_ui_win_hint_step_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_sz);
+                        Efl.Ui.Win.NativeMethods.efl_ui_win_hint_step_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The rotation of this window
@@ -2743,7 +2683,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The rotation of the window</returns>
     virtual public int GetWinRotation() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_rotation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_rotation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2752,14 +2692,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="rotation">The rotation of the window</param>
     virtual public void SetWinRotation(int rotation) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_rotation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),rotation);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_rotation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rotation);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the enabled value of the focus highlight for this window.
     /// (Since EFL 1.22)</summary>
     /// <returns>The enabled value for the highlight.</returns>
     virtual public bool GetFocusHighlightEnabled() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2768,7 +2708,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="enabled">The enabled value for the highlight.</param>
     virtual public void SetFocusHighlightEnabled(bool enabled) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enabled);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enabled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the widget focus highlight style.
@@ -2778,7 +2718,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The name of the focus highlight style.</returns>
     virtual public System.String GetFocusHighlightStyle() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_style_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2790,7 +2730,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="style">The name of the focus highlight style.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool SetFocusHighlightStyle(System.String style) {
-                                 var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_style_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),style);
+                                 var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2798,7 +2738,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The enabled value for the highlight animation.</returns>
     virtual public bool GetFocusHighlightAnimate() {
-         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_animate_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_animate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2807,14 +2747,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="animate">The enabled value for the highlight animation.</param>
     virtual public void SetFocusHighlightAnimate(bool animate) {
-                                 Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_animate_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),animate);
+                                 Efl.Ui.Win.NativeMethods.efl_ui_win_focus_highlight_animate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animate);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Pop (delete) all windows in the stack above this window.
     /// This will try and delete all the windows in the stack that are above the window.
     /// (Since EFL 1.22)</summary>
     virtual public void StackPopTo() {
-         Efl.Ui.Win.NativeMethods.efl_ui_win_stack_pop_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Win.NativeMethods.efl_ui_win_stack_pop_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Activate a window object.
@@ -2823,7 +2763,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// Note: This is just a request that a Window Manager may ignore, so calling this function does not ensure in any way that the window will be the active one afterwards.
     /// (Since EFL 1.22)</summary>
     virtual public void Activate() {
-         Efl.Ui.Win.NativeMethods.efl_ui_win_activate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Win.NativeMethods.efl_ui_win_activate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Center a window on the screen.
@@ -2834,7 +2774,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="h">If <c>true</c>, center horizontally. If <c>false</c>, do not change horizontal location.</param>
     /// <param name="v">If <c>true</c>, center vertically. If <c>false</c>, do not change vertical location.</param>
     virtual public void Center(bool h, bool v) {
-                                                         Efl.Ui.Win.NativeMethods.efl_ui_win_center_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),h, v);
+                                                         Efl.Ui.Win.NativeMethods.efl_ui_win_center_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),h, v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Start moving or resizing the window.
@@ -2855,29 +2795,29 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="mode">The requested move or resize mode.</param>
     /// <returns><c>true</c> if the request was successfully sent to the display server, <c>false</c> in case of error.</returns>
     virtual public bool MoveResizeStart(Efl.Ui.WinMoveResizeMode mode) {
-                                 var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_move_resize_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode);
+                                 var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_move_resize_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Returns an iterator over the current known pointer positions.
     /// This is used to iterate over the current known multi-touch positions, including the first finger. Each pointer position is represented by an object of type <see cref="Efl.Input.Pointer"/>.
     /// 
-    /// Each finger in a multi touch environment can then be identified by the <see cref="Efl.Input.Pointer.Tool"/> property. The order of the pointers in this iterator is not defined.
+    /// Each finger in a multi touch environment can then be identified by the <see cref="Efl.Input.Pointer.TouchId"/> property. The order of the pointers in this iterator is not defined.
     /// 
     /// Note: If the input surface supports hovering input, some pointers may not be in a &quot;down&quot; state. To retrieve the list of such pointers, set the <c>hover</c> value to <c>true</c>. Remember though that most devices currently don&apos;t support this.
     /// (Since EFL 1.22)</summary>
     /// <param name="hover"><c>false</c> by default, <c>true</c> means to include fingers that are currently hovering.</param>
     /// <returns>Iterator to pointer positions</returns>
     virtual public Eina.Iterator<Efl.Input.Pointer> PointerIterate(bool hover) {
-                                 var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_pointer_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hover);
+                                 var _ret_var = Efl.Ui.Win.NativeMethods.efl_ui_win_pointer_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hover);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Input.Pointer>(_ret_var, false, false);
+                        return new Eina.Iterator<Efl.Input.Pointer>(_ret_var, false);
  }
     /// <summary>A generic configuration value, referred to by name.</summary>
     /// <param name="name">Configuration option name.</param>
     /// <returns>The value. It will be empty if it doesn&apos;t exist. The caller must free it after use (using <c>eina_value_free</c>() in C).</returns>
     virtual public Eina.Value GetConfig(System.String name) {
-                                 var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2886,7 +2826,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="value">Configuration option value. May be <c>null</c> if not found.</param>
     /// <returns><c>false</c> in case of error: value type was invalid, the config can&apos;t be changed, config does not exist...</returns>
     virtual public bool SetConfig(System.String name, Eina.Value value) {
-                                                         var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, value);
+                                                         var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, value);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -2895,7 +2835,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2905,7 +2845,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2913,7 +2853,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2922,7 +2862,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The screen size in pixels.</returns>
     virtual public Eina.Size2D GetScreenSizeInPixels() {
-         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_size_in_pixels_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_size_in_pixels_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2933,7 +2873,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The screen scaling factor.</returns>
     virtual public float GetScreenScaleFactor() {
-         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_scale_factor_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_scale_factor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2942,7 +2882,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Screen rotation in degrees.</returns>
     virtual public int GetScreenRotation() {
-         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_rotation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_rotation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2951,7 +2891,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="xdpi">Horizontal DPI.</param>
     /// <param name="ydpi">Vertical DPI.</param>
     virtual public void GetScreenDpi(out int xdpi, out int ydpi) {
-                                                         Efl.IScreenConcrete.NativeMethods.efl_screen_dpi_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out xdpi, out ydpi);
+                                                         Efl.IScreenConcrete.NativeMethods.efl_screen_dpi_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out xdpi, out ydpi);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Retrieves the text string currently being displayed by the given text object.
@@ -2961,7 +2901,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2970,7 +2910,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the maximum image size the canvas can possibly handle.
@@ -2982,7 +2922,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetImageMaxSize(out Eina.Size2D max) {
                  var _out_max = new Eina.Size2D.NativeStruct();
-                var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_image_max_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_max);
+                var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_image_max_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_max);
         Eina.Error.RaiseIfUnhandledException();
         max = _out_max;
                 return _ret_var;
@@ -2991,7 +2931,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if currently calculating group objects.</returns>
     virtual public bool GetGroupObjectsCalculating() {
-         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_group_objects_calculating_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_group_objects_calculating_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3000,7 +2940,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="name">The name of the seat to find.</param>
     /// <returns>The device or seat, <c>null</c> if not found.</returns>
     virtual public Efl.Input.Device GetDevice(System.String name) {
-                                 var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_device_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_device_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3009,7 +2949,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="id">The id of the seat to find.</param>
     /// <returns>The seat or <c>null</c> if not found.</returns>
     virtual public Efl.Input.Device GetSeat(int id) {
-                                 var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seat_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+                                 var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seat_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3017,7 +2957,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The default seat or <c>null</c> if one does not exist.</returns>
     virtual public Efl.Input.Device GetSeatDefault() {
-         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seat_default_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seat_default_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3029,7 +2969,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <returns><c>true</c> if a pointer exists for the given seat, otherwise <c>false</c>.</returns>
     virtual public bool GetPointerPosition(Efl.Input.Device seat, out Eina.Position2D pos) {
                                  var _out_pos = new Eina.Position2D.NativeStruct();
-                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_pointer_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),seat, out _out_pos);
+                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_pointer_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),seat, out _out_pos);
         Eina.Error.RaiseIfUnhandledException();
                 pos = _out_pos;
                         return _ret_var;
@@ -3037,7 +2977,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <summary>Call user-provided <c>calculate</c> group functions and unset the flag signalling that the object needs to get recalculated to all group objects in the canvas.
     /// (Since EFL 1.22)</summary>
     virtual public void CalculateGroupObjects() {
-         Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_group_objects_calculate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_group_objects_calculate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Retrieve a list of objects at a given position in a canvas.
@@ -3051,9 +2991,9 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <returns>The list of objects that are over the given position in <c>e</c>.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> GetObjectsAtXy(Eina.Position2D pos, bool include_pass_events_objects, bool include_hidden_objects) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_objects_at_xy_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos, include_pass_events_objects, include_hidden_objects);
+                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_objects_at_xy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos, include_pass_events_objects, include_hidden_objects);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Retrieve the object stacked at the top of a given position in a canvas.
     /// This function will traverse all the layers of the given canvas, from top to bottom, querying for objects with areas covering the given position. The user can exclude from the query objects which are hidden and/or which are set to pass events.
@@ -3066,7 +3006,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <returns>The canvas object that is over all other objects at the given position.</returns>
     virtual public Efl.Gfx.IEntity GetObjectTopAtXy(Eina.Position2D pos, bool include_pass_events_objects, bool include_hidden_objects) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_object_top_at_xy_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos, include_pass_events_objects, include_hidden_objects);
+                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_object_top_at_xy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos, include_pass_events_objects, include_hidden_objects);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -3081,9 +3021,9 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <returns>Iterator to objects</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> GetObjectsInRectangle(Eina.Rect rect, bool include_pass_events_objects, bool include_hidden_objects) {
          Eina.Rect.NativeStruct _in_rect = rect;
-                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_objects_in_rectangle_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_rect, include_pass_events_objects, include_hidden_objects);
+                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_objects_in_rectangle_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_rect, include_pass_events_objects, include_hidden_objects);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+                                                        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Retrieve the canvas object stacked at the top of a given rectangular region in a canvas
     /// This function will traverse all the layers of the given canvas, from top to bottom, querying for objects with areas overlapping with the given rectangular region. The user can exclude from the query objects which are hidden and/or which are set to pass events.
@@ -3096,7 +3036,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <returns>The object that is over all other objects at the given rectangular region.</returns>
     virtual public Efl.Gfx.IEntity GetObjectTopInRectangle(Eina.Rect rect, bool include_pass_events_objects, bool include_hidden_objects) {
          Eina.Rect.NativeStruct _in_rect = rect;
-                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_object_top_in_rectangle_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_rect, include_pass_events_objects, include_hidden_objects);
+                                                                        var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_object_top_in_rectangle_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_rect, include_pass_events_objects, include_hidden_objects);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -3105,9 +3045,9 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>An iterator over the attached seats.</returns>
     virtual public Eina.Iterator<Efl.Input.Device> Seats() {
-         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seats_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seats_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Input.Device>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Input.Device>(_ret_var, true);
  }
     /// <summary>Indicates whether a key modifier is on, such as Ctrl, Shift, ...
     /// (Since EFL 1.22)</summary>
@@ -3115,7 +3055,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key modifier is pressed.</returns>
     virtual public bool GetModifierEnabled(Efl.Input.Modifier mod, Efl.Input.Device seat) {
-                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_modifier_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mod, seat);
+                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_modifier_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mod, seat);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -3125,7 +3065,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key lock is on.</returns>
     virtual public bool GetLockEnabled(Efl.Input.Lock kw_lock, Efl.Input.Device seat) {
-                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_lock_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_lock, seat);
+                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_lock_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_lock, seat);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -3135,7 +3075,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="root">The logical root object for focus.</param>
     /// <returns>The focus manager.</returns>
     virtual public Efl.Ui.Focus.IManager FocusManagerCreate(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3144,7 +3084,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Currently focused element.</returns>
     virtual public Efl.Ui.Focus.IObject GetManagerFocus() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3153,7 +3093,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="focus">Currently focused element.</param>
     virtual public void SetManagerFocus(Efl.Ui.Focus.IObject focus) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),focus);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Add another manager to serve the move requests.
@@ -3161,7 +3101,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>The redirect manager.</returns>
     virtual public Efl.Ui.Focus.IManager GetRedirect() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3170,7 +3110,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <param name="redirect">The redirect manager.</param>
     virtual public void SetRedirect(Efl.Ui.Focus.IManager redirect) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),redirect);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),redirect);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The list of elements which are at the border of the graph.
@@ -3178,9 +3118,9 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>An iterator over the border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Get all elements that are at the border of the viewport
     /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
@@ -3189,16 +3129,16 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <returns>The list of border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport) {
          Eina.Rect.NativeStruct _in_viewport = viewport;
-                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_viewport);
+                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Root node for all logical subtrees.
     /// This property can only be set once.
     /// (Since EFL 1.22)</summary>
     /// <returns>Will be registered into this manager object.</returns>
     virtual public Efl.Ui.Focus.IObject GetRoot() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3208,7 +3148,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="root">Will be registered into this manager object.</param>
     /// <returns>If <c>true</c>, this is the root node</returns>
     virtual public bool SetRoot(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3218,7 +3158,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="direction">The direction to move to.</param>
     /// <returns>The element which is now focused.</returns>
     virtual public Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3229,7 +3169,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="logical">Wether you want to have a logical node as result or a non-logical. Note, in a <see cref="Efl.Ui.Focus.IManager.Move"/> call no logical node will get focus.</param>
     /// <returns>Object that would receive focus if moved in the given direction.</returns>
     virtual public Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical) {
-                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, child, logical);
+                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, child, logical);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -3239,7 +3179,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="root">Parent for returned child.</param>
     /// <returns>Child of passed parameter.</returns>
     virtual public Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3249,7 +3189,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     virtual public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child);
         Eina.Error.RaiseIfUnhandledException();
                         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
         Marshal.FreeHGlobal(_ret_var);
@@ -3260,7 +3200,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// (Since EFL 1.22)</summary>
     /// <returns>Last object.</returns>
     virtual public Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3268,14 +3208,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// You should focus another element immediately after calling this, in order to always have a focused object.
     /// (Since EFL 1.22)</summary>
     virtual public void ResetHistory() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Remove the uppermost history element, and focus the previous one.
     /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.
     /// (Since EFL 1.22)</summary>
     virtual public void PopHistoryStack() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Called when this manager is set as redirect.
@@ -3284,379 +3224,379 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
     /// <param name="direction">The direction in which this should be setup.</param>
     /// <param name="entry">The object that caused this manager to be redirect.</param>
     virtual public void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry) {
-                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, entry);
+                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, entry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>This disables the cache invalidation when an object is moved.
     /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widets in the set do not change and the complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.
     /// (Since EFL 1.22)</summary>
     virtual public void FreezeDirtyLogic() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>This enables the cache invalidation when an object is moved.
     /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void DirtyLogicUnfreeze() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>In some environments you may have an indicator that shows battery status, reception, time etc. This is the indicator.
-/// Sometimes you don&apos;t want this because you provide the same functionality inside your app, so this will request that the indicator is disabled in such circumstances. The default settings depends on the environment. For example, on phones, the default is to enable the indicator. The indicator is disabled on devices like televisions however.
-/// (Since EFL 1.22)</summary>
-/// <value>The type, one of <see cref="Efl.Ui.WinIndicatorMode"/>.</value>
+    /// Sometimes you don&apos;t want this because you provide the same functionality inside your app, so this will request that the indicator is disabled in such circumstances. The default settings depends on the environment. For example, on phones, the default is to enable the indicator. The indicator is disabled on devices like televisions however.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The type, one of <see cref="Efl.Ui.WinIndicatorMode"/>.</value>
     public Efl.Ui.WinIndicatorMode IndicatorMode {
         get { return GetIndicatorMode(); }
         set { SetIndicatorMode(value); }
     }
     /// <summary>Get the keyboard mode of the window.
-/// (Since EFL 1.22)</summary>
-/// <value>The mode, one of <see cref="Efl.Ui.WinKeyboardMode"/>.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The mode, one of <see cref="Efl.Ui.WinKeyboardMode"/>.</value>
     public Efl.Ui.WinKeyboardMode KeyboardMode {
         get { return GetKeyboardMode(); }
         set { SetKeyboardMode(value); }
     }
     /// <summary>Available profiles on a window.
-/// (Since EFL 1.22)</summary>
-/// <value>A list of profiles.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>A list of profiles.</value>
     public Eina.Array<System.String> WmAvailableProfiles {
         get { return GetWmAvailableProfiles(); }
         set { SetWmAvailableProfiles(value); }
     }
     /// <summary>Get the constraints on the maximum width and height of a window relative to the width and height of the screen.
-/// When this function returns <c>true</c>, <c>obj</c> will never resize larger than the screen.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> to restrict the window&apos;s maximum size.</value>
+    /// When this function returns <c>true</c>, <c>obj</c> will never resize larger than the screen.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> to restrict the window&apos;s maximum size.</value>
     public bool ScreenConstrain {
         get { return GetScreenConstrain(); }
         set { SetScreenConstrain(value); }
     }
     /// <summary>Set the window to be skipped by keyboard focus.
-/// This sets the window to be skipped by normal keyboard input. This means a window manager will be asked not to focus this window as well as omit it from things like the taskbar, pager, &quot;alt-tab&quot; list etc. etc.
-/// 
-/// Call this and enable it on a window BEFORE you show it for the first time, otherwise it may have no effect.
-/// 
-/// Use this for windows that have only output information or might only be interacted with by the mouse or touchscreen, never for typing. This may have side-effects like making the window non-accessible in some cases unless the window is specially handled. Use this with care.
-/// (Since EFL 1.22)</summary>
-/// <value>The skip flag state (<c>true</c> if it is to be skipped).</value>
+    /// This sets the window to be skipped by normal keyboard input. This means a window manager will be asked not to focus this window as well as omit it from things like the taskbar, pager, &quot;alt-tab&quot; list etc. etc.
+    /// 
+    /// Call this and enable it on a window BEFORE you show it for the first time, otherwise it may have no effect.
+    /// 
+    /// Use this for windows that have only output information or might only be interacted with by the mouse or touchscreen, never for typing. This may have side-effects like making the window non-accessible in some cases unless the window is specially handled. Use this with care.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The skip flag state (<c>true</c> if it is to be skipped).</value>
     public bool PropFocusSkip {
         set { SetPropFocusSkip(value); }
     }
     /// <summary>Window&apos;s autohide state.
-/// When closing the window in any way outside of the program control, like pressing the X button in the titlebar or using a command from the Window Manager, a &quot;delete,request&quot; signal is emitted to indicate that this event occurred and the developer can take any action, which may include, or not, destroying the window object.
-/// 
-/// When this property is set to <c>true</c>, the window will be automatically hidden when this event occurs, after the signal is emitted. If this property is <c>false</c> nothing will happen, beyond the event emission.
-/// 
-/// C applications can use this option along with the quit policy <c>ELM_POLICY_QUIT_LAST_WINDOW_HIDDEN</c> which allows exiting EFL&apos;s main loop when all the windows are hidden.
-/// 
-/// Note: <c>autodel</c> and <c>autohide</c> are not mutually exclusive. The window will be deleted if both are set to <c>true</c>.
-/// (Since EFL 1.22)</summary>
-/// <value>If <c>true</c>, the window will automatically hide itself when closed.</value>
+    /// When closing the window in any way outside of the program control, like pressing the X button in the titlebar or using a command from the Window Manager, a &quot;delete,request&quot; signal is emitted to indicate that this event occurred and the developer can take any action, which may include, or not, destroying the window object.
+    /// 
+    /// When this property is set to <c>true</c>, the window will be automatically hidden when this event occurs, after the signal is emitted. If this property is <c>false</c> nothing will happen, beyond the event emission.
+    /// 
+    /// C applications can use this option along with the quit policy <c>ELM_POLICY_QUIT_LAST_WINDOW_HIDDEN</c> which allows exiting EFL&apos;s main loop when all the windows are hidden.
+    /// 
+    /// Note: <c>autodel</c> and <c>autohide</c> are not mutually exclusive. The window will be deleted if both are set to <c>true</c>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>If <c>true</c>, the window will automatically hide itself when closed.</value>
     public bool Autohide {
         get { return GetAutohide(); }
         set { SetAutohide(value); }
     }
     /// <summary>Enable quitting the main loop when this window is closed.
-/// When set, the window&apos;s loop object will exit using the passed exit code if the window is closed.
-/// 
-/// The <see cref="Eina.Value"/> passed should be <c>EMPTY</c> to unset this state or an int value to be used as the exit code.
-/// 
-/// Note this is different from <see cref="Efl.Ui.Win.ExitOnAllWindowsClosed"/> which exits when ALL windows are closed.
-/// (Since EFL 1.22)</summary>
-/// <value>The exit code to use when exiting</value>
+    /// When set, the window&apos;s loop object will exit using the passed exit code if the window is closed.
+    /// 
+    /// The <see cref="Eina.Value"/> passed should be <c>EMPTY</c> to unset this state or an int value to be used as the exit code.
+    /// 
+    /// Note this is different from <see cref="Efl.Ui.Win.ExitOnAllWindowsClosed"/> which exits when ALL windows are closed.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The exit code to use when exiting</value>
     public Eina.Value ExitOnClose {
         get { return GetExitOnClose(); }
         set { SetExitOnClose(value); }
     }
     /// <summary>Get the icon object used for the window.
-/// The object returns is the one marked by <see cref="Efl.Ui.Win.SetIconObject"/> as the object to use for the window icon.
-/// (Since EFL 1.22)</summary>
-/// <value>The image object to use for an icon.</value>
+    /// The object returns is the one marked by <see cref="Efl.Ui.Win.SetIconObject"/> as the object to use for the window icon.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The image object to use for an icon.</value>
     public Efl.Canvas.Object IconObject {
         get { return GetIconObject(); }
         set { SetIconObject(value); }
     }
     /// <summary>Get the minimized state of a window.
-/// (Since EFL 1.22)</summary>
-/// <value>If <c>true</c>, the window is minimized.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>If <c>true</c>, the window is minimized.</value>
     public bool Minimized {
         get { return GetMinimized(); }
         set { SetMinimized(value); }
     }
     /// <summary>Get the maximized state of a window.
-/// (Since EFL 1.22)</summary>
-/// <value>If <c>true</c>, the window is maximized.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>If <c>true</c>, the window is maximized.</value>
     public bool Maximized {
         get { return GetMaximized(); }
         set { SetMaximized(value); }
     }
     /// <summary>Get the fullscreen state of a window.
-/// (Since EFL 1.22)</summary>
-/// <value>If <c>true</c>, the window is fullscreen.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>If <c>true</c>, the window is fullscreen.</value>
     public bool Fullscreen {
         get { return GetFullscreen(); }
         set { SetFullscreen(value); }
     }
     /// <summary>Get the sticky state of the window.
-/// (Since EFL 1.22)</summary>
-/// <value>If <c>true</c>, the window&apos;s sticky state is enabled.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>If <c>true</c>, the window&apos;s sticky state is enabled.</value>
     public bool Sticky {
         get { return GetSticky(); }
         set { SetSticky(value); }
     }
     /// <summary>Get the urgent state of a window.
-/// (Since EFL 1.22)</summary>
-/// <value>The mode of a urgent window, one of <see cref="Efl.Ui.WinUrgentMode"/>.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The mode of a urgent window, one of <see cref="Efl.Ui.WinUrgentMode"/>.</value>
     public Efl.Ui.WinUrgentMode Urgent {
         get { return GetUrgent(); }
         set { SetUrgent(value); }
     }
     /// <summary>Get the modal state of a window.
-/// (Since EFL 1.22)</summary>
-/// <value>The mode of a window, one of <see cref="Efl.Ui.WinModalMode"/>.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The mode of a window, one of <see cref="Efl.Ui.WinModalMode"/>.</value>
     public Efl.Ui.WinModalMode Modal {
         get { return GetModal(); }
         set { SetModal(value); }
     }
     /// <summary>Get the borderless state of a window.
-/// (Since EFL 1.22)</summary>
-/// <value>If <c>true</c>, the window is borderless.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>If <c>true</c>, the window is borderless.</value>
     public bool Borderless {
         get { return GetBorderless(); }
         set { SetBorderless(value); }
     }
     /// <summary>The role of the window.
-/// It is a hint of how the Window Manager should handle it. Unlike <see cref="Efl.Ui.Win.WinType"/> and <see cref="Efl.Ui.Win.WinName"/> this can be changed at runtime.
-/// (Since EFL 1.22)</summary>
-/// <value>The role to set.</value>
+    /// It is a hint of how the Window Manager should handle it. Unlike <see cref="Efl.Ui.Win.WinType"/> and <see cref="Efl.Ui.Win.WinName"/> this can be changed at runtime.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The role to set.</value>
     public System.String WinRole {
         get { return GetWinRole(); }
         set { SetWinRole(value); }
     }
     /// <summary>The window name.
-/// The meaning of name depends on the underlying windowing system.
-/// 
-/// The window name is a construction property that can only be set at creation time, before finalize. In C this means inside <c>efl_add</c>().
-/// 
-/// Note: Once set, it cannot be modified afterwards.
-/// (Since EFL 1.22)</summary>
-/// <value>Window name</value>
+    /// The meaning of name depends on the underlying windowing system.
+    /// 
+    /// The window name is a construction property that can only be set at creation time, before finalize. In C this means inside <c>efl_add</c>().
+    /// 
+    /// Note: Once set, it cannot be modified afterwards.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Window name</value>
     public System.String WinName {
         get { return GetWinName(); }
         set { SetWinName(value); }
     }
     /// <summary>The type of the window.
-/// It is a hint of how the Window Manager should handle it.
-/// 
-/// The window type is a construction property that can only be set at creation time, before finalize. In C this means inside <c>efl_add</c>().
-/// 
-/// Note: Once set, it cannot be modified afterward.
-/// (Since EFL 1.22)</summary>
-/// <value>Window type</value>
+    /// It is a hint of how the Window Manager should handle it.
+    /// 
+    /// The window type is a construction property that can only be set at creation time, before finalize. In C this means inside <c>efl_add</c>().
+    /// 
+    /// Note: Once set, it cannot be modified afterward.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Window type</value>
     public Efl.Ui.WinType WinType {
         get { return GetWinType(); }
         set { SetWinType(value); }
     }
     /// <summary>The hardware acceleration preference for this window.
-/// This is a constructor function and can only be called before <see cref="Efl.Object.FinalizeAdd"/>.
-/// 
-/// This property overrides the global EFL configuration option &quot;accel_preference&quot; for this single window, and accepts the same syntax.
-/// 
-/// The <c>accel</c> string is a freeform C string that indicates what kind of acceleration is preferred. Here &quot;acceleration&quot; generally refers to rendering and the hardware with which the unit application renders GUIs. This may or may not be honored but a best attempt will be made. Known strings are as follows:
-/// 
-/// &quot;gl&quot;, &quot;opengl&quot; - try use OpenGL. &quot;3d&quot; - try to use a 3d acceleration unit. &quot;hw&quot;, &quot;hardware&quot;, &quot;accel&quot; - try any acceleration unit (best possible) &quot;none&quot; - use no acceleration but software instead (since 1.16)
-/// 
-/// Since 1.14, it is also possible to specify some GL properties for the GL window surface. This allows applications to use GLView with depth, stencil and MSAA buffers with direct rendering. The new accel preference string format is thus &quot;{HW Accel}[:depth{value}[:stencil{value}[:msaa{str}$]$]$]&quot;.
-/// 
-/// Accepted values for depth are for instance &quot;depth&quot;, &quot;depth16&quot;, &quot;depth24&quot;. Accepted values for stencil are &quot;stencil&quot;, &quot;stencil1&quot;, &quot;stencil8&quot;. For MSAA, only predefined strings are accepted: &quot;msaa&quot;, &quot;msaa_low&quot;, &quot;msaa_mid&quot; and &quot;msaa_high&quot;. The selected configuration is not guaranteed and is only valid in case of GL acceleration. Only the base acceleration string will be saved (e.g. &quot;gl&quot; or &quot;hw&quot;).
-/// 
-/// Full examples include:
-/// 
-/// &quot;gl&quot;, - try to use OpenGL &quot;hw:depth:stencil&quot;, - use HW acceleration with default depth and stencil buffers &quot;opengl:depth24:stencil8:msaa_mid&quot; - use OpenGL with 24-bit depth, 8-bit stencil and a medium number of MSAA samples in the backbuffer.
-/// 
-/// Note that this option may be overriden by environment variables or the configuration option &quot;accel_preference_override&quot;.
-/// (Since EFL 1.22)</summary>
-/// <value>Acceleration</value>
+    /// This is a constructor function and can only be called before <see cref="Efl.Object.FinalizeAdd"/>.
+    /// 
+    /// This property overrides the global EFL configuration option &quot;accel_preference&quot; for this single window, and accepts the same syntax.
+    /// 
+    /// The <c>accel</c> string is a freeform C string that indicates what kind of acceleration is preferred. Here &quot;acceleration&quot; generally refers to rendering and the hardware with which the unit application renders GUIs. This may or may not be honored but a best attempt will be made. Known strings are as follows:
+    /// 
+    /// &quot;gl&quot;, &quot;opengl&quot; - try use OpenGL. &quot;3d&quot; - try to use a 3d acceleration unit. &quot;hw&quot;, &quot;hardware&quot;, &quot;accel&quot; - try any acceleration unit (best possible) &quot;none&quot; - use no acceleration but software instead (since 1.16)
+    /// 
+    /// Since 1.14, it is also possible to specify some GL properties for the GL window surface. This allows applications to use GLView with depth, stencil and MSAA buffers with direct rendering. The new accel preference string format is thus &quot;{HW Accel}[:depth{value}[:stencil{value}[:msaa{str}$]$]$]&quot;.
+    /// 
+    /// Accepted values for depth are for instance &quot;depth&quot;, &quot;depth16&quot;, &quot;depth24&quot;. Accepted values for stencil are &quot;stencil&quot;, &quot;stencil1&quot;, &quot;stencil8&quot;. For MSAA, only predefined strings are accepted: &quot;msaa&quot;, &quot;msaa_low&quot;, &quot;msaa_mid&quot; and &quot;msaa_high&quot;. The selected configuration is not guaranteed and is only valid in case of GL acceleration. Only the base acceleration string will be saved (e.g. &quot;gl&quot; or &quot;hw&quot;).
+    /// 
+    /// Full examples include:
+    /// 
+    /// &quot;gl&quot;, - try to use OpenGL &quot;hw:depth:stencil&quot;, - use HW acceleration with default depth and stencil buffers &quot;opengl:depth24:stencil8:msaa_mid&quot; - use OpenGL with 24-bit depth, 8-bit stencil and a medium number of MSAA samples in the backbuffer.
+    /// 
+    /// Note that this option may be overriden by environment variables or the configuration option &quot;accel_preference_override&quot;.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Acceleration</value>
     public System.String AccelPreference {
         get { return GetAccelPreference(); }
         set { SetAccelPreference(value); }
     }
     /// <summary>Get the alpha channel state of a window.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if the window alpha channel is enabled, <c>false</c> otherwise.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if the window alpha channel is enabled, <c>false</c> otherwise.</value>
     public bool Alpha {
         get { return GetAlpha(); }
         set { SetAlpha(value); }
     }
     /// <summary>Get the stack ID string of the window as an opaque string.
-/// This ID is immutable and can never be modified. It will be an opaque string that has no specific defined format or content other than being a string (no character with a value of 0).
-/// 
-/// This string is intended for use as a stack master ID to be use by other windows to make this window part of a stack of windows to be placed on top of each other as if they are a series of dialogs or questions one after the other, allowing you to go back through history.
-/// (Since EFL 1.22)</summary>
-/// <value>An opaque string that has no specific format but identifies a specific unique window on the display.</value>
+    /// This ID is immutable and can never be modified. It will be an opaque string that has no specific defined format or content other than being a string (no character with a value of 0).
+    /// 
+    /// This string is intended for use as a stack master ID to be use by other windows to make this window part of a stack of windows to be placed on top of each other as if they are a series of dialogs or questions one after the other, allowing you to go back through history.
+    /// (Since EFL 1.22)</summary>
+    /// <value>An opaque string that has no specific format but identifies a specific unique window on the display.</value>
     public System.String StackId {
         get { return GetStackId(); }
     }
     /// <summary>Get the stack master Id that has been set.
-/// (Since EFL 1.22)</summary>
-/// <value>An opaque string that has no specific format, but identifies a specific unique window on the display.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>An opaque string that has no specific format, but identifies a specific unique window on the display.</value>
     public System.String StackMasterId {
         get { return GetStackMasterId(); }
         set { SetStackMasterId(value); }
     }
     /// <summary>The stack base state of this window
-/// This is a boolean flag that determines if this window will become the base of a stack at all. You must enable this on a base (the bottom of a window stack) for things to work correctly.
-/// 
-/// This state should be set before a window is shown for the first time and never changed afterwards.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if this is a stack base window, <c>false</c> otherwise.</value>
+    /// This is a boolean flag that determines if this window will become the base of a stack at all. You must enable this on a base (the bottom of a window stack) for things to work correctly.
+    /// 
+    /// This state should be set before a window is shown for the first time and never changed afterwards.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if this is a stack base window, <c>false</c> otherwise.</value>
     public bool StackBase {
         get { return GetStackBase(); }
         set { SetStackBase(value); }
     }
     /// <summary>Enable quitting the main loop when all windows are closed.
-/// When set, the main loop will quit with the passed exit code once all windows have been closed.
-/// 
-/// The <see cref="Eina.Value"/> passed should be <c>EMPTY</c> to unset this state or an int value to be used as the exit code.
-/// 
-/// Note this is different from <see cref="Efl.Ui.Win.ExitOnClose"/> which exits when a given window is closed.
-/// (Since EFL 1.22)</summary>
-/// <value>The exit code to use when exiting.</value>
+    /// When set, the main loop will quit with the passed exit code once all windows have been closed.
+    /// 
+    /// The <see cref="Eina.Value"/> passed should be <c>EMPTY</c> to unset this state or an int value to be used as the exit code.
+    /// 
+    /// Note this is different from <see cref="Efl.Ui.Win.ExitOnClose"/> which exits when a given window is closed.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The exit code to use when exiting.</value>
     public static Eina.Value ExitOnAllWindowsClosed {
         get { return GetExitOnAllWindowsClosed(); }
         set { SetExitOnAllWindowsClosed(value); }
     }
     /// <summary>Base size for objects with sizing restrictions.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
-/// 
-/// <see cref="Efl.Ui.Win.HintBase"/> + N x <see cref="Efl.Ui.Win.HintStep"/> is what is calculated for object sizing restrictions.
-/// 
-/// See also <see cref="Efl.Ui.Win.HintStep"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>Base size (hint) in pixels.</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// <see cref="Efl.Ui.Win.HintBase"/> + N x <see cref="Efl.Ui.Win.HintStep"/> is what is calculated for object sizing restrictions.
+    /// 
+    /// See also <see cref="Efl.Ui.Win.HintStep"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Base size (hint) in pixels.</value>
     public Eina.Size2D HintBase {
         get { return GetHintBase(); }
         set { SetHintBase(value); }
     }
     /// <summary>Step size for objects with sizing restrictions.
-/// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
-/// 
-/// Set this to for an object to scale up by steps and not continuously.
-/// 
-/// <see cref="Efl.Ui.Win.HintBase"/> + N x <see cref="Efl.Ui.Win.HintStep"/> is what is calculated for object sizing restrictions.
-/// (Since EFL 1.22)</summary>
-/// <value>Step size (hint) in pixels.</value>
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// Set this to for an object to scale up by steps and not continuously.
+    /// 
+    /// <see cref="Efl.Ui.Win.HintBase"/> + N x <see cref="Efl.Ui.Win.HintStep"/> is what is calculated for object sizing restrictions.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Step size (hint) in pixels.</value>
     public Eina.Size2D HintStep {
         get { return GetHintStep(); }
         set { SetHintStep(value); }
     }
     /// <summary>The rotation of this window
-/// The value will automatically change when the WM of this window changes its rotation. This rotation is automatically applied to all <see cref="Efl.Ui.Layout"/> objects.
-/// (Since EFL 1.22)</summary>
-/// <value>The rotation of the window</value>
+    /// The value will automatically change when the WM of this window changes its rotation. This rotation is automatically applied to all <see cref="Efl.Ui.Layout"/> objects.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The rotation of the window</value>
     public int WinRotation {
         get { return GetWinRotation(); }
         set { SetWinRotation(value); }
     }
     /// <summary>Whether focus highlight is enabled or not.
-/// See also <see cref="Efl.Ui.Win.FocusHighlightStyle"/>. See also <see cref="Efl.Ui.Win.FocusHighlightAnimate"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The enabled value for the highlight.</value>
+    /// See also <see cref="Efl.Ui.Win.FocusHighlightStyle"/>. See also <see cref="Efl.Ui.Win.FocusHighlightAnimate"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The enabled value for the highlight.</value>
     public bool FocusHighlightEnabled {
         get { return GetFocusHighlightEnabled(); }
         set { SetFocusHighlightEnabled(value); }
     }
     /// <summary>Control the widget focus highlight style.
-/// If <c>style</c> is <c>null</c>, the default will be used.
-/// 
-/// See also <see cref="Efl.Ui.Win.FocusHighlightEnabled"/>. See also <see cref="Efl.Ui.Win.FocusHighlightAnimate"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The name of the focus highlight style.</value>
+    /// If <c>style</c> is <c>null</c>, the default will be used.
+    /// 
+    /// See also <see cref="Efl.Ui.Win.FocusHighlightEnabled"/>. See also <see cref="Efl.Ui.Win.FocusHighlightAnimate"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The name of the focus highlight style.</value>
     public System.String FocusHighlightStyle {
         get { return GetFocusHighlightStyle(); }
         set { SetFocusHighlightStyle(value); }
     }
     /// <summary>Whether focus highlight should animate or not.
-/// See also <see cref="Efl.Ui.Win.FocusHighlightStyle"/>. See also <see cref="Efl.Ui.Win.FocusHighlightEnabled"/>.
-/// (Since EFL 1.22)</summary>
-/// <value>The enabled value for the highlight animation.</value>
+    /// See also <see cref="Efl.Ui.Win.FocusHighlightStyle"/>. See also <see cref="Efl.Ui.Win.FocusHighlightEnabled"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The enabled value for the highlight animation.</value>
     public bool FocusHighlightAnimate {
         get { return GetFocusHighlightAnimate(); }
         set { SetFocusHighlightAnimate(value); }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     /// <summary>Get screen size (in pixels) for the screen.
-/// Note that on some display systems this information is not available and a value of 0x0 will be returned.
-/// (Since EFL 1.22)</summary>
-/// <value>The screen size in pixels.</value>
+    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The screen size in pixels.</value>
     public Eina.Size2D ScreenSizeInPixels {
         get { return GetScreenSizeInPixels(); }
     }
     /// <summary>Get screen scaling factor.
-/// This is the factor by which window contents will be scaled on the screen.
-/// 
-/// Note that on some display systems this information is not available and a value of 1.0 will be returned.
-/// (Since EFL 1.22)</summary>
-/// <value>The screen scaling factor.</value>
+    /// This is the factor by which window contents will be scaled on the screen.
+    /// 
+    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The screen scaling factor.</value>
     public float ScreenScaleFactor {
         get { return GetScreenScaleFactor(); }
     }
     /// <summary>Get the rotation of the screen.
-/// Most engines only return multiples of 90.
-/// (Since EFL 1.22)</summary>
-/// <value>Screen rotation in degrees.</value>
+    /// Most engines only return multiples of 90.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Screen rotation in degrees.</value>
     public int ScreenRotation {
         get { return GetScreenRotation(); }
     }
     /// <summary>Get if the canvas is currently calculating group objects.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if currently calculating group objects.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if currently calculating group objects.</value>
     public bool GroupObjectsCalculating {
         get { return GetGroupObjectsCalculating(); }
     }
     /// <summary>Get the default seat attached to this canvas.
-/// A canvas may have exactly one default seat.
-/// 
-/// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
-/// (Since EFL 1.22)</summary>
-/// <value>The default seat or <c>null</c> if one does not exist.</value>
+    /// A canvas may have exactly one default seat.
+    /// 
+    /// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The default seat or <c>null</c> if one does not exist.</value>
     public Efl.Input.Device SeatDefault {
         get { return GetSeatDefault(); }
     }
     /// <summary>The element which is currently focused by this manager
-/// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-/// (Since EFL 1.22)</summary>
-/// <value>Currently focused element.</value>
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Currently focused element.</value>
     public Efl.Ui.Focus.IObject ManagerFocus {
         get { return GetManagerFocus(); }
         set { SetManagerFocus(value); }
     }
     /// <summary>Add another manager to serve the move requests.
-/// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-/// (Since EFL 1.22)</summary>
-/// <value>The redirect manager.</value>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The redirect manager.</value>
     public Efl.Ui.Focus.IManager Redirect {
         get { return GetRedirect(); }
         set { SetRedirect(value); }
     }
     /// <summary>The list of elements which are at the border of the graph.
-/// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-/// (Since EFL 1.22)</summary>
-/// <value>An iterator over the border objects.</value>
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>An iterator over the border objects.</value>
     public Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
         get { return GetBorderElements(); }
     }
     /// <summary>Root node for all logical subtrees.
-/// This property can only be set once.
-/// (Since EFL 1.22)</summary>
-/// <value>Will be registered into this manager object.</value>
+    /// This property can only be set once.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Will be registered into this manager object.</value>
     public Efl.Ui.Focus.IObject Root {
         get { return GetRoot(); }
         set { SetRoot(value); }
@@ -4757,7 +4697,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
             return Efl.Ui.Win.efl_ui_win_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.Ui.WinIndicatorMode efl_ui_win_indicator_mode_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -4770,13 +4710,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.WinIndicatorMode indicator_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_indicator_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.WinIndicatorMode _ret_var = default(Efl.Ui.WinIndicatorMode);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetIndicatorMode();
+                    _ret_var = ((Win)ws.Target).GetIndicatorMode();
                 }
                 catch (Exception e)
                 {
@@ -4806,13 +4746,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void indicator_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.WinIndicatorMode type)
         {
             Eina.Log.Debug("function efl_ui_win_indicator_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetIndicatorMode(type);
+                    ((Win)ws.Target).SetIndicatorMode(type);
                 }
                 catch (Exception e)
                 {
@@ -4841,13 +4781,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.WinKeyboardMode keyboard_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_keyboard_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.WinKeyboardMode _ret_var = default(Efl.Ui.WinKeyboardMode);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetKeyboardMode();
+                    _ret_var = ((Win)ws.Target).GetKeyboardMode();
                 }
                 catch (Exception e)
                 {
@@ -4877,13 +4817,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void keyboard_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.WinKeyboardMode mode)
         {
             Eina.Log.Debug("function efl_ui_win_keyboard_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetKeyboardMode(mode);
+                    ((Win)ws.Target).SetKeyboardMode(mode);
                 }
                 catch (Exception e)
                 {
@@ -4912,13 +4852,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool wm_available_rotations_get(System.IntPtr obj, System.IntPtr pd, out bool allow_0, out bool allow_90, out bool allow_180, out bool allow_270)
         {
             Eina.Log.Debug("function efl_ui_win_wm_available_rotations_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         allow_0 = default(bool);        allow_90 = default(bool);        allow_180 = default(bool);        allow_270 = default(bool);                                            bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetWmAvailableRotations(out allow_0, out allow_90, out allow_180, out allow_270);
+                    _ret_var = ((Win)ws.Target).GetWmAvailableRotations(out allow_0, out allow_90, out allow_180, out allow_270);
                 }
                 catch (Exception e)
                 {
@@ -4948,13 +4888,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void wm_available_rotations_set(System.IntPtr obj, System.IntPtr pd, bool allow_0, bool allow_90, bool allow_180, bool allow_270)
         {
             Eina.Log.Debug("function efl_ui_win_wm_available_rotations_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((Win)wrapper).SetWmAvailableRotations(allow_0, allow_90, allow_180, allow_270);
+                    ((Win)ws.Target).SetWmAvailableRotations(allow_0, allow_90, allow_180, allow_270);
                 }
                 catch (Exception e)
                 {
@@ -4983,13 +4923,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr wm_available_profiles_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_wm_available_profiles_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Array<System.String> _ret_var = default(Eina.Array<System.String>);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetWmAvailableProfiles();
+                    _ret_var = ((Win)ws.Target).GetWmAvailableProfiles();
                 }
                 catch (Exception e)
                 {
@@ -5019,14 +4959,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void wm_available_profiles_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr profiles)
         {
             Eina.Log.Debug("function efl_ui_win_wm_available_profiles_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_profiles = new Eina.Array<System.String>(profiles, false, false);
                             
                 try
                 {
-                    ((Win)wrapper).SetWmAvailableProfiles(_in_profiles);
+                    ((Win)ws.Target).SetWmAvailableProfiles(_in_profiles);
                 }
                 catch (Exception e)
                 {
@@ -5055,13 +4995,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool screen_constrain_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_screen_constrain_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetScreenConstrain();
+                    _ret_var = ((Win)ws.Target).GetScreenConstrain();
                 }
                 catch (Exception e)
                 {
@@ -5091,13 +5031,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void screen_constrain_set(System.IntPtr obj, System.IntPtr pd, bool constrain)
         {
             Eina.Log.Debug("function efl_ui_win_screen_constrain_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetScreenConstrain(constrain);
+                    ((Win)ws.Target).SetScreenConstrain(constrain);
                 }
                 catch (Exception e)
                 {
@@ -5126,13 +5066,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void prop_focus_skip_set(System.IntPtr obj, System.IntPtr pd, bool skip)
         {
             Eina.Log.Debug("function efl_ui_win_prop_focus_skip_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetPropFocusSkip(skip);
+                    ((Win)ws.Target).SetPropFocusSkip(skip);
                 }
                 catch (Exception e)
                 {
@@ -5161,13 +5101,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool autohide_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_autohide_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetAutohide();
+                    _ret_var = ((Win)ws.Target).GetAutohide();
                 }
                 catch (Exception e)
                 {
@@ -5197,13 +5137,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void autohide_set(System.IntPtr obj, System.IntPtr pd, bool autohide)
         {
             Eina.Log.Debug("function efl_ui_win_autohide_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetAutohide(autohide);
+                    ((Win)ws.Target).SetAutohide(autohide);
                 }
                 catch (Exception e)
                 {
@@ -5232,13 +5172,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Eina.Value exit_on_close_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_exit_on_close_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Value _ret_var = default(Eina.Value);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetExitOnClose();
+                    _ret_var = ((Win)ws.Target).GetExitOnClose();
                 }
                 catch (Exception e)
                 {
@@ -5268,13 +5208,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void exit_on_close_set(System.IntPtr obj, System.IntPtr pd, Eina.Value exit_code)
         {
             Eina.Log.Debug("function efl_ui_win_exit_on_close_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetExitOnClose(exit_code);
+                    ((Win)ws.Target).SetExitOnClose(exit_code);
                 }
                 catch (Exception e)
                 {
@@ -5303,13 +5243,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Canvas.Object icon_object_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_icon_object_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetIconObject();
+                    _ret_var = ((Win)ws.Target).GetIconObject();
                 }
                 catch (Exception e)
                 {
@@ -5339,13 +5279,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void icon_object_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object icon)
         {
             Eina.Log.Debug("function efl_ui_win_icon_object_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetIconObject(icon);
+                    ((Win)ws.Target).SetIconObject(icon);
                 }
                 catch (Exception e)
                 {
@@ -5374,13 +5314,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool minimized_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_minimized_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetMinimized();
+                    _ret_var = ((Win)ws.Target).GetMinimized();
                 }
                 catch (Exception e)
                 {
@@ -5410,13 +5350,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void minimized_set(System.IntPtr obj, System.IntPtr pd, bool state)
         {
             Eina.Log.Debug("function efl_ui_win_minimized_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetMinimized(state);
+                    ((Win)ws.Target).SetMinimized(state);
                 }
                 catch (Exception e)
                 {
@@ -5445,13 +5385,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool maximized_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_maximized_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetMaximized();
+                    _ret_var = ((Win)ws.Target).GetMaximized();
                 }
                 catch (Exception e)
                 {
@@ -5481,13 +5421,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void maximized_set(System.IntPtr obj, System.IntPtr pd, bool maximized)
         {
             Eina.Log.Debug("function efl_ui_win_maximized_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetMaximized(maximized);
+                    ((Win)ws.Target).SetMaximized(maximized);
                 }
                 catch (Exception e)
                 {
@@ -5516,13 +5456,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool fullscreen_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_fullscreen_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetFullscreen();
+                    _ret_var = ((Win)ws.Target).GetFullscreen();
                 }
                 catch (Exception e)
                 {
@@ -5552,13 +5492,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void fullscreen_set(System.IntPtr obj, System.IntPtr pd, bool fullscreen)
         {
             Eina.Log.Debug("function efl_ui_win_fullscreen_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetFullscreen(fullscreen);
+                    ((Win)ws.Target).SetFullscreen(fullscreen);
                 }
                 catch (Exception e)
                 {
@@ -5587,13 +5527,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool sticky_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_sticky_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetSticky();
+                    _ret_var = ((Win)ws.Target).GetSticky();
                 }
                 catch (Exception e)
                 {
@@ -5623,13 +5563,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void sticky_set(System.IntPtr obj, System.IntPtr pd, bool sticky)
         {
             Eina.Log.Debug("function efl_ui_win_sticky_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetSticky(sticky);
+                    ((Win)ws.Target).SetSticky(sticky);
                 }
                 catch (Exception e)
                 {
@@ -5658,13 +5598,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.WinUrgentMode urgent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_urgent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.WinUrgentMode _ret_var = default(Efl.Ui.WinUrgentMode);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetUrgent();
+                    _ret_var = ((Win)ws.Target).GetUrgent();
                 }
                 catch (Exception e)
                 {
@@ -5694,13 +5634,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void urgent_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.WinUrgentMode urgent)
         {
             Eina.Log.Debug("function efl_ui_win_urgent_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetUrgent(urgent);
+                    ((Win)ws.Target).SetUrgent(urgent);
                 }
                 catch (Exception e)
                 {
@@ -5729,13 +5669,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.WinModalMode modal_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_modal_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.WinModalMode _ret_var = default(Efl.Ui.WinModalMode);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetModal();
+                    _ret_var = ((Win)ws.Target).GetModal();
                 }
                 catch (Exception e)
                 {
@@ -5765,13 +5705,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void modal_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.WinModalMode modal)
         {
             Eina.Log.Debug("function efl_ui_win_modal_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetModal(modal);
+                    ((Win)ws.Target).SetModal(modal);
                 }
                 catch (Exception e)
                 {
@@ -5800,13 +5740,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool borderless_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_borderless_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetBorderless();
+                    _ret_var = ((Win)ws.Target).GetBorderless();
                 }
                 catch (Exception e)
                 {
@@ -5836,13 +5776,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void borderless_set(System.IntPtr obj, System.IntPtr pd, bool borderless)
         {
             Eina.Log.Debug("function efl_ui_win_borderless_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetBorderless(borderless);
+                    ((Win)ws.Target).SetBorderless(borderless);
                 }
                 catch (Exception e)
                 {
@@ -5871,13 +5811,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.String win_role_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_role_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetWinRole();
+                    _ret_var = ((Win)ws.Target).GetWinRole();
                 }
                 catch (Exception e)
                 {
@@ -5907,13 +5847,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void win_role_set(System.IntPtr obj, System.IntPtr pd, System.String role)
         {
             Eina.Log.Debug("function efl_ui_win_role_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetWinRole(role);
+                    ((Win)ws.Target).SetWinRole(role);
                 }
                 catch (Exception e)
                 {
@@ -5942,13 +5882,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.String win_name_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_name_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetWinName();
+                    _ret_var = ((Win)ws.Target).GetWinName();
                 }
                 catch (Exception e)
                 {
@@ -5978,13 +5918,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void win_name_set(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_ui_win_name_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetWinName(name);
+                    ((Win)ws.Target).SetWinName(name);
                 }
                 catch (Exception e)
                 {
@@ -6013,13 +5953,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.WinType win_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.WinType _ret_var = default(Efl.Ui.WinType);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetWinType();
+                    _ret_var = ((Win)ws.Target).GetWinType();
                 }
                 catch (Exception e)
                 {
@@ -6049,13 +5989,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void win_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.WinType type)
         {
             Eina.Log.Debug("function efl_ui_win_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetWinType(type);
+                    ((Win)ws.Target).SetWinType(type);
                 }
                 catch (Exception e)
                 {
@@ -6084,13 +6024,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.String accel_preference_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_accel_preference_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetAccelPreference();
+                    _ret_var = ((Win)ws.Target).GetAccelPreference();
                 }
                 catch (Exception e)
                 {
@@ -6120,13 +6060,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void accel_preference_set(System.IntPtr obj, System.IntPtr pd, System.String accel)
         {
             Eina.Log.Debug("function efl_ui_win_accel_preference_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetAccelPreference(accel);
+                    ((Win)ws.Target).SetAccelPreference(accel);
                 }
                 catch (Exception e)
                 {
@@ -6155,13 +6095,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool alpha_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_alpha_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetAlpha();
+                    _ret_var = ((Win)ws.Target).GetAlpha();
                 }
                 catch (Exception e)
                 {
@@ -6191,13 +6131,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void alpha_set(System.IntPtr obj, System.IntPtr pd, bool alpha)
         {
             Eina.Log.Debug("function efl_ui_win_alpha_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetAlpha(alpha);
+                    ((Win)ws.Target).SetAlpha(alpha);
                 }
                 catch (Exception e)
                 {
@@ -6226,13 +6166,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.String stack_id_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_stack_id_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetStackId();
+                    _ret_var = ((Win)ws.Target).GetStackId();
                 }
                 catch (Exception e)
                 {
@@ -6262,13 +6202,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.String stack_master_id_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_stack_master_id_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetStackMasterId();
+                    _ret_var = ((Win)ws.Target).GetStackMasterId();
                 }
                 catch (Exception e)
                 {
@@ -6298,13 +6238,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void stack_master_id_set(System.IntPtr obj, System.IntPtr pd, System.String id)
         {
             Eina.Log.Debug("function efl_ui_win_stack_master_id_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetStackMasterId(id);
+                    ((Win)ws.Target).SetStackMasterId(id);
                 }
                 catch (Exception e)
                 {
@@ -6333,13 +6273,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool stack_base_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_stack_base_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetStackBase();
+                    _ret_var = ((Win)ws.Target).GetStackBase();
                 }
                 catch (Exception e)
                 {
@@ -6369,13 +6309,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void stack_base_set(System.IntPtr obj, System.IntPtr pd, bool kw_base)
         {
             Eina.Log.Debug("function efl_ui_win_stack_base_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetStackBase(kw_base);
+                    ((Win)ws.Target).SetStackBase(kw_base);
                 }
                 catch (Exception e)
                 {
@@ -6404,8 +6344,8 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Eina.Value exit_on_all_windows_closed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_exit_on_all_windows_closed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Value _ret_var = default(Eina.Value);
                 try
@@ -6438,8 +6378,8 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void exit_on_all_windows_closed_set(System.IntPtr obj, System.IntPtr pd, Eina.Value exit_code)
         {
             Eina.Log.Debug("function efl_ui_win_exit_on_all_windows_closed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
@@ -6471,13 +6411,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Eina.Size2D.NativeStruct hint_base_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_hint_base_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetHintBase();
+                    _ret_var = ((Win)ws.Target).GetHintBase();
                 }
                 catch (Exception e)
                 {
@@ -6507,14 +6447,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void hint_base_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_ui_win_hint_base_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_sz = sz;
                             
                 try
                 {
-                    ((Win)wrapper).SetHintBase(_in_sz);
+                    ((Win)ws.Target).SetHintBase(_in_sz);
                 }
                 catch (Exception e)
                 {
@@ -6543,13 +6483,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Eina.Size2D.NativeStruct hint_step_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_hint_step_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetHintStep();
+                    _ret_var = ((Win)ws.Target).GetHintStep();
                 }
                 catch (Exception e)
                 {
@@ -6579,14 +6519,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void hint_step_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
         {
             Eina.Log.Debug("function efl_ui_win_hint_step_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_sz = sz;
                             
                 try
                 {
-                    ((Win)wrapper).SetHintStep(_in_sz);
+                    ((Win)ws.Target).SetHintStep(_in_sz);
                 }
                 catch (Exception e)
                 {
@@ -6615,13 +6555,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static int win_rotation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_rotation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetWinRotation();
+                    _ret_var = ((Win)ws.Target).GetWinRotation();
                 }
                 catch (Exception e)
                 {
@@ -6651,13 +6591,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void win_rotation_set(System.IntPtr obj, System.IntPtr pd, int rotation)
         {
             Eina.Log.Debug("function efl_ui_win_rotation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetWinRotation(rotation);
+                    ((Win)ws.Target).SetWinRotation(rotation);
                 }
                 catch (Exception e)
                 {
@@ -6686,13 +6626,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool focus_highlight_enabled_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_focus_highlight_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetFocusHighlightEnabled();
+                    _ret_var = ((Win)ws.Target).GetFocusHighlightEnabled();
                 }
                 catch (Exception e)
                 {
@@ -6722,13 +6662,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void focus_highlight_enabled_set(System.IntPtr obj, System.IntPtr pd, bool enabled)
         {
             Eina.Log.Debug("function efl_ui_win_focus_highlight_enabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetFocusHighlightEnabled(enabled);
+                    ((Win)ws.Target).SetFocusHighlightEnabled(enabled);
                 }
                 catch (Exception e)
                 {
@@ -6757,13 +6697,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.String focus_highlight_style_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_focus_highlight_style_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetFocusHighlightStyle();
+                    _ret_var = ((Win)ws.Target).GetFocusHighlightStyle();
                 }
                 catch (Exception e)
                 {
@@ -6793,13 +6733,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool focus_highlight_style_set(System.IntPtr obj, System.IntPtr pd, System.String style)
         {
             Eina.Log.Debug("function efl_ui_win_focus_highlight_style_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).SetFocusHighlightStyle(style);
+                    _ret_var = ((Win)ws.Target).SetFocusHighlightStyle(style);
                 }
                 catch (Exception e)
                 {
@@ -6829,13 +6769,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool focus_highlight_animate_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_focus_highlight_animate_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetFocusHighlightAnimate();
+                    _ret_var = ((Win)ws.Target).GetFocusHighlightAnimate();
                 }
                 catch (Exception e)
                 {
@@ -6865,13 +6805,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void focus_highlight_animate_set(System.IntPtr obj, System.IntPtr pd, bool animate)
         {
             Eina.Log.Debug("function efl_ui_win_focus_highlight_animate_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetFocusHighlightAnimate(animate);
+                    ((Win)ws.Target).SetFocusHighlightAnimate(animate);
                 }
                 catch (Exception e)
                 {
@@ -6900,13 +6840,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void stack_pop_to(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_stack_pop_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Win)wrapper).StackPopTo();
+                    ((Win)ws.Target).StackPopTo();
                 }
                 catch (Exception e)
                 {
@@ -6935,13 +6875,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void activate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_win_activate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Win)wrapper).Activate();
+                    ((Win)ws.Target).Activate();
                 }
                 catch (Exception e)
                 {
@@ -6970,13 +6910,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void center(System.IntPtr obj, System.IntPtr pd, bool h, bool v)
         {
             Eina.Log.Debug("function efl_ui_win_center was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Win)wrapper).Center(h, v);
+                    ((Win)ws.Target).Center(h, v);
                 }
                 catch (Exception e)
                 {
@@ -7005,13 +6945,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool move_resize_start(System.IntPtr obj, System.IntPtr pd, Efl.Ui.WinMoveResizeMode mode)
         {
             Eina.Log.Debug("function efl_ui_win_move_resize_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).MoveResizeStart(mode);
+                    _ret_var = ((Win)ws.Target).MoveResizeStart(mode);
                 }
                 catch (Exception e)
                 {
@@ -7041,13 +6981,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr pointer_iterate(System.IntPtr obj, System.IntPtr pd, bool hover)
         {
             Eina.Log.Debug("function efl_ui_win_pointer_iterate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Iterator<Efl.Input.Pointer> _ret_var = default(Eina.Iterator<Efl.Input.Pointer>);
                 try
                 {
-                    _ret_var = ((Win)wrapper).PointerIterate(hover);
+                    _ret_var = ((Win)ws.Target).PointerIterate(hover);
                 }
                 catch (Exception e)
                 {
@@ -7077,13 +7017,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Eina.Value config_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_config_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.Value _ret_var = default(Eina.Value);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetConfig(name);
+                    _ret_var = ((Win)ws.Target).GetConfig(name);
                 }
                 catch (Exception e)
                 {
@@ -7113,13 +7053,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool config_set(System.IntPtr obj, System.IntPtr pd, System.String name, Eina.Value value)
         {
             Eina.Log.Debug("function efl_config_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).SetConfig(name, value);
+                    _ret_var = ((Win)ws.Target).SetConfig(name, value);
                 }
                 catch (Exception e)
                 {
@@ -7149,13 +7089,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetContent();
+                    _ret_var = ((Win)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -7185,13 +7125,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).SetContent(content);
+                    _ret_var = ((Win)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -7221,13 +7161,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Win)wrapper).UnsetContent();
+                    _ret_var = ((Win)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -7257,13 +7197,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Eina.Size2D.NativeStruct screen_size_in_pixels_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_screen_size_in_pixels_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetScreenSizeInPixels();
+                    _ret_var = ((Win)ws.Target).GetScreenSizeInPixels();
                 }
                 catch (Exception e)
                 {
@@ -7293,13 +7233,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static float screen_scale_factor_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_screen_scale_factor_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             float _ret_var = default(float);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetScreenScaleFactor();
+                    _ret_var = ((Win)ws.Target).GetScreenScaleFactor();
                 }
                 catch (Exception e)
                 {
@@ -7329,13 +7269,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static int screen_rotation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_screen_rotation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetScreenRotation();
+                    _ret_var = ((Win)ws.Target).GetScreenRotation();
                 }
                 catch (Exception e)
                 {
@@ -7365,13 +7305,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void screen_dpi_get(System.IntPtr obj, System.IntPtr pd, out int xdpi, out int ydpi)
         {
             Eina.Log.Debug("function efl_screen_dpi_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         xdpi = default(int);        ydpi = default(int);                            
                 try
                 {
-                    ((Win)wrapper).GetScreenDpi(out xdpi, out ydpi);
+                    ((Win)ws.Target).GetScreenDpi(out xdpi, out ydpi);
                 }
                 catch (Exception e)
                 {
@@ -7400,13 +7340,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetText();
+                    _ret_var = ((Win)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -7436,13 +7376,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetText(text);
+                    ((Win)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -7471,14 +7411,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool image_max_size_get(System.IntPtr obj, System.IntPtr pd, out Eina.Size2D.NativeStruct max)
         {
             Eina.Log.Debug("function efl_canvas_scene_image_max_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Size2D _out_max = default(Eina.Size2D);
                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetImageMaxSize(out _out_max);
+                    _ret_var = ((Win)ws.Target).GetImageMaxSize(out _out_max);
                 }
                 catch (Exception e)
                 {
@@ -7509,13 +7449,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool group_objects_calculating_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_group_objects_calculating_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetGroupObjectsCalculating();
+                    _ret_var = ((Win)ws.Target).GetGroupObjectsCalculating();
                 }
                 catch (Exception e)
                 {
@@ -7545,13 +7485,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Input.Device device_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_canvas_scene_device_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetDevice(name);
+                    _ret_var = ((Win)ws.Target).GetDevice(name);
                 }
                 catch (Exception e)
                 {
@@ -7581,13 +7521,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Input.Device seat_get(System.IntPtr obj, System.IntPtr pd, int id)
         {
             Eina.Log.Debug("function efl_canvas_scene_seat_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetSeat(id);
+                    _ret_var = ((Win)ws.Target).GetSeat(id);
                 }
                 catch (Exception e)
                 {
@@ -7617,13 +7557,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Input.Device seat_default_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_seat_default_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Input.Device _ret_var = default(Efl.Input.Device);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetSeatDefault();
+                    _ret_var = ((Win)ws.Target).GetSeatDefault();
                 }
                 catch (Exception e)
                 {
@@ -7653,14 +7593,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool pointer_position_get(System.IntPtr obj, System.IntPtr pd, Efl.Input.Device seat, out Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_canvas_scene_pointer_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 Eina.Position2D _out_pos = default(Eina.Position2D);
                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetPointerPosition(seat, out _out_pos);
+                    _ret_var = ((Win)ws.Target).GetPointerPosition(seat, out _out_pos);
                 }
                 catch (Exception e)
                 {
@@ -7691,13 +7631,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void group_objects_calculate(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_group_objects_calculate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Win)wrapper).CalculateGroupObjects();
+                    ((Win)ws.Target).CalculateGroupObjects();
                 }
                 catch (Exception e)
                 {
@@ -7726,14 +7666,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr objects_at_xy_get(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_objects_at_xy_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                                                                             Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetObjectsAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((Win)ws.Target).GetObjectsAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -7763,14 +7703,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Gfx.IEntity object_top_at_xy_get(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_object_top_at_xy_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                                                                             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetObjectTopAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((Win)ws.Target).GetObjectTopAtXy(_in_pos, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -7800,14 +7740,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr objects_in_rectangle_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_objects_in_rectangle_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                                                                             Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetObjectsInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((Win)ws.Target).GetObjectsInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -7837,14 +7777,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Gfx.IEntity object_top_in_rectangle_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect, bool include_pass_events_objects, bool include_hidden_objects)
         {
             Eina.Log.Debug("function efl_canvas_scene_object_top_in_rectangle_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                                                                             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetObjectTopInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
+                    _ret_var = ((Win)ws.Target).GetObjectTopInRectangle(_in_rect, include_pass_events_objects, include_hidden_objects);
                 }
                 catch (Exception e)
                 {
@@ -7874,13 +7814,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr seats(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_scene_seats was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Input.Device> _ret_var = default(Eina.Iterator<Efl.Input.Device>);
                 try
                 {
-                    _ret_var = ((Win)wrapper).Seats();
+                    _ret_var = ((Win)ws.Target).Seats();
                 }
                 catch (Exception e)
                 {
@@ -7910,13 +7850,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool modifier_enabled_get(System.IntPtr obj, System.IntPtr pd, Efl.Input.Modifier mod, Efl.Input.Device seat)
         {
             Eina.Log.Debug("function efl_input_modifier_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetModifierEnabled(mod, seat);
+                    _ret_var = ((Win)ws.Target).GetModifierEnabled(mod, seat);
                 }
                 catch (Exception e)
                 {
@@ -7946,13 +7886,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool lock_enabled_get(System.IntPtr obj, System.IntPtr pd, Efl.Input.Lock kw_lock, Efl.Input.Device seat)
         {
             Eina.Log.Debug("function efl_input_lock_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetLockEnabled(kw_lock, seat);
+                    _ret_var = ((Win)ws.Target).GetLockEnabled(kw_lock, seat);
                 }
                 catch (Exception e)
                 {
@@ -7982,13 +7922,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.IManager focus_manager_create(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_manager_create was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((Win)wrapper).FocusManagerCreate(root);
+                    _ret_var = ((Win)ws.Target).FocusManagerCreate(root);
                 }
                 catch (Exception e)
                 {
@@ -8018,13 +7958,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.IObject manager_focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetManagerFocus();
+                    _ret_var = ((Win)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -8054,13 +7994,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void manager_focus_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject focus)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetManagerFocus(focus);
+                    ((Win)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -8089,13 +8029,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.IManager redirect_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetRedirect();
+                    _ret_var = ((Win)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -8125,13 +8065,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void redirect_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IManager redirect)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Win)wrapper).SetRedirect(redirect);
+                    ((Win)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -8160,13 +8100,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr border_elements_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_border_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetBorderElements();
+                    _ret_var = ((Win)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -8196,14 +8136,14 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr viewport_elements_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct viewport)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_viewport_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_viewport = viewport;
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetViewportElements(_in_viewport);
+                    _ret_var = ((Win)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -8233,13 +8173,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.IObject root_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Win)wrapper).GetRoot();
+                    _ret_var = ((Win)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -8269,13 +8209,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static bool root_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Win)wrapper).SetRoot(root);
+                    _ret_var = ((Win)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -8305,13 +8245,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.IObject move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Win)wrapper).Move(direction);
+                    _ret_var = ((Win)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -8341,13 +8281,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.IObject request_move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Win)wrapper).MoveRequest(direction, child, logical);
+                    _ret_var = ((Win)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -8377,13 +8317,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.IObject request_subchild(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_subchild was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((Win)wrapper).RequestSubchild(root);
+                    _ret_var = ((Win)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -8413,13 +8353,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static System.IntPtr fetch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_fetch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((Win)wrapper).Fetch(child);
+                    _ret_var = ((Win)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -8449,13 +8389,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static Efl.Ui.Focus.ManagerLogicalEndDetail.NativeStruct logical_end(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_logical_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((Win)wrapper).LogicalEnd();
+                    _ret_var = ((Win)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -8485,13 +8425,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void reset_history(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_reset_history was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Win)wrapper).ResetHistory();
+                    ((Win)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -8520,13 +8460,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void pop_history_stack(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_pop_history_stack was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Win)wrapper).PopHistoryStack();
+                    ((Win)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -8555,13 +8495,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void setup_on_first_touch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_setup_on_first_touch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Win)wrapper).SetupOnFirstTouch(direction, entry);
+                    ((Win)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -8590,13 +8530,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void dirty_logic_freeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_freeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Win)wrapper).FreezeDirtyLogic();
+                    ((Win)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -8625,13 +8565,13 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
         private static void dirty_logic_unfreeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_unfreeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Win)wrapper).DirtyLogicUnfreeze();
+                    ((Win)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {
@@ -8649,7 +8589,7 @@ public class Win : Efl.Ui.Widget, Efl.Eo.IWrapper,Efl.IConfig,Efl.IContent,Efl.I
 
         private static efl_ui_focus_manager_dirty_logic_unfreeze_delegate efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -8665,6 +8605,7 @@ namespace Ui {
 /// These are hints set on a window so that a running Window Manager knows how the window should be handled and/or what kind of decorations it should have.
 /// 
 /// Currently, only the X11 backed engines use them.</summary>
+[Efl.Eo.BindingEntity]
 public enum WinType
 {
 /// <summary>Default, unknown, type</summary>
@@ -8695,11 +8636,15 @@ Tooltip = 11,
 Notification = 12,
 /// <summary>A window holding the contents of a combo box. Not usually used in the EFL.</summary>
 Combo = 13,
+/// <summary>Internal use.</summary>
 Dnd = 14,
+/// <summary>Internal use.</summary>
 InlinedImage = 15,
+/// <summary>Internal use.</summary>
 SocketImage = 16,
 /// <summary>Used for naviframe style replacement with a back button instead of a close button.</summary>
 NaviframeBasic = 17,
+/// <summary>Internal use.</summary>
 Fake = 18,
 }
 
@@ -8713,6 +8658,7 @@ namespace Ui {
 
 /// <summary>The different layouts that can be requested for the virtual keyboard.
 /// When the application window is being managed by Illume it may request any of the following layouts for the virtual keyboard.</summary>
+[Efl.Eo.BindingEntity]
 public enum WinKeyboardMode
 {
 /// <summary>Unknown keyboard state</summary>
@@ -8759,6 +8705,7 @@ namespace Ui {
 
 /// <summary>Defines the type indicator that can be shown
 /// (Since EFL 1.22)</summary>
+[Efl.Eo.BindingEntity]
 public enum WinIndicatorMode
 {
 /// <summary>Request to deactivate the indicator</summary>
@@ -8784,6 +8731,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Defines the mode of a modal window</summary>
+[Efl.Eo.BindingEntity]
 public enum WinModalMode
 {
 /// <summary>The window is not modal window.</summary>
@@ -8801,6 +8749,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Defines the mode of a urgent window.</summary>
+[Efl.Eo.BindingEntity]
 public enum WinUrgentMode
 {
 /// <summary>The window is not a urgent window.</summary>
@@ -8822,6 +8771,7 @@ namespace Ui {
 /// 
 /// Currently, only the following 9 combinations are permitted. More combinations may be added in future: 1. move, 2. top, 3. bottom, 4. left, 5. right, 6. top | left, 7. top | right, 8. bottom | left, 9. bottom | right.
 /// (Since EFL 1.22)</summary>
+[Efl.Eo.BindingEntity]
 public enum WinMoveResizeMode
 {
 /// <summary>Start moving window</summary>
@@ -8846,6 +8796,7 @@ namespace Ui {
 
 /// <summary>List of window effect.
 /// These list indicates types of window effect. When the effect started or done, the Elm_Win is notified with type information of window effect.</summary>
+[Efl.Eo.BindingEntity]
 public enum WinEffectType
 {
 Unknown = 0,
@@ -8862,6 +8813,7 @@ namespace Efl {
 
 namespace Ui {
 
+[Efl.Eo.BindingEntity]
 public enum WinConformantProperty
 {
 Default = 0,

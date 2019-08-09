@@ -11,7 +11,8 @@ namespace Ui {
 
 /// <summary>Efl UI clock class</summary>
 [Efl.Ui.Clock.NativeMethods]
-public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class Clock : Efl.Ui.LayoutBase
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -33,9 +34,9 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         efl_ui_clock_class_get();
     /// <summary>Initializes a new instance of the <see cref="Clock"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Clock(Efl.Object parent
-            , System.String style = null) : base(efl_ui_clock_class_get(), typeof(Clock), parent)
+            , System.String style = null) : base(efl_ui_clock_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,47 +46,25 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Clock(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Clock"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Clock(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Clock(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Clock"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Clock(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Clock(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Called when clock changed</summary>
@@ -93,12 +72,11 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -121,7 +99,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_CLOCK_EVENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -153,7 +131,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// Default format is taken as per the system locale settings.</summary>
     /// <returns>The clock format.</returns>
     virtual public System.String GetFormat() {
-         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_format_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_format_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -169,14 +147,14 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// Default format is taken as per the system locale settings.</summary>
     /// <param name="fmt">The clock format.</param>
     virtual public void SetFormat(System.String fmt) {
-                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_format_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fmt);
+                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_format_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fmt);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether the given clock widget should be paused or not.
     /// This function pauses or starts the clock widget.</summary>
     /// <returns><c>true</c> to pause clock, <c>false</c> otherwise</returns>
     virtual public bool GetPause() {
-         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_pause_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_pause_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -184,20 +162,20 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// This function pauses or starts the clock widget.</summary>
     /// <param name="paused"><c>true</c> to pause clock, <c>false</c> otherwise</param>
     virtual public void SetPause(bool paused) {
-                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_pause_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),paused);
+                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_pause_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),paused);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Digits of the given clock widget should be editable when in editing mode.</summary>
     /// <returns><c>true</c> to set edit mode, <c>false</c> otherwise</returns>
     virtual public bool GetEditMode() {
-         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_edit_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_edit_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Digits of the given clock widget should be editable when in editing mode.</summary>
     /// <param name="value"><c>true</c> to set edit mode, <c>false</c> otherwise</param>
     virtual public void SetEditMode(bool value) {
-                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_edit_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_edit_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The lower boundary of a field.
@@ -212,7 +190,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// Minute: default value range is from 0 to 59.</summary>
     /// <returns>Time structure containing the minimum time value.</returns>
     virtual public Efl.Time GetTimeMin() {
-         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -229,7 +207,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// <param name="mintime">Time structure containing the minimum time value.</param>
     virtual public void SetTimeMin(Efl.Time mintime) {
          Efl.Time.NativeStruct _in_mintime = mintime;
-                        Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_min_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_mintime);
+                        Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_mintime);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The upper boundary of a field.
@@ -244,7 +222,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// Minute: default value range is from 0 to 59.</summary>
     /// <returns>Time structure containing the maximum time value.</returns>
     virtual public Efl.Time GetTimeMax() {
-         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -261,7 +239,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// <param name="maxtime">Time structure containing the maximum time value.</param>
     virtual public void SetTimeMax(Efl.Time maxtime) {
          Efl.Time.NativeStruct _in_maxtime = maxtime;
-                        Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_max_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_maxtime);
+                        Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_maxtime);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The current value of a clock object.
@@ -276,7 +254,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// Minute: default value range is from 0 to 59.</summary>
     /// <returns>Time structure containing the time value.</returns>
     virtual public Efl.Time GetTime() {
-         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -293,14 +271,14 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// <param name="curtime">Time structure containing the time value.</param>
     virtual public void SetTime(Efl.Time curtime) {
          Efl.Time.NativeStruct _in_curtime = curtime;
-                        Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_curtime);
+                        Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_curtime);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The field to be visible/not.</summary>
     /// <param name="fieldtype">Type of the field. #EFL_UI_CLOCK_TYPE_YEAR etc.</param>
     /// <returns><c>true</c> field can be visible, <c>false</c> otherwise.</returns>
     virtual public bool GetFieldVisible(Efl.Ui.ClockType fieldtype) {
-                                 var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_visible_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fieldtype);
+                                 var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -308,7 +286,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// <param name="fieldtype">Type of the field. #EFL_UI_CLOCK_TYPE_YEAR etc.</param>
     /// <param name="visible"><c>true</c> field can be visible, <c>false</c> otherwise.</param>
     virtual public void SetFieldVisible(Efl.Ui.ClockType fieldtype, bool visible) {
-                                                         Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_visible_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fieldtype, visible);
+                                                         Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_visible_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype, visible);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the field limits of a field.
@@ -319,7 +297,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// <param name="min">Reference to field&apos;s minimum value.</param>
     /// <param name="max">Reference to field&apos;s maximum value.</param>
     virtual public void GetFieldLimit(Efl.Ui.ClockType fieldtype, out int min, out int max) {
-                                                                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_limit_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fieldtype, out min, out max);
+                                                                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype, out min, out max);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Set a field to be visible or not.
@@ -330,78 +308,78 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
     /// <param name="min">Reference to field&apos;s minimum value.</param>
     /// <param name="max">Reference to field&apos;s maximum value.</param>
     virtual public void SetFieldLimit(Efl.Ui.ClockType fieldtype, int min, int max) {
-                                                                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_limit_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fieldtype, min, max);
+                                                                                 Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype, min, max);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The current clock format. Format is a combination of allowed Libc date format specifiers like: &quot;%b %d, %Y %I : %M %p&quot;.
-/// Maximum allowed format length is 64 chars.
-/// 
-/// Format can include separators for each individual clock field except for AM/PM field.
-/// 
-/// Each separator can be a maximum of 6 UTF-8 bytes. Space is also taken as a separator.
-/// 
-/// These specifiers can be arranged in any order and the widget will display the fields accordingly.
-/// 
-/// Default format is taken as per the system locale settings.</summary>
-/// <value>The clock format.</value>
+    /// Maximum allowed format length is 64 chars.
+    /// 
+    /// Format can include separators for each individual clock field except for AM/PM field.
+    /// 
+    /// Each separator can be a maximum of 6 UTF-8 bytes. Space is also taken as a separator.
+    /// 
+    /// These specifiers can be arranged in any order and the widget will display the fields accordingly.
+    /// 
+    /// Default format is taken as per the system locale settings.</summary>
+    /// <value>The clock format.</value>
     public System.String Format {
         get { return GetFormat(); }
         set { SetFormat(value); }
     }
     /// <summary>Whether the given clock widget should be paused or not.
-/// This function pauses or starts the clock widget.</summary>
-/// <value><c>true</c> to pause clock, <c>false</c> otherwise</value>
+    /// This function pauses or starts the clock widget.</summary>
+    /// <value><c>true</c> to pause clock, <c>false</c> otherwise</value>
     public bool Pause {
         get { return GetPause(); }
         set { SetPause(value); }
     }
     /// <summary>Digits of the given clock widget should be editable when in editing mode.</summary>
-/// <value><c>true</c> to set edit mode, <c>false</c> otherwise</value>
+    /// <value><c>true</c> to set edit mode, <c>false</c> otherwise</value>
     public bool EditMode {
         get { return GetEditMode(); }
         set { SetEditMode(value); }
     }
     /// <summary>The lower boundary of a field.
-/// Year: years since 1900. Negative value represents year below 1900 (year value -30 represents 1870). Year default range is from 70 to 137.
-/// 
-/// Month: default value range is from 0 to 11.
-/// 
-/// Date: default value range is from 1 to 31 according to the month value.
-/// 
-/// Hour: default value will be in terms of 24 hr format (0~23)
-/// 
-/// Minute: default value range is from 0 to 59.</summary>
-/// <value>Time structure containing the minimum time value.</value>
+    /// Year: years since 1900. Negative value represents year below 1900 (year value -30 represents 1870). Year default range is from 70 to 137.
+    /// 
+    /// Month: default value range is from 0 to 11.
+    /// 
+    /// Date: default value range is from 1 to 31 according to the month value.
+    /// 
+    /// Hour: default value will be in terms of 24 hr format (0~23)
+    /// 
+    /// Minute: default value range is from 0 to 59.</summary>
+    /// <value>Time structure containing the minimum time value.</value>
     public Efl.Time TimeMin {
         get { return GetTimeMin(); }
         set { SetTimeMin(value); }
     }
     /// <summary>The upper boundary of a field.
-/// Year: years since 1900. Negative value represents year below 1900 (year value -30 represents 1870). Year default range is from 70 to 137.
-/// 
-/// Month: default value range is from 0 to 11.
-/// 
-/// Date: default value range is from 1 to 31 according to the month value.
-/// 
-/// Hour: default value will be in terms of 24 hr format (0~23)
-/// 
-/// Minute: default value range is from 0 to 59.</summary>
-/// <value>Time structure containing the maximum time value.</value>
+    /// Year: years since 1900. Negative value represents year below 1900 (year value -30 represents 1870). Year default range is from 70 to 137.
+    /// 
+    /// Month: default value range is from 0 to 11.
+    /// 
+    /// Date: default value range is from 1 to 31 according to the month value.
+    /// 
+    /// Hour: default value will be in terms of 24 hr format (0~23)
+    /// 
+    /// Minute: default value range is from 0 to 59.</summary>
+    /// <value>Time structure containing the maximum time value.</value>
     public Efl.Time TimeMax {
         get { return GetTimeMax(); }
         set { SetTimeMax(value); }
     }
     /// <summary>The current value of a clock object.
-/// Year: years since 1900. Negative value represents year below 1900 (year value -30 represents 1870). Year default range is from 70 to 137.
-/// 
-/// Month: default value range is from 0 to 11.
-/// 
-/// Date: default value range is from 1 to 31 according to the month value.
-/// 
-/// Hour: default value will be in terms of 24 hr format (0~23)
-/// 
-/// Minute: default value range is from 0 to 59.</summary>
-/// <value>Time structure containing the time value.</value>
+    /// Year: years since 1900. Negative value represents year below 1900 (year value -30 represents 1870). Year default range is from 70 to 137.
+    /// 
+    /// Month: default value range is from 0 to 11.
+    /// 
+    /// Date: default value range is from 1 to 31 according to the month value.
+    /// 
+    /// Hour: default value will be in terms of 24 hr format (0~23)
+    /// 
+    /// Minute: default value range is from 0 to 59.</summary>
+    /// <value>Time structure containing the time value.</value>
     public Efl.Time Time {
         get { return GetTime(); }
         set { SetTime(value); }
@@ -592,7 +570,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
             return Efl.Ui.Clock.efl_ui_clock_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_ui_clock_format_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -605,13 +583,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static System.String format_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_clock_format_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Clock)wrapper).GetFormat();
+                    _ret_var = ((Clock)ws.Target).GetFormat();
                 }
                 catch (Exception e)
                 {
@@ -641,13 +619,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void format_set(System.IntPtr obj, System.IntPtr pd, System.String fmt)
         {
             Eina.Log.Debug("function efl_ui_clock_format_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Clock)wrapper).SetFormat(fmt);
+                    ((Clock)ws.Target).SetFormat(fmt);
                 }
                 catch (Exception e)
                 {
@@ -676,13 +654,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static bool pause_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_clock_pause_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Clock)wrapper).GetPause();
+                    _ret_var = ((Clock)ws.Target).GetPause();
                 }
                 catch (Exception e)
                 {
@@ -712,13 +690,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void pause_set(System.IntPtr obj, System.IntPtr pd, bool paused)
         {
             Eina.Log.Debug("function efl_ui_clock_pause_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Clock)wrapper).SetPause(paused);
+                    ((Clock)ws.Target).SetPause(paused);
                 }
                 catch (Exception e)
                 {
@@ -747,13 +725,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static bool edit_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_clock_edit_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Clock)wrapper).GetEditMode();
+                    _ret_var = ((Clock)ws.Target).GetEditMode();
                 }
                 catch (Exception e)
                 {
@@ -783,13 +761,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void edit_mode_set(System.IntPtr obj, System.IntPtr pd, bool value)
         {
             Eina.Log.Debug("function efl_ui_clock_edit_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Clock)wrapper).SetEditMode(value);
+                    ((Clock)ws.Target).SetEditMode(value);
                 }
                 catch (Exception e)
                 {
@@ -818,13 +796,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static Efl.Time.NativeStruct time_min_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_clock_time_min_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
-                    _ret_var = ((Clock)wrapper).GetTimeMin();
+                    _ret_var = ((Clock)ws.Target).GetTimeMin();
                 }
                 catch (Exception e)
                 {
@@ -854,14 +832,14 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void time_min_set(System.IntPtr obj, System.IntPtr pd, Efl.Time.NativeStruct mintime)
         {
             Eina.Log.Debug("function efl_ui_clock_time_min_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Time _in_mintime = mintime;
                             
                 try
                 {
-                    ((Clock)wrapper).SetTimeMin(_in_mintime);
+                    ((Clock)ws.Target).SetTimeMin(_in_mintime);
                 }
                 catch (Exception e)
                 {
@@ -890,13 +868,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static Efl.Time.NativeStruct time_max_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_clock_time_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
-                    _ret_var = ((Clock)wrapper).GetTimeMax();
+                    _ret_var = ((Clock)ws.Target).GetTimeMax();
                 }
                 catch (Exception e)
                 {
@@ -926,14 +904,14 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void time_max_set(System.IntPtr obj, System.IntPtr pd, Efl.Time.NativeStruct maxtime)
         {
             Eina.Log.Debug("function efl_ui_clock_time_max_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Time _in_maxtime = maxtime;
                             
                 try
                 {
-                    ((Clock)wrapper).SetTimeMax(_in_maxtime);
+                    ((Clock)ws.Target).SetTimeMax(_in_maxtime);
                 }
                 catch (Exception e)
                 {
@@ -962,13 +940,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static Efl.Time.NativeStruct time_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_clock_time_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
-                    _ret_var = ((Clock)wrapper).GetTime();
+                    _ret_var = ((Clock)ws.Target).GetTime();
                 }
                 catch (Exception e)
                 {
@@ -998,14 +976,14 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void time_set(System.IntPtr obj, System.IntPtr pd, Efl.Time.NativeStruct curtime)
         {
             Eina.Log.Debug("function efl_ui_clock_time_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Time _in_curtime = curtime;
                             
                 try
                 {
-                    ((Clock)wrapper).SetTime(_in_curtime);
+                    ((Clock)ws.Target).SetTime(_in_curtime);
                 }
                 catch (Exception e)
                 {
@@ -1034,13 +1012,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static bool field_visible_get(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ClockType fieldtype)
         {
             Eina.Log.Debug("function efl_ui_clock_field_visible_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Clock)wrapper).GetFieldVisible(fieldtype);
+                    _ret_var = ((Clock)ws.Target).GetFieldVisible(fieldtype);
                 }
                 catch (Exception e)
                 {
@@ -1070,13 +1048,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void field_visible_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ClockType fieldtype, bool visible)
         {
             Eina.Log.Debug("function efl_ui_clock_field_visible_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Clock)wrapper).SetFieldVisible(fieldtype, visible);
+                    ((Clock)ws.Target).SetFieldVisible(fieldtype, visible);
                 }
                 catch (Exception e)
                 {
@@ -1105,13 +1083,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void field_limit_get(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ClockType fieldtype, out int min, out int max)
         {
             Eina.Log.Debug("function efl_ui_clock_field_limit_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         min = default(int);        max = default(int);                                    
                 try
                 {
-                    ((Clock)wrapper).GetFieldLimit(fieldtype, out min, out max);
+                    ((Clock)ws.Target).GetFieldLimit(fieldtype, out min, out max);
                 }
                 catch (Exception e)
                 {
@@ -1140,13 +1118,13 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
         private static void field_limit_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ClockType fieldtype, int min, int max)
         {
             Eina.Log.Debug("function efl_ui_clock_field_limit_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((Clock)wrapper).SetFieldLimit(fieldtype, min, max);
+                    ((Clock)ws.Target).SetFieldLimit(fieldtype, min, max);
                 }
                 catch (Exception e)
                 {
@@ -1164,7 +1142,7 @@ public class Clock : Efl.Ui.LayoutBase, Efl.Eo.IWrapper
 
         private static efl_ui_clock_field_limit_set_delegate efl_ui_clock_field_limit_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -1177,6 +1155,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Identifies a clock field, The widget supports 6 fields : Year, month, Date, Hour, Minute, AM/PM</summary>
+[Efl.Eo.BindingEntity]
 public enum ClockType
 {
 /// <summary>Indicates Year field.</summary>

@@ -7,10 +7,11 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>No description supplied.
+/// <summary>EFL&apos;s abstraction for a task (process).
 /// (Since EFL 1.22)</summary>
 [Efl.Task.NativeMethods]
-public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public abstract class Task : Efl.LoopConsumer
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -33,128 +34,116 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="Task"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Task(Efl.Object parent= null
-            ) : base(efl_task_class_get(), typeof(Task), parent)
+            ) : base(efl_task_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Task(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Task"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Task(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Task(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     [Efl.Eo.PrivateNativeClass]
     private class TaskRealized : Task
     {
-        private TaskRealized(IntPtr ptr) : base(ptr)
+        private TaskRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Task"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Task(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Task(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The priority of this task.
     /// (Since EFL 1.22)</summary>
-    /// <returns>No description supplied.</returns>
+    /// <returns>Desired priority.</returns>
     virtual public Efl.TaskPriority GetPriority() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_priority_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_priority_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The priority of this task.
     /// (Since EFL 1.22)</summary>
-    /// <param name="priority">No description supplied.</param>
+    /// <param name="priority">Desired priority.</param>
     virtual public void SetPriority(Efl.TaskPriority priority) {
-                                 Efl.Task.NativeMethods.efl_task_priority_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),priority);
+                                 Efl.Task.NativeMethods.efl_task_priority_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),priority);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>The final exit code of this task.
+    /// <summary>The final exit code of this task. This is the code that will be produced upon task completion.
     /// (Since EFL 1.22)</summary>
-    /// <returns>No description supplied.</returns>
+    /// <returns>The exit code.</returns>
     virtual public int GetExitCode() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_exit_code_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_exit_code_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <returns>No description supplied.</returns>
+    /// <summary>Flags to further customize task&apos;s behavior.
+    /// (Since EFL 1.22)</summary>
+    /// <returns>Desired task flags.</returns>
     virtual public Efl.TaskFlags GetFlags() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_flags_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_flags_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <param name="flags">No description supplied.</param>
+    /// <summary>Flags to further customize task&apos;s behavior.
+    /// (Since EFL 1.22)</summary>
+    /// <param name="flags">Desired task flags.</param>
     virtual public void SetFlags(Efl.TaskFlags flags) {
-                                 Efl.Task.NativeMethods.efl_task_flags_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),flags);
+                                 Efl.Task.NativeMethods.efl_task_flags_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),flags);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Actually run the task
+    /// <summary>Actually run the task.
     /// (Since EFL 1.22)</summary>
-    /// <returns>A future triggered when task exits and is passed int exit code</returns>
+    /// <returns>A future triggered when task exits and is passed int exit code.</returns>
     virtual public  Eina.Future Run() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_run_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_run_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Request the task end (may send a signal or interrupt signal resulting in a terminate event being tiggered in the target task loop)
+    /// <summary>Request the task end (may send a signal or interrupt signal resulting in a terminate event being tiggered in the target task loop).
     /// (Since EFL 1.22)</summary>
     virtual public void End() {
-         Efl.Task.NativeMethods.efl_task_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Task.NativeMethods.efl_task_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
+    /// <summary>Async wrapper for <see cref="Run" />.</summary>
+    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
+    /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> RunAsync( System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
     {
         Eina.Future future = Run();
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
+
     /// <summary>The priority of this task.
-/// (Since EFL 1.22)</summary>
-/// <value>No description supplied.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>Desired priority.</value>
     public Efl.TaskPriority Priority {
         get { return GetPriority(); }
         set { SetPriority(value); }
     }
-    /// <summary>The final exit code of this task.
-/// (Since EFL 1.22)</summary>
-/// <value>No description supplied.</value>
+    /// <summary>The final exit code of this task. This is the code that will be produced upon task completion.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The exit code.</value>
     public int ExitCode {
         get { return GetExitCode(); }
     }
-    /// <value>No description supplied.</value>
+    /// <summary>Flags to further customize task&apos;s behavior.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Desired task flags.</value>
     public Efl.TaskFlags Flags {
         get { return GetFlags(); }
         set { SetFlags(value); }
@@ -255,7 +244,7 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
             return Efl.Task.efl_task_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Efl.TaskPriority efl_task_priority_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -268,13 +257,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static Efl.TaskPriority priority_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_priority_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TaskPriority _ret_var = default(Efl.TaskPriority);
                 try
                 {
-                    _ret_var = ((Task)wrapper).GetPriority();
+                    _ret_var = ((Task)ws.Target).GetPriority();
                 }
                 catch (Exception e)
                 {
@@ -304,13 +293,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void priority_set(System.IntPtr obj, System.IntPtr pd, Efl.TaskPriority priority)
         {
             Eina.Log.Debug("function efl_task_priority_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Task)wrapper).SetPriority(priority);
+                    ((Task)ws.Target).SetPriority(priority);
                 }
                 catch (Exception e)
                 {
@@ -339,13 +328,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static int exit_code_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_exit_code_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((Task)wrapper).GetExitCode();
+                    _ret_var = ((Task)ws.Target).GetExitCode();
                 }
                 catch (Exception e)
                 {
@@ -375,13 +364,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static Efl.TaskFlags flags_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_flags_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TaskFlags _ret_var = default(Efl.TaskFlags);
                 try
                 {
-                    _ret_var = ((Task)wrapper).GetFlags();
+                    _ret_var = ((Task)ws.Target).GetFlags();
                 }
                 catch (Exception e)
                 {
@@ -411,13 +400,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void flags_set(System.IntPtr obj, System.IntPtr pd, Efl.TaskFlags flags)
         {
             Eina.Log.Debug("function efl_task_flags_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Task)wrapper).SetFlags(flags);
+                    ((Task)ws.Target).SetFlags(flags);
                 }
                 catch (Exception e)
                 {
@@ -446,13 +435,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static  Eina.Future run(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_run was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
              Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
-                    _ret_var = ((Task)wrapper).Run();
+                    _ret_var = ((Task)ws.Target).Run();
                 }
                 catch (Exception e)
                 {
@@ -482,13 +471,13 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
         private static void end(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_task_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Task)wrapper).End();
+                    ((Task)ws.Target).End();
                 }
                 catch (Exception e)
                 {
@@ -506,7 +495,7 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
 
         private static efl_task_end_delegate efl_task_end_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -514,14 +503,20 @@ public abstract class Task : Efl.LoopConsumer, Efl.Eo.IWrapper
 
 namespace Efl {
 
-/// <summary>No description supplied.
+/// <summary>How much processor time will this task get compared to other tasks running on the same processor.
 /// (Since EFL 1.22)</summary>
+[Efl.Eo.BindingEntity]
 public enum TaskPriority
 {
+/// <summary>Neither above nor below average priority. This is the default.</summary>
 Normal = 0,
+/// <summary>Far below average priority.</summary>
 Background = 1,
+/// <summary>Below average priority.</summary>
 Low = 2,
+/// <summary>Above average priority.</summary>
 High = 3,
+/// <summary>Far above average priority.</summary>
 Ultra = 4,
 }
 
@@ -529,13 +524,18 @@ Ultra = 4,
 
 namespace Efl {
 
-/// <summary>No description supplied.
+/// <summary>Flags to further customize task&apos;s behavior.
 /// (Since EFL 1.22)</summary>
+[Efl.Eo.BindingEntity]
 public enum TaskFlags
 {
+/// <summary>No special flags.</summary>
 None = 0,
+/// <summary>Task will require console input.</summary>
 UseStdin = 1,
+/// <summary>Task will require console output.</summary>
 UseStdout = 2,
+/// <summary>Task will not produce an exit code upon termination.</summary>
 NoExitCodeError = 4,
 }
 

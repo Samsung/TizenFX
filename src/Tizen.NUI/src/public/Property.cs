@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -1675,6 +1676,7 @@ namespace Tizen.NUI
             set
             {
                 _key = value;
+                ParseKey(value);
             }
         }
 
@@ -1942,6 +1944,20 @@ namespace Tizen.NUI
             set
             {
                 TrueValue = new PropertyValue(value);
+            }
+        }
+
+        private void ParseKey(string key)
+        {
+            int v = -1;
+            if (VisualExtension.KeyDictionary.ContainsKey(key))
+            {
+                VisualExtension.KeyDictionary.TryGetValue(key, out v);
+                KeyInt = v;
+            }
+            else
+            {
+                KeyString = Key;
             }
         }
     }

@@ -10,6 +10,7 @@ namespace Efl {
 namespace Ui {
 
 [Efl.Ui.IScrollableInteractiveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IScrollableInteractive : 
     Efl.Ui.IScrollable ,
     Efl.Eo.IWrapper, IDisposable
@@ -105,55 +106,55 @@ void SetStepSize(Eina.Position2D step);
 /// <param name="animation">Whether to scroll with animation or not</param>
 void Scroll(Eina.Rect rect, bool animation);
                                                                                     /// <summary>The content position</summary>
-/// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
+    /// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
     Eina.Position2D ContentPos {
         get ;
         set ;
     }
     /// <summary>The content size</summary>
-/// <value>The content size in pixels.</value>
+    /// <value>The content size in pixels.</value>
     Eina.Size2D ContentSize {
         get ;
     }
     /// <summary>The viewport geometry</summary>
-/// <value>It is absolute geometry.</value>
+    /// <value>It is absolute geometry.</value>
     Eina.Rect ViewportGeometry {
         get ;
     }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
-/// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
     bool ScrollFreeze {
         get ;
         set ;
     }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
-/// <value><c>true</c> if hold, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if hold, <c>false</c> otherwise</value>
     bool ScrollHold {
         get ;
         set ;
     }
     /// <summary>Blocking of scrolling (per axis)
-/// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
-/// <value>Which axis (or axes) to block</value>
+    /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
+    /// <value>Which axis (or axes) to block</value>
     Efl.Ui.ScrollBlock MovementBlock {
         get ;
         set ;
     }
     /// <summary>Control the step size
-/// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
-/// <value>The step size in pixels</value>
+    /// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
+    /// <value>The step size in pixels</value>
     Eina.Position2D StepSize {
         get ;
         set ;
     }
 }
-sealed public class IScrollableInteractiveConcrete : 
-
-IScrollableInteractive
+sealed public class IScrollableInteractiveConcrete :
+    Efl.Eo.EoWrapper
+    , IScrollableInteractive
     , Efl.Ui.IScrollable
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -168,155 +169,19 @@ IScrollableInteractive
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IScrollableInteractiveConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_scrollable_interactive_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IScrollableInteractive"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IScrollableInteractiveConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IScrollableInteractiveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IScrollableInteractiveConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Called when scroll operation starts</summary>
@@ -324,12 +189,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -352,7 +216,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -377,12 +241,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -405,7 +268,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -430,12 +293,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -458,7 +320,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -483,12 +345,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -511,7 +372,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -536,12 +397,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -564,7 +424,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -589,12 +449,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -617,7 +476,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -642,12 +501,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -670,7 +528,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -695,12 +553,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -723,7 +580,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_UP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -748,12 +605,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -776,7 +632,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -801,12 +657,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -829,7 +684,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -854,12 +709,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -882,7 +736,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -907,12 +761,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -935,7 +788,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -960,12 +813,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -988,7 +840,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -1013,12 +865,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1041,7 +892,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -1066,12 +917,11 @@ IScrollableInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1094,7 +944,7 @@ IScrollableInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -1275,43 +1125,43 @@ IScrollableInteractive
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The content position</summary>
-/// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
+    /// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
     public Eina.Position2D ContentPos {
         get { return GetContentPos(); }
         set { SetContentPos(value); }
     }
     /// <summary>The content size</summary>
-/// <value>The content size in pixels.</value>
+    /// <value>The content size in pixels.</value>
     public Eina.Size2D ContentSize {
         get { return GetContentSize(); }
     }
     /// <summary>The viewport geometry</summary>
-/// <value>It is absolute geometry.</value>
+    /// <value>It is absolute geometry.</value>
     public Eina.Rect ViewportGeometry {
         get { return GetViewportGeometry(); }
     }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
-/// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
     public bool ScrollFreeze {
         get { return GetScrollFreeze(); }
         set { SetScrollFreeze(value); }
     }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
-/// <value><c>true</c> if hold, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if hold, <c>false</c> otherwise</value>
     public bool ScrollHold {
         get { return GetScrollHold(); }
         set { SetScrollHold(value); }
     }
     /// <summary>Blocking of scrolling (per axis)
-/// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
-/// <value>Which axis (or axes) to block</value>
+    /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
+    /// <value>Which axis (or axes) to block</value>
     public Efl.Ui.ScrollBlock MovementBlock {
         get { return GetMovementBlock(); }
         set { SetMovementBlock(value); }
     }
     /// <summary>Control the step size
-/// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
-/// <value>The step size in pixels</value>
+    /// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
+    /// <value>The step size in pixels</value>
     public Eina.Position2D StepSize {
         get { return GetStepSize(); }
         set { SetStepSize(value); }
@@ -1322,7 +1172,7 @@ IScrollableInteractive
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1541,7 +1391,7 @@ IScrollableInteractive
             return Efl.Ui.IScrollableInteractiveConcrete.efl_ui_scrollable_interactive_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Position2D.NativeStruct efl_ui_scrollable_content_pos_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1554,13 +1404,13 @@ IScrollableInteractive
         private static Eina.Position2D.NativeStruct content_pos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_pos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((IScrollableInteractive)wrapper).GetContentPos();
+                    _ret_var = ((IScrollableInteractive)ws.Target).GetContentPos();
                 }
                 catch (Exception e)
                 {
@@ -1590,14 +1440,14 @@ IScrollableInteractive
         private static void content_pos_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_pos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                             
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetContentPos(_in_pos);
+                    ((IScrollableInteractive)ws.Target).SetContentPos(_in_pos);
                 }
                 catch (Exception e)
                 {
@@ -1626,13 +1476,13 @@ IScrollableInteractive
         private static Eina.Size2D.NativeStruct content_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IScrollableInteractive)wrapper).GetContentSize();
+                    _ret_var = ((IScrollableInteractive)ws.Target).GetContentSize();
                 }
                 catch (Exception e)
                 {
@@ -1662,13 +1512,13 @@ IScrollableInteractive
         private static Eina.Rect.NativeStruct viewport_geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_viewport_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IScrollableInteractive)wrapper).GetViewportGeometry();
+                    _ret_var = ((IScrollableInteractive)ws.Target).GetViewportGeometry();
                 }
                 catch (Exception e)
                 {
@@ -1698,13 +1548,13 @@ IScrollableInteractive
         private static void bounce_enabled_get(System.IntPtr obj, System.IntPtr pd, out bool horiz, out bool vert)
         {
             Eina.Log.Debug("function efl_ui_scrollable_bounce_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         horiz = default(bool);        vert = default(bool);                            
                 try
                 {
-                    ((IScrollableInteractive)wrapper).GetBounceEnabled(out horiz, out vert);
+                    ((IScrollableInteractive)ws.Target).GetBounceEnabled(out horiz, out vert);
                 }
                 catch (Exception e)
                 {
@@ -1733,13 +1583,13 @@ IScrollableInteractive
         private static void bounce_enabled_set(System.IntPtr obj, System.IntPtr pd, bool horiz, bool vert)
         {
             Eina.Log.Debug("function efl_ui_scrollable_bounce_enabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetBounceEnabled(horiz, vert);
+                    ((IScrollableInteractive)ws.Target).SetBounceEnabled(horiz, vert);
                 }
                 catch (Exception e)
                 {
@@ -1768,13 +1618,13 @@ IScrollableInteractive
         private static bool scroll_freeze_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_freeze_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IScrollableInteractive)wrapper).GetScrollFreeze();
+                    _ret_var = ((IScrollableInteractive)ws.Target).GetScrollFreeze();
                 }
                 catch (Exception e)
                 {
@@ -1804,13 +1654,13 @@ IScrollableInteractive
         private static void scroll_freeze_set(System.IntPtr obj, System.IntPtr pd, bool freeze)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_freeze_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetScrollFreeze(freeze);
+                    ((IScrollableInteractive)ws.Target).SetScrollFreeze(freeze);
                 }
                 catch (Exception e)
                 {
@@ -1839,13 +1689,13 @@ IScrollableInteractive
         private static bool scroll_hold_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_hold_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IScrollableInteractive)wrapper).GetScrollHold();
+                    _ret_var = ((IScrollableInteractive)ws.Target).GetScrollHold();
                 }
                 catch (Exception e)
                 {
@@ -1875,13 +1725,13 @@ IScrollableInteractive
         private static void scroll_hold_set(System.IntPtr obj, System.IntPtr pd, bool hold)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_hold_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetScrollHold(hold);
+                    ((IScrollableInteractive)ws.Target).SetScrollHold(hold);
                 }
                 catch (Exception e)
                 {
@@ -1910,13 +1760,13 @@ IScrollableInteractive
         private static void looping_get(System.IntPtr obj, System.IntPtr pd, out bool loop_h, out bool loop_v)
         {
             Eina.Log.Debug("function efl_ui_scrollable_looping_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         loop_h = default(bool);        loop_v = default(bool);                            
                 try
                 {
-                    ((IScrollableInteractive)wrapper).GetLooping(out loop_h, out loop_v);
+                    ((IScrollableInteractive)ws.Target).GetLooping(out loop_h, out loop_v);
                 }
                 catch (Exception e)
                 {
@@ -1945,13 +1795,13 @@ IScrollableInteractive
         private static void looping_set(System.IntPtr obj, System.IntPtr pd, bool loop_h, bool loop_v)
         {
             Eina.Log.Debug("function efl_ui_scrollable_looping_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetLooping(loop_h, loop_v);
+                    ((IScrollableInteractive)ws.Target).SetLooping(loop_h, loop_v);
                 }
                 catch (Exception e)
                 {
@@ -1980,13 +1830,13 @@ IScrollableInteractive
         private static Efl.Ui.ScrollBlock movement_block_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_movement_block_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.ScrollBlock _ret_var = default(Efl.Ui.ScrollBlock);
                 try
                 {
-                    _ret_var = ((IScrollableInteractive)wrapper).GetMovementBlock();
+                    _ret_var = ((IScrollableInteractive)ws.Target).GetMovementBlock();
                 }
                 catch (Exception e)
                 {
@@ -2016,13 +1866,13 @@ IScrollableInteractive
         private static void movement_block_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ScrollBlock block)
         {
             Eina.Log.Debug("function efl_ui_scrollable_movement_block_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetMovementBlock(block);
+                    ((IScrollableInteractive)ws.Target).SetMovementBlock(block);
                 }
                 catch (Exception e)
                 {
@@ -2051,13 +1901,13 @@ IScrollableInteractive
         private static void gravity_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_ui_scrollable_gravity_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IScrollableInteractive)wrapper).GetGravity(out x, out y);
+                    ((IScrollableInteractive)ws.Target).GetGravity(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -2086,13 +1936,13 @@ IScrollableInteractive
         private static void gravity_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_ui_scrollable_gravity_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetGravity(x, y);
+                    ((IScrollableInteractive)ws.Target).SetGravity(x, y);
                 }
                 catch (Exception e)
                 {
@@ -2121,13 +1971,13 @@ IScrollableInteractive
         private static void match_content_set(System.IntPtr obj, System.IntPtr pd, bool w, bool h)
         {
             Eina.Log.Debug("function efl_ui_scrollable_match_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetMatchContent(w, h);
+                    ((IScrollableInteractive)ws.Target).SetMatchContent(w, h);
                 }
                 catch (Exception e)
                 {
@@ -2156,13 +2006,13 @@ IScrollableInteractive
         private static Eina.Position2D.NativeStruct step_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_step_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((IScrollableInteractive)wrapper).GetStepSize();
+                    _ret_var = ((IScrollableInteractive)ws.Target).GetStepSize();
                 }
                 catch (Exception e)
                 {
@@ -2192,14 +2042,14 @@ IScrollableInteractive
         private static void step_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct step)
         {
             Eina.Log.Debug("function efl_ui_scrollable_step_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_step = step;
                             
                 try
                 {
-                    ((IScrollableInteractive)wrapper).SetStepSize(_in_step);
+                    ((IScrollableInteractive)ws.Target).SetStepSize(_in_step);
                 }
                 catch (Exception e)
                 {
@@ -2228,14 +2078,14 @@ IScrollableInteractive
         private static void scroll(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect, bool animation)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                                                     
                 try
                 {
-                    ((IScrollableInteractive)wrapper).Scroll(_in_rect, animation);
+                    ((IScrollableInteractive)ws.Target).Scroll(_in_rect, animation);
                 }
                 catch (Exception e)
                 {
@@ -2253,7 +2103,7 @@ IScrollableInteractive
 
         private static efl_ui_scrollable_scroll_delegate efl_ui_scrollable_scroll_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

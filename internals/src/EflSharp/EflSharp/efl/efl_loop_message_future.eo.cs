@@ -9,7 +9,8 @@ namespace Efl {
 
 /// <summary>Used internally for futures on the loop</summary>
 [Efl.LoopMessageFuture.NativeMethods]
-public class LoopMessageFuture : Efl.LoopMessage, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class LoopMessageFuture : Efl.LoopMessage
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -32,69 +33,47 @@ public class LoopMessageFuture : Efl.LoopMessage, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageFuture(Efl.Object parent= null
-            ) : base(efl_loop_message_future_class_get(), typeof(LoopMessageFuture), parent)
+            ) : base(efl_loop_message_future_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessageFuture(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessageFuture(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessageFuture(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessageFuture(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessageFuture(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>No description supplied.</summary>
     /// <returns>No description supplied.</returns>
     virtual public System.IntPtr GetData() {
-         var _ret_var = Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>No description supplied.</summary>
     /// <param name="data">No description supplied.</param>
     virtual public void SetData(System.IntPtr data) {
-                                 Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),data);
+                                 Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>No description supplied.</summary>
-/// <value>No description supplied.</value>
+    /// <value>No description supplied.</value>
     public System.IntPtr Data {
         get { return GetData(); }
         set { SetData(value); }
@@ -145,7 +124,7 @@ public class LoopMessageFuture : Efl.LoopMessage, Efl.Eo.IWrapper
             return Efl.LoopMessageFuture.efl_loop_message_future_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate System.IntPtr efl_loop_message_future_data_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -158,13 +137,13 @@ public class LoopMessageFuture : Efl.LoopMessage, Efl.Eo.IWrapper
         private static System.IntPtr data_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_loop_message_future_data_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
-                    _ret_var = ((LoopMessageFuture)wrapper).GetData();
+                    _ret_var = ((LoopMessageFuture)ws.Target).GetData();
                 }
                 catch (Exception e)
                 {
@@ -194,13 +173,13 @@ public class LoopMessageFuture : Efl.LoopMessage, Efl.Eo.IWrapper
         private static void data_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr data)
         {
             Eina.Log.Debug("function efl_loop_message_future_data_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LoopMessageFuture)wrapper).SetData(data);
+                    ((LoopMessageFuture)ws.Target).SetData(data);
                 }
                 catch (Exception e)
                 {
@@ -218,7 +197,7 @@ public class LoopMessageFuture : Efl.LoopMessage, Efl.Eo.IWrapper
 
         private static efl_loop_message_future_data_set_delegate efl_loop_message_future_data_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

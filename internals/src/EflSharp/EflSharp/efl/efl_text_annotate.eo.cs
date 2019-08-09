@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Cursor API</summary>
 [Efl.ITextAnnotateConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextAnnotate : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -73,13 +74,13 @@ bool GetItemGeometry(Efl.TextAnnotateAnnotation an, out int x, out int y, out in
 Efl.TextAnnotateAnnotation CursorItemInsert(Efl.TextCursorCursor cur, System.String item, System.String format);
                                         }
 /// <summary>Cursor API</summary>
-sealed public class ITextAnnotateConcrete : 
-
-ITextAnnotate
+sealed public class ITextAnnotateConcrete :
+    Efl.Eo.EoWrapper
+    , ITextAnnotate
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -94,86 +95,19 @@ ITextAnnotate
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextAnnotateConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_annotate_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextAnnotate"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextAnnotateConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextAnnotateConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ITextAnnotateConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>A new format for <c>annotation</c>.
@@ -210,7 +144,7 @@ ITextAnnotate
     public Eina.Iterator<Efl.TextAnnotateAnnotation> GetRangeAnnotations(Efl.TextCursorCursor start, Efl.TextCursorCursor end) {
                                                          var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_range_annotations_get_ptr.Value.Delegate(this.NativeHandle,start, end);
         Eina.Error.RaiseIfUnhandledException();
-                                        return new Eina.Iterator<Efl.TextAnnotateAnnotation>(_ret_var, true, false);
+                                        return new Eina.Iterator<Efl.TextAnnotateAnnotation>(_ret_var, true);
  }
     /// <summary>Inserts an annotation format in a specified range [<c>start</c>, <c>end</c> - 1].
     /// The <c>format</c> will be applied to the given range, and the <c>annotation</c> handle will be returned for further handling.</summary>
@@ -280,7 +214,7 @@ ITextAnnotate
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -399,7 +333,7 @@ ITextAnnotate
             return Efl.ITextAnnotateConcrete.efl_text_annotate_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_text_annotation_get_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.TextAnnotateAnnotation annotation);
@@ -412,13 +346,13 @@ ITextAnnotate
         private static System.String annotation_get(System.IntPtr obj, System.IntPtr pd, Efl.TextAnnotateAnnotation annotation)
         {
             Eina.Log.Debug("function efl_text_annotation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).GetAnnotation(annotation);
+                    _ret_var = ((ITextAnnotate)ws.Target).GetAnnotation(annotation);
                 }
                 catch (Exception e)
                 {
@@ -448,13 +382,13 @@ ITextAnnotate
         private static bool annotation_set(System.IntPtr obj, System.IntPtr pd, Efl.TextAnnotateAnnotation annotation, System.String format)
         {
             Eina.Log.Debug("function efl_text_annotation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).SetAnnotation(annotation, format);
+                    _ret_var = ((ITextAnnotate)ws.Target).SetAnnotation(annotation, format);
                 }
                 catch (Exception e)
                 {
@@ -484,13 +418,13 @@ ITextAnnotate
         private static Efl.TextAnnotateAnnotation cursor_item_annotation_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur)
         {
             Eina.Log.Debug("function efl_text_cursor_item_annotation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.TextAnnotateAnnotation _ret_var = default(Efl.TextAnnotateAnnotation);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).GetCursorItemAnnotation(cur);
+                    _ret_var = ((ITextAnnotate)ws.Target).GetCursorItemAnnotation(cur);
                 }
                 catch (Exception e)
                 {
@@ -520,13 +454,13 @@ ITextAnnotate
         private static System.IntPtr range_annotations_get(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor start, Efl.TextCursorCursor end)
         {
             Eina.Log.Debug("function efl_text_range_annotations_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Eina.Iterator<Efl.TextAnnotateAnnotation> _ret_var = default(Eina.Iterator<Efl.TextAnnotateAnnotation>);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).GetRangeAnnotations(start, end);
+                    _ret_var = ((ITextAnnotate)ws.Target).GetRangeAnnotations(start, end);
                 }
                 catch (Exception e)
                 {
@@ -556,13 +490,13 @@ ITextAnnotate
         private static Efl.TextAnnotateAnnotation annotation_insert(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor start, Efl.TextCursorCursor end, System.String format)
         {
             Eina.Log.Debug("function efl_text_annotation_insert was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.TextAnnotateAnnotation _ret_var = default(Efl.TextAnnotateAnnotation);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).AnnotationInsert(start, end, format);
+                    _ret_var = ((ITextAnnotate)ws.Target).AnnotationInsert(start, end, format);
                 }
                 catch (Exception e)
                 {
@@ -592,13 +526,13 @@ ITextAnnotate
         private static bool annotation_del(System.IntPtr obj, System.IntPtr pd, Efl.TextAnnotateAnnotation annotation)
         {
             Eina.Log.Debug("function efl_text_annotation_del was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).DelAnnotation(annotation);
+                    _ret_var = ((ITextAnnotate)ws.Target).DelAnnotation(annotation);
                 }
                 catch (Exception e)
                 {
@@ -628,13 +562,13 @@ ITextAnnotate
         private static void annotation_positions_get(System.IntPtr obj, System.IntPtr pd, Efl.TextAnnotateAnnotation annotation, Efl.TextCursorCursor start, Efl.TextCursorCursor end)
         {
             Eina.Log.Debug("function efl_text_annotation_positions_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((ITextAnnotate)wrapper).GetAnnotationPositions(annotation, start, end);
+                    ((ITextAnnotate)ws.Target).GetAnnotationPositions(annotation, start, end);
                 }
                 catch (Exception e)
                 {
@@ -663,13 +597,13 @@ ITextAnnotate
         private static bool annotation_is_item(System.IntPtr obj, System.IntPtr pd, Efl.TextAnnotateAnnotation annotation)
         {
             Eina.Log.Debug("function efl_text_annotation_is_item was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).AnnotationIsItem(annotation);
+                    _ret_var = ((ITextAnnotate)ws.Target).AnnotationIsItem(annotation);
                 }
                 catch (Exception e)
                 {
@@ -699,13 +633,13 @@ ITextAnnotate
         private static bool item_geometry_get(System.IntPtr obj, System.IntPtr pd, Efl.TextAnnotateAnnotation an, out int x, out int y, out int w, out int h)
         {
             Eina.Log.Debug("function efl_text_item_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                         x = default(int);        y = default(int);        w = default(int);        h = default(int);                                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).GetItemGeometry(an, out x, out y, out w, out h);
+                    _ret_var = ((ITextAnnotate)ws.Target).GetItemGeometry(an, out x, out y, out w, out h);
                 }
                 catch (Exception e)
                 {
@@ -735,13 +669,13 @@ ITextAnnotate
         private static Efl.TextAnnotateAnnotation cursor_item_insert(System.IntPtr obj, System.IntPtr pd, Efl.TextCursorCursor cur, System.String item, System.String format)
         {
             Eina.Log.Debug("function efl_text_cursor_item_insert was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.TextAnnotateAnnotation _ret_var = default(Efl.TextAnnotateAnnotation);
                 try
                 {
-                    _ret_var = ((ITextAnnotate)wrapper).CursorItemInsert(cur, item, format);
+                    _ret_var = ((ITextAnnotate)ws.Target).CursorItemInsert(cur, item, format);
                 }
                 catch (Exception e)
                 {
@@ -760,7 +694,7 @@ ITextAnnotate
 
         private static efl_text_cursor_item_insert_delegate efl_text_cursor_item_insert_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

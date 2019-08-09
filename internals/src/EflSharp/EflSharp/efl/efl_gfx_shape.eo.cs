@@ -11,6 +11,7 @@ namespace Gfx {
 
 /// <summary>EFL graphics shape object interface</summary>
 [Efl.Gfx.IShapeConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IShape : 
     Efl.Gfx.IPath ,
     Efl.Eo.IWrapper, IDisposable
@@ -78,52 +79,52 @@ Efl.Gfx.FillRule GetFillRule();
 /// <param name="fill_rule">The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></param>
 void SetFillRule(Efl.Gfx.FillRule fill_rule);
                                                                     /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
-/// <value>Stroke scale value</value>
+    /// <value>Stroke scale value</value>
     double StrokeScale {
         get ;
         set ;
     }
     /// <summary>The stroke width to be used for stroking the path.</summary>
-/// <value>Stroke width to be used</value>
+    /// <value>Stroke width to be used</value>
     double StrokeWidth {
         get ;
         set ;
     }
     /// <summary>Not implemented</summary>
-/// <value>Centered stroke location</value>
+    /// <value>Centered stroke location</value>
     double StrokeLocation {
         get ;
         set ;
     }
     /// <summary>The cap style to be used for stroking the path. The cap will be used for capping the end point of a open subpath.
-/// See also <see cref="Efl.Gfx.Cap"/>.</summary>
-/// <value>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></value>
+    /// See also <see cref="Efl.Gfx.Cap"/>.</summary>
+    /// <value>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></value>
     Efl.Gfx.Cap StrokeCap {
         get ;
         set ;
     }
     /// <summary>The join style to be used for stroking the path. The join style will be used for joining the two line segment while stroking the path.
-/// See also <see cref="Efl.Gfx.Join"/>.</summary>
-/// <value>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></value>
+    /// See also <see cref="Efl.Gfx.Join"/>.</summary>
+    /// <value>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></value>
     Efl.Gfx.Join StrokeJoin {
         get ;
         set ;
     }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
-/// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
+    /// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
     Efl.Gfx.FillRule FillRule {
         get ;
         set ;
     }
 }
 /// <summary>EFL graphics shape object interface</summary>
-sealed public class IShapeConcrete : 
-
-IShape
+sealed public class IShapeConcrete :
+    Efl.Eo.EoWrapper
+    , IShape
     , Efl.Gfx.IPath
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -138,86 +139,19 @@ IShape
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IShapeConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_shape_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IShape"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IShapeConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IShapeConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IShapeConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
@@ -551,39 +485,39 @@ IShape
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
-/// <value>Stroke scale value</value>
+    /// <value>Stroke scale value</value>
     public double StrokeScale {
         get { return GetStrokeScale(); }
         set { SetStrokeScale(value); }
     }
     /// <summary>The stroke width to be used for stroking the path.</summary>
-/// <value>Stroke width to be used</value>
+    /// <value>Stroke width to be used</value>
     public double StrokeWidth {
         get { return GetStrokeWidth(); }
         set { SetStrokeWidth(value); }
     }
     /// <summary>Not implemented</summary>
-/// <value>Centered stroke location</value>
+    /// <value>Centered stroke location</value>
     public double StrokeLocation {
         get { return GetStrokeLocation(); }
         set { SetStrokeLocation(value); }
     }
     /// <summary>The cap style to be used for stroking the path. The cap will be used for capping the end point of a open subpath.
-/// See also <see cref="Efl.Gfx.Cap"/>.</summary>
-/// <value>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></value>
+    /// See also <see cref="Efl.Gfx.Cap"/>.</summary>
+    /// <value>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></value>
     public Efl.Gfx.Cap StrokeCap {
         get { return GetStrokeCap(); }
         set { SetStrokeCap(value); }
     }
     /// <summary>The join style to be used for stroking the path. The join style will be used for joining the two line segment while stroking the path.
-/// See also <see cref="Efl.Gfx.Join"/>.</summary>
-/// <value>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></value>
+    /// See also <see cref="Efl.Gfx.Join"/>.</summary>
+    /// <value>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></value>
     public Efl.Gfx.Join StrokeJoin {
         get { return GetStrokeJoin(); }
         set { SetStrokeJoin(value); }
     }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
-/// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
+    /// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
     public Efl.Gfx.FillRule FillRule {
         get { return GetFillRule(); }
         set { SetFillRule(value); }
@@ -594,7 +528,7 @@ IShape
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1013,7 +947,7 @@ IShape
             return Efl.Gfx.IShapeConcrete.efl_gfx_shape_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_gfx_shape_stroke_scale_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1026,13 +960,13 @@ IShape
         private static double stroke_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).GetStrokeScale();
+                    _ret_var = ((IShape)ws.Target).GetStrokeScale();
                 }
                 catch (Exception e)
                 {
@@ -1062,13 +996,13 @@ IShape
         private static void stroke_scale_set(System.IntPtr obj, System.IntPtr pd, double s)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetStrokeScale(s);
+                    ((IShape)ws.Target).SetStrokeScale(s);
                 }
                 catch (Exception e)
                 {
@@ -1097,13 +1031,13 @@ IShape
         private static void stroke_color_get(System.IntPtr obj, System.IntPtr pd, out int r, out int g, out int b, out int a)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
                 try
                 {
-                    ((IShapeConcrete)wrapper).GetStrokeColor(out r, out g, out b, out a);
+                    ((IShape)ws.Target).GetStrokeColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -1132,13 +1066,13 @@ IShape
         private static void stroke_color_set(System.IntPtr obj, System.IntPtr pd, int r, int g, int b, int a)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetStrokeColor(r, g, b, a);
+                    ((IShape)ws.Target).SetStrokeColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -1167,13 +1101,13 @@ IShape
         private static double stroke_width_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_width_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).GetStrokeWidth();
+                    _ret_var = ((IShape)ws.Target).GetStrokeWidth();
                 }
                 catch (Exception e)
                 {
@@ -1203,13 +1137,13 @@ IShape
         private static void stroke_width_set(System.IntPtr obj, System.IntPtr pd, double w)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_width_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetStrokeWidth(w);
+                    ((IShape)ws.Target).SetStrokeWidth(w);
                 }
                 catch (Exception e)
                 {
@@ -1238,13 +1172,13 @@ IShape
         private static double stroke_location_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_location_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).GetStrokeLocation();
+                    _ret_var = ((IShape)ws.Target).GetStrokeLocation();
                 }
                 catch (Exception e)
                 {
@@ -1274,13 +1208,13 @@ IShape
         private static void stroke_location_set(System.IntPtr obj, System.IntPtr pd, double centered)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_location_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetStrokeLocation(centered);
+                    ((IShape)ws.Target).SetStrokeLocation(centered);
                 }
                 catch (Exception e)
                 {
@@ -1309,14 +1243,14 @@ IShape
         private static void stroke_dash_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr dash, out uint length)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_dash_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Gfx.Dash _out_dash = default(Efl.Gfx.Dash);
         length = default(uint);                            
                 try
                 {
-                    ((IShapeConcrete)wrapper).GetStrokeDash(out _out_dash, out length);
+                    ((IShape)ws.Target).GetStrokeDash(out _out_dash, out length);
                 }
                 catch (Exception e)
                 {
@@ -1346,14 +1280,14 @@ IShape
         private static void stroke_dash_set(System.IntPtr obj, System.IntPtr pd, ref Efl.Gfx.Dash.NativeStruct dash, uint length)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_dash_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Gfx.Dash _in_dash = dash;
                                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetStrokeDash(ref _in_dash, length);
+                    ((IShape)ws.Target).SetStrokeDash(ref _in_dash, length);
                 }
                 catch (Exception e)
                 {
@@ -1383,13 +1317,13 @@ IShape
         private static Efl.Gfx.Cap stroke_cap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_cap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.Cap _ret_var = default(Efl.Gfx.Cap);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).GetStrokeCap();
+                    _ret_var = ((IShape)ws.Target).GetStrokeCap();
                 }
                 catch (Exception e)
                 {
@@ -1419,13 +1353,13 @@ IShape
         private static void stroke_cap_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.Cap c)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_cap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetStrokeCap(c);
+                    ((IShape)ws.Target).SetStrokeCap(c);
                 }
                 catch (Exception e)
                 {
@@ -1454,13 +1388,13 @@ IShape
         private static Efl.Gfx.Join stroke_join_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_join_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.Join _ret_var = default(Efl.Gfx.Join);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).GetStrokeJoin();
+                    _ret_var = ((IShape)ws.Target).GetStrokeJoin();
                 }
                 catch (Exception e)
                 {
@@ -1490,13 +1424,13 @@ IShape
         private static void stroke_join_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.Join j)
         {
             Eina.Log.Debug("function efl_gfx_shape_stroke_join_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetStrokeJoin(j);
+                    ((IShape)ws.Target).SetStrokeJoin(j);
                 }
                 catch (Exception e)
                 {
@@ -1525,13 +1459,13 @@ IShape
         private static Efl.Gfx.FillRule fill_rule_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_shape_fill_rule_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.FillRule _ret_var = default(Efl.Gfx.FillRule);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).GetFillRule();
+                    _ret_var = ((IShape)ws.Target).GetFillRule();
                 }
                 catch (Exception e)
                 {
@@ -1561,13 +1495,13 @@ IShape
         private static void fill_rule_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.FillRule fill_rule)
         {
             Eina.Log.Debug("function efl_gfx_shape_fill_rule_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetFillRule(fill_rule);
+                    ((IShape)ws.Target).SetFillRule(fill_rule);
                 }
                 catch (Exception e)
                 {
@@ -1596,15 +1530,15 @@ IShape
         private static void path_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr op, out System.IntPtr points)
         {
             Eina.Log.Debug("function efl_gfx_path_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
         double _out_points = default(double);
                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).GetPath(out _out_op, out _out_points);
+                    ((IShape)ws.Target).GetPath(out _out_op, out _out_points);
                 }
                 catch (Exception e)
                 {
@@ -1635,15 +1569,15 @@ IShape
         private static void path_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr op, System.IntPtr points)
         {
             Eina.Log.Debug("function efl_gfx_path_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_op = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.PathCommandType>(op);
         var _in_points = Eina.PrimitiveConversion.PointerToManaged<double>(points);
                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).SetPath(_in_op, _in_points);
+                    ((IShape)ws.Target).SetPath(_in_op, _in_points);
                 }
                 catch (Exception e)
                 {
@@ -1672,13 +1606,13 @@ IShape
         private static void length_get(System.IntPtr obj, System.IntPtr pd, out uint commands, out uint points)
         {
             Eina.Log.Debug("function efl_gfx_path_length_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         commands = default(uint);        points = default(uint);                            
                 try
                 {
-                    ((IShapeConcrete)wrapper).GetLength(out commands, out points);
+                    ((IShape)ws.Target).GetLength(out commands, out points);
                 }
                 catch (Exception e)
                 {
@@ -1707,13 +1641,13 @@ IShape
         private static void current_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_path_current_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IShapeConcrete)wrapper).GetCurrent(out x, out y);
+                    ((IShape)ws.Target).GetCurrent(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1742,13 +1676,13 @@ IShape
         private static void current_ctrl_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_path_current_ctrl_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IShapeConcrete)wrapper).GetCurrentCtrl(out x, out y);
+                    ((IShape)ws.Target).GetCurrentCtrl(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -1777,13 +1711,13 @@ IShape
         private static void copy_from(System.IntPtr obj, System.IntPtr pd, Efl.Object dup_from)
         {
             Eina.Log.Debug("function efl_gfx_path_copy_from was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).CopyFrom(dup_from);
+                    ((IShape)ws.Target).CopyFrom(dup_from);
                 }
                 catch (Exception e)
                 {
@@ -1812,14 +1746,14 @@ IShape
         private static void bounds_get(System.IntPtr obj, System.IntPtr pd, out Eina.Rect.NativeStruct r)
         {
             Eina.Log.Debug("function efl_gfx_path_bounds_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 Eina.Rect _out_r = default(Eina.Rect);
                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).GetBounds(out _out_r);
+                    ((IShape)ws.Target).GetBounds(out _out_r);
                 }
                 catch (Exception e)
                 {
@@ -1849,13 +1783,13 @@ IShape
         private static void reset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_path_reset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IShapeConcrete)wrapper).Reset();
+                    ((IShape)ws.Target).Reset();
                 }
                 catch (Exception e)
                 {
@@ -1884,13 +1818,13 @@ IShape
         private static void append_move_to(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_path_append_move_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendMoveTo(x, y);
+                    ((IShape)ws.Target).AppendMoveTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1919,13 +1853,13 @@ IShape
         private static void append_line_to(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_path_append_line_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendLineTo(x, y);
+                    ((IShape)ws.Target).AppendLineTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -1954,13 +1888,13 @@ IShape
         private static void append_quadratic_to(System.IntPtr obj, System.IntPtr pd, double x, double y, double ctrl_x, double ctrl_y)
         {
             Eina.Log.Debug("function efl_gfx_path_append_quadratic_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendQuadraticTo(x, y, ctrl_x, ctrl_y);
+                    ((IShape)ws.Target).AppendQuadraticTo(x, y, ctrl_x, ctrl_y);
                 }
                 catch (Exception e)
                 {
@@ -1989,13 +1923,13 @@ IShape
         private static void append_squadratic_to(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_path_append_squadratic_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendSquadraticTo(x, y);
+                    ((IShape)ws.Target).AppendSquadraticTo(x, y);
                 }
                 catch (Exception e)
                 {
@@ -2024,13 +1958,13 @@ IShape
         private static void append_cubic_to(System.IntPtr obj, System.IntPtr pd, double ctrl_x0, double ctrl_y0, double ctrl_x1, double ctrl_y1, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_path_append_cubic_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendCubicTo(ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
+                    ((IShape)ws.Target).AppendCubicTo(ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
                 }
                 catch (Exception e)
                 {
@@ -2059,13 +1993,13 @@ IShape
         private static void append_scubic_to(System.IntPtr obj, System.IntPtr pd, double x, double y, double ctrl_x, double ctrl_y)
         {
             Eina.Log.Debug("function efl_gfx_path_append_scubic_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendScubicTo(x, y, ctrl_x, ctrl_y);
+                    ((IShape)ws.Target).AppendScubicTo(x, y, ctrl_x, ctrl_y);
                 }
                 catch (Exception e)
                 {
@@ -2094,13 +2028,13 @@ IShape
         private static void append_arc_to(System.IntPtr obj, System.IntPtr pd, double x, double y, double rx, double ry, double angle, bool large_arc, bool sweep)
         {
             Eina.Log.Debug("function efl_gfx_path_append_arc_to was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendArcTo(x, y, rx, ry, angle, large_arc, sweep);
+                    ((IShape)ws.Target).AppendArcTo(x, y, rx, ry, angle, large_arc, sweep);
                 }
                 catch (Exception e)
                 {
@@ -2129,13 +2063,13 @@ IShape
         private static void append_arc(System.IntPtr obj, System.IntPtr pd, double x, double y, double w, double h, double start_angle, double sweep_length)
         {
             Eina.Log.Debug("function efl_gfx_path_append_arc was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendArc(x, y, w, h, start_angle, sweep_length);
+                    ((IShape)ws.Target).AppendArc(x, y, w, h, start_angle, sweep_length);
                 }
                 catch (Exception e)
                 {
@@ -2164,13 +2098,13 @@ IShape
         private static void append_close(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_path_append_close was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IShapeConcrete)wrapper).CloseAppend();
+                    ((IShape)ws.Target).CloseAppend();
                 }
                 catch (Exception e)
                 {
@@ -2199,13 +2133,13 @@ IShape
         private static void append_circle(System.IntPtr obj, System.IntPtr pd, double x, double y, double radius)
         {
             Eina.Log.Debug("function efl_gfx_path_append_circle was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendCircle(x, y, radius);
+                    ((IShape)ws.Target).AppendCircle(x, y, radius);
                 }
                 catch (Exception e)
                 {
@@ -2234,13 +2168,13 @@ IShape
         private static void append_rect(System.IntPtr obj, System.IntPtr pd, double x, double y, double w, double h, double rx, double ry)
         {
             Eina.Log.Debug("function efl_gfx_path_append_rect was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendRect(x, y, w, h, rx, ry);
+                    ((IShape)ws.Target).AppendRect(x, y, w, h, rx, ry);
                 }
                 catch (Exception e)
                 {
@@ -2269,13 +2203,13 @@ IShape
         private static void append_svg_path(System.IntPtr obj, System.IntPtr pd, System.String svg_path_data)
         {
             Eina.Log.Debug("function efl_gfx_path_append_svg_path was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IShapeConcrete)wrapper).AppendSvgPath(svg_path_data);
+                    ((IShape)ws.Target).AppendSvgPath(svg_path_data);
                 }
                 catch (Exception e)
                 {
@@ -2304,13 +2238,13 @@ IShape
         private static bool interpolate(System.IntPtr obj, System.IntPtr pd, Efl.Object from, Efl.Object to, double pos_map)
         {
             Eina.Log.Debug("function efl_gfx_path_interpolate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).Interpolate(from, to, pos_map);
+                    _ret_var = ((IShape)ws.Target).Interpolate(from, to, pos_map);
                 }
                 catch (Exception e)
                 {
@@ -2340,13 +2274,13 @@ IShape
         private static bool equal_commands(System.IntPtr obj, System.IntPtr pd, Efl.Object with)
         {
             Eina.Log.Debug("function efl_gfx_path_equal_commands was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IShapeConcrete)wrapper).EqualCommands(with);
+                    _ret_var = ((IShape)ws.Target).EqualCommands(with);
                 }
                 catch (Exception e)
                 {
@@ -2376,13 +2310,13 @@ IShape
         private static void reserve(System.IntPtr obj, System.IntPtr pd, uint cmd_count, uint pts_count)
         {
             Eina.Log.Debug("function efl_gfx_path_reserve was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IShapeConcrete)wrapper).Reserve(cmd_count, pts_count);
+                    ((IShape)ws.Target).Reserve(cmd_count, pts_count);
                 }
                 catch (Exception e)
                 {
@@ -2411,13 +2345,13 @@ IShape
         private static void commit(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_path_commit was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IShapeConcrete)wrapper).Commit();
+                    ((IShape)ws.Target).Commit();
                 }
                 catch (Exception e)
                 {
@@ -2435,7 +2369,7 @@ IShape
 
         private static efl_gfx_path_commit_delegate efl_gfx_path_commit_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

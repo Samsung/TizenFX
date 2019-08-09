@@ -22,7 +22,7 @@ using System.Linq;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the Complication class for the watch application which using watchface complication.
+    /// Represents the complication for a watch application.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public abstract class Complication : IEditable, IDisposable

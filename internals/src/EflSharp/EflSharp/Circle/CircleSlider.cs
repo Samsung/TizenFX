@@ -87,7 +87,7 @@ namespace Efl
                 /// Changed will be triggered when the circle slider value changes.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler Changed;
+                public event EventHandler ChangedEvt;
                 const string ChangedEventName = "value,changed";
                 private Interop.Evas.SmartCallback smartChanged;
 
@@ -117,7 +117,7 @@ namespace Efl
 
                     smartChanged = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
-                        Changed?.Invoke(this, EventArgs.Empty);
+                        ChangedEvt?.Invoke(this, EventArgs.Empty);
                     });
 
                     Interop.Evas.evas_object_smart_callback_add(_handle, ChangedEventName, smartChanged, IntPtr.Zero);

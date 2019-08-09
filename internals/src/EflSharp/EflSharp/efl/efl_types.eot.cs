@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>This type is a alias for struct tm. It is intended to be a standard way to reference it in .eo files.
 /// (Since EFL 1.18)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Time
 {
     /// <summary>Seconds.	[0-60] (1 leap second)</summary>
@@ -53,11 +54,15 @@ public struct Time
         this.Tm_isdst = Tm_isdst;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Time(IntPtr ptr)
     {
         var tmp = (Time.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Time.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Time.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -115,6 +120,8 @@ public struct Time
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -125,6 +132,7 @@ namespace Efl {
 /// This may be used to query the current running version of EFL. Or it can be passed by applications at startup time to inform EFL of the version a certain application was built for.
 /// (Since EFL 1.18)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Version
 {
     /// <summary>Major component of the version (&gt;= 1).</summary>
@@ -156,11 +164,15 @@ public struct Version
         this.Build_id = Build_id;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Version(IntPtr ptr)
     {
         var tmp = (Version.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Version.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Version.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -205,6 +217,8 @@ public struct Version
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

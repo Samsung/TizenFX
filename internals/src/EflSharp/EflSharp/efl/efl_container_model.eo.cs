@@ -14,7 +14,8 @@ namespace Efl {
 /// 
 /// Several containers can be supplied and the number of allocated children is based on the container of the largest size.</summary>
 [Efl.ContainerModel.NativeMethods]
-public class ContainerModel : Efl.CompositeModel, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class ContainerModel : Efl.CompositeModel
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -36,10 +37,10 @@ public class ContainerModel : Efl.CompositeModel, Efl.Eo.IWrapper
         efl_container_model_class_get();
     /// <summary>Initializes a new instance of the <see cref="ContainerModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel"/></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex"/></param>
+    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public ContainerModel(Efl.Object parent
-            , Efl.IModel model, uint? index = null) : base(efl_container_model_class_get(), typeof(ContainerModel), parent)
+            , Efl.IModel model, uint? index = null) : base(efl_container_model_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(model))
         {
@@ -54,54 +55,32 @@ public class ContainerModel : Efl.CompositeModel, Efl.Eo.IWrapper
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ContainerModel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ContainerModel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ContainerModel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ContainerModel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ContainerModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ContainerModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ContainerModel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the type of the given property.</summary>
     /// <param name="name">Property name</param>
     /// <returns>Property type</returns>
     virtual public Eina.ValueType GetChildPropertyValueType(System.String name) {
-                                 var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_value_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_value_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -118,7 +97,7 @@ public class ContainerModel : Efl.CompositeModel, Efl.Eo.IWrapper
     virtual public bool AddChildProperty(System.String name, Eina.ValueType type, Eina.Iterator<System.IntPtr> values) {
                          var _in_values = values.Handle;
 values.Own = false;
-                                                        var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, type, _in_values);
+                                                        var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, type, _in_values);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -168,7 +147,7 @@ values.Own = false;
             return Efl.ContainerModel.efl_container_model_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.ValueType efl_container_model_child_property_value_type_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
@@ -181,13 +160,13 @@ values.Own = false;
         private static Eina.ValueType child_property_value_type_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_container_model_child_property_value_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Eina.ValueType _ret_var = default(Eina.ValueType);
                 try
                 {
-                    _ret_var = ((ContainerModel)wrapper).GetChildPropertyValueType(name);
+                    _ret_var = ((ContainerModel)ws.Target).GetChildPropertyValueType(name);
                 }
                 catch (Exception e)
                 {
@@ -217,14 +196,14 @@ values.Own = false;
         private static bool child_property_add(System.IntPtr obj, System.IntPtr pd, System.String name, Eina.ValueType type, System.IntPtr values)
         {
             Eina.Log.Debug("function efl_container_model_child_property_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
-                        var _in_values = new Eina.Iterator<System.IntPtr>(values, true, false);
+                        var _in_values = new Eina.Iterator<System.IntPtr>(values, true);
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ContainerModel)wrapper).AddChildProperty(name, type, _in_values);
+                    _ret_var = ((ContainerModel)ws.Target).AddChildProperty(name, type, _in_values);
                 }
                 catch (Exception e)
                 {
@@ -243,7 +222,7 @@ values.Own = false;
 
         private static efl_container_model_child_property_add_delegate efl_container_model_child_property_add_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

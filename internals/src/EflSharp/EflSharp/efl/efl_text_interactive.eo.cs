@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>This is an interface interactive text inputs should implement</summary>
 [Efl.ITextInteractiveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextInteractive : 
     Efl.IText ,
     Efl.ITextFont ,
@@ -42,27 +43,27 @@ void SelectNone();
                             /// <summary>The selection on the object has changed. Query using <see cref="Efl.ITextInteractive.GetSelectionCursors"/></summary>
     event EventHandler TextSelectionChangedEvt;
     /// <summary>Whether or not selection is allowed on this object</summary>
-/// <value><c>true</c> if enabled, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if enabled, <c>false</c> otherwise</value>
     bool SelectionAllowed {
         get ;
         set ;
     }
     /// <summary>Whether the entry is editable.
-/// By default text interactives are editable. However setting this property to <c>false</c> will make it so that key input will be disregarded.</summary>
-/// <value>If <c>true</c>, user input will be inserted in the entry, if not, the entry is read-only and no user input is allowed.</value>
+    /// By default text interactives are editable. However setting this property to <c>false</c> will make it so that key input will be disregarded.</summary>
+    /// <value>If <c>true</c>, user input will be inserted in the entry, if not, the entry is read-only and no user input is allowed.</value>
     bool Editable {
         get ;
         set ;
     }
 }
 /// <summary>This is an interface interactive text inputs should implement</summary>
-sealed public class ITextInteractiveConcrete : 
-
-ITextInteractive
+sealed public class ITextInteractiveConcrete :
+    Efl.Eo.EoWrapper
+    , ITextInteractive
     , Efl.IText, Efl.ITextFont, Efl.ITextFormat, Efl.ITextStyle
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -77,155 +78,19 @@ ITextInteractive
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextInteractiveConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_text_interactive_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextInteractive"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextInteractiveConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextInteractiveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ITextInteractiveConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>The selection on the object has changed. Query using <see cref="Efl.ITextInteractive.GetSelectionCursors"/></summary>
@@ -233,12 +98,11 @@ ITextInteractive
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -261,7 +125,7 @@ ITextInteractive
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_TEXT_INTERACTIVE_EVENT_TEXT_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -919,187 +783,187 @@ ITextInteractive
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether or not selection is allowed on this object</summary>
-/// <value><c>true</c> if enabled, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if enabled, <c>false</c> otherwise</value>
     public bool SelectionAllowed {
         get { return GetSelectionAllowed(); }
         set { SetSelectionAllowed(value); }
     }
     /// <summary>Whether the entry is editable.
-/// By default text interactives are editable. However setting this property to <c>false</c> will make it so that key input will be disregarded.</summary>
-/// <value>If <c>true</c>, user input will be inserted in the entry, if not, the entry is read-only and no user input is allowed.</value>
+    /// By default text interactives are editable. However setting this property to <c>false</c> will make it so that key input will be disregarded.</summary>
+    /// <value>If <c>true</c>, user input will be inserted in the entry, if not, the entry is read-only and no user input is allowed.</value>
     public bool Editable {
         get { return GetEditable(); }
         set { SetEditable(value); }
     }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
-/// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
-/// <value>The font file&apos;s path.</value>
+    /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <value>The font file&apos;s path.</value>
     public System.String FontSource {
         get { return GetFontSource(); }
         set { SetFontSource(value); }
     }
     /// <summary>Comma-separated list of font fallbacks
-/// Will be used in case the primary font isn&apos;t available.</summary>
-/// <value>Font name fallbacks</value>
+    /// Will be used in case the primary font isn&apos;t available.</summary>
+    /// <value>Font name fallbacks</value>
     public System.String FontFallbacks {
         get { return GetFontFallbacks(); }
         set { SetFontFallbacks(value); }
     }
     /// <summary>Type of weight of the displayed font
-/// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
-/// <value>Font weight</value>
+    /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
+    /// <value>Font weight</value>
     public Efl.TextFontWeight FontWeight {
         get { return GetFontWeight(); }
         set { SetFontWeight(value); }
     }
     /// <summary>Type of slant of the displayed font
-/// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
-/// <value>Font slant</value>
+    /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
+    /// <value>Font slant</value>
     public Efl.TextFontSlant FontSlant {
         get { return GetFontSlant(); }
         set { SetFontSlant(value); }
     }
     /// <summary>Type of width of the displayed font
-/// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
-/// <value>Font width</value>
+    /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
+    /// <value>Font width</value>
     public Efl.TextFontWidth FontWidth {
         get { return GetFontWidth(); }
         set { SetFontWidth(value); }
     }
     /// <summary>Specific language of the displayed font
-/// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
-/// <value>Language</value>
+    /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
+    /// <value>Language</value>
     public System.String FontLang {
         get { return GetFontLang(); }
         set { SetFontLang(value); }
     }
     /// <summary>The bitmap fonts have fixed size glyphs for several available sizes. Basically, it is not scalable. But, it needs to be scalable for some use cases. (ex. colorful emoji fonts)
-/// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
-/// <value>Scalable</value>
+    /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
+    /// <value>Scalable</value>
     public Efl.TextFontBitmapScalable FontBitmapScalable {
         get { return GetFontBitmapScalable(); }
         set { SetFontBitmapScalable(value); }
     }
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
-/// <value>Ellipsis value</value>
+    /// <value>Ellipsis value</value>
     public double Ellipsis {
         get { return GetEllipsis(); }
         set { SetEllipsis(value); }
     }
     /// <summary>Wrap mode for use in the text</summary>
-/// <value>Wrap mode</value>
+    /// <value>Wrap mode</value>
     public Efl.TextFormatWrap Wrap {
         get { return GetWrap(); }
         set { SetWrap(value); }
     }
     /// <summary>Multiline is enabled or not</summary>
-/// <value><c>true</c> if multiline is enabled, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if multiline is enabled, <c>false</c> otherwise</value>
     public bool Multiline {
         get { return GetMultiline(); }
         set { SetMultiline(value); }
     }
     /// <summary>Horizontal alignment of text</summary>
-/// <value>Alignment type</value>
+    /// <value>Alignment type</value>
     public Efl.TextFormatHorizontalAlignmentAutoType HalignAutoType {
         get { return GetHalignAutoType(); }
         set { SetHalignAutoType(value); }
     }
     /// <summary>Horizontal alignment of text</summary>
-/// <value>Horizontal alignment value</value>
+    /// <value>Horizontal alignment value</value>
     public double Halign {
         get { return GetHalign(); }
         set { SetHalign(value); }
     }
     /// <summary>Vertical alignment of text</summary>
-/// <value>Vertical alignment value</value>
+    /// <value>Vertical alignment value</value>
     public double Valign {
         get { return GetValign(); }
         set { SetValign(value); }
     }
     /// <summary>Minimal line gap (top and bottom) for each line in the text
-/// <c>value</c> is absolute size.</summary>
-/// <value>Line gap value</value>
+    /// <c>value</c> is absolute size.</summary>
+    /// <value>Line gap value</value>
     public double Linegap {
         get { return GetLinegap(); }
         set { SetLinegap(value); }
     }
     /// <summary>Relative line gap (top and bottom) for each line in the text
-/// The original line gap value is multiplied by <c>value</c>.</summary>
-/// <value>Relative line gap value</value>
+    /// The original line gap value is multiplied by <c>value</c>.</summary>
+    /// <value>Relative line gap value</value>
     public double Linerelgap {
         get { return GetLinerelgap(); }
         set { SetLinerelgap(value); }
     }
     /// <summary>Tabstops value</summary>
-/// <value>Tapstops value</value>
+    /// <value>Tapstops value</value>
     public int Tabstops {
         get { return GetTabstops(); }
         set { SetTabstops(value); }
     }
     /// <summary>Whether text is a password</summary>
-/// <value><c>true</c> if the text is a password, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the text is a password, <c>false</c> otherwise</value>
     public bool Password {
         get { return GetPassword(); }
         set { SetPassword(value); }
     }
     /// <summary>The character used to replace characters that can&apos;t be displayed
-/// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
-/// <value>Replacement character</value>
+    /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
+    /// <value>Replacement character</value>
     public System.String ReplacementChar {
         get { return GetReplacementChar(); }
         set { SetReplacementChar(value); }
     }
     /// <summary>Enable or disable backing type</summary>
-/// <value>Backing type</value>
+    /// <value>Backing type</value>
     public Efl.TextStyleBackingType BackingType {
         get { return GetBackingType(); }
         set { SetBackingType(value); }
     }
     /// <summary>Sets an underline style on the text</summary>
-/// <value>Underline type</value>
+    /// <value>Underline type</value>
     public Efl.TextStyleUnderlineType UnderlineType {
         get { return GetUnderlineType(); }
         set { SetUnderlineType(value); }
     }
     /// <summary>Height of underline style</summary>
-/// <value>Height</value>
+    /// <value>Height</value>
     public double UnderlineHeight {
         get { return GetUnderlineHeight(); }
         set { SetUnderlineHeight(value); }
     }
     /// <summary>Width of dashed underline style</summary>
-/// <value>Width</value>
+    /// <value>Width</value>
     public int UnderlineDashedWidth {
         get { return GetUnderlineDashedWidth(); }
         set { SetUnderlineDashedWidth(value); }
     }
     /// <summary>Gap of dashed underline style</summary>
-/// <value>Gap</value>
+    /// <value>Gap</value>
     public int UnderlineDashedGap {
         get { return GetUnderlineDashedGap(); }
         set { SetUnderlineDashedGap(value); }
     }
     /// <summary>Type of strikethrough style</summary>
-/// <value>Strikethrough type</value>
+    /// <value>Strikethrough type</value>
     public Efl.TextStyleStrikethroughType StrikethroughType {
         get { return GetStrikethroughType(); }
         set { SetStrikethroughType(value); }
     }
     /// <summary>Type of effect used for the displayed text</summary>
-/// <value>Effect type</value>
+    /// <value>Effect type</value>
     public Efl.TextStyleEffectType EffectType {
         get { return GetEffectType(); }
         set { SetEffectType(value); }
     }
     /// <summary>Direction of shadow effect</summary>
-/// <value>Shadow direction</value>
+    /// <value>Shadow direction</value>
     public Efl.TextStyleShadowDirection ShadowDirection {
         get { return GetShadowDirection(); }
         set { SetShadowDirection(value); }
     }
     /// <summary>Program that applies a special filter
-/// See <see cref="Efl.Gfx.IFilter"/>.</summary>
-/// <value>Filter code</value>
+    /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
+    /// <value>Filter code</value>
     public System.String GfxFilter {
         get { return GetGfxFilter(); }
         set { SetGfxFilter(value); }
@@ -1110,7 +974,7 @@ ITextInteractive
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1969,7 +1833,7 @@ ITextInteractive
             return Efl.ITextInteractiveConcrete.efl_text_interactive_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_text_interactive_selection_allowed_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1982,13 +1846,13 @@ ITextInteractive
         private static bool selection_allowed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_interactive_selection_allowed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetSelectionAllowed();
+                    _ret_var = ((ITextInteractive)ws.Target).GetSelectionAllowed();
                 }
                 catch (Exception e)
                 {
@@ -2018,13 +1882,13 @@ ITextInteractive
         private static void selection_allowed_set(System.IntPtr obj, System.IntPtr pd, bool allowed)
         {
             Eina.Log.Debug("function efl_text_interactive_selection_allowed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetSelectionAllowed(allowed);
+                    ((ITextInteractive)ws.Target).SetSelectionAllowed(allowed);
                 }
                 catch (Exception e)
                 {
@@ -2053,13 +1917,13 @@ ITextInteractive
         private static void selection_cursors_get(System.IntPtr obj, System.IntPtr pd, out Efl.TextCursorCursor start, out Efl.TextCursorCursor end)
         {
             Eina.Log.Debug("function efl_text_interactive_selection_cursors_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         start = default(Efl.TextCursorCursor);        end = default(Efl.TextCursorCursor);                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetSelectionCursors(out start, out end);
+                    ((ITextInteractive)ws.Target).GetSelectionCursors(out start, out end);
                 }
                 catch (Exception e)
                 {
@@ -2088,13 +1952,13 @@ ITextInteractive
         private static bool editable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_interactive_editable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetEditable();
+                    _ret_var = ((ITextInteractive)ws.Target).GetEditable();
                 }
                 catch (Exception e)
                 {
@@ -2124,13 +1988,13 @@ ITextInteractive
         private static void editable_set(System.IntPtr obj, System.IntPtr pd, bool editable)
         {
             Eina.Log.Debug("function efl_text_interactive_editable_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetEditable(editable);
+                    ((ITextInteractive)ws.Target).SetEditable(editable);
                 }
                 catch (Exception e)
                 {
@@ -2159,13 +2023,13 @@ ITextInteractive
         private static void select_none(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_interactive_select_none was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ITextInteractive)wrapper).SelectNone();
+                    ((ITextInteractive)ws.Target).SelectNone();
                 }
                 catch (Exception e)
                 {
@@ -2194,13 +2058,13 @@ ITextInteractive
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetText();
+                    _ret_var = ((ITextInteractive)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -2230,13 +2094,13 @@ ITextInteractive
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetText(text);
+                    ((ITextInteractive)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -2265,14 +2129,14 @@ ITextInteractive
         private static void font_get(System.IntPtr obj, System.IntPtr pd, out System.String font, out Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_text_font_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         System.String _out_font = default(System.String);
         size = default(Efl.Font.Size);                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetFont(out _out_font, out size);
+                    ((ITextInteractive)ws.Target).GetFont(out _out_font, out size);
                 }
                 catch (Exception e)
                 {
@@ -2302,13 +2166,13 @@ ITextInteractive
         private static void font_set(System.IntPtr obj, System.IntPtr pd, System.String font, Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_text_font_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFont(font, size);
+                    ((ITextInteractive)ws.Target).SetFont(font, size);
                 }
                 catch (Exception e)
                 {
@@ -2337,13 +2201,13 @@ ITextInteractive
         private static System.String font_source_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_source_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetFontSource();
+                    _ret_var = ((ITextInteractive)ws.Target).GetFontSource();
                 }
                 catch (Exception e)
                 {
@@ -2373,13 +2237,13 @@ ITextInteractive
         private static void font_source_set(System.IntPtr obj, System.IntPtr pd, System.String font_source)
         {
             Eina.Log.Debug("function efl_text_font_source_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFontSource(font_source);
+                    ((ITextInteractive)ws.Target).SetFontSource(font_source);
                 }
                 catch (Exception e)
                 {
@@ -2408,13 +2272,13 @@ ITextInteractive
         private static System.String font_fallbacks_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_fallbacks_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetFontFallbacks();
+                    _ret_var = ((ITextInteractive)ws.Target).GetFontFallbacks();
                 }
                 catch (Exception e)
                 {
@@ -2444,13 +2308,13 @@ ITextInteractive
         private static void font_fallbacks_set(System.IntPtr obj, System.IntPtr pd, System.String font_fallbacks)
         {
             Eina.Log.Debug("function efl_text_font_fallbacks_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFontFallbacks(font_fallbacks);
+                    ((ITextInteractive)ws.Target).SetFontFallbacks(font_fallbacks);
                 }
                 catch (Exception e)
                 {
@@ -2479,13 +2343,13 @@ ITextInteractive
         private static Efl.TextFontWeight font_weight_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_weight_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontWeight _ret_var = default(Efl.TextFontWeight);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetFontWeight();
+                    _ret_var = ((ITextInteractive)ws.Target).GetFontWeight();
                 }
                 catch (Exception e)
                 {
@@ -2515,13 +2379,13 @@ ITextInteractive
         private static void font_weight_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontWeight font_weight)
         {
             Eina.Log.Debug("function efl_text_font_weight_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFontWeight(font_weight);
+                    ((ITextInteractive)ws.Target).SetFontWeight(font_weight);
                 }
                 catch (Exception e)
                 {
@@ -2550,13 +2414,13 @@ ITextInteractive
         private static Efl.TextFontSlant font_slant_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_slant_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontSlant _ret_var = default(Efl.TextFontSlant);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetFontSlant();
+                    _ret_var = ((ITextInteractive)ws.Target).GetFontSlant();
                 }
                 catch (Exception e)
                 {
@@ -2586,13 +2450,13 @@ ITextInteractive
         private static void font_slant_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontSlant style)
         {
             Eina.Log.Debug("function efl_text_font_slant_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFontSlant(style);
+                    ((ITextInteractive)ws.Target).SetFontSlant(style);
                 }
                 catch (Exception e)
                 {
@@ -2621,13 +2485,13 @@ ITextInteractive
         private static Efl.TextFontWidth font_width_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_width_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontWidth _ret_var = default(Efl.TextFontWidth);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetFontWidth();
+                    _ret_var = ((ITextInteractive)ws.Target).GetFontWidth();
                 }
                 catch (Exception e)
                 {
@@ -2657,13 +2521,13 @@ ITextInteractive
         private static void font_width_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontWidth width)
         {
             Eina.Log.Debug("function efl_text_font_width_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFontWidth(width);
+                    ((ITextInteractive)ws.Target).SetFontWidth(width);
                 }
                 catch (Exception e)
                 {
@@ -2692,13 +2556,13 @@ ITextInteractive
         private static System.String font_lang_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_lang_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetFontLang();
+                    _ret_var = ((ITextInteractive)ws.Target).GetFontLang();
                 }
                 catch (Exception e)
                 {
@@ -2728,13 +2592,13 @@ ITextInteractive
         private static void font_lang_set(System.IntPtr obj, System.IntPtr pd, System.String lang)
         {
             Eina.Log.Debug("function efl_text_font_lang_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFontLang(lang);
+                    ((ITextInteractive)ws.Target).SetFontLang(lang);
                 }
                 catch (Exception e)
                 {
@@ -2763,13 +2627,13 @@ ITextInteractive
         private static Efl.TextFontBitmapScalable font_bitmap_scalable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_bitmap_scalable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontBitmapScalable _ret_var = default(Efl.TextFontBitmapScalable);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetFontBitmapScalable();
+                    _ret_var = ((ITextInteractive)ws.Target).GetFontBitmapScalable();
                 }
                 catch (Exception e)
                 {
@@ -2799,13 +2663,13 @@ ITextInteractive
         private static void font_bitmap_scalable_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontBitmapScalable scalable)
         {
             Eina.Log.Debug("function efl_text_font_bitmap_scalable_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetFontBitmapScalable(scalable);
+                    ((ITextInteractive)ws.Target).SetFontBitmapScalable(scalable);
                 }
                 catch (Exception e)
                 {
@@ -2834,13 +2698,13 @@ ITextInteractive
         private static double ellipsis_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_ellipsis_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetEllipsis();
+                    _ret_var = ((ITextInteractive)ws.Target).GetEllipsis();
                 }
                 catch (Exception e)
                 {
@@ -2870,13 +2734,13 @@ ITextInteractive
         private static void ellipsis_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_ellipsis_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetEllipsis(value);
+                    ((ITextInteractive)ws.Target).SetEllipsis(value);
                 }
                 catch (Exception e)
                 {
@@ -2905,13 +2769,13 @@ ITextInteractive
         private static Efl.TextFormatWrap wrap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_wrap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFormatWrap _ret_var = default(Efl.TextFormatWrap);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetWrap();
+                    _ret_var = ((ITextInteractive)ws.Target).GetWrap();
                 }
                 catch (Exception e)
                 {
@@ -2941,13 +2805,13 @@ ITextInteractive
         private static void wrap_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFormatWrap wrap)
         {
             Eina.Log.Debug("function efl_text_wrap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetWrap(wrap);
+                    ((ITextInteractive)ws.Target).SetWrap(wrap);
                 }
                 catch (Exception e)
                 {
@@ -2976,13 +2840,13 @@ ITextInteractive
         private static bool multiline_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_multiline_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetMultiline();
+                    _ret_var = ((ITextInteractive)ws.Target).GetMultiline();
                 }
                 catch (Exception e)
                 {
@@ -3012,13 +2876,13 @@ ITextInteractive
         private static void multiline_set(System.IntPtr obj, System.IntPtr pd, bool enabled)
         {
             Eina.Log.Debug("function efl_text_multiline_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetMultiline(enabled);
+                    ((ITextInteractive)ws.Target).SetMultiline(enabled);
                 }
                 catch (Exception e)
                 {
@@ -3047,13 +2911,13 @@ ITextInteractive
         private static Efl.TextFormatHorizontalAlignmentAutoType halign_auto_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_halign_auto_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFormatHorizontalAlignmentAutoType _ret_var = default(Efl.TextFormatHorizontalAlignmentAutoType);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetHalignAutoType();
+                    _ret_var = ((ITextInteractive)ws.Target).GetHalignAutoType();
                 }
                 catch (Exception e)
                 {
@@ -3083,13 +2947,13 @@ ITextInteractive
         private static void halign_auto_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFormatHorizontalAlignmentAutoType value)
         {
             Eina.Log.Debug("function efl_text_halign_auto_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetHalignAutoType(value);
+                    ((ITextInteractive)ws.Target).SetHalignAutoType(value);
                 }
                 catch (Exception e)
                 {
@@ -3118,13 +2982,13 @@ ITextInteractive
         private static double halign_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_halign_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetHalign();
+                    _ret_var = ((ITextInteractive)ws.Target).GetHalign();
                 }
                 catch (Exception e)
                 {
@@ -3154,13 +3018,13 @@ ITextInteractive
         private static void halign_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_halign_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetHalign(value);
+                    ((ITextInteractive)ws.Target).SetHalign(value);
                 }
                 catch (Exception e)
                 {
@@ -3189,13 +3053,13 @@ ITextInteractive
         private static double valign_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_valign_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetValign();
+                    _ret_var = ((ITextInteractive)ws.Target).GetValign();
                 }
                 catch (Exception e)
                 {
@@ -3225,13 +3089,13 @@ ITextInteractive
         private static void valign_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_valign_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetValign(value);
+                    ((ITextInteractive)ws.Target).SetValign(value);
                 }
                 catch (Exception e)
                 {
@@ -3260,13 +3124,13 @@ ITextInteractive
         private static double linegap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_linegap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetLinegap();
+                    _ret_var = ((ITextInteractive)ws.Target).GetLinegap();
                 }
                 catch (Exception e)
                 {
@@ -3296,13 +3160,13 @@ ITextInteractive
         private static void linegap_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_linegap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetLinegap(value);
+                    ((ITextInteractive)ws.Target).SetLinegap(value);
                 }
                 catch (Exception e)
                 {
@@ -3331,13 +3195,13 @@ ITextInteractive
         private static double linerelgap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_linerelgap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetLinerelgap();
+                    _ret_var = ((ITextInteractive)ws.Target).GetLinerelgap();
                 }
                 catch (Exception e)
                 {
@@ -3367,13 +3231,13 @@ ITextInteractive
         private static void linerelgap_set(System.IntPtr obj, System.IntPtr pd, double value)
         {
             Eina.Log.Debug("function efl_text_linerelgap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetLinerelgap(value);
+                    ((ITextInteractive)ws.Target).SetLinerelgap(value);
                 }
                 catch (Exception e)
                 {
@@ -3402,13 +3266,13 @@ ITextInteractive
         private static int tabstops_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_tabstops_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetTabstops();
+                    _ret_var = ((ITextInteractive)ws.Target).GetTabstops();
                 }
                 catch (Exception e)
                 {
@@ -3438,13 +3302,13 @@ ITextInteractive
         private static void tabstops_set(System.IntPtr obj, System.IntPtr pd, int value)
         {
             Eina.Log.Debug("function efl_text_tabstops_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetTabstops(value);
+                    ((ITextInteractive)ws.Target).SetTabstops(value);
                 }
                 catch (Exception e)
                 {
@@ -3473,13 +3337,13 @@ ITextInteractive
         private static bool password_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_password_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetPassword();
+                    _ret_var = ((ITextInteractive)ws.Target).GetPassword();
                 }
                 catch (Exception e)
                 {
@@ -3509,13 +3373,13 @@ ITextInteractive
         private static void password_set(System.IntPtr obj, System.IntPtr pd, bool enabled)
         {
             Eina.Log.Debug("function efl_text_password_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetPassword(enabled);
+                    ((ITextInteractive)ws.Target).SetPassword(enabled);
                 }
                 catch (Exception e)
                 {
@@ -3544,13 +3408,13 @@ ITextInteractive
         private static System.String replacement_char_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_replacement_char_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetReplacementChar();
+                    _ret_var = ((ITextInteractive)ws.Target).GetReplacementChar();
                 }
                 catch (Exception e)
                 {
@@ -3580,13 +3444,13 @@ ITextInteractive
         private static void replacement_char_set(System.IntPtr obj, System.IntPtr pd, System.String repch)
         {
             Eina.Log.Debug("function efl_text_replacement_char_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetReplacementChar(repch);
+                    ((ITextInteractive)ws.Target).SetReplacementChar(repch);
                 }
                 catch (Exception e)
                 {
@@ -3615,13 +3479,13 @@ ITextInteractive
         private static void normal_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_normal_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetNormalColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetNormalColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -3650,13 +3514,13 @@ ITextInteractive
         private static void normal_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_normal_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetNormalColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetNormalColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -3685,13 +3549,13 @@ ITextInteractive
         private static Efl.TextStyleBackingType backing_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_backing_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleBackingType _ret_var = default(Efl.TextStyleBackingType);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetBackingType();
+                    _ret_var = ((ITextInteractive)ws.Target).GetBackingType();
                 }
                 catch (Exception e)
                 {
@@ -3721,13 +3585,13 @@ ITextInteractive
         private static void backing_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleBackingType type)
         {
             Eina.Log.Debug("function efl_text_backing_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetBackingType(type);
+                    ((ITextInteractive)ws.Target).SetBackingType(type);
                 }
                 catch (Exception e)
                 {
@@ -3756,13 +3620,13 @@ ITextInteractive
         private static void backing_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_backing_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetBackingColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetBackingColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -3791,13 +3655,13 @@ ITextInteractive
         private static void backing_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_backing_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetBackingColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetBackingColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -3826,13 +3690,13 @@ ITextInteractive
         private static Efl.TextStyleUnderlineType underline_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleUnderlineType _ret_var = default(Efl.TextStyleUnderlineType);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetUnderlineType();
+                    _ret_var = ((ITextInteractive)ws.Target).GetUnderlineType();
                 }
                 catch (Exception e)
                 {
@@ -3862,13 +3726,13 @@ ITextInteractive
         private static void underline_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleUnderlineType type)
         {
             Eina.Log.Debug("function efl_text_underline_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetUnderlineType(type);
+                    ((ITextInteractive)ws.Target).SetUnderlineType(type);
                 }
                 catch (Exception e)
                 {
@@ -3897,13 +3761,13 @@ ITextInteractive
         private static void underline_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_underline_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetUnderlineColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetUnderlineColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -3932,13 +3796,13 @@ ITextInteractive
         private static void underline_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_underline_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetUnderlineColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetUnderlineColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -3967,13 +3831,13 @@ ITextInteractive
         private static double underline_height_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_height_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetUnderlineHeight();
+                    _ret_var = ((ITextInteractive)ws.Target).GetUnderlineHeight();
                 }
                 catch (Exception e)
                 {
@@ -4003,13 +3867,13 @@ ITextInteractive
         private static void underline_height_set(System.IntPtr obj, System.IntPtr pd, double height)
         {
             Eina.Log.Debug("function efl_text_underline_height_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetUnderlineHeight(height);
+                    ((ITextInteractive)ws.Target).SetUnderlineHeight(height);
                 }
                 catch (Exception e)
                 {
@@ -4038,13 +3902,13 @@ ITextInteractive
         private static void underline_dashed_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetUnderlineDashedColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetUnderlineDashedColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4073,13 +3937,13 @@ ITextInteractive
         private static void underline_dashed_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetUnderlineDashedColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetUnderlineDashedColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4108,13 +3972,13 @@ ITextInteractive
         private static int underline_dashed_width_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_width_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetUnderlineDashedWidth();
+                    _ret_var = ((ITextInteractive)ws.Target).GetUnderlineDashedWidth();
                 }
                 catch (Exception e)
                 {
@@ -4144,13 +4008,13 @@ ITextInteractive
         private static void underline_dashed_width_set(System.IntPtr obj, System.IntPtr pd, int width)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_width_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetUnderlineDashedWidth(width);
+                    ((ITextInteractive)ws.Target).SetUnderlineDashedWidth(width);
                 }
                 catch (Exception e)
                 {
@@ -4179,13 +4043,13 @@ ITextInteractive
         private static int underline_dashed_gap_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_gap_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetUnderlineDashedGap();
+                    _ret_var = ((ITextInteractive)ws.Target).GetUnderlineDashedGap();
                 }
                 catch (Exception e)
                 {
@@ -4215,13 +4079,13 @@ ITextInteractive
         private static void underline_dashed_gap_set(System.IntPtr obj, System.IntPtr pd, int gap)
         {
             Eina.Log.Debug("function efl_text_underline_dashed_gap_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetUnderlineDashedGap(gap);
+                    ((ITextInteractive)ws.Target).SetUnderlineDashedGap(gap);
                 }
                 catch (Exception e)
                 {
@@ -4250,13 +4114,13 @@ ITextInteractive
         private static void underline2_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_underline2_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetUnderline2Color(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetUnderline2Color(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4285,13 +4149,13 @@ ITextInteractive
         private static void underline2_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_underline2_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetUnderline2Color(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetUnderline2Color(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4320,13 +4184,13 @@ ITextInteractive
         private static Efl.TextStyleStrikethroughType strikethrough_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_strikethrough_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleStrikethroughType _ret_var = default(Efl.TextStyleStrikethroughType);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetStrikethroughType();
+                    _ret_var = ((ITextInteractive)ws.Target).GetStrikethroughType();
                 }
                 catch (Exception e)
                 {
@@ -4356,13 +4220,13 @@ ITextInteractive
         private static void strikethrough_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleStrikethroughType type)
         {
             Eina.Log.Debug("function efl_text_strikethrough_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetStrikethroughType(type);
+                    ((ITextInteractive)ws.Target).SetStrikethroughType(type);
                 }
                 catch (Exception e)
                 {
@@ -4391,13 +4255,13 @@ ITextInteractive
         private static void strikethrough_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_strikethrough_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetStrikethroughColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetStrikethroughColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4426,13 +4290,13 @@ ITextInteractive
         private static void strikethrough_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_strikethrough_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetStrikethroughColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetStrikethroughColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4461,13 +4325,13 @@ ITextInteractive
         private static Efl.TextStyleEffectType effect_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_effect_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleEffectType _ret_var = default(Efl.TextStyleEffectType);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetEffectType();
+                    _ret_var = ((ITextInteractive)ws.Target).GetEffectType();
                 }
                 catch (Exception e)
                 {
@@ -4497,13 +4361,13 @@ ITextInteractive
         private static void effect_type_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleEffectType type)
         {
             Eina.Log.Debug("function efl_text_effect_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetEffectType(type);
+                    ((ITextInteractive)ws.Target).SetEffectType(type);
                 }
                 catch (Exception e)
                 {
@@ -4532,13 +4396,13 @@ ITextInteractive
         private static void outline_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_outline_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetOutlineColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetOutlineColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4567,13 +4431,13 @@ ITextInteractive
         private static void outline_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_outline_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetOutlineColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetOutlineColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4602,13 +4466,13 @@ ITextInteractive
         private static Efl.TextStyleShadowDirection shadow_direction_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_shadow_direction_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextStyleShadowDirection _ret_var = default(Efl.TextStyleShadowDirection);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetShadowDirection();
+                    _ret_var = ((ITextInteractive)ws.Target).GetShadowDirection();
                 }
                 catch (Exception e)
                 {
@@ -4638,13 +4502,13 @@ ITextInteractive
         private static void shadow_direction_set(System.IntPtr obj, System.IntPtr pd, Efl.TextStyleShadowDirection type)
         {
             Eina.Log.Debug("function efl_text_shadow_direction_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetShadowDirection(type);
+                    ((ITextInteractive)ws.Target).SetShadowDirection(type);
                 }
                 catch (Exception e)
                 {
@@ -4673,13 +4537,13 @@ ITextInteractive
         private static void shadow_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_shadow_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetShadowColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetShadowColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4708,13 +4572,13 @@ ITextInteractive
         private static void shadow_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_shadow_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetShadowColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetShadowColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4743,13 +4607,13 @@ ITextInteractive
         private static void glow_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_glow_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetGlowColor(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetGlowColor(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4778,13 +4642,13 @@ ITextInteractive
         private static void glow_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_glow_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetGlowColor(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetGlowColor(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4813,13 +4677,13 @@ ITextInteractive
         private static void glow2_color_get(System.IntPtr obj, System.IntPtr pd, out byte r, out byte g, out byte b, out byte a)
         {
             Eina.Log.Debug("function efl_text_glow2_color_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         r = default(byte);        g = default(byte);        b = default(byte);        a = default(byte);                                            
                 try
                 {
-                    ((ITextInteractive)wrapper).GetGlow2Color(out r, out g, out b, out a);
+                    ((ITextInteractive)ws.Target).GetGlow2Color(out r, out g, out b, out a);
                 }
                 catch (Exception e)
                 {
@@ -4848,13 +4712,13 @@ ITextInteractive
         private static void glow2_color_set(System.IntPtr obj, System.IntPtr pd, byte r, byte g, byte b, byte a)
         {
             Eina.Log.Debug("function efl_text_glow2_color_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((ITextInteractive)wrapper).SetGlow2Color(r, g, b, a);
+                    ((ITextInteractive)ws.Target).SetGlow2Color(r, g, b, a);
                 }
                 catch (Exception e)
                 {
@@ -4883,13 +4747,13 @@ ITextInteractive
         private static System.String gfx_filter_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_gfx_filter_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextInteractive)wrapper).GetGfxFilter();
+                    _ret_var = ((ITextInteractive)ws.Target).GetGfxFilter();
                 }
                 catch (Exception e)
                 {
@@ -4919,13 +4783,13 @@ ITextInteractive
         private static void gfx_filter_set(System.IntPtr obj, System.IntPtr pd, System.String code)
         {
             Eina.Log.Debug("function efl_text_gfx_filter_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextInteractive)wrapper).SetGfxFilter(code);
+                    ((ITextInteractive)ws.Target).SetGfxFilter(code);
                 }
                 catch (Exception e)
                 {
@@ -4943,7 +4807,7 @@ ITextInteractive
 
         private static efl_text_gfx_filter_set_delegate efl_text_gfx_filter_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

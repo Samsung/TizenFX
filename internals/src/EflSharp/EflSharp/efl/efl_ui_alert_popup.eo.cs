@@ -10,13 +10,15 @@ namespace Efl {
 namespace Ui {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.AlertPopup.ButtonClickedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class AlertPopupButtonClickedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.AlertPopupButtonClickedEvent arg { get; set; }
 }
 /// <summary>EFL UI Alert Popup class</summary>
 [Efl.Ui.AlertPopup.NativeMethods]
-public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class AlertPopup : Efl.Ui.Popup
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -38,9 +40,9 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
         efl_ui_alert_popup_class_get();
     /// <summary>Initializes a new instance of the <see cref="AlertPopup"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public AlertPopup(Efl.Object parent
-            , System.String style = null) : base(efl_ui_alert_popup_class_get(), typeof(AlertPopup), parent)
+            , System.String style = null) : base(efl_ui_alert_popup_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -50,47 +52,25 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AlertPopup(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AlertPopup"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AlertPopup(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AlertPopup(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="AlertPopup"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AlertPopup(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AlertPopup(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Called when alert popup was clicked</summary>
@@ -98,15 +78,14 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.AlertPopupButtonClickedEvt_Args args = new Efl.Ui.AlertPopupButtonClickedEvt_Args();
+                        Efl.Ui.AlertPopupButtonClickedEvt_Args args = new Efl.Ui.AlertPopupButtonClickedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -127,7 +106,7 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_ALERT_POPUP_EVENT_BUTTON_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -161,7 +140,7 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
     /// <param name="text">Alert string on button</param>
     /// <param name="icon">Alert icon on button</param>
     virtual public void SetButton(Efl.Ui.AlertPopupButton type, System.String text, Efl.Object icon) {
-                                                                                 Efl.Ui.AlertPopup.NativeMethods.efl_ui_alert_popup_button_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type, text, icon);
+                                                                                 Efl.Ui.AlertPopup.NativeMethods.efl_ui_alert_popup_button_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, text, icon);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     private static IntPtr GetEflClassStatic()
@@ -200,7 +179,7 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
             return Efl.Ui.AlertPopup.efl_ui_alert_popup_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_ui_alert_popup_button_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.AlertPopupButton type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object icon);
@@ -213,13 +192,13 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
         private static void button_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.AlertPopupButton type, System.String text, Efl.Object icon)
         {
             Eina.Log.Debug("function efl_ui_alert_popup_button_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((AlertPopup)wrapper).SetButton(type, text, icon);
+                    ((AlertPopup)ws.Target).SetButton(type, text, icon);
                 }
                 catch (Exception e)
                 {
@@ -237,7 +216,7 @@ public class AlertPopup : Efl.Ui.Popup, Efl.Eo.IWrapper
 
         private static efl_ui_alert_popup_button_set_delegate efl_ui_alert_popup_button_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -250,6 +229,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Defines the type of the alert button.</summary>
+[Efl.Eo.BindingEntity]
 public enum AlertPopupButton
 {
 /// <summary>Button having positive meaning. e.g. &quot;Yes&quot;</summary>
@@ -270,6 +250,7 @@ namespace Ui {
 
 /// <summary>Information of clicked event</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct AlertPopupButtonClickedEvent
 {
     /// <summary>Clicked button type</summary>
@@ -281,11 +262,15 @@ public struct AlertPopupButtonClickedEvent
         this.Button_type = Button_type;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator AlertPopupButtonClickedEvent(IntPtr ptr)
     {
         var tmp = (AlertPopupButtonClickedEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(AlertPopupButtonClickedEvent.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct AlertPopupButtonClickedEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -310,6 +295,8 @@ public struct AlertPopupButtonClickedEvent
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

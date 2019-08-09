@@ -160,6 +160,10 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_SWIGUpcast")]
             public static extern global::System.IntPtr TextLabel_SWIGUpcast(global::System.IntPtr jarg1);
 
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_TEXT_FIT_get")]
+            public static extern int TextLabel_Property_TEXT_FIT_get();
+
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Focus {
 /// <summary>Functions of focusable objects.
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Focus.IObjectConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IObject : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -72,72 +73,77 @@ bool UpdateOnFocus();
     /// (Since EFL 1.22)</summary>
     event EventHandler<Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args> FocusGeometryChangedEvt;
     /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-/// (Since EFL 1.22)</summary>
-/// <value>The geometry to use.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The geometry to use.</value>
     Eina.Rect FocusGeometry {
         get ;
     }
     /// <summary>Returns whether the widget is currently focused or not.
-/// (Since EFL 1.22)</summary>
-/// <value>The focused state of the object.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focused state of the object.</value>
     bool Focus {
         get ;
         set ;
     }
     /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-/// (Since EFL 1.22)</summary>
-/// <value>The manager object</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The manager object</value>
     Efl.Ui.Focus.IManager FocusManager {
         get ;
     }
     /// <summary>Describes which logical parent is used by this object.
-/// (Since EFL 1.22)</summary>
-/// <value>The focus parent.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focus parent.</value>
     Efl.Ui.Focus.IObject FocusParent {
         get ;
     }
     /// <summary>Indicates if a child of this object has focus set to true.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if a child has focus.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if a child has focus.</value>
     bool ChildFocus {
         get ;
         set ;
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusManagerChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusManagerChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.Focus.IManager arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusParentChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusParentChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.Focus.IObject arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.ChildFocusChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectChildFocusChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public bool arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusGeometryChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectFocusGeometryChangedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Eina.Rect arg { get; set; }
 }
 /// <summary>Functions of focusable objects.
 /// (Since EFL 1.22)</summary>
-sealed public class IObjectConcrete : 
-
-IObject
+sealed public class IObjectConcrete :
+    Efl.Eo.EoWrapper
+    , IObject
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -152,155 +158,19 @@ IObject
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IObjectConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_object_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IObjectConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IObjectConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Emitted if the focus state has changed.
@@ -309,16 +179,15 @@ IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -338,7 +207,7 @@ IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -372,15 +241,14 @@ IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
                         try
                         {
@@ -401,7 +269,7 @@ IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -428,15 +296,14 @@ IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
                         try
                         {
@@ -457,7 +324,7 @@ IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -484,16 +351,15 @@ IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -513,7 +379,7 @@ IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -547,15 +413,14 @@ IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -576,7 +441,7 @@ IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -681,33 +546,33 @@ IObject
         return _ret_var;
  }
     /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-/// (Since EFL 1.22)</summary>
-/// <value>The geometry to use.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The geometry to use.</value>
     public Eina.Rect FocusGeometry {
         get { return GetFocusGeometry(); }
     }
     /// <summary>Returns whether the widget is currently focused or not.
-/// (Since EFL 1.22)</summary>
-/// <value>The focused state of the object.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focused state of the object.</value>
     public bool Focus {
         get { return GetFocus(); }
         set { SetFocus(value); }
     }
     /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-/// (Since EFL 1.22)</summary>
-/// <value>The manager object</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The manager object</value>
     public Efl.Ui.Focus.IManager FocusManager {
         get { return GetFocusManager(); }
     }
     /// <summary>Describes which logical parent is used by this object.
-/// (Since EFL 1.22)</summary>
-/// <value>The focus parent.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focus parent.</value>
     public Efl.Ui.Focus.IObject FocusParent {
         get { return GetFocusParent(); }
     }
     /// <summary>Indicates if a child of this object has focus set to true.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if a child has focus.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if a child has focus.</value>
     public bool ChildFocus {
         get { return GetChildFocus(); }
         set { SetChildFocus(value); }
@@ -718,7 +583,7 @@ IObject
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -837,7 +702,7 @@ IObject
             return Efl.Ui.Focus.IObjectConcrete.efl_ui_focus_object_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate Eina.Rect.NativeStruct efl_ui_focus_object_focus_geometry_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -850,13 +715,13 @@ IObject
         private static Eina.Rect.NativeStruct focus_geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetFocusGeometry();
+                    _ret_var = ((IObject)ws.Target).GetFocusGeometry();
                 }
                 catch (Exception e)
                 {
@@ -886,13 +751,13 @@ IObject
         private static bool focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetFocus();
+                    _ret_var = ((IObject)ws.Target).GetFocus();
                 }
                 catch (Exception e)
                 {
@@ -922,13 +787,13 @@ IObject
         private static void focus_set(System.IntPtr obj, System.IntPtr pd, bool focus)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetFocus(focus);
+                    ((IObject)ws.Target).SetFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -957,13 +822,13 @@ IObject
         private static Efl.Ui.Focus.IManager focus_manager_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_manager_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetFocusManager();
+                    _ret_var = ((IObject)ws.Target).GetFocusManager();
                 }
                 catch (Exception e)
                 {
@@ -993,13 +858,13 @@ IObject
         private static Efl.Ui.Focus.IObject focus_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetFocusParent();
+                    _ret_var = ((IObject)ws.Target).GetFocusParent();
                 }
                 catch (Exception e)
                 {
@@ -1029,13 +894,13 @@ IObject
         private static bool child_focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_child_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).GetChildFocus();
+                    _ret_var = ((IObject)ws.Target).GetChildFocus();
                 }
                 catch (Exception e)
                 {
@@ -1065,13 +930,13 @@ IObject
         private static void child_focus_set(System.IntPtr obj, System.IntPtr pd, bool child_focus)
         {
             Eina.Log.Debug("function efl_ui_focus_object_child_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetChildFocus(child_focus);
+                    ((IObject)ws.Target).SetChildFocus(child_focus);
                 }
                 catch (Exception e)
                 {
@@ -1100,13 +965,13 @@ IObject
         private static void setup_order(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_setup_order was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetupOrder();
+                    ((IObject)ws.Target).SetupOrder();
                 }
                 catch (Exception e)
                 {
@@ -1135,13 +1000,13 @@ IObject
         private static void setup_order_non_recursive(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_setup_order_non_recursive was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IObjectConcrete)wrapper).SetupOrderNonRecursive();
+                    ((IObject)ws.Target).SetupOrderNonRecursive();
                 }
                 catch (Exception e)
                 {
@@ -1170,13 +1035,13 @@ IObject
         private static bool on_focus_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_on_focus_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IObjectConcrete)wrapper).UpdateOnFocus();
+                    _ret_var = ((IObject)ws.Target).UpdateOnFocus();
                 }
                 catch (Exception e)
                 {
@@ -1195,7 +1060,7 @@ IObject
 
         private static efl_ui_focus_object_on_focus_update_delegate efl_ui_focus_object_on_focus_update_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

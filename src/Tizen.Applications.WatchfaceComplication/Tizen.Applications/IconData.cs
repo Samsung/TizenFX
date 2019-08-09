@@ -5,7 +5,7 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the IconData class for the Icon type complication.
+    /// Represents the icon data for a complication.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class IconData : ComplicationData
@@ -21,7 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///     protected override ComplicationData OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
         ///     {
         ///         if (type == ComplicationTypes.Icon)
-        ///         {                
+        ///         {
         ///             return new IconData("Icon", "extra");
         ///         }
         ///         else if (type == ComplicationTypes.LongText)

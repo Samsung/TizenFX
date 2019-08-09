@@ -14,6 +14,7 @@ namespace Gfx {
 /// 
 /// This was a beta feature since 1.15.</summary>
 [Efl.Gfx.IFilterConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IFilter : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -87,13 +88,13 @@ void SetFilterData(System.String name, System.String value, bool execute);
 /// Filters are programmable effects that run whenever the object is rendered on its canvas. The program language is Lua and a complete reference can be found under &quot;EFL Graphics Filters&quot;.
 /// 
 /// This was a beta feature since 1.15.</summary>
-sealed public class IFilterConcrete : 
-
-IFilter
+sealed public class IFilterConcrete :
+    Efl.Eo.EoWrapper
+    , IFilter
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -108,86 +109,19 @@ IFilter
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IFilterConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_filter_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFilter"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFilterConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IFilterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IFilterConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
@@ -289,7 +223,7 @@ IFilter
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -398,7 +332,7 @@ IFilter
             return Efl.Gfx.IFilterConcrete.efl_gfx_filter_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_filter_program_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String code, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String name);
@@ -411,15 +345,15 @@ IFilter
         private static void filter_program_get(System.IntPtr obj, System.IntPtr pd, out System.String code, out System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_program_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         System.String _out_code = default(System.String);
         System.String _out_name = default(System.String);
                             
                 try
                 {
-                    ((IFilter)wrapper).GetFilterProgram(out _out_code, out _out_name);
+                    ((IFilter)ws.Target).GetFilterProgram(out _out_code, out _out_name);
                 }
                 catch (Exception e)
                 {
@@ -450,13 +384,13 @@ IFilter
         private static void filter_program_set(System.IntPtr obj, System.IntPtr pd, System.String code, System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_program_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IFilter)wrapper).SetFilterProgram(code, name);
+                    ((IFilter)ws.Target).SetFilterProgram(code, name);
                 }
                 catch (Exception e)
                 {
@@ -485,15 +419,15 @@ IFilter
         private static void filter_state_get(System.IntPtr obj, System.IntPtr pd, out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos)
         {
             Eina.Log.Debug("function efl_gfx_filter_state_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                 System.String _out_cur_state = default(System.String);
         cur_val = default(double);        System.String _out_next_state = default(System.String);
         next_val = default(double);        pos = default(double);                                                    
                 try
                 {
-                    ((IFilter)wrapper).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
+                    ((IFilter)ws.Target).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
                 }
                 catch (Exception e)
                 {
@@ -524,13 +458,13 @@ IFilter
         private static void filter_state_set(System.IntPtr obj, System.IntPtr pd, System.String cur_state, double cur_val, System.String next_state, double next_val, double pos)
         {
             Eina.Log.Debug("function efl_gfx_filter_state_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                                                     
                 try
                 {
-                    ((IFilter)wrapper).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
+                    ((IFilter)ws.Target).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
                 }
                 catch (Exception e)
                 {
@@ -559,13 +493,13 @@ IFilter
         private static void filter_padding_get(System.IntPtr obj, System.IntPtr pd, out int l, out int r, out int t, out int b)
         {
             Eina.Log.Debug("function efl_gfx_filter_padding_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((IFilter)wrapper).GetFilterPadding(out l, out r, out t, out b);
+                    ((IFilter)ws.Target).GetFilterPadding(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -594,13 +528,13 @@ IFilter
         private static Efl.Gfx.IEntity filter_source_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_gfx_filter_source_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((IFilter)wrapper).GetFilterSource(name);
+                    _ret_var = ((IFilter)ws.Target).GetFilterSource(name);
                 }
                 catch (Exception e)
                 {
@@ -630,13 +564,13 @@ IFilter
         private static void filter_source_set(System.IntPtr obj, System.IntPtr pd, System.String name, Efl.Gfx.IEntity source)
         {
             Eina.Log.Debug("function efl_gfx_filter_source_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IFilter)wrapper).SetFilterSource(name, source);
+                    ((IFilter)ws.Target).SetFilterSource(name, source);
                 }
                 catch (Exception e)
                 {
@@ -665,14 +599,14 @@ IFilter
         private static void filter_data_get(System.IntPtr obj, System.IntPtr pd, System.String name, out System.String value, out bool execute)
         {
             Eina.Log.Debug("function efl_gfx_filter_data_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         System.String _out_value = default(System.String);
         execute = default(bool);                                    
                 try
                 {
-                    ((IFilter)wrapper).GetFilterData(name, out _out_value, out execute);
+                    ((IFilter)ws.Target).GetFilterData(name, out _out_value, out execute);
                 }
                 catch (Exception e)
                 {
@@ -702,13 +636,13 @@ IFilter
         private static void filter_data_set(System.IntPtr obj, System.IntPtr pd, System.String name, System.String value, bool execute)
         {
             Eina.Log.Debug("function efl_gfx_filter_data_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((IFilter)wrapper).SetFilterData(name, value, execute);
+                    ((IFilter)ws.Target).SetFilterData(name, value, execute);
                 }
                 catch (Exception e)
                 {
@@ -726,7 +660,7 @@ IFilter
 
         private static efl_gfx_filter_data_set_delegate efl_gfx_filter_data_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

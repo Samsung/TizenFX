@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -74,7 +75,7 @@ namespace Tizen.NUI.BaseComponents
     /// View is the base class for all views.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class View : Container
+    public class View : Container, IResourcesProvider
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -417,7 +418,6 @@ namespace Tizen.NUI.BaseComponents
         /// "Please DO NOT use! This will be deprecated! Please use 'View Weight' instead of BindableProperty"
         /// This needs to be hidden as inhouse API until all applications using it have been updated.  Do not make public.
         /// </summary>
-        [Obsolete("Please DO NOT use! This will be deprecated! Please use 'View Weight' instead of BindableProperty ")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WeightProperty = BindableProperty.Create("Weight", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1258,6 +1258,9 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MARGIN).Get(temp);
             return temp;
         });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
 
         /// <summary>
         /// Flag to indicate if layout set explicitly via API call or View was automatically given a Layout.
@@ -1274,6 +1277,20 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool layoutingDisabled{get; set;} = true;
+
+        private MergedStyle mergedStyle = null;
+        internal MergedStyle _mergedStyle
+        {
+            get
+            {
+                if (null == mergedStyle)
+                {
+                    mergedStyle = new MergedStyle(GetType(), this);
+                }
+
+                return mergedStyle;
+            }
+        }
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private LayoutItem _layout; // Exclusive layout assigned to this View.
@@ -1382,12 +1399,12 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is removed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<ChildRemovedEventArgs> ChildRemoved;
+        public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
         /// <summary>
         /// Event when a child is added.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<ChildAddedEventArgs> ChildAdded;
+        public new event EventHandler<ChildAddedEventArgs> ChildAdded;
 
         /// <summary>
         /// An event for the KeyInputFocusGained signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -1827,6 +1844,30 @@ namespace Tizen.NUI.BaseComponents
             PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
             CONTROL_PROPERTY_START_INDEX = PROPERTY_START_INDEX,
             CONTROL_PROPERTY_END_INDEX = CONTROL_PROPERTY_START_INDEX + 1000
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsResourcesCreated
+        {
+            get
+            {
+                return Application.Current.IsResourcesCreated;
+            }
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                return Application.Current.XamlResources;
+            }
+            set
+            {
+                Application.Current.XamlResources = value;
+            }
         }
 
         /// <summary>
@@ -3443,27 +3484,52 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
-        /// </summary>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use Padding.
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated, instead please use Padding.")]
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents PaddingEX
+        public Style XamlStyle
         {
             get
             {
-                Extents temp = new Extents(0, 0, 0, 0);
-                GetProperty(View.Property.PADDING).Get(temp);
-                return temp;
+                return (Style)GetValue(XamlStyleProperty);
             }
             set
             {
-                SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
-                NotifyPropertyChanged();
-                _layout?.RequestLayout();
+                SetValue(XamlStyleProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// The Color of View. This is an RGBA value.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color Color
+        {
+            set
+            {
+                SetColor(value);
+            }
+            get
+            {
+                return GetCurrentColor();
+            }
+        }
+
+        /// <summary>
+        /// The color mode of View.
+        /// This specifies whether the View uses its own color, or inherits its parent color.
+        /// The default is ColorMode.UseOwnMultiplyParentColor.
+        /// </summary>
+        internal ColorMode ColorMode
+        {
+            set
+            {
+                SetColorMode(value);
+            }
+            get
+            {
+                return GetColorMode();
             }
         }
 
@@ -3480,7 +3546,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal bool BackgroundImageSynchronosLoading
+        /// <summary>
+        ///  Whether to load the BackgroundImage synchronously.
+        ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
+        ///  Note: For Normal Quad images only.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BackgroundImageSynchronosLoading
         {
             get
             {
@@ -3958,6 +4031,7 @@ namespace Tizen.NUI.BaseComponents
                     };
                     ChildAdded(this, e);
                 }
+                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 
@@ -4538,6 +4612,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal override View FindCurrentChildById(uint id)
+        {
+            return FindChildById(id);
+        }
+
         internal void SetParentOrigin(Vector3 origin)
         {
             Interop.ActorInternal.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));
@@ -4886,7 +4965,9 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void SetColorMode(ColorMode colorMode)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetColorMode(ColorMode colorMode)
         {
             Interop.ActorInternal.Actor_SetColorMode(swigCPtr, (int)colorMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -5201,6 +5282,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
+
+            //_mergedStyle = null;
 
             if (type == DisposeTypes.Explicit)
             {
@@ -5523,16 +5606,21 @@ namespace Tizen.NUI.BaseComponents
 
         private View ConvertIdToView(uint id)
         {
-            View view = null;
-            if (GetParent() is View)
-            {
-                View parentView = GetParent() as View;
-                view = parentView.FindChildById(id);
-            }
+            View view = GetParent()?.FindCurrentChildById(id);
 
-            if (!view)
+            //If we can't find the parent's children, find in the top layer.
+            if (!view) 
             {
-                view = Window.Instance.GetRootLayer().FindChildById(id);
+                Container parent = GetParent();
+                while ((parent is View) && (parent != null))
+                {
+                    parent = parent.GetParent();
+                    if (parent is Layer)
+                    {
+                        view = parent.FindCurrentChildById(id);
+                        break;
+                    }
+                }
             }
 
             return view;
@@ -5775,6 +5863,56 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+
+        private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Transition GetTransition(string transitionName)
+        {
+            Transition trans = null;
+            transDictionary.TryGetValue(transitionName, out trans);
+            return trans;
+        }
+
+        private void LoadTransitions()
+        {
+            foreach (string str in transitionNames)
+            {
+                string resourceName = str + ".xaml";
+                Transition trans = null;
+
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+                string likelyResourcePath = resource + "animation/" + resourceName;
+
+                if (File.Exists(likelyResourcePath))
+                {
+                    trans = Extensions.LoadObject<Transition>(likelyResourcePath);
+                }
+                if (trans)
+                {
+                    transDictionary.Add(trans.Name, trans);
+                }
+            }
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string[] TransitionNames
+        {
+            get
+            {
+                return transitionNames;
+            }
+            set
+            {
+                transitionNames = value;
+                LoadTransitions();
+            }
+        }
+        private string[] transitionNames;
 
         internal class BackgroundResourceLoadedEventArgs : EventArgs
         {

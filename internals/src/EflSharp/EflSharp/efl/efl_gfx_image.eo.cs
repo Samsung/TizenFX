@@ -11,6 +11,7 @@ namespace Gfx {
 
 /// <summary>Common APIs for all 2D images that can be rendered on the canvas.</summary>
 [Efl.Gfx.IImageConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IImage : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -35,6 +36,12 @@ void SetScaleType(Efl.Gfx.ImageScaleType scale_type);
     /// <summary>Returns 1.0 if not applicable (eg. height = 0).</summary>
 /// <returns>The image&apos;s ratio.</returns>
 double GetRatio();
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+/// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+/// 
+/// The geometry of the area is expressed relative to the geometry of the object.</summary>
+/// <returns>A rectangle inside the object boundary that where content is expected.</returns>
+Eina.Rect GetContentRegion();
     /// <summary>Dimensions of this image&apos;s border, a region that does not scale with the center area.
 /// When EFL renders an image, its source may be scaled to fit the size of the object. This function sets an area from the borders of the image inwards which is not to be scaled. This function is useful for making frames and for widget theming, where, for example, buttons may be of varying sizes, but their border size must remain constant.
 /// 
@@ -89,6 +96,17 @@ Efl.Gfx.BorderFillMode GetBorderCenterFill();
 /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
 /// <param name="fill">Fill mode of the center region.</param>
 void SetBorderCenterFill(Efl.Gfx.BorderFillMode fill);
+    /// <summary>This property defines the stretchable pixels region of an image.
+/// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+/// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+/// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+void GetStretchRegion(out Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, out Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical);
+    /// <summary>This property defines the stretchable pixels region of an image.
+/// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+/// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+/// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+/// <returns>return an error code if the stretch_region provided are incorrect.</returns>
+Eina.Error SetStretchRegion(Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical);
     /// <summary>This represents the size of the original image in pixels.
 /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
 /// 
@@ -114,86 +132,94 @@ void SetScaleHint(Efl.Gfx.ImageScaleHint hint);
     /// <summary>Gets the (last) file loading error for a given object.</summary>
 /// <returns>The load error code.</returns>
 Eina.Error GetImageLoadError();
-                                                                        /// <summary>Image data has been preloaded.</summary>
+                                                                                    /// <summary>Image data has been preloaded.</summary>
     event EventHandler ImagePreloadEvt;
     /// <summary>Image was resized (its pixel data).</summary>
     event EventHandler ImageResizeEvt;
     /// <summary>Image data has been unloaded (by some mechanism in EFL that threw out the original image data).</summary>
     event EventHandler ImageUnloadEvt;
     /// <summary>Whether to use high-quality image scaling algorithm for this image.
-/// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
-/// 
-/// <c>true</c> by default</summary>
-/// <value>Whether to use smooth scale or not.</value>
+    /// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
+    /// 
+    /// <c>true</c> by default</summary>
+    /// <value>Whether to use smooth scale or not.</value>
     bool SmoothScale {
         get ;
         set ;
     }
     /// <summary>Control how the image is scaled.</summary>
-/// <value>Image scale type</value>
+    /// <value>Image scale type</value>
     Efl.Gfx.ImageScaleType ScaleType {
         get ;
         set ;
     }
     /// <summary>The native width/height ratio of the image.</summary>
-/// <value>The image&apos;s ratio.</value>
+    /// <value>The image&apos;s ratio.</value>
     double Ratio {
         get ;
     }
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+    /// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+    /// 
+    /// The geometry of the area is expressed relative to the geometry of the object.</summary>
+    /// <value>A rectangle inside the object boundary that where content is expected.</value>
+    Eina.Rect ContentRegion {
+        get ;
+    }
     /// <summary>Scaling factor applied to the image borders.
-/// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
-/// 
-/// Default value is 1.0 (no scaling).</summary>
-/// <value>The scale factor.</value>
+    /// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
+    /// 
+    /// Default value is 1.0 (no scaling).</summary>
+    /// <value>The scale factor.</value>
     double BorderScale {
         get ;
         set ;
     }
     /// <summary>Specifies how the center part of the object (not the borders) should be drawn when EFL is rendering it.
-/// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
-/// 
-/// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
-/// <value>Fill mode of the center region.</value>
+    /// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
+    /// 
+    /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
+    /// <value>Fill mode of the center region.</value>
     Efl.Gfx.BorderFillMode BorderCenterFill {
         get ;
         set ;
     }
     /// <summary>This represents the size of the original image in pixels.
-/// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
-/// 
-/// This is a read-only property, and may return 0x0.</summary>
-/// <value>The size in pixels.</value>
+    /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
+    /// 
+    /// This is a read-only property, and may return 0x0.</summary>
+    /// <value>The size in pixels.</value>
     Eina.Size2D ImageSize {
         get ;
     }
     /// <summary>Get the content hint setting of a given image object of the canvas.
-/// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
-/// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
+    /// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
+    /// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
     Efl.Gfx.ImageContentHint ContentHint {
         get ;
         set ;
     }
     /// <summary>Get the scale hint of a given image of the canvas.
-/// This function returns the scale hint value of the given image object of the canvas.</summary>
-/// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
+    /// This function returns the scale hint value of the given image object of the canvas.</summary>
+    /// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
     Efl.Gfx.ImageScaleHint ScaleHint {
         get ;
         set ;
     }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
-/// <value>The load error code.</value>
+    /// <value>The load error code.</value>
     Eina.Error ImageLoadError {
         get ;
     }
 }
 /// <summary>Common APIs for all 2D images that can be rendered on the canvas.</summary>
-sealed public class IImageConcrete : 
-
-IImage
+sealed public class IImageConcrete :
+    Efl.Eo.EoWrapper
+    , IImage
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -208,155 +234,19 @@ IImage
         }
     }
 
-    private Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)> eoEvents = new Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>();
-    private readonly object eventLock = new object();
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IImageConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_image_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IImage"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IImageConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IImageConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IImageConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (eoEvents.Count != 0)
-            {
-                GCHandle gcHandle = GCHandle.Alloc(eoEvents);
-                gcHandlePtr = GCHandle.ToIntPtr(gcHandle);
-            }
-
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    ///<summary>Adds a new event handler, registering it to the native event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtCaller">Delegate to be called by native code on event raising.</param>
-    ///<param name="evtDelegate">Managed delegate that will be called by evtCaller on event raising.</param>
-    private void AddNativeEventHandler(string lib, string key, Efl.EventCb evtCaller, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-        }
-
-        if (eoEvents.ContainsKey((desc, evtDelegate)))
-        {
-            Eina.Log.Warning($"Event proxy for event {key} already registered!");
-            return;
-        }
-
-        IntPtr evtCallerPtr = Marshal.GetFunctionPointerForDelegate(evtCaller);
-        if (!Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evtCallerPtr, IntPtr.Zero))
-        {
-            Eina.Log.Error($"Failed to add event proxy for event {key}");
-            return;
-        }
-
-        eoEvents[(desc, evtDelegate)] = (evtCallerPtr, evtCaller);
-        Eina.Error.RaiseIfUnhandledException();
-    }
-
-    ///<summary>Removes the given event handler for the given event. For internal use only.</summary>
-    ///<param name="lib">The name of the native library definining the event.</param>
-    ///<param name="key">The name of the native event.</param>
-    ///<param name="evtDelegate">The delegate to be removed.</param>
-    private void RemoveNativeEventHandler(string lib, string key, object evtDelegate)
-    {
-        IntPtr desc = Efl.EventDescription.GetNative(lib, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        var evtPair = (desc, evtDelegate);
-        if (eoEvents.TryGetValue(evtPair, out var caller))
-        {
-            if (!Efl.Eo.Globals.efl_event_callback_del(handle, desc, caller.evtCallerPtr, IntPtr.Zero))
-            {
-                Eina.Log.Error($"Failed to remove event proxy for event {key}");
-                return;
-            }
-
-            eoEvents.Remove(evtPair);
-            Eina.Error.RaiseIfUnhandledException();
-        }
-        else
-        {
-            Eina.Log.Error($"Trying to remove proxy for event {key} when it is nothing registered.");
-        }
     }
 
     /// <summary>Image data has been preloaded.</summary>
@@ -364,12 +254,11 @@ IImage
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -392,7 +281,7 @@ IImage
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -417,12 +306,11 @@ IImage
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -445,7 +333,7 @@ IImage
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -470,12 +358,11 @@ IImage
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -498,7 +385,7 @@ IImage
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -554,6 +441,16 @@ IImage
     /// <returns>The image&apos;s ratio.</returns>
     public double GetRatio() {
          var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_ratio_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+    /// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+    /// 
+    /// The geometry of the area is expressed relative to the geometry of the object.</summary>
+    /// <returns>A rectangle inside the object boundary that where content is expected.</returns>
+    public Eina.Rect GetContentRegion() {
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_region_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -631,6 +528,30 @@ IImage
                                  Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_set_ptr.Value.Delegate(this.NativeHandle,fill);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+    /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+    public void GetStretchRegion(out Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, out Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical) {
+                         System.IntPtr _out_horizontal = System.IntPtr.Zero;
+        System.IntPtr _out_vertical = System.IntPtr.Zero;
+                        Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_get_ptr.Value.Delegate(this.NativeHandle,out _out_horizontal, out _out_vertical);
+        Eina.Error.RaiseIfUnhandledException();
+        horizontal = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(_out_horizontal, false);
+        vertical = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(_out_vertical, false);
+                         }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+    /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+    /// <returns>return an error code if the stretch_region provided are incorrect.</returns>
+    public Eina.Error SetStretchRegion(Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical) {
+         var _in_horizontal = horizontal.Handle;
+        var _in_vertical = vertical.Handle;
+                                        var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_set_ptr.Value.Delegate(this.NativeHandle,_in_horizontal, _in_vertical);
+        Eina.Error.RaiseIfUnhandledException();
+                                        return _ret_var;
+ }
     /// <summary>This represents the size of the original image in pixels.
     /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
     /// 
@@ -679,67 +600,75 @@ IImage
         return _ret_var;
  }
     /// <summary>Whether to use high-quality image scaling algorithm for this image.
-/// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
-/// 
-/// <c>true</c> by default</summary>
-/// <value>Whether to use smooth scale or not.</value>
+    /// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
+    /// 
+    /// <c>true</c> by default</summary>
+    /// <value>Whether to use smooth scale or not.</value>
     public bool SmoothScale {
         get { return GetSmoothScale(); }
         set { SetSmoothScale(value); }
     }
     /// <summary>Control how the image is scaled.</summary>
-/// <value>Image scale type</value>
+    /// <value>Image scale type</value>
     public Efl.Gfx.ImageScaleType ScaleType {
         get { return GetScaleType(); }
         set { SetScaleType(value); }
     }
     /// <summary>The native width/height ratio of the image.</summary>
-/// <value>The image&apos;s ratio.</value>
+    /// <value>The image&apos;s ratio.</value>
     public double Ratio {
         get { return GetRatio(); }
     }
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+    /// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+    /// 
+    /// The geometry of the area is expressed relative to the geometry of the object.</summary>
+    /// <value>A rectangle inside the object boundary that where content is expected.</value>
+    public Eina.Rect ContentRegion {
+        get { return GetContentRegion(); }
+    }
     /// <summary>Scaling factor applied to the image borders.
-/// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
-/// 
-/// Default value is 1.0 (no scaling).</summary>
-/// <value>The scale factor.</value>
+    /// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
+    /// 
+    /// Default value is 1.0 (no scaling).</summary>
+    /// <value>The scale factor.</value>
     public double BorderScale {
         get { return GetBorderScale(); }
         set { SetBorderScale(value); }
     }
     /// <summary>Specifies how the center part of the object (not the borders) should be drawn when EFL is rendering it.
-/// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
-/// 
-/// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
-/// <value>Fill mode of the center region.</value>
+    /// This function sets how the center part of the image object&apos;s source image is to be drawn, which must be one of the values in <see cref="Efl.Gfx.BorderFillMode"/>. By center we mean the complementary part of that defined by <see cref="Efl.Gfx.IImage.GetBorder"/>. This is very useful for making frames and decorations. You would most probably also be using a filled image (as in <see cref="Efl.Gfx.IFill.FillAuto"/>) to use as a frame.
+    /// 
+    /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
+    /// <value>Fill mode of the center region.</value>
     public Efl.Gfx.BorderFillMode BorderCenterFill {
         get { return GetBorderCenterFill(); }
         set { SetBorderCenterFill(value); }
     }
     /// <summary>This represents the size of the original image in pixels.
-/// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
-/// 
-/// This is a read-only property, and may return 0x0.</summary>
-/// <value>The size in pixels.</value>
+    /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
+    /// 
+    /// This is a read-only property, and may return 0x0.</summary>
+    /// <value>The size in pixels.</value>
     public Eina.Size2D ImageSize {
         get { return GetImageSize(); }
     }
     /// <summary>Get the content hint setting of a given image object of the canvas.
-/// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
-/// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
+    /// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
+    /// <value>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></value>
     public Efl.Gfx.ImageContentHint ContentHint {
         get { return GetContentHint(); }
         set { SetContentHint(value); }
     }
     /// <summary>Get the scale hint of a given image of the canvas.
-/// This function returns the scale hint value of the given image object of the canvas.</summary>
-/// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
+    /// This function returns the scale hint value of the given image object of the canvas.</summary>
+    /// <value>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></value>
     public Efl.Gfx.ImageScaleHint ScaleHint {
         get { return GetScaleHint(); }
         set { SetScaleHint(value); }
     }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
-/// <value>The load error code.</value>
+    /// <value>The load error code.</value>
     public Eina.Error ImageLoadError {
         get { return GetImageLoadError(); }
     }
@@ -749,7 +678,7 @@ IImage
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -807,6 +736,16 @@ IImage
             if (methods.FirstOrDefault(m => m.Name == "GetRatio") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_ratio_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_ratio_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_content_region_get_static_delegate == null)
+            {
+                efl_gfx_image_content_region_get_static_delegate = new efl_gfx_image_content_region_get_delegate(content_region_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetContentRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_content_region_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_content_region_get_static_delegate) });
             }
 
             if (efl_gfx_image_border_get_static_delegate == null)
@@ -867,6 +806,26 @@ IImage
             if (methods.FirstOrDefault(m => m.Name == "SetBorderCenterFill") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_border_center_fill_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_border_center_fill_set_static_delegate) });
+            }
+
+            if (efl_gfx_image_stretch_region_get_static_delegate == null)
+            {
+                efl_gfx_image_stretch_region_get_static_delegate = new efl_gfx_image_stretch_region_get_delegate(stretch_region_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetStretchRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_stretch_region_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_stretch_region_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_stretch_region_set_static_delegate == null)
+            {
+                efl_gfx_image_stretch_region_set_static_delegate = new efl_gfx_image_stretch_region_set_delegate(stretch_region_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetStretchRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_stretch_region_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_stretch_region_set_static_delegate) });
             }
 
             if (efl_gfx_image_size_get_static_delegate == null)
@@ -938,7 +897,7 @@ IImage
             return Efl.Gfx.IImageConcrete.efl_gfx_image_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_gfx_image_smooth_scale_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -951,13 +910,13 @@ IImage
         private static bool smooth_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_smooth_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetSmoothScale();
+                    _ret_var = ((IImage)ws.Target).GetSmoothScale();
                 }
                 catch (Exception e)
                 {
@@ -987,13 +946,13 @@ IImage
         private static void smooth_scale_set(System.IntPtr obj, System.IntPtr pd, bool smooth_scale)
         {
             Eina.Log.Debug("function efl_gfx_image_smooth_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImage)wrapper).SetSmoothScale(smooth_scale);
+                    ((IImage)ws.Target).SetSmoothScale(smooth_scale);
                 }
                 catch (Exception e)
                 {
@@ -1022,13 +981,13 @@ IImage
         private static Efl.Gfx.ImageScaleType scale_type_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_type_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageScaleType _ret_var = default(Efl.Gfx.ImageScaleType);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetScaleType();
+                    _ret_var = ((IImage)ws.Target).GetScaleType();
                 }
                 catch (Exception e)
                 {
@@ -1058,13 +1017,13 @@ IImage
         private static void scale_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageScaleType scale_type)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_type_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImage)wrapper).SetScaleType(scale_type);
+                    ((IImage)ws.Target).SetScaleType(scale_type);
                 }
                 catch (Exception e)
                 {
@@ -1093,13 +1052,13 @@ IImage
         private static double ratio_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_ratio_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetRatio();
+                    _ret_var = ((IImage)ws.Target).GetRatio();
                 }
                 catch (Exception e)
                 {
@@ -1119,6 +1078,42 @@ IImage
         private static efl_gfx_image_ratio_get_delegate efl_gfx_image_ratio_get_static_delegate;
 
         
+        private delegate Eina.Rect.NativeStruct efl_gfx_image_content_region_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Rect.NativeStruct efl_gfx_image_content_region_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_content_region_get_api_delegate> efl_gfx_image_content_region_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_content_region_get_api_delegate>(Module, "efl_gfx_image_content_region_get");
+
+        private static Eina.Rect.NativeStruct content_region_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_content_region_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Rect _ret_var = default(Eina.Rect);
+                try
+                {
+                    _ret_var = ((IImage)ws.Target).GetContentRegion();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_content_region_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_content_region_get_delegate efl_gfx_image_content_region_get_static_delegate;
+
+        
         private delegate void efl_gfx_image_border_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int l,  out int r,  out int t,  out int b);
 
         
@@ -1129,13 +1124,13 @@ IImage
         private static void border_get(System.IntPtr obj, System.IntPtr pd, out int l, out int r, out int t, out int b)
         {
             Eina.Log.Debug("function efl_gfx_image_border_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                         l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
                 try
                 {
-                    ((IImage)wrapper).GetBorder(out l, out r, out t, out b);
+                    ((IImage)ws.Target).GetBorder(out l, out r, out t, out b);
                 }
                 catch (Exception e)
                 {
@@ -1164,13 +1159,13 @@ IImage
         private static void border_set(System.IntPtr obj, System.IntPtr pd, int l, int r, int t, int b)
         {
             Eina.Log.Debug("function efl_gfx_image_border_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                                             
                 try
                 {
-                    ((IImage)wrapper).SetBorder(l, r, t, b);
+                    ((IImage)ws.Target).SetBorder(l, r, t, b);
                 }
                 catch (Exception e)
                 {
@@ -1199,13 +1194,13 @@ IImage
         private static double border_scale_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_border_scale_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetBorderScale();
+                    _ret_var = ((IImage)ws.Target).GetBorderScale();
                 }
                 catch (Exception e)
                 {
@@ -1235,13 +1230,13 @@ IImage
         private static void border_scale_set(System.IntPtr obj, System.IntPtr pd, double scale)
         {
             Eina.Log.Debug("function efl_gfx_image_border_scale_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImage)wrapper).SetBorderScale(scale);
+                    ((IImage)ws.Target).SetBorderScale(scale);
                 }
                 catch (Exception e)
                 {
@@ -1270,13 +1265,13 @@ IImage
         private static Efl.Gfx.BorderFillMode border_center_fill_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_border_center_fill_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.BorderFillMode _ret_var = default(Efl.Gfx.BorderFillMode);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetBorderCenterFill();
+                    _ret_var = ((IImage)ws.Target).GetBorderCenterFill();
                 }
                 catch (Exception e)
                 {
@@ -1306,13 +1301,13 @@ IImage
         private static void border_center_fill_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.BorderFillMode fill)
         {
             Eina.Log.Debug("function efl_gfx_image_border_center_fill_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImage)wrapper).SetBorderCenterFill(fill);
+                    ((IImage)ws.Target).SetBorderCenterFill(fill);
                 }
                 catch (Exception e)
                 {
@@ -1331,6 +1326,83 @@ IImage
         private static efl_gfx_image_border_center_fill_set_delegate efl_gfx_image_border_center_fill_set_static_delegate;
 
         
+        private delegate void efl_gfx_image_stretch_region_get_delegate(System.IntPtr obj, System.IntPtr pd,  out System.IntPtr horizontal,  out System.IntPtr vertical);
+
+        
+        public delegate void efl_gfx_image_stretch_region_get_api_delegate(System.IntPtr obj,  out System.IntPtr horizontal,  out System.IntPtr vertical);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_get_api_delegate> efl_gfx_image_stretch_region_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_get_api_delegate>(Module, "efl_gfx_image_stretch_region_get");
+
+        private static void stretch_region_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr horizontal, out System.IntPtr vertical)
+        {
+            Eina.Log.Debug("function efl_gfx_image_stretch_region_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                        Eina.Iterator<Efl.Gfx.Image.StretchRegion> _out_horizontal = default(Eina.Iterator<Efl.Gfx.Image.StretchRegion>);
+        Eina.Iterator<Efl.Gfx.Image.StretchRegion> _out_vertical = default(Eina.Iterator<Efl.Gfx.Image.StretchRegion>);
+                            
+                try
+                {
+                    ((IImage)ws.Target).GetStretchRegion(out _out_horizontal, out _out_vertical);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        horizontal = _out_horizontal.Handle;
+        vertical = _out_vertical.Handle;
+                        
+            }
+            else
+            {
+                efl_gfx_image_stretch_region_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out horizontal, out vertical);
+            }
+        }
+
+        private static efl_gfx_image_stretch_region_get_delegate efl_gfx_image_stretch_region_get_static_delegate;
+
+        
+        private delegate Eina.Error efl_gfx_image_stretch_region_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr horizontal,  System.IntPtr vertical);
+
+        
+        public delegate Eina.Error efl_gfx_image_stretch_region_set_api_delegate(System.IntPtr obj,  System.IntPtr horizontal,  System.IntPtr vertical);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_set_api_delegate> efl_gfx_image_stretch_region_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_set_api_delegate>(Module, "efl_gfx_image_stretch_region_set");
+
+        private static Eina.Error stretch_region_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr horizontal, System.IntPtr vertical)
+        {
+            Eina.Log.Debug("function efl_gfx_image_stretch_region_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+        var _in_horizontal = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(horizontal, false);
+        var _in_vertical = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(vertical, false);
+                                            Eina.Error _ret_var = default(Eina.Error);
+                try
+                {
+                    _ret_var = ((IImage)ws.Target).SetStretchRegion(_in_horizontal, _in_vertical);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_stretch_region_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), horizontal, vertical);
+            }
+        }
+
+        private static efl_gfx_image_stretch_region_set_delegate efl_gfx_image_stretch_region_set_static_delegate;
+
+        
         private delegate Eina.Size2D.NativeStruct efl_gfx_image_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
@@ -1341,13 +1413,13 @@ IImage
         private static Eina.Size2D.NativeStruct image_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetImageSize();
+                    _ret_var = ((IImage)ws.Target).GetImageSize();
                 }
                 catch (Exception e)
                 {
@@ -1377,13 +1449,13 @@ IImage
         private static Efl.Gfx.ImageContentHint content_hint_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_content_hint_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageContentHint _ret_var = default(Efl.Gfx.ImageContentHint);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetContentHint();
+                    _ret_var = ((IImage)ws.Target).GetContentHint();
                 }
                 catch (Exception e)
                 {
@@ -1413,13 +1485,13 @@ IImage
         private static void content_hint_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageContentHint hint)
         {
             Eina.Log.Debug("function efl_gfx_image_content_hint_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImage)wrapper).SetContentHint(hint);
+                    ((IImage)ws.Target).SetContentHint(hint);
                 }
                 catch (Exception e)
                 {
@@ -1448,13 +1520,13 @@ IImage
         private static Efl.Gfx.ImageScaleHint scale_hint_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_hint_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.ImageScaleHint _ret_var = default(Efl.Gfx.ImageScaleHint);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetScaleHint();
+                    _ret_var = ((IImage)ws.Target).GetScaleHint();
                 }
                 catch (Exception e)
                 {
@@ -1484,13 +1556,13 @@ IImage
         private static void scale_hint_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageScaleHint hint)
         {
             Eina.Log.Debug("function efl_gfx_image_scale_hint_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IImage)wrapper).SetScaleHint(hint);
+                    ((IImage)ws.Target).SetScaleHint(hint);
                 }
                 catch (Exception e)
                 {
@@ -1519,13 +1591,13 @@ IImage
         private static Eina.Error image_load_error_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_load_error_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((IImage)wrapper).GetImageLoadError();
+                    _ret_var = ((IImage)ws.Target).GetImageLoadError();
                 }
                 catch (Exception e)
                 {
@@ -1544,7 +1616,7 @@ IImage
 
         private static efl_gfx_image_load_error_get_delegate efl_gfx_image_load_error_get_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -1557,6 +1629,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>How an image&apos;s data is to be treated by EFL, for optimization.</summary>
+[Efl.Eo.BindingEntity]
 public enum ImageContentHint
 {
 /// <summary>No hint on the content (default).</summary>
@@ -1576,6 +1649,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>How an image&apos;s data is to be treated by EFL, with regard to scaling cache.</summary>
+[Efl.Eo.BindingEntity]
 public enum ImageScaleHint
 {
 /// <summary>No hint on the scaling (default).</summary>
@@ -1595,6 +1669,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Enumeration that defines scale types of an image.</summary>
+[Efl.Eo.BindingEntity]
 public enum ImageScaleType
 {
 /// <summary>Scale the image so that it matches the object&apos;s area exactly. The image&apos;s aspect ratio might be changed.</summary>
@@ -1607,6 +1682,79 @@ FitOutside = 2,
 Tile = 3,
 /// <summary>Not scale the image</summary>
 None = 4,
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
+namespace Image {
+
+/// <summary>This struct holds the description of a stretchable region in one dimension (vertical or horizontal). Used when scaling an image.
+/// <c>offset</c> + <c>length</c> should be smaller than image size in that dimension.</summary>
+[StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
+public struct StretchRegion
+{
+    /// <summary>First pixel of the stretchable region, starting at 0.</summary>
+    public uint Offset;
+    /// <summary>Length of the stretchable region in pixels.</summary>
+    public uint Length;
+    ///<summary>Constructor for StretchRegion.</summary>
+    public StretchRegion(
+        uint Offset = default(uint),
+        uint Length = default(uint)    )
+    {
+        this.Offset = Offset;
+        this.Length = Length;
+    }
+
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
+    public static implicit operator StretchRegion(IntPtr ptr)
+    {
+        var tmp = (StretchRegion.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StretchRegion.NativeStruct));
+        return tmp;
+    }
+
+    #pragma warning disable CS1591
+
+    ///<summary>Internal wrapper for struct StretchRegion.</summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct NativeStruct
+    {
+        
+        public uint Offset;
+        
+        public uint Length;
+        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        public static implicit operator StretchRegion.NativeStruct(StretchRegion _external_struct)
+        {
+            var _internal_struct = new StretchRegion.NativeStruct();
+            _internal_struct.Offset = _external_struct.Offset;
+            _internal_struct.Length = _external_struct.Length;
+            return _internal_struct;
+        }
+
+        ///<summary>Implicit conversion to the managed representation.</summary>
+        public static implicit operator StretchRegion(StretchRegion.NativeStruct _internal_struct)
+        {
+            var _external_struct = new StretchRegion();
+            _external_struct.Offset = _internal_struct.Offset;
+            _external_struct.Length = _internal_struct.Length;
+            return _external_struct;
+        }
+
+    }
+
+    #pragma warning restore CS1591
+
+}
+
 }
 
 }

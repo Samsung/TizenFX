@@ -12,6 +12,7 @@ namespace Ui {
 namespace Focus {
 
 /// <summary>Focus directions.</summary>
+[Efl.Eo.BindingEntity]
 public enum Direction
 {
 /// <summary>previous direction</summary>
@@ -44,6 +45,7 @@ namespace Focus {
 
 /// <summary>Focus Movement Policy.
 /// (Since EFL 1.10)</summary>
+[Efl.Eo.BindingEntity]
 public enum MovePolicy
 {
 /// <summary>Move focus by mouse click or touch. Elementary focus is set on mouse click and this is checked at mouse up time. (default)</summary>
@@ -66,6 +68,7 @@ namespace Ui {
 
 /// <summary>Slider&apos;s indicator visibility mode.
 /// (Since EFL 1.13)</summary>
+[Efl.Eo.BindingEntity]
 public enum SliderIndicatorVisibleMode
 {
 /// <summary>show indicator on mouse down or change in slider value</summary>
@@ -90,6 +93,7 @@ namespace Focus {
 
 /// <summary>Focus Autoscroll Mode
 /// (Since EFL 1.10)</summary>
+[Efl.Eo.BindingEntity]
 public enum AutoscrollMode
 {
 /// <summary>Directly show the focused region or item automatically.</summary>
@@ -112,6 +116,7 @@ namespace Ui {
 
 /// <summary>Software cursor mode.
 /// (Since EFL 1.7)</summary>
+[Efl.Eo.BindingEntity]
 public enum SoftcursorMode
 {
 /// <summary>Auto-detect if a software cursor should be used (default).</summary>
@@ -131,6 +136,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Accessibility</summary>
+[Efl.Eo.BindingEntity]
 public enum Activate
 {
 /// <summary>Activate default</summary>
@@ -157,6 +163,7 @@ namespace Ui {
 
 /// <summary>Widget orientation mode, or how the theme handles screen orientation.
 /// Note: Support for this feature is highly dependent on the theme in use. At the time of writing, the default theme for EFL does not implement support for orientation modes.</summary>
+[Efl.Eo.BindingEntity]
 public enum WidgetOrientationMode
 {
 /// <summary>Default or automatic mode: if the widget&apos;s theme supports orientation, it will be handled automatically.</summary>

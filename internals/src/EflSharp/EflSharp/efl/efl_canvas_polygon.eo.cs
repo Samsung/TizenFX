@@ -11,7 +11,8 @@ namespace Canvas {
 
 /// <summary>Low-level polygon object</summary>
 [Efl.Canvas.Polygon.NativeMethods]
-public class Polygon : Efl.Canvas.Object, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class Polygon : Efl.Canvas.Object
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,64 +35,42 @@ public class Polygon : Efl.Canvas.Object, Efl.Eo.IWrapper
     /// <summary>Initializes a new instance of the <see cref="Polygon"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Polygon(Efl.Object parent= null
-            ) : base(efl_canvas_polygon_class_get(), typeof(Polygon), parent)
+            ) : base(efl_canvas_polygon_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Polygon(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Polygon"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Polygon(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Polygon(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Polygon"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Polygon(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Polygon(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Adds the given point to the given evas polygon object.</summary>
     /// <param name="pos">A point coordinate.</param>
     virtual public void AddPoint(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_point_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_point_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Removes all of the points from the given evas polygon object.</summary>
     virtual public void ClearPoints() {
-         Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_points_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_points_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     private static IntPtr GetEflClassStatic()
@@ -140,7 +119,7 @@ public class Polygon : Efl.Canvas.Object, Efl.Eo.IWrapper
             return Efl.Canvas.Polygon.efl_canvas_polygon_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_canvas_polygon_point_add_delegate(System.IntPtr obj, System.IntPtr pd,  Eina.Position2D.NativeStruct pos);
@@ -153,14 +132,14 @@ public class Polygon : Efl.Canvas.Object, Efl.Eo.IWrapper
         private static void point_add(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_canvas_polygon_point_add was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                             
                 try
                 {
-                    ((Polygon)wrapper).AddPoint(_in_pos);
+                    ((Polygon)ws.Target).AddPoint(_in_pos);
                 }
                 catch (Exception e)
                 {
@@ -189,13 +168,13 @@ public class Polygon : Efl.Canvas.Object, Efl.Eo.IWrapper
         private static void points_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_canvas_polygon_points_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((Polygon)wrapper).ClearPoints();
+                    ((Polygon)ws.Target).ClearPoints();
                 }
                 catch (Exception e)
                 {
@@ -213,7 +192,7 @@ public class Polygon : Efl.Canvas.Object, Efl.Eo.IWrapper
 
         private static efl_canvas_polygon_points_clear_delegate efl_canvas_polygon_points_clear_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

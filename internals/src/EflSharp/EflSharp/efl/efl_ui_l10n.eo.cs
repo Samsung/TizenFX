@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
 [Efl.Ui.IL10nConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IL10n : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -34,13 +35,13 @@ void UpdateTranslation();
             }
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
-sealed public class IL10nConcrete : 
-
-IL10n
+sealed public class IL10nConcrete :
+    Efl.Eo.EoWrapper
+    , IL10n
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -55,86 +56,19 @@ IL10n
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IL10nConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_l10n_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IL10n"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IL10nConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IL10nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IL10nConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>A unique string to be translated.
@@ -169,7 +103,7 @@ IL10n
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -218,7 +152,7 @@ IL10n
             return Efl.Ui.IL10nConcrete.efl_ui_l10n_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_ui_l10n_text_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String domain);
@@ -231,14 +165,14 @@ IL10n
         private static System.String l10n_text_get(System.IntPtr obj, System.IntPtr pd, out System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 System.String _out_domain = default(System.String);
                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((IL10n)wrapper).GetL10nText(out _out_domain);
+                    _ret_var = ((IL10n)ws.Target).GetL10nText(out _out_domain);
                 }
                 catch (Exception e)
                 {
@@ -269,13 +203,13 @@ IL10n
         private static void l10n_text_set(System.IntPtr obj, System.IntPtr pd, System.String label, System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IL10n)wrapper).SetL10nText(label, domain);
+                    ((IL10n)ws.Target).SetL10nText(label, domain);
                 }
                 catch (Exception e)
                 {
@@ -304,13 +238,13 @@ IL10n
         private static void translation_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_l10n_translation_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((IL10n)wrapper).UpdateTranslation();
+                    ((IL10n)ws.Target).UpdateTranslation();
                 }
                 catch (Exception e)
                 {
@@ -328,7 +262,7 @@ IL10n
 
         private static efl_ui_l10n_translation_update_delegate efl_ui_l10n_translation_update_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

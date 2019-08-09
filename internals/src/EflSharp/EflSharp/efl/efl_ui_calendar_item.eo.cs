@@ -11,7 +11,8 @@ namespace Ui {
 
 /// <summary>EFL UI Calendar Item class</summary>
 [Efl.Ui.CalendarItem.NativeMethods]
-public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
+[Efl.Eo.BindingEntity]
+public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,52 +35,30 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     /// <summary>Initializes a new instance of the <see cref="CalendarItem"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public CalendarItem(Efl.Object parent= null
-            ) : base(efl_ui_calendar_item_class_get(), typeof(CalendarItem), parent)
+            ) : base(efl_ui_calendar_item_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected CalendarItem(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="CalendarItem"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected CalendarItem(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected CalendarItem(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="CalendarItem"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected CalendarItem(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected CalendarItem(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Emitted if the focus state has changed.
@@ -88,16 +67,15 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -117,7 +95,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -151,15 +129,14 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
                         try
                         {
@@ -180,7 +157,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -207,15 +184,14 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
                         try
                         {
@@ -236,7 +212,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -263,16 +239,15 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -292,7 +267,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -326,15 +301,14 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
+                        Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -355,7 +329,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -387,21 +361,21 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     /// <summary>Day number</summary>
     /// <returns>Day number</returns>
     virtual public int GetDayNumber() {
-         var _ret_var = Efl.Ui.CalendarItem.NativeMethods.efl_ui_calendar_item_day_number_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.CalendarItem.NativeMethods.efl_ui_calendar_item_day_number_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Day number</summary>
     /// <param name="i">Day number</param>
     virtual public void SetDayNumber(int i) {
-                                 Efl.Ui.CalendarItem.NativeMethods.efl_ui_calendar_item_day_number_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),i);
+                                 Efl.Ui.CalendarItem.NativeMethods.efl_ui_calendar_item_day_number_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),i);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>The geometry to use.</returns>
     virtual public Eina.Rect GetFocusGeometry() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -409,7 +383,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     /// (Since EFL 1.22)</summary>
     /// <returns>The focused state of the object.</returns>
     virtual public bool GetFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -418,14 +392,14 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     /// (Since EFL 1.22)</summary>
     /// <param name="focus">The focused state of the object.</param>
     virtual public void SetFocus(bool focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),focus);
+                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
     /// (Since EFL 1.22)</summary>
     /// <returns>The manager object</returns>
     virtual public Efl.Ui.Focus.IManager GetFocusManager() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -433,7 +407,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     /// (Since EFL 1.22)</summary>
     /// <returns>The focus parent.</returns>
     virtual public Efl.Ui.Focus.IObject GetFocusParent() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -441,7 +415,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if a child has focus.</returns>
     virtual public bool GetChildFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -449,63 +423,63 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
     /// (Since EFL 1.22)</summary>
     /// <param name="child_focus"><c>true</c> if a child has focus.</param>
     virtual public void SetChildFocus(bool child_focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child_focus);
+                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.
     /// (Since EFL 1.22)</summary>
     virtual public void SetupOrder() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>This is called when <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> is called, but only on the first call, additional recursive calls to <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> will not call this function again.
     /// (Since EFL 1.22)</summary>
     virtual public void SetupOrderNonRecursive() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Virtual function handling focus in/out events on the widget
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if this widget can handle focus, <c>false</c> otherwise</returns>
     virtual public bool UpdateOnFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Day number</summary>
-/// <value>Day number</value>
+    /// <value>Day number</value>
     public int DayNumber {
         get { return GetDayNumber(); }
         set { SetDayNumber(value); }
     }
     /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-/// (Since EFL 1.22)</summary>
-/// <value>The geometry to use.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The geometry to use.</value>
     public Eina.Rect FocusGeometry {
         get { return GetFocusGeometry(); }
     }
     /// <summary>Returns whether the widget is currently focused or not.
-/// (Since EFL 1.22)</summary>
-/// <value>The focused state of the object.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focused state of the object.</value>
     public bool Focus {
         get { return GetFocus(); }
         set { SetFocus(value); }
     }
     /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-/// (Since EFL 1.22)</summary>
-/// <value>The manager object</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The manager object</value>
     public Efl.Ui.Focus.IManager FocusManager {
         get { return GetFocusManager(); }
     }
     /// <summary>Describes which logical parent is used by this object.
-/// (Since EFL 1.22)</summary>
-/// <value>The focus parent.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value>The focus parent.</value>
     public Efl.Ui.Focus.IObject FocusParent {
         get { return GetFocusParent(); }
     }
     /// <summary>Indicates if a child of this object has focus set to true.
-/// (Since EFL 1.22)</summary>
-/// <value><c>true</c> if a child has focus.</value>
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if a child has focus.</value>
     public bool ChildFocus {
         get { return GetChildFocus(); }
         set { SetChildFocus(value); }
@@ -656,7 +630,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
             return Efl.Ui.CalendarItem.efl_ui_calendar_item_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate int efl_ui_calendar_item_day_number_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -669,13 +643,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static int day_number_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_calendar_item_day_number_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((CalendarItem)wrapper).GetDayNumber();
+                    _ret_var = ((CalendarItem)ws.Target).GetDayNumber();
                 }
                 catch (Exception e)
                 {
@@ -705,13 +679,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static void day_number_set(System.IntPtr obj, System.IntPtr pd, int i)
         {
             Eina.Log.Debug("function efl_ui_calendar_item_day_number_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((CalendarItem)wrapper).SetDayNumber(i);
+                    ((CalendarItem)ws.Target).SetDayNumber(i);
                 }
                 catch (Exception e)
                 {
@@ -740,13 +714,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static Eina.Rect.NativeStruct focus_geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((CalendarItem)wrapper).GetFocusGeometry();
+                    _ret_var = ((CalendarItem)ws.Target).GetFocusGeometry();
                 }
                 catch (Exception e)
                 {
@@ -776,13 +750,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static bool focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((CalendarItem)wrapper).GetFocus();
+                    _ret_var = ((CalendarItem)ws.Target).GetFocus();
                 }
                 catch (Exception e)
                 {
@@ -812,13 +786,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static void focus_set(System.IntPtr obj, System.IntPtr pd, bool focus)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((CalendarItem)wrapper).SetFocus(focus);
+                    ((CalendarItem)ws.Target).SetFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -847,13 +821,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static Efl.Ui.Focus.IManager focus_manager_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_manager_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((CalendarItem)wrapper).GetFocusManager();
+                    _ret_var = ((CalendarItem)ws.Target).GetFocusManager();
                 }
                 catch (Exception e)
                 {
@@ -883,13 +857,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static Efl.Ui.Focus.IObject focus_parent_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_focus_parent_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((CalendarItem)wrapper).GetFocusParent();
+                    _ret_var = ((CalendarItem)ws.Target).GetFocusParent();
                 }
                 catch (Exception e)
                 {
@@ -919,13 +893,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static bool child_focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_child_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((CalendarItem)wrapper).GetChildFocus();
+                    _ret_var = ((CalendarItem)ws.Target).GetChildFocus();
                 }
                 catch (Exception e)
                 {
@@ -955,13 +929,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static void child_focus_set(System.IntPtr obj, System.IntPtr pd, bool child_focus)
         {
             Eina.Log.Debug("function efl_ui_focus_object_child_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((CalendarItem)wrapper).SetChildFocus(child_focus);
+                    ((CalendarItem)ws.Target).SetChildFocus(child_focus);
                 }
                 catch (Exception e)
                 {
@@ -990,13 +964,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static void setup_order(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_setup_order was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((CalendarItem)wrapper).SetupOrder();
+                    ((CalendarItem)ws.Target).SetupOrder();
                 }
                 catch (Exception e)
                 {
@@ -1025,13 +999,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static void setup_order_non_recursive(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_setup_order_non_recursive was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((CalendarItem)wrapper).SetupOrderNonRecursive();
+                    ((CalendarItem)ws.Target).SetupOrderNonRecursive();
                 }
                 catch (Exception e)
                 {
@@ -1060,13 +1034,13 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
         private static bool on_focus_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_object_on_focus_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((CalendarItem)wrapper).UpdateOnFocus();
+                    _ret_var = ((CalendarItem)ws.Target).UpdateOnFocus();
                 }
                 catch (Exception e)
                 {
@@ -1085,7 +1059,7 @@ public class CalendarItem : Efl.Object, Efl.Eo.IWrapper,Efl.Ui.Focus.IObject
 
         private static efl_ui_focus_object_on_focus_update_delegate efl_ui_focus_object_on_focus_update_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

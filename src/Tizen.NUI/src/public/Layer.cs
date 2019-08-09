@@ -18,6 +18,7 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -248,6 +249,20 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                return Application.Current.XamlResources;
+            }
+            set
+            {
+                Application.Current.XamlResources = value;
+            }
+        }
+
         /// From the Container base class.
 
         /// <summary>
@@ -274,6 +289,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
             }
         }
 
@@ -367,6 +383,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal override View FindCurrentChildById(uint id)
+        {
+            return FindChildById(id);
         }
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -489,14 +510,36 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal void SetAnchorPoint(Vector3 anchorPoint)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAnchorPoint(Vector3 anchorPoint)
         {
             Interop.Actor.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSize(float width, float height)
+        {
+            Interop.ActorInternal.Actor_SetSize__SWIG_0(swigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetParentOrigin(Vector3 parentOrigin)
+        {
+            Interop.ActorInternal.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(parentOrigin));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
             Interop.Actor.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending)

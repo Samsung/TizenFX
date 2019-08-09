@@ -11,7 +11,8 @@ namespace Ui {
 
 /// <summary>Elementary layout internal part class</summary>
 [Efl.Ui.LayoutPartLegacy.NativeMethods]
-public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,Efl.IText,Efl.ITextMarkup,Efl.Ui.IL10n
+[Efl.Eo.BindingEntity]
+public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.IContent, Efl.IText, Efl.ITextMarkup, Efl.Ui.IL10n
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,52 +35,30 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// <summary>Initializes a new instance of the <see cref="LayoutPartLegacy"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LayoutPartLegacy(Efl.Object parent= null
-            ) : base(efl_ui_layout_part_legacy_class_get(), typeof(LayoutPartLegacy), parent)
+            ) : base(efl_ui_layout_part_legacy_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LayoutPartLegacy(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LayoutPartLegacy"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LayoutPartLegacy(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LayoutPartLegacy(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutPartLegacy"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LayoutPartLegacy(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LayoutPartLegacy(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Sent after the content is set or unset using the current content object.
@@ -88,15 +67,14 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -111,16 +89,16 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -128,7 +106,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -143,7 +121,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -153,7 +131,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -161,7 +139,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -172,7 +150,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -181,20 +159,20 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup property</summary>
     /// <returns>The markup-text representation set to this text.</returns>
     virtual public System.String GetMarkup() {
-         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Markup property</summary>
     /// <param name="markup">The markup-text representation set to this text.</param>
     virtual public void SetMarkup(System.String markup) {
-                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),markup);
+                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),markup);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>A unique string to be translated.
@@ -204,7 +182,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// <param name="domain">A translation domain. If <c>null</c> this means the default domain is used.</param>
     /// <returns>This returns the untranslated value of <c>label</c>. The translated string can usually be retrieved with <see cref="Efl.IText.GetText"/>.</returns>
     virtual public System.String GetL10nText(out System.String domain) {
-                                 var _ret_var = Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out domain);
+                                 var _ret_var = Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out domain);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -212,7 +190,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// <param name="label">A unique (untranslated) string.</param>
     /// <param name="domain">A translation domain. If <c>null</c> this uses the default domain (eg. set by <c>textdomain</c>()).</param>
     virtual public void SetL10nText(System.String label, System.String domain) {
-                                                         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),label, domain);
+                                                         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),label, domain);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Requests this object to update its text strings for the current locale.
@@ -220,19 +198,19 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
     /// 
     /// This function is a hook meant to be implemented by any object that supports translation. This can be called whenever a new object is created or when the current locale changes, for instance. This should only trigger further calls to <see cref="Efl.Ui.IL10n.UpdateTranslation"/> to children objects.</summary>
     virtual public void UpdateTranslation() {
-         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
     /// <summary>Markup property</summary>
-/// <value>The markup-text representation set to this text.</value>
+    /// <value>The markup-text representation set to this text.</value>
     public System.String Markup {
         get { return GetMarkup(); }
         set { SetMarkup(value); }
@@ -363,7 +341,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
             return Efl.Ui.LayoutPartLegacy.efl_ui_layout_part_legacy_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -376,13 +354,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((LayoutPartLegacy)wrapper).GetContent();
+                    _ret_var = ((LayoutPartLegacy)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -412,13 +390,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LayoutPartLegacy)wrapper).SetContent(content);
+                    _ret_var = ((LayoutPartLegacy)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -448,13 +426,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((LayoutPartLegacy)wrapper).UnsetContent();
+                    _ret_var = ((LayoutPartLegacy)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -484,13 +462,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static System.String text_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartLegacy)wrapper).GetText();
+                    _ret_var = ((LayoutPartLegacy)ws.Target).GetText();
                 }
                 catch (Exception e)
                 {
@@ -520,13 +498,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static void text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
         {
             Eina.Log.Debug("function efl_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartLegacy)wrapper).SetText(text);
+                    ((LayoutPartLegacy)ws.Target).SetText(text);
                 }
                 catch (Exception e)
                 {
@@ -555,13 +533,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static System.String markup_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_markup_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartLegacy)wrapper).GetMarkup();
+                    _ret_var = ((LayoutPartLegacy)ws.Target).GetMarkup();
                 }
                 catch (Exception e)
                 {
@@ -591,13 +569,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static void markup_set(System.IntPtr obj, System.IntPtr pd, System.String markup)
         {
             Eina.Log.Debug("function efl_text_markup_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((LayoutPartLegacy)wrapper).SetMarkup(markup);
+                    ((LayoutPartLegacy)ws.Target).SetMarkup(markup);
                 }
                 catch (Exception e)
                 {
@@ -626,14 +604,14 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static System.String l10n_text_get(System.IntPtr obj, System.IntPtr pd, out System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                 System.String _out_domain = default(System.String);
                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((LayoutPartLegacy)wrapper).GetL10nText(out _out_domain);
+                    _ret_var = ((LayoutPartLegacy)ws.Target).GetL10nText(out _out_domain);
                 }
                 catch (Exception e)
                 {
@@ -664,13 +642,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static void l10n_text_set(System.IntPtr obj, System.IntPtr pd, System.String label, System.String domain)
         {
             Eina.Log.Debug("function efl_ui_l10n_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((LayoutPartLegacy)wrapper).SetL10nText(label, domain);
+                    ((LayoutPartLegacy)ws.Target).SetL10nText(label, domain);
                 }
                 catch (Exception e)
                 {
@@ -699,13 +677,13 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
         private static void translation_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_l10n_translation_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((LayoutPartLegacy)wrapper).UpdateTranslation();
+                    ((LayoutPartLegacy)ws.Target).UpdateTranslation();
                 }
                 catch (Exception e)
                 {
@@ -723,7 +701,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.Eo.IWrapper,Efl.IContent,
 
         private static efl_ui_l10n_translation_update_delegate efl_ui_l10n_translation_update_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

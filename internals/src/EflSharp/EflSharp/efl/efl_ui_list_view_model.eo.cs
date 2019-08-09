@@ -10,6 +10,7 @@ namespace Efl {
 namespace Ui {
 
 [Efl.Ui.IListViewModelConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IListViewModel : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -21,7 +22,7 @@ Eina.Size2D GetMinSize();
 void SetMinSize(Eina.Size2D min);
     Efl.Ui.ListViewLayoutItem Realize(ref Efl.Ui.ListViewLayoutItem item);
     void Unrealize(ref Efl.Ui.ListViewLayoutItem item);
-                                int ModelSize {
+                            int ModelSize {
         get ;
     }
     /// <summary>Minimal content size.</summary>
@@ -30,13 +31,13 @@ void SetMinSize(Eina.Size2D min);
         set ;
     }
 }
-sealed public class IListViewModelConcrete : 
-
-IListViewModel
+sealed public class IListViewModelConcrete :
+    Efl.Eo.EoWrapper
+    , IListViewModel
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -51,86 +52,19 @@ IListViewModel
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IListViewModelConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_list_view_model_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IListViewModel"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IListViewModelConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IListViewModelConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IListViewModelConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     public void SetLoadRange(int first, int count) {
@@ -169,7 +103,7 @@ IListViewModel
         Eina.Error.RaiseIfUnhandledException();
                 item = _in_item;
          }
-        public int ModelSize {
+    public int ModelSize {
         get { return GetModelSize(); }
     }
     /// <summary>Minimal content size.</summary>
@@ -183,7 +117,7 @@ IListViewModel
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -262,7 +196,7 @@ IListViewModel
             return Efl.Ui.IListViewModelConcrete.efl_ui_list_view_model_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_ui_list_view_model_load_range_set_delegate(System.IntPtr obj, System.IntPtr pd,  int first,  int count);
@@ -275,13 +209,13 @@ IListViewModel
         private static void load_range_set(System.IntPtr obj, System.IntPtr pd, int first, int count)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_load_range_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IListViewModel)wrapper).SetLoadRange(first, count);
+                    ((IListViewModel)ws.Target).SetLoadRange(first, count);
                 }
                 catch (Exception e)
                 {
@@ -310,13 +244,13 @@ IListViewModel
         private static int model_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((IListViewModel)wrapper).GetModelSize();
+                    _ret_var = ((IListViewModel)ws.Target).GetModelSize();
                 }
                 catch (Exception e)
                 {
@@ -346,13 +280,13 @@ IListViewModel
         private static Eina.Size2D.NativeStruct min_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_min_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((IListViewModel)wrapper).GetMinSize();
+                    _ret_var = ((IListViewModel)ws.Target).GetMinSize();
                 }
                 catch (Exception e)
                 {
@@ -382,14 +316,14 @@ IListViewModel
         private static void min_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct min)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_min_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_min = min;
                             
                 try
                 {
-                    ((IListViewModel)wrapper).SetMinSize(_in_min);
+                    ((IListViewModel)ws.Target).SetMinSize(_in_min);
                 }
                 catch (Exception e)
                 {
@@ -418,14 +352,14 @@ IListViewModel
         private static System.IntPtr realize(System.IntPtr obj, System.IntPtr pd, ref Efl.Ui.ListViewLayoutItem.NativeStruct item)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_realize was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Ui.ListViewLayoutItem _in_item = item;
                             Efl.Ui.ListViewLayoutItem _ret_var = default(Efl.Ui.ListViewLayoutItem);
                 try
                 {
-                    _ret_var = ((IListViewModel)wrapper).Realize(ref _in_item);
+                    _ret_var = ((IListViewModel)ws.Target).Realize(ref _in_item);
                 }
                 catch (Exception e)
                 {
@@ -456,14 +390,14 @@ IListViewModel
         private static void unrealize(System.IntPtr obj, System.IntPtr pd, ref Efl.Ui.ListViewLayoutItem.NativeStruct item)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_unrealize was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Ui.ListViewLayoutItem _in_item = item;
                             
                 try
                 {
-                    ((IListViewModel)wrapper).Unrealize(ref _in_item);
+                    ((IListViewModel)ws.Target).Unrealize(ref _in_item);
                 }
                 catch (Exception e)
                 {
@@ -482,7 +416,7 @@ IListViewModel
 
         private static efl_ui_list_view_model_unrealize_delegate efl_ui_list_view_model_unrealize_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

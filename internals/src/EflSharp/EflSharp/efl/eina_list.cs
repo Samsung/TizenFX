@@ -353,12 +353,12 @@ public class List<T> : IEnumerable<T>, IDisposable
 
     public Eina.Iterator<T> GetIterator()
     {
-        return new Eina.Iterator<T>(eina_list_iterator_new(Handle), true, false);
+        return new Eina.Iterator<T>(eina_list_iterator_new(Handle), true);
     }
 
     public Eina.Iterator<T> GetReversedIterator()
     {
-        return new Eina.Iterator<T>(eina_list_iterator_reversed_new(Handle), true, false);
+        return new Eina.Iterator<T>(eina_list_iterator_reversed_new(Handle), true);
     }
 
     public IEnumerator<T> GetEnumerator()

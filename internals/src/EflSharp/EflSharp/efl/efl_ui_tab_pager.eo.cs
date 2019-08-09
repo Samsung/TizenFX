@@ -11,7 +11,8 @@ namespace Ui {
 
 /// <summary>Tab Pager class</summary>
 [Efl.Ui.TabPager.NativeMethods]
-public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
+[Efl.Eo.BindingEntity]
+public class TabPager : Efl.Ui.Spotlight.Container
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -33,9 +34,9 @@ public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
         efl_ui_tab_pager_class_get();
     /// <summary>Initializes a new instance of the <see cref="TabPager"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public TabPager(Efl.Object parent
-            , System.String style = null) : base(efl_ui_tab_pager_class_get(), typeof(TabPager), parent)
+            , System.String style = null) : base(efl_ui_tab_pager_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,59 +46,37 @@ public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TabPager(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TabPager"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TabPager(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TabPager(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="TabPager"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TabPager(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TabPager(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     virtual public Efl.Canvas.Object GetTabBar() {
-         var _ret_var = Efl.Ui.TabPager.NativeMethods.efl_ui_tab_pager_tab_bar_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.TabPager.NativeMethods.efl_ui_tab_pager_tab_bar_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public void SetTabBar(Efl.Canvas.Object tab_bar) {
-                                 Efl.Ui.TabPager.NativeMethods.efl_ui_tab_pager_tab_bar_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),tab_bar);
+                                 Efl.Ui.TabPager.NativeMethods.efl_ui_tab_pager_tab_bar_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tab_bar);
         Eina.Error.RaiseIfUnhandledException();
                          }
-        public Efl.Canvas.Object TabBar {
+    public Efl.Canvas.Object TabBar {
         get { return GetTabBar(); }
         set { SetTabBar(value); }
     }
@@ -107,7 +86,7 @@ public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public new class NativeMethods : Efl.Ui.Pager.NativeMethods
+    public new class NativeMethods : Efl.Ui.Spotlight.Container.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -147,7 +126,7 @@ public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
             return Efl.Ui.TabPager.efl_ui_tab_pager_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Canvas.Object efl_ui_tab_pager_tab_bar_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -160,13 +139,13 @@ public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
         private static Efl.Canvas.Object tab_bar_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_tab_pager_tab_bar_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((TabPager)wrapper).GetTabBar();
+                    _ret_var = ((TabPager)ws.Target).GetTabBar();
                 }
                 catch (Exception e)
                 {
@@ -196,13 +175,13 @@ public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
         private static void tab_bar_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object tab_bar)
         {
             Eina.Log.Debug("function efl_ui_tab_pager_tab_bar_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((TabPager)wrapper).SetTabBar(tab_bar);
+                    ((TabPager)ws.Target).SetTabBar(tab_bar);
                 }
                 catch (Exception e)
                 {
@@ -220,7 +199,7 @@ public class TabPager : Efl.Ui.Pager, Efl.Eo.IWrapper
 
         private static efl_ui_tab_pager_tab_bar_set_delegate efl_ui_tab_pager_tab_bar_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

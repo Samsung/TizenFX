@@ -99,7 +99,17 @@ namespace Tizen.NUI
             return _typeConverter.ConvertFromPixel(value);
         }
 
+        internal void RegisterCustomConverterForDynamicResourceBinding(global::System.Type type, Tizen.NUI.Binding.TypeConverter userConverter)
+        {
+            if (Tizen.NUI.Binding.BindableProperty.UserCustomConvertTypes.ContainsKey(type) == false)
+            {
+                Tizen.NUI.Binding.BindableProperty.UserCustomConvertTypes.Add(type, userConverter);
+            }
+            //NUILog.Error($"user custom converter ditionary count={Tizen.NUI.Binding.BindableProperty.UserCustomConvertTypes.Count}");
+        }
+
         private volatile static GraphicsTypeManager _graphicsTypeManager;
         private GraphicsTypeConverter _typeConverter;
     }
+
 }

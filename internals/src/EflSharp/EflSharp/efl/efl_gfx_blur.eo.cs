@@ -12,6 +12,7 @@ namespace Gfx {
 /// <summary>A simple API to apply blur effects.
 /// Those API&apos;s might use <see cref="Efl.Gfx.IFilter"/> internally. It might be necessary to also specify the color of the blur with <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
 [Efl.Gfx.IBlurConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IBlur : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -46,10 +47,10 @@ double GetGrow();
 /// <param name="radius">How much to grow the original pixel data.</param>
 void SetGrow(double radius);
                             /// <summary>How much the original image should be &quot;grown&quot; before blurring.
-/// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
-/// 
-/// This is can be used efficiently to create glow effects.</summary>
-/// <value>How much to grow the original pixel data.</value>
+    /// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
+    /// 
+    /// This is can be used efficiently to create glow effects.</summary>
+    /// <value>How much to grow the original pixel data.</value>
     double Grow {
         get ;
         set ;
@@ -57,13 +58,13 @@ void SetGrow(double radius);
 }
 /// <summary>A simple API to apply blur effects.
 /// Those API&apos;s might use <see cref="Efl.Gfx.IFilter"/> internally. It might be necessary to also specify the color of the blur with <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
-sealed public class IBlurConcrete : 
-
-IBlur
+sealed public class IBlurConcrete :
+    Efl.Eo.EoWrapper
+    , IBlur
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -78,86 +79,19 @@ IBlur
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IBlurConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_blur_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IBlur"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IBlurConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IBlurConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IBlurConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>The blur radius in pixels.</summary>
@@ -210,10 +144,10 @@ IBlur
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>How much the original image should be &quot;grown&quot; before blurring.
-/// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
-/// 
-/// This is can be used efficiently to create glow effects.</summary>
-/// <value>How much to grow the original pixel data.</value>
+    /// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
+    /// 
+    /// This is can be used efficiently to create glow effects.</summary>
+    /// <value>How much to grow the original pixel data.</value>
     public double Grow {
         get { return GetGrow(); }
         set { SetGrow(value); }
@@ -224,7 +158,7 @@ IBlur
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -303,7 +237,7 @@ IBlur
             return Efl.Gfx.IBlurConcrete.efl_gfx_blur_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_blur_radius_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double rx,  out double ry);
@@ -316,13 +250,13 @@ IBlur
         private static void radius_get(System.IntPtr obj, System.IntPtr pd, out double rx, out double ry)
         {
             Eina.Log.Debug("function efl_gfx_blur_radius_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         rx = default(double);        ry = default(double);                            
                 try
                 {
-                    ((IBlur)wrapper).GetRadius(out rx, out ry);
+                    ((IBlur)ws.Target).GetRadius(out rx, out ry);
                 }
                 catch (Exception e)
                 {
@@ -351,13 +285,13 @@ IBlur
         private static void radius_set(System.IntPtr obj, System.IntPtr pd, double rx, double ry)
         {
             Eina.Log.Debug("function efl_gfx_blur_radius_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IBlur)wrapper).SetRadius(rx, ry);
+                    ((IBlur)ws.Target).SetRadius(rx, ry);
                 }
                 catch (Exception e)
                 {
@@ -386,13 +320,13 @@ IBlur
         private static void offset_get(System.IntPtr obj, System.IntPtr pd, out double ox, out double oy)
         {
             Eina.Log.Debug("function efl_gfx_blur_offset_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         ox = default(double);        oy = default(double);                            
                 try
                 {
-                    ((IBlur)wrapper).GetOffset(out ox, out oy);
+                    ((IBlur)ws.Target).GetOffset(out ox, out oy);
                 }
                 catch (Exception e)
                 {
@@ -421,13 +355,13 @@ IBlur
         private static void offset_set(System.IntPtr obj, System.IntPtr pd, double ox, double oy)
         {
             Eina.Log.Debug("function efl_gfx_blur_offset_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IBlur)wrapper).SetOffset(ox, oy);
+                    ((IBlur)ws.Target).SetOffset(ox, oy);
                 }
                 catch (Exception e)
                 {
@@ -456,13 +390,13 @@ IBlur
         private static double grow_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_blur_grow_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((IBlur)wrapper).GetGrow();
+                    _ret_var = ((IBlur)ws.Target).GetGrow();
                 }
                 catch (Exception e)
                 {
@@ -492,13 +426,13 @@ IBlur
         private static void grow_set(System.IntPtr obj, System.IntPtr pd, double radius)
         {
             Eina.Log.Debug("function efl_gfx_blur_grow_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IBlur)wrapper).SetGrow(radius);
+                    ((IBlur)ws.Target).SetGrow(radius);
                 }
                 catch (Exception e)
                 {
@@ -516,7 +450,7 @@ IBlur
 
         private static efl_gfx_blur_grow_set_delegate efl_gfx_blur_grow_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

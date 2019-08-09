@@ -9,7 +9,8 @@ namespace Efl {
 
 /// <summary>Efl linear interpolator class</summary>
 [Efl.LinearInterpolator.NativeMethods]
-public class LinearInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
+[Efl.Eo.BindingEntity]
+public class LinearInterpolator : Efl.Object, Efl.IInterpolator
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -32,59 +33,37 @@ public class LinearInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
     /// <summary>Initializes a new instance of the <see cref="LinearInterpolator"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LinearInterpolator(Efl.Object parent= null
-            ) : base(efl_linear_interpolator_class_get(), typeof(LinearInterpolator), parent)
+            ) : base(efl_linear_interpolator_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LinearInterpolator(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LinearInterpolator"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LinearInterpolator(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LinearInterpolator(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="LinearInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LinearInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LinearInterpolator(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Interpolate the given value.</summary>
     /// <param name="progress">Input value mapped from 0.0 to 1.0.</param>
     /// <returns>Output value calculated by interpolating the input value.</returns>
     virtual public double Interpolate(double progress) {
-                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),progress);
+                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -124,7 +103,7 @@ public class LinearInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
             return Efl.LinearInterpolator.efl_linear_interpolator_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate double efl_interpolator_interpolate_delegate(System.IntPtr obj, System.IntPtr pd,  double progress);
@@ -137,13 +116,13 @@ public class LinearInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
         private static double interpolate(System.IntPtr obj, System.IntPtr pd, double progress)
         {
             Eina.Log.Debug("function efl_interpolator_interpolate was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((LinearInterpolator)wrapper).Interpolate(progress);
+                    _ret_var = ((LinearInterpolator)ws.Target).Interpolate(progress);
                 }
                 catch (Exception e)
                 {
@@ -162,7 +141,7 @@ public class LinearInterpolator : Efl.Object, Efl.Eo.IWrapper,Efl.IInterpolator
 
         private static efl_interpolator_interpolate_delegate efl_interpolator_interpolate_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

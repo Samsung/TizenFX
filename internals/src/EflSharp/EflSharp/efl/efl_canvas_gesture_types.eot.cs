@@ -10,6 +10,7 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>This enum type describes the state of a touch event.</summary>
+[Efl.Eo.BindingEntity]
 public enum GestureTouchState
 {
 /// <summary>Gesture Touch State unknown</summary>
@@ -31,6 +32,7 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>This enum type describes the state of a gesture.</summary>
+[Efl.Eo.BindingEntity]
 public enum GestureState
 {
 /// <summary>No gesture state</summary>
@@ -54,6 +56,7 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>This enum type describes the state of a gesture recognizer.</summary>
+[Efl.Eo.BindingEntity]
 public enum GestureRecognizerResult
 {
 /// <summary>The event does not change the state of the recognizer.</summary>
@@ -68,6 +71,27 @@ Finish = 8,
 Cancel = 16,
 /// <summary>The gesture result mask</summary>
 ResultMask = 255,
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Canvas {
+
+/// <summary>This enum type describes the state of a touch event.</summary>
+[Efl.Eo.BindingEntity]
+public enum GestureRecognizerType
+{
+Tap = 0,
+DoubleTap = 1,
+TripleTap = 2,
+LongTap = 3,
+Momentum = 4,
+Flick = 5,
+Zoom = 6,
 }
 
 }

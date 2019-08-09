@@ -44,13 +44,16 @@ public class Globals
     public static FunctionWrapper<efl_object_shutdown_delegate> efl_object_shutdown_ptr = new FunctionWrapper<efl_object_shutdown_delegate>(efl.Libs.EoModule, "efl_object_shutdown");
     public static void efl_object_shutdown() => efl_object_shutdown_ptr.Value.Delegate();
     // [DllImport(efl.Libs.Eo)] public static extern void efl_object_shutdown();
-    public static FunctionWrapper<_efl_add_internal_start_delegate> _efl_add_internal_start_ptr = new FunctionWrapper<_efl_add_internal_start_delegate>(efl.Libs.EoModule, "_efl_add_internal_start");
-    public delegate  IntPtr
-        _efl_add_internal_start_delegate([MarshalAs(UnmanagedType.LPStr)] String file, int line,
-                                IntPtr klass, IntPtr parent, byte is_ref, byte is_fallback);
+
+    [DllImport(efl.Libs.CustomExports)] public static extern IntPtr efl_mono_wrapper_supervisor_get(IntPtr eo);
+    [DllImport(efl.Libs.CustomExports)] public static extern void efl_mono_wrapper_supervisor_set(IntPtr eo, IntPtr ws);
+
     [DllImport(efl.Libs.Eo)] public static extern IntPtr
         _efl_add_internal_start([MarshalAs(UnmanagedType.LPStr)] String file, int line,
                                 IntPtr klass, IntPtr parent, byte is_ref, byte is_fallback);
+    [DllImport(efl.Libs.Eo)] public static extern IntPtr
+        _efl_add_internal_start_bindings([MarshalAs(UnmanagedType.LPStr)] String file, int line, IntPtr klass, IntPtr parent,
+                                         byte is_ref, byte is_fallback, IntPtr substitute_ctor, IntPtr data);
     public delegate  IntPtr
         _efl_add_end_delegate(IntPtr eo, byte is_ref, byte is_fallback);
     [DllImport(efl.Libs.Eo)] public static extern IntPtr
@@ -68,11 +71,11 @@ public class Globals
     [DllImport(efl.Libs.Eo)] public static extern int
         efl_ref_count(IntPtr eo);
     [DllImport(efl.Libs.CustomExports)] public static extern void
-        efl_mono_gchandle_callbacks_set(Efl.FreeGCHandleCb freeGCHandleCb, Efl.RemoveEventsCb removeEventsCb);
+        efl_mono_wrapper_supervisor_callbacks_set(Efl.FreeWrapperSupervisorCb freeWrapperSupervisorCb);
     [DllImport(efl.Libs.CustomExports)] public static extern void
-        efl_mono_native_dispose(IntPtr eo, IntPtr gcHandle);
+        efl_mono_native_dispose(IntPtr eo);
     [DllImport(efl.Libs.CustomExports)] public static extern void
-        efl_mono_thread_safe_native_dispose(IntPtr eo, IntPtr gcHandle);
+        efl_mono_thread_safe_native_dispose(IntPtr eo);
     [DllImport(efl.Libs.CustomExports)] public static extern void
         efl_mono_thread_safe_efl_unref(IntPtr eo);
 
@@ -192,6 +195,10 @@ public class Globals
     public delegate  IntPtr dlerror_delegate();
     [DllImport(efl.Libs.Evil)] public static extern IntPtr dlerror();
 
+    [DllImport(efl.Libs.Eo)] public static extern IntPtr efl_constructor(IntPtr obj);
+
+    [DllImport(efl.Libs.CustomExports)] public static extern IntPtr efl_mono_avoid_top_level_constructor_callback_addr_get();
+
     [DllImport(efl.Libs.Eo)] [return: MarshalAs(UnmanagedType.U1)] public static extern bool
         efl_event_callback_priority_add(IntPtr obj, IntPtr desc, short priority, IntPtr cb, IntPtr data);
 
@@ -231,7 +238,7 @@ public class Globals
         description.version = 2; // EO_VERSION
         description.name = class_name;
         description.class_type = 0; // REGULAR
-        description.data_size = (UIntPtr)8;
+        description.data_size = (UIntPtr)0;
         description.class_initializer = IntPtr.Zero;
         description.class_constructor = IntPtr.Zero;
         description.class_destructor = IntPtr.Zero;
@@ -245,6 +252,8 @@ public class Globals
 
         IntPtr description_ptr = Eina.MemoryNative.Alloc(Marshal.SizeOf(description));
         Marshal.StructureToPtr(description, description_ptr, false);
+
+        // FIXME: description_ptr seems to be leaking memory even after an eo_shutdown
 
         var interface_list = EoG.get_efl_interfaces(type);
 
@@ -328,7 +337,16 @@ public class Globals
     public static byte class_initializer_call(IntPtr klass, System.Type type)
     {
         Eina.Log.Debug($"called with 0x{klass.ToInt64():x} {type}");
-        Efl.Eo.NativeClass nativeClass = GetNativeClass(type.BaseType);
+        var derived = type.BaseType;
+        Efl.Eo.NativeClass nativeClass = GetNativeClass(derived);
+
+        while (nativeClass == null)
+        {
+            derived = derived.BaseType;
+            if (derived == null)
+                break;
+            nativeClass = GetNativeClass(derived);
+        }
 
         if (nativeClass != null)
         {
@@ -442,60 +460,26 @@ public class Globals
         }
     }
 
-    public static IntPtr instantiate_start(IntPtr klass, Efl.Object parent,
-                                           [CallerFilePath] string file = null,
-                                           [CallerLineNumber] int line = 0)
+    public static Efl.Eo.WrapperSupervisor WrapperSupervisorPtrToManaged(IntPtr wsPtr)
     {
-        Eina.Log.Debug($"Instantiating from klass 0x{klass.ToInt64():x}");
-        System.IntPtr parent_ptr = System.IntPtr.Zero;
-        if (parent != null)
-        {
-            parent_ptr = parent.NativeHandle;
-        }
-
-        System.IntPtr eo = Efl.Eo.Globals._efl_add_internal_start(file, line, klass, parent_ptr, 1, 0);
-        if (eo == System.IntPtr.Zero)
-        {
-            throw new Exception("Instantiation failed");
-        }
-
-        Eina.Log.Debug($"Eo instance right after internal_start 0x{eo.ToInt64():x} with refcount {Efl.Eo.Globals.efl_ref_count(eo)}");
-        Eina.Log.Debug($"Parent was 0x{parent_ptr.ToInt64()}");
-        return eo;
+        return (Efl.Eo.WrapperSupervisor) GCHandle.FromIntPtr(wsPtr).Target;
     }
 
-    public static IntPtr instantiate_end(IntPtr eo)
+    public static Efl.Eo.WrapperSupervisor GetWrapperSupervisor(IntPtr eo)
     {
-        Eina.Log.Debug("calling efl_add_internal_end");
-        eo = Efl.Eo.Globals._efl_add_end(eo, 1, 0);
-        Eina.Log.Debug($"efl_add_end returned eo 0x{eo.ToInt64():x}");
-        return eo;
-    }
-
-    public static void PrivateDataSet(Efl.Eo.IWrapper obj)
-    {
-        Eina.Log.Debug($"Calling data_scope_get with obj {obj.NativeHandle.ToInt64():x} and klass {obj.NativeClass.ToInt64():x}");
-        IntPtr pd = Efl.Eo.Globals.efl_data_scope_get(obj.NativeHandle, obj.NativeClass);
-        {
-            GCHandle gch = GCHandle.Alloc(obj);
-            EolianPD epd;
-            epd.pointer = GCHandle.ToIntPtr(gch);
-            Marshal.StructureToPtr(epd, pd, false);
-        }
-    }
-
-    public static Efl.Eo.IWrapper PrivateDataGet(IntPtr pd)
-    {
-        EolianPD epd = (EolianPD)Marshal.PtrToStructure(pd, typeof(EolianPD));
-        if (epd.pointer != IntPtr.Zero)
-        {
-            GCHandle gch = GCHandle.FromIntPtr(epd.pointer);
-            return (Efl.Eo.IWrapper)gch.Target;
-        }
-        else
+        var wsPtr = Efl.Eo.Globals.efl_mono_wrapper_supervisor_get(eo);
+        if (wsPtr == IntPtr.Zero)
         {
             return null;
         }
+
+        return WrapperSupervisorPtrToManaged(wsPtr);
+    }
+
+    public static void SetWrapperSupervisor(IntPtr eo, Efl.Eo.WrapperSupervisor ws)
+    {
+        GCHandle gch = GCHandle.Alloc(ws);
+        Efl.Eo.Globals.efl_mono_wrapper_supervisor_set(eo, GCHandle.ToIntPtr(gch));
     }
 
     public static void free_dict_values(Dictionary<String, IntPtr> dict)
@@ -510,7 +494,7 @@ public class Globals
     {
         foreach (IntPtr ptr in dict.Values)
         {
-            Eina.Stringshare.eina_stringshare_del(ptr);
+            Eina.NativeMethods.eina_stringshare_del(ptr);
         }
     }
 
@@ -549,8 +533,10 @@ public class Globals
                 }
                 else
                 {
-                    // Will mark the returned task below as completed.
-                    tcs.SetResult(received);
+                    // Async receiver methods may consume the value C# wrapper, like when awaiting in the start of an
+                    // using block. In order to continue to forward the value correctly to the next futures
+                    // in the chain, we give the Async wrapper a copy of the received wrapper.
+                    tcs.SetResult(new Eina.Value(received));
                 }
 
                 fulfilled = true;
@@ -601,93 +587,102 @@ public class Globals
             return null;
         }
 
-        IntPtr eoKlass = efl_class_get(handle);
-
-        if (eoKlass == IntPtr.Zero)
+        Efl.Eo.Globals.efl_ref(handle);
+        try
         {
-            throw new InvalidOperationException($"Can't get Eo class for object handle 0x{handle.ToInt64():x}");
-        }
-
-        var managedType = ClassRegister.GetManagedType(eoKlass);
-
-        if (managedType == null)
-        {
-            IntPtr nativeName = efl_class_name_get(eoKlass);
-            var name = Eina.StringConversion.NativeUtf8ToManagedString(nativeName);
-
-            throw new InvalidOperationException($"Can't get Managed class for object handle 0x{handle.ToInt64():x} with native class [{name}]");
-        }
-
-        // Pure C# classes that inherit from generated classes store their C# instance in their
-        // Eo private data field.
-        if (!IsGeneratedClass(managedType))
-        {
-            Efl.Eo.IWrapper instance = null;
-            IntPtr pd = efl_data_scope_get(handle, eoKlass);
-
-            if (pd != IntPtr.Zero)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(handle);
+            if (ws != null && ws.Target != null)
             {
-                instance = PrivateDataGet(pd);
+                if (!shouldIncRef)
+                {
+                    Efl.Eo.Globals.efl_unref(handle);
+                }
+
+                return ws.Target;
             }
 
-            return instance;
-        }
+            IntPtr eoKlass = efl_class_get(handle);
 
-        System.Reflection.ConstructorInfo constructor = null;
-
-        try
-        {
-            var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
-            constructor = managedType.GetConstructor(flags, null, new Type[1] { typeof(System.IntPtr) }, null);
-        }
-        catch (InvalidOperationException)
-        {
-            throw new InvalidOperationException($"Can't get constructor for type {managedType}");
-        }
-
-        var ret = constructor.Invoke(new object[1] { handle }) as Efl.Eo.IWrapper;
-
-        if (ret != null && shouldIncRef)
-            Efl.Eo.Globals.efl_ref(handle);
-
-        return ret;
-    }
-
-    private static Efl.FreeGCHandleCb FreeGCHandleCallbackDelegate = new Efl.FreeGCHandleCb(FreeGCHandleCallback);
-    public static void FreeGCHandleCallback(IntPtr gcHandlePtr)
-    {
-        try
-        {
-            GCHandle gcHandle = GCHandle.FromIntPtr(gcHandlePtr);
-            gcHandle.Free();
-        }
-        catch (Exception e)
-        {
-            Eina.Log.Error(e.ToString());
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-    }
-
-    private static Efl.RemoveEventsCb RemoveEventsCallbackDelegate = new Efl.RemoveEventsCb(RemoveEventsCallback);
-    public static void RemoveEventsCallback(IntPtr obj, IntPtr gcHandlePtr)
-    {
-        try
-        {
-            GCHandle gcHandle = GCHandle.FromIntPtr(gcHandlePtr);
-            var eoEvents = gcHandle.Target as Dictionary<(IntPtr desc, object evtDelegate), (IntPtr evtCallerPtr, Efl.EventCb evtCaller)>;
-            if (eoEvents == null)
+            if (eoKlass == IntPtr.Zero)
             {
-                Eina.Log.Error($"Invalid event dictionary [GCHandle pointer: {gcHandlePtr}]");
+                throw new InvalidOperationException($"Can't get Eo class for object handle 0x{handle.ToInt64():x}");
+            }
+
+            var managedType = ClassRegister.GetManagedType(eoKlass);
+
+            if (managedType == null)
+            {
+                IntPtr nativeName = efl_class_name_get(eoKlass);
+                var name = Eina.StringConversion.NativeUtf8ToManagedString(nativeName);
+
+                throw new InvalidOperationException($"Can't get Managed class for object handle 0x{handle.ToInt64():x} with native class [{name}]");
+            }
+
+            Debug.Assert(IsGeneratedClass(managedType));
+            System.Reflection.ConstructorInfo constructor = null;
+
+            try
+            {
+                var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+                constructor = managedType.GetConstructor(flags, null, new Type[1] { typeof(WrappingHandle) }, null);
+            }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException($"Can't get constructor for type {managedType}");
+            }
+
+            WrappingHandle wh = new WrappingHandle(handle);
+            var ret = (Efl.Eo.IWrapper) constructor.Invoke(new object[1] { wh });
+
+            if (ret == null)
+            {
+                throw new InvalidOperationException($"Can't construct type {managedType} from IntPtr handle");
+            }
+
+            if (shouldIncRef)
+            {
+                Efl.Eo.Globals.efl_ref(handle);
+            }
+
+            return ret;
+        }
+        finally
+        {
+            Efl.Eo.Globals.efl_unref(handle);
+        }
+    }
+
+    private static Efl.FreeWrapperSupervisorCb FreeWrapperSupervisorCallbackDelegate = new Efl.FreeWrapperSupervisorCb(FreeWrapperSupervisorCallback);
+    public static void FreeWrapperSupervisorCallback(IntPtr eo)
+    {
+        try
+        {
+            var wsPtr = Efl.Eo.Globals.efl_mono_wrapper_supervisor_get(eo);
+            if (wsPtr == IntPtr.Zero)
+            {
+                Eina.Log.Error($"Invalid wrapper supervisor [Eo pointer: {eo.ToInt64():x}]");
                 return;
             }
 
-            foreach (var item in eoEvents)
+            Efl.Eo.Globals.efl_mono_wrapper_supervisor_set(eo, IntPtr.Zero);
+
+            GCHandle gch = GCHandle.FromIntPtr(wsPtr);
+            var ws = (Efl.Eo.WrapperSupervisor) gch.Target;
+            foreach (var item in ws.EoEvents)
             {
-                if (!efl_event_callback_del(obj, item.Key.desc, item.Value.evtCallerPtr, IntPtr.Zero))
+                if (!efl_event_callback_del(eo, item.Key.desc, item.Value.evtCallerPtr, wsPtr))
                 {
-                    Eina.Log.Error($"Failed to remove event proxy for event {item.Key.desc} [cb: {item.Value.evtCallerPtr}]");
+                    Eina.Log.Error($"Failed to remove event proxy for event {item.Key.desc} [eo: {eo.ToInt64():x}; cb: {item.Value.evtCallerPtr.ToInt64():x}]");
                 }
             }
+
+            // Free the native eo
+            Efl.Eo.Globals.efl_unref(eo);
+
+            // now the WrapperSupervisor can be collected, and so its member:
+            //     - the event dictionary
+            //     - and the EoWrapper if it is still pinned
+            gch.Free();
         }
         catch (Exception e)
         {
@@ -698,7 +693,7 @@ public class Globals
 
     public static void SetNativeDisposeCallbacks()
     {
-        efl_mono_gchandle_callbacks_set(FreeGCHandleCallbackDelegate, RemoveEventsCallbackDelegate);
+        efl_mono_wrapper_supervisor_callbacks_set(FreeWrapperSupervisorCallbackDelegate);
     }
 
     public static void ThreadSafeFreeCbExec(EinaFreeCb cbFreeCb, IntPtr cbData)
@@ -719,6 +714,21 @@ public class Globals
             efl_mono_thread_safe_free_cb_exec(cbPtr, handlePtr);
         }
         Monitor.Exit(Efl.All.InitLock);
+    }
+
+    /// <summary>
+    /// Internal struct used by the binding to pass the native handle pointer
+    /// to the managed object wrapping constructor.
+    /// Internal usage only: do not use this class in inherited classes.
+    /// </summary>
+    public struct WrappingHandle
+    {
+        public WrappingHandle(IntPtr h)
+        {
+            NativeHandle = h;
+        }
+
+        public IntPtr NativeHandle { get; private set; }
     }
 
 } // Globals
@@ -765,6 +775,22 @@ public class PrivateNativeClass : NativeClass
     }
 }
 
+[System.AttributeUsage(System.AttributeTargets.Class |
+                       System.AttributeTargets.Interface |
+                       System.AttributeTargets.Enum |
+                       System.AttributeTargets.Delegate |
+                       System.AttributeTargets.Struct,
+                       AllowMultiple = false,
+                       Inherited = false)
+]
+public class BindingEntity: System.Attribute
+{
+    public static bool IsBindingEntity(System.Type t)
+    {
+        return Attribute.GetCustomAttribute(t, typeof(BindingEntity), false) != null;
+    }
+}
+
 public interface IWrapper
 {
     /// <summary>Pointer to internal Eo instance.</summary>
@@ -800,8 +826,6 @@ public static class ClassRegister
         string name = Eina.StringConversion.NativeUtf8ToManagedString(namePtr)
                       .Replace("_", ""); // Convert Efl C name to C# name
 
-        var klass_type = Efl.Eo.Globals.efl_class_type_get(klass);
-
         // Check if this is an internal implementation of an abstract class
         var abstract_impl_suffix = "Realized";
         if (name.EndsWith(abstract_impl_suffix))
@@ -813,6 +837,7 @@ public static class ClassRegister
         }
 
         // When converting to managed, interfaces and mixins gets the 'I' prefix.
+        var klass_type = Efl.Eo.Globals.efl_class_type_get(klass);
         if (klass_type == Efl.Eo.Globals.EflClassType.Interface || klass_type == Efl.Eo.Globals.EflClassType.Mixin)
         {
             var pos = name.LastIndexOf(".");
@@ -1155,13 +1180,13 @@ public class StringsharePassOwnershipMarshaler : ICustomMarshaler
     public object MarshalNativeToManaged(IntPtr pNativeData)
     {
         var ret = Eina.StringConversion.NativeUtf8ToManagedString(pNativeData);
-        Eina.Stringshare.eina_stringshare_del(pNativeData);
+        Eina.NativeMethods.eina_stringshare_del(pNativeData);
         return ret;
     }
 
     public IntPtr MarshalManagedToNative(object managedObj)
     {
-        return Eina.Stringshare.eina_stringshare_add((string)managedObj);
+        return Eina.MemoryNative.AddStringshare((string)managedObj);
     }
 
     public void CleanUpNativeData(IntPtr pNativeData)
@@ -1200,7 +1225,7 @@ public class StringshareKeepOwnershipMarshaler : ICustomMarshaler
 
     public IntPtr MarshalManagedToNative(object managedObj)
     {
-        return Eina.Stringshare.eina_stringshare_add((string)managedObj);
+        return Eina.MemoryNative.AddStringshare((string)managedObj);
     }
 
     public void CleanUpNativeData(IntPtr pNativeData)

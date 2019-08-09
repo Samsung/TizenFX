@@ -10,13 +10,15 @@ namespace Efl {
 namespace Canvas {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.Canvas.AnimationPlayer.RunningEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class AnimationPlayerRunningEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Canvas.ObjectAnimationEvent arg { get; set; }
 }
 /// <summary>Efl animation object class</summary>
 [Efl.Canvas.AnimationPlayer.NativeMethods]
-public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
+[Efl.Eo.BindingEntity]
+public class AnimationPlayer : Efl.Object, Efl.IPlayer
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -39,52 +41,30 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     /// <summary>Initializes a new instance of the <see cref="AnimationPlayer"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationPlayer(Efl.Object parent= null
-            ) : base(efl_canvas_animation_player_class_get(), typeof(AnimationPlayer), parent)
+            ) : base(efl_canvas_animation_player_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AnimationPlayer(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AnimationPlayer"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AnimationPlayer(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AnimationPlayer(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationPlayer"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AnimationPlayer(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AnimationPlayer(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Animation is started.</summary>
@@ -92,12 +72,11 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -120,7 +99,7 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ANIMATION_PLAYER_EVENT_STARTED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -145,16 +124,15 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Canvas.AnimationPlayerRunningEvt_Args args = new Efl.Canvas.AnimationPlayerRunningEvt_Args();
-                        args.arg = default(Efl.Canvas.ObjectAnimationEvent);
+                        Efl.Canvas.AnimationPlayerRunningEvt_Args args = new Efl.Canvas.AnimationPlayerRunningEvt_Args();
+                        args.arg =  (Efl.Canvas.ObjectAnimationEvent)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -174,7 +152,7 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ANIMATION_PLAYER_EVENT_RUNNING";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -207,12 +185,11 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -235,7 +212,7 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ANIMATION_PLAYER_EVENT_ENDED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -256,51 +233,51 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     virtual public Efl.Canvas.Animation GetAnimation() {
-         var _ret_var = Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_animation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_animation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public void SetAnimation(Efl.Canvas.Animation animation) {
-                                 Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_animation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),animation);
+                                 Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_animation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animation);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Auto delete property</summary>
     /// <returns><c>true</c> to delete animation object automatically when animation is finished or animation is cancelled, <c>false</c> otherwise.</returns>
     virtual public bool GetAutoDel() {
-         var _ret_var = Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_auto_del_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_auto_del_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Auto delete property</summary>
     /// <param name="auto_del"><c>true</c> to delete animation object automatically when animation is finished or animation is cancelled, <c>false</c> otherwise.</param>
     virtual public void SetAutoDel(bool auto_del) {
-                                 Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_auto_del_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),auto_del);
+                                 Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_auto_del_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),auto_del);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Target object property</summary>
     /// <returns>Target object which is applied animation.</returns>
     virtual public Efl.Canvas.Object GetTarget() {
-         var _ret_var = Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_target_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_target_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Target object property</summary>
     /// <param name="target">Target object which is applied animation.</param>
     virtual public void SetTarget(Efl.Canvas.Object target) {
-                                 Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_target_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),target);
+                                 Efl.Canvas.AnimationPlayer.NativeMethods.efl_animation_player_target_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),target);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether or not the playable can be played.</summary>
     /// <returns><c>true</c> if the object have playable data, <c>false</c> otherwise</returns>
     virtual public bool GetPlayable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get play/pause state of the media file.</summary>
     /// <returns><c>true</c> if playing, <c>false</c> otherwise.</returns>
     virtual public bool GetPlay() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -308,14 +285,14 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     /// This functions sets the currently playing status of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <param name="play"><c>true</c> if playing, <c>false</c> otherwise.</param>
     virtual public void SetPlay(bool play) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),play);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),play);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the position in the media file.
     /// The position is returned as the number of seconds since the beginning of the media file.</summary>
     /// <returns>The position (in seconds).</returns>
     virtual public double GetPos() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -323,14 +300,14 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     /// This functions sets the current position of the media file to &quot;sec&quot;, this only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <param name="sec">The position (in seconds).</param>
     virtual public void SetPos(double sec) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sec);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get how much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <returns>The progress within the [0, 1] range.</returns>
     virtual public double GetProgress() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -338,7 +315,7 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <returns>The play speed in the [0, infinity) range.</returns>
     virtual public double GetPlaySpeed() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -346,14 +323,14 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <param name="speed">The play speed in the [0, infinity) range.</param>
     virtual public void SetPlaySpeed(double speed) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),speed);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),speed);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the audio volume.
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <returns>The volume level</returns>
     virtual public double GetVolume() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -361,113 +338,113 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <param name="volume">The volume level</param>
     virtual public void SetVolume(double volume) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),volume);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),volume);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This property controls the audio mute state.</summary>
     /// <returns>The mute state. <c>true</c> or <c>false</c>.</returns>
     virtual public bool GetMute() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property controls the audio mute state.</summary>
     /// <param name="mute">The mute state. <c>true</c> or <c>false</c>.</param>
     virtual public void SetMute(bool mute) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mute);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mute);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the length of play for the media file.</summary>
     /// <returns>The length of the stream in seconds.</returns>
     virtual public double GetLength() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get whether the media file is seekable.</summary>
     /// <returns><c>true</c> if seekable.</returns>
     virtual public bool GetSeekable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start a playing playable object.</summary>
     virtual public void Start() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Stop playable object.</summary>
     virtual public void Stop() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
-        public Efl.Canvas.Animation Animation {
+    public Efl.Canvas.Animation Animation {
         get { return GetAnimation(); }
         set { SetAnimation(value); }
     }
     /// <summary>Auto delete property</summary>
-/// <value><c>true</c> to delete animation object automatically when animation is finished or animation is cancelled, <c>false</c> otherwise.</value>
+    /// <value><c>true</c> to delete animation object automatically when animation is finished or animation is cancelled, <c>false</c> otherwise.</value>
     public bool AutoDel {
         get { return GetAutoDel(); }
         set { SetAutoDel(value); }
     }
     /// <summary>Target object property</summary>
-/// <value>Target object which is applied animation.</value>
+    /// <value>Target object which is applied animation.</value>
     public Efl.Canvas.Object Target {
         get { return GetTarget(); }
         set { SetTarget(value); }
     }
     /// <summary>Whether or not the playable can be played.</summary>
-/// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
     public bool Playable {
         get { return GetPlayable(); }
     }
     /// <summary>Get play/pause state of the media file.</summary>
-/// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
+    /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     public bool Play {
         get { return GetPlay(); }
         set { SetPlay(value); }
     }
     /// <summary>Get the position in the media file.
-/// The position is returned as the number of seconds since the beginning of the media file.</summary>
-/// <value>The position (in seconds).</value>
+    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <value>The position (in seconds).</value>
     public double Pos {
         get { return GetPos(); }
         set { SetPos(value); }
     }
     /// <summary>Get how much of the file has been played.
-/// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
-/// <value>The progress within the [0, 1] range.</value>
+    /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
+    /// <value>The progress within the [0, 1] range.</value>
     public double Progress {
         get { return GetProgress(); }
     }
     /// <summary>Control the play speed of the media file.
-/// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
-/// <value>The play speed in the [0, infinity) range.</value>
+    /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
+    /// <value>The play speed in the [0, infinity) range.</value>
     public double PlaySpeed {
         get { return GetPlaySpeed(); }
         set { SetPlaySpeed(value); }
     }
     /// <summary>Control the audio volume.
-/// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
-/// <value>The volume level</value>
+    /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
+    /// <value>The volume level</value>
     public double Volume {
         get { return GetVolume(); }
         set { SetVolume(value); }
     }
     /// <summary>This property controls the audio mute state.</summary>
-/// <value>The mute state. <c>true</c> or <c>false</c>.</value>
+    /// <value>The mute state. <c>true</c> or <c>false</c>.</value>
     public bool Mute {
         get { return GetMute(); }
         set { SetMute(value); }
     }
     /// <summary>Get the length of play for the media file.</summary>
-/// <value>The length of the stream in seconds.</value>
+    /// <value>The length of the stream in seconds.</value>
     public double Length {
         get { return GetLength(); }
     }
     /// <summary>Get whether the media file is seekable.</summary>
-/// <value><c>true</c> if seekable.</value>
+    /// <value><c>true</c> if seekable.</value>
     public bool Seekable {
         get { return GetSeekable(); }
     }
@@ -717,7 +694,7 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
             return Efl.Canvas.AnimationPlayer.efl_canvas_animation_player_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Canvas.Animation efl_animation_player_animation_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -730,13 +707,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static Efl.Canvas.Animation animation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_player_animation_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Animation _ret_var = default(Efl.Canvas.Animation);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetAnimation();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetAnimation();
                 }
                 catch (Exception e)
                 {
@@ -766,13 +743,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void animation_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Animation animation)
         {
             Eina.Log.Debug("function efl_animation_player_animation_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetAnimation(animation);
+                    ((AnimationPlayer)ws.Target).SetAnimation(animation);
                 }
                 catch (Exception e)
                 {
@@ -801,13 +778,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static bool auto_del_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_player_auto_del_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetAutoDel();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetAutoDel();
                 }
                 catch (Exception e)
                 {
@@ -837,13 +814,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void auto_del_set(System.IntPtr obj, System.IntPtr pd, bool auto_del)
         {
             Eina.Log.Debug("function efl_animation_player_auto_del_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetAutoDel(auto_del);
+                    ((AnimationPlayer)ws.Target).SetAutoDel(auto_del);
                 }
                 catch (Exception e)
                 {
@@ -872,13 +849,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static Efl.Canvas.Object target_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_animation_player_target_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetTarget();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetTarget();
                 }
                 catch (Exception e)
                 {
@@ -908,13 +885,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void target_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object target)
         {
             Eina.Log.Debug("function efl_animation_player_target_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetTarget(target);
+                    ((AnimationPlayer)ws.Target).SetTarget(target);
                 }
                 catch (Exception e)
                 {
@@ -943,13 +920,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static bool playable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_playable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetPlayable();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetPlayable();
                 }
                 catch (Exception e)
                 {
@@ -979,13 +956,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static bool play_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetPlay();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetPlay();
                 }
                 catch (Exception e)
                 {
@@ -1015,13 +992,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void play_set(System.IntPtr obj, System.IntPtr pd, bool play)
         {
             Eina.Log.Debug("function efl_player_play_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetPlay(play);
+                    ((AnimationPlayer)ws.Target).SetPlay(play);
                 }
                 catch (Exception e)
                 {
@@ -1050,13 +1027,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static double pos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_pos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetPos();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetPos();
                 }
                 catch (Exception e)
                 {
@@ -1086,13 +1063,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void pos_set(System.IntPtr obj, System.IntPtr pd, double sec)
         {
             Eina.Log.Debug("function efl_player_pos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetPos(sec);
+                    ((AnimationPlayer)ws.Target).SetPos(sec);
                 }
                 catch (Exception e)
                 {
@@ -1121,13 +1098,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static double progress_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_progress_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetProgress();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetProgress();
                 }
                 catch (Exception e)
                 {
@@ -1157,13 +1134,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static double play_speed_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_play_speed_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetPlaySpeed();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetPlaySpeed();
                 }
                 catch (Exception e)
                 {
@@ -1193,13 +1170,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void play_speed_set(System.IntPtr obj, System.IntPtr pd, double speed)
         {
             Eina.Log.Debug("function efl_player_play_speed_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetPlaySpeed(speed);
+                    ((AnimationPlayer)ws.Target).SetPlaySpeed(speed);
                 }
                 catch (Exception e)
                 {
@@ -1228,13 +1205,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static double volume_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_volume_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetVolume();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetVolume();
                 }
                 catch (Exception e)
                 {
@@ -1264,13 +1241,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void volume_set(System.IntPtr obj, System.IntPtr pd, double volume)
         {
             Eina.Log.Debug("function efl_player_volume_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetVolume(volume);
+                    ((AnimationPlayer)ws.Target).SetVolume(volume);
                 }
                 catch (Exception e)
                 {
@@ -1299,13 +1276,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static bool mute_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_mute_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetMute();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetMute();
                 }
                 catch (Exception e)
                 {
@@ -1335,13 +1312,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void mute_set(System.IntPtr obj, System.IntPtr pd, bool mute)
         {
             Eina.Log.Debug("function efl_player_mute_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((AnimationPlayer)wrapper).SetMute(mute);
+                    ((AnimationPlayer)ws.Target).SetMute(mute);
                 }
                 catch (Exception e)
                 {
@@ -1370,13 +1347,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static double length_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_length_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetLength();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetLength();
                 }
                 catch (Exception e)
                 {
@@ -1406,13 +1383,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static bool seekable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_seekable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((AnimationPlayer)wrapper).GetSeekable();
+                    _ret_var = ((AnimationPlayer)ws.Target).GetSeekable();
                 }
                 catch (Exception e)
                 {
@@ -1442,13 +1419,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void start(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_start was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((AnimationPlayer)wrapper).Start();
+                    ((AnimationPlayer)ws.Target).Start();
                 }
                 catch (Exception e)
                 {
@@ -1477,13 +1454,13 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
         private static void stop(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_player_stop was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((AnimationPlayer)wrapper).Stop();
+                    ((AnimationPlayer)ws.Target).Stop();
                 }
                 catch (Exception e)
                 {
@@ -1501,7 +1478,7 @@ public class AnimationPlayer : Efl.Object, Efl.Eo.IWrapper,Efl.IPlayer
 
         private static efl_player_stop_delegate efl_player_stop_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

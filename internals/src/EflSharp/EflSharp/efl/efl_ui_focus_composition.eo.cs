@@ -14,6 +14,7 @@ namespace Focus {
 /// <summary>This defines the inheriting widget as Composition widget.
 /// A composition widget is a widget that&apos;s the logical parent of another set of widgets which can be used for interaction.</summary>
 [Efl.Ui.Focus.ICompositionConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IComposition : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -49,20 +50,20 @@ void Dirty();
 /// You can use this function to call composition_elements.</summary>
 void Prepare();
                             /// <summary>Set the order of elements that will be used for composition
-/// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
-/// 
-/// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
-/// 
-/// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
-/// 
-/// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
-/// <value>The order to use</value>
+    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// 
+    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// 
+    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// 
+    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// <value>The order to use</value>
     Eina.List<Efl.Gfx.IEntity> CompositionElements {
         get ;
         set ;
     }
     /// <summary>Set to true if all children should be registered as logicals</summary>
-/// <value><c>true</c> or <c>false</c></value>
+    /// <value><c>true</c> or <c>false</c></value>
     bool LogicalMode {
         get ;
         set ;
@@ -70,13 +71,13 @@ void Prepare();
 }
 /// <summary>This defines the inheriting widget as Composition widget.
 /// A composition widget is a widget that&apos;s the logical parent of another set of widgets which can be used for interaction.</summary>
-sealed public class ICompositionConcrete : 
-
-IComposition
+sealed public class ICompositionConcrete :
+    Efl.Eo.EoWrapper
+    , IComposition
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -91,86 +92,19 @@ IComposition
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ICompositionConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_composition_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IComposition"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ICompositionConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ICompositionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ICompositionConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Set the order of elements that will be used for composition
@@ -227,20 +161,20 @@ logical_order.Own = false;
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Set the order of elements that will be used for composition
-/// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
-/// 
-/// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
-/// 
-/// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
-/// 
-/// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
-/// <value>The order to use</value>
+    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// 
+    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// 
+    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// 
+    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// <value>The order to use</value>
     public Eina.List<Efl.Gfx.IEntity> CompositionElements {
         get { return GetCompositionElements(); }
         set { SetCompositionElements(value); }
     }
     /// <summary>Set to true if all children should be registered as logicals</summary>
-/// <value><c>true</c> or <c>false</c></value>
+    /// <value><c>true</c> or <c>false</c></value>
     public bool LogicalMode {
         get { return GetLogicalMode(); }
         set { SetLogicalMode(value); }
@@ -251,7 +185,7 @@ logical_order.Own = false;
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -330,7 +264,7 @@ logical_order.Own = false;
             return Efl.Ui.Focus.ICompositionConcrete.efl_ui_focus_composition_mixin_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate System.IntPtr efl_ui_focus_composition_elements_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -343,13 +277,13 @@ logical_order.Own = false;
         private static System.IntPtr composition_elements_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Gfx.IEntity> _ret_var = default(Eina.List<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((ICompositionConcrete)wrapper).GetCompositionElements();
+                    _ret_var = ((IComposition)ws.Target).GetCompositionElements();
                 }
                 catch (Exception e)
                 {
@@ -379,14 +313,14 @@ logical_order.Own = false;
         private static void composition_elements_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr logical_order)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_elements_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_logical_order = new Eina.List<Efl.Gfx.IEntity>(logical_order, true, false);
                             
                 try
                 {
-                    ((ICompositionConcrete)wrapper).SetCompositionElements(_in_logical_order);
+                    ((IComposition)ws.Target).SetCompositionElements(_in_logical_order);
                 }
                 catch (Exception e)
                 {
@@ -415,13 +349,13 @@ logical_order.Own = false;
         private static bool logical_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_logical_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ICompositionConcrete)wrapper).GetLogicalMode();
+                    _ret_var = ((IComposition)ws.Target).GetLogicalMode();
                 }
                 catch (Exception e)
                 {
@@ -451,13 +385,13 @@ logical_order.Own = false;
         private static void logical_mode_set(System.IntPtr obj, System.IntPtr pd, bool logical_mode)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_logical_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ICompositionConcrete)wrapper).SetLogicalMode(logical_mode);
+                    ((IComposition)ws.Target).SetLogicalMode(logical_mode);
                 }
                 catch (Exception e)
                 {
@@ -486,13 +420,13 @@ logical_order.Own = false;
         private static void dirty(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_dirty was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ICompositionConcrete)wrapper).Dirty();
+                    ((IComposition)ws.Target).Dirty();
                 }
                 catch (Exception e)
                 {
@@ -521,13 +455,13 @@ logical_order.Own = false;
         private static void prepare(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_prepare was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ICompositionConcrete)wrapper).Prepare();
+                    ((IComposition)ws.Target).Prepare();
                 }
                 catch (Exception e)
                 {
@@ -545,7 +479,7 @@ logical_order.Own = false;
 
         private static efl_ui_focus_composition_prepare_delegate efl_ui_focus_composition_prepare_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

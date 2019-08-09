@@ -11,6 +11,7 @@ namespace Gfx {
 
 /// <summary>Efl graphics gradient linear interface</summary>
 [Efl.Gfx.IGradientLinearConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IGradientLinear : 
     Efl.Gfx.IGradient ,
     Efl.Eo.IWrapper, IDisposable
@@ -33,13 +34,13 @@ void GetEnd(out double x, out double y);
 void SetEnd(double x, double y);
                 }
 /// <summary>Efl graphics gradient linear interface</summary>
-sealed public class IGradientLinearConcrete : 
-
-IGradientLinear
+sealed public class IGradientLinearConcrete :
+    Efl.Eo.EoWrapper
+    , IGradientLinear
     , Efl.Gfx.IGradient
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -54,86 +55,19 @@ IGradientLinear
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IGradientLinearConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_gradient_linear_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IGradientLinear"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IGradientLinearConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IGradientLinearConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~IGradientLinearConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Gets the start point of this linear gradient.</summary>
@@ -196,7 +130,7 @@ IGradientLinear
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
-/// <value>Spread type to be used</value>
+    /// <value>Spread type to be used</value>
     public Efl.Gfx.GradientSpread Spread {
         get { return GetSpread(); }
         set { SetSpread(value); }
@@ -207,7 +141,7 @@ IGradientLinear
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -306,7 +240,7 @@ IGradientLinear
             return Efl.Gfx.IGradientLinearConcrete.efl_gfx_gradient_linear_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_gfx_gradient_linear_start_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double x,  out double y);
@@ -319,13 +253,13 @@ IGradientLinear
         private static void start_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_start_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IGradientLinear)wrapper).GetStart(out x, out y);
+                    ((IGradientLinear)ws.Target).GetStart(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -354,13 +288,13 @@ IGradientLinear
         private static void start_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_start_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IGradientLinear)wrapper).SetStart(x, y);
+                    ((IGradientLinear)ws.Target).SetStart(x, y);
                 }
                 catch (Exception e)
                 {
@@ -389,13 +323,13 @@ IGradientLinear
         private static void end_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_end_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((IGradientLinear)wrapper).GetEnd(out x, out y);
+                    ((IGradientLinear)ws.Target).GetEnd(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -424,13 +358,13 @@ IGradientLinear
         private static void end_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_gfx_gradient_linear_end_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((IGradientLinear)wrapper).SetEnd(x, y);
+                    ((IGradientLinear)ws.Target).SetEnd(x, y);
                 }
                 catch (Exception e)
                 {
@@ -459,14 +393,14 @@ IGradientLinear
         private static void stop_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr colors, out uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
         length = default(uint);                            
                 try
                 {
-                    ((IGradientLinear)wrapper).GetStop(out _out_colors, out length);
+                    ((IGradientLinear)ws.Target).GetStop(out _out_colors, out length);
                 }
                 catch (Exception e)
                 {
@@ -496,14 +430,14 @@ IGradientLinear
         private static void stop_set(System.IntPtr obj, System.IntPtr pd, ref Efl.Gfx.GradientStop.NativeStruct colors, uint length)
         {
             Eina.Log.Debug("function efl_gfx_gradient_stop_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Gfx.GradientStop _in_colors = colors;
                                                     
                 try
                 {
-                    ((IGradientLinear)wrapper).SetStop(ref _in_colors, length);
+                    ((IGradientLinear)ws.Target).SetStop(ref _in_colors, length);
                 }
                 catch (Exception e)
                 {
@@ -533,13 +467,13 @@ IGradientLinear
         private static Efl.Gfx.GradientSpread spread_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.GradientSpread _ret_var = default(Efl.Gfx.GradientSpread);
                 try
                 {
-                    _ret_var = ((IGradientLinear)wrapper).GetSpread();
+                    _ret_var = ((IGradientLinear)ws.Target).GetSpread();
                 }
                 catch (Exception e)
                 {
@@ -569,13 +503,13 @@ IGradientLinear
         private static void spread_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.GradientSpread s)
         {
             Eina.Log.Debug("function efl_gfx_gradient_spread_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((IGradientLinear)wrapper).SetSpread(s);
+                    ((IGradientLinear)ws.Target).SetSpread(s);
                 }
                 catch (Exception e)
                 {
@@ -593,7 +527,7 @@ IGradientLinear
 
         private static efl_gfx_gradient_spread_set_delegate efl_gfx_gradient_spread_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

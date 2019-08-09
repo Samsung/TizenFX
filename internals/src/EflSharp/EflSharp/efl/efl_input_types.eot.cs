@@ -11,6 +11,7 @@ namespace Pointer {
 
 /// <summary>Pointer event type. Represents which kind of event this is.
 /// (Since EFL 1.19)</summary>
+[Efl.Eo.BindingEntity]
 public enum Action
 {
 /// <summary>Not a valid event, or nothing new happened (eg. when querying current state of touch points).</summary>
@@ -43,6 +44,7 @@ namespace Pointer {
 
 /// <summary>Pointer flags indicating whether a double or triple click is under way.
 /// (Since EFL 1.19)</summary>
+[Efl.Eo.BindingEntity]
 public enum Flags
 {
 /// <summary>No extra mouse button data</summary>
@@ -63,6 +65,7 @@ namespace Input {
 
 /// <summary>Special flags set during an input event propagation.
 /// (Since EFL 1.19)</summary>
+[Efl.Eo.BindingEntity]
 public enum Flags
 {
 /// <summary>No fancy flags set</summary>
@@ -86,6 +89,7 @@ namespace Input {
 /// 
 /// In the mode <c>nograb</c>, the pointer will always be bound to the object right below it.
 /// (Since EFL 1.19)</summary>
+[Efl.Eo.BindingEntity]
 public enum ObjectPointerMode
 {
 /// <summary>Default, X11-like.</summary>
@@ -107,6 +111,7 @@ namespace Input {
 
 /// <summary>Keys for the generic values of all events.
 /// (Since EFL 1.19)</summary>
+[Efl.Eo.BindingEntity]
 public enum Value
 {
 /// <summary>Not a valid value type.</summary>
@@ -117,8 +122,8 @@ Timestamp = 1,
 Button = 2,
 /// <summary>32-bit bit mask (unsigned int). Prefer the method <c>buttons_pressed</c> to read this value. Default: 0.</summary>
 ButtonsPressed = 3,
-/// <summary>ID of the finger or tool (eg. pen) that triggered this event. Prefer the property <c>tool</c> to read this value. Default: 0.</summary>
-Tool = 4,
+/// <summary>ID of the finger or tool (eg. pen) that triggered this event. Prefer the property <c>touch_id</c> to read this value. Default: 0.</summary>
+TouchId = 4,
 /// <summary>Absolute X position where this event occurred, in pixels. Relative to the window. Default: last known position. This value may be smoothed out or even extrapolated by EFL.</summary>
 X = 5,
 /// <summary>Absolute Y position where this event occurred, in pixels. Relative to the window. Default: last known position. This value may be smoothed out or even extrapolated by EFL.</summary>
@@ -178,6 +183,7 @@ namespace Input {
 /// 
 /// The available keys may vary depending on the physical keyboard layout, or language and keyboard settings, or depending on the platform.
 /// (Since EFL 1.20)</summary>
+[Efl.Eo.BindingEntity]
 public enum Modifier
 {
 /// <summary>No key modifier</summary>
@@ -211,6 +217,7 @@ namespace Input {
 /// 
 /// The available keys may vary depending on the physical keyboard layout, or language and keyboard settings, or depending on the platform.
 /// (Since EFL 1.20)</summary>
+[Efl.Eo.BindingEntity]
 public enum Lock
 {
 /// <summary>No key modifier</summary>

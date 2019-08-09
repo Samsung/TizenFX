@@ -14,7 +14,8 @@ namespace TextFactory {
 /// <summary>Internal factory for fallback cases.
 /// This wraps some internal functionality: - Contains 2 factories: image and emoticon - Strips off &quot;file://&quot; prefix for image items, to be used with the image factory.</summary>
 [Efl.Ui.TextFactory.Fallback.NativeMethods]
-public class Fallback : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
+[Efl.Eo.BindingEntity]
+public class Fallback : Efl.Object, Efl.Canvas.ITextFactory
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -37,59 +38,37 @@ public class Fallback : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
     /// <summary>Initializes a new instance of the <see cref="Fallback"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Fallback(Efl.Object parent= null
-            ) : base(efl_ui_text_factory_fallback_class_get(), typeof(Fallback), parent)
+            ) : base(efl_ui_text_factory_fallback_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Fallback(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Fallback"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Fallback(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Fallback(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Fallback"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Fallback(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Fallback(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Translates a given <c>key</c> to an item object, and returns the object. The returned object should be owned by the passed <c>object</c>.</summary>
     /// <param name="kw_object">The parent of the created object</param>
     /// <param name="key">Key that is associated to an item object</param>
     virtual public Efl.Canvas.Object Create(Efl.Canvas.Object kw_object, System.String key) {
-                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_object, key);
+                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_object, key);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -129,7 +108,7 @@ public class Fallback : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
             return Efl.Ui.TextFactory.Fallback.efl_ui_text_factory_fallback_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.OwnTag>))]
         private delegate Efl.Canvas.Object efl_canvas_text_factory_create_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
@@ -142,13 +121,13 @@ public class Fallback : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
         private static Efl.Canvas.Object create(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object kw_object, System.String key)
         {
             Eina.Log.Debug("function efl_canvas_text_factory_create was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
-                    _ret_var = ((Fallback)wrapper).Create(kw_object, key);
+                    _ret_var = ((Fallback)ws.Target).Create(kw_object, key);
                 }
                 catch (Exception e)
                 {
@@ -167,7 +146,7 @@ public class Fallback : Efl.Object, Efl.Eo.IWrapper,Efl.Canvas.ITextFactory
 
         private static efl_canvas_text_factory_create_delegate efl_canvas_text_factory_create_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

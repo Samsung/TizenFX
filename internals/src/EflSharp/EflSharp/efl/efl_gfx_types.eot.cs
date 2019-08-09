@@ -9,17 +9,25 @@ namespace Efl {
 
 namespace Font {
 
+/// <summary>Efl font size type</summary>
 public struct Size
 {
     private int payload;
-    public static implicit operator Size(int x)
+
+    /// <summary>Converts an instance of int to this struct.</summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <returns>A struct with the given value.</returns>
+    public static implicit operator Size(int value)
     {
-        return new Size{payload=x};
+        return new Size{payload=value};
     }
 
-    public static implicit operator int(Size x)
+    /// <summary>Converts an instance of this struct to int.</summary>
+    /// <param name="value">The value to be converted packed in this struct.</param>
+    /// <returns>The actual value the alias is wrapping.</returns>
+    public static implicit operator int(Size value)
     {
-        return x.payload;
+        return value.payload;
     }
 
 }
@@ -33,6 +41,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Graphics colorspace type</summary>
+[Efl.Eo.BindingEntity]
 public enum Colorspace
 {
 /// <summary>ARGB 32 bits per pixel, high-byte is Alpha, accessed one 32bit word at a time.</summary>
@@ -95,6 +104,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Graphics render operation mode</summary>
+[Efl.Eo.BindingEntity]
 public enum RenderOp
 {
 /// <summary>Alpha blending onto destination (default); d = d*(1-sa) + s.</summary>
@@ -115,6 +125,7 @@ namespace Gfx {
 
 /// <summary>These values determine how the points are interpreted in a stream of points.
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum PathCommandType
 {
 /// <summary>The end of stream , no more points to process.</summary>
@@ -141,6 +152,7 @@ namespace Gfx {
 
 /// <summary>These values determine how the end of opened sub-paths are rendered in a stroke. <see cref="Efl.Gfx.IShape.SetStrokeCap"/>
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum Cap
 {
 /// <summary>The end of lines is rendered as a full stop on the last point itself.</summary>
@@ -163,6 +175,7 @@ namespace Gfx {
 
 /// <summary>These values determine how two joining lines are rendered in a stroker. <see cref="Efl.Gfx.IShape.SetStrokeJoin"/>
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum Join
 {
 /// <summary>Used to render rounded line joins. Circular arcs are used to join two lines smoothly.</summary>
@@ -185,6 +198,7 @@ namespace Gfx {
 
 /// <summary>Specifies how the area outside the gradient area should be filled. <see cref="Efl.Gfx.IGradient.SetSpread"/>
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum GradientSpread
 {
 /// <summary>The area is filled with the closest stop color. This is the default.</summary>
@@ -207,6 +221,7 @@ namespace Gfx {
 
 /// <summary>Type defining how an image content get filled.
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum FillRule
 {
 /// <summary>Draw a horizontal line from the point to a location outside the shape. Determine whether the direction of the line at each intersection point is up or down. The winding number is determined by summing the direction of each intersection. If the number is non zero, the point is inside the shape. This mode is the default</summary>
@@ -224,6 +239,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>How an image&apos;s center region (the complement to the border region) should be rendered by EFL</summary>
+[Efl.Eo.BindingEntity]
 public enum BorderFillMode
 {
 /// <summary>Image&apos;s center region is <c>not</c> to be rendered</summary>
@@ -244,17 +260,18 @@ namespace Gfx {
 
 /// <summary>What property got changed for this object
 /// (Since EFL 1.18)</summary>
+[Efl.Eo.BindingEntity]
 public enum ChangeFlag
 {
-/// <summary>No change</summary>
+/// <summary>Nothing changed.</summary>
 None = 0,
-/// <summary>matrix got changed</summary>
+/// <summary>Matrix got changed.</summary>
 Matrix = 1,
-/// <summary>path got changes</summary>
+/// <summary>Path got changed.</summary>
 Path = 2,
-/// <summary>coloring or fill information changed, not geometry</summary>
+/// <summary>Coloring or fill information changed, not geometry.</summary>
 Fill = 4,
-/// <summary>all properties got changed</summary>
+/// <summary>All properties got changed.</summary>
 All = 65535,
 }
 
@@ -268,6 +285,7 @@ namespace Gfx {
 
 /// <summary>Aspect types/policies for scaling size hints.
 /// See also <see cref="Efl.Gfx.IHint.GetHintAspect"/>.</summary>
+[Efl.Eo.BindingEntity]
 public enum HintAspect
 {
 /// <summary>No preference on either direction of the container for aspect ratio control.</summary>
@@ -291,6 +309,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl Gfx Color Class layer enum</summary>
+[Efl.Eo.BindingEntity]
 public enum ColorClassLayer
 {
 /// <summary>Default color</summary>
@@ -312,6 +331,7 @@ namespace Gfx {
 /// <summary>Type describing dash. <see cref="Efl.Gfx.IShape.GetStrokeDash"/>
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Dash
 {
     /// <summary>Dash drawing length.</summary>
@@ -327,11 +347,15 @@ public struct Dash
         this.Gap = Gap;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Dash(IntPtr ptr)
     {
         var tmp = (Dash.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Dash.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Dash.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -361,6 +385,8 @@ public struct Dash
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -374,6 +400,7 @@ namespace Gfx {
 /// <summary>Type defining gradient stops. Describes the location and color of a transition point in a gradient.
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct GradientStop
 {
     /// <summary>The location of the gradient stop within the gradient vector</summary>
@@ -401,11 +428,15 @@ public struct GradientStop
         this.A = A;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator GradientStop(IntPtr ptr)
     {
         var tmp = (GradientStop.NativeStruct)Marshal.PtrToStructure(ptr, typeof(GradientStop.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct GradientStop.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -447,6 +478,8 @@ public struct GradientStop
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -459,6 +492,7 @@ namespace Gfx {
 
 /// <summary>Internal structure for <see cref="Efl.Gfx.Stroke"/>.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct StrokeColor
 {
     /// <summary>The component R color of the stroke</summary>
@@ -482,11 +516,15 @@ public struct StrokeColor
         this.A = A;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StrokeColor(IntPtr ptr)
     {
         var tmp = (StrokeColor.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StrokeColor.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct StrokeColor.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -524,6 +562,8 @@ public struct StrokeColor
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -537,6 +577,7 @@ namespace Gfx {
 /// <summary>Type defining stroke information. Describes the properties to define the path stroke.
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Stroke
 {
     /// <summary>Stroke scale</summary>
@@ -576,11 +617,15 @@ public struct Stroke
         this.Join = Join;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Stroke(IntPtr ptr)
     {
         var tmp = (Stroke.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Stroke.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct Stroke.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -634,6 +679,8 @@ public struct Stroke
 
     }
 
+    #pragma warning restore CS1591
+
 }
 
 }
@@ -646,6 +693,7 @@ namespace Gfx {
 
 /// <summary>Public shape</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ShapePublic
 {
     /// <summary>Internal representation as stroke</summary>
@@ -657,11 +705,15 @@ public struct ShapePublic
         this.Stroke = Stroke;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ShapePublic(IntPtr ptr)
     {
         var tmp = (ShapePublic.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ShapePublic.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct ShapePublic.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -687,57 +739,7 @@ public struct ShapePublic
 
     }
 
-}
-
-}
-
-}
-
-namespace Efl {
-
-namespace Gfx {
-
-[StructLayout(LayoutKind.Sequential)]
-public struct PathChangeEvent
-{
-    /// <summary>Indicates what changed.</summary>
-    public Efl.Gfx.ChangeFlag What;
-    ///<summary>Constructor for PathChangeEvent.</summary>
-    public PathChangeEvent(
-        Efl.Gfx.ChangeFlag What = default(Efl.Gfx.ChangeFlag)    )
-    {
-        this.What = What;
-    }
-
-    public static implicit operator PathChangeEvent(IntPtr ptr)
-    {
-        var tmp = (PathChangeEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(PathChangeEvent.NativeStruct));
-        return tmp;
-    }
-
-    ///<summary>Internal wrapper for struct PathChangeEvent.</summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct NativeStruct
-    {
-        
-        public Efl.Gfx.ChangeFlag What;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
-        public static implicit operator PathChangeEvent.NativeStruct(PathChangeEvent _external_struct)
-        {
-            var _internal_struct = new PathChangeEvent.NativeStruct();
-            _internal_struct.What = _external_struct.What;
-            return _internal_struct;
-        }
-
-        ///<summary>Implicit conversion to the managed representation.</summary>
-        public static implicit operator PathChangeEvent(PathChangeEvent.NativeStruct _internal_struct)
-        {
-            var _external_struct = new PathChangeEvent();
-            _external_struct.What = _internal_struct.What;
-            return _external_struct;
-        }
-
-    }
+    #pragma warning restore CS1591
 
 }
 
@@ -753,6 +755,7 @@ namespace Event {
 
 /// <summary>Data sent along a &quot;render,post&quot; event, after a frame has been rendered.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct RenderPost
 {
     /// <summary>A list of rectangles that were updated in the canvas.</summary>
@@ -764,11 +767,15 @@ public struct RenderPost
         this.Updated_area = Updated_area;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator RenderPost(IntPtr ptr)
     {
         var tmp = (RenderPost.NativeStruct)Marshal.PtrToStructure(ptr, typeof(RenderPost.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct RenderPost.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -793,6 +800,8 @@ public struct RenderPost
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 

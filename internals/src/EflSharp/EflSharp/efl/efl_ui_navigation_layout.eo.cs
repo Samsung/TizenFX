@@ -12,7 +12,8 @@ namespace Ui {
 /// <summary>Navigation_Layout widget.
 /// Navigation_Layout widget provides a layout form useful for navigation. Navigation_Layout widget is used to be pushed to or popped from Stack widget(Efl.Ui.Stack class) as a content.</summary>
 [Efl.Ui.NavigationLayout.NativeMethods]
-public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
+[Efl.Eo.BindingEntity]
+public class NavigationLayout : Efl.Ui.LayoutBase, Efl.IContent
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -34,9 +35,9 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
         efl_ui_navigation_layout_class_get();
     /// <summary>Initializes a new instance of the <see cref="NavigationLayout"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public NavigationLayout(Efl.Object parent
-            , System.String style = null) : base(efl_ui_navigation_layout_class_get(), typeof(NavigationLayout), parent)
+            , System.String style = null) : base(efl_ui_navigation_layout_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,47 +47,25 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected NavigationLayout(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="NavigationLayout"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected NavigationLayout(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected NavigationLayout(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="NavigationLayout"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected NavigationLayout(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected NavigationLayout(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Sent after the content is set or unset using the current content object.
@@ -95,15 +74,14 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
+                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
                         try
                         {
@@ -118,16 +96,16 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
                 };
 
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -135,7 +113,7 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -148,14 +126,14 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
     /// <summary>The bar object which is located at the top area as a title. e.g. Navigation_Bar widget(Efl.Ui.Navigation_Bar) can be used as <c>bar</c>.</summary>
     /// <returns>The bar object located at the top area of the Navigation Layout.</returns>
     virtual public Efl.Ui.LayoutBase GetBar() {
-         var _ret_var = Efl.Ui.NavigationLayout.NativeMethods.efl_ui_navigation_layout_bar_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.NavigationLayout.NativeMethods.efl_ui_navigation_layout_bar_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The bar object which is located at the top area as a title. e.g. Navigation_Bar widget(Efl.Ui.Navigation_Bar) can be used as <c>bar</c>.</summary>
     /// <param name="value">The bar object located at the top area of the Navigation Layout.</param>
     virtual public void SetBar(Efl.Ui.LayoutBase value) {
-                                 Efl.Ui.NavigationLayout.NativeMethods.efl_ui_navigation_layout_bar_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.Ui.NavigationLayout.NativeMethods.efl_ui_navigation_layout_bar_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sub-object currently set as this object&apos;s single content.
@@ -163,7 +141,7 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
     /// (Since EFL 1.22)</summary>
     /// <returns>The sub-object.</returns>
     virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -173,7 +151,7 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -181,20 +159,20 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
     /// (Since EFL 1.22)</summary>
     /// <returns>Unswallowed object</returns>
     virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The bar object which is located at the top area as a title. e.g. Navigation_Bar widget(Efl.Ui.Navigation_Bar) can be used as <c>bar</c>.</summary>
-/// <value>The bar object located at the top area of the Navigation Layout.</value>
+    /// <value>The bar object located at the top area of the Navigation Layout.</value>
     public Efl.Ui.LayoutBase Bar {
         get { return GetBar(); }
         set { SetBar(value); }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <value>The sub-object.</value>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
+    /// (Since EFL 1.22)</summary>
+    /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
@@ -275,7 +253,7 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
             return Efl.Ui.NavigationLayout.efl_ui_navigation_layout_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Ui.LayoutBase efl_ui_navigation_layout_bar_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -288,13 +266,13 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
         private static Efl.Ui.LayoutBase bar_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_navigation_layout_bar_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.LayoutBase _ret_var = default(Efl.Ui.LayoutBase);
                 try
                 {
-                    _ret_var = ((NavigationLayout)wrapper).GetBar();
+                    _ret_var = ((NavigationLayout)ws.Target).GetBar();
                 }
                 catch (Exception e)
                 {
@@ -324,13 +302,13 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
         private static void bar_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutBase value)
         {
             Eina.Log.Debug("function efl_ui_navigation_layout_bar_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((NavigationLayout)wrapper).SetBar(value);
+                    ((NavigationLayout)ws.Target).SetBar(value);
                 }
                 catch (Exception e)
                 {
@@ -359,13 +337,13 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
         private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((NavigationLayout)wrapper).GetContent();
+                    _ret_var = ((NavigationLayout)ws.Target).GetContent();
                 }
                 catch (Exception e)
                 {
@@ -395,13 +373,13 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
         private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
         {
             Eina.Log.Debug("function efl_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((NavigationLayout)wrapper).SetContent(content);
+                    _ret_var = ((NavigationLayout)ws.Target).SetContent(content);
                 }
                 catch (Exception e)
                 {
@@ -431,13 +409,13 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
         private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_content_unset was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
-                    _ret_var = ((NavigationLayout)wrapper).UnsetContent();
+                    _ret_var = ((NavigationLayout)ws.Target).UnsetContent();
                 }
                 catch (Exception e)
                 {
@@ -456,7 +434,7 @@ public class NavigationLayout : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.IContent
 
         private static efl_content_unset_delegate efl_content_unset_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

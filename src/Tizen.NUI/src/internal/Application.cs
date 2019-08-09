@@ -25,6 +25,8 @@ namespace Tizen.NUI
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using Tizen.NUI.Binding;
+    using Tizen.NUI.Binding.Internals;
 
     /**
       * @brief Event arguments that passed via NUIApplicationInit signal
@@ -307,18 +309,159 @@ namespace Tizen.NUI
         }
     }
 
-    internal class Application : BaseHandle
+    /// <summary>
+    /// A class to get resources in current application.
+    /// </summary>
+    public class GetResourcesProvider
     {
+        /// <summary>
+        /// Get resources in current application.
+        /// </summary>
+        static public IResourcesProvider Get()
+        {
+            return Tizen.NUI.Application.Current;
+        }
+    }
+
+    internal class Application : BaseHandle, IResourcesProvider, IElementConfiguration<Application>
+    {
+
+        static Application s_current;
+
+        ReadOnlyCollection<Element> _logicalChildren;
+
         static SemaphoreSlim SaveSemaphore = new SemaphoreSlim(1, 1);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PanGestureId { get; set; }
+        public static void SetCurrentApplication(Application value) => Current = value;
+
+        public static Application Current
+        {
+            get { return s_current; }
+            set
+            {
+                if (s_current == value)
+                    return;
+                if (value == null)
+                    s_current = null; //Allow to reset current for unittesting
+                s_current = value;
+            }
+        }
+
+        internal override ReadOnlyCollection<Element> LogicalChildrenInternal
+        {
+            get { return _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren)); }
+        }
+
+        internal IResourceDictionary SystemResources { get; }
+
+        ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
+
+        ResourceDictionary _resources;
+        public bool IsResourcesCreated => _resources != null;
+
+        public delegate void resChangeCb(object sender, ResourcesChangedEventArgs e);
+
+        static private Dictionary<object, Dictionary<resChangeCb, int>> resourceChangeCallbackDict = new Dictionary<object, Dictionary<resChangeCb, int>>();
+        static public void AddResourceChangedCallback(object handle, resChangeCb cb)
+        {
+            Dictionary<resChangeCb, int> cbDict;
+            resourceChangeCallbackDict.TryGetValue(handle, out cbDict);
+
+            if (null == cbDict)
+            {
+                cbDict = new Dictionary<resChangeCb, int>();
+                resourceChangeCallbackDict.Add(handle, cbDict);
+            }
+
+            if (false == cbDict.ContainsKey(cb))
+            {
+                cbDict.Add(cb, 0);
+            }
+        }
+
+        internal override void OnResourcesChanged(object sender, ResourcesChangedEventArgs e)
+        {
+            base.OnResourcesChanged(sender, e);
+
+            foreach (KeyValuePair<object, Dictionary<resChangeCb, int>> resourcePair in resourceChangeCallbackDict)
+            {
+                foreach (KeyValuePair<resChangeCb, int> cbPair in resourcePair.Value)
+                {
+                    cbPair.Key(sender, e);
+                }
+            }
+        }
+
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                if (_resources != null)
+                    return _resources;
+
+                _resources = new ResourceDictionary();
+                int hashCode = _resources.GetHashCode();
+                ((IResourceDictionary)_resources).ValuesChanged += OnResourcesChanged;
+                return _resources;
+            }
+            set
+            {
+                if (_resources == value)
+                    return;
+                OnPropertyChanging();
+
+                if (_resources != null)
+                    ((IResourceDictionary)_resources).ValuesChanged -= OnResourcesChanged;
+                _resources = value;
+                OnResourcesChanged(value);
+                if (_resources != null)
+                    ((IResourceDictionary)_resources).ValuesChanged += OnResourcesChanged;
+
+                OnPropertyChanged();
+            }
+        }
+
+        protected override void OnParentSet()
+        {
+            throw new InvalidOperationException("Setting a Parent on Application is invalid.");
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsApplicationOrNull(Element element)
+        {
+            return element == null || element is Application;
+        }
+
+        internal override void OnParentResourcesChanged(IEnumerable<KeyValuePair<string, object>> values)
+        {
+            if (!((IResourcesProvider)this).IsResourcesCreated || XamlResources.Count == 0)
+            {
+                base.OnParentResourcesChanged(values);
+                return;
+            }
+
+            var innerKeys = new HashSet<string>();
+            var changedResources = new List<KeyValuePair<string, object>>();
+            foreach (KeyValuePair<string, object> c in XamlResources)
+                innerKeys.Add(c.Key);
+            foreach (KeyValuePair<string, object> value in values)
+            {
+                if (innerKeys.Add(value.Key))
+                    changedResources.Add(value);
+            }
+            OnResourcesChanged(changedResources);
+        }
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            SetCurrentApplication(this);
+
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            s_current = this;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Application obj)
@@ -1106,6 +1249,7 @@ namespace Tizen.NUI
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            s_current = ret;
             return ret;
         }
 

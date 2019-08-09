@@ -11,7 +11,8 @@ namespace Ui {
 
 /// <summary>Elementary slider class</summary>
 [Efl.Ui.Slider.NativeMethods]
-public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.Ui.IDirection,Efl.Ui.IRangeDisplay,Efl.Ui.IRangeInteractive
+[Efl.Eo.BindingEntity]
+public class Slider : Efl.Ui.LayoutBase, Efl.Access.IValue, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeDisplay, Efl.Ui.IRangeInteractive
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -33,9 +34,9 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         efl_ui_slider_class_get();
     /// <summary>Initializes a new instance of the <see cref="Slider"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Slider(Efl.Object parent
-            , System.String style = null) : base(efl_ui_slider_class_get(), typeof(Slider), parent)
+            , System.String style = null) : base(efl_ui_slider_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,60 +46,37 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Slider(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Slider"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Slider(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Slider(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="Slider"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Slider(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Slider(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
-    }
-
-    /// <summary>Called when slider changed</summary>
+    /// <summary>Called when the slider position has changed.</summary>
     public event EventHandler ChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -121,7 +99,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SLIDER_EVENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -141,17 +119,16 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when delay changed</summary>
-    public event EventHandler DelayChangedEvt
+    /// <summary>Called when the slider position has changed and has remained unchanged for 0.2s. This allows filtering out unwanted &quot;noise&quot; from the slider signal if you are only interested in the final position of the slider. Use this signal instead of <see cref="Efl.Ui.Slider.ChangedEvt"/> if you are going to perform a costly operation on its handler.</summary>
+    public event EventHandler SteadyEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -167,24 +144,24 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
                     }
                 };
 
-                string key = "_EFL_UI_SLIDER_EVENT_DELAY_CHANGED";
+                string key = "_EFL_UI_SLIDER_EVENT_STEADY";
                 AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_SLIDER_EVENT_DELAY_CHANGED";
+                string key = "_EFL_UI_SLIDER_EVENT_STEADY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DelayChangedEvt.</summary>
-    public void OnDelayChangedEvt(EventArgs e)
+    ///<summary>Method to raise event SteadyEvt.</summary>
+    public void OnSteadyEvt(EventArgs e)
     {
-        var key = "_EFL_UI_SLIDER_EVENT_DELAY_CHANGED";
+        var key = "_EFL_UI_SLIDER_EVENT_STEADY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
@@ -194,17 +171,16 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when slider drag started</summary>
+    /// <summary>Called when a slider drag operation has started. This means a <c>press</c> event has been received on the slider thumb but not the <c>unpress</c>.</summary>
     public event EventHandler SliderDragStartEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -227,7 +203,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SLIDER_EVENT_SLIDER_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -247,17 +223,16 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when slider drag stopped</summary>
+    /// <summary>Called when a slider drag operation has finished. This means an <c>unpress</c> event has been received on the slider thumb.</summary>
     public event EventHandler SliderDragStopEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -280,7 +255,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SLIDER_EVENT_SLIDER_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -304,7 +279,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// <param name="value">Value of widget casted to floating point number.</param>
     /// <param name="text">string describing value in given context eg. small, enough</param>
     virtual public void GetValueAndText(out double value, out System.String text) {
-                                                         Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out value, out text);
+                                                         Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out value, out text);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Value and text property</summary>
@@ -312,7 +287,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// <param name="text">string describing value in given context eg. small, enough</param>
     /// <returns><c>true</c> if setting widgets value has succeeded, otherwise <c>false</c> .</returns>
     virtual public bool SetValueAndText(double value, System.String text) {
-                                                         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value, text);
+                                                         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_and_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value, text);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -321,13 +296,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// <param name="upper_limit">Upper limit of the range</param>
     /// <param name="description">Description of the range</param>
     virtual public void GetRange(out double lower_limit, out double upper_limit, out System.String description) {
-                                                                                 Efl.Access.IValueConcrete.NativeMethods.efl_access_value_range_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out lower_limit, out upper_limit, out description);
+                                                                                 Efl.Access.IValueConcrete.NativeMethods.efl_access_value_range_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out lower_limit, out upper_limit, out description);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Gets an minimal incrementation value</summary>
     /// <returns>Minimal incrementation value</returns>
     virtual public double GetIncrement() {
-         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_increment_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IValueConcrete.NativeMethods.efl_access_value_increment_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -336,8 +311,8 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
-    virtual public Efl.Ui.Dir GetDirection() {
-         var _ret_var = Efl.Ui.IDirectionConcrete.NativeMethods.efl_ui_direction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public Efl.Ui.LayoutOrientation GetOrientation() {
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -346,8 +321,8 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
-    virtual public void SetDirection(Efl.Ui.Dir dir) {
-                                 Efl.Ui.IDirectionConcrete.NativeMethods.efl_ui_direction_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+    virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the range value (in percentage) on a given range widget
@@ -356,7 +331,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
     /// <returns>The range value (must be between $0.0 and 1.0)</returns>
     virtual public double GetRangeValue() {
-         var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -366,15 +341,15 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
     /// <param name="val">The range value (must be between $0.0 and 1.0)</param>
     virtual public void SetRangeValue(double val) {
-                                 Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the minimum and maximum values of the given range widget.
     /// Note: If only one value is needed, the other pointer can be passed as <c>null</c>.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
-    virtual public void GetRangeMinMax(out double min, out double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_min_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out min, out max);
+    virtual public void GetRangeLimits(out double min, out double max) {
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out min, out max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the minimum and maximum values for given range widget.
@@ -387,8 +362,8 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// Warning: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
-    virtual public void SetRangeMinMax(double min, double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_min_max_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),min, max);
+    virtual public void SetRangeLimits(double min, double max) {
+                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),min, max);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the step used to increment or decrement values for given widget.
@@ -399,7 +374,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// Warning: The step value should be bigger than 0.</summary>
     /// <returns>The step value.</returns>
     virtual public double GetRangeStep() {
-         var _ret_var = Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -411,39 +386,39 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
     /// Warning: The step value should be bigger than 0.</summary>
     /// <param name="step">The step value.</param>
     virtual public void SetRangeStep(double step) {
-                                 Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),step);
+                                 Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),step);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets an minimal incrementation value</summary>
-/// <value>Minimal incrementation value</value>
+    /// <value>Minimal incrementation value</value>
     public double Increment {
         get { return GetIncrement(); }
     }
     /// <summary>Control the direction of a given widget.
-/// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
-/// 
-/// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
-/// <value>Direction of the widget.</value>
-    public Efl.Ui.Dir Direction {
-        get { return GetDirection(); }
-        set { SetDirection(value); }
+    /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
+    /// 
+    /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
+    /// <value>Direction of the widget.</value>
+    public Efl.Ui.LayoutOrientation Orientation {
+        get { return GetOrientation(); }
+        set { SetOrientation(value); }
     }
     /// <summary>Control the range value (in percentage) on a given range widget
-/// Use this call to set range levels.
-/// 
-/// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-/// <value>The range value (must be between $0.0 and 1.0)</value>
+    /// Use this call to set range levels.
+    /// 
+    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
+    /// <value>The range value (must be between $0.0 and 1.0)</value>
     public double RangeValue {
         get { return GetRangeValue(); }
         set { SetRangeValue(value); }
     }
     /// <summary>Control the step used to increment or decrement values for given widget.
-/// This value will be incremented or decremented to the displayed value.
-/// 
-/// By default step value is equal to 1.
-/// 
-/// Warning: The step value should be bigger than 0.</summary>
-/// <value>The step value.</value>
+    /// This value will be incremented or decremented to the displayed value.
+    /// 
+    /// By default step value is equal to 1.
+    /// 
+    /// Warning: The step value should be bigger than 0.</summary>
+    /// <value>The step value.</value>
     public double RangeStep {
         get { return GetRangeStep(); }
         set { SetRangeStep(value); }
@@ -504,24 +479,24 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_value_increment_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_value_increment_get_static_delegate) });
             }
 
-            if (efl_ui_direction_get_static_delegate == null)
+            if (efl_ui_layout_orientation_get_static_delegate == null)
             {
-                efl_ui_direction_get_static_delegate = new efl_ui_direction_get_delegate(direction_get);
+                efl_ui_layout_orientation_get_static_delegate = new efl_ui_layout_orientation_get_delegate(orientation_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetDirection") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_direction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_direction_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_get_static_delegate) });
             }
 
-            if (efl_ui_direction_set_static_delegate == null)
+            if (efl_ui_layout_orientation_set_static_delegate == null)
             {
-                efl_ui_direction_set_static_delegate = new efl_ui_direction_set_delegate(direction_set);
+                efl_ui_layout_orientation_set_static_delegate = new efl_ui_layout_orientation_set_delegate(orientation_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetDirection") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_direction_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_direction_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
             }
 
             if (efl_ui_range_value_get_static_delegate == null)
@@ -544,24 +519,24 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_value_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_value_set_static_delegate) });
             }
 
-            if (efl_ui_range_min_max_get_static_delegate == null)
+            if (efl_ui_range_limits_get_static_delegate == null)
             {
-                efl_ui_range_min_max_get_static_delegate = new efl_ui_range_min_max_get_delegate(range_min_max_get);
+                efl_ui_range_limits_get_static_delegate = new efl_ui_range_limits_get_delegate(range_limits_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetRangeMinMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetRangeLimits") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_min_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_min_max_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_limits_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_limits_get_static_delegate) });
             }
 
-            if (efl_ui_range_min_max_set_static_delegate == null)
+            if (efl_ui_range_limits_set_static_delegate == null)
             {
-                efl_ui_range_min_max_set_static_delegate = new efl_ui_range_min_max_set_delegate(range_min_max_set);
+                efl_ui_range_limits_set_static_delegate = new efl_ui_range_limits_set_delegate(range_limits_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetRangeMinMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetRangeLimits") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_min_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_min_max_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_limits_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_limits_set_static_delegate) });
             }
 
             if (efl_ui_range_step_get_static_delegate == null)
@@ -594,7 +569,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
             return Efl.Ui.Slider.efl_ui_slider_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_access_value_and_text_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double value, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String text);
@@ -607,14 +582,14 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static void value_and_text_get(System.IntPtr obj, System.IntPtr pd, out double value, out System.String text)
         {
             Eina.Log.Debug("function efl_access_value_and_text_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         value = default(double);        System.String _out_text = default(System.String);
                             
                 try
                 {
-                    ((Slider)wrapper).GetValueAndText(out value, out _out_text);
+                    ((Slider)ws.Target).GetValueAndText(out value, out _out_text);
                 }
                 catch (Exception e)
                 {
@@ -644,13 +619,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static bool value_and_text_set(System.IntPtr obj, System.IntPtr pd, double value, System.String text)
         {
             Eina.Log.Debug("function efl_access_value_and_text_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Slider)wrapper).SetValueAndText(value, text);
+                    _ret_var = ((Slider)ws.Target).SetValueAndText(value, text);
                 }
                 catch (Exception e)
                 {
@@ -680,14 +655,14 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static void range_get(System.IntPtr obj, System.IntPtr pd, out double lower_limit, out double upper_limit, out System.String description)
         {
             Eina.Log.Debug("function efl_access_value_range_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                 lower_limit = default(double);        upper_limit = default(double);        System.String _out_description = default(System.String);
                                     
                 try
                 {
-                    ((Slider)wrapper).GetRange(out lower_limit, out upper_limit, out _out_description);
+                    ((Slider)ws.Target).GetRange(out lower_limit, out upper_limit, out _out_description);
                 }
                 catch (Exception e)
                 {
@@ -717,13 +692,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static double increment_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_value_increment_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Slider)wrapper).GetIncrement();
+                    _ret_var = ((Slider)ws.Target).GetIncrement();
                 }
                 catch (Exception e)
                 {
@@ -743,23 +718,23 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static efl_access_value_increment_get_delegate efl_access_value_increment_get_static_delegate;
 
         
-        private delegate Efl.Ui.Dir efl_ui_direction_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        private delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
-        public delegate Efl.Ui.Dir efl_ui_direction_get_api_delegate(System.IntPtr obj);
+        public delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_api_delegate(System.IntPtr obj);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_direction_get_api_delegate> efl_ui_direction_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_direction_get_api_delegate>(Module, "efl_ui_direction_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate> efl_ui_layout_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate>(Module, "efl_ui_layout_orientation_get");
 
-        private static Efl.Ui.Dir direction_get(System.IntPtr obj, System.IntPtr pd)
+        private static Efl.Ui.LayoutOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
         {
-            Eina.Log.Debug("function efl_ui_direction_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_layout_orientation_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
-            Efl.Ui.Dir _ret_var = default(Efl.Ui.Dir);
+            Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
                 try
                 {
-                    _ret_var = ((Slider)wrapper).GetDirection();
+                    _ret_var = ((Slider)ws.Target).GetOrientation();
                 }
                 catch (Exception e)
                 {
@@ -772,30 +747,30 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
             }
             else
             {
-                return efl_ui_direction_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_ui_layout_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_ui_direction_get_delegate efl_ui_direction_get_static_delegate;
+        private static efl_ui_layout_orientation_get_delegate efl_ui_layout_orientation_get_static_delegate;
 
         
-        private delegate void efl_ui_direction_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.Dir dir);
+        private delegate void efl_ui_layout_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.LayoutOrientation dir);
 
         
-        public delegate void efl_ui_direction_set_api_delegate(System.IntPtr obj,  Efl.Ui.Dir dir);
+        public delegate void efl_ui_layout_orientation_set_api_delegate(System.IntPtr obj,  Efl.Ui.LayoutOrientation dir);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_direction_set_api_delegate> efl_ui_direction_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_direction_set_api_delegate>(Module, "efl_ui_direction_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate> efl_ui_layout_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate>(Module, "efl_ui_layout_orientation_set");
 
-        private static void direction_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Dir dir)
+        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutOrientation dir)
         {
-            Eina.Log.Debug("function efl_ui_direction_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_layout_orientation_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Slider)wrapper).SetDirection(dir);
+                    ((Slider)ws.Target).SetOrientation(dir);
                 }
                 catch (Exception e)
                 {
@@ -807,11 +782,11 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
             }
             else
             {
-                efl_ui_direction_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
+                efl_ui_layout_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
             }
         }
 
-        private static efl_ui_direction_set_delegate efl_ui_direction_set_static_delegate;
+        private static efl_ui_layout_orientation_set_delegate efl_ui_layout_orientation_set_static_delegate;
 
         
         private delegate double efl_ui_range_value_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -824,13 +799,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static double range_value_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_range_value_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Slider)wrapper).GetRangeValue();
+                    _ret_var = ((Slider)ws.Target).GetRangeValue();
                 }
                 catch (Exception e)
                 {
@@ -860,13 +835,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static void range_value_set(System.IntPtr obj, System.IntPtr pd, double val)
         {
             Eina.Log.Debug("function efl_ui_range_value_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Slider)wrapper).SetRangeValue(val);
+                    ((Slider)ws.Target).SetRangeValue(val);
                 }
                 catch (Exception e)
                 {
@@ -885,23 +860,23 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static efl_ui_range_value_set_delegate efl_ui_range_value_set_static_delegate;
 
         
-        private delegate void efl_ui_range_min_max_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double min,  out double max);
+        private delegate void efl_ui_range_limits_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double min,  out double max);
 
         
-        public delegate void efl_ui_range_min_max_get_api_delegate(System.IntPtr obj,  out double min,  out double max);
+        public delegate void efl_ui_range_limits_get_api_delegate(System.IntPtr obj,  out double min,  out double max);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_min_max_get_api_delegate> efl_ui_range_min_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_min_max_get_api_delegate>(Module, "efl_ui_range_min_max_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_range_limits_get_api_delegate> efl_ui_range_limits_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_limits_get_api_delegate>(Module, "efl_ui_range_limits_get");
 
-        private static void range_min_max_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
+        private static void range_limits_get(System.IntPtr obj, System.IntPtr pd, out double min, out double max)
         {
-            Eina.Log.Debug("function efl_ui_range_min_max_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_range_limits_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         min = default(double);        max = default(double);                            
                 try
                 {
-                    ((Slider)wrapper).GetRangeMinMax(out min, out max);
+                    ((Slider)ws.Target).GetRangeLimits(out min, out max);
                 }
                 catch (Exception e)
                 {
@@ -913,30 +888,30 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
             }
             else
             {
-                efl_ui_range_min_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out min, out max);
+                efl_ui_range_limits_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out min, out max);
             }
         }
 
-        private static efl_ui_range_min_max_get_delegate efl_ui_range_min_max_get_static_delegate;
+        private static efl_ui_range_limits_get_delegate efl_ui_range_limits_get_static_delegate;
 
         
-        private delegate void efl_ui_range_min_max_set_delegate(System.IntPtr obj, System.IntPtr pd,  double min,  double max);
+        private delegate void efl_ui_range_limits_set_delegate(System.IntPtr obj, System.IntPtr pd,  double min,  double max);
 
         
-        public delegate void efl_ui_range_min_max_set_api_delegate(System.IntPtr obj,  double min,  double max);
+        public delegate void efl_ui_range_limits_set_api_delegate(System.IntPtr obj,  double min,  double max);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_min_max_set_api_delegate> efl_ui_range_min_max_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_min_max_set_api_delegate>(Module, "efl_ui_range_min_max_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_range_limits_set_api_delegate> efl_ui_range_limits_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_limits_set_api_delegate>(Module, "efl_ui_range_limits_set");
 
-        private static void range_min_max_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
+        private static void range_limits_set(System.IntPtr obj, System.IntPtr pd, double min, double max)
         {
-            Eina.Log.Debug("function efl_ui_range_min_max_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            Eina.Log.Debug("function efl_ui_range_limits_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((Slider)wrapper).SetRangeMinMax(min, max);
+                    ((Slider)ws.Target).SetRangeLimits(min, max);
                 }
                 catch (Exception e)
                 {
@@ -948,11 +923,11 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
             }
             else
             {
-                efl_ui_range_min_max_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), min, max);
+                efl_ui_range_limits_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), min, max);
             }
         }
 
-        private static efl_ui_range_min_max_set_delegate efl_ui_range_min_max_set_static_delegate;
+        private static efl_ui_range_limits_set_delegate efl_ui_range_limits_set_static_delegate;
 
         
         private delegate double efl_ui_range_step_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -965,13 +940,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static double range_step_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_range_step_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Slider)wrapper).GetRangeStep();
+                    _ret_var = ((Slider)ws.Target).GetRangeStep();
                 }
                 catch (Exception e)
                 {
@@ -1001,13 +976,13 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
         private static void range_step_set(System.IntPtr obj, System.IntPtr pd, double step)
         {
             Eina.Log.Debug("function efl_ui_range_step_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((Slider)wrapper).SetRangeStep(step);
+                    ((Slider)ws.Target).SetRangeStep(step);
                 }
                 catch (Exception e)
                 {
@@ -1025,7 +1000,7 @@ public class Slider : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.IValue,Efl.U
 
         private static efl_ui_range_step_set_delegate efl_ui_range_step_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }

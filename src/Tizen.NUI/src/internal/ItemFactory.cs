@@ -15,12 +15,15 @@
  *
  */
 
+using System.ComponentModel;
 using System.Reflection;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    using Tizen.NUI.BaseComponents;
-    internal class ItemFactory : global::System.IDisposable
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ItemFactory : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
@@ -51,6 +54,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -102,6 +107,8 @@ namespace Tizen.NUI
             disposed = true;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual uint GetNumberOfItems()
         {
             uint ret = Interop.ItemFactory.ItemFactory_GetNumberOfItems(swigCPtr);
@@ -109,6 +116,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual View NewItem(uint itemId)
         {
             View ret = new View(Interop.ItemFactory.ItemFactory_NewItem(swigCPtr, itemId), true);
@@ -116,12 +125,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void ItemReleased(uint itemId, View view)
         {
             if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2)) Interop.ItemFactory.ItemFactory_ItemReleasedSwigExplicitItemFactory(swigCPtr, itemId, View.getCPtr(view)); else Interop.ItemFactory.ItemFactory_ItemReleased(swigCPtr, itemId, View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemFactory() : this(Interop.ItemFactory.new_ItemFactory(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -162,11 +175,16 @@ namespace Tizen.NUI
             ItemReleased(itemId, new View(actor, true));
         }
 
-        /// <since_tizen> 3 </since_tizen>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate uint SwigDelegateItemFactory_0();
-        /// <since_tizen> 3 </since_tizen>
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate global::System.IntPtr SwigDelegateItemFactory_1(uint itemId);
-        /// <since_tizen> 3 </since_tizen>
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void SwigDelegateItemFactory_2(uint itemId, global::System.IntPtr actor);
 
         private SwigDelegateItemFactory_0 swigDelegate0;

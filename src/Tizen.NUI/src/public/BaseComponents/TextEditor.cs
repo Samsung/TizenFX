@@ -1087,7 +1087,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(TextProperty, value);
+                SetValueAndForceSendChangeSignal(TextProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1994,6 +1994,28 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(MatchSystemLanguageDirectionProperty, value);
                 NotifyPropertyChanged();
+            }
+        }
+
+        /// Only used by the IL of xaml, will never changed to not hidden.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsCreateByXaml
+        {
+            get
+            {
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
+                {
+                    this.TextChanged += (obj, e) =>
+                    {
+                        this.Text = this.Text;
+                    };
+                }
             }
         }
 

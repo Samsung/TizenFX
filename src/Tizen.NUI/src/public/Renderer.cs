@@ -621,6 +621,38 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+
+        /// <since_tizen> 6.0 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class Ranges
+        {
+            /// <since_tizen> 6.0 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BACKGROUND_EFFECT = Interop.Renderer.Renderer_Ranges_BACKGROUND_EFFECT_get();
+
+            /// <since_tizen> 6.0 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int BACKGROUND = Interop.Renderer.Renderer_Ranges_BACKGROUND_get();
+
+            /// <since_tizen> 6.0 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CONTENT = Interop.Renderer.Renderer_Ranges_CONTENT_get();
+
+            /// <since_tizen> 6.0 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int DECORATION = Interop.Renderer.Renderer_Ranges_DECORATION_get();
+
+            /// <since_tizen> 6.0 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int FOREGROUND_EFFECT = Interop.Renderer.Renderer_Ranges_FOREGROUND_EFFECT_get();
+        }
+
         /// <summary>
         /// Enumeration for instances of properties belonging to the Renderer class.
         /// </summary>

@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Font settings of the text</summary>
 [Efl.ITextFontConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextFont : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -85,63 +86,63 @@ Efl.TextFontBitmapScalable GetFontBitmapScalable();
 /// <param name="scalable">Scalable</param>
 void SetFontBitmapScalable(Efl.TextFontBitmapScalable scalable);
                                                                     /// <summary>Get the font file&apos;s path which is being used on a given text object.
-/// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
-/// <value>The font file&apos;s path.</value>
+    /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <value>The font file&apos;s path.</value>
     System.String FontSource {
         get ;
         set ;
     }
     /// <summary>Comma-separated list of font fallbacks
-/// Will be used in case the primary font isn&apos;t available.</summary>
-/// <value>Font name fallbacks</value>
+    /// Will be used in case the primary font isn&apos;t available.</summary>
+    /// <value>Font name fallbacks</value>
     System.String FontFallbacks {
         get ;
         set ;
     }
     /// <summary>Type of weight of the displayed font
-/// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
-/// <value>Font weight</value>
+    /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
+    /// <value>Font weight</value>
     Efl.TextFontWeight FontWeight {
         get ;
         set ;
     }
     /// <summary>Type of slant of the displayed font
-/// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
-/// <value>Font slant</value>
+    /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
+    /// <value>Font slant</value>
     Efl.TextFontSlant FontSlant {
         get ;
         set ;
     }
     /// <summary>Type of width of the displayed font
-/// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
-/// <value>Font width</value>
+    /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
+    /// <value>Font width</value>
     Efl.TextFontWidth FontWidth {
         get ;
         set ;
     }
     /// <summary>Specific language of the displayed font
-/// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
-/// <value>Language</value>
+    /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
+    /// <value>Language</value>
     System.String FontLang {
         get ;
         set ;
     }
     /// <summary>The bitmap fonts have fixed size glyphs for several available sizes. Basically, it is not scalable. But, it needs to be scalable for some use cases. (ex. colorful emoji fonts)
-/// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
-/// <value>Scalable</value>
+    /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
+    /// <value>Scalable</value>
     Efl.TextFontBitmapScalable FontBitmapScalable {
         get ;
         set ;
     }
 }
 /// <summary>Font settings of the text</summary>
-sealed public class ITextFontConcrete : 
-
-ITextFont
+sealed public class ITextFontConcrete :
+    Efl.Eo.EoWrapper
+    , ITextFont
     
 {
     ///<summary>Pointer to the native class description.</summary>
-    public System.IntPtr NativeClass
+    public override System.IntPtr NativeClass
     {
         get
         {
@@ -156,86 +157,19 @@ ITextFont
         }
     }
 
-    private  System.IntPtr handle;
-    ///<summary>Pointer to the native instance.</summary>
-    public System.IntPtr NativeHandle
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextFontConcrete(ConstructingHandle ch) : base(ch)
     {
-        get { return handle; }
     }
 
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_font_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextFont"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextFontConcrete(System.IntPtr raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextFontConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-        handle = raw;
-    }
-    ///<summary>Destructor.</summary>
-    ~ITextFontConcrete()
-    {
-        Dispose(false);
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    private void Dispose(bool disposing)
-    {
-        if (handle != System.IntPtr.Zero)
-        {
-            IntPtr h = handle;
-            handle = IntPtr.Zero;
-
-            IntPtr gcHandlePtr = IntPtr.Zero;
-            if (disposing)
-            {
-                Efl.Eo.Globals.efl_mono_native_dispose(h, gcHandlePtr);
-            }
-            else
-            {
-                Monitor.Enter(Efl.All.InitLock);
-                if (Efl.All.MainLoopInitialized)
-                {
-                    Efl.Eo.Globals.efl_mono_thread_safe_native_dispose(h, gcHandlePtr);
-                }
-
-                Monitor.Exit(Efl.All.InitLock);
-            }
-        }
-
-    }
-
-    ///<summary>Releases the underlying native instance.</summary>
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     /// <summary>Retrieve the font family and size in use on a given text object.
@@ -366,50 +300,50 @@ ITextFont
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
-/// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
-/// <value>The font file&apos;s path.</value>
+    /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <value>The font file&apos;s path.</value>
     public System.String FontSource {
         get { return GetFontSource(); }
         set { SetFontSource(value); }
     }
     /// <summary>Comma-separated list of font fallbacks
-/// Will be used in case the primary font isn&apos;t available.</summary>
-/// <value>Font name fallbacks</value>
+    /// Will be used in case the primary font isn&apos;t available.</summary>
+    /// <value>Font name fallbacks</value>
     public System.String FontFallbacks {
         get { return GetFontFallbacks(); }
         set { SetFontFallbacks(value); }
     }
     /// <summary>Type of weight of the displayed font
-/// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
-/// <value>Font weight</value>
+    /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
+    /// <value>Font weight</value>
     public Efl.TextFontWeight FontWeight {
         get { return GetFontWeight(); }
         set { SetFontWeight(value); }
     }
     /// <summary>Type of slant of the displayed font
-/// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
-/// <value>Font slant</value>
+    /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
+    /// <value>Font slant</value>
     public Efl.TextFontSlant FontSlant {
         get { return GetFontSlant(); }
         set { SetFontSlant(value); }
     }
     /// <summary>Type of width of the displayed font
-/// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
-/// <value>Font width</value>
+    /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
+    /// <value>Font width</value>
     public Efl.TextFontWidth FontWidth {
         get { return GetFontWidth(); }
         set { SetFontWidth(value); }
     }
     /// <summary>Specific language of the displayed font
-/// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
-/// <value>Language</value>
+    /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
+    /// <value>Language</value>
     public System.String FontLang {
         get { return GetFontLang(); }
         set { SetFontLang(value); }
     }
     /// <summary>The bitmap fonts have fixed size glyphs for several available sizes. Basically, it is not scalable. But, it needs to be scalable for some use cases. (ex. colorful emoji fonts)
-/// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
-/// <value>Scalable</value>
+    /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
+    /// <value>Scalable</value>
     public Efl.TextFontBitmapScalable FontBitmapScalable {
         get { return GetFontBitmapScalable(); }
         set { SetFontBitmapScalable(value); }
@@ -420,7 +354,7 @@ ITextFont
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -599,7 +533,7 @@ ITextFont
             return Efl.ITextFontConcrete.efl_text_font_interface_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
         private delegate void efl_text_font_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String font,  out Efl.Font.Size size);
@@ -612,14 +546,14 @@ ITextFont
         private static void font_get(System.IntPtr obj, System.IntPtr pd, out System.String font, out Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_text_font_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         System.String _out_font = default(System.String);
         size = default(Efl.Font.Size);                            
                 try
                 {
-                    ((ITextFont)wrapper).GetFont(out _out_font, out size);
+                    ((ITextFont)ws.Target).GetFont(out _out_font, out size);
                 }
                 catch (Exception e)
                 {
@@ -649,13 +583,13 @@ ITextFont
         private static void font_set(System.IntPtr obj, System.IntPtr pd, System.String font, Efl.Font.Size size)
         {
             Eina.Log.Debug("function efl_text_font_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ITextFont)wrapper).SetFont(font, size);
+                    ((ITextFont)ws.Target).SetFont(font, size);
                 }
                 catch (Exception e)
                 {
@@ -684,13 +618,13 @@ ITextFont
         private static System.String font_source_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_source_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextFont)wrapper).GetFontSource();
+                    _ret_var = ((ITextFont)ws.Target).GetFontSource();
                 }
                 catch (Exception e)
                 {
@@ -720,13 +654,13 @@ ITextFont
         private static void font_source_set(System.IntPtr obj, System.IntPtr pd, System.String font_source)
         {
             Eina.Log.Debug("function efl_text_font_source_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextFont)wrapper).SetFontSource(font_source);
+                    ((ITextFont)ws.Target).SetFontSource(font_source);
                 }
                 catch (Exception e)
                 {
@@ -755,13 +689,13 @@ ITextFont
         private static System.String font_fallbacks_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_fallbacks_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextFont)wrapper).GetFontFallbacks();
+                    _ret_var = ((ITextFont)ws.Target).GetFontFallbacks();
                 }
                 catch (Exception e)
                 {
@@ -791,13 +725,13 @@ ITextFont
         private static void font_fallbacks_set(System.IntPtr obj, System.IntPtr pd, System.String font_fallbacks)
         {
             Eina.Log.Debug("function efl_text_font_fallbacks_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextFont)wrapper).SetFontFallbacks(font_fallbacks);
+                    ((ITextFont)ws.Target).SetFontFallbacks(font_fallbacks);
                 }
                 catch (Exception e)
                 {
@@ -826,13 +760,13 @@ ITextFont
         private static Efl.TextFontWeight font_weight_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_weight_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontWeight _ret_var = default(Efl.TextFontWeight);
                 try
                 {
-                    _ret_var = ((ITextFont)wrapper).GetFontWeight();
+                    _ret_var = ((ITextFont)ws.Target).GetFontWeight();
                 }
                 catch (Exception e)
                 {
@@ -862,13 +796,13 @@ ITextFont
         private static void font_weight_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontWeight font_weight)
         {
             Eina.Log.Debug("function efl_text_font_weight_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextFont)wrapper).SetFontWeight(font_weight);
+                    ((ITextFont)ws.Target).SetFontWeight(font_weight);
                 }
                 catch (Exception e)
                 {
@@ -897,13 +831,13 @@ ITextFont
         private static Efl.TextFontSlant font_slant_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_slant_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontSlant _ret_var = default(Efl.TextFontSlant);
                 try
                 {
-                    _ret_var = ((ITextFont)wrapper).GetFontSlant();
+                    _ret_var = ((ITextFont)ws.Target).GetFontSlant();
                 }
                 catch (Exception e)
                 {
@@ -933,13 +867,13 @@ ITextFont
         private static void font_slant_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontSlant style)
         {
             Eina.Log.Debug("function efl_text_font_slant_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextFont)wrapper).SetFontSlant(style);
+                    ((ITextFont)ws.Target).SetFontSlant(style);
                 }
                 catch (Exception e)
                 {
@@ -968,13 +902,13 @@ ITextFont
         private static Efl.TextFontWidth font_width_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_width_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontWidth _ret_var = default(Efl.TextFontWidth);
                 try
                 {
-                    _ret_var = ((ITextFont)wrapper).GetFontWidth();
+                    _ret_var = ((ITextFont)ws.Target).GetFontWidth();
                 }
                 catch (Exception e)
                 {
@@ -1004,13 +938,13 @@ ITextFont
         private static void font_width_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontWidth width)
         {
             Eina.Log.Debug("function efl_text_font_width_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextFont)wrapper).SetFontWidth(width);
+                    ((ITextFont)ws.Target).SetFontWidth(width);
                 }
                 catch (Exception e)
                 {
@@ -1039,13 +973,13 @@ ITextFont
         private static System.String font_lang_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_lang_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ITextFont)wrapper).GetFontLang();
+                    _ret_var = ((ITextFont)ws.Target).GetFontLang();
                 }
                 catch (Exception e)
                 {
@@ -1075,13 +1009,13 @@ ITextFont
         private static void font_lang_set(System.IntPtr obj, System.IntPtr pd, System.String lang)
         {
             Eina.Log.Debug("function efl_text_font_lang_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextFont)wrapper).SetFontLang(lang);
+                    ((ITextFont)ws.Target).SetFontLang(lang);
                 }
                 catch (Exception e)
                 {
@@ -1110,13 +1044,13 @@ ITextFont
         private static Efl.TextFontBitmapScalable font_bitmap_scalable_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_text_font_bitmap_scalable_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.TextFontBitmapScalable _ret_var = default(Efl.TextFontBitmapScalable);
                 try
                 {
-                    _ret_var = ((ITextFont)wrapper).GetFontBitmapScalable();
+                    _ret_var = ((ITextFont)ws.Target).GetFontBitmapScalable();
                 }
                 catch (Exception e)
                 {
@@ -1146,13 +1080,13 @@ ITextFont
         private static void font_bitmap_scalable_set(System.IntPtr obj, System.IntPtr pd, Efl.TextFontBitmapScalable scalable)
         {
             Eina.Log.Debug("function efl_text_font_bitmap_scalable_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ITextFont)wrapper).SetFontBitmapScalable(scalable);
+                    ((ITextFont)ws.Target).SetFontBitmapScalable(scalable);
                 }
                 catch (Exception e)
                 {
@@ -1170,7 +1104,7 @@ ITextFont
 
         private static efl_text_font_bitmap_scalable_set_delegate efl_text_font_bitmap_scalable_set_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -1179,6 +1113,7 @@ ITextFont
 namespace Efl {
 
 /// <summary>Type of font weight</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontWeight
 {
 /// <summary>Normal font weight</summary>
@@ -1214,6 +1149,7 @@ Extrablack = 12,
 namespace Efl {
 
 /// <summary>Type of font width</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontWidth
 {
 /// <summary>Normal font width</summary>
@@ -1241,6 +1177,7 @@ Ultraexpanded = 8,
 namespace Efl {
 
 /// <summary>Type of font slant</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontSlant
 {
 /// <summary>Normal font slant</summary>
@@ -1256,6 +1193,7 @@ Italic = 2,
 namespace Efl {
 
 /// <summary>Scalable of bitmap fonts</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontBitmapScalable
 {
 /// <summary>Disable scalable feature for bitmap fonts.</summary>

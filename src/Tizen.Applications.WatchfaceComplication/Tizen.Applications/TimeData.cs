@@ -21,7 +21,7 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the TimeData class for the Time type complication.
+    /// Represents the time data for a complication.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class TimeData : ComplicationData

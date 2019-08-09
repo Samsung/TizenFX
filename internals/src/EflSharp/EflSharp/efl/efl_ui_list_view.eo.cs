@@ -10,37 +10,44 @@ namespace Efl {
 namespace Ui {
 
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ListView.ItemRealizedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ListViewItemRealizedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ListViewItemEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ListView.ItemUnrealizedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ListViewItemUnrealizedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ListViewItemEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ListView.ItemFocusedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ListViewItemFocusedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ListViewItemEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ListView.ItemUnfocusedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ListViewItemUnfocusedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ListViewItemEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ListView.ItemHighlightedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ListViewItemHighlightedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ListViewItemEvent arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.ListView.ItemUnhighlightedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ListViewItemUnhighlightedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ListViewItemEvent arg { get; set; }
 }
 [Efl.Ui.ListView.NativeMethods]
-public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection,Efl.Ui.IClickable,Efl.Ui.IListViewModel,Efl.Ui.IScrollable,Efl.Ui.IScrollableInteractive,Efl.Ui.IScrollbar,Efl.Ui.ISelectable,Efl.Ui.IWidgetFocusManager,Efl.Ui.Focus.IComposition,Efl.Ui.Focus.IManager,Efl.Ui.Focus.IManagerSub
+[Efl.Eo.BindingEntity]
+public class ListView : Efl.Ui.LayoutBase, Efl.Access.ISelection, Efl.Ui.IListViewModel, Efl.Ui.IScrollable, Efl.Ui.IScrollableInteractive, Efl.Ui.IScrollbar, Efl.Ui.ISelectable, Efl.Ui.IWidgetFocusManager, Efl.Ui.Focus.IComposition, Efl.Ui.Focus.IManager, Efl.Ui.Focus.IManagerSub
 {
     ///<summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
@@ -62,9 +69,9 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
         efl_ui_list_view_class_get();
     /// <summary>Initializes a new instance of the <see cref="ListView"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public ListView(Efl.Object parent
-            , System.String style = null) : base(efl_ui_list_view_class_get(), typeof(ListView), parent)
+            , System.String style = null) : base(efl_ui_list_view_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -74,62 +81,39 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ListView(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ListView"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ListView(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ListView(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
-            }
+    }
 
     /// <summary>Initializes a new instance of the <see cref="ListView"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ListView(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ListView(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
-    }
-
-    /// <summary>Verifies if the given object is equal to this one.</summary>
-    /// <param name="instance">The object to compare to.</param>
-    /// <returns>True if both objects point to the same native object.</returns>
-    public override bool Equals(object instance)
-    {
-        var other = instance as Efl.Object;
-        if (other == null)
-        {
-            return false;
-        }
-        return this.NativeHandle == other.NativeHandle;
-    }
-
-    /// <summary>Gets the hash code for this object based on the native pointer it points to.</summary>
-    /// <returns>The value of the pointer, to be used as the hash code of this object.</returns>
-    public override int GetHashCode()
-    {
-        return this.NativeHandle.ToInt32();
-    }
-
-    /// <summary>Turns the native pointer into a string representation.</summary>
-    /// <returns>A string with the type and the native pointer for this object.</returns>
-    public override String ToString()
-    {
-        return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
     }
 
     public event EventHandler<Efl.Ui.ListViewItemRealizedEvt_Args> ItemRealizedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ListViewItemRealizedEvt_Args args = new Efl.Ui.ListViewItemRealizedEvt_Args();
+                        Efl.Ui.ListViewItemRealizedEvt_Args args = new Efl.Ui.ListViewItemRealizedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -150,7 +134,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_LIST_VIEW_EVENT_ITEM_REALIZED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -183,15 +167,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ListViewItemUnrealizedEvt_Args args = new Efl.Ui.ListViewItemUnrealizedEvt_Args();
+                        Efl.Ui.ListViewItemUnrealizedEvt_Args args = new Efl.Ui.ListViewItemUnrealizedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -212,7 +195,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_LIST_VIEW_EVENT_ITEM_UNREALIZED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -245,15 +228,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ListViewItemFocusedEvt_Args args = new Efl.Ui.ListViewItemFocusedEvt_Args();
+                        Efl.Ui.ListViewItemFocusedEvt_Args args = new Efl.Ui.ListViewItemFocusedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -274,7 +256,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_LIST_VIEW_EVENT_ITEM_FOCUSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -307,15 +289,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ListViewItemUnfocusedEvt_Args args = new Efl.Ui.ListViewItemUnfocusedEvt_Args();
+                        Efl.Ui.ListViewItemUnfocusedEvt_Args args = new Efl.Ui.ListViewItemUnfocusedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -336,7 +317,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_LIST_VIEW_EVENT_ITEM_UNFOCUSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -369,15 +350,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ListViewItemHighlightedEvt_Args args = new Efl.Ui.ListViewItemHighlightedEvt_Args();
+                        Efl.Ui.ListViewItemHighlightedEvt_Args args = new Efl.Ui.ListViewItemHighlightedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -398,7 +378,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_LIST_VIEW_EVENT_ITEM_HIGHLIGHTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -431,15 +411,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ListViewItemUnhighlightedEvt_Args args = new Efl.Ui.ListViewItemUnhighlightedEvt_Args();
+                        Efl.Ui.ListViewItemUnhighlightedEvt_Args args = new Efl.Ui.ListViewItemUnhighlightedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -460,7 +439,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_LIST_VIEW_EVENT_ITEM_UNHIGHLIGHTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -494,12 +473,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -522,7 +500,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_SELECTION_EVENT_ACCESS_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -542,449 +520,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when object is clicked</summary>
-    public event EventHandler ClickedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a double click</summary>
-    public event EventHandler ClickedDoubleEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedDoubleEvt.</summary>
-    public void OnClickedDoubleEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_DOUBLE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a triple click</summary>
-    public event EventHandler ClickedTripleEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedTripleEvt.</summary>
-    public void OnClickedTripleEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_TRIPLE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object receives a right click</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedRightEvt_Args> ClickedRightEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickableClickedRightEvt_Args args = new Efl.Ui.IClickableClickedRightEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedRightEvt.</summary>
-    public void OnClickedRightEvt(Efl.Ui.IClickableClickedRightEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object is pressed</summary>
-    public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_PRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_PRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event PressedEvt.</summary>
-    public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_PRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object is no longer pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event UnpressedEvt.</summary>
-    public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_UNPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object receives a long press</summary>
-    public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                                                Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event LongpressedEvt.</summary>
-    public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_LONGPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when the object receives repeated presses/clicks</summary>
-    public event EventHandler RepeatedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                var wRef = new WeakReference(this);
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_REPEATED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_REPEATED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event RepeatedEvt.</summary>
-    public void OnRepeatedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_REPEATED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
     /// <summary>Called when scroll operation starts</summary>
     public event EventHandler ScrollStartEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1001,16 +546,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1018,7 +563,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1032,12 +577,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1054,16 +598,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1071,7 +615,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1085,12 +629,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1107,16 +650,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1124,7 +667,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1138,12 +681,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1160,16 +702,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_UP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1177,7 +719,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_UP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1191,12 +733,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1213,16 +754,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DOWN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1230,7 +771,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DOWN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1244,12 +785,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1266,16 +806,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_LEFT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1283,7 +823,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_LEFT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1297,12 +837,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1319,16 +858,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1336,7 +875,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1350,12 +889,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1372,16 +910,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_UP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_UP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1389,7 +927,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnEdgeUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_UP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1403,12 +941,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1425,16 +962,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_DOWN";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1442,7 +979,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnEdgeDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_DOWN";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1456,12 +993,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1478,16 +1014,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_LEFT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1495,7 +1031,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnEdgeLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_LEFT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1509,12 +1045,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1531,16 +1066,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_EDGE_RIGHT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1548,7 +1083,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnEdgeRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_RIGHT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1562,12 +1097,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1584,16 +1118,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1601,7 +1135,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollAnimStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1615,12 +1149,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1637,16 +1170,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1654,7 +1187,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollAnimStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1668,12 +1201,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1690,16 +1222,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1707,7 +1239,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollDragStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1721,12 +1253,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1743,16 +1274,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1760,7 +1291,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnScrollDragStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1769,21 +1300,20 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when bar is pressed</summary>
+    /// <summary>Called when bar is pressed.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarPressEvt_Args> BarPressEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarPressEvt_Args args = new Efl.Ui.IScrollbarBarPressEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        Efl.Ui.IScrollbarBarPressEvt_Args args = new Efl.Ui.IScrollbarBarPressEvt_Args();
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1797,16 +1327,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1814,7 +1344,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnBarPressEvt(Efl.Ui.IScrollbarBarPressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1831,21 +1361,20 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar is unpressed</summary>
+    /// <summary>Called when bar is unpressed.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarUnpressEvt_Args> BarUnpressEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarUnpressEvt_Args args = new Efl.Ui.IScrollbarBarUnpressEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        Efl.Ui.IScrollbarBarUnpressEvt_Args args = new Efl.Ui.IScrollbarBarUnpressEvt_Args();
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1859,16 +1388,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1876,7 +1405,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnBarUnpressEvt(Efl.Ui.IScrollbarBarUnpressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1893,21 +1422,20 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar is dragged</summary>
+    /// <summary>Called when bar is dragged.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarDragEvt_Args> BarDragEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarDragEvt_Args args = new Efl.Ui.IScrollbarBarDragEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        Efl.Ui.IScrollbarBarDragEvt_Args args = new Efl.Ui.IScrollbarBarDragEvt_Args();
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1921,16 +1449,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1938,7 +1466,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnBarDragEvt(Efl.Ui.IScrollbarBarDragEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -1955,17 +1483,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar size is changed</summary>
+    /// <summary>Called when bar size is changed.</summary>
     public event EventHandler BarSizeChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -1982,16 +1509,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -1999,7 +1526,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnBarSizeChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2008,17 +1535,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when bar position is changed</summary>
+    /// <summary>Called when bar position is changed.</summary>
     public event EventHandler BarPosChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2035,16 +1561,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2052,7 +1578,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnBarPosChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2061,21 +1587,20 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Callend when bar is shown</summary>
+    /// <summary>Callend when bar is shown.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarShowEvt_Args> BarShowEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarShowEvt_Args args = new Efl.Ui.IScrollbarBarShowEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        Efl.Ui.IScrollbarBarShowEvt_Args args = new Efl.Ui.IScrollbarBarShowEvt_Args();
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -2089,16 +1614,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2106,7 +1631,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnBarShowEvt(Efl.Ui.IScrollbarBarShowEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2123,21 +1648,20 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Called when bar is hidden</summary>
+    /// <summary>Called when bar is hidden.</summary>
     public event EventHandler<Efl.Ui.IScrollbarBarHideEvt_Args> BarHideEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.IScrollbarBarHideEvt_Args args = new Efl.Ui.IScrollbarBarHideEvt_Args();
-                        args.arg = default(Efl.Ui.ScrollbarDirection);
+                        Efl.Ui.IScrollbarBarHideEvt_Args args = new Efl.Ui.IScrollbarBarHideEvt_Args();
+                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -2151,16 +1675,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2168,7 +1692,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnBarHideEvt(Efl.Ui.IScrollbarBarHideEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2190,15 +1714,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ISelectableItemSelectedEvt_Args args = new Efl.Ui.ISelectableItemSelectedEvt_Args();
+                        Efl.Ui.ISelectableItemSelectedEvt_Args args = new Efl.Ui.ISelectableItemSelectedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -2213,16 +1736,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2230,7 +1753,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnItemSelectedEvt(Efl.Ui.ISelectableItemSelectedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_ITEM_SELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2245,15 +1768,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.ISelectableItemUnselectedEvt_Args args = new Efl.Ui.ISelectableItemUnselectedEvt_Args();
+                        Efl.Ui.ISelectableItemUnselectedEvt_Args args = new Efl.Ui.ISelectableItemUnselectedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -2268,16 +1790,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2285,7 +1807,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnItemUnselectedEvt(Efl.Ui.ISelectableItemUnselectedEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2300,12 +1822,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2322,16 +1843,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_PASTE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_PASTE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2339,7 +1860,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnSelectionPasteEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_PASTE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2353,12 +1874,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2375,16 +1895,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_COPY";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_COPY";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2392,7 +1912,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnSelectionCopyEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_COPY";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2406,12 +1926,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2428,16 +1947,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_CUT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CUT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2445,7 +1964,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnSelectionCutEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CUT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2459,12 +1978,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2481,16 +1999,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2498,7 +2016,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnSelectionStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2512,12 +2030,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2534,16 +2051,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2551,7 +2068,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2565,12 +2082,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2587,16 +2103,16 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
                 };
 
                 string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
@@ -2604,7 +2120,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     public void OnSelectionClearedEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
@@ -2619,15 +2135,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
                         try
                         {
@@ -2648,7 +2163,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2675,12 +2190,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2703,7 +2217,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2729,12 +2243,11 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
                         EventArgs args = EventArgs.Empty;
@@ -2757,7 +2270,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2783,15 +2296,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
+                        Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
                         try
                         {
@@ -2812,7 +2324,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2839,16 +2351,15 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
-                var wRef = new WeakReference(this);
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
-                    var obj = wRef.Target as Efl.Eo.IWrapper;
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                                                Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
-                        args.arg = evt.Info != IntPtr.Zero;
+                        Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -2868,7 +2379,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -2896,51 +2407,55 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Get whether the homogeneous mode is enabled.</summary>
-    /// <returns>Assume the items within the genlist are of the same height and width. Default is <c>false</c>.</returns>
+    /// <summary>When in homogeneous mode, all items have the same height and width. Otherwise, each item&apos;s size is respected.</summary>
+    /// <returns>Homogeneous mode setting. Default is <c>false</c>.</returns>
     virtual public bool GetHomogeneous() {
-         var _ret_var = Efl.Ui.ListView.NativeMethods.efl_ui_list_view_homogeneous_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ListView.NativeMethods.efl_ui_list_view_homogeneous_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Enable/disable homogeneous mode.</summary>
-    /// <param name="homogeneous">Assume the items within the genlist are of the same height and width. Default is <c>false</c>.</param>
+    /// <summary>When in homogeneous mode, all items have the same height and width. Otherwise, each item&apos;s size is respected.</summary>
+    /// <param name="homogeneous">Homogeneous mode setting. Default is <c>false</c>.</param>
     virtual public void SetHomogeneous(bool homogeneous) {
-                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_homogeneous_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),homogeneous);
+                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_homogeneous_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),homogeneous);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Listview select mode.</summary>
     /// <returns>The select mode.</returns>
     virtual public Elm.Object.SelectMode GetSelectMode() {
-         var _ret_var = Efl.Ui.ListView.NativeMethods.efl_ui_list_view_select_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ListView.NativeMethods.efl_ui_list_view_select_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Listview select mode.</summary>
     /// <param name="mode">The select mode.</param>
     virtual public void SetSelectMode(Elm.Object.SelectMode mode) {
-                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_select_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode);
+                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_select_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>TBD</summary>
+    /// <returns>TBD</returns>
     virtual public System.String GetDefaultStyle() {
-         var _ret_var = Efl.Ui.ListView.NativeMethods.efl_ui_list_view_default_style_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ListView.NativeMethods.efl_ui_list_view_default_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
+    /// <summary>TBD</summary>
+    /// <param name="style">TBD</param>
     virtual public void SetDefaultStyle(System.String style) {
-                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_default_style_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),style);
+                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_default_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Listview layout factory set.</summary>
     /// <param name="factory">The factory.</param>
     virtual public void SetLayoutFactory(Efl.Ui.IFactory factory) {
-                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_layout_factory_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),factory);
+                                 Efl.Ui.ListView.NativeMethods.efl_ui_list_view_layout_factory_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),factory);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the number of currently selected children</summary>
     /// <returns>Number of currently selected children</returns>
     virtual public int GetSelectedChildrenCount() {
-         var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_selected_children_count_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_selected_children_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2948,7 +2463,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="selected_child_index">Index of child</param>
     /// <returns>Child object</returns>
     virtual public Efl.Object GetSelectedChild(int selected_child_index) {
-                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_selected_child_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),selected_child_index);
+                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_selected_child_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),selected_child_index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2956,7 +2471,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="child_index">Index of child</param>
     /// <returns><c>true</c> if selection was added, <c>false</c> otherwise</returns>
     virtual public bool ChildSelect(int child_index) {
-                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_child_select_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child_index);
+                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_child_select_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2964,7 +2479,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="child_index">Index of child</param>
     /// <returns><c>true</c> if selection was removed, <c>false</c> otherwise</returns>
     virtual public bool SelectedChildDeselect(int child_index) {
-                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_selected_child_deselect_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child_index);
+                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_selected_child_deselect_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2972,21 +2487,21 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="child_index">Index of child</param>
     /// <returns><c>true</c> if child is selected, <c>false</c> otherwise</returns>
     virtual public bool IsChildSelected(int child_index) {
-                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_is_child_selected_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child_index);
+                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_is_child_selected_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Adds selection for all children</summary>
     /// <returns><c>true</c> if selection was added to all children, <c>false</c> otherwise</returns>
     virtual public bool AllChildrenSelect() {
-         var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_all_children_select_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_all_children_select_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Clears the current selection</summary>
     /// <returns><c>true</c> if selection was cleared, <c>false</c> otherwise</returns>
     virtual public bool ClearAccessSelection() {
-         var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2994,34 +2509,34 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="child_index">Index of child</param>
     /// <returns><c>true</c> if selection was removed, <c>false</c> otherwise</returns>
     virtual public bool ChildDeselect(int child_index) {
-                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_child_deselect_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child_index);
+                                 var _ret_var = Efl.Access.ISelectionConcrete.NativeMethods.efl_access_selection_child_deselect_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     virtual public void SetLoadRange(int first, int count) {
-                                                         Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_load_range_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),first, count);
+                                                         Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_load_range_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),first, count);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     virtual public int GetModelSize() {
-         var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Minimal content size.</summary>
     virtual public Eina.Size2D GetMinSize() {
-         var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Minimal content size.</summary>
     virtual public void SetMinSize(Eina.Size2D min) {
          Eina.Size2D.NativeStruct _in_min = min;
-                        Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_min);
+                        Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_min);
         Eina.Error.RaiseIfUnhandledException();
                          }
     virtual public Efl.Ui.ListViewLayoutItem Realize(ref Efl.Ui.ListViewLayoutItem item) {
          Efl.Ui.ListViewLayoutItem.NativeStruct _in_item = item;
-                        var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_realize_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_item);
+                        var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_realize_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref _in_item);
         Eina.Error.RaiseIfUnhandledException();
                 item = _in_item;
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.ListViewLayoutItem>(_ret_var);
@@ -3030,14 +2545,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
  }
     virtual public void Unrealize(ref Efl.Ui.ListViewLayoutItem item) {
          Efl.Ui.ListViewLayoutItem.NativeStruct _in_item = item;
-                        Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_unrealize_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_item);
+                        Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_unrealize_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref _in_item);
         Eina.Error.RaiseIfUnhandledException();
                 item = _in_item;
          }
     /// <summary>The content position</summary>
     /// <returns>The position is virtual value, (0, 0) starting at the top-left.</returns>
     virtual public Eina.Position2D GetContentPos() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3045,20 +2560,20 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="pos">The position is virtual value, (0, 0) starting at the top-left.</param>
     virtual public void SetContentPos(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_pos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The content size</summary>
     /// <returns>The content size in pixels.</returns>
     virtual public Eina.Size2D GetContentSize() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_content_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The viewport geometry</summary>
     /// <returns>It is absolute geometry.</returns>
     virtual public Eina.Rect GetViewportGeometry() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_viewport_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_viewport_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3067,7 +2582,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="horiz">Horizontal bounce policy.</param>
     /// <param name="vert">Vertical bounce policy.</param>
     virtual public void GetBounceEnabled(out bool horiz, out bool vert) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out horiz, out vert);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out horiz, out vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Bouncing behavior
@@ -3075,54 +2590,54 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="horiz">Horizontal bounce policy.</param>
     /// <param name="vert">Vertical bounce policy.</param>
     virtual public void SetBounceEnabled(bool horiz, bool vert) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),horiz, vert);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_bounce_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),horiz, vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
     /// <returns><c>true</c> if freeze, <c>false</c> otherwise</returns>
     virtual public bool GetScrollFreeze() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
     /// <param name="freeze"><c>true</c> if freeze, <c>false</c> otherwise</param>
     virtual public void SetScrollFreeze(bool freeze) {
-                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),freeze);
+                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_freeze_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),freeze);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
     /// <returns><c>true</c> if hold, <c>false</c> otherwise</returns>
     virtual public bool GetScrollHold() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
     /// <param name="hold"><c>true</c> if hold, <c>false</c> otherwise</param>
     virtual public void SetScrollHold(bool hold) {
-                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hold);
+                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_hold_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hold);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Controls an infinite loop for a scroller.</summary>
     /// <param name="loop_h">The scrolling horizontal loop</param>
     /// <param name="loop_v">The Scrolling vertical loop</param>
     virtual public void GetLooping(out bool loop_h, out bool loop_v) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out loop_h, out loop_v);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out loop_h, out loop_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Controls an infinite loop for a scroller.</summary>
     /// <param name="loop_h">The scrolling horizontal loop</param>
     /// <param name="loop_v">The Scrolling vertical loop</param>
     virtual public void SetLooping(bool loop_h, bool loop_v) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),loop_h, loop_v);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_looping_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),loop_h, loop_v);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Blocking of scrolling (per axis)
     /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
     /// <returns>Which axis (or axes) to block</returns>
     virtual public Efl.Ui.ScrollBlock GetMovementBlock() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3130,7 +2645,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
     /// <param name="block">Which axis (or axes) to block</param>
     virtual public void SetMovementBlock(Efl.Ui.ScrollBlock block) {
-                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),block);
+                                 Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_movement_block_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),block);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control scrolling gravity on the scrollable
@@ -3144,7 +2659,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="x">Horizontal scrolling gravity</param>
     /// <param name="y">Vertical scrolling gravity</param>
     virtual public void GetGravity(out double x, out double y) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control scrolling gravity on the scrollable
@@ -3158,7 +2673,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="x">Horizontal scrolling gravity</param>
     /// <param name="y">Vertical scrolling gravity</param>
     virtual public void SetGravity(double x, double y) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_gravity_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Prevent the scrollable from being smaller than the minimum size of the content.
@@ -3166,14 +2681,14 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="w">Whether to limit the minimum horizontal size</param>
     /// <param name="h">Whether to limit the minimum vertical size</param>
     virtual public void SetMatchContent(bool w, bool h) {
-                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_match_content_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),w, h);
+                                                         Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_match_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),w, h);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control the step size
     /// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
     /// <returns>The step size in pixels</returns>
     virtual public Eina.Position2D GetStepSize() {
-         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3182,7 +2697,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="step">The step size in pixels</param>
     virtual public void SetStepSize(Eina.Position2D step) {
          Eina.Position2D.NativeStruct _in_step = step;
-                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_step);
+                        Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_step_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_step);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Show a specific virtual region within the scroller content object.
@@ -3191,48 +2706,48 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="animation">Whether to scroll with animation or not</param>
     virtual public void Scroll(Eina.Rect rect, bool animation) {
          Eina.Rect.NativeStruct _in_rect = rect;
-                                                Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_rect, animation);
+                                                Efl.Ui.IScrollableInteractiveConcrete.NativeMethods.efl_ui_scrollable_scroll_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_rect, animation);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar visibility policy</summary>
-    /// <param name="hbar">Horizontal scrollbar</param>
-    /// <param name="vbar">Vertical scrollbar</param>
+    /// <param name="hbar">Horizontal scrollbar.</param>
+    /// <param name="vbar">Vertical scrollbar.</param>
     virtual public void GetBarMode(out Efl.Ui.ScrollbarMode hbar, out Efl.Ui.ScrollbarMode vbar) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out hbar, out vbar);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out hbar, out vbar);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar visibility policy</summary>
-    /// <param name="hbar">Horizontal scrollbar</param>
-    /// <param name="vbar">Vertical scrollbar</param>
+    /// <param name="hbar">Horizontal scrollbar.</param>
+    /// <param name="vbar">Vertical scrollbar.</param>
     virtual public void SetBarMode(Efl.Ui.ScrollbarMode hbar, Efl.Ui.ScrollbarMode vbar) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hbar, vbar);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hbar, vbar);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar size. It is calculated based on viewport size-content sizes.</summary>
-    /// <param name="width">Value between 0.0 and 1.0</param>
-    /// <param name="height">Value between 0.0 and 1.0</param>
+    /// <param name="width">Value between 0.0 and 1.0.</param>
+    /// <param name="height">Value between 0.0 and 1.0.</param>
     virtual public void GetBarSize(out double width, out double height) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out width, out height);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out width, out height);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar position. It is calculated based on current position-maximum positions.</summary>
-    /// <param name="posx">Value between 0.0 and 1.0</param>
-    /// <param name="posy">Value between 0.0 and 1.0</param>
+    /// <param name="posx">Value between 0.0 and 1.0.</param>
+    /// <param name="posy">Value between 0.0 and 1.0.</param>
     virtual public void GetBarPosition(out double posx, out double posy) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out posx, out posy);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out posx, out posy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Scrollbar position. It is calculated based on current position-maximum positions.</summary>
-    /// <param name="posx">Value between 0.0 and 1.0</param>
-    /// <param name="posy">Value between 0.0 and 1.0</param>
+    /// <param name="posx">Value between 0.0 and 1.0.</param>
+    /// <param name="posy">Value between 0.0 and 1.0.</param>
     virtual public void SetBarPosition(double posx, double posy) {
-                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),posx, posy);
+                                                         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),posx, posy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Update bar visibility.
-    /// The object will call this function whenever the bar need to be shown or hidden.</summary>
+    /// The object will call this function whenever the bar needs to be shown or hidden.</summary>
     virtual public void UpdateBarVisibility() {
-         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_visibility_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_visibility_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>If the widget needs a focus manager, this function will be called.
@@ -3241,7 +2756,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// <param name="root">The logical root object for focus.</param>
     /// <returns>The focus manager.</returns>
     virtual public Efl.Ui.Focus.IManager FocusManagerCreate(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3255,7 +2770,7 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
     /// <returns>The order to use</returns>
     virtual public Eina.List<Efl.Gfx.IEntity> GetCompositionElements() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Gfx.IEntity>(_ret_var, true, false);
  }
@@ -3271,31 +2786,31 @@ public class ListView : Efl.Ui.LayoutBase, Efl.Eo.IWrapper,Efl.Access.ISelection
     virtual public void SetCompositionElements(Eina.List<Efl.Gfx.IEntity> logical_order) {
          var _in_logical_order = logical_order.Handle;
 logical_order.Own = false;
-                        Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_logical_order);
+                        Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_logical_order);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <returns><c>true</c> or <c>false</c></returns>
     virtual public bool GetLogicalMode() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <param name="logical_mode"><c>true</c> or <c>false</c></param>
     virtual public void SetLogicalMode(bool logical_mode) {
-                                 Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),logical_mode);
+                                 Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),logical_mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Mark this widget as dirty, the children can be considered to be changed after that call</summary>
     virtual public void Dirty() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>A call to prepare the children of this element, called if marked as dirty
     /// You can use this function to call composition_elements.</summary>
     virtual public void Prepare() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The element which is currently focused by this manager
@@ -3303,7 +2818,7 @@ logical_order.Own = false;
     /// (Since EFL 1.22)</summary>
     /// <returns>Currently focused element.</returns>
     virtual public Efl.Ui.Focus.IObject GetManagerFocus() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3312,7 +2827,7 @@ logical_order.Own = false;
     /// (Since EFL 1.22)</summary>
     /// <param name="focus">Currently focused element.</param>
     virtual public void SetManagerFocus(Efl.Ui.Focus.IObject focus) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),focus);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Add another manager to serve the move requests.
@@ -3320,7 +2835,7 @@ logical_order.Own = false;
     /// (Since EFL 1.22)</summary>
     /// <returns>The redirect manager.</returns>
     virtual public Efl.Ui.Focus.IManager GetRedirect() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3329,7 +2844,7 @@ logical_order.Own = false;
     /// (Since EFL 1.22)</summary>
     /// <param name="redirect">The redirect manager.</param>
     virtual public void SetRedirect(Efl.Ui.Focus.IManager redirect) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),redirect);
+                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),redirect);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The list of elements which are at the border of the graph.
@@ -3337,9 +2852,9 @@ logical_order.Own = false;
     /// (Since EFL 1.22)</summary>
     /// <returns>An iterator over the border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Get all elements that are at the border of the viewport
     /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
@@ -3348,16 +2863,16 @@ logical_order.Own = false;
     /// <returns>The list of border objects.</returns>
     virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport) {
          Eina.Rect.NativeStruct _in_viewport = viewport;
-                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_viewport);
+                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Root node for all logical subtrees.
     /// This property can only be set once.
     /// (Since EFL 1.22)</summary>
     /// <returns>Will be registered into this manager object.</returns>
     virtual public Efl.Ui.Focus.IObject GetRoot() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3367,7 +2882,7 @@ logical_order.Own = false;
     /// <param name="root">Will be registered into this manager object.</param>
     /// <returns>If <c>true</c>, this is the root node</returns>
     virtual public bool SetRoot(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3377,7 +2892,7 @@ logical_order.Own = false;
     /// <param name="direction">The direction to move to.</param>
     /// <returns>The element which is now focused.</returns>
     virtual public Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3388,7 +2903,7 @@ logical_order.Own = false;
     /// <param name="logical">Wether you want to have a logical node as result or a non-logical. Note, in a <see cref="Efl.Ui.Focus.IManager.Move"/> call no logical node will get focus.</param>
     /// <returns>Object that would receive focus if moved in the given direction.</returns>
     virtual public Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical) {
-                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, child, logical);
+                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, child, logical);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -3398,7 +2913,7 @@ logical_order.Own = false;
     /// <param name="root">Parent for returned child.</param>
     /// <returns>Child of passed parameter.</returns>
     virtual public Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -3408,7 +2923,7 @@ logical_order.Own = false;
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     virtual public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child);
+                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child);
         Eina.Error.RaiseIfUnhandledException();
                         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
         Marshal.FreeHGlobal(_ret_var);
@@ -3419,7 +2934,7 @@ logical_order.Own = false;
     /// (Since EFL 1.22)</summary>
     /// <returns>Last object.</returns>
     virtual public Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -3427,14 +2942,14 @@ logical_order.Own = false;
     /// You should focus another element immediately after calling this, in order to always have a focused object.
     /// (Since EFL 1.22)</summary>
     virtual public void ResetHistory() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Remove the uppermost history element, and focus the previous one.
     /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.
     /// (Since EFL 1.22)</summary>
     virtual public void PopHistoryStack() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Called when this manager is set as redirect.
@@ -3443,50 +2958,52 @@ logical_order.Own = false;
     /// <param name="direction">The direction in which this should be setup.</param>
     /// <param name="entry">The object that caused this manager to be redirect.</param>
     virtual public void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry) {
-                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),direction, entry);
+                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, entry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>This disables the cache invalidation when an object is moved.
     /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widets in the set do not change and the complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.
     /// (Since EFL 1.22)</summary>
     virtual public void FreezeDirtyLogic() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>This enables the cache invalidation when an object is moved.
     /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void DirtyLogicUnfreeze() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
-    /// <summary>Get whether the homogeneous mode is enabled.</summary>
-/// <value>Assume the items within the genlist are of the same height and width. Default is <c>false</c>.</value>
+    /// <summary>When in homogeneous mode, all items have the same height and width. Otherwise, each item&apos;s size is respected.</summary>
+    /// <value>Homogeneous mode setting. Default is <c>false</c>.</value>
     public bool Homogeneous {
         get { return GetHomogeneous(); }
         set { SetHomogeneous(value); }
     }
     /// <summary>Listview select mode.</summary>
-/// <value>The select mode.</value>
+    /// <value>The select mode.</value>
     public Elm.Object.SelectMode SelectMode {
         get { return GetSelectMode(); }
         set { SetSelectMode(value); }
     }
-        public System.String DefaultStyle {
+    /// <summary>TBD</summary>
+    /// <value>TBD</value>
+    public System.String DefaultStyle {
         get { return GetDefaultStyle(); }
         set { SetDefaultStyle(value); }
     }
     /// <summary>Listview layout factory set.</summary>
-/// <value>The factory.</value>
+    /// <value>The factory.</value>
     public Efl.Ui.IFactory LayoutFactory {
         set { SetLayoutFactory(value); }
     }
     /// <summary>Gets the number of currently selected children</summary>
-/// <value>Number of currently selected children</value>
+    /// <value>Number of currently selected children</value>
     public int SelectedChildrenCount {
         get { return GetSelectedChildrenCount(); }
     }
-        public int ModelSize {
+    public int ModelSize {
         get { return GetModelSize(); }
     }
     /// <summary>Minimal content size.</summary>
@@ -3495,93 +3012,93 @@ logical_order.Own = false;
         set { SetMinSize(value); }
     }
     /// <summary>The content position</summary>
-/// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
+    /// <value>The position is virtual value, (0, 0) starting at the top-left.</value>
     public Eina.Position2D ContentPos {
         get { return GetContentPos(); }
         set { SetContentPos(value); }
     }
     /// <summary>The content size</summary>
-/// <value>The content size in pixels.</value>
+    /// <value>The content size in pixels.</value>
     public Eina.Size2D ContentSize {
         get { return GetContentSize(); }
     }
     /// <summary>The viewport geometry</summary>
-/// <value>It is absolute geometry.</value>
+    /// <value>It is absolute geometry.</value>
     public Eina.Rect ViewportGeometry {
         get { return GetViewportGeometry(); }
     }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
-/// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
     public bool ScrollFreeze {
         get { return GetScrollFreeze(); }
         set { SetScrollFreeze(value); }
     }
     /// <summary>Hold property When hold turns on, it only scrolls by holding action.</summary>
-/// <value><c>true</c> if hold, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if hold, <c>false</c> otherwise</value>
     public bool ScrollHold {
         get { return GetScrollHold(); }
         set { SetScrollHold(value); }
     }
     /// <summary>Blocking of scrolling (per axis)
-/// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
-/// <value>Which axis (or axes) to block</value>
+    /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
+    /// <value>Which axis (or axes) to block</value>
     public Efl.Ui.ScrollBlock MovementBlock {
         get { return GetMovementBlock(); }
         set { SetMovementBlock(value); }
     }
     /// <summary>Control the step size
-/// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
-/// <value>The step size in pixels</value>
+    /// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
+    /// <value>The step size in pixels</value>
     public Eina.Position2D StepSize {
         get { return GetStepSize(); }
         set { SetStepSize(value); }
     }
     /// <summary>Set the order of elements that will be used for composition
-/// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
-/// 
-/// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
-/// 
-/// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
-/// 
-/// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
-/// <value>The order to use</value>
+    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// 
+    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// 
+    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// 
+    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// <value>The order to use</value>
     public Eina.List<Efl.Gfx.IEntity> CompositionElements {
         get { return GetCompositionElements(); }
         set { SetCompositionElements(value); }
     }
     /// <summary>Set to true if all children should be registered as logicals</summary>
-/// <value><c>true</c> or <c>false</c></value>
+    /// <value><c>true</c> or <c>false</c></value>
     public bool LogicalMode {
         get { return GetLogicalMode(); }
         set { SetLogicalMode(value); }
     }
     /// <summary>The element which is currently focused by this manager
-/// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-/// (Since EFL 1.22)</summary>
-/// <value>Currently focused element.</value>
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Currently focused element.</value>
     public Efl.Ui.Focus.IObject ManagerFocus {
         get { return GetManagerFocus(); }
         set { SetManagerFocus(value); }
     }
     /// <summary>Add another manager to serve the move requests.
-/// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-/// (Since EFL 1.22)</summary>
-/// <value>The redirect manager.</value>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
+    /// (Since EFL 1.22)</summary>
+    /// <value>The redirect manager.</value>
     public Efl.Ui.Focus.IManager Redirect {
         get { return GetRedirect(); }
         set { SetRedirect(value); }
     }
     /// <summary>The list of elements which are at the border of the graph.
-/// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-/// (Since EFL 1.22)</summary>
-/// <value>An iterator over the border objects.</value>
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
+    /// (Since EFL 1.22)</summary>
+    /// <value>An iterator over the border objects.</value>
     public Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
         get { return GetBorderElements(); }
     }
     /// <summary>Root node for all logical subtrees.
-/// This property can only be set once.
-/// (Since EFL 1.22)</summary>
-/// <value>Will be registered into this manager object.</value>
+    /// This property can only be set once.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Will be registered into this manager object.</value>
     public Efl.Ui.Focus.IObject Root {
         get { return GetRoot(); }
         set { SetRoot(value); }
@@ -4332,7 +3849,7 @@ logical_order.Own = false;
             return Efl.Ui.ListView.efl_ui_list_view_class_get();
         }
 
-        #pragma warning disable CA1707, SA1300, SA1600
+        #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_list_view_homogeneous_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -4345,13 +3862,13 @@ logical_order.Own = false;
         private static bool homogeneous_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_list_view_homogeneous_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetHomogeneous();
+                    _ret_var = ((ListView)ws.Target).GetHomogeneous();
                 }
                 catch (Exception e)
                 {
@@ -4381,13 +3898,13 @@ logical_order.Own = false;
         private static void homogeneous_set(System.IntPtr obj, System.IntPtr pd, bool homogeneous)
         {
             Eina.Log.Debug("function efl_ui_list_view_homogeneous_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetHomogeneous(homogeneous);
+                    ((ListView)ws.Target).SetHomogeneous(homogeneous);
                 }
                 catch (Exception e)
                 {
@@ -4416,13 +3933,13 @@ logical_order.Own = false;
         private static Elm.Object.SelectMode select_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_list_view_select_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Elm.Object.SelectMode _ret_var = default(Elm.Object.SelectMode);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetSelectMode();
+                    _ret_var = ((ListView)ws.Target).GetSelectMode();
                 }
                 catch (Exception e)
                 {
@@ -4452,13 +3969,13 @@ logical_order.Own = false;
         private static void select_mode_set(System.IntPtr obj, System.IntPtr pd, Elm.Object.SelectMode mode)
         {
             Eina.Log.Debug("function efl_ui_list_view_select_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetSelectMode(mode);
+                    ((ListView)ws.Target).SetSelectMode(mode);
                 }
                 catch (Exception e)
                 {
@@ -4487,13 +4004,13 @@ logical_order.Own = false;
         private static System.String default_style_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_list_view_default_style_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetDefaultStyle();
+                    _ret_var = ((ListView)ws.Target).GetDefaultStyle();
                 }
                 catch (Exception e)
                 {
@@ -4523,13 +4040,13 @@ logical_order.Own = false;
         private static void default_style_set(System.IntPtr obj, System.IntPtr pd, System.String style)
         {
             Eina.Log.Debug("function efl_ui_list_view_default_style_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetDefaultStyle(style);
+                    ((ListView)ws.Target).SetDefaultStyle(style);
                 }
                 catch (Exception e)
                 {
@@ -4558,13 +4075,13 @@ logical_order.Own = false;
         private static void layout_factory_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.IFactory factory)
         {
             Eina.Log.Debug("function efl_ui_list_view_layout_factory_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetLayoutFactory(factory);
+                    ((ListView)ws.Target).SetLayoutFactory(factory);
                 }
                 catch (Exception e)
                 {
@@ -4593,13 +4110,13 @@ logical_order.Own = false;
         private static int selected_children_count_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_selection_selected_children_count_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetSelectedChildrenCount();
+                    _ret_var = ((ListView)ws.Target).GetSelectedChildrenCount();
                 }
                 catch (Exception e)
                 {
@@ -4629,13 +4146,13 @@ logical_order.Own = false;
         private static Efl.Object selected_child_get(System.IntPtr obj, System.IntPtr pd, int selected_child_index)
         {
             Eina.Log.Debug("function efl_access_selection_selected_child_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetSelectedChild(selected_child_index);
+                    _ret_var = ((ListView)ws.Target).GetSelectedChild(selected_child_index);
                 }
                 catch (Exception e)
                 {
@@ -4665,13 +4182,13 @@ logical_order.Own = false;
         private static bool child_select(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_child_select was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).ChildSelect(child_index);
+                    _ret_var = ((ListView)ws.Target).ChildSelect(child_index);
                 }
                 catch (Exception e)
                 {
@@ -4701,13 +4218,13 @@ logical_order.Own = false;
         private static bool selected_child_deselect(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_selected_child_deselect was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).SelectedChildDeselect(child_index);
+                    _ret_var = ((ListView)ws.Target).SelectedChildDeselect(child_index);
                 }
                 catch (Exception e)
                 {
@@ -4737,13 +4254,13 @@ logical_order.Own = false;
         private static bool is_child_selected(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_is_child_selected was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).IsChildSelected(child_index);
+                    _ret_var = ((ListView)ws.Target).IsChildSelected(child_index);
                 }
                 catch (Exception e)
                 {
@@ -4773,13 +4290,13 @@ logical_order.Own = false;
         private static bool all_children_select(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_selection_all_children_select was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).AllChildrenSelect();
+                    _ret_var = ((ListView)ws.Target).AllChildrenSelect();
                 }
                 catch (Exception e)
                 {
@@ -4809,13 +4326,13 @@ logical_order.Own = false;
         private static bool access_selection_clear(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_access_selection_clear was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).ClearAccessSelection();
+                    _ret_var = ((ListView)ws.Target).ClearAccessSelection();
                 }
                 catch (Exception e)
                 {
@@ -4845,13 +4362,13 @@ logical_order.Own = false;
         private static bool child_deselect(System.IntPtr obj, System.IntPtr pd, int child_index)
         {
             Eina.Log.Debug("function efl_access_selection_child_deselect was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).ChildDeselect(child_index);
+                    _ret_var = ((ListView)ws.Target).ChildDeselect(child_index);
                 }
                 catch (Exception e)
                 {
@@ -4881,13 +4398,13 @@ logical_order.Own = false;
         private static void load_range_set(System.IntPtr obj, System.IntPtr pd, int first, int count)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_load_range_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetLoadRange(first, count);
+                    ((ListView)ws.Target).SetLoadRange(first, count);
                 }
                 catch (Exception e)
                 {
@@ -4916,13 +4433,13 @@ logical_order.Own = false;
         private static int model_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetModelSize();
+                    _ret_var = ((ListView)ws.Target).GetModelSize();
                 }
                 catch (Exception e)
                 {
@@ -4952,13 +4469,13 @@ logical_order.Own = false;
         private static Eina.Size2D.NativeStruct min_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_min_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetMinSize();
+                    _ret_var = ((ListView)ws.Target).GetMinSize();
                 }
                 catch (Exception e)
                 {
@@ -4988,14 +4505,14 @@ logical_order.Own = false;
         private static void min_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct min)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_min_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Size2D _in_min = min;
                             
                 try
                 {
-                    ((ListView)wrapper).SetMinSize(_in_min);
+                    ((ListView)ws.Target).SetMinSize(_in_min);
                 }
                 catch (Exception e)
                 {
@@ -5024,14 +4541,14 @@ logical_order.Own = false;
         private static System.IntPtr realize(System.IntPtr obj, System.IntPtr pd, ref Efl.Ui.ListViewLayoutItem.NativeStruct item)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_realize was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Ui.ListViewLayoutItem _in_item = item;
                             Efl.Ui.ListViewLayoutItem _ret_var = default(Efl.Ui.ListViewLayoutItem);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).Realize(ref _in_item);
+                    _ret_var = ((ListView)ws.Target).Realize(ref _in_item);
                 }
                 catch (Exception e)
                 {
@@ -5062,14 +4579,14 @@ logical_order.Own = false;
         private static void unrealize(System.IntPtr obj, System.IntPtr pd, ref Efl.Ui.ListViewLayoutItem.NativeStruct item)
         {
             Eina.Log.Debug("function efl_ui_list_view_model_unrealize was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Efl.Ui.ListViewLayoutItem _in_item = item;
                             
                 try
                 {
-                    ((ListView)wrapper).Unrealize(ref _in_item);
+                    ((ListView)ws.Target).Unrealize(ref _in_item);
                 }
                 catch (Exception e)
                 {
@@ -5099,13 +4616,13 @@ logical_order.Own = false;
         private static Eina.Position2D.NativeStruct content_pos_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_pos_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetContentPos();
+                    _ret_var = ((ListView)ws.Target).GetContentPos();
                 }
                 catch (Exception e)
                 {
@@ -5135,14 +4652,14 @@ logical_order.Own = false;
         private static void content_pos_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct pos)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_pos_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_pos = pos;
                             
                 try
                 {
-                    ((ListView)wrapper).SetContentPos(_in_pos);
+                    ((ListView)ws.Target).SetContentPos(_in_pos);
                 }
                 catch (Exception e)
                 {
@@ -5171,13 +4688,13 @@ logical_order.Own = false;
         private static Eina.Size2D.NativeStruct content_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_content_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetContentSize();
+                    _ret_var = ((ListView)ws.Target).GetContentSize();
                 }
                 catch (Exception e)
                 {
@@ -5207,13 +4724,13 @@ logical_order.Own = false;
         private static Eina.Rect.NativeStruct viewport_geometry_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_viewport_geometry_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetViewportGeometry();
+                    _ret_var = ((ListView)ws.Target).GetViewportGeometry();
                 }
                 catch (Exception e)
                 {
@@ -5243,13 +4760,13 @@ logical_order.Own = false;
         private static void bounce_enabled_get(System.IntPtr obj, System.IntPtr pd, out bool horiz, out bool vert)
         {
             Eina.Log.Debug("function efl_ui_scrollable_bounce_enabled_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         horiz = default(bool);        vert = default(bool);                            
                 try
                 {
-                    ((ListView)wrapper).GetBounceEnabled(out horiz, out vert);
+                    ((ListView)ws.Target).GetBounceEnabled(out horiz, out vert);
                 }
                 catch (Exception e)
                 {
@@ -5278,13 +4795,13 @@ logical_order.Own = false;
         private static void bounce_enabled_set(System.IntPtr obj, System.IntPtr pd, bool horiz, bool vert)
         {
             Eina.Log.Debug("function efl_ui_scrollable_bounce_enabled_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetBounceEnabled(horiz, vert);
+                    ((ListView)ws.Target).SetBounceEnabled(horiz, vert);
                 }
                 catch (Exception e)
                 {
@@ -5313,13 +4830,13 @@ logical_order.Own = false;
         private static bool scroll_freeze_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_freeze_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetScrollFreeze();
+                    _ret_var = ((ListView)ws.Target).GetScrollFreeze();
                 }
                 catch (Exception e)
                 {
@@ -5349,13 +4866,13 @@ logical_order.Own = false;
         private static void scroll_freeze_set(System.IntPtr obj, System.IntPtr pd, bool freeze)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_freeze_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetScrollFreeze(freeze);
+                    ((ListView)ws.Target).SetScrollFreeze(freeze);
                 }
                 catch (Exception e)
                 {
@@ -5384,13 +4901,13 @@ logical_order.Own = false;
         private static bool scroll_hold_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_hold_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetScrollHold();
+                    _ret_var = ((ListView)ws.Target).GetScrollHold();
                 }
                 catch (Exception e)
                 {
@@ -5420,13 +4937,13 @@ logical_order.Own = false;
         private static void scroll_hold_set(System.IntPtr obj, System.IntPtr pd, bool hold)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll_hold_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetScrollHold(hold);
+                    ((ListView)ws.Target).SetScrollHold(hold);
                 }
                 catch (Exception e)
                 {
@@ -5455,13 +4972,13 @@ logical_order.Own = false;
         private static void looping_get(System.IntPtr obj, System.IntPtr pd, out bool loop_h, out bool loop_v)
         {
             Eina.Log.Debug("function efl_ui_scrollable_looping_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         loop_h = default(bool);        loop_v = default(bool);                            
                 try
                 {
-                    ((ListView)wrapper).GetLooping(out loop_h, out loop_v);
+                    ((ListView)ws.Target).GetLooping(out loop_h, out loop_v);
                 }
                 catch (Exception e)
                 {
@@ -5490,13 +5007,13 @@ logical_order.Own = false;
         private static void looping_set(System.IntPtr obj, System.IntPtr pd, bool loop_h, bool loop_v)
         {
             Eina.Log.Debug("function efl_ui_scrollable_looping_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetLooping(loop_h, loop_v);
+                    ((ListView)ws.Target).SetLooping(loop_h, loop_v);
                 }
                 catch (Exception e)
                 {
@@ -5525,13 +5042,13 @@ logical_order.Own = false;
         private static Efl.Ui.ScrollBlock movement_block_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_movement_block_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.ScrollBlock _ret_var = default(Efl.Ui.ScrollBlock);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetMovementBlock();
+                    _ret_var = ((ListView)ws.Target).GetMovementBlock();
                 }
                 catch (Exception e)
                 {
@@ -5561,13 +5078,13 @@ logical_order.Own = false;
         private static void movement_block_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ScrollBlock block)
         {
             Eina.Log.Debug("function efl_ui_scrollable_movement_block_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetMovementBlock(block);
+                    ((ListView)ws.Target).SetMovementBlock(block);
                 }
                 catch (Exception e)
                 {
@@ -5596,13 +5113,13 @@ logical_order.Own = false;
         private static void gravity_get(System.IntPtr obj, System.IntPtr pd, out double x, out double y)
         {
             Eina.Log.Debug("function efl_ui_scrollable_gravity_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         x = default(double);        y = default(double);                            
                 try
                 {
-                    ((ListView)wrapper).GetGravity(out x, out y);
+                    ((ListView)ws.Target).GetGravity(out x, out y);
                 }
                 catch (Exception e)
                 {
@@ -5631,13 +5148,13 @@ logical_order.Own = false;
         private static void gravity_set(System.IntPtr obj, System.IntPtr pd, double x, double y)
         {
             Eina.Log.Debug("function efl_ui_scrollable_gravity_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetGravity(x, y);
+                    ((ListView)ws.Target).SetGravity(x, y);
                 }
                 catch (Exception e)
                 {
@@ -5666,13 +5183,13 @@ logical_order.Own = false;
         private static void match_content_set(System.IntPtr obj, System.IntPtr pd, bool w, bool h)
         {
             Eina.Log.Debug("function efl_ui_scrollable_match_content_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetMatchContent(w, h);
+                    ((ListView)ws.Target).SetMatchContent(w, h);
                 }
                 catch (Exception e)
                 {
@@ -5701,13 +5218,13 @@ logical_order.Own = false;
         private static Eina.Position2D.NativeStruct step_size_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollable_step_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetStepSize();
+                    _ret_var = ((ListView)ws.Target).GetStepSize();
                 }
                 catch (Exception e)
                 {
@@ -5737,14 +5254,14 @@ logical_order.Own = false;
         private static void step_size_set(System.IntPtr obj, System.IntPtr pd, Eina.Position2D.NativeStruct step)
         {
             Eina.Log.Debug("function efl_ui_scrollable_step_size_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Position2D _in_step = step;
                             
                 try
                 {
-                    ((ListView)wrapper).SetStepSize(_in_step);
+                    ((ListView)ws.Target).SetStepSize(_in_step);
                 }
                 catch (Exception e)
                 {
@@ -5773,14 +5290,14 @@ logical_order.Own = false;
         private static void scroll(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct rect, bool animation)
         {
             Eina.Log.Debug("function efl_ui_scrollable_scroll was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_rect = rect;
                                                     
                 try
                 {
-                    ((ListView)wrapper).Scroll(_in_rect, animation);
+                    ((ListView)ws.Target).Scroll(_in_rect, animation);
                 }
                 catch (Exception e)
                 {
@@ -5809,13 +5326,13 @@ logical_order.Own = false;
         private static void bar_mode_get(System.IntPtr obj, System.IntPtr pd, out Efl.Ui.ScrollbarMode hbar, out Efl.Ui.ScrollbarMode vbar)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         hbar = default(Efl.Ui.ScrollbarMode);        vbar = default(Efl.Ui.ScrollbarMode);                            
                 try
                 {
-                    ((ListView)wrapper).GetBarMode(out hbar, out vbar);
+                    ((ListView)ws.Target).GetBarMode(out hbar, out vbar);
                 }
                 catch (Exception e)
                 {
@@ -5844,13 +5361,13 @@ logical_order.Own = false;
         private static void bar_mode_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.ScrollbarMode hbar, Efl.Ui.ScrollbarMode vbar)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetBarMode(hbar, vbar);
+                    ((ListView)ws.Target).SetBarMode(hbar, vbar);
                 }
                 catch (Exception e)
                 {
@@ -5879,13 +5396,13 @@ logical_order.Own = false;
         private static void bar_size_get(System.IntPtr obj, System.IntPtr pd, out double width, out double height)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_size_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         width = default(double);        height = default(double);                            
                 try
                 {
-                    ((ListView)wrapper).GetBarSize(out width, out height);
+                    ((ListView)ws.Target).GetBarSize(out width, out height);
                 }
                 catch (Exception e)
                 {
@@ -5914,13 +5431,13 @@ logical_order.Own = false;
         private static void bar_position_get(System.IntPtr obj, System.IntPtr pd, out double posx, out double posy)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_position_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                         posx = default(double);        posy = default(double);                            
                 try
                 {
-                    ((ListView)wrapper).GetBarPosition(out posx, out posy);
+                    ((ListView)ws.Target).GetBarPosition(out posx, out posy);
                 }
                 catch (Exception e)
                 {
@@ -5949,13 +5466,13 @@ logical_order.Own = false;
         private static void bar_position_set(System.IntPtr obj, System.IntPtr pd, double posx, double posy)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_position_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetBarPosition(posx, posy);
+                    ((ListView)ws.Target).SetBarPosition(posx, posy);
                 }
                 catch (Exception e)
                 {
@@ -5984,13 +5501,13 @@ logical_order.Own = false;
         private static void bar_visibility_update(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_scrollbar_bar_visibility_update was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ListView)wrapper).UpdateBarVisibility();
+                    ((ListView)ws.Target).UpdateBarVisibility();
                 }
                 catch (Exception e)
                 {
@@ -6019,13 +5536,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.IManager focus_manager_create(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_widget_focus_manager_create was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).FocusManagerCreate(root);
+                    _ret_var = ((ListView)ws.Target).FocusManagerCreate(root);
                 }
                 catch (Exception e)
                 {
@@ -6055,13 +5572,13 @@ logical_order.Own = false;
         private static System.IntPtr composition_elements_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.List<Efl.Gfx.IEntity> _ret_var = default(Eina.List<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetCompositionElements();
+                    _ret_var = ((ListView)ws.Target).GetCompositionElements();
                 }
                 catch (Exception e)
                 {
@@ -6091,14 +5608,14 @@ logical_order.Own = false;
         private static void composition_elements_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr logical_order)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_elements_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         var _in_logical_order = new Eina.List<Efl.Gfx.IEntity>(logical_order, true, false);
                             
                 try
                 {
-                    ((ListView)wrapper).SetCompositionElements(_in_logical_order);
+                    ((ListView)ws.Target).SetCompositionElements(_in_logical_order);
                 }
                 catch (Exception e)
                 {
@@ -6127,13 +5644,13 @@ logical_order.Own = false;
         private static bool logical_mode_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_logical_mode_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetLogicalMode();
+                    _ret_var = ((ListView)ws.Target).GetLogicalMode();
                 }
                 catch (Exception e)
                 {
@@ -6163,13 +5680,13 @@ logical_order.Own = false;
         private static void logical_mode_set(System.IntPtr obj, System.IntPtr pd, bool logical_mode)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_logical_mode_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetLogicalMode(logical_mode);
+                    ((ListView)ws.Target).SetLogicalMode(logical_mode);
                 }
                 catch (Exception e)
                 {
@@ -6198,13 +5715,13 @@ logical_order.Own = false;
         private static void dirty(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_dirty was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ListView)wrapper).Dirty();
+                    ((ListView)ws.Target).Dirty();
                 }
                 catch (Exception e)
                 {
@@ -6233,13 +5750,13 @@ logical_order.Own = false;
         private static void prepare(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_composition_prepare was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ListView)wrapper).Prepare();
+                    ((ListView)ws.Target).Prepare();
                 }
                 catch (Exception e)
                 {
@@ -6268,13 +5785,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.IObject manager_focus_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetManagerFocus();
+                    _ret_var = ((ListView)ws.Target).GetManagerFocus();
                 }
                 catch (Exception e)
                 {
@@ -6304,13 +5821,13 @@ logical_order.Own = false;
         private static void manager_focus_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject focus)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_focus_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetManagerFocus(focus);
+                    ((ListView)ws.Target).SetManagerFocus(focus);
                 }
                 catch (Exception e)
                 {
@@ -6339,13 +5856,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.IManager redirect_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetRedirect();
+                    _ret_var = ((ListView)ws.Target).GetRedirect();
                 }
                 catch (Exception e)
                 {
@@ -6375,13 +5892,13 @@ logical_order.Own = false;
         private static void redirect_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IManager redirect)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_redirect_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     
                 try
                 {
-                    ((ListView)wrapper).SetRedirect(redirect);
+                    ((ListView)ws.Target).SetRedirect(redirect);
                 }
                 catch (Exception e)
                 {
@@ -6410,13 +5927,13 @@ logical_order.Own = false;
         private static System.IntPtr border_elements_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_border_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetBorderElements();
+                    _ret_var = ((ListView)ws.Target).GetBorderElements();
                 }
                 catch (Exception e)
                 {
@@ -6446,14 +5963,14 @@ logical_order.Own = false;
         private static System.IntPtr viewport_elements_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct viewport)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_viewport_elements_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
         Eina.Rect _in_viewport = viewport;
                             Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetViewportElements(_in_viewport);
+                    _ret_var = ((ListView)ws.Target).GetViewportElements(_in_viewport);
                 }
                 catch (Exception e)
                 {
@@ -6483,13 +6000,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.IObject root_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_get was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).GetRoot();
+                    _ret_var = ((ListView)ws.Target).GetRoot();
                 }
                 catch (Exception e)
                 {
@@ -6519,13 +6036,13 @@ logical_order.Own = false;
         private static bool root_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_root_set was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).SetRoot(root);
+                    _ret_var = ((ListView)ws.Target).SetRoot(root);
                 }
                 catch (Exception e)
                 {
@@ -6555,13 +6072,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.IObject move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).Move(direction);
+                    _ret_var = ((ListView)ws.Target).Move(direction);
                 }
                 catch (Exception e)
                 {
@@ -6591,13 +6108,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.IObject request_move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_move was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).MoveRequest(direction, child, logical);
+                    _ret_var = ((ListView)ws.Target).MoveRequest(direction, child, logical);
                 }
                 catch (Exception e)
                 {
@@ -6627,13 +6144,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.IObject request_subchild(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_request_subchild was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).RequestSubchild(root);
+                    _ret_var = ((ListView)ws.Target).RequestSubchild(root);
                 }
                 catch (Exception e)
                 {
@@ -6663,13 +6180,13 @@ logical_order.Own = false;
         private static System.IntPtr fetch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_fetch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                     Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).Fetch(child);
+                    _ret_var = ((ListView)ws.Target).Fetch(child);
                 }
                 catch (Exception e)
                 {
@@ -6699,13 +6216,13 @@ logical_order.Own = false;
         private static Efl.Ui.Focus.ManagerLogicalEndDetail.NativeStruct logical_end(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_logical_end was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
-                    _ret_var = ((ListView)wrapper).LogicalEnd();
+                    _ret_var = ((ListView)ws.Target).LogicalEnd();
                 }
                 catch (Exception e)
                 {
@@ -6735,13 +6252,13 @@ logical_order.Own = false;
         private static void reset_history(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_reset_history was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ListView)wrapper).ResetHistory();
+                    ((ListView)ws.Target).ResetHistory();
                 }
                 catch (Exception e)
                 {
@@ -6770,13 +6287,13 @@ logical_order.Own = false;
         private static void pop_history_stack(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_pop_history_stack was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ListView)wrapper).PopHistoryStack();
+                    ((ListView)ws.Target).PopHistoryStack();
                 }
                 catch (Exception e)
                 {
@@ -6805,13 +6322,13 @@ logical_order.Own = false;
         private static void setup_on_first_touch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_setup_on_first_touch was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
                                                             
                 try
                 {
-                    ((ListView)wrapper).SetupOnFirstTouch(direction, entry);
+                    ((ListView)ws.Target).SetupOnFirstTouch(direction, entry);
                 }
                 catch (Exception e)
                 {
@@ -6840,13 +6357,13 @@ logical_order.Own = false;
         private static void dirty_logic_freeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_freeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ListView)wrapper).FreezeDirtyLogic();
+                    ((ListView)ws.Target).FreezeDirtyLogic();
                 }
                 catch (Exception e)
                 {
@@ -6875,13 +6392,13 @@ logical_order.Own = false;
         private static void dirty_logic_unfreeze(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_unfreeze was called");
-            Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.PrivateDataGet(pd);
-            if (wrapper != null)
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
             {
             
                 try
                 {
-                    ((ListView)wrapper).DirtyLogicUnfreeze();
+                    ((ListView)ws.Target).DirtyLogicUnfreeze();
                 }
                 catch (Exception e)
                 {
@@ -6899,7 +6416,7 @@ logical_order.Own = false;
 
         private static efl_ui_focus_manager_dirty_logic_unfreeze_delegate efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate;
 
-        #pragma warning restore CA1707, SA1300, SA1600
+        #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
@@ -6911,12 +6428,17 @@ namespace Efl {
 
 namespace Ui {
 
+/// <summary>Information related to item events.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ListViewItemEvent
 {
-        public Efl.Ui.Layout Layout;
-        public Efl.IModel Child;
-        public int Index;
+    /// <summary>TBD</summary>
+    public Efl.Ui.Layout Layout;
+    /// <summary>TBD</summary>
+    public Efl.IModel Child;
+    /// <summary>TBD</summary>
+    public int Index;
     ///<summary>Constructor for ListViewItemEvent.</summary>
     public ListViewItemEvent(
         Efl.Ui.Layout Layout = default(Efl.Ui.Layout),
@@ -6928,11 +6450,15 @@ public struct ListViewItemEvent
         this.Index = Index;
     }
 
+    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    ///<param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ListViewItemEvent(IntPtr ptr)
     {
         var tmp = (ListViewItemEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ListViewItemEvent.NativeStruct));
         return tmp;
     }
+
+    #pragma warning disable CS1591
 
     ///<summary>Internal wrapper for struct ListViewItemEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -6967,6 +6493,8 @@ public struct ListViewItemEvent
         }
 
     }
+
+    #pragma warning restore CS1591
 
 }
 
