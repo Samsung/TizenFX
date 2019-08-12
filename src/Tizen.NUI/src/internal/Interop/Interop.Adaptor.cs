@@ -90,10 +90,6 @@ namespace Tizen.NUI
             public static extern void Adaptor_NotifyLanguageChanged(global::System.Runtime.InteropServices.HandleRef jarg1);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetMinimumPinchDistance")]
-            public static extern void Adaptor_SetMinimumPinchDistance(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_FeedTouchPoint")]
             public static extern void Adaptor_FeedTouchPoint(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
 
