@@ -232,6 +232,9 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_New__MANUAL_4")]
         public static extern global::System.IntPtr Application_New__MANUAL_4(int jarg1, string jarg2, string jarg3, int jarg4);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_New_WithWindowSizePosition")]
+        public static extern global::System.IntPtr Application_New_WithWindowSizePosition(int jarg1, string jarg2, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Application_MainLoop__SWIG_0")]
         public static extern void Application_MainLoop__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1);
 
