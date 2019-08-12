@@ -26,6 +26,9 @@ namespace Tizen.NUI
     , global::System.Collections.Generic.IEnumerable<Item>
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        /// <summary>swigCMemOwn.</summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         protected bool swigCMemOwn;
 
         internal ItemContainer(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -39,12 +42,15 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        /// <summary>A Flag to check who called Dispose(). (By User or DisposeQueue)</summary>
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+
+        /// <summary>A Flag to check if it is already disposed.</summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         protected bool disposed = false;
 
-
+        /// <summary>Destructor.</summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         ~ItemContainer()
         {
             if (!isDisposeQueued)
