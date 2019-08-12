@@ -37,10 +37,6 @@ namespace Tizen.NUI
             public static extern int Window_GetPreferredOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetDragAndDropDetector")]
-            public static extern global::System.IntPtr Window_GetDragAndDropDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeHandle")]
             public static extern global::System.IntPtr Window_GetNativeHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
 
