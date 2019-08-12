@@ -8,7 +8,7 @@ namespace Tizen.Applications.ComponentBased.Common
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
 
-        internal FrameType(Type ctype, string id) : base(ctype, id, Interop.CBApplication.NativeComponentType.Frame)
+        internal FrameType(Type ctype, string id) : base(ctype, id, BaseComponent.ComponentType.Frame)
         {
             _callbacks.OnAction = new Interop.CBApplication.FrameActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.FrameDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);

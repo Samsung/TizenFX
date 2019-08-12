@@ -12,6 +12,24 @@ namespace Tizen.Applications.ComponentBased.Common
         internal IntPtr Handle;
 
         /// <summary>
+        /// Component types.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public enum ComponentType
+        {
+            /// <summary>
+            /// The frame component.
+            /// </summary>
+            Frame = Interop.CBApplication.NativeComponentType.Frame,
+
+            /// <summary>
+            /// The service component.
+            /// </summary>
+            Service = Interop.CBApplication.NativeComponentType.Service
+        }
+
+
+        /// <summary>
         /// ID for this component instance.
         /// It will be created after OnCreate method is invoked.
         /// </summary>
@@ -39,6 +57,15 @@ namespace Tizen.Applications.ComponentBased.Common
         {
             Handle = handle;
             Id = id;
+        }
+
+        /// <summary>
+        /// Overrides this method if you want to specify a type of this component.
+        /// Default component type is Service type.
+        /// </summary>
+        public virtual ComponentType GetComponentType()
+        {
+            return ComponentType.Service;
         }
 
         /// <summary>

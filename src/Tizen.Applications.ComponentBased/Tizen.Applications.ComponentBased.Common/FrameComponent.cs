@@ -63,5 +63,14 @@ namespace Tizen.Applications.ComponentBased.Common
         public virtual void OnDestroy()
         {
         }
+
+        /// <summary>
+        /// Overrides this method if you want to specify a type of this component.
+        /// Default component type is Service type.
+        /// </summary>
+        public override ComponentType GetComponentType()
+        {
+            return BaseComponent.ComponentType.Frame;
+        }
     }
 }

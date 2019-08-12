@@ -8,7 +8,7 @@ namespace Tizen.Applications.ComponentBased.Common
     {
         private Interop.CBApplication.ServiceLifecycleCallbacks _callbacks;
 
-        internal ServiceType(Type ctype, string id) : base(ctype, id, Interop.CBApplication.NativeComponentType.Service)
+        internal ServiceType(Type ctype, string id) : base(ctype, id, BaseComponent.ComponentType.Service)
         {
             _callbacks.OnAction = new Interop.CBApplication.ServiceActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.ServiceDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);

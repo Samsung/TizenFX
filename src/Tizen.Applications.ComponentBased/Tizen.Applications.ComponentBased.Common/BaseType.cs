@@ -14,9 +14,9 @@ namespace Tizen.Applications.ComponentBased.Common
         internal IList<BaseComponent> _compInstances = new List<BaseComponent>();
         internal IDictionary<EventType, object> _handlers = new Dictionary<EventType, object>();
         private Interop.CBApplication.BaseLifecycleCallbacks _callbacks;
-        private NativeComponentType _comp_type;
+        private BaseComponent.ComponentType _comp_type;
 
-        internal BaseType(Type ctype, string id, NativeComponentType comp_type)
+        internal BaseType(Type ctype, string id, BaseComponent.ComponentType comp_type)
         {
             _comp_type = comp_type;
             _classType = ctype;
@@ -31,7 +31,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnSuspendedState = new Interop.CBApplication.BaseSuspendedStateCallback(OnSuspendedStateCallback);
         }
 
-        internal NativeComponentType GetComponentType()
+        internal BaseComponent.ComponentType GetComponentType()
         {
             return _comp_type;
         }
@@ -129,7 +129,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         internal IntPtr Bind(IntPtr h)
         {
-            return Interop.CBApplication.BaseAddComponent(h, _comp_type, _id, ref _callbacks, IntPtr.Zero);
+            return Interop.CBApplication.BaseAddComponent(h, (NativeComponentType)_comp_type, _id, ref _callbacks, IntPtr.Zero);
         }
 
         private int OnCreate(IntPtr context, IntPtr content, int w, int h, IntPtr userData)

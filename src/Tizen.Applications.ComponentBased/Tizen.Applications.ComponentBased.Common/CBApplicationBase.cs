@@ -75,7 +75,8 @@ namespace Tizen.Applications.ComponentBased.Common
             if (compType.BaseType == typeof(BaseComponent))
             {
                 Log.Info(LogTag, "Add base comp");
-                ComponentTypes.Add(new BaseType(compType, compId, Interop.CBApplication.NativeComponentType.Service));
+                BaseComponent b = Activator.CreateInstance(compType) as BaseComponent;
+                ComponentTypes.Add(new BaseType(compType, compId, b.GetComponentType()));
             }
             else if (compType.BaseType == typeof(FrameComponent))
             {
@@ -107,13 +108,13 @@ namespace Tizen.Applications.ComponentBased.Common
             IntPtr h = IntPtr.Zero;
             foreach (BaseType type in ComponentTypes)
             {
-                if (type.GetComponentType() == Interop.CBApplication.NativeComponentType.Frame)
+                if (type.GetComponentType() == BaseComponent.ComponentType.Frame)
                 {
                     FrameType ft = (FrameType)type;
                     h = ft.Bind(h);
                     Log.Debug(LogTag, "Bind frame comp");
                 }
-                else if (type.GetComponentType() == Interop.CBApplication.NativeComponentType.Service)
+                else if (type.GetComponentType() == BaseComponent.ComponentType.Service)
                 {
                     ServiceType st = (ServiceType)type;
                     h = st.Bind(h);
