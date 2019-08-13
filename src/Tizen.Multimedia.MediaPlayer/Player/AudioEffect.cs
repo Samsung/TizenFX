@@ -26,36 +26,23 @@ namespace Tizen.Multimedia
     public class AudioEffect
     {
         private readonly EqualizerBand[] _bands;
+        private readonly int _count;
+        private readonly bool _isAvailable;
+        private readonly Range _bandLevelRange;
 
         internal AudioEffect(Player owner)
         {
             Player = owner;
 
-            bool available = false;
-
-            Native.EqualizerIsAvailable(Player.Handle, out available).
-                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
-
-            IsAvailable = available;
-
-            if (IsAvailable == false)
+            _isAvailable = IsAvailable;
+            if (_isAvailable == false)
             {
                 return;
             }
 
-            int count = 0;
-            Native.GetEqualizerBandsCount(Player.Handle, out count).
-                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
-
-            int min = 0;
-            int max = 0;
-            Native.GetEqualizerLevelRange(Player.Handle, out min, out max).
-                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
-
-            Count = count;
-            BandLevelRange = new Range(min, max);
-
-            _bands = new EqualizerBand[count];
+            _count = Count;
+            _bandLevelRange = BandLevelRange;
+            _bands = new EqualizerBand[_count];
         }
 
         /// <summary>
@@ -68,12 +55,16 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="Count"/>.
         /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public EqualizerBand this[int index]
         {
             get
             {
                 Player.ValidateNotDisposed();
+                Player.AudioOffload.CheckEnabled();
 
                 if (index < 0 || Count <= index)
                 {
@@ -94,10 +85,14 @@ namespace Tizen.Multimedia
         /// Clears the equalizer effect.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public void Clear()
         {
             Player.ValidateNotDisposed();
+            Player.AudioOffload.CheckEnabled();
 
             Native.EqualizerClear(Player.Handle).
                 ThrowIfFailed(Player, "Failed to clear equalizer effect");
@@ -106,20 +101,61 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the number of items.
         /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
-        public int Count { get; }
+        public int Count
+        {
+            get
+            {
+                Player.AudioOffload.CheckEnabled();
+
+                Native.GetEqualizerBandsCount(Player.Handle, out var count).
+                    ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
+
+                return count;
+            }
+        }
 
         /// <summary>
         /// Gets the band level range of the bands in the dB.
         /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
-        public Range BandLevelRange { get; }
+        public Range BandLevelRange
+        {
+            get
+            {
+                Player.AudioOffload.CheckEnabled();
+
+                Native.GetEqualizerLevelRange(Player.Handle, out var min, out var max).
+                    ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
+
+                return new Range(min, max);
+            }
+        }
 
         /// <summary>
         /// Gets the value whether the AudioEffect is available or not.
         /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
-        public bool IsAvailable { get; }
+        public bool IsAvailable
+        {
+            get
+            {
+                Player.AudioOffload.CheckEnabled();
+
+                Native.EqualizerIsAvailable(Player.Handle, out var available).
+                    ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
+                return available;
+            }
+        }
 
         /// <summary>
         /// Gets the player that this AudioEffect belongs to.
