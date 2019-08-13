@@ -28,6 +28,41 @@ namespace Tizen.Applications.ComponentBased.Common
             Service = Interop.CBApplication.NativeComponentType.Service
         }
 
+        /// <summary>
+        /// Occurs when the system memory is low.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<LowMemoryEventArgs> LowMemory;
+
+        /// <summary>
+        /// Occurs when the system battery is low.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<LowBatteryEventArgs> LowBattery;
+
+        /// <summary>
+        /// Occurs when the system language is chagned.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<LocaleChangedEventArgs> LocaleChanged;
+
+        /// <summary>
+        /// Occurs when the region format is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<RegionFormatChangedEventArgs> RegionFormatChanged;
+
+        /// <summary>
+        /// Occurs when the device orientation is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
+
+        /// <summary>
+        /// Occurs when the device orientation is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<SuspendedStateEventArgs> SuspendedStateChanged;
 
         /// <summary>
         /// ID for this component instance.
@@ -82,6 +117,36 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <param name="c">Contents</param>
         public virtual void OnSaveContent(Bundle c)
         {
+        }
+
+        internal void OnLanguageChangedCallback(string language)
+        {
+            LocaleChanged?.Invoke(this, new LocaleChangedEventArgs(language));
+        }
+
+        internal void OnDeviceOrientationChangedCallback(int orientation)
+        {
+            DeviceOrientationChanged?.Invoke(this, new DeviceOrientationEventArgs((DeviceOrientation)orientation));
+        }
+
+        internal void OnLowBatteryCallback(int status)
+        {
+            LowBattery?.Invoke(this, new LowBatteryEventArgs((LowBatteryStatus)status));
+        }
+
+        internal void OnLowMemoryCallback(int status)
+        {
+            LowMemory?.Invoke(this, new LowMemoryEventArgs((LowMemoryStatus)status));
+        }
+
+        internal void OnRegionFormatChangedCallback(string region)
+        {
+            RegionFormatChanged?.Invoke(this, new RegionFormatChangedEventArgs(region));
+        }
+
+        internal void OnSuspendedStateCallback(int state)
+        {
+            SuspendedStateChanged?.Invoke(this, new SuspendedStateEventArgs((SuspendedState)state));
         }
     }
 }

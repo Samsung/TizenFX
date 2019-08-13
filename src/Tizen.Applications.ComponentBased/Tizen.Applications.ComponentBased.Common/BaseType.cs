@@ -12,7 +12,6 @@ namespace Tizen.Applications.ComponentBased.Common
         internal readonly Type _classType;
         internal readonly string _id;
         internal IList<BaseComponent> _compInstances = new List<BaseComponent>();
-        internal IDictionary<EventType, object> _handlers = new Dictionary<EventType, object>();
         private Interop.CBApplication.BaseLifecycleCallbacks _callbacks;
         private BaseComponent.ComponentType _comp_type;
 
@@ -36,58 +35,69 @@ namespace Tizen.Applications.ComponentBased.Common
             return _comp_type;
         }
 
-        internal void AddEventHandler(EventType evType, Action handler)
-        {
-            _handlers.Add(evType, handler);
-        }
-
-        internal void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs
-        {
-            _handlers.Add(evType, handler);
-        }
-
         protected void OnLanguageChangedCallback(IntPtr context, string language, IntPtr userData)
         {
-            if (_handlers.ContainsKey(EventType.LocaleChanged))
+            foreach (BaseComponent com in _compInstances)
             {
-                var handler = _handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
-                handler?.Invoke(new LocaleChangedEventArgs(language));
+                if (com.Handle == context)
+                {
+                    com.OnLanguageChangedCallback(language);
+                }
             }
         }
 
         protected void OnDeviceOrientationChangedCallback(IntPtr context, int orientation, IntPtr userData)
         {
-            if (_handlers.ContainsKey(EventType.DeviceOrientationChanged))
+            foreach (BaseComponent com in _compInstances)
             {
-                var handler = _handlers[EventType.DeviceOrientationChanged] as Action<DeviceOrientationEventArgs>;
-                handler?.Invoke(new DeviceOrientationEventArgs((DeviceOrientation)orientation));
+                if (com.Handle == context)
+                {
+                    com.OnDeviceOrientationChangedCallback(orientation);
+                }
             }
         }
 
         protected void OnLowBatteryCallback(IntPtr context, int status, IntPtr userData)
         {
-            if (_handlers.ContainsKey(EventType.LowBattery))
+            foreach (BaseComponent com in _compInstances)
             {
-                var handler = _handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
-                handler?.Invoke(new LowBatteryEventArgs((LowBatteryStatus)status));
+                if (com.Handle == context)
+                {
+                    com.OnLowBatteryCallback(status);
+                }
             }
         }
 
         protected void OnLowMemoryCallback(IntPtr context, int status, IntPtr userData)
         {
-            if (_handlers.ContainsKey(EventType.LowMemory))
+            foreach (BaseComponent com in _compInstances)
             {
-                var handler = _handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
-                handler?.Invoke(new LowMemoryEventArgs((LowMemoryStatus)status));
+                if (com.Handle == context)
+                {
+                    com.OnLowMemoryCallback(status);
+                }
             }
         }
 
         protected void OnRegionFormatChangedCallback(IntPtr context, string region, IntPtr userData)
         {
-            if (_handlers.ContainsKey(EventType.RegionFormatChanged))
+            foreach (BaseComponent com in _compInstances)
             {
-                var handler = _handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
-                handler?.Invoke(new RegionFormatChangedEventArgs(region));
+                if (com.Handle == context)
+                {
+                    com.OnRegionFormatChangedCallback(region);
+                }
+            }
+        }
+
+        protected void OnSuspendedStateCallback(IntPtr context, int state, IntPtr userData)
+        {
+            foreach (BaseComponent com in _compInstances)
+            {
+                if (com.Handle == context)
+                {
+                    com.OnSuspendedStateCallback(state);
+                }
             }
         }
 
@@ -121,10 +131,6 @@ namespace Tizen.Applications.ComponentBased.Common
                     break;
                 }
             }
-        }
-
-        protected void OnSuspendedStateCallback(IntPtr context, int state, IntPtr userData)
-        {
         }
 
         internal IntPtr Bind(IntPtr h)
