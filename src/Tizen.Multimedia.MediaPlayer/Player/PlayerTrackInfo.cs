@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.
         ///     -or-<br/>
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
