@@ -70,14 +70,6 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnActionCallback(IntPtr context, string action, IntPtr appControl, IntPtr userData)
         {
-            foreach(ServiceComponent sc in _compInstances)
-            {
-                if (sc.Handle == context)
-                {
-                    sc.OnAction(action, new AppControl(new SafeAppControlHandle(appControl, false)));
-                    break;
-                }
-            }
         }
 
         internal new IntPtr Bind(IntPtr h)

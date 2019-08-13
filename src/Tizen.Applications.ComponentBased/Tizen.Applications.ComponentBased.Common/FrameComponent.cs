@@ -28,15 +28,6 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component receives the action.
-        /// </summary>
-        /// <param name="action">Action name</param>
-        /// <param name="appControl">appcontrol object</param>
-        public virtual void OnAction(string action, AppControl appControl)
-        {
-        }
-
-        /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is resumed.
         /// </summary>
         public virtual void OnResume()
