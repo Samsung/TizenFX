@@ -241,7 +241,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
 
                 NativePlayer.GetAudioLatencyMode(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get the audio latency mode of the player");
@@ -251,7 +251,7 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
 
                 ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value, nameof(value));
 
@@ -557,7 +557,7 @@ namespace Tizen.Multimedia
             get
             {
                 ValidateNotDisposed();
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
 
                 NativePlayer.IsReplayGain(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get the replaygain of the player");
@@ -566,7 +566,7 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
 
                 NativePlayer.SetReplayGain(Handle, value).
                     ThrowIfFailed(this, "Failed to set the replaygain of the player");
@@ -593,7 +593,7 @@ namespace Tizen.Multimedia
             get
             {
                 ValidateNotDisposed();
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
 
                 NativePlayer.IsAudioPitchEnabled(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get whether the audio pitch is enabled or not");
@@ -603,7 +603,7 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
                 ValidatePlayerState(PlayerState.Idle);
 
                 NativePlayer.SetAudioPitchEnabled(Handle, value).
@@ -635,7 +635,7 @@ namespace Tizen.Multimedia
             get
             {
                 ValidateNotDisposed();
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
 
                 if (AudioPitchEnabled == false)
                 {
@@ -651,7 +651,7 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
-                AudioOffload.CheckEnabled();
+                AudioOffload.CheckDisabled();
 
                 if (AudioPitchEnabled == false)
                 {

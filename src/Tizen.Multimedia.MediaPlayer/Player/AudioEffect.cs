@@ -26,22 +26,16 @@ namespace Tizen.Multimedia
     public class AudioEffect
     {
         private readonly EqualizerBand[] _bands;
-        private readonly int _count;
-        private readonly bool _isAvailable;
-        private readonly Range _bandLevelRange;
 
         internal AudioEffect(Player owner)
         {
             Player = owner;
 
-            _isAvailable = IsAvailable;
             if (IsAvailable== false)
             {
                 return;
             }
 
-            _count = Count;
-            _bandLevelRange = BandLevelRange;
             _bands = new EqualizerBand[Count];
         }
 
@@ -64,7 +58,7 @@ namespace Tizen.Multimedia
             get
             {
                 Player.ValidateNotDisposed();
-                Player.AudioOffload.CheckEnabled();
+                Player.AudioOffload.CheckDisabled();
 
                 if (index < 0 || Count <= index)
                 {
@@ -92,7 +86,7 @@ namespace Tizen.Multimedia
         public void Clear()
         {
             Player.ValidateNotDisposed();
-            Player.AudioOffload.CheckEnabled();
+            Player.AudioOffload.CheckDisabled();
 
             Native.EqualizerClear(Player.Handle).
                 ThrowIfFailed(Player, "Failed to clear equalizer effect");
@@ -109,7 +103,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Player.AudioOffload.CheckEnabled();
+                Player.AudioOffload.CheckDisabled();
 
                 Native.GetEqualizerBandsCount(Player.Handle, out var count).
                     ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
@@ -129,7 +123,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Player.AudioOffload.CheckEnabled();
+                Player.AudioOffload.CheckDisabled();
 
                 Native.GetEqualizerLevelRange(Player.Handle, out var min, out var max).
                     ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
@@ -149,7 +143,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Player.AudioOffload.CheckEnabled();
+                Player.AudioOffload.CheckDisabled();
 
                 Native.EqualizerIsAvailable(Player.Handle, out var available).
                     ThrowIfFailed(Player, "Failed to initialize the AudioEffect");

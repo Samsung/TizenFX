@@ -785,7 +785,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentOutOfRangeException(nameof(rate), rate, "Valid range is -5.0 to 5.0 (except 0.0)");
             }
 
-            AudioOffload.CheckEnabled();
+            AudioOffload.CheckDisabled();
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.SetPlaybackRate(Handle, rate).ThrowIfFailed(this, "Failed to set the playback rate.");
@@ -987,7 +987,7 @@ namespace Tizen.Multimedia
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
             ValidationUtil.ValidateEnum(typeof(PlayerAudioExtractOption), option, nameof(option));
-            AudioOffload.CheckEnabled();
+            AudioOffload.CheckDisabled();
             ValidatePlayerState(PlayerState.Idle);
 
             _audioFrameDecodedCallback = (IntPtr packetHandle, IntPtr userData) =>

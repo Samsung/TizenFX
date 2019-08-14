@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
             Player = player;
         }
 
-        internal void CheckEnabled()
+        internal void CheckDisabled()
         {
             if (Player.AudioOffload.IsEnabled)
             {

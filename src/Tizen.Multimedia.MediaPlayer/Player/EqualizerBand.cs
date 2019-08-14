@@ -29,8 +29,6 @@ namespace Tizen.Multimedia
     {
         private readonly AudioEffect _owner;
         private readonly int _index;
-        private readonly int _frequency;
-        private readonly int _frequencyRange;
 
         internal EqualizerBand(AudioEffect owner, int index)
         {
@@ -38,10 +36,8 @@ namespace Tizen.Multimedia
 
             _owner = owner;
             _index = index;
-            _frequency = Frequency;
-            _frequencyRange = FrequencyRange;
 
-            Log.Debug(PlayerLog.Tag, "frequency : " + _frequency + ", range : " + _frequencyRange);
+            Log.Debug(PlayerLog.Tag, "frequency : " + Frequency + ", range : " + FrequencyRange);
         }
 
         /// <summary>
@@ -61,7 +57,7 @@ namespace Tizen.Multimedia
             get
             {
                 _owner.Player.ValidateNotDisposed();
-                _owner.Player.AudioOffload.CheckEnabled();
+                _owner.Player.AudioOffload.CheckDisabled();
 
                 Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out var value).
                     ThrowIfFailed(_owner.Player, "Failed to get the level of the equalizer band");
@@ -72,7 +68,7 @@ namespace Tizen.Multimedia
             set
             {
                 _owner.Player.ValidateNotDisposed();
-                _owner.Player.AudioOffload.CheckEnabled();
+                _owner.Player.AudioOffload.CheckDisabled();
 
                 if (value < _owner.BandLevelRange.Min || _owner.BandLevelRange.Max < value)
                 {
@@ -99,7 +95,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                _owner.Player.AudioOffload.CheckEnabled();
+                _owner.Player.AudioOffload.CheckDisabled();
 
                 Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out var frequency).
                 ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
@@ -119,7 +115,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                _owner.Player.AudioOffload.CheckEnabled();
+                _owner.Player.AudioOffload.CheckDisabled();
 
                 Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out var frequencyRange).
                 ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");

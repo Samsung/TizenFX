@@ -55,7 +55,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public int GetCount()
         {
-            _owner.AudioOffload.CheckEnabled();
+            _owner.AudioOffload.CheckDisabled();
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.GetTrackCount(_owner.Handle, _streamType, out var count).
@@ -95,7 +95,7 @@ namespace Tizen.Multimedia
                     $"Valid index range is 0 <= x < {nameof(GetCount)}(), but got { index }.");
             }
 
-            _owner.AudioOffload.CheckEnabled();
+            _owner.AudioOffload.CheckDisabled();
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             IntPtr code = IntPtr.Zero;
@@ -145,7 +145,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                _owner.AudioOffload.CheckEnabled();
+                _owner.AudioOffload.CheckDisabled();
                 _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
                 NativePlayer.GetCurrentTrack(_owner.Handle, _streamType, out var value).
@@ -161,7 +161,7 @@ namespace Tizen.Multimedia
                         $"Valid index range is 0 <= x < {nameof(GetCount)}(), but got { value }.");
                 }
 
-                _owner.AudioOffload.CheckEnabled();
+                _owner.AudioOffload.CheckDisabled();
                 _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
                 NativePlayer.SelectTrack(_owner.Handle, _streamType, value).
