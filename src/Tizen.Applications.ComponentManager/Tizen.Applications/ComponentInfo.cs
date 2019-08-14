@@ -116,7 +116,7 @@ namespace Tizen.Applications
         /// Gets the type of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ComponentType Type
+        public ComponentType ComponentType
         {
             get
             {
