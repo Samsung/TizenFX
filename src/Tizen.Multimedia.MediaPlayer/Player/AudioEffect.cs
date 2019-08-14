@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
             Player = owner;
 
             _isAvailable = IsAvailable;
-            if (_isAvailable == false)
+            if (IsAvailable== false)
             {
                 return;
             }
