@@ -42,7 +42,7 @@ namespace Tizen.Multimedia
 
             _count = Count;
             _bandLevelRange = BandLevelRange;
-            _bands = new EqualizerBand[_count];
+            _bands = new EqualizerBand[Count];
         }
 
         /// <summary>
