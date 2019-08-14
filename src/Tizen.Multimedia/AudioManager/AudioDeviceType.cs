@@ -68,7 +68,7 @@ namespace Tizen.Multimedia
         BluetoothVoice,
 
         /// <summary>
-        /// Network.
+        /// Device for the transmission of audio data over a network
         /// </summary>
         Network
     }
