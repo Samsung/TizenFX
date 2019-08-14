@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using Tizen.Applications;
 
 internal static partial class Interop
 {
@@ -154,5 +155,22 @@ internal static partial class Interop
 
         [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_raw")]
         internal static extern IntPtr BaseFrameWindowGetRaw(IntPtr winHandle, out IntPtr raw);
+
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_id")]
+        internal static extern ErrorCode GetInstanceId(IntPtr context, out string instanceId);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ResultCallback(IntPtr request, int result, IntPtr userData);
+
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_async")]
+        internal static extern ErrorCode SendLaunchRequestAsync(IntPtr context, SafeAppControlHandle appControl,
+            ResultCallback resultCallback, ReplyCallback replyCallback, IntPtr userData);
+
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_sync")]
+        internal static extern ErrorCode SendLaunchRequestSync(IntPtr context, SafeAppControlHandle appControl,
+            SafeAppControlHandle replyControl, out int result);
     }
 }

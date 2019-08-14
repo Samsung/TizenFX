@@ -22,5 +22,6 @@ internal static partial class Interop
         public const string CompApplication = "libcomponent-based-application.so";
         public const string CompAppControl = "libcomponent-based-app-control.so";
         public const string CompUri = "libcomponent-based-uri.so";
+        public const string AppControl = "libcapi-appfw-app-control.so.0";
     }
 }

@@ -141,15 +141,15 @@ namespace Tizen.Applications.ComponentBased.Common
         private int OnCreate(IntPtr context, IntPtr content, int w, int h, IntPtr userData)
         {
             BaseComponent b = Activator.CreateInstance(_classType) as BaseComponent;
-            Bundle bundle = null;
 
             if (b == null)
                 return 0;
 
             b.Bind(context, _id);
             _compInstances.Add(b);
-            if (content != IntPtr.Zero)
-                bundle = new Bundle(new SafeBundleHandle(content, false));
+            string id;
+            Interop.CBApplication.GetInstanceId(context, out id);
+            b.Id = id;
 
             return 0;
         }

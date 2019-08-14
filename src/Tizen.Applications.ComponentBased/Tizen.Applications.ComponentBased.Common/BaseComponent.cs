@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
@@ -10,6 +11,7 @@ namespace Tizen.Applications.ComponentBased.Common
     public abstract class BaseComponent
     {
         internal IntPtr Handle;
+        internal static readonly string LogTag = typeof(BaseComponent).Namespace;
 
         /// <summary>
         /// Component types.
@@ -69,12 +71,12 @@ namespace Tizen.Applications.ComponentBased.Common
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Id { get; private set; }
+        public string Id { get; internal set; }
 
         /// <summary>
         /// Component ID
         /// </summary>
-        public string ComponentId { get; }
+        public string ComponentId { get; internal set; }
 
         /// <summary>
         /// Parent object
@@ -88,10 +90,10 @@ namespace Tizen.Applications.ComponentBased.Common
         {
         }
 
-        internal void Bind(IntPtr handle, string id)
+        internal void Bind(IntPtr handle, string compId)
         {
             Handle = handle;
-            Id = id;
+            ComponentId = compId;
         }
 
         /// <summary>
@@ -147,6 +149,28 @@ namespace Tizen.Applications.ComponentBased.Common
         internal void OnSuspendedStateCallback(int state)
         {
             SuspendedStateChanged?.Invoke(this, new SuspendedStateEventArgs((SuspendedState)state));
+        }
+
+        /// <summary>
+        /// Sends the launch request asynchronously.
+        /// </summary>
+        /// <remarks>
+        /// To use group mode, you must use this function instead of SendLaunchRequestAsync().
+        /// </remarks>
+        /// <param name="control">appcontrol object</param>
+        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
+        /// <returns>A task with the result of the launch request.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+        /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        public Task<AppControlResult> SendLaunchRequestAsync(AppControl control, AppControlReplyCallback replyAfterLaunching)
+        {
+            int ret = Interop.AppControl.SetCallerInstanceId(control.SafeAppControlHandle, Id);
+            if (ret != 0)
+                throw new ArgumentException("Failed to set id");
+
+            return AppControl.SendLaunchRequestAsync(control, replyAfterLaunching);
         }
     }
 }
