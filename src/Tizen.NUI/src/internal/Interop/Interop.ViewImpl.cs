@@ -9,22 +9,17 @@ namespace Tizen.NUI
     {
         internal static partial class ViewImpl
         {
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_New")]
             public static extern global::System.IntPtr ViewImpl_New();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetStyleName")]
             public static extern void ViewImpl_SetStyleName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetStyleName")]
             public static extern string ViewImpl_GetStyleName(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetBackgroundColor")]
             public static extern void ViewImpl_SetBackgroundColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetBackgroundColor")]
             public static extern global::System.IntPtr ViewImpl_GetBackgroundColor(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -32,128 +27,95 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetBackground")]
             public static extern void ViewImpl_SetBackground(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_ClearBackground")]
             public static extern void ViewImpl_ClearBackground(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_EnableGestureDetection")]
             public static extern void ViewImpl_EnableGestureDetection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_DisableGestureDetection")]
             public static extern void ViewImpl_DisableGestureDetection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetPinchGestureDetector")]
             public static extern global::System.IntPtr ViewImpl_GetPinchGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetPanGestureDetector")]
             public static extern global::System.IntPtr ViewImpl_GetPanGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetTapGestureDetector")]
             public static extern global::System.IntPtr ViewImpl_GetTapGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetLongPressGestureDetector")]
             public static extern global::System.IntPtr ViewImpl_GetLongPressGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetKeyboardNavigationSupport")]
             public static extern void ViewImpl_SetKeyboardNavigationSupport(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_IsKeyboardNavigationSupported")]
             public static extern bool ViewImpl_IsKeyboardNavigationSupported(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetKeyInputFocus")]
             public static extern void ViewImpl_SetKeyInputFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_HasKeyInputFocus")]
             public static extern bool ViewImpl_HasKeyInputFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_ClearKeyInputFocus")]
             public static extern void ViewImpl_ClearKeyInputFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetAsKeyboardFocusGroup")]
             public static extern void ViewImpl_SetAsKeyboardFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_IsKeyboardFocusGroup")]
             public static extern bool ViewImpl_IsKeyboardFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_AccessibilityActivate")]
             public static extern void ViewImpl_AccessibilityActivate(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_KeyboardEnter")]
             public static extern void ViewImpl_KeyboardEnter(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetNaturalSize")]
             public static extern global::System.IntPtr ViewImpl_GetNaturalSize(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetNaturalSizeSwigExplicitViewImpl")]
             public static extern global::System.IntPtr ViewImpl_GetNaturalSizeSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_CalculateChildSize")]
             public static extern float ViewImpl_CalculateChildSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_CalculateChildSizeSwigExplicitViewImpl")]
             public static extern float ViewImpl_CalculateChildSizeSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetHeightForWidth")]
             public static extern float ViewImpl_GetHeightForWidth(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetHeightForWidthSwigExplicitViewImpl")]
             public static extern float ViewImpl_GetHeightForWidthSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetWidthForHeight")]
             public static extern float ViewImpl_GetWidthForHeight(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetWidthForHeightSwigExplicitViewImpl")]
             public static extern float ViewImpl_GetWidthForHeightSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_RelayoutDependentOnChildren__SWIG_0")]
             public static extern bool ViewImpl_RelayoutDependentOnChildren__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_0")]
             public static extern bool ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_RelayoutDependentOnChildren__SWIG_1")]
             public static extern bool ViewImpl_RelayoutDependentOnChildren__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_1")]
             public static extern bool ViewImpl_RelayoutDependentOnChildrenSwigExplicitViewImpl__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetNextKeyboardFocusableActor")]
             public static extern global::System.IntPtr ViewImpl_GetNextKeyboardFocusableActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, bool jarg4);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_GetNextKeyboardFocusableActorSwigExplicitViewImpl")]
             public static extern global::System.IntPtr ViewImpl_GetNextKeyboardFocusableActorSwigExplicitViewImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, bool jarg4);
-
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_director_connect")]
             public static extern void ViewImpl_director_connect(global::System.Runtime.InteropServices.HandleRef jarg1,
@@ -179,10 +141,8 @@ namespace Tizen.NUI
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_38 delegate38, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_39 delegate39,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_40 delegate40);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SWIGUpcast")]
             public static extern global::System.IntPtr ViewImpl_SWIGUpcast(global::System.IntPtr jarg1);
-
         }
     }
 }

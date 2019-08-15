@@ -8,26 +8,20 @@ namespace Tizen.NUI
     {
         internal static partial class Button
         {
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_DISABLED_get")]
             public static extern int Button_Property_DISABLED_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_AUTO_REPEATING_get")]
             public static extern int Button_Property_AUTO_REPEATING_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_INITIAL_AUTO_REPEATING_DELAY_get")]
             public static extern int Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_NEXT_AUTO_REPEATING_DELAY_get")]
             public static extern int Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_TOGGLABLE_get")]
             public static extern int Button_Property_TOGGLABLE_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Property_SELECTED_get")]
             public static extern int Button_Property_SELECTED_get();
@@ -38,50 +32,38 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Button_Property")]
             public static extern global::System.IntPtr new_Button_Property();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Button_Property")]
             public static extern void delete_Button_Property(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Button__SWIG_0")]
             public static extern global::System.IntPtr new_Button__SWIG_0();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Button__SWIG_1")]
             public static extern global::System.IntPtr new_Button__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_Assign")]
             public static extern global::System.IntPtr Button_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_DownCast")]
             public static extern global::System.IntPtr Button_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Button")]
             public static extern void delete_Button(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_IsDisabled")]
             public static extern bool Button_IsDisabled(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_IsAutoRepeating")]
             public static extern bool Button_IsAutoRepeating(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_GetInitialAutoRepeatingDelay")]
             public static extern float Button_GetInitialAutoRepeatingDelay(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_GetNextAutoRepeatingDelay")]
             public static extern float Button_GetNextAutoRepeatingDelay(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_IsTogglableButton")]
             public static extern bool Button_IsTogglableButton(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_IsSelected")]
             public static extern bool Button_IsSelected(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -89,62 +71,47 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_PressedSignal")]
             public static extern global::System.IntPtr Button_PressedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_ReleasedSignal")]
             public static extern global::System.IntPtr Button_ReleasedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_ClickedSignal")]
             public static extern global::System.IntPtr Button_ClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_StateChangedSignal")]
             public static extern global::System.IntPtr Button_StateChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_UNSELECTED_VISUAL_get")]
             public static extern int Button_Property_UNSELECTED_VISUAL_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_SELECTED_VISUAL_get")]
             public static extern int Button_Property_SELECTED_VISUAL_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_DISABLED_SELECTED_VISUAL_get")]
             public static extern int Button_Property_DISABLED_SELECTED_VISUAL_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_DISABLED_UNSELECTED_VISUAL_get")]
             public static extern int Button_Property_DISABLED_UNSELECTED_VISUAL_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_UNSELECTED_BACKGROUND_VISUAL_get")]
             public static extern int Button_Property_UNSELECTED_BACKGROUND_VISUAL_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_SELECTED_BACKGROUND_VISUAL_get")]
             public static extern int Button_Property_SELECTED_BACKGROUND_VISUAL_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get")]
             public static extern int Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get")]
             public static extern int Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_LABEL_RELATIVE_ALIGNMENT_get")]
             public static extern int Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_LABEL_PADDING_get")]
             public static extern int Button_Property_LABEL_PADDING_get();
 
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Button_Property_VISUAL_PADDING_get")]
             public static extern int Button_Property_VISUAL_PADDING_get();
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Button_SWIGUpcast")]
             public static extern global::System.IntPtr Button_SWIGUpcast(global::System.IntPtr jarg1);
