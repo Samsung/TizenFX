@@ -223,7 +223,7 @@ namespace Tizen.NUI
                 else
                 {
                     // Parent not a View so assume it's a Layer which is the size of the window.
-                    rootSize = new Size2D(_window.Size.Width, _window.Size.Height);
+                    rootSize = _window.WindowSize;
                 }
 
                 // Determine measure specification for root.
