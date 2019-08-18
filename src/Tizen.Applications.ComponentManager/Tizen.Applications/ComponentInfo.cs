@@ -46,7 +46,7 @@ namespace Tizen.Applications
         /// <param name="componentId">Component ID.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of ouf of memory.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
@@ -210,7 +210,7 @@ namespace Tizen.Applications
         /// Gets the localized label of the component for the given locale.
         /// </summary>
         /// <param name="locale">Locale.</param>
-        /// <remarks>The format of locale is language and country code. (avilable value: "[2-letter lowercase language code (ISO 639-1)]-[2-letter lowercase country code (ISO 3166-alpha-2)]")</remarks>
+        /// <remarks>The format of locale is language and country code. (available value: "[2-letter lowercase language code (ISO 639-1)]-[2-letter lowercase country code (ISO 3166-alpha-2)]")</remarks>
         /// <returns>The localized label.</returns>
         /// <since_tizen> 6 </since_tizen>
         public string GetLocalizedLabel(string locale)

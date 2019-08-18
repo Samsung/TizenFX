@@ -36,7 +36,7 @@ namespace Tizen.Applications
         /// <returns>The installed component info list.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of ouf of memory.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
@@ -79,7 +79,7 @@ namespace Tizen.Applications
         /// <returns>The component running context list.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of ouf of memory.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
@@ -123,7 +123,7 @@ namespace Tizen.Applications
         /// <returns>Returns true if the component is running, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of ouf of memory.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
@@ -144,7 +144,7 @@ namespace Tizen.Applications
         /// <param name="context">Component ID</param>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of ouf of memory.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
         /// <remarks>
