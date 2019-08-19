@@ -7,8 +7,9 @@ namespace Tizen.Applications.ComponentBased.Common
     internal class FrameType : BaseType
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
+        private CBApplicationBase _parent;
 
-        internal FrameType(Type ctype, string id) : base(ctype, id, BaseComponent.ComponentType.Frame)
+        internal FrameType(Type ctype, string id, CBApplicationBase parent) : base(ctype, id, BaseComponent.ComponentType.Frame, parent)
         {
             _callbacks.OnAction = new Interop.CBApplication.FrameActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.FrameDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
@@ -25,6 +26,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnResume = new Interop.CBApplication.FrameResumeCallback(OnResumeCallback);
             _callbacks.OnStart = new Interop.CBApplication.FrameStartCallback(OnStartCallback);
             _callbacks.OnStop = new Interop.CBApplication.FrameStopCallback(OnStopCallback);
+            _parent = parent;
         }
 
         private IntPtr OnCreateCallback(IntPtr context, IntPtr userData)
@@ -33,9 +35,10 @@ namespace Tizen.Applications.ComponentBased.Common
             if (fc == null)
                 return IntPtr.Zero;
 
-            fc.Bind(context, _id);
+            fc.Bind(context, _compId, _parent);
             IntPtr winHandle;
             IWindow win = fc.OnCreate();
+            fc.Window = win;
             Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.GetResId(), win.GetRaw());
             _compInstances.Add(fc);
             return winHandle;
@@ -111,7 +114,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         internal new IntPtr Bind(IntPtr h)
         {
-            return Interop.CBApplication.BaseAddFrameComponent(h, _id, ref _callbacks, IntPtr.Zero);
+            return Interop.CBApplication.BaseAddFrameComponent(h, _compId, ref _callbacks, IntPtr.Zero);
         }
     }
 }

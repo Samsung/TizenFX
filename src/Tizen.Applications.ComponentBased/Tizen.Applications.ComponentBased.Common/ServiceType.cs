@@ -7,8 +7,9 @@ namespace Tizen.Applications.ComponentBased.Common
     internal class ServiceType : BaseType
     {
         private Interop.CBApplication.ServiceLifecycleCallbacks _callbacks;
+        private CBApplicationBase _parent;
 
-        internal ServiceType(Type ctype, string id) : base(ctype, id, BaseComponent.ComponentType.Service)
+        internal ServiceType(Type ctype, string id, CBApplicationBase parent) : base(ctype, id, BaseComponent.ComponentType.Service, parent)
         {
             _callbacks.OnAction = new Interop.CBApplication.ServiceActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.ServiceDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
@@ -22,6 +23,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnCreate = new Interop.CBApplication.ServiceCreateCallback(OnCreateCallback);
             _callbacks.OnDestroy = new Interop.CBApplication.ServiceDestroyCallback(OnDestroyCallback);
             _callbacks.OnStart = new Interop.CBApplication.ServiceStartCommandCallback(OnStartCallback);
+            _parent = parent;
         }
 
         private bool OnCreateCallback(IntPtr context, IntPtr userData)
@@ -30,7 +32,7 @@ namespace Tizen.Applications.ComponentBased.Common
             if (sc == null)
                 return false;
 
-            sc.Bind(context, _id);
+            sc.Bind(context, _compId, _parent);
             bool result = sc.OnCreate();
             if (!result)
             {
@@ -74,7 +76,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         internal new IntPtr Bind(IntPtr h)
         {
-            return Interop.CBApplication.BaseAddServiceComponent(h, _id, ref _callbacks, IntPtr.Zero);
+            return Interop.CBApplication.BaseAddServiceComponent(h, _compId, ref _callbacks, IntPtr.Zero);
         }
     }
 }

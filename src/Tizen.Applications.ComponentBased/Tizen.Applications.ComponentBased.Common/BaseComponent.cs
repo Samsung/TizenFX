@@ -8,10 +8,11 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// This is a base class for components
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
     public abstract class BaseComponent
     {
         internal IntPtr Handle;
-        internal static readonly string LogTag = typeof(BaseComponent).Namespace;
+        private const string LogTag = "Tizen.Applications.BaseComponent";
 
         /// <summary>
         /// Component types.
@@ -67,39 +68,45 @@ namespace Tizen.Applications.ComponentBased.Common
         public event EventHandler<SuspendedStateEventArgs> SuspendedStateChanged;
 
         /// <summary>
-        /// ID for this component instance.
+        /// A component instance ID.
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string Id { get; internal set; }
 
         /// <summary>
-        /// Component ID
+        /// A component ID
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public string ComponentId { get; internal set; }
 
         /// <summary>
         /// Parent object
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public CBApplicationBase Parent { get; internal set; }
 
         /// <summary>
         /// Finish current component
         /// </summary>
-        public virtual void Finish()
+        /// <since_tizen> 6 </since_tizen>
+        public void Finish()
         {
+            Interop.CBApplication.ComponentFinish(Handle);
         }
 
-        internal void Bind(IntPtr handle, string compId)
+        internal void Bind(IntPtr handle, string compId, CBApplicationBase parent)
         {
             Handle = handle;
             ComponentId = compId;
+            Parent = parent;
         }
 
         /// <summary>
         /// Overrides this method if you want to specify a type of this component.
         /// Default component type is Service type.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual ComponentType GetComponentType()
         {
             return ComponentType.Service;
@@ -109,6 +116,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Overrides this method if want to handle behavior to restore the previous status.
         /// </summary>
         /// <param name="c">Contents</param>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnRestoreContents(Bundle c)
         {
         }
@@ -117,6 +125,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Overrides this method if want to handle behavior to save current status.
         /// </summary>
         /// <param name="c">Contents</param>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnSaveContent(Bundle c)
         {
         }
@@ -164,6 +173,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
         /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 6 </since_tizen>
         public Task<AppControlResult> SendLaunchRequestAsync(AppControl control, AppControlReplyCallback replyAfterLaunching)
         {
             int ret = Interop.AppControl.SetCallerInstanceId(control.SafeAppControlHandle, Id);

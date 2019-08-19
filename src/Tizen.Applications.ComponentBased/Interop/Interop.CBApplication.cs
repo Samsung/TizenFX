@@ -45,6 +45,11 @@ internal static partial class Interop
             Service
         }
 
+        internal enum NativeDisplayStatus {
+            On,
+            Off
+        }
+
         internal delegate IntPtr FrameCreateCallback(IntPtr context, IntPtr userData);
         internal delegate void FrameStartCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData);
         internal delegate void FrameResumeCallback(IntPtr context, IntPtr userData);
@@ -150,13 +155,16 @@ internal static partial class Interop
         [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_create_window")]
         internal static extern IntPtr BaseFrameCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_id")]
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_compId")]
         internal static extern IntPtr BaseFrameWindowGetId(IntPtr winHandle, out int winId);
 
         [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_raw")]
         internal static extern IntPtr BaseFrameWindowGetRaw(IntPtr winHandle, out IntPtr raw);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_id")]
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_get_display_status")]
+        internal static extern ErrorCode BaseFrameGetDisplayStatus(IntPtr context, out NativeDisplayStatus status);
+
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_compId")]
         internal static extern ErrorCode GetInstanceId(IntPtr context, out string instanceId);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -172,5 +180,8 @@ internal static partial class Interop
         [DllImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_sync")]
         internal static extern ErrorCode SendLaunchRequestSync(IntPtr context, SafeAppControlHandle appControl,
             SafeAppControlHandle replyControl, out int result);
+
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_finish")]
+        internal static extern ErrorCode ComponentFinish(IntPtr context);
     }
 }

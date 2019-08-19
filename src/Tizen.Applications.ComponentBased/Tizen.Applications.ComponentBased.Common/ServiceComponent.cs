@@ -7,12 +7,13 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// The class for showing service module
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
     public abstract class ServiceComponent : BaseComponent
     {
         /// <summary>
         /// Overrides this method if want to handle behavior when the component is created.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if a service component is successfully created</returns>
         public virtual bool OnCreate()
         {
             return true;
@@ -23,6 +24,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="appControl">appcontrol object</param>
         /// <param name="restarted">True if it was restarted</param>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnStartCommand(AppControl appControl, bool restarted)
         {
         }
@@ -30,14 +32,15 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if want to handle behavior when the component is destroyed.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnDestroy()
         {
         }
 
         /// <summary>
-        /// Overrides this method if you want to specify a type of this component.
-        /// Default component type is Service type.
+        /// Gets the component type.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public override ComponentType GetComponentType()
         {
             return BaseComponent.ComponentType.Service;

@@ -10,16 +10,17 @@ namespace Tizen.Applications.ComponentBased.Common
     internal class BaseType
     {
         internal readonly Type _classType;
-        internal readonly string _id;
+        internal readonly string _compId;
         internal IList<BaseComponent> _compInstances = new List<BaseComponent>();
         private Interop.CBApplication.BaseLifecycleCallbacks _callbacks;
-        private BaseComponent.ComponentType _comp_type;
+        private BaseComponent.ComponentType _compType;
+        private CBApplicationBase _parent;
 
-        internal BaseType(Type ctype, string id, BaseComponent.ComponentType comp_type)
+        internal BaseType(Type ctype, string id, BaseComponent.ComponentType comp_type, CBApplicationBase parent)
         {
-            _comp_type = comp_type;
+            _compType = comp_type;
             _classType = ctype;
-            _id = id;
+            _compId = id;
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.BaseDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
             _callbacks.OnLanguageChanged = new Interop.CBApplication.BaseLanguageChangedCallback(OnLanguageChangedCallback);
             _callbacks.OnLowBattery = new Interop.CBApplication.BaseLowBatteryCallback(OnLowBatteryCallback);
@@ -28,11 +29,12 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnRestore = new Interop.CBApplication.BaseRestoreCallback(OnRestoreCallback);
             _callbacks.OnSave = new Interop.CBApplication.BaseSaveCallback(OnSaveCallback);
             _callbacks.OnSuspendedState = new Interop.CBApplication.BaseSuspendedStateCallback(OnSuspendedStateCallback);
+            _parent = parent;
         }
 
         internal BaseComponent.ComponentType GetComponentType()
         {
-            return _comp_type;
+            return _compType;
         }
 
         protected void OnLanguageChangedCallback(IntPtr context, string language, IntPtr userData)
@@ -135,7 +137,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         internal IntPtr Bind(IntPtr h)
         {
-            return Interop.CBApplication.BaseAddComponent(h, (NativeComponentType)_comp_type, _id, ref _callbacks, IntPtr.Zero);
+            return Interop.CBApplication.BaseAddComponent(h, (NativeComponentType)_compType, _compId, ref _callbacks, IntPtr.Zero);
         }
 
         private int OnCreate(IntPtr context, IntPtr content, int w, int h, IntPtr userData)
@@ -145,7 +147,7 @@ namespace Tizen.Applications.ComponentBased.Common
             if (b == null)
                 return 0;
 
-            b.Bind(context, _id);
+            b.Bind(context, _compId, _parent);
             _compInstances.Add(b);
             string id;
             Interop.CBApplication.GetInstanceId(context, out id);

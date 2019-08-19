@@ -8,9 +8,10 @@ namespace Tizen.Applications.ComponentBased.Default
     /// <summary>
     /// Basic type application which will support ElmWindow for FrameComponent
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
     public class CBBasicApplication : CBApplicationBase
     {
-        internal static readonly string LogTag = typeof(CBBasicApplication).Namespace;
+        private const string LogTag = "Tizen.Applications.CBBasicApplication";
 
         /// <summary>
         /// Initializes the CBBasicApplication class.
@@ -25,6 +26,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// This method will be called before running main-loop
         /// </summary>
         /// <param name="args"></param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnInit(string[] args)
         {
             Interop.Elementary.ElmInit(args.Length, args);
@@ -49,6 +51,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// <summary>
         /// This method will be called after exiting main-loop
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnFini()
         {
             Interop.Elementary.ElmShutdown();
@@ -62,6 +65,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// <summary>
         /// This method will be called to start main-loop
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnRun()
         {
             Interop.Elementary.ElmRun();
@@ -70,57 +74,10 @@ namespace Tizen.Applications.ComponentBased.Default
         /// <summary>
         /// This method will be called to exit main-loop
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnExit()
         {
             Interop.Elementary.ElmExit();
         }
     }
-
-    /// <summary>
-    /// Window class for basic application type
-    /// </summary>
-    public class ElmWindow : IWindow
-    {
-        internal static readonly string LogTag = typeof(ElmWindow).Namespace;
-        private EvasObject _win;
-        private int _resId;
-
-        /// <summary>
-        /// Initializes the CBBasicApplication class.
-        /// </summary>
-        /// <param name="win">The window object of component.</param>
-        /// <since_tizen> 6 </since_tizen>
-        public ElmWindow(EvasObject win)
-        {
-            _win = win;
-        }
-
-        /// <summary>
-        /// Gets the raw handle of window
-        /// </summary>
-        /// <returns>The native handle of window</returns>
-        /// <since_tizen> 6 </since_tizen>
-        public IntPtr GetRaw()
-        {
-            return _win.RealHandle;
-        }
-
-        /// <summary>
-        /// Gets the resource ID of window
-        /// </summary>
-        /// <returns>The native handle of window</returns>
-        /// <since_tizen> 6 </since_tizen>
-        public int GetResId()
-        {
-            if (_resId == 0)
-            {
-                int err = Interop.EflCBApplication.GetResourceId(GetRaw(), out _resId);
-                if (err != 0)
-                    Log.Info(LogTag, "elm_config_accel_preference_set is not called");
-            }
-
-            return _resId;
-        }
-    }
-
 }

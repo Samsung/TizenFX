@@ -5,6 +5,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// Interface for window
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
     public interface IWindow
     {
         /// <summary>

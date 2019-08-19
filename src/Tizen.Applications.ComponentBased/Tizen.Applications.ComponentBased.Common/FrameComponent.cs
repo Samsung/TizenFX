@@ -7,12 +7,55 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// The class for showing UI module
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
     public abstract class FrameComponent : BaseComponent
     {
+        /// <summary>
+        /// Enumeration for display status.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public enum DisplayStatus
+        {
+            /// <summary>
+            /// The display status is on
+            /// </summary>
+            On = Interop.CBApplication.NativeDisplayStatus.On,
+
+            /// <summary>
+            /// The display status is off
+            /// </summary>
+            Off = Interop.CBApplication.NativeDisplayStatus.Off
+        }
+
+        /// <summary>
+        /// Gets the display status of a component.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when component type is already added to the component.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public DisplayStatus CurrentDisplayStatus
+        {
+            get
+            {
+                Interop.CBApplication.NativeDisplayStatus status;
+                Interop.CBApplication.ErrorCode err = Interop.CBApplication.BaseFrameGetDisplayStatus(Handle, out status);
+                if (err != Interop.CBApplication.ErrorCode.None)
+                    throw new InvalidOperationException("Fail to get display status : err(" + err + ")");
+
+                return (DisplayStatus)status;
+            }
+        }
+
+        /// <summary>
+        /// Gets the frame component's window.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IWindow Window { get; internal set; }
+
         /// <summary>
         /// Overrides this method if want to handle behavior when the component is launched.
         /// </summary>
         /// <returns>Window object to use</returns>
+        /// <since_tizen> 6 </since_tizen>
         public virtual IWindow OnCreate()
         {
             return null;
@@ -23,6 +66,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="appControl">appcontrol object</param>
         /// <param name="restarted">True if it was restarted</param>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnStart(AppControl appControl, bool restarted)
         {
         }
@@ -30,6 +74,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is resumed.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnResume()
         {
         }
@@ -37,6 +82,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is paused.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnPause()
         {
         }
@@ -44,21 +90,23 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is stopped.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnStop()
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component is terminated.
+        /// Overrides this method if want to handle behavior when the component is destroyed.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnDestroy()
         {
         }
 
         /// <summary>
-        /// Overrides this method if you want to specify a type of this component.
-        /// Default component type is Service type.
+        /// Gets the component type.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public override ComponentType GetComponentType()
         {
             return BaseComponent.ComponentType.Frame;

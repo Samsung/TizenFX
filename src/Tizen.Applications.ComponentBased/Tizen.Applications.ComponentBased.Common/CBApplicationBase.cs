@@ -6,17 +6,19 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <summary>
     /// The class for supporting multi-components based application model.
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
     public class CBApplicationBase : Application
     {
-        private bool _disposedValue = false;
-        internal static readonly string LogTag = typeof(CBApplicationBase).Namespace;
-        internal IList<BaseType> ComponentTypes = new List<BaseType>();
+        private const string LogTag = "Tizen.Applications.CBApplicationBase";
+        private IList<BaseType> ComponentTypes = new List<BaseType>();
         private Interop.CBApplication.CBAppLifecycleCallbacks _callbacks;
+        private bool _disposedValue = false;
 
         /// <summary>
         /// Initializes the CBApplicationBase class.
         /// </summary>
-        /// <param name="typeInfo">The compnent type information.</param>
+        /// <param name="typeInfo">The component type information.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <since_tizen> 6 </since_tizen>
         public CBApplicationBase(IDictionary<Type, string> typeInfo)
         {
@@ -29,7 +31,40 @@ namespace Tizen.Applications.ComponentBased.Common
 
             foreach (Type t in typeInfo.Keys)
             {
-                RegisterComponent(typeInfo[t], t);
+                RegisterComponent(t, typeInfo[t]);
+            }
+        }
+
+        /// <summary>
+        /// Registers a component.
+        /// </summary>
+        /// <param name="compType">Class type</param>
+        /// <param name="compId">Component ID</param>
+        /// <exception cref="InvalidOperationException">Thrown when component type is already added.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public void RegisterComponent(Type compType, string compId)
+        {
+            foreach (BaseType type in ComponentTypes)
+            {
+                if (compType.BaseType == type._classType)
+                    throw new InvalidOperationException("Already exist type");
+            }
+
+            if (compType.BaseType == typeof(BaseComponent))
+            {
+                Log.Info(LogTag, "Add base comp");
+                BaseComponent b = Activator.CreateInstance(compType) as BaseComponent;
+                ComponentTypes.Add(new BaseType(compType, compId, b.GetComponentType(), this));
+            }
+            else if (compType.BaseType == typeof(FrameComponent))
+            {
+                Log.Info(LogTag, "Add frame comp");
+                ComponentTypes.Add(new FrameType(compType, compId, this));
+            }
+            else if (compType.BaseType == typeof(ServiceComponent))
+            {
+                Log.Info(LogTag, "Add service comp");
+                ComponentTypes.Add(new ServiceType(compType, compId, this));
             }
         }
 
@@ -37,6 +72,8 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Runs the application's main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when component type is already added to the component.</exception>
         /// <since_tizen> 6 </since_tizen>
         public override void Run(string[] args)
         {
@@ -53,6 +90,7 @@ namespace Tizen.Applications.ComponentBased.Common
             if (err != Interop.CBApplication.ErrorCode.None)
             {
                 Log.Error(LogTag, "Failed to run the application. Err = " + err);
+                throw new InvalidOperationException("Fail to run application : err(" + err + ")");
             }
         }
 
@@ -63,43 +101,6 @@ namespace Tizen.Applications.ComponentBased.Common
         public override void Exit()
         {
             Interop.CBApplication.BaseExit();
-        }
-
-        /// <summary>
-        /// Registers a component.
-        /// </summary>
-        /// <param name="compId">Component ID</param>
-        /// <param name="compType">Class type</param>
-        public void RegisterComponent(string compId, Type compType)
-        {
-            if (compType.BaseType == typeof(BaseComponent))
-            {
-                Log.Info(LogTag, "Add base comp");
-                BaseComponent b = Activator.CreateInstance(compType) as BaseComponent;
-                ComponentTypes.Add(new BaseType(compType, compId, b.GetComponentType()));
-            }
-            else if (compType.BaseType == typeof(FrameComponent))
-            {
-                Log.Info(LogTag, "Add frame comp");
-                ComponentTypes.Add(new FrameType(compType, compId));
-            }
-            else if (compType.BaseType == typeof(ServiceComponent))
-            {
-                Log.Info(LogTag, "Add service comp");
-                ComponentTypes.Add(new ServiceType(compType, compId));
-            }
-        }
-
-        /// <summary>
-        /// Registers a component.
-        /// </summary>
-        /// <param name="typeInfo">Class type</param>
-        public void RegisterComponent(IDictionary<Type, string> typeInfo)
-        {
-            foreach (Type t in typeInfo.Keys)
-            {
-                RegisterComponent(typeInfo[t], t);
-            }
         }
 
         private IntPtr OnCreateNative(IntPtr data)
@@ -159,6 +160,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// This method will be called before running main-loop
         /// </summary>
         /// <param name="args"></param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnInit(string[] args)
         {
         }
@@ -166,6 +168,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// This method will be called after exiting main-loop
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnFini()
         {
         }
@@ -173,6 +176,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// This method will be called to start main-loop
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnRun()
         {
         }
@@ -180,6 +184,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// This method will be called to exit main-loop
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnExit()
         {
         }
