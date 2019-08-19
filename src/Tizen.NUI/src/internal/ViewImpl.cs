@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -102,13 +102,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        internal void SetBackgroundImage(Image image)
-        {
-            Interop.ViewImpl.ViewImpl_SetBackgroundImage(swigCPtr, Image.getCPtr(image));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public void SetBackground(PropertyMap map)
         {
             Interop.ViewImpl.ViewImpl_SetBackground(swigCPtr, PropertyMap.getCPtr(map));

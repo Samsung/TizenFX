@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary progressbar internal part class</summary>
 [Efl.Ui.ProgressbarLegacyPart.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class ProgressbarLegacyPart : Efl.Ui.LayoutPartContent
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class ProgressbarLegacyPart : Efl.Ui.LayoutPartContent
     /// <summary>Initializes a new instance of the <see cref="ProgressbarLegacyPart"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ProgressbarLegacyPart(Efl.Object parent= null
-            ) : base(efl_ui_progressbar_legacy_part_class_get(), typeof(ProgressbarLegacyPart), parent)
+            ) : base(efl_ui_progressbar_legacy_part_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ProgressbarLegacyPart(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ProgressbarLegacyPart"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ProgressbarLegacyPart(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ProgressbarLegacyPart(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="ProgressbarLegacyPart"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ProgressbarLegacyPart(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ProgressbarLegacyPart(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

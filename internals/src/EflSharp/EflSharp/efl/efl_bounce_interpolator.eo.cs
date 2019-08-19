@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Efl bounce interpolator class</summary>
 [Efl.BounceInterpolator.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class BounceInterpolator : Efl.Object, Efl.IInterpolator
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -32,24 +33,29 @@ public class BounceInterpolator : Efl.Object, Efl.IInterpolator
     /// <summary>Initializes a new instance of the <see cref="BounceInterpolator"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public BounceInterpolator(Efl.Object parent= null
-            ) : base(efl_bounce_interpolator_class_get(), typeof(BounceInterpolator), parent)
+            ) : base(efl_bounce_interpolator_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected BounceInterpolator(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="BounceInterpolator"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected BounceInterpolator(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected BounceInterpolator(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="BounceInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected BounceInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected BounceInterpolator(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -57,21 +63,21 @@ public class BounceInterpolator : Efl.Object, Efl.IInterpolator
     /// <param name="factor1">First factor of the interpolation function.</param>
     /// <param name="factor2">Second factor of the interpolation function.</param>
     virtual public void GetFactors(out double factor1, out double factor2) {
-                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out factor1, out factor2);
+                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out factor1, out factor2);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Factors property</summary>
     /// <param name="factor1">First factor of the interpolation function.</param>
     /// <param name="factor2">Second factor of the interpolation function.</param>
     virtual public void SetFactors(double factor1, double factor2) {
-                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),factor1, factor2);
+                                                         Efl.BounceInterpolator.NativeMethods.efl_bounce_interpolator_factors_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),factor1, factor2);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Interpolate the given value.</summary>
     /// <param name="progress">Input value mapped from 0.0 to 1.0.</param>
     /// <returns>Output value calculated by interpolating the input value.</returns>
     virtual public double Interpolate(double progress) {
-                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),progress);
+                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }

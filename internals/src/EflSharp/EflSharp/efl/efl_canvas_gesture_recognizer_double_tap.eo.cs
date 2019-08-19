@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>EFL Gesture Recognizer Double Tap class</summary>
 [Efl.Canvas.GestureRecognizerDoubleTap.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GestureRecognizerDoubleTap : Efl.Canvas.GestureRecognizer
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,38 +35,43 @@ public class GestureRecognizerDoubleTap : Efl.Canvas.GestureRecognizer
     /// <summary>Initializes a new instance of the <see cref="GestureRecognizerDoubleTap"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureRecognizerDoubleTap(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_recognizer_double_tap_class_get(), typeof(GestureRecognizerDoubleTap), parent)
+            ) : base(efl_canvas_gesture_recognizer_double_tap_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GestureRecognizerDoubleTap(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GestureRecognizerDoubleTap"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GestureRecognizerDoubleTap(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GestureRecognizerDoubleTap(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GestureRecognizerDoubleTap"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GestureRecognizerDoubleTap(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GestureRecognizerDoubleTap(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Sets the time between taps to be recognized as a double tap</summary>
     /// <returns>Allowed time gap value</returns>
     virtual public double GetTimeout() {
-         var _ret_var = Efl.Canvas.GestureRecognizerDoubleTap.NativeMethods.efl_gesture_recognizer_double_tap_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.GestureRecognizerDoubleTap.NativeMethods.efl_gesture_recognizer_double_tap_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the time between taps to be recognized as a double tap</summary>
     /// <param name="time">Allowed time gap value</param>
     virtual public void SetTimeout(double time) {
-                                 Efl.Canvas.GestureRecognizerDoubleTap.NativeMethods.efl_gesture_recognizer_double_tap_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),time);
+                                 Efl.Canvas.GestureRecognizerDoubleTap.NativeMethods.efl_gesture_recognizer_double_tap_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets the time between taps to be recognized as a double tap</summary>

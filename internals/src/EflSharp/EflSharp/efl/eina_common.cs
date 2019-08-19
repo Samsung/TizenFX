@@ -75,6 +75,30 @@ public static class MemoryNative
         return NativeCustomExportFunctions.efl_mono_native_strdup(str);
     }
 
+    public static IntPtr AddStringshare(string str)
+    {
+        IntPtr nativeStr = StringConversion.ManagedStringToNativeUtf8Alloc(str);
+        try
+        {
+            var strShare = NativeMethods.eina_stringshare_add(nativeStr);
+            return strShare;
+        }
+        finally
+        {
+            Eina.MemoryNative.Free(nativeStr);
+        }
+    }
+
+    public static void DelStringshare(IntPtr str)
+    {
+        NativeMethods.eina_stringshare_del(str);
+    }
+
+    public static void DelStringshareRef(IntPtr ptr)
+    {
+        NativeMethods.efl_mono_native_stringshare_del_ref(ptr);
+    }
+
     // IntPtr's for some native functions
     public static IntPtr PtrCompareFuncPtrGet()
     {
@@ -89,6 +113,11 @@ public static class MemoryNative
     public static IntPtr FreeFuncPtrGet()
     {
         return NativeCustomExportFunctions.efl_mono_native_free_addr_get();
+    }
+
+    public static IntPtr StringshareDelFuncPtrGet()
+    {
+        return NativeMethods.efl_mono_native_stringshare_del_addr_get();
     }
 
     public static IntPtr EflUnrefFuncPtrGet()
@@ -130,9 +159,17 @@ public static class StringConversion
 
         byte[] strbuf = Encoding.UTF8.GetBytes(managedString);
         IntPtr native = MemoryNative.Alloc(strbuf.Length + 1);
-        Marshal.Copy(strbuf, 0, native, strbuf.Length);
-        Marshal.WriteByte(native + strbuf.Length, 0); // write the terminating null
-        return native;
+        try
+        {
+            Marshal.Copy(strbuf, 0, native, strbuf.Length);
+            Marshal.WriteByte(native + strbuf.Length, 0); // write the terminating null
+            return native;
+        }
+        catch(Exception e)
+        {
+            MemoryNative.Free(native);
+            throw e;
+        }
     }
 
     public static string NativeUtf8ToManagedString(IntPtr pNativeData)

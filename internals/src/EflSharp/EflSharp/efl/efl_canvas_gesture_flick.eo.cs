@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>EFL Gesture Flick class</summary>
 [Efl.Canvas.GestureFlick.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GestureFlick : Efl.Canvas.Gesture
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,38 +35,43 @@ public class GestureFlick : Efl.Canvas.Gesture
     /// <summary>Initializes a new instance of the <see cref="GestureFlick"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureFlick(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_flick_class_get(), typeof(GestureFlick), parent)
+            ) : base(efl_canvas_gesture_flick_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GestureFlick(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GestureFlick"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GestureFlick(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GestureFlick(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GestureFlick"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GestureFlick(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GestureFlick(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Gets flick gesture momentum value</summary>
     /// <returns>The momentum vector</returns>
     virtual public Eina.Vector2 GetMomentum() {
-         var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_momentum_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_momentum_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets flick direction angle</summary>
     /// <returns>The angle value</returns>
     virtual public double GetAngle() {
-         var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_angle_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_angle_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }

@@ -91,6 +91,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_device_orientation")]
         internal static extern ErrorCode AppEventGetDeviceOrientation(IntPtr handle, out DeviceOrientation orientation);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_suspended_state")]
+        internal static extern ErrorCode AppEventGetSuspendedState(IntPtr handle, out SuspendedState state);
     }
 }
 

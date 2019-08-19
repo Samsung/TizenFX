@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>Efl translate animation class</summary>
 [Efl.Canvas.AnimationTranslate.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class AnimationTranslate : Efl.Canvas.Animation
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,24 +35,29 @@ public class AnimationTranslate : Efl.Canvas.Animation
     /// <summary>Initializes a new instance of the <see cref="AnimationTranslate"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationTranslate(Efl.Object parent= null
-            ) : base(efl_canvas_animation_translate_class_get(), typeof(AnimationTranslate), parent)
+            ) : base(efl_canvas_animation_translate_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AnimationTranslate(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AnimationTranslate"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AnimationTranslate(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AnimationTranslate(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationTranslate"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AnimationTranslate(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AnimationTranslate(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -61,7 +67,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
     /// <param name="to_x">Distance moved along x axis when animation ends</param>
     /// <param name="to_y">Distance moved along y axis when animation ends</param>
     virtual public void GetTranslate(out int from_x, out int from_y, out int to_x, out int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from_x, out from_y, out to_x, out to_y);
+                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_x, out from_y, out to_x, out to_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Translate property</summary>
@@ -70,7 +76,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
     /// <param name="to_x">Distance moved along x axis when animation ends</param>
     /// <param name="to_y">Distance moved along y axis when animation ends</param>
     virtual public void SetTranslate(int from_x, int from_y, int to_x, int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from_x, from_y, to_x, to_y);
+                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_x, from_y, to_x, to_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Translate absolute property</summary>
@@ -79,7 +85,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
     /// <param name="to_x">X coordinate when animation ends</param>
     /// <param name="to_y">Y coordinate when animation ends</param>
     virtual public void GetTranslateAbsolute(out int from_x, out int from_y, out int to_x, out int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from_x, out from_y, out to_x, out to_y);
+                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_x, out from_y, out to_x, out to_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Translate absolute property</summary>
@@ -88,7 +94,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
     /// <param name="to_x">X coordinate when animation ends</param>
     /// <param name="to_y">Y coordinate when animation ends</param>
     virtual public void SetTranslateAbsolute(int from_x, int from_y, int to_x, int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from_x, from_y, to_x, to_y);
+                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_x, from_y, to_x, to_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     private static IntPtr GetEflClassStatic()

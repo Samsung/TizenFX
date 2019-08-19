@@ -74,10 +74,6 @@ namespace Tizen.NUI
             public static extern void Adaptor_SetRenderRefreshRate(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetUseHardwareVSync")]
-            public static extern void Adaptor_SetUseHardwareVSync(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_Get")]
             public static extern global::System.IntPtr Adaptor_Get();
 
@@ -92,10 +88,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_NotifyLanguageChanged")]
             public static extern void Adaptor_NotifyLanguageChanged(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetMinimumPinchDistance")]
-            public static extern void Adaptor_SetMinimumPinchDistance(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_FeedTouchPoint")]

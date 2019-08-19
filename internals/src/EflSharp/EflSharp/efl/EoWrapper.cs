@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Reflection;
 
 namespace Efl
 {
@@ -9,21 +10,56 @@ namespace Efl
 namespace Eo
 {
 
+/// <summary>
+/// Abstract class that delivers base level binding to Efl Objects.
+///
+/// Most of it is protected functionalities to serve the generated
+/// binding classes that inherit from it.
+/// </summary>
 public abstract class EoWrapper : IWrapper, IDisposable
 {
-    protected readonly object eventLock = new object();
-    protected bool inherited = false;
-    protected System.IntPtr handle = IntPtr.Zero;
+    /// <summary>Object used to synchronize access to EFL events.</summary>
+    protected readonly object eflBindingEventLock = new object();
+    private bool generated = true;
+    private System.IntPtr handle = IntPtr.Zero;
 
     private static Efl.EventCb ownershipUniqueDelegate = new Efl.EventCb(OwnershipUniqueCallback);
     private static Efl.EventCb ownershipSharedDelegate = new Efl.EventCb(OwnershipSharedCallback);
 
-    /// <summary>Initializes a new instance of the <see cref="Object"/> class.
-    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected EoWrapper(System.IntPtr raw)
+
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.
+    /// For a class that inherited from an EFL# class to be properly constructed from native code
+    /// one must create a constructor with this signature and calls this base constructor from it.
+    /// This constructor will take care of calling base constructors of the native classes and
+    /// perform additional setup so objects are ready to use.
+    /// It is advisable to check for the <see cref="NativeHandle"/> property in the top level
+    /// constructor and signal an error when it has a value of IntPtr.Zero after this
+    /// constructor completion.
+    /// Warning: Do not use this constructor directly from a `new` statement.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected EoWrapper(ConstructingHandle ch)
     {
-        handle = raw;
+        generated = false;
+        handle = Efl.Eo.Globals.efl_constructor(Efl.Eo.Globals.efl_super(ch.NativeHandle, Efl.Eo.Globals.efl_class_get(ch.NativeHandle)));
+        if (handle == IntPtr.Zero)
+        {
+            Eina.Log.Warning("Natice constructor returned NULL");
+            return;
+        }
+
+        AddWrapperSupervisor();
+        // Make an additional reference to C#
+        // - Will also call EVENT_OWNERSHIP_SHARED
+        Efl.Eo.Globals.efl_ref(handle);
+    }
+
+    /// <summary>Initializes a new instance of the <see cref="Object"/> class.
+    /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.
+    /// Do not implement this constructor.</summary>
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected EoWrapper(Efl.Eo.Globals.WrappingHandle wh)
+    {
+        handle = wh.NativeHandle;
         AddWrapperSupervisor();
     }
 
@@ -31,17 +67,16 @@ public abstract class EoWrapper : IWrapper, IDisposable
     /// Internal usage: Constructor to actually call the native library constructors. C# subclasses
     /// must use the public constructor only.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
     /// <param name="file">Name of the file from where the constructor is called.</param>
     /// <param name="line">Number of the line from where the constructor is called.</param>
-    protected EoWrapper(IntPtr baseKlass, System.Type managedType, Efl.Object parent,
+    protected EoWrapper(IntPtr baseKlass, Efl.Object parent,
                         [CallerFilePath] string file = null,
                         [CallerLineNumber] int line = 0)
     {
-        inherited = ((object)this).GetType() != managedType;
+        generated = Efl.Eo.BindingEntity.IsBindingEntity(((object)this).GetType());
         IntPtr actual_klass = baseKlass;
-        if (inherited)
+        if (!generated)
         {
             actual_klass = Efl.Eo.ClassRegister.GetInheritKlassOrRegister(baseKlass, ((object)this).GetType());
         }
@@ -54,7 +89,17 @@ public abstract class EoWrapper : IWrapper, IDisposable
             parent_ptr = parent.NativeHandle;
         }
 
-        handle = Efl.Eo.Globals._efl_add_internal_start(file, line, actual_klass, parent_ptr, 1, 0);
+        if (generated)
+        {
+            handle = Efl.Eo.Globals._efl_add_internal_start(file, line, actual_klass, parent_ptr, 1, 0);
+        }
+        else
+        {
+            handle = Efl.Eo.Globals._efl_add_internal_start_bindings(file, line, actual_klass, parent_ptr, 1, 0,
+                                                                     Efl.Eo.Globals.efl_mono_avoid_top_level_constructor_callback_addr_get(),
+                                                                     IntPtr.Zero);
+        }
+
         if (handle == System.IntPtr.Zero)
         {
             throw new Exception("Instantiation failed");
@@ -83,6 +128,20 @@ public abstract class EoWrapper : IWrapper, IDisposable
     public abstract System.IntPtr NativeClass
     {
         get;
+    }
+
+    /// <summary>
+    /// Whether this object type is one of the generated binding classes or a custom
+    /// class defined by the user and that inherit from one of the generated ones.
+    /// </summary>
+    /// <returns>
+    /// True if this object type is one of the generated binding classes,
+    /// false if it is class that is manually defined and that inherits from
+    /// one of the generated ones, including user defined classes.
+    /// </returns>
+    protected bool IsGeneratedBindingClass
+    {
+        get { return generated; }
     }
 
     /// <summary>Releases the underlying native instance.</summary>
@@ -225,7 +284,7 @@ public abstract class EoWrapper : IWrapper, IDisposable
         ws.MakeShared();
     }
 
-    /// <sumary>Create and set to the internal native state a C# supervisor for this Eo wrapper. For internal use only.</sumary>
+    /// <summary>Create and set to the internal native state a C# supervisor for this Eo wrapper. For internal use only.</summary>
     private void AddWrapperSupervisor()
     {
         var ws = new Efl.Eo.WrapperSupervisor(this);
@@ -246,8 +305,88 @@ public abstract class EoWrapper : IWrapper, IDisposable
         AddNativeEventHandler(efl.Libs.Eo, "_EFL_EVENT_OWNERSHIP_SHARED", ownershipSharedDelegate, ownershipSharedDelegate);
         Eina.Error.RaiseIfUnhandledException();
     }
+
+    /// <summary>
+    /// Struct to be used when constructing objects from native code.
+    /// Wraps the pointer handle to the native object instance.
+    /// </summary>
+    protected struct ConstructingHandle
+    {
+        /// <summary>Constructor for wrapping the native handle.</summary>
+        public ConstructingHandle(IntPtr h)
+        {
+            NativeHandle = h;
+        }
+
+        /// <summary>Pointer to the native instance.</summary>
+        public IntPtr NativeHandle { get; private set; }
+    }
+
+    /// <summary>Wrapper for native methods and virtual method delegates.
+    /// For internal use by generated code only.</summary>
+    public abstract class NativeMethods : Efl.Eo.NativeClass
+    {
+        private static EflConstructorDelegate csharpEflConstructorStaticDelegate = new EflConstructorDelegate(Constructor);
+        private static Efl.Eo.NativeModule EoModule = new Efl.Eo.NativeModule(efl.Libs.Eo);
+
+        private delegate IntPtr EflConstructorDelegate(IntPtr obj, IntPtr pd);
+
+        /// <summary>Gets the list of Eo operations to override.</summary>
+        /// <returns>The list of Eo operations to be overload.</returns>
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(Type type)
+        {
+            var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+
+            descs.Add(new Efl_Op_Description()
+            {
+                api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(EoModule.Module, "efl_constructor"),
+                func = Marshal.GetFunctionPointerForDelegate(csharpEflConstructorStaticDelegate)
+            });
+
+            return descs;
+        }
+
+        private static IntPtr Constructor(IntPtr obj, IntPtr pd)
+        {
+            try
+            {
+                var eoKlass = Efl.Eo.Globals.efl_class_get(obj);
+                var managedType = ClassRegister.GetManagedType(eoKlass);
+                if (managedType == null)
+                {
+                    IntPtr nativeName = Efl.Eo.Globals.efl_class_name_get(eoKlass);
+                    var name = Eina.StringConversion.NativeUtf8ToManagedString(nativeName);
+                    Eina.Log.Warning($"Can't get Managed class for object handle 0x{(UInt64)obj:x} with native class [{name}]");
+                    return IntPtr.Zero;
+                }
+
+                var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+                ConstructorInfo constructor = managedType.GetConstructor(flags, null, new Type[1] { typeof(ConstructingHandle) }, null);
+                if (constructor == null)
+                {
+                    Eina.Log.Error($"Type {managedType.FullName} lacks a constructor that receives a ConstructingHandle. It can not be constructed from native code.");
+                    return IntPtr.Zero;
+                }
+
+                var eoWrapper = (Efl.Eo.IWrapper) constructor.Invoke(new object[1] { new ConstructingHandle(obj) });
+                if (eoWrapper == null)
+                {
+                    Eina.Log.Warning("Constructor was unable to create a new object");
+                    return IntPtr.Zero;
+                }
+
+                return eoWrapper.NativeHandle;
+            }
+            catch (Exception e)
+            {
+                Eina.Log.Warning($"Inherited constructor error: {e.ToString()}");
+                Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                return IntPtr.Zero;
+            }
+        }
+    }
 }
 
-} // namespace Global
+} // namespace Eo
 
 } // namespace Efl

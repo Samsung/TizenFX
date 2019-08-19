@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl Ui Layout Factory class</summary>
 [Efl.Ui.LayoutFactory.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LayoutFactory : Efl.Ui.CachingFactory
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class LayoutFactory : Efl.Ui.CachingFactory
         efl_ui_layout_factory_class_get();
     /// <summary>Initializes a new instance of the <see cref="LayoutFactory"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass"/></param>
+    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
     public LayoutFactory(Efl.Object parent
-            , Type itemClass = null) : base(efl_ui_layout_factory_class_get(), typeof(LayoutFactory), parent)
+            , Type itemClass = null) : base(efl_ui_layout_factory_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(itemClass))
         {
@@ -45,19 +46,24 @@ public class LayoutFactory : Efl.Ui.CachingFactory
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LayoutFactory(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LayoutFactory"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LayoutFactory(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LayoutFactory(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LayoutFactory"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LayoutFactory(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LayoutFactory(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class LayoutFactory : Efl.Ui.CachingFactory
     /// <param name="group">The group.</param>
     /// <param name="style">The style to used.</param>
     virtual public void ThemeConfig(System.String klass, System.String group, System.String style) {
-                                                                                 Efl.Ui.LayoutFactory.NativeMethods.efl_ui_layout_factory_theme_config_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),klass, group, style);
+                                                                                 Efl.Ui.LayoutFactory.NativeMethods.efl_ui_layout_factory_theme_config_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, group, style);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     private static IntPtr GetEflClassStatic()

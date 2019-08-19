@@ -18,6 +18,7 @@ namespace Focus {
 /// 
 /// You can filter the border elements by overriding the property <see cref="Efl.Ui.Focus.IManager.GetBorderElements"/>.</summary>
 [Efl.Ui.Focus.IManagerSubConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IManagerSub : 
     Efl.Ui.Focus.IManager ,
     Efl.Eo.IWrapper, IDisposable
@@ -50,11 +51,18 @@ sealed public class IManagerSubConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IManagerSubConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_manager_sub_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IManagerSub"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IManagerSubConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IManagerSubConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -64,7 +72,7 @@ sealed public class IManagerSubConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -92,7 +100,7 @@ sealed public class IManagerSubConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -119,7 +127,7 @@ sealed public class IManagerSubConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -146,7 +154,7 @@ sealed public class IManagerSubConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -172,7 +180,7 @@ sealed public class IManagerSubConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -199,7 +207,7 @@ sealed public class IManagerSubConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -225,7 +233,7 @@ sealed public class IManagerSubConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -253,7 +261,7 @@ sealed public class IManagerSubConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -280,7 +288,7 @@ sealed public class IManagerSubConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -308,7 +316,7 @@ sealed public class IManagerSubConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -377,7 +385,7 @@ sealed public class IManagerSubConcrete :
     public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
          var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Get all elements that are at the border of the viewport
     /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
@@ -388,7 +396,7 @@ sealed public class IManagerSubConcrete :
          Eina.Rect.NativeStruct _in_viewport = viewport;
                         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate(this.NativeHandle,_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Root node for all logical subtrees.
     /// This property can only be set once.
@@ -535,7 +543,7 @@ sealed public class IManagerSubConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

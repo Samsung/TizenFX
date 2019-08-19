@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Timepicker widget
 /// This is a widget which allows the user to pick a time using internal spinner. User can use the internal spinner to select hour, minute, AM/PM or user can input value using internal entry.</summary>
 [Efl.Ui.Timepicker.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Timepicker : Efl.Ui.LayoutBase
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class Timepicker : Efl.Ui.LayoutBase
         efl_ui_timepicker_class_get();
     /// <summary>Initializes a new instance of the <see cref="Timepicker"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Timepicker(Efl.Object parent
-            , System.String style = null) : base(efl_ui_timepicker_class_get(), typeof(Timepicker), parent)
+            , System.String style = null) : base(efl_ui_timepicker_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +47,24 @@ public class Timepicker : Efl.Ui.LayoutBase
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Timepicker(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Timepicker"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Timepicker(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Timepicker(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Timepicker"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Timepicker(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Timepicker(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -67,7 +73,7 @@ public class Timepicker : Efl.Ui.LayoutBase
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -94,7 +100,7 @@ public class Timepicker : Efl.Ui.LayoutBase
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_TIMEPICKER_EVENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -121,7 +127,7 @@ public class Timepicker : Efl.Ui.LayoutBase
     /// <param name="hour">The hour value from 0 to 23.</param>
     /// <param name="min">The minute value from 0 to 59.</param>
     virtual public void GetTime(out int hour, out int min) {
-                                                         Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_time_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out hour, out min);
+                                                         Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_time_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out hour, out min);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The current value of time
@@ -131,20 +137,20 @@ public class Timepicker : Efl.Ui.LayoutBase
     /// <param name="hour">The hour value from 0 to 23.</param>
     /// <param name="min">The minute value from 0 to 59.</param>
     virtual public void SetTime(int hour, int min) {
-                                                         Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_time_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hour, min);
+                                                         Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_time_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hour, min);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control if the Timepicker displays 24 hour time or 12 hour time including AM/PM button.</summary>
     /// <returns><c>true</c> to display the 24 hour time, <c>false</c> to display 12 hour time including AM/PM button.</returns>
     virtual public bool GetAmpm() {
-         var _ret_var = Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_ampm_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_ampm_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control if the Timepicker displays 24 hour time or 12 hour time including AM/PM button.</summary>
     /// <param name="is_24hour"><c>true</c> to display the 24 hour time, <c>false</c> to display 12 hour time including AM/PM button.</param>
     virtual public void SetAmpm(bool is_24hour) {
-                                 Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_ampm_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),is_24hour);
+                                 Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_ampm_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_24hour);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control if the Timepicker displays 24 hour time or 12 hour time including AM/PM button.</summary>

@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Interface for autorepeating clicks.
 /// This interface abstracts functions for enabling / disabling this feature. When enabled, keeping a button pressed will continuously emit the <c>repeated</c> event until the button is released. The time it takes until it starts emitting the event is given by <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
 [Efl.Ui.IAutorepeatConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IAutorepeat : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -98,11 +99,18 @@ sealed public class IAutorepeatConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IAutorepeatConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_autorepeat_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IAutorepeat"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IAutorepeatConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IAutorepeatConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -111,7 +119,7 @@ sealed public class IAutorepeatConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -138,7 +146,7 @@ sealed public class IAutorepeatConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -242,7 +250,7 @@ sealed public class IAutorepeatConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

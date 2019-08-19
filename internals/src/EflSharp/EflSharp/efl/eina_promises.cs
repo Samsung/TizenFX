@@ -180,6 +180,8 @@ public class Promise : IDisposable
     {
         SanityChecks();
         eina_promise_resolve(this.Handle, value);
+        // Promise will take care of releasing this value correctly.
+        value.ReleaseOwnership();
         this.Handle = IntPtr.Zero;
         // Resolving a cb does *not* call its cancellation callback, so we have to release the
         // lambda created in the constructor for cleanup.
@@ -224,11 +226,12 @@ public class Future
     /// </summary>
     public Future(IntPtr handle)
     {
-        Handle = ThenRaw(handle, (Eina.Value value) =>
+        handle = ThenRaw(handle, (Eina.Value value) =>
         {
             Handle = IntPtr.Zero;
             return value;
         });
+        Handle = handle;
     }
 
     /// <summary>
@@ -292,11 +295,13 @@ public class Future
     private static IntPtr ThenRaw(IntPtr previous, ResolvedCb cb)
     {
         FutureDesc desc = new FutureDesc();
-        desc.cb = NativeResolvedCb;
+        desc.cb = NativeResolvedCbDelegate;
         GCHandle handle = GCHandle.Alloc(cb);
         desc.data = GCHandle.ToIntPtr(handle);
         return eina_future_then_from_desc(previous, desc);
     }
+
+    private static FutureCb NativeResolvedCbDelegate = new FutureCb(NativeResolvedCb);
 
     private static Eina.ValueNative NativeResolvedCb(IntPtr data, Eina.ValueNative value, IntPtr dead_future)
     {
@@ -304,7 +309,12 @@ public class Future
         ResolvedCb cb = handle.Target as ResolvedCb;
         if (cb != null)
         {
-            value = cb(value);
+            Eina.Value managedValue = cb(value);
+            // Both `value` and `managedValue` will point to the same internal value data.
+            // Avoid C# wrapper invalidating the underlying C Eina_Value as the eina_future.c
+            // code will release it.
+            value = managedValue.GetNative();
+            managedValue.ReleaseOwnership();
         }
         else
         {
@@ -332,7 +342,7 @@ public class Future
             for (; i < cbsList.Count(); i++)
             {
                 ResolvedCb cb = cbsList[i];
-                descs[i].cb = NativeResolvedCb;
+                descs[i].cb = NativeResolvedCbDelegate;
                 GCHandle handle = GCHandle.Alloc(cb);
                 descs[i].data = GCHandle.ToIntPtr(handle);
             }

@@ -35,6 +35,7 @@ namespace Tizen.NUI
         private ResizedEventCallbackType _resizedEventCallback;
         private LanguageChangedEventCallbackType _languageChangedEventCallback;
         private KeyboardTypeChangedEventCallbackType _keyboardTypeChangedEventCallback;
+        private ContentReceivedCallbackType _contentReceivedEventCallback;
 
         /// <summary>
         /// Constructor.<br/>
@@ -58,6 +59,7 @@ namespace Tizen.NUI
         private delegate void ResizedEventCallbackType(int resized);
         private delegate void LanguageChangedEventCallbackType(int languageChanged);
         private delegate void KeyboardTypeChangedEventCallbackType(KeyboardType type);
+        private delegate void ContentReceivedCallbackType(string content, string description, string mimeType);
 
         private event EventHandler<ActivatedEventArgs> _activatedEventHandler;
         private event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> _eventReceivedEventHandler;
@@ -65,6 +67,7 @@ namespace Tizen.NUI
         private event EventHandler<ResizedEventArgs> _resizedEventHandler;
         private event EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
         private event EventHandler<KeyboardTypeChangedEventArgs> _keyboardTypeChangedEventHandler;
+        private event EventHandler<ContentReceivedEventArgs> _contentReceivedEventHandler;
 
         /// <summary>
         /// InputMethodContext activated.
@@ -224,6 +227,34 @@ namespace Tizen.NUI
                 if (_keyboardTypeChangedEventHandler == null && _keyboardTypeChangedEventCallback != null)
                 {
                     KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext content received.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ContentReceivedEventArgs> ContentReceived
+        {
+            add
+            {
+                if (_contentReceivedEventHandler == null)
+                {
+                    _contentReceivedEventCallback = OnContentReceived;
+                    ContentReceivedSignal().Connect(_contentReceivedEventCallback);
+                }
+
+                _contentReceivedEventHandler += value;
+            }
+            remove
+            {
+                _contentReceivedEventHandler -= value;
+
+                if (_contentReceivedEventHandler == null && _contentReceivedEventCallback != null)
+                {
+                    ContentReceivedSignal().Disconnect(_contentReceivedEventCallback);
                 }
             }
         }
@@ -610,6 +641,19 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the allowed MIME Type to deliver to the input panel. <br/>
+        /// For example, string mimeType = "text/plain,image/png,image/gif,application/pdf";
+        /// </summary>
+        /// <param name="mimeType">The allowed MIME type.</param>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMIMEType(string mimeType)
+        {
+            Interop.InputMethodContext.InputMethodContext_SetMIMEType(swigCPtr, mimeType);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodContext obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
@@ -691,6 +735,13 @@ namespace Tizen.NUI
         internal KeyboardTypeSignalType KeyboardTypeChangedSignal()
         {
             KeyboardTypeSignalType ret = new KeyboardTypeSignalType(Interop.InputMethodContext.InputMethodContext_KeyboardTypeChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ContentReceivedSignalType ContentReceivedSignal()
+        {
+            ContentReceivedSignalType ret = new ContentReceivedSignalType(Interop.InputMethodContext.InputMethodContext_ContentReceivedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -827,6 +878,19 @@ namespace Tizen.NUI
             if (_keyboardTypeChangedEventHandler != null)
             {
                 _keyboardTypeChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnContentReceived(string content, string description, string mimeType)
+        {
+            ContentReceivedEventArgs e = new ContentReceivedEventArgs();
+            e.Content = content;
+            e.Description = description;
+            e.MimeType = mimeType;
+
+            if (_contentReceivedEventHandler != null)
+            {
+                _contentReceivedEventHandler(this, e);
             }
         }
 
@@ -1365,6 +1429,45 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public KeyboardType KeyboardType
+            {
+                get;
+                set;
+            }
+        }
+
+        /// <summary>
+        /// InputMethodContext content received event arguments.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ContentReceivedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// The content, such as images, of input method
+            /// </summary>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string Content
+            {
+                get;
+                set;
+            }
+            /// <summary>
+            /// The description of content
+            /// </summary>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string Description
+            {
+                get;
+                set;
+            }
+            /// <summary>
+            /// The mime type of content, such as jpg, png, and so on
+            /// </summary>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string MimeType
             {
                 get;
                 set;

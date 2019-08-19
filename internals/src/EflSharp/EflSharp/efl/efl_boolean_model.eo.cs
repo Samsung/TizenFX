@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Efl boolean model class</summary>
 [Efl.BooleanModel.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class BooleanModel : Efl.CompositeModel
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -31,10 +32,10 @@ public class BooleanModel : Efl.CompositeModel
         efl_boolean_model_class_get();
     /// <summary>Initializes a new instance of the <see cref="BooleanModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel"/></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex"/></param>
+    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public BooleanModel(Efl.Object parent
-            , Efl.IModel model, uint? index = null) : base(efl_boolean_model_class_get(), typeof(BooleanModel), parent)
+            , Efl.IModel model, uint? index = null) : base(efl_boolean_model_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(model))
         {
@@ -49,38 +50,43 @@ public class BooleanModel : Efl.CompositeModel
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected BooleanModel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="BooleanModel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected BooleanModel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected BooleanModel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="BooleanModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected BooleanModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected BooleanModel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Add a new named boolean property with a defined default value.</summary>
     virtual public void AddBoolean(System.String name, bool default_value) {
-                                                         Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, default_value);
+                                                         Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, default_value);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Delete an existing named boolean property</summary>
     virtual public void DelBoolean(System.String name) {
-                                 Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get an iterator that will quickly find all the index with the requested value for a specific boolean.</summary>
     /// <returns>The iterator that is valid until any change is made on the model.</returns>
     virtual public Eina.Iterator<ulong> GetBooleanIterator(System.String name, bool request) {
-                                                         var _ret_var = Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_iterator_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, request);
+                                                         var _ret_var = Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_iterator_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, request);
         Eina.Error.RaiseIfUnhandledException();
-                                        return new Eina.Iterator<ulong>(_ret_var, false, false);
+                                        return new Eina.Iterator<ulong>(_ret_var, false);
  }
     private static IntPtr GetEflClassStatic()
     {

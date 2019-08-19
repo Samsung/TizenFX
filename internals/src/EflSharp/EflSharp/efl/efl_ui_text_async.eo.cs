@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI text async class</summary>
 [Efl.Ui.TextAsync.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class TextAsync : Efl.Ui.Text
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class TextAsync : Efl.Ui.Text
         efl_ui_text_async_class_get();
     /// <summary>Initializes a new instance of the <see cref="TextAsync"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public TextAsync(Efl.Object parent
-            , System.String style = null) : base(efl_ui_text_async_class_get(), typeof(TextAsync), parent)
+            , System.String style = null) : base(efl_ui_text_async_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class TextAsync : Efl.Ui.Text
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TextAsync(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TextAsync"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TextAsync(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TextAsync(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="TextAsync"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TextAsync(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TextAsync(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

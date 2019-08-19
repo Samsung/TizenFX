@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>An interval slider.
 /// This is a slider with two indicators.</summary>
 [Efl.Ui.SliderInterval.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class SliderInterval : Efl.Ui.Slider
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class SliderInterval : Efl.Ui.Slider
         efl_ui_slider_interval_class_get();
     /// <summary>Initializes a new instance of the <see cref="SliderInterval"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public SliderInterval(Efl.Object parent
-            , System.String style = null) : base(efl_ui_slider_interval_class_get(), typeof(SliderInterval), parent)
+            , System.String style = null) : base(efl_ui_slider_interval_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +47,24 @@ public class SliderInterval : Efl.Ui.Slider
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected SliderInterval(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="SliderInterval"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected SliderInterval(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected SliderInterval(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="SliderInterval"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected SliderInterval(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected SliderInterval(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,14 +72,14 @@ public class SliderInterval : Efl.Ui.Slider
     /// <param name="from">interval minimum value</param>
     /// <param name="to">interval maximum value</param>
     virtual public void GetIntervalValue(out double from, out double to) {
-                                                         Efl.Ui.SliderInterval.NativeMethods.efl_ui_slider_interval_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from, out to);
+                                                         Efl.Ui.SliderInterval.NativeMethods.efl_ui_slider_interval_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from, out to);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets up position of two indicators at start and end position.</summary>
     /// <param name="from">interval minimum value</param>
     /// <param name="to">interval maximum value</param>
     virtual public void SetIntervalValue(double from, double to) {
-                                                         Efl.Ui.SliderInterval.NativeMethods.efl_ui_slider_interval_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from, to);
+                                                         Efl.Ui.SliderInterval.NativeMethods.efl_ui_slider_interval_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from, to);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     private static IntPtr GetEflClassStatic()

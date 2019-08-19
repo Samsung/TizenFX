@@ -12,6 +12,7 @@ namespace Canvas {
 /// <summary>Object factory that creates Efl.Canvas.Object objects.
 /// Translates a given key to an object (item), to be later placed in a text for higher level usages. The translation implementation is left to be decided by the inheriting class, whether it is by treating the <c>key</c> as an image path, or a key associated with a real-path in a hashtable or something else entirely.</summary>
 [Efl.Canvas.ITextFactoryConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextFactory : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -43,11 +44,18 @@ sealed public class ITextFactoryConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextFactoryConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_text_factory_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextFactory"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextFactoryConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextFactoryConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -65,7 +73,7 @@ sealed public class ITextFactoryConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>

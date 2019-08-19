@@ -14,6 +14,7 @@ namespace Focus {
 /// <summary>This defines the inheriting widget as Composition widget.
 /// A composition widget is a widget that&apos;s the logical parent of another set of widgets which can be used for interaction.</summary>
 [Efl.Ui.Focus.ICompositionConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IComposition : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -91,11 +92,18 @@ sealed public class ICompositionConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ICompositionConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_composition_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IComposition"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ICompositionConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ICompositionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -177,7 +185,7 @@ logical_order.Own = false;
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>

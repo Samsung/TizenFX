@@ -10,6 +10,7 @@ namespace Efl {
 namespace Ui {
 
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ListViewLayoutItem
 {
     public Efl.Ui.Layout Layout;
@@ -113,7 +114,9 @@ public struct ListViewLayoutItem
 
 }
 
+/// <summary>TBD</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct EflUiListViewSegArray
 {
     ///<summary>Placeholder field</summary>

@@ -48,7 +48,7 @@ namespace Efl
                 /// </summary>
                 /// <param name="parent">The Efl.Ui.Widget to which the new MoreOption will be attached as a child.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public MoreOption(Efl.Ui.Widget parent) : base(Interop.Eext.eext_more_option_add(parent.NativeHandle))
+                public MoreOption(Efl.Ui.Widget parent) : base(new Efl.Eo.Globals.WrappingHandle(Interop.Eext.eext_more_option_add(parent.NativeHandle)))
                 {
                     smartClicked = new Interop.Evas.SmartCallback((d, o, e) =>
                     {

@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>Fds are objects that watch the activity on a given file descriptor. This file descriptor can be a network, a file, provided by a library.
 /// The object will trigger relevant events depending on what&apos;s happening.</summary>
 [Efl.LoopFd.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LoopFd : Efl.LoopConsumer
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,24 +34,29 @@ public class LoopFd : Efl.LoopConsumer
     /// <summary>Initializes a new instance of the <see cref="LoopFd"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopFd(Efl.Object parent= null
-            ) : base(efl_loop_fd_class_get(), typeof(LoopFd), parent)
+            ) : base(efl_loop_fd_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopFd(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopFd"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopFd(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopFd(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LoopFd"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopFd(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopFd(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -59,7 +65,7 @@ public class LoopFd : Efl.LoopConsumer
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -86,7 +92,7 @@ public class LoopFd : Efl.LoopConsumer
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_FD_EVENT_READ";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -111,7 +117,7 @@ public class LoopFd : Efl.LoopConsumer
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -138,7 +144,7 @@ public class LoopFd : Efl.LoopConsumer
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_FD_EVENT_WRITE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -163,7 +169,7 @@ public class LoopFd : Efl.LoopConsumer
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -190,7 +196,7 @@ public class LoopFd : Efl.LoopConsumer
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_FD_EVENT_ERROR";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
@@ -213,27 +219,27 @@ public class LoopFd : Efl.LoopConsumer
     /// <summary>Defines which file descriptor to watch. If it is a file, use file_fd variant.</summary>
     /// <returns>The file descriptor.</returns>
     virtual public int GetFd() {
-         var _ret_var = Efl.LoopFd.NativeMethods.efl_loop_fd_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopFd.NativeMethods.efl_loop_fd_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Defines the fd to watch.</summary>
     /// <param name="fd">The file descriptor.</param>
     virtual public void SetFd(int fd) {
-                                 Efl.LoopFd.NativeMethods.efl_loop_fd_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fd);
+                                 Efl.LoopFd.NativeMethods.efl_loop_fd_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fd);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines which file descriptor to watch when watching a file.</summary>
     /// <returns>The file descriptor.</returns>
     virtual public int GetFdFile() {
-         var _ret_var = Efl.LoopFd.NativeMethods.efl_loop_fd_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopFd.NativeMethods.efl_loop_fd_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Defines the fd to watch on.</summary>
     /// <param name="fd">The file descriptor.</param>
     virtual public void SetFdFile(int fd) {
-                                 Efl.LoopFd.NativeMethods.efl_loop_fd_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fd);
+                                 Efl.LoopFd.NativeMethods.efl_loop_fd_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fd);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines which file descriptor to watch. If it is a file, use file_fd variant.</summary>

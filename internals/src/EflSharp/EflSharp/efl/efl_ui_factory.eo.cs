@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI factory interface</summary>
 [Efl.Ui.IFactoryConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IFactory : 
     Efl.Ui.IFactoryBind ,
     Efl.Ui.IPropertyBind ,
@@ -35,6 +36,7 @@ void Release(Efl.Gfx.IEntity ui_view);
     event EventHandler<Efl.Ui.IFactoryCreatedEvt_Args> CreatedEvt;
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IFactory.CreatedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IFactoryCreatedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.FactoryItemCreatedEvent arg { get; set; }
@@ -61,11 +63,18 @@ sealed public class IFactoryConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IFactoryConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_factory_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFactory"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFactoryConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IFactoryConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -74,7 +83,7 @@ sealed public class IFactoryConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -102,7 +111,7 @@ sealed public class IFactoryConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FACTORY_EVENT_CREATED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -136,7 +145,7 @@ sealed public class IFactoryConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -164,7 +173,7 @@ sealed public class IFactoryConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -198,7 +207,7 @@ sealed public class IFactoryConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -226,7 +235,7 @@ sealed public class IFactoryConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -302,7 +311,7 @@ sealed public class IFactoryConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -519,6 +528,7 @@ namespace Ui {
 
 /// <summary>EFL Ui Factory event structure provided when an item was just created.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct FactoryItemCreatedEvent
 {
     /// <summary>The model already set on the new item.</summary>

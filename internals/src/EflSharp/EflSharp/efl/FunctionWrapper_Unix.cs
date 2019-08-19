@@ -18,9 +18,9 @@ public partial class FunctionInterop
     ///<returns>A function pointer that can be used with delegates.</returns>
     public static IntPtr LoadFunctionPointer(IntPtr nativeLibraryHandle, string functionName)
     {
-        Eina.Log.Debug("searching {nativeLibraryHandle} for {functionName}");
+        Eina.Log.Debug($"searching {nativeLibraryHandle} for {functionName}");
         var s = FunctionInterop.dlsym(nativeLibraryHandle, functionName);
-        Eina.Log.Debug("searching {nativeLibraryHandle} for {functionName}, result {s}");
+        Eina.Log.Debug($"searching {nativeLibraryHandle} for {functionName}, result {s}");
         return s;
     }
 }

@@ -14,6 +14,7 @@ namespace Efl {
 /// 
 /// Several containers can be supplied and the number of allocated children is based on the container of the largest size.</summary>
 [Efl.ContainerModel.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class ContainerModel : Efl.CompositeModel
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -36,10 +37,10 @@ public class ContainerModel : Efl.CompositeModel
         efl_container_model_class_get();
     /// <summary>Initializes a new instance of the <see cref="ContainerModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel"/></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex"/></param>
+    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public ContainerModel(Efl.Object parent
-            , Efl.IModel model, uint? index = null) : base(efl_container_model_class_get(), typeof(ContainerModel), parent)
+            , Efl.IModel model, uint? index = null) : base(efl_container_model_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(model))
         {
@@ -54,19 +55,24 @@ public class ContainerModel : Efl.CompositeModel
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ContainerModel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ContainerModel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ContainerModel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ContainerModel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="ContainerModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ContainerModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ContainerModel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -74,7 +80,7 @@ public class ContainerModel : Efl.CompositeModel
     /// <param name="name">Property name</param>
     /// <returns>Property type</returns>
     virtual public Eina.ValueType GetChildPropertyValueType(System.String name) {
-                                 var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_value_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_value_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -91,7 +97,7 @@ public class ContainerModel : Efl.CompositeModel
     virtual public bool AddChildProperty(System.String name, Eina.ValueType type, Eina.Iterator<System.IntPtr> values) {
                          var _in_values = values.Handle;
 values.Own = false;
-                                                        var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, type, _in_values);
+                                                        var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, type, _in_values);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -193,7 +199,7 @@ values.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        var _in_values = new Eina.Iterator<System.IntPtr>(values, true, false);
+                        var _in_values = new Eina.Iterator<System.IntPtr>(values, true);
                                                             bool _ret_var = default(bool);
                 try
                 {

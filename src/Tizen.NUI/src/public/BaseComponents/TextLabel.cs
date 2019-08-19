@@ -610,7 +610,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -628,7 +628,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -646,7 +646,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontStyleProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -664,7 +664,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -682,7 +682,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MultiLineProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -997,7 +997,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(LineSpacingProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -1087,7 +1087,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                NotifyPropertyChanged();
+                NotifyPropertyChangedAndRequestLayout();
             }
         }
 
@@ -1325,6 +1325,12 @@ namespace Tizen.NUI.BaseComponents
         private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
+        }
+
+        private void  NotifyPropertyChangedAndRequestLayout()
+        {
+            NotifyPropertyChanged();
+            Layout?.RequestLayout();
         }
 
         internal new class Property
