@@ -75,29 +75,34 @@ namespace Tizen.Applications
         public enum ComponentState
         {
             /// <summary>
-            /// The undefined state.
+            /// The Initialized state. This is the state when the component is constructed but OnCreate() is not called yet.
             /// </summary>
-            Undefined = 0,
+            Initialized = 0,
 
             /// <summary>
-            /// The Frame component is running in the foreground.
+            /// The created state. This state is reached after OnCreate() is called.
             /// </summary>
-            Foreground,
+            Created,
 
             /// <summary>
-            /// The Frame component is running in the background.
+            /// The started state. This state is reached after OnStart() or OnStartCommand() is called.
             /// </summary>
-            Background,
+            Started,
 
             /// <summary>
-            /// The Service component is running.
+            /// The resumed state. This state is reached after OnResume() is called.
             /// </summary>
-            Service,
+            Resumed,
 
             /// <summary>
-            /// The component is terminated.
+            /// The paused state. This state is reached after OnPause() is called.
             /// </summary>
-            Terminated,
+            Paused,
+
+            /// <summary>
+            /// The destroyed state. This state is reached right before OnDestroy() call.
+            /// </summary>
+            Destroyed
         }
 
         /// <summary>
