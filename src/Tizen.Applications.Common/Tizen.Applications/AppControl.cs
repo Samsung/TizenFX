@@ -588,7 +588,7 @@ namespace Tizen.Applications
                     case Interop.AppControl.ErrorCode.OutOfMemory:
                         throw new Exceptions.OutOfMemoryException("Out-of-memory");
                     case Interop.AppControl.ErrorCode.AppNotFound:
-                        throw new Exceptions.AppNotFoundException("App not found");
+                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
                     case Interop.AppControl.ErrorCode.LaunchRejected:
                         throw new Exceptions.LaunchRejectedException("Launch rejected");
                     case Interop.AppControl.ErrorCode.LaunchFailed:
@@ -710,7 +710,7 @@ namespace Tizen.Applications
                     case Interop.AppControl.ErrorCode.InvalidParameter:
                         throw new ArgumentException("Invalid Arguments");
                     case Interop.AppControl.ErrorCode.AppNotFound:
-                        throw new Exceptions.AppNotFoundException("App not found");
+                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
                     case Interop.AppControl.ErrorCode.LaunchRejected:
                         throw new Exceptions.LaunchRejectedException("Launch rejected");
                     case Interop.AppControl.ErrorCode.PermissionDenied:
