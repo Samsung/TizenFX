@@ -47,7 +47,7 @@ namespace Tizen.Multimedia
 
         internal void CheckDisabled()
         {
-            if (Player.AudioOffload.IsEnabled)
+            if (Features.IsSupported(PlayerFeatures.AudioOffload) && Player.AudioOffload.IsEnabled)
             {
                 throw new InvalidOperationException("the audio offload is enabled.");
             }
