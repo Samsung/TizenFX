@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         /// Gets the <see cref="Multimedia.Player"/> that owns this instance.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Player Player { get; }
+        internal Player Player { get; }
 
         /// <summary>
         /// Provides a means to retrieve audio offload information.
@@ -45,9 +45,10 @@ namespace Tizen.Multimedia
             Player = player;
         }
 
+        private bool _enabled;
         internal void CheckDisabled()
         {
-            if (Features.IsSupported(PlayerFeatures.AudioOffload) && Player.AudioOffload.IsEnabled)
+            if (_enabled)
             {
                 throw new InvalidOperationException("the audio offload is enabled.");
             }
@@ -56,10 +57,29 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Enables or disables the audio offload.
         /// </summary>
+        /// <value>The value indicating whether or not AudioOffload is enabled. The default value is false.</value>
+        /// <remarks><para>The player lets the hardware decode and render the sound if the audio offload is enabled.
+        /// This will reduce the power consumption, but will disable the ability to handle output PCM.
+        /// Please check the below list of functions which will not work if offloading is enabled.</para>
+        /// <para>If audio offload is enabled, the following functions will return <see cref="InvalidOperationException"/>
+        /// and they will not work at all even if they were called before offload is enabled.<br/>
+        /// <see cref="AudioEffect"/><br/>
+        /// <see cref="EqualizerBand"/><br/>
+        /// <see cref="PlayerTrackInfo"/><br/>
+        /// <see cref="Player.EnableExportingAudioData"/><br/>
+        /// <see cref="Player.AudioLatencyMode"/><br/>
+        /// <see cref="Player.SetPlaybackRate"/><br/>
+        /// <see cref="Player.ReplayGain"/><br/>
+        /// <see cref="Player.AudioPitch"/><br/>
+        /// <see cref="Player.AudioPitchEnabled"/><br/></para>
+        /// <para>To set, the player must be in the <see cref="PlayerState.Idle"/> state.
+        /// The sound stream type of the player should be <see cref="AudioStreamType.Media"/>.</para></remarks>
         /// <feature>http://tizen.org/feature/multimedia.player.audio_offload</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     Operation failed; internal error.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
@@ -79,19 +99,29 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateFeatureSupported(PlayerFeatures.AudioOffload);
                 Player.ValidateNotDisposed();
+                Player.ValidatePlayerState(PlayerState.Idle);
 
                 NativePlayer.SetAudioOffloadEnabled(Player.Handle, value).
                     ThrowIfFailed(Player, "Failed to set the audio offload of the player");
+                _enabled = value;
             }
         }
 
         /// <summary>
         /// Get a state whether or not the audio offload is activated.
         /// </summary>
+        /// <value>The value indicating whether or not AudioOffload is activated.</value>
+        /// <remarks>
+        /// Audio offload could be inactivated depending on the audio device capability even if the audio offload feature is supported.
+        /// The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// </remarks>
         /// <feature>http://tizen.org/feature/multimedia.player.audio_offload</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.<br/>
+        ///     -or-<br/>
         ///     Operation failed; internal error.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
@@ -101,6 +131,7 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateFeatureSupported(PlayerFeatures.AudioOffload);
                 Player.ValidateNotDisposed();
+                Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
                 NativePlayer.IsAudioOffloadActivated(Player.Handle, out var value).
                     ThrowIfFailed(Player, "Failed to get whether the audio offload of the player is enabled or not");
@@ -114,6 +145,7 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list contained all formats for audio offload.
         /// </returns>
+        /// <remarks>The supported media format can vary depending on the device capabilities.</remarks>
         /// <feature>http://tizen.org/feature/multimedia.player.audio_offload</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
