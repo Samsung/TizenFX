@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
     /// <since_tizen> 6 </since_tizen>
     public class AudioDuckingStateChangedEventArgs : EventArgs
     {
-        internal AudioDuckingStateChangedEventArgs(AudioDuckingHandle ducking, bool isDucked)
+        internal AudioDuckingStateChangedEventArgs(bool isDucked)
         {
             IsDucked = isDucked;
         }

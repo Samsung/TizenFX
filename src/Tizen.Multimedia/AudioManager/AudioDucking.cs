@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <seealso cref="AudioManager"/>
     /// <since_tizen> 6 </since_tizen>
-    public class AudioDucking : IDisposable
+    public sealed class AudioDucking : IDisposable
     {
         private AudioDuckingHandle _handle;
         private bool _disposed = false;
@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioDucking"/> class with <see cref="AudioStreamType"/>.
         /// </summary>
-        /// <param name="targetType">The type of the sound stream for which the policy needs to be created.</param>
+        /// <param name="targetType">The type of sound stream to be affected by this new instance.</param>
         /// <exception cref="ArgumentException"><paramref name="targetType"/> is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public AudioDucking(AudioStreamType targetType)
@@ -43,7 +43,7 @@ namespace Tizen.Multimedia
             _duckingStateChangedCallback = (AudioDuckingHandle ducking, bool isDucked, IntPtr _) =>
             {
                 DuckingStateChanged?.Invoke(this,
-                    new AudioDuckingStateChangedEventArgs(Handle, IsDucked));
+                    new AudioDuckingStateChangedEventArgs(IsDucked));
             };
 
             Interop.AudioDucking.Create(targetType, _duckingStateChangedCallback,
@@ -77,11 +77,28 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Activate audio ducking
         /// </summary>
-        /// <param name="duration">The duration for ducking.</param>
-        /// <param name="ratio">The volume ratio after ducked.</param>
+        /// <param name="duration">The duration(milisecond) for ducking. Valid range is 0 to 3000, inclusive.</param>
+        /// <param name="ratio">The volume ratio after ducked. Valid range is 0.0 to 1.0, exclusive.</param>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="duration"/> is less than 0 or greater than 3000.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="ratio"/> is less then 0.0 or greater than 1.0.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="ratio"/> is 0.0 or 1.0.<br/>
+        /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public void Activate(uint duration, double ratio)
         {
+            if (duration < 0 || duration > 3000)
+            {
+                throw new ArgumentOutOfRangeException(nameof(duration), duration, "Valid range is 0 to 3000, inclusive.");
+            }
+
+            if (ratio <= 0.0 || ratio >= 1.0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(ratio), ratio, "Valid range is 0.0 to 1.0, exclusive.");
+            }
+
             Interop.AudioDucking.Activate(Handle, duration, ratio).
                 ThrowIfError("Failed to activate ducking");
         }
@@ -102,7 +119,17 @@ namespace Tizen.Multimedia
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
-            Dispose(true);
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (_handle != null)
+            {
+                _handle.Dispose();
+            }
+
+            _disposed = true;
             GC.SuppressFinalize(this);
         }
 
@@ -115,28 +142,6 @@ namespace Tizen.Multimedia
                     throw new ObjectDisposedException(nameof(AudioDucking));
                 }
                 return _handle;
-            }
-        }
-
-        /// <summary>
-        /// Releases the unmanaged resources used by the <see cref="AudioDucking"/>.
-        /// </summary>
-        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
-        /// <since_tizen> 6 </since_tizen>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                if (_handle != null)
-                {
-                    _handle.Dispose();
-                }
-                _disposed = true;
             }
         }
     }
