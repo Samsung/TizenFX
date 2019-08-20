@@ -35,9 +35,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// AnimatedVectorImageView
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        /// <param name="scale">The factor of scaling image, default : 1.0f</param>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown), default : true</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AnimatedVectorImageView() : base()
+        public AnimatedVectorImageView(float scale = 1.0f, bool shown = true) : base()
         {
             tlog.Fatal(tag, $"  <<< AnimatedVectorImageView() constructor GetId={GetId()} >>>");
             currentStates.url = "";
@@ -49,19 +51,8 @@ namespace Tizen.NUI.BaseComponents
             currentStates.framePlayRangeMax = -1;
             currentStates.changed = false;
             currentStates.totalFrame = -1;
-            currentStates.scale = 1.0f;
-        }
-
-        /// <summary>
-        /// AnimatedVectorImageView(float scale)
-        /// </summary>
-        /// <param name="scale"></param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AnimatedVectorImageView(float scale) : this()
-        {
             currentStates.scale = scale;
-            tlog.Fatal(tag, $"  <<< AnimatedVectorImageView(scale={scale}) constructor GetId={GetId()} >>>");
+            SetVisible(shown);
         }
 
         /// <summary>
