@@ -28,12 +28,7 @@ namespace Tizen.Multimedia
     public class AudioOffload
     {
         private IList<MediaFormatAudioMimeType> _supportedFormat;
-
-        /// <summary>
-        /// Gets the <see cref="Multimedia.Player"/> that owns this instance.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        internal Player Player { get; }
+        private Player _player { get; }
 
         /// <summary>
         /// Provides a means to retrieve audio offload information.
@@ -42,7 +37,7 @@ namespace Tizen.Multimedia
         internal AudioOffload(Player player)
         {
             Debug.Assert(player != null);
-            Player = player;
+            _player = player;
         }
 
         private bool _enabled;
@@ -88,21 +83,21 @@ namespace Tizen.Multimedia
             get
             {
                 ValidationUtil.ValidateFeatureSupported(PlayerFeatures.AudioOffload);
-                Player.ValidateNotDisposed();
+                _player.ValidateNotDisposed();
 
-                NativePlayer.IsAudioOffloadEnabled(Player.Handle, out var value).
-                    ThrowIfFailed(Player, "Failed to get whether the audio offload of the player is enabled or not");
+                NativePlayer.IsAudioOffloadEnabled(_player.Handle, out var value).
+                    ThrowIfFailed(_player, "Failed to get whether the audio offload of the player is enabled or not");
                 return value;
             }
 
             set
             {
                 ValidationUtil.ValidateFeatureSupported(PlayerFeatures.AudioOffload);
-                Player.ValidateNotDisposed();
-                Player.ValidatePlayerState(PlayerState.Idle);
+                _player.ValidateNotDisposed();
+                _player.ValidatePlayerState(PlayerState.Idle);
 
-                NativePlayer.SetAudioOffloadEnabled(Player.Handle, value).
-                    ThrowIfFailed(Player, "Failed to set the audio offload of the player");
+                NativePlayer.SetAudioOffloadEnabled(_player.Handle, value).
+                    ThrowIfFailed(_player, "Failed to set the audio offload of the player");
                 _enabled = value;
             }
         }
@@ -130,11 +125,11 @@ namespace Tizen.Multimedia
             get
             {
                 ValidationUtil.ValidateFeatureSupported(PlayerFeatures.AudioOffload);
-                Player.ValidateNotDisposed();
-                Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                _player.ValidateNotDisposed();
+                _player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-                NativePlayer.IsAudioOffloadActivated(Player.Handle, out var value).
-                    ThrowIfFailed(Player, "Failed to get whether the audio offload of the player is enabled or not");
+                NativePlayer.IsAudioOffloadActivated(_player.Handle, out var value).
+                    ThrowIfFailed(_player, "Failed to get whether the audio offload of the player is enabled or not");
                 return value;
             }
         }
@@ -184,8 +179,8 @@ namespace Tizen.Multimedia
                 return true;
             };
 
-            NativePlayer.SupportedAudioOffloadFormat(Player.Handle, callback, IntPtr.Zero).
-                ThrowIfFailed(Player, "Failed to get the supported formats for audio offload");
+            NativePlayer.SupportedAudioOffloadFormat(_player.Handle, callback, IntPtr.Zero).
+                ThrowIfFailed(_player, "Failed to get the supported formats for audio offload");
 
             return audioFormats.AsReadOnly();
         }
