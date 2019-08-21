@@ -1018,13 +1018,13 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Enable to decode a video data for every frame.
+        /// Enables to decode a video data for every frame.
         /// </summary>
         /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.
-        /// And, <see cref="DisplayType.None"/> must be set by calling <see cref="SetDisplay"/>.</para>
+        /// And, <see cref="Multimedia.Display"/> must not be set.</para>
         /// <para>A <see cref="VideoFrameDecoded"/> event is called in a separate thread(not in the main loop).</para>
         /// <para>The video frame can be retrieved using a <see cref="VideoFrameDecoded"/> event as a media packet.
-        /// So if you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device
+        /// So if you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device.
         /// The callback function holds the same buffer that will be drawn on the display device.
         /// and the <see cref="MediaPacket"/> is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
         /// The packet has to be destroyed as quickly as possible after rendering the data
@@ -1042,7 +1042,6 @@ namespace Tizen.Multimedia
         public void EnableExportingVideoFrame()
         {
             ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
-
             ValidatePlayerState(PlayerState.Idle);
 
             if (Display != null)
@@ -1070,16 +1069,19 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Disable to decode a video data.
+        /// Disables to decode a video data.
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
         /// state.</remarks>
+        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="EnableExportingVideoFrame"/>
         /// <since_tizen> 6 </since_tizen>
         public void DisableExportingVideoFrame()
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
             ValidatePlayerState(PlayerState.Idle, PlayerState.Ready);
 
             NativePlayer.UnsetVideoFrameDecodedCb(Handle).
