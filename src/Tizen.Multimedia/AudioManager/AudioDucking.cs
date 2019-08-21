@@ -77,26 +77,24 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Activate audio ducking
         /// </summary>
-        /// <param name="duration">The duration(milisecond) for ducking. Valid range is 0 to 3000, inclusive.</param>
-        /// <param name="ratio">The volume ratio after ducked. Valid range is 0.0 to 1.0, exclusive.</param>
+        /// <param name="duration">The duration(milisecond) for ducking.</param>
+        /// <param name="ratio">The volume ratio after ducked.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="duration"/> is less than 0 or greater than 3000.<br/>
         ///     -or-<br/>
-        ///     <paramref name="ratio"/> is less then 0.0 or greater than 1.0.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="ratio"/> is 0.0 or 1.0.<br/>
+        ///     <paramref name="ratio"/> is less than 0.0 or greater than or equal to 1.0.<br/>
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public void Activate(uint duration, double ratio)
         {
             if (duration < 0 || duration > 3000)
             {
-                throw new ArgumentOutOfRangeException(nameof(duration), duration, "Valid range is 0 to 3000, inclusive.");
+                throw new ArgumentOutOfRangeException(nameof(duration), duration, "Valid range : 0 <= duration <= 3000");
             }
 
-            if (ratio <= 0.0 || ratio >= 1.0)
+            if (ratio < 0.0 || ratio >= 1.0)
             {
-                throw new ArgumentOutOfRangeException(nameof(ratio), ratio, "Valid range is 0.0 to 1.0, exclusive.");
+                throw new ArgumentOutOfRangeException(nameof(ratio), ratio, "Valid range : 0 <= ratio < 1.0");
             }
 
             Interop.AudioDucking.Activate(Handle, duration, ratio).
