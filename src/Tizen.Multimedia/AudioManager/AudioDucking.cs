@@ -35,6 +35,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="targetType">The type of sound stream to be affected by this new instance.</param>
         /// <exception cref="ArgumentException"><paramref name="targetType"/> is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Operation failed; internal error.</exception>
         /// <since_tizen> 6 </since_tizen>
         public AudioDucking(AudioStreamType targetType)
         {
@@ -62,11 +63,18 @@ namespace Tizen.Multimedia
         /// Gets the ducking state of the stream.
         /// </summary>
         /// <value>true if the audio stream is ducked; otherwise, false.</value>
+        /// <exception cref="InvalidOperationException">Operation failed; internal error.</exception>
+        /// <exception cref="ObjectDisposedException">The ducking has already been disposed of.</exception>
         /// <since_tizen> 6 </since_tizen>
         public bool IsDucked
         {
             get
             {
+                if (_disposed)
+                {
+                    throw new ObjectDisposedException(nameof(AudioDucking));
+                }
+
                 Interop.AudioDucking.IsDucked(Handle, out bool isDucked).
                     ThrowIfError("Failed to get the running state of the device");
 
@@ -84,9 +92,21 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="ratio"/> is less than 0.0 or greater than or equal to 1.0.<br/>
         /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.<br/>
+        ///     -or-<br/>
+        ///     The target stream is already ducked.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
+        /// <exception cref="ObjectDisposedException">The ducking has already been disposed of.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void Activate(uint duration, double ratio)
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(AudioDucking));
+            }
+
             if (duration < 0 || duration > 3000)
             {
                 throw new ArgumentOutOfRangeException(nameof(duration), duration, "Valid range : 0 <= duration <= 3000");
@@ -104,9 +124,21 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Deactivate audio ducking
         /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.<br/>
+        ///     -or-<br/>
+        ///     The target stream is already ducked.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
+        /// <exception cref="ObjectDisposedException">The ducking has already been disposed of.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void Deactivate()
         {
+            if (_disposed)
+            {
+                throw new ObjectDisposedException(nameof(AudioDucking));
+            }
+
             Interop.AudioDucking.Deactivate(Handle).
                 ThrowIfError("Failed to deactivate ducking");
         }
