@@ -127,7 +127,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.<br/>
         ///     -or-<br/>
-        ///     The target stream is already ducked.
+        ///     The target stream is already unducked.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
         /// <exception cref="ObjectDisposedException">The ducking has already been disposed of.</exception>
