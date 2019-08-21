@@ -6,19 +6,22 @@ using Tizen.Applications.ComponentBased.Common;
 namespace Tizen.Applications.ComponentBased.Default
 {
     /// <summary>
-    /// Basic type application which will support ElmWindow for FrameComponent
+    /// The basic EFL component-based application class.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class CBBasicApplication : CBApplicationBase
+    public class ComponentBasedApplication : ComponentBasedApplicationBase
     {
-        private const string LogTag = "Tizen.Applications.CBBasicApplication";
+        private const string LogTag = "Tizen.Applications.ComponentBasedApplication";
 
         /// <summary>
-        /// Initializes the CBBasicApplication class.
+        /// Initializes the ComponentBasedApplication class.
         /// </summary>
-        /// <param name="typeInfo">The compnent type information.</param>
+        /// <param name="typeInfo">The component type information.
+        /// The key should be a class type of BaseComponent subclass.
+        /// The value should be a component id which is declared in tizen-manifest.xml.
+        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public CBBasicApplication(IDictionary<Type, string> typeInfo) : base(typeInfo)
+        public ComponentBasedApplication(IDictionary<Type, string> typeInfo) : base(typeInfo)
         {
         }
 

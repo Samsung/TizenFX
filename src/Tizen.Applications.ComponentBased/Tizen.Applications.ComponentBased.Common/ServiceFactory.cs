@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
-    internal class ServiceType : BaseType
+    internal class ServiceFactory : ComponentFactoryBase
     {
         private Interop.CBApplication.ServiceLifecycleCallbacks _callbacks;
-        private CBApplicationBase _parent;
+        private ComponentBasedApplicationBase _parent;
 
-        internal ServiceType(Type ctype, string id, CBApplicationBase parent) : base(ctype, id, BaseComponent.ComponentType.Service, parent)
+        internal ServiceFactory(Type ctype, string id, ComponentBasedApplicationBase parent) : base(ctype, id, ComponentType.Service, parent)
         {
             _callbacks.OnAction = new Interop.CBApplication.ServiceActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.ServiceDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
@@ -33,11 +33,17 @@ namespace Tizen.Applications.ComponentBased.Common
                 return false;
 
             sc.Bind(context, _compId, _parent);
+
+            string id;
+            Interop.CBApplication.GetInstanceId(context, out id);
+            sc.Id = id;
+
             bool result = sc.OnCreate();
             if (!result)
             {
                 return false;
             }
+
             _compInstances.Add(sc);
             return true;
         }
@@ -74,7 +80,7 @@ namespace Tizen.Applications.ComponentBased.Common
         {
         }
 
-        internal new IntPtr Bind(IntPtr h)
+        internal override IntPtr Bind(IntPtr h)
         {
             return Interop.CBApplication.BaseAddServiceComponent(h, _compId, ref _callbacks, IntPtr.Zero);
         }

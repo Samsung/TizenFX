@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 using System.Collections.Generic;
 
 namespace Tizen.Applications.ComponentBased.Common
@@ -7,20 +23,23 @@ namespace Tizen.Applications.ComponentBased.Common
     /// The class for supporting multi-components based application model.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class CBApplicationBase : Application
+    public class ComponentBasedApplicationBase : Application
     {
-        private const string LogTag = "Tizen.Applications.CBApplicationBase";
-        private IList<BaseType> ComponentTypes = new List<BaseType>();
+        private const string LogTag = "Tizen.Applications.ComponentBasedApplicationBase";
+        private IList<ComponentFactoryBase> _componentFactories = new List<ComponentFactoryBase>();
         private Interop.CBApplication.CBAppLifecycleCallbacks _callbacks;
         private bool _disposedValue = false;
 
         /// <summary>
-        /// Initializes the CBApplicationBase class.
+        /// Initializes the ComponentBasedApplicationBase class.
         /// </summary>
-        /// <param name="typeInfo">The component type information.</param>
+        /// <param name="typeInfo">The component type information.
+        /// The key should be a class type of BaseComponent subclass.
+        /// The value should be a component id which is declared in tizen-manifest.xml.
+        /// </param>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public CBApplicationBase(IDictionary<Type, string> typeInfo)
+        public ComponentBasedApplicationBase(IDictionary<Type, string> typeInfo)
         {
             _callbacks.OnInit = new Interop.CBApplication.CBAppInitCallback(OnInitNative);
             _callbacks.OnFini = new Interop.CBApplication.CBAppFiniCallback(OnFiniNative);
@@ -29,9 +48,9 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnCreate = new Interop.CBApplication.CBAppCreateCallback(OnCreateNative);
             _callbacks.OnTerminate = new Interop.CBApplication.CBAppTerminateCallback(OnTerminateNative);
 
-            foreach (Type t in typeInfo.Keys)
+            foreach (var component in typeInfo)
             {
-                RegisterComponent(t, typeInfo[t]);
+                RegisterComponent(component.Key, component.Value);
             }
         }
 
@@ -44,27 +63,27 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <since_tizen> 6 </since_tizen>
         public void RegisterComponent(Type compType, string compId)
         {
-            foreach (BaseType type in ComponentTypes)
+            foreach (ComponentFactoryBase factory in _componentFactories)
             {
-                if (compType.BaseType == type._classType)
+                if (compType.BaseType == factory._classType)
                     throw new InvalidOperationException("Already exist type");
             }
 
-            if (compType.BaseType == typeof(BaseComponent))
+            if (typeof(BaseComponent).IsAssignableFrom(compType))
             {
                 Log.Info(LogTag, "Add base comp");
                 BaseComponent b = Activator.CreateInstance(compType) as BaseComponent;
-                ComponentTypes.Add(new BaseType(compType, compId, b.GetComponentType(), this));
+                _componentFactories.Add(new BaseFactory(compType, compId, b.ComponentType, this));
             }
-            else if (compType.BaseType == typeof(FrameComponent))
+            else if (typeof(FrameComponent).IsAssignableFrom(compType))
             {
                 Log.Info(LogTag, "Add frame comp");
-                ComponentTypes.Add(new FrameType(compType, compId, this));
+                _componentFactories.Add(new FrameFactory(compType, compId, this));
             }
-            else if (compType.BaseType == typeof(ServiceComponent))
+            else if (typeof(ServiceComponent).IsAssignableFrom(compType))
             {
                 Log.Info(LogTag, "Add service comp");
-                ComponentTypes.Add(new ServiceType(compType, compId, this));
+                _componentFactories.Add(new ServiceFactory(compType, compId, this));
             }
         }
 
@@ -107,26 +126,9 @@ namespace Tizen.Applications.ComponentBased.Common
         {
             Log.Debug(LogTag, "On create");
             IntPtr h = IntPtr.Zero;
-            foreach (BaseType type in ComponentTypes)
+            foreach (ComponentFactoryBase factory in _componentFactories)
             {
-                if (type.GetComponentType() == BaseComponent.ComponentType.Frame)
-                {
-                    FrameType ft = (FrameType)type;
-                    h = ft.Bind(h);
-                    Log.Debug(LogTag, "Bind frame comp");
-                }
-                else if (type.GetComponentType() == BaseComponent.ComponentType.Service)
-                {
-                    ServiceType st = (ServiceType)type;
-                    h = st.Bind(h);
-                    Log.Debug(LogTag, "Bind service comp");
-                }
-                else
-                {
-                    BaseType bt = (BaseType)type;
-                    h = bt.Bind(h);
-                    Log.Debug(LogTag, "Bind base comp");
-                }
+                h = factory.Bind(h);
             }
 
             return h;

@@ -4,12 +4,12 @@ using System.Text;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
-    internal class FrameType : BaseType
+    internal class FrameFactory : ComponentFactoryBase
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
-        private CBApplicationBase _parent;
+        private ComponentBasedApplicationBase _parent;
 
-        internal FrameType(Type ctype, string id, CBApplicationBase parent) : base(ctype, id, BaseComponent.ComponentType.Frame, parent)
+        internal FrameFactory(Type ctype, string id, ComponentBasedApplicationBase parent) : base(ctype, id, ComponentType.Frame, parent)
         {
             _callbacks.OnAction = new Interop.CBApplication.FrameActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.FrameDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
@@ -36,10 +36,19 @@ namespace Tizen.Applications.ComponentBased.Common
                 return IntPtr.Zero;
 
             fc.Bind(context, _compId, _parent);
+
+            string id;
+            Interop.CBApplication.GetInstanceId(context, out id);
+            fc.Id = id;
+
             IntPtr winHandle;
-            IWindow win = fc.OnCreate();
+            IWindowInfo win = fc.OnCreate();
+            if (win == null)
+                return IntPtr.Zero;
+
             fc.Window = win;
-            Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.GetResId(), win.GetRaw());
+            Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, IntPtr.Zero);
+
             _compInstances.Add(fc);
             return winHandle;
         }
@@ -112,7 +121,7 @@ namespace Tizen.Applications.ComponentBased.Common
         {
         }
 
-        internal new IntPtr Bind(IntPtr h)
+        internal override IntPtr Bind(IntPtr h)
         {
             return Interop.CBApplication.BaseAddFrameComponent(h, _compId, ref _callbacks, IntPtr.Zero);
         }

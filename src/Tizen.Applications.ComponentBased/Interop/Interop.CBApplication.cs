@@ -164,7 +164,7 @@ internal static partial class Interop
         [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_get_display_status")]
         internal static extern ErrorCode BaseFrameGetDisplayStatus(IntPtr context, out NativeDisplayStatus status);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_compId")]
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_id")]
         internal static extern ErrorCode GetInstanceId(IntPtr context, out string instanceId);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

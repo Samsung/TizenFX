@@ -11,28 +11,11 @@ namespace Tizen.Applications.ComponentBased.Common
     public abstract class FrameComponent : BaseComponent
     {
         /// <summary>
-        /// Enumeration for display status.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public enum DisplayStatus
-        {
-            /// <summary>
-            /// The display status is on
-            /// </summary>
-            On = Interop.CBApplication.NativeDisplayStatus.On,
-
-            /// <summary>
-            /// The display status is off
-            /// </summary>
-            Off = Interop.CBApplication.NativeDisplayStatus.Off
-        }
-
-        /// <summary>
         /// Gets the display status of a component.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when component type is already added to the component.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public DisplayStatus CurrentDisplayStatus
+        public DisplayStatus DisplayStatus
         {
             get
             {
@@ -49,17 +32,14 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Gets the frame component's window.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public IWindow Window { get; internal set; }
+        public IWindowInfo Window { get; internal set; }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the component is launched.
         /// </summary>
         /// <returns>Window object to use</returns>
         /// <since_tizen> 6 </since_tizen>
-        public virtual IWindow OnCreate()
-        {
-            return null;
-        }
+        public abstract IWindowInfo OnCreate();
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the component receives the appcontrol message.
@@ -107,9 +87,12 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Gets the component type.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public override ComponentType GetComponentType()
+        public override ComponentType ComponentType
         {
-            return BaseComponent.ComponentType.Frame;
+            get
+            {
+                return ComponentType.Frame;
+            }
         }
     }
 }

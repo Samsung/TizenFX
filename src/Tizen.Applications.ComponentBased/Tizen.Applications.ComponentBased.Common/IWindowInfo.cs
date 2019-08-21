@@ -3,21 +3,15 @@
 namespace Tizen.Applications.ComponentBased.Common
 {
     /// <summary>
-    /// Interface for window
+    /// Interface for window information
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public interface IWindow
+    public interface IWindowInfo
     {
         /// <summary>
         /// Gets window resource ID
         /// </summary>
         /// <returns></returns>
-        int GetResId();
-
-        /// <summary>
-        /// Gets window raw pointer
-        /// </summary>
-        /// <returns></returns>
-        IntPtr GetRaw();
+        int ResourceId { get; }
     }
 }

@@ -7,32 +7,23 @@ using static Tizen.Applications.CoreBackend.DefaultCoreBackend;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
-    internal class BaseType
+    internal abstract class ComponentFactoryBase
     {
         internal readonly Type _classType;
         internal readonly string _compId;
         internal IList<BaseComponent> _compInstances = new List<BaseComponent>();
-        private Interop.CBApplication.BaseLifecycleCallbacks _callbacks;
-        private BaseComponent.ComponentType _compType;
-        private CBApplicationBase _parent;
+        internal ComponentType _compType;
+        private ComponentBasedApplicationBase _parent;
 
-        internal BaseType(Type ctype, string id, BaseComponent.ComponentType comp_type, CBApplicationBase parent)
+        internal ComponentFactoryBase(Type ctype, string id, ComponentType comp_type, ComponentBasedApplicationBase parent)
         {
             _compType = comp_type;
             _classType = ctype;
             _compId = id;
-            _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.BaseDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
-            _callbacks.OnLanguageChanged = new Interop.CBApplication.BaseLanguageChangedCallback(OnLanguageChangedCallback);
-            _callbacks.OnLowBattery = new Interop.CBApplication.BaseLowBatteryCallback(OnLowBatteryCallback);
-            _callbacks.OnLowMemory = new Interop.CBApplication.BaseLowMemoryCallback(OnLowMemoryCallback);
-            _callbacks.OnRegionFormatChanged = new Interop.CBApplication.BaseRegionFormatChangedCallback(OnRegionFormatChangedCallback);
-            _callbacks.OnRestore = new Interop.CBApplication.BaseRestoreCallback(OnRestoreCallback);
-            _callbacks.OnSave = new Interop.CBApplication.BaseSaveCallback(OnSaveCallback);
-            _callbacks.OnSuspendedState = new Interop.CBApplication.BaseSuspendedStateCallback(OnSuspendedStateCallback);
             _parent = parent;
         }
 
-        internal BaseComponent.ComponentType GetComponentType()
+        internal ComponentType GetComponentType()
         {
             return _compType;
         }
@@ -135,39 +126,6 @@ namespace Tizen.Applications.ComponentBased.Common
             }
         }
 
-        internal IntPtr Bind(IntPtr h)
-        {
-            return Interop.CBApplication.BaseAddComponent(h, (NativeComponentType)_compType, _compId, ref _callbacks, IntPtr.Zero);
-        }
-
-        private int OnCreate(IntPtr context, IntPtr content, int w, int h, IntPtr userData)
-        {
-            BaseComponent b = Activator.CreateInstance(_classType) as BaseComponent;
-
-            if (b == null)
-                return 0;
-
-            b.Bind(context, _compId, _parent);
-            _compInstances.Add(b);
-            string id;
-            Interop.CBApplication.GetInstanceId(context, out id);
-            b.Id = id;
-
-            return 0;
-        }
-
-        private int OnDestroy(IntPtr context, IntPtr userData)
-        {
-            foreach (BaseComponent com in _compInstances)
-            {
-                if (com.Handle == context)
-                {
-                    _compInstances.Remove(com);
-                    break;
-                }
-            }
-
-            return 0;
-        }
+        internal abstract IntPtr Bind(IntPtr h);
     }
 }

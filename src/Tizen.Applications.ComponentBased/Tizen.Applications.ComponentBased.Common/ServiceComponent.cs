@@ -41,9 +41,12 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Gets the component type.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public override ComponentType GetComponentType()
+        public override ComponentType ComponentType
         {
-            return BaseComponent.ComponentType.Service;
+            get
+            {
+                return ComponentType.Service;
+            }
         }
     }
 }
