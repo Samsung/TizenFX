@@ -71,13 +71,13 @@ namespace Tizen.Applications.ComponentBased.Common
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Id { get; internal set; }
+        public string Id { get; private set; }
 
         /// <summary>
         /// A component ID
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ComponentId { get; internal set; }
+        public string ComponentId { get; private set; }
 
         /// <summary>
         /// Parent object
@@ -94,9 +94,10 @@ namespace Tizen.Applications.ComponentBased.Common
             Interop.CBApplication.ComponentFinish(Handle);
         }
 
-        internal void Bind(IntPtr handle, string compId, ComponentBasedApplicationBase parent)
+        internal void Bind(IntPtr handle, string compId, string instanceId, ComponentBasedApplicationBase parent)
         {
             Handle = handle;
+            Id = instanceId;
             ComponentId = compId;
             Parent = parent;
         }

@@ -35,11 +35,9 @@ namespace Tizen.Applications.ComponentBased.Common
             if (fc == null)
                 return IntPtr.Zero;
 
-            fc.Bind(context, _compId, _parent);
-
             string id;
             Interop.CBApplication.GetInstanceId(context, out id);
-            fc.Id = id;
+            fc.Bind(context, _compId, id, _parent);
 
             IntPtr winHandle;
             IWindowInfo win = fc.OnCreate();
