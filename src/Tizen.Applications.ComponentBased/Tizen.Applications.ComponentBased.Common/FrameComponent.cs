@@ -29,7 +29,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Gets the frame component's window.
+        /// Gets the frame component's window information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public IWindowInfo Window { get; internal set; }
