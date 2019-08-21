@@ -27,7 +27,7 @@ namespace Tizen.Network.Stc
     public class StatisticsFilter
     {
         /// <summary>
-        /// A property for App Id for statistics filter.
+        /// A property for App Id for statistics filter. AppId can be provided to get statistics for a specific application.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Application id.</value>

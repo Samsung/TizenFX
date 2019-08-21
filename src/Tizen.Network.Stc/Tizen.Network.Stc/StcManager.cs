@@ -87,9 +87,9 @@ namespace Tizen.Network.Stc
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
-        public static Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StatisticsFilter filter)
+        public static Task<IEnumerable<NetworkStatistics>> GetStatisticsAsync(StatisticsFilter filter)
         {
-            return StcManagerImpl.Instance.GetAllStatisticsAsync(filter);
+            return StcManagerImpl.Instance.GetStatisticsAsync(filter);
         }
     }
 }

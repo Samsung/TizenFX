@@ -94,7 +94,7 @@ namespace Tizen.Network.Stc
             return handle;
         }
 
-        internal Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StatisticsFilter filter)
+        internal Task<IEnumerable<NetworkStatistics>> GetStatisticsAsync(StatisticsFilter filter)
         {
             TaskCompletionSource<IEnumerable<NetworkStatistics>> task = new TaskCompletionSource<IEnumerable<NetworkStatistics>>();
             IntPtr id;
