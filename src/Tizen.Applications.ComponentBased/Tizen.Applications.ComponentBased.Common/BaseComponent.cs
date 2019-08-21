@@ -83,7 +83,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Parent object
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ComponentBasedApplicationBase Parent { get; internal set; }
+        public ComponentBasedApplicationBase Parent { get; private set; }
 
         /// <summary>
         /// Finish current component
