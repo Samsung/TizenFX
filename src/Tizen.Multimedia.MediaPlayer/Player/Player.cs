@@ -94,11 +94,6 @@ namespace Tizen.Multimedia
                 _audioEffect = new AudioEffect(this);
             }
 
-            if (Features.IsSupported(PlayerFeatures.RawVideo))
-            {
-                RegisterVideoFrameDecodedCallback();
-            }
-
             RegisterEvents();
 
             _displaySettings = PlayerDisplaySettings.Create(this);
@@ -1020,6 +1015,77 @@ namespace Tizen.Multimedia
                 ThrowIfFailed(this, "Failed to unset the AudioFrameDecoded");
 
             _audioFrameDecodedCallback = null;
+        }
+
+        /// <summary>
+        /// Enable to decode a video data for every frame.
+        /// </summary>
+        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.
+        /// And, <see cref="DisplayType.None"/> must be set by calling <see cref="SetDisplay"/>.</para>
+        /// <para>A <see cref="VideoFrameDecoded"/> event is called in a separate thread(not in the main loop).</para>
+        /// <para>The video frame can be retrieved using a <see cref="VideoFrameDecoded"/> event as a media packet.
+        /// So if you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device
+        /// The callback function holds the same buffer that will be drawn on the display device.
+        /// and the <see cref="MediaPacket"/> is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
+        /// The packet has to be destroyed as quickly as possible after rendering the data
+        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
+        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The player is not in the valid state.
+        ///     </exception>
+        /// <seealso cref="DisableExportingVideoFrame"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void EnableExportingVideoFrame()
+        {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+
+            ValidatePlayerState(PlayerState.Idle);
+
+            if (Display != null)
+            {
+                throw new InvalidOperationException("Display must be none.");
+            }
+
+            _videoFrameDecodedCallback = (packetHandle, _) =>
+            {
+                var handler = VideoFrameDecoded;
+                if (handler != null)
+                {
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
+                    handler.Invoke(this,
+                        new VideoFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
+                }
+                else
+                {
+                    MediaPacket.From(packetHandle).Dispose();
+                }
+            };
+
+            NativePlayer.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
+                ThrowIfFailed(this, "Failed to register the VideoFrameDecoded");
+        }
+
+        /// <summary>
+        /// Disable to decode a video data.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
+        /// state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="EnableExportingVideoFrame"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void DisableExportingVideoFrame()
+        {
+            ValidatePlayerState(PlayerState.Idle, PlayerState.Ready);
+
+            NativePlayer.UnsetVideoFrameDecodedCb(Handle).
+                ThrowIfFailed(this, "Failed to unset the VideoFrameDecoded");
+
+            _videoFrameDecodedCallback = null;
         }
     }
 }
