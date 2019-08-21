@@ -127,7 +127,6 @@ namespace Tizen.NUI
                 desiredChildWidth = (int)childLayoutItem.MeasuredWidth.Size.AsRoundedValue();
 
                 // If child has a margin then add it to desired size
-
                 Extents childMargin = childLayoutItem.Margin;
                 desiredChildHeight += childMargin.Top + childMargin.Bottom;
                 desiredChildWidth += childMargin.Start + childMargin.End;

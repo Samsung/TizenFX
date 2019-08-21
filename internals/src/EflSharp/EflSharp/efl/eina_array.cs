@@ -315,7 +315,7 @@ public class Array<T> : IEnumerable<T>, IDisposable
 
     public Eina.Iterator<T> GetIterator()
     {
-        return new Eina.Iterator<T>(eina_array_iterator_new(Handle), true, false);
+        return new Eina.Iterator<T>(eina_array_iterator_new(Handle), true);
     }
 
     public IEnumerator<T> GetEnumerator()

@@ -15,6 +15,7 @@ namespace Focus {
 /// Focusmanagers are ensuring that if they give focus to something, that they are registered in the upper focus manager. The most upper focus manager does not need to do that, and can implement this interface to indicate that.
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Focus.IManagerWindowRootConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IManagerWindowRoot : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -43,11 +44,18 @@ sealed public class IManagerWindowRootConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IManagerWindowRootConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_manager_window_root_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IManagerWindowRoot"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IManagerWindowRootConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IManagerWindowRootConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -57,7 +65,7 @@ sealed public class IManagerWindowRootConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>

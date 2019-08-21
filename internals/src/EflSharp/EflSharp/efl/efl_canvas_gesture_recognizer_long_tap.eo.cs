@@ -11,6 +11,7 @@ namespace Canvas {
 
 /// <summary>EFL Gesture Recognizer Long Tap class</summary>
 [Efl.Canvas.GestureRecognizerLongTap.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GestureRecognizerLongTap : Efl.Canvas.GestureRecognizer
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,38 +35,43 @@ public class GestureRecognizerLongTap : Efl.Canvas.GestureRecognizer
     /// <summary>Initializes a new instance of the <see cref="GestureRecognizerLongTap"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureRecognizerLongTap(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_recognizer_long_tap_class_get(), typeof(GestureRecognizerLongTap), parent)
+            ) : base(efl_canvas_gesture_recognizer_long_tap_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GestureRecognizerLongTap(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GestureRecognizerLongTap"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GestureRecognizerLongTap(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GestureRecognizerLongTap(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GestureRecognizerLongTap"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GestureRecognizerLongTap(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GestureRecognizerLongTap(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Sets the holding time to be recognized as a long tap.</summary>
     /// <returns>Allowed time gap value</returns>
     virtual public double GetTimeout() {
-         var _ret_var = Efl.Canvas.GestureRecognizerLongTap.NativeMethods.efl_gesture_recognizer_long_tap_timeout_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.GestureRecognizerLongTap.NativeMethods.efl_gesture_recognizer_long_tap_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the holding time to be recognized as a long tap.</summary>
     /// <param name="time">Allowed time gap value</param>
     virtual public void SetTimeout(double time) {
-                                 Efl.Canvas.GestureRecognizerLongTap.NativeMethods.efl_gesture_recognizer_long_tap_timeout_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),time);
+                                 Efl.Canvas.GestureRecognizerLongTap.NativeMethods.efl_gesture_recognizer_long_tap_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets the holding time to be recognized as a long tap.</summary>

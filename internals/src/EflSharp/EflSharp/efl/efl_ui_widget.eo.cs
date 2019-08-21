@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <param name="obj">Canvas object</param>
 /// <param name="region">Showed region</param>
+[Efl.Eo.BindingEntity]
 public delegate void ScrollableOnShowRegion(Efl.Canvas.Object obj, Eina.Rect region);
 public delegate void ScrollableOnShowRegionInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Rect.NativeStruct region);
 internal class ScrollableOnShowRegionWrapper : IDisposable
@@ -88,6 +89,7 @@ namespace Ui {
 /// <summary>Efl UI widget abstract class
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Widget.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, Efl.Access.IComponent, Efl.Access.IObject, Efl.Access.Widget.IAction, Efl.Ui.IDnd, Efl.Ui.IL10n, Efl.Ui.IPropertyBind, Efl.Ui.ISelection, Efl.Ui.IView, Efl.Ui.Focus.IObject
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -110,9 +112,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         efl_ui_widget_class_get();
     /// <summary>Initializes a new instance of the <see cref="Widget"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Widget(Efl.Object parent
-            , System.String style = null) : base(efl_ui_widget_class_get(), typeof(Widget), parent)
+            , System.String style = null) : base(efl_ui_widget_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -122,26 +124,31 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Widget(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Widget"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Widget(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Widget(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class WidgetRealized : Widget
     {
-        private WidgetRealized(IntPtr ptr) : base(ptr)
+        private WidgetRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Widget"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Widget(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Widget(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -149,7 +156,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -176,7 +183,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIDGET_EVENT_ATSPI_HIGHLIGHTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -200,7 +207,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -227,7 +234,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIDGET_EVENT_ATSPI_UNHIGHLIGHTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -253,7 +260,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -280,7 +287,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIDGET_EVENT_LANGUAGE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -306,7 +313,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -333,7 +340,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_WIDGET_EVENT_ACCESS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -358,7 +365,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -386,7 +393,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -419,7 +426,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -447,7 +454,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -481,7 +488,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -509,7 +516,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -543,7 +550,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -571,7 +578,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -605,7 +612,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -632,7 +639,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -657,7 +664,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -685,7 +692,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -711,7 +718,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -738,7 +745,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -763,7 +770,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -790,7 +797,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -814,7 +821,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -841,7 +848,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -865,7 +872,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -892,7 +899,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WIDGET_ACTION_EVENT_READING_STATE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -917,7 +924,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -945,7 +952,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_ACCEPT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -978,7 +985,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1005,7 +1012,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_DONE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1030,7 +1037,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1057,7 +1064,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_ENTER";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1082,7 +1089,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1109,7 +1116,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_LEAVE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1134,7 +1141,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1162,7 +1169,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_POS";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1196,7 +1203,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1224,7 +1231,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_DROP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1258,7 +1265,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1286,7 +1293,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1320,7 +1327,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1348,7 +1355,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1381,7 +1388,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1409,7 +1416,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SELECTION_EVENT_WM_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1444,7 +1451,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1472,7 +1479,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1506,7 +1513,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1534,7 +1541,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1561,7 +1568,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1589,7 +1596,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1616,7 +1623,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1644,7 +1651,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1678,7 +1685,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1706,7 +1713,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -1753,7 +1760,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>The cursor name, defined either by the display system or the theme.</returns>
     virtual public System.String GetCursor() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1763,7 +1770,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="cursor">The cursor name, defined either by the display system or the theme.</param>
     /// <returns><c>true</c> if successful.</returns>
     virtual public bool SetCursor(System.String cursor) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cursor);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cursor);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1771,7 +1778,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>A specific style to use, eg. default, transparent, ....</returns>
     virtual public System.String GetCursorStyle() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1780,7 +1787,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="style">A specific style to use, eg. default, transparent, ....</param>
     /// <returns><c>true</c> if successful.</returns>
     virtual public bool SetCursorStyle(System.String style) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),style);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1788,7 +1795,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether to use theme cursors.</returns>
     virtual public bool GetCursorThemeSearchEnabled() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1797,7 +1804,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="allow">Whether to use theme cursors.</param>
     /// <returns><c>true</c> if successful.</returns>
     virtual public bool SetCursorThemeSearchEnabled(bool allow) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),allow);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1805,7 +1812,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="sobj">A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</param>
     virtual protected void SetResizeObject(Efl.Canvas.Object sobj) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_resize_object_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sobj);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_resize_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sobj);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns whether the widget is disabled.
@@ -1813,7 +1820,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the widget is disabled.</returns>
     virtual public bool GetDisabled() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1822,14 +1829,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="disabled"><c>true</c> if the widget is disabled.</param>
     virtual public void SetDisabled(bool disabled) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),disabled);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),disabled);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the current style of a widget.
     /// (Since EFL 1.22)</summary>
     /// <returns>Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</returns>
     virtual public System.String GetStyle() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1838,7 +1845,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="style">Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</param>
     /// <returns>Whether the style was successfully applied or not, see the Efl.Ui.Theme.Apply_Error subset of <see cref="Eina.Error"/> for more information.</returns>
     virtual protected Eina.Error SetStyle(System.String style) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),style);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1851,7 +1858,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether the object is focusable.</returns>
     virtual public bool GetFocusAllow() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1864,7 +1871,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="can_focus">Whether the object is focusable.</param>
     virtual public void SetFocusAllow(bool can_focus) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),can_focus);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The internal parent of this widget.
@@ -1872,7 +1879,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>Widget parent object</returns>
     virtual protected Efl.Ui.Widget GetWidgetParent() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1881,7 +1888,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="parent">Widget parent object</param>
     virtual protected void SetWidgetParent(Efl.Ui.Widget parent) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),parent);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Accessibility information.
@@ -1889,7 +1896,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>Accessibility text description.</returns>
     virtual public System.String GetAccessInfo() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1898,7 +1905,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="txt">Accessibility text description.</param>
     virtual public void SetAccessInfo(System.String txt) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),txt);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),txt);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Region of interest inside this widget, that should be given priority to be visible inside a scroller.
@@ -1908,7 +1915,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</returns>
     virtual protected Eina.Rect GetInterestRegion() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_interest_region_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_interest_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1916,7 +1923,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>The rectangle area.</returns>
     virtual protected Eina.Rect GetFocusHighlightGeometry() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_highlight_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_highlight_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1924,7 +1931,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>FIXME</returns>
     virtual public uint GetFocusOrder() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_order_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1933,7 +1940,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>Chain of objects</returns>
     virtual public Eina.List<Efl.Canvas.Object> GetFocusCustomChain() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Canvas.Object>(_ret_var, false, false);
  }
@@ -1942,14 +1949,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="objs">Chain of objects to pass focus</param>
     virtual public void SetFocusCustomChain(Eina.List<Efl.Canvas.Object> objs) {
          var _in_objs = objs.Handle;
-                        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_objs);
+                        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_objs);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Current focused object in object tree.
     /// (Since EFL 1.22)</summary>
     /// <returns>Current focused or <c>null</c>, if there is no focused object.</returns>
     virtual public Efl.Canvas.Object GetFocusedObject() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1957,7 +1964,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>Focus move policy</returns>
     virtual public Efl.Ui.Focus.MovePolicy GetFocusMovePolicy() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1965,14 +1972,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="policy">Focus move policy</param>
     virtual public void SetFocusMovePolicy(Efl.Ui.Focus.MovePolicy policy) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),policy);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),policy);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the widget&apos;s focus_move_policy mode setting.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> to follow system focus move policy change, <c>false</c> otherwise</returns>
     virtual public bool GetFocusMovePolicyAutomatic() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1980,7 +1987,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="automatic"><c>true</c> to follow system focus move policy change, <c>false</c> otherwise</param>
     virtual public void SetFocusMovePolicyAutomatic(bool automatic) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),automatic);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Virtual function handling input events on the widget.
@@ -1993,7 +2000,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual protected bool WidgetInputEventHandler(ref Efl.Event eo_event, Efl.Canvas.Object source) {
          Efl.Event.NativeStruct _in_eo_event = eo_event;
-                                                var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_input_event_handler_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_eo_event, source);
+                                                var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_input_event_handler_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref _in_eo_event, source);
         Eina.Error.RaiseIfUnhandledException();
                         eo_event = _in_eo_event;
                 return _ret_var;
@@ -2004,7 +2011,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="act">Type of activation.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual protected bool OnAccessActivate(Efl.Ui.Activate act) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_activate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),act);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_activate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),act);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2013,19 +2020,19 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="enable"><c>true</c> if accessibility is enabled.</param>
     virtual protected void UpdateOnAccess(bool enable) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>&apos;Virtual&apos; function on the widget being set screen reader.
     /// (Since EFL 1.22)</summary>
     virtual public void ScreenReader(bool is_screen_reader) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_screen_reader_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),is_screen_reader);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_screen_reader_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_screen_reader);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>&apos;Virtual&apos; function on the widget being set atspi.
     /// (Since EFL 1.22)</summary>
     virtual public void Atspi(bool is_atspi) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_atspi_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),is_atspi);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_atspi_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_atspi);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Virtual function customizing sub objects being added.
@@ -2038,7 +2045,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="sub_obj">Sub object to be added. Not necessarily a widget itself.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
     virtual protected bool AddWidgetSubObject(Efl.Canvas.Object sub_obj) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2052,7 +2059,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="sub_obj">Sub object to be removed. Should be a child of this widget.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
     virtual protected bool DelWidgetSubObject(Efl.Canvas.Object sub_obj) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2063,39 +2070,39 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>Indicates success, and if the current theme or default theme was used.</returns>
     virtual protected Eina.Error ThemeApply() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_theme_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_theme_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Push scroll hold
     /// (Since EFL 1.22)</summary>
     virtual public void PushScrollHold() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_push_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_push_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Pop scroller hold
     /// (Since EFL 1.22)</summary>
     virtual public void PopScrollHold() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_pop_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_pop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Push scroller freeze
     /// (Since EFL 1.22)</summary>
     virtual public void PushScrollFreeze() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_push_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_push_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Pop scroller freeze
     /// (Since EFL 1.22)</summary>
     virtual public void PopScrollFreeze() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_pop_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_pop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the access object of given part of the widget.
     /// (Since EFL 1.18)</summary>
     /// <param name="part">The object&apos;s part name to get access object</param>
     virtual public Efl.Canvas.Object GetPartAccessObject(System.String part) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_part_access_object_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_part_access_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2105,7 +2112,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="can_focus_only"><c>true</c> only us widgets which can focus, <c>false</c> otherweise</param>
     /// <returns>Handle to focused widget</returns>
     virtual public Efl.Canvas.Object GetNewestFocusOrder(out uint newest_focus_order, bool can_focus_only) {
-                                                         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_newest_focus_order_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out newest_focus_order, can_focus_only);
+                                                         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_newest_focus_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out newest_focus_order, can_focus_only);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -2114,7 +2121,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="next">Focus next object</param>
     /// <param name="dir">Focus direction</param>
     virtual public void SetFocusNextObject(Efl.Canvas.Object next, Efl.Ui.Focus.Direction dir) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),next, dir);
+                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),next, dir);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the next object with specific focus direction.
@@ -2122,7 +2129,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="dir">Focus direction</param>
     /// <returns>Focus next object</returns>
     virtual public Efl.Canvas.Object GetFocusNextObject(Efl.Ui.Focus.Direction dir) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2131,7 +2138,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="next_item">Focus next object item</param>
     /// <param name="dir">Focus direction</param>
     virtual public void SetFocusNextItem(Efl.Ui.Widget next_item, Efl.Ui.Focus.Direction dir) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),next_item, dir);
+                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),next_item, dir);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the next object item with specific focus direction.
@@ -2139,14 +2146,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="dir">Focus direction</param>
     /// <returns>Focus next object item</returns>
     virtual public Efl.Ui.Widget GetFocusNextItem(Efl.Ui.Focus.Direction dir) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Handle focus tree unfocusable
     /// (Since EFL 1.22)</summary>
     virtual public void FocusTreeUnfocusableHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_tree_unfocusable_handle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_tree_unfocusable_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Prepend object to custom focus chain.
@@ -2157,14 +2164,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="child">The child to be added in custom chain.</param>
     /// <param name="relative_child">The relative object to position the child.</param>
     virtual public void FocusCustomChainPrepend(Efl.Canvas.Object child, Efl.Canvas.Object relative_child) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_prepend_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, relative_child);
+                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_prepend_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, relative_child);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Give focus to next object with specific focus direction in object tree.
     /// (Since EFL 1.22)</summary>
     /// <param name="dir">Direction to move the focus.</param>
     virtual public void FocusCycle(Efl.Ui.Focus.Direction dir) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_cycle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_cycle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>&apos;Virtual&apos; function handling passing focus to sub-objects given a direction, in degrees.
@@ -2176,7 +2183,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="weight">Weight</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool FocusDirection(Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
-                                                                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_base, degree, out direction, out direction_item, out weight);
+                                                                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, degree, out direction, out direction_item, out weight);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -2184,7 +2191,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool IsFocusNextManager() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_manager_is_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_manager_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2200,14 +2207,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetFocusListDirection(Efl.Canvas.Object kw_base, Eina.List<Efl.Object> items, System.IntPtr list_data_get, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
                  var _in_items = items.Handle;
-                                                                                                                                                                var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_direction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_base, _in_items, list_data_get, degree, out direction, out direction_item, out weight);
+                                                                                                                                                                var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, _in_items, list_data_get, degree, out direction, out direction_item, out weight);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                         return _ret_var;
  }
     /// <summary>Clear focused object
     /// (Since EFL 1.22)</summary>
     virtual public void ClearFocusedObject() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Go in focus direction
@@ -2215,7 +2222,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="degree">Degree</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool FocusDirectionGo(double degree) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_go_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),degree);
+                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_go_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),degree);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2226,7 +2233,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="next_item">Next item</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetFocusNext(Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
-                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir, out next, out next_item);
+                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, out next, out next_item);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -2234,27 +2241,27 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// This API will restore the focus state of the sub-tree to the latest state. If a sub-tree is unfocused and wants to get back to the latest focus state, this API will be helpful.
     /// (Since EFL 1.22)</summary>
     virtual public void FocusRestore() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_restore_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_restore_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Unset a custom focus chain on a given Elementary widget.
     /// Any focus chain previously set is removed entirely after this call.
     /// (Since EFL 1.22)</summary>
     virtual public void UnsetFocusCustomChain() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Steal focus
     /// (Since EFL 1.22)</summary>
     /// <param name="item">Widget to steal focus from</param>
     virtual public void FocusSteal(Efl.Ui.Widget item) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_steal_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),item);
+                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_steal_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Handle hide focus
     /// (Since EFL 1.22)</summary>
     virtual public void FocusHideHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_hide_handle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_hide_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>&apos;Virtual&apos; function handling passing focus to sub-objects.
@@ -2264,7 +2271,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="next_item">Next item</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool FocusNext(Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
-                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir, out next, out next_item);
+                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, out next, out next_item);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -2278,14 +2285,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetFocusListNext(Eina.List<Efl.Object> items, System.IntPtr list_data_get, Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
          var _in_items = items.Handle;
-                                                                                                                        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_next_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_items, list_data_get, dir, out next, out next_item);
+                                                                                                                        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_next_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_items, list_data_get, dir, out next, out next_item);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
     /// <summary>Handle focus mouse up
     /// (Since EFL 1.22)</summary>
     virtual public void FocusMouseUpHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_mouse_up_handle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_mouse_up_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get focus direction
@@ -2297,14 +2304,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="weight">Weight</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool GetFocusDirection(Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
-                                                                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_base, degree, out direction, out direction_item, out weight);
+                                                                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, degree, out direction, out direction_item, out weight);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
     /// <summary>Handle disable widget focus
     /// (Since EFL 1.22)</summary>
     virtual public void FocusDisabledHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_disabled_handle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_disabled_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Append object to custom focus chain.
@@ -2315,20 +2322,20 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="child">The child to be added in custom chain.</param>
     /// <param name="relative_child">The relative object to position the child.</param>
     virtual public void AppendFocusCustomChain(Efl.Canvas.Object child, Efl.Canvas.Object relative_child) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_append_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, relative_child);
+                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, relative_child);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>No description supplied.
     /// (Since EFL 1.18)</summary>
     virtual public void FocusReconfigure() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_reconfigure_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_reconfigure_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Virtual function which checks if this widget can handle passing focus to sub-object, in a given direction.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual protected bool IsFocusDirectionManager() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_manager_is_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_manager_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2344,7 +2351,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     virtual protected bool FocusStateApply(Efl.Ui.WidgetFocusState current_state, ref Efl.Ui.WidgetFocusState configured_state, Efl.Ui.Widget redirect) {
          Efl.Ui.WidgetFocusState.NativeStruct _in_current_state = current_state;
                                 var _out_configured_state = new Efl.Ui.WidgetFocusState.NativeStruct();
-                                        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_state_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_current_state, ref _out_configured_state, redirect);
+                                        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_state_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_current_state, ref _out_configured_state, redirect);
         Eina.Error.RaiseIfUnhandledException();
                 configured_state = _out_configured_state;
                                         return _ret_var;
@@ -2354,7 +2361,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="name">The part name.</param>
     /// <returns>A (proxy) object, valid for a single call.</returns>
     virtual public Efl.Object GetPart(System.String name) {
-                                 var _ret_var = Efl.IPartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.IPartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2362,7 +2369,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="id">ID to get action name for</param>
     /// <returns>Action name</returns>
     virtual public System.String GetActionName(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2370,14 +2377,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="id">ID to get localized name for</param>
     /// <returns>Localized name</returns>
     virtual public System.String GetActionLocalizedName(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_localized_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_localized_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Get list of available widget actions</summary>
     /// <returns>Contains statically allocated strings.</returns>
     virtual public Eina.List<Efl.Access.ActionData> GetActions() {
-         var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_actions_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_actions_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.ActionData>(_ret_var, false, false);
  }
@@ -2385,7 +2392,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="id">ID for widget</param>
     /// <returns><c>true</c> if action was performed, <c>false</c> otherwise</returns>
     virtual public bool ActionDo(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_do_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_do_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2393,14 +2400,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="id">ID for widget</param>
     /// <returns>Should be freed by the user.</returns>
     virtual public System.String GetActionKeybinding(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_keybinding_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_keybinding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
     /// <returns>Z order of component</returns>
     virtual public int GetZOrder() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_z_order_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_z_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2408,7 +2415,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="screen_coords">If <c>true</c> x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <returns>The geometry.</returns>
     virtual public Eina.Rect GetExtents(bool screen_coords) {
-                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_extents_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),screen_coords);
+                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_extents_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2418,7 +2425,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <returns><c>true</c> if geometry was set, <c>false</c> otherwise</returns>
     virtual public bool SetExtents(bool screen_coords, Eina.Rect rect) {
                  Eina.Rect.NativeStruct _in_rect = rect;
-                                        var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_extents_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),screen_coords, _in_rect);
+                                        var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_extents_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, _in_rect);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -2426,7 +2433,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     virtual public void GetScreenPosition(out int x, out int y) {
-                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_screen_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_screen_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Position of accessible widget.</summary>
@@ -2434,18 +2441,18 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="y">Y coordinate</param>
     /// <returns><c>true</c> if position was set, <c>false</c> otherwise</returns>
     virtual public bool SetScreenPosition(int x, int y) {
-                                                         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_screen_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_screen_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Gets position of socket offset.</summary>
     virtual public void GetSocketOffset(out int x, out int y) {
-                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_socket_offset_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_socket_offset_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets position of socket offset.</summary>
     virtual public void SetSocketOffset(int x, int y) {
-                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_socket_offset_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_socket_offset_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Contains accessible widget</summary>
@@ -2454,14 +2461,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="y">Y coordinate</param>
     /// <returns><c>true</c> if params have been set, <c>false</c> otherwise</returns>
     virtual public bool Contains(bool screen_coords, int x, int y) {
-                                                                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_contains_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),screen_coords, x, y);
+                                                                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_contains_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
     /// <summary>Focuses accessible widget.</summary>
     /// <returns><c>true</c> if focus grab focus succeed, <c>false</c> otherwise.</returns>
     virtual public bool GrabFocus() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_focus_grab_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_focus_grab_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2471,82 +2478,82 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="y">Y coordinate</param>
     /// <returns>Top component object at given coordinate</returns>
     virtual public Efl.Object GetAccessibleAtPoint(bool screen_coords, int x, int y) {
-                                                                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_accessible_at_point_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),screen_coords, x, y);
+                                                                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_accessible_at_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
     /// <summary>Highlights accessible widget. returns true if highlight grab has successed, false otherwise.
     /// @if MOBILE @since_tizen 4.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
     virtual public bool GrabHighlight() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_grab_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_grab_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Clears highlight of accessible widget. returns true if clear has successed, false otherwise.
     /// @if MOBILE @since_tizen 4.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
     virtual public bool ClearHighlight() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets an localized string describing accessible object role name.</summary>
     /// <returns>Localized accessible object role name</returns>
     virtual public System.String GetLocalizedRoleName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Accessible name of the object.</summary>
     /// <returns>Accessible name</returns>
     virtual public System.String GetI18nName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Accessible name of the object.</summary>
     /// <param name="i18n_name">Accessible name</param>
     virtual public void SetI18nName(System.String i18n_name) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),i18n_name);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),i18n_name);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets name information callback about widget.
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="name_cb">reading information callback</param>
     virtual public void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name_cb, data);
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
     /// <returns>Accessible relation set</returns>
     virtual public Efl.Access.RelationSet GetRelationSet() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The role of the object in accessibility domain.</summary>
     /// <returns>Accessible role</returns>
     virtual public Efl.Access.Role GetRole() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the role of the object in accessibility domain.</summary>
     /// <param name="role">Accessible role</param>
     virtual public void SetRole(Efl.Access.Role role) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),role);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),role);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <returns>Accessible parent</returns>
     virtual public Efl.Access.IObject GetAccessParent() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <param name="parent">Accessible parent</param>
     virtual public void SetAccessParent(Efl.Access.IObject parent) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),parent);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets contextual information callback about widget.
@@ -2554,7 +2561,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="description_cb">The function called to provide the accessible description.</param>
     /// <param name="data">The data passed to @c description_cb.</param>
     virtual public void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),description_cb, data);
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),description_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets gesture callback to give widget.
@@ -2562,27 +2569,27 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// 
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     virtual public void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),gesture_cb, data);
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),gesture_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets object&apos;s accessible children.</summary>
     /// <returns>List of widget&apos;s children</returns>
     virtual public Eina.List<Efl.Access.IObject> GetAccessChildren() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.IObject>(_ret_var, true, false);
  }
     /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
     /// <returns>Accessible role name</returns>
     virtual public System.String GetRoleName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
     /// <returns>List of object attributes, Must be freed by the user</returns>
     virtual public Eina.List<Efl.Access.Attribute> GetAttributes() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.Attribute>(_ret_var, true, true);
  }
@@ -2590,7 +2597,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <returns>Reading information types</returns>
     virtual public Efl.Access.ReadingInfoTypeMask GetReadingInfoType() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2598,33 +2605,33 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="reading_info">Reading information types</param>
     virtual public void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),reading_info);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),reading_info);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets index of the child in parent&apos;s children list.</summary>
     /// <returns>Index in children list</returns>
     virtual public int GetIndexInParent() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets contextual information about object.</summary>
     /// <returns>Accessible contextual information</returns>
     virtual public System.String GetDescription() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets widget contextual information.</summary>
     /// <param name="description">Accessible contextual information</param>
     virtual public void SetDescription(System.String description) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),description);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),description);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets set describing object accessible states.</summary>
     /// <returns>Accessible state set</returns>
     virtual public Efl.Access.StateSet GetStateSet() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2632,7 +2639,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <returns>If @c true, the object is highlightable.</returns>
     virtual public bool GetCanHighlight() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2640,7 +2647,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// @if WEARABLE @since_tizen 3.0 @endif</summary>
     /// <param name="can_highlight">If @c true, the object is highlightable.</param>
     virtual public void SetCanHighlight(bool can_highlight) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),can_highlight);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_highlight);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
@@ -2651,7 +2658,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
     /// <returns>Translation domain</returns>
     virtual public System.String GetTranslationDomain() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2663,7 +2670,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
     /// <param name="domain">Translation domain</param>
     virtual public void SetTranslationDomain(System.String domain) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),domain);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),domain);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get root object of accessible object hierarchy</summary>
@@ -2676,7 +2683,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <summary>Handles gesture on given widget.</summary>
     virtual public bool GestureDo(Efl.Access.GestureInfo gesture_info) {
          Efl.Access.GestureInfo.NativeStruct _in_gesture_info = gesture_info;
-                        var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_do_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_gesture_info);
+                        var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_do_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_gesture_info);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2685,18 +2692,18 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="key">The string key to give extra information</param>
     /// <param name="value">The string value to give extra information</param>
     virtual public void AppendAttribute(System.String key, System.String value) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_append_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, value);
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, value);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>delete key-value pair identifying object extra attributes when key is given</summary>
     /// <param name="key">The string key to identify the key-value pair</param>
     virtual public void DelAttribute(System.String key) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Removes all attributes in accessible object.</summary>
     virtual public void ClearAttributes() {
-         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Register accessibility event listener</summary>
@@ -2733,7 +2740,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="relation_object">Object to relate to</param>
     /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
     virtual public bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
-                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_append_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type, relation_object);
+                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -2742,12 +2749,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to remove relation from</param>
     virtual public void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type, relation_object);
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Removes all relationships in accessible object.</summary>
     virtual public void ClearRelationships() {
-         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Notifies accessibility clients about current state of the accessible object.
@@ -2755,13 +2762,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// 
     /// if recursive parameter is set, function will traverse all accessible children and call state_notify function on them.</summary>
     virtual public void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),state_types_mask, recursive);
+                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),state_types_mask, recursive);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Elementary actions</summary>
     /// <returns>NULL-terminated array of Efl.Access.Action_Data.</returns>
     virtual public Efl.Access.ActionData GetElmActions() {
-         var _ret_var = Efl.Access.Widget.IActionConcrete.NativeMethods.efl_access_widget_action_elm_actions_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Access.Widget.IActionConcrete.NativeMethods.efl_access_widget_action_elm_actions_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2773,34 +2780,34 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="seat">Specified seat for multiple seats case.</param>
     virtual public void DragStart(Efl.Ui.SelectionFormat format, Eina.Slice data, Efl.Ui.SelectionAction action, Efl.Dnd.DragIconCreate icon_func, uint seat) {
                                                                                                                  GCHandle icon_func_handle = GCHandle.Alloc(icon_func);
-                Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),format, data, action, GCHandle.ToIntPtr(icon_func_handle), Efl.Dnd.DragIconCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
+                Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, data, action, GCHandle.ToIntPtr(icon_func_handle), Efl.Dnd.DragIconCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Set the action for the drag</summary>
     /// <param name="action">Drag action</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     virtual public void SetDragAction(Efl.Ui.SelectionAction action, uint seat) {
-                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_action_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),action, seat);
+                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_action_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),action, seat);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Cancel the on-going drag</summary>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     virtual public void DragCancel(uint seat) {
-                                 Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_cancel_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),seat);
+                                 Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_cancel_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),seat);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Make the current object as drop target. There are four events emitted: - EFL_UI_DND_EVENT_DRAG_ENTER - EFL_UI_DND_EVENT_DRAG_LEAVE - EFL_UI_DND_EVENT_DRAG_POS - EFL_UI_DND_EVENT_DRAG_DROP.</summary>
     /// <param name="format">Accepted data format</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     virtual public void AddDropTarget(Efl.Ui.SelectionFormat format, uint seat) {
-                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drop_target_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),format, seat);
+                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drop_target_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, seat);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Delete the dropable status from object</summary>
     /// <param name="format">Accepted data format</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     virtual public void DelDropTarget(Efl.Ui.SelectionFormat format, uint seat) {
-                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drop_target_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),format, seat);
+                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drop_target_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, seat);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>A unique string to be translated.
@@ -2810,7 +2817,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="domain">A translation domain. If <c>null</c> this means the default domain is used.</param>
     /// <returns>This returns the untranslated value of <c>label</c>. The translated string can usually be retrieved with <see cref="Efl.IText.GetText"/>.</returns>
     virtual public System.String GetL10nText(out System.String domain) {
-                                 var _ret_var = Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out domain);
+                                 var _ret_var = Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out domain);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -2818,7 +2825,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="label">A unique (untranslated) string.</param>
     /// <param name="domain">A translation domain. If <c>null</c> this uses the default domain (eg. set by <c>textdomain</c>()).</param>
     virtual public void SetL10nText(System.String label, System.String domain) {
-                                                         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),label, domain);
+                                                         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),label, domain);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Requests this object to update its text strings for the current locale.
@@ -2826,7 +2833,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// 
     /// This function is a hook meant to be implemented by any object that supports translation. This can be called whenever a new object is created or when the current locale changes, for instance. This should only trigger further calls to <see cref="Efl.Ui.IL10n.UpdateTranslation"/> to children objects.</summary>
     virtual public void UpdateTranslation() {
-         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>bind property data with the given key string. when the data is ready or changed, bind the data to the key action and process promised work.</summary>
@@ -2834,7 +2841,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="property">Model property name</param>
     /// <returns>0 when it succeed, an error code otherwise.</returns>
     virtual public Eina.Error PropertyBind(System.String key, System.String property) {
-                                                         var _ret_var = Efl.Ui.IPropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, property);
+                                                         var _ret_var = Efl.Ui.IPropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, property);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -2845,7 +2852,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="seat">Specified seat for multiple seats case.</param>
     /// <returns>Future for tracking when the selection is lost</returns>
     virtual public  Eina.Future SetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat) {
-                                                                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type, format, data, seat);
+                                                                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, format, data, seat);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
@@ -2856,14 +2863,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="seat">Specified seat for multiple seats case.</param>
     virtual public void GetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Efl.Ui.SelectionDataReady data_func, uint seat) {
                                                                                          GCHandle data_func_handle = GCHandle.Alloc(data_func);
-                Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type, format, GCHandle.ToIntPtr(data_func_handle), Efl.Ui.SelectionDataReadyWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
+                Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, format, GCHandle.ToIntPtr(data_func_handle), Efl.Ui.SelectionDataReadyWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Clear the selection data from the object</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     virtual public void ClearSelection(Efl.Ui.SelectionType type, uint seat) {
-                                                         Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type, seat);
+                                                         Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, seat);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Determine whether the selection data has owner</summary>
@@ -2871,28 +2878,28 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="seat">Specified seat for multiple seats case.</param>
     /// <returns>EINA_TRUE if there is object owns selection, otherwise EINA_FALSE</returns>
     virtual public bool HasOwner(Efl.Ui.SelectionType type, uint seat) {
-                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_has_owner_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),type, seat);
+                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_has_owner_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, seat);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Model that is/will be</summary>
     /// <returns>Efl model</returns>
     virtual public Efl.IModel GetModel() {
-         var _ret_var = Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Model that is/will be</summary>
     /// <param name="model">Efl model</param>
     virtual public void SetModel(Efl.IModel model) {
-                                 Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),model);
+                                 Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),model);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>The geometry to use.</returns>
     virtual public Eina.Rect GetFocusGeometry() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2900,7 +2907,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>The focused state of the object.</returns>
     virtual public bool GetFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2909,14 +2916,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="focus">The focused state of the object.</param>
     virtual public void SetFocus(bool focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),focus);
+                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
     /// (Since EFL 1.22)</summary>
     /// <returns>The manager object</returns>
     virtual public Efl.Ui.Focus.IManager GetFocusManager() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2924,7 +2931,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns>The focus parent.</returns>
     virtual public Efl.Ui.Focus.IObject GetFocusParent() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2932,7 +2939,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if a child has focus.</returns>
     virtual public bool GetChildFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2940,26 +2947,26 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// (Since EFL 1.22)</summary>
     /// <param name="child_focus"><c>true</c> if a child has focus.</param>
     virtual public void SetChildFocus(bool child_focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child_focus);
+                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_focus);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.
     /// (Since EFL 1.22)</summary>
     virtual public void SetupOrder() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>This is called when <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> is called, but only on the first call, additional recursive calls to <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> will not call this function again.
     /// (Since EFL 1.22)</summary>
     virtual public void SetupOrderNonRecursive() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Virtual function handling focus in/out events on the widget
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if this widget can handle focus, <c>false</c> otherwise</returns>
     virtual public bool UpdateOnFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -9957,6 +9964,7 @@ namespace Ui {
 /// <summary>All relevant fields needed for the current state of focus registration
 /// (Since EFL 1.22)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct WidgetFocusState
 {
     /// <summary>The manager where the widget is registered in</summary>

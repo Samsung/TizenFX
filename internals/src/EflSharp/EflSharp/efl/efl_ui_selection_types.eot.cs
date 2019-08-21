@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <param name="obj">Object which requested for the selection</param>
 /// <param name="seldata">Selection data</param>
+[Efl.Eo.BindingEntity]
 public delegate void SelectionDataReady(Efl.Object obj, ref Efl.Ui.SelectionData seldata);
 public delegate void SelectionDataReadyInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object obj,  ref Efl.Ui.SelectionData.NativeStruct seldata);
 internal class SelectionDataReadyWrapper : IDisposable
@@ -88,6 +89,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Selection type</summary>
+[Efl.Eo.BindingEntity]
 public enum SelectionType
 {
 /// <summary>Primary text selection (highlighted or selected text)</summary>
@@ -109,6 +111,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Selection format</summary>
+[Efl.Eo.BindingEntity]
 public enum SelectionFormat
 {
 /// <summary>For matching every possible atom</summary>
@@ -136,6 +139,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Defines the kind of action associated with the drop data</summary>
+[Efl.Eo.BindingEntity]
 public enum SelectionAction
 {
 /// <summary>Action type is unknown</summary>
@@ -166,6 +170,7 @@ namespace Ui {
 
 /// <summary>Structure holding the info about selected data</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct SelectionData
 {
     /// <summary>Coordinates of the drop (DND operations only)</summary>
@@ -260,7 +265,9 @@ namespace Efl {
 
 namespace Ui {
 
+/// <summary>Selection-changed specific information.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct SelectionChanged
 {
     /// <summary>Selection type</summary>

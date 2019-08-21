@@ -9,6 +9,7 @@ namespace Efl {
 
 /// <summary>Font settings of the text</summary>
 [Efl.ITextFontConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextFont : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -156,11 +157,18 @@ sealed public class ITextFontConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextFontConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_font_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextFont"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextFontConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextFontConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -346,7 +354,7 @@ sealed public class ITextFontConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1105,6 +1113,7 @@ sealed public class ITextFontConcrete :
 namespace Efl {
 
 /// <summary>Type of font weight</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontWeight
 {
 /// <summary>Normal font weight</summary>
@@ -1140,6 +1149,7 @@ Extrablack = 12,
 namespace Efl {
 
 /// <summary>Type of font width</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontWidth
 {
 /// <summary>Normal font width</summary>
@@ -1167,6 +1177,7 @@ Ultraexpanded = 8,
 namespace Efl {
 
 /// <summary>Type of font slant</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontSlant
 {
 /// <summary>Normal font slant</summary>
@@ -1182,6 +1193,7 @@ Italic = 2,
 namespace Efl {
 
 /// <summary>Scalable of bitmap fonts</summary>
+[Efl.Eo.BindingEntity]
 public enum TextFontBitmapScalable
 {
 /// <summary>Disable scalable feature for bitmap fonts.</summary>

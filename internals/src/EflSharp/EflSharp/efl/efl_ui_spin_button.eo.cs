@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>A Button Spin.
 /// This is a widget which allows the user to increase or decrease numeric values using the arrow buttons or to edit values directly by clicking over them and inputting new ones.</summary>
 [Efl.Ui.SpinButton.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IComposition
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -34,9 +35,9 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
         efl_ui_spin_button_class_get();
     /// <summary>Initializes a new instance of the <see cref="SpinButton"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public SpinButton(Efl.Object parent
-            , System.String style = null) : base(efl_ui_spin_button_class_get(), typeof(SpinButton), parent)
+            , System.String style = null) : base(efl_ui_spin_button_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +47,24 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected SpinButton(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="SpinButton"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected SpinButton(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected SpinButton(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="SpinButton"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected SpinButton(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected SpinButton(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -67,7 +73,7 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -94,7 +100,7 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SPIN_BUTTON_EVENT_DELAY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -124,7 +130,7 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     /// When the user decrements the value (using left or bottom arrow), it will display $50.</summary>
     /// <returns><c>true</c> to enable circulate or <c>false</c> to disable it.</returns>
     virtual public bool GetCirculate() {
-         var _ret_var = Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_circulate_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_circulate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -138,14 +144,14 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     /// When the user decrements the value (using left or bottom arrow), it will display $50.</summary>
     /// <param name="circulate"><c>true</c> to enable circulate or <c>false</c> to disable it.</param>
     virtual public void SetCirculate(bool circulate) {
-                                 Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_circulate_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),circulate);
+                                 Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_circulate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),circulate);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control whether the spin can be directly edited by the user.
     /// Spin objects can have editing disabled, in which case they can only be changed by using arrows. This is useful for situations where you don&apos;t want your users to write their own value. It&apos;s especially useful when using special values. The user can see the real values instead of special label when editing.</summary>
     /// <returns><c>true</c> to allow users to edit it or <c>false</c> to don&apos;t allow users to edit it directly.</returns>
     virtual public bool GetEditable() {
-         var _ret_var = Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_editable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_editable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -153,7 +159,7 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     /// Spin objects can have editing disabled, in which case they can only be changed by using arrows. This is useful for situations where you don&apos;t want your users to write their own value. It&apos;s especially useful when using special values. The user can see the real values instead of special label when editing.</summary>
     /// <param name="editable"><c>true</c> to allow users to edit it or <c>false</c> to don&apos;t allow users to edit it directly.</param>
     virtual public void SetEditable(bool editable) {
-                                 Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_editable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),editable);
+                                 Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_editable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),editable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the direction of a given widget.
@@ -162,7 +168,7 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -172,7 +178,7 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the order of elements that will be used for composition
@@ -185,7 +191,7 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
     /// <returns>The order to use</returns>
     virtual public Eina.List<Efl.Gfx.IEntity> GetCompositionElements() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Gfx.IEntity>(_ret_var, true, false);
  }
@@ -201,31 +207,31 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.Focus.IC
     virtual public void SetCompositionElements(Eina.List<Efl.Gfx.IEntity> logical_order) {
          var _in_logical_order = logical_order.Handle;
 logical_order.Own = false;
-                        Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_logical_order);
+                        Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_logical_order);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <returns><c>true</c> or <c>false</c></returns>
     virtual public bool GetLogicalMode() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <param name="logical_mode"><c>true</c> or <c>false</c></param>
     virtual public void SetLogicalMode(bool logical_mode) {
-                                 Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),logical_mode);
+                                 Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),logical_mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Mark this widget as dirty, the children can be considered to be changed after that call</summary>
     virtual public void Dirty() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>A call to prepare the children of this element, called if marked as dirty
     /// You can use this function to call composition_elements.</summary>
     virtual public void Prepare() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Control whether the spin should circulate value when it reaches its minimum or maximum value.

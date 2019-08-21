@@ -41,6 +41,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Graphics colorspace type</summary>
+[Efl.Eo.BindingEntity]
 public enum Colorspace
 {
 /// <summary>ARGB 32 bits per pixel, high-byte is Alpha, accessed one 32bit word at a time.</summary>
@@ -103,6 +104,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Graphics render operation mode</summary>
+[Efl.Eo.BindingEntity]
 public enum RenderOp
 {
 /// <summary>Alpha blending onto destination (default); d = d*(1-sa) + s.</summary>
@@ -123,6 +125,7 @@ namespace Gfx {
 
 /// <summary>These values determine how the points are interpreted in a stream of points.
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum PathCommandType
 {
 /// <summary>The end of stream , no more points to process.</summary>
@@ -149,6 +152,7 @@ namespace Gfx {
 
 /// <summary>These values determine how the end of opened sub-paths are rendered in a stroke. <see cref="Efl.Gfx.IShape.SetStrokeCap"/>
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum Cap
 {
 /// <summary>The end of lines is rendered as a full stop on the last point itself.</summary>
@@ -171,6 +175,7 @@ namespace Gfx {
 
 /// <summary>These values determine how two joining lines are rendered in a stroker. <see cref="Efl.Gfx.IShape.SetStrokeJoin"/>
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum Join
 {
 /// <summary>Used to render rounded line joins. Circular arcs are used to join two lines smoothly.</summary>
@@ -193,6 +198,7 @@ namespace Gfx {
 
 /// <summary>Specifies how the area outside the gradient area should be filled. <see cref="Efl.Gfx.IGradient.SetSpread"/>
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum GradientSpread
 {
 /// <summary>The area is filled with the closest stop color. This is the default.</summary>
@@ -215,6 +221,7 @@ namespace Gfx {
 
 /// <summary>Type defining how an image content get filled.
 /// (Since EFL 1.14)</summary>
+[Efl.Eo.BindingEntity]
 public enum FillRule
 {
 /// <summary>Draw a horizontal line from the point to a location outside the shape. Determine whether the direction of the line at each intersection point is up or down. The winding number is determined by summing the direction of each intersection. If the number is non zero, the point is inside the shape. This mode is the default</summary>
@@ -232,6 +239,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>How an image&apos;s center region (the complement to the border region) should be rendered by EFL</summary>
+[Efl.Eo.BindingEntity]
 public enum BorderFillMode
 {
 /// <summary>Image&apos;s center region is <c>not</c> to be rendered</summary>
@@ -252,6 +260,7 @@ namespace Gfx {
 
 /// <summary>What property got changed for this object
 /// (Since EFL 1.18)</summary>
+[Efl.Eo.BindingEntity]
 public enum ChangeFlag
 {
 /// <summary>Nothing changed.</summary>
@@ -276,6 +285,7 @@ namespace Gfx {
 
 /// <summary>Aspect types/policies for scaling size hints.
 /// See also <see cref="Efl.Gfx.IHint.GetHintAspect"/>.</summary>
+[Efl.Eo.BindingEntity]
 public enum HintAspect
 {
 /// <summary>No preference on either direction of the container for aspect ratio control.</summary>
@@ -299,6 +309,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl Gfx Color Class layer enum</summary>
+[Efl.Eo.BindingEntity]
 public enum ColorClassLayer
 {
 /// <summary>Default color</summary>
@@ -320,6 +331,7 @@ namespace Gfx {
 /// <summary>Type describing dash. <see cref="Efl.Gfx.IShape.GetStrokeDash"/>
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Dash
 {
     /// <summary>Dash drawing length.</summary>
@@ -388,6 +400,7 @@ namespace Gfx {
 /// <summary>Type defining gradient stops. Describes the location and color of a transition point in a gradient.
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct GradientStop
 {
     /// <summary>The location of the gradient stop within the gradient vector</summary>
@@ -479,6 +492,7 @@ namespace Gfx {
 
 /// <summary>Internal structure for <see cref="Efl.Gfx.Stroke"/>.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct StrokeColor
 {
     /// <summary>The component R color of the stroke</summary>
@@ -563,6 +577,7 @@ namespace Gfx {
 /// <summary>Type defining stroke information. Describes the properties to define the path stroke.
 /// (Since EFL 1.14)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Stroke
 {
     /// <summary>Stroke scale</summary>
@@ -678,6 +693,7 @@ namespace Gfx {
 
 /// <summary>Public shape</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ShapePublic
 {
     /// <summary>Internal representation as stroke</summary>
@@ -739,6 +755,7 @@ namespace Event {
 
 /// <summary>Data sent along a &quot;render,post&quot; event, after a frame has been rendered.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct RenderPost
 {
     /// <summary>A list of rectangles that were updated in the canvas.</summary>

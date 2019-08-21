@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>This is the base class for all &quot;Part&quot; handles in Efl.Ui widgets.
 /// Since objects of this type are returned by <see cref="Efl.IPart.GetPart"/>, their lifetime is limited to exactly one function call only. Each widget class should expose more specific types for their API-defined parts.</summary>
 [Efl.Ui.WidgetPart.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class WidgetPart : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -35,24 +36,29 @@ public class WidgetPart : Efl.Object
     /// <summary>Initializes a new instance of the <see cref="WidgetPart"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public WidgetPart(Efl.Object parent= null
-            ) : base(efl_ui_widget_part_class_get(), typeof(WidgetPart), parent)
+            ) : base(efl_ui_widget_part_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected WidgetPart(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="WidgetPart"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected WidgetPart(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected WidgetPart(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="WidgetPart"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected WidgetPart(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected WidgetPart(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 

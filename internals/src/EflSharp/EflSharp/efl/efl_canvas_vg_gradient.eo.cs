@@ -13,6 +13,7 @@ namespace Vg {
 
 /// <summary>Efl vectopr graphics gradient abstract class</summary>
 [Efl.Canvas.Vg.Gradient.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -36,31 +37,36 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
     /// <summary>Initializes a new instance of the <see cref="Gradient"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Gradient(Efl.Object parent= null
-            ) : base(efl_canvas_vg_gradient_class_get(), typeof(Gradient), parent)
+            ) : base(efl_canvas_vg_gradient_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Gradient(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Gradient"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Gradient(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Gradient(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class GradientRealized : Gradient
     {
-        private GradientRealized(IntPtr ptr) : base(ptr)
+        private GradientRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Gradient"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Gradient(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Gradient(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -69,7 +75,7 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
     /// <param name="length">Length of the list</param>
     virtual public void GetStop(out Efl.Gfx.GradientStop colors, out uint length) {
                          var _out_colors = new System.IntPtr();
-                                Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_stop_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_colors, out length);
+                                Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_stop_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_colors, out length);
         Eina.Error.RaiseIfUnhandledException();
         colors = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.GradientStop>(_out_colors);
                                  }
@@ -78,21 +84,21 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
     /// <param name="length">Length of the list</param>
     virtual public void SetStop(ref Efl.Gfx.GradientStop colors, uint length) {
          Efl.Gfx.GradientStop.NativeStruct _in_colors = colors;
-                                                Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_stop_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_colors, length);
+                                                Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_stop_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref _in_colors, length);
         Eina.Error.RaiseIfUnhandledException();
                         colors = _in_colors;
                  }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
     /// <returns>Spread type to be used</returns>
     virtual public Efl.Gfx.GradientSpread GetSpread() {
-         var _ret_var = Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Specifies the spread method that should be used for this gradient.</summary>
     /// <param name="s">Spread type to be used</param>
     virtual public void SetSpread(Efl.Gfx.GradientSpread s) {
-                                 Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),s);
+                                 Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),s);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>

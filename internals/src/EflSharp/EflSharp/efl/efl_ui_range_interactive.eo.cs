@@ -12,6 +12,7 @@ namespace Ui {
 /// <summary>Interface that extends the normal displaying properties with usage properties.
 /// The properties defined here are used to manipulate the way a user interacts with a displayed range.</summary>
 [Efl.Ui.IRangeInteractiveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IRangeInteractive : 
     Efl.Ui.IRangeDisplay ,
     Efl.Eo.IWrapper, IDisposable
@@ -67,11 +68,18 @@ sealed public class IRangeInteractiveConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IRangeInteractiveConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_range_interactive_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IRangeInteractive"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IRangeInteractiveConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IRangeInteractiveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -165,7 +173,7 @@ sealed public class IRangeInteractiveConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

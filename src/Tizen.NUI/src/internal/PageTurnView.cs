@@ -519,7 +519,7 @@ namespace Tizen.NUI
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int PAGE_SIZE = Interop.PageTurnView.PageTurnView_Property_PAGE_SIZE_get();
+            public static readonly int VIEW_PAGE_SIZE = Interop.PageTurnView.PageTurnView_Property_VIEW_PAGE_SIZE_get();
             /// <since_tizen> 3 </since_tizen>
             public static readonly int CURRENT_PAGE_ID = Interop.PageTurnView.PageTurnView_Property_CURRENT_PAGE_ID_get();
             /// <since_tizen> 3 </since_tizen>
@@ -585,12 +585,12 @@ namespace Tizen.NUI
             get
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(PageTurnView.Property.PAGE_SIZE).Get(temp);
+                GetProperty(PageTurnView.Property.VIEW_PAGE_SIZE).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(PageTurnView.Property.PAGE_SIZE, new Tizen.NUI.PropertyValue(value));
+                SetProperty(PageTurnView.Property.VIEW_PAGE_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
         public int CurrentPageId

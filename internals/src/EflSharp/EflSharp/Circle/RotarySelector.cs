@@ -102,7 +102,7 @@ namespace Efl
                 /// </summary>
                 /// <param name="parent">The Efl.Ui.Widget to which the new RotarySelector will be attached as a child.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public RotarySelector(Efl.Ui.Widget parent) : base(Interop.Eext.eext_rotary_selector_add(parent.NativeHandle))
+                public RotarySelector(Efl.Ui.Widget parent) : base(new Efl.Eo.Globals.WrappingHandle(Interop.Eext.eext_rotary_selector_add(parent.NativeHandle)))
                 {
                     smartClicked = new Interop.Evas.SmartCallback((d, o, e) =>
                     {

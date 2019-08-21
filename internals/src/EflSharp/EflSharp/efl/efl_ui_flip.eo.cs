@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI flip class</summary>
 [Efl.Ui.Flip.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
         efl_ui_flip_class_get();
     /// <summary>Initializes a new instance of the <see cref="Flip"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Flip(Efl.Object parent
-            , System.String style = null) : base(efl_ui_flip_class_get(), typeof(Flip), parent)
+            , System.String style = null) : base(efl_ui_flip_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Flip(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Flip"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Flip(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Flip(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Flip"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Flip(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Flip(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -93,7 +99,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FLIP_EVENT_ANIMATE_BEGIN";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -118,7 +124,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -145,7 +151,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FLIP_EVENT_ANIMATE_DONE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -171,7 +177,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -199,7 +205,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -226,7 +232,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -254,7 +260,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -278,7 +284,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <summary>Get the interactive flip mode.</summary>
     /// <returns>The interactive flip mode to use.</returns>
     virtual public Efl.Ui.FlipInteraction GetInteraction() {
-         var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -290,13 +296,13 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// Note: #ELM_FLIP_INTERACTION_ROTATE won&apos;t cause #ELM_FLIP_ROTATE_XZ_CENTER_AXIS or #ELM_FLIP_ROTATE_YZ_CENTER_AXIS to happen, those can only be achieved with <see cref="Efl.Ui.Flip.Go"/>.</summary>
     /// <param name="mode">The interactive flip mode to use.</param>
     virtual public void SetInteraction(Efl.Ui.FlipInteraction mode) {
-                                 Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode);
+                                 Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get flip front visibility state.</summary>
     /// <returns><c>true</c> if front front is showing, <c>false</c> if the back is showing.</returns>
     virtual public bool GetFrontVisible() {
-         var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_front_visible_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_front_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -311,14 +317,14 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="dir">The hit area to set.</param>
     /// <param name="hitsize">The amount of that dimension (0.0 to 1.0) to use.</param>
     virtual public void SetInteractionDirectionHitsize(Efl.Ui.LayoutOrientation dir, double hitsize) {
-                                                         Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_hitsize_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir, hitsize);
+                                                         Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_hitsize_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, hitsize);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the amount of the flip that is sensitive to interactive flip.</summary>
     /// <param name="dir">The direction to check.</param>
     /// <returns>The size set for that direction.</returns>
     virtual public double GetInteractionDirectionHitsize(Efl.Ui.LayoutOrientation dir) {
-                                 var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_hitsize_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_hitsize_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -329,14 +335,14 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="dir">The direction to change.</param>
     /// <param name="enabled">If that direction is enabled or not.</param>
     virtual public void SetInteractionDirectionEnabled(Efl.Ui.LayoutOrientation dir, bool enabled) {
-                                                         Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_enabled_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir, enabled);
+                                                         Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, enabled);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the enabled state of that flip direction.</summary>
     /// <param name="dir">The direction to check.</param>
     /// <returns>If that direction is enabled or not.</returns>
     virtual public bool GetInteractionDirectionEnabled(Efl.Ui.LayoutOrientation dir) {
-                                 var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 var _ret_var = Efl.Ui.Flip.NativeMethods.efl_ui_flip_interaction_direction_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -346,7 +352,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// There a number of possible animations to use for flipping, namely #ELM_FLIP_ROTATE_X_CENTER_AXIS (rotate the currently visible content around a horizontal axis in the middle of its height, the other content is shown as the other side of the flip), #ELM_FLIP_ROTATE_Y_CENTER_AXIS (rotate the currently visible content around a vertical axis in the middle of its width, the other content is shown as the other side of the flip), #ELM_FLIP_ROTATE_XZ_CENTER_AXIS (rotate the currently visible content around a diagonal axis in the middle of its width, the other content is shown as the other side of the flip), #ELM_FLIP_ROTATE_YZ_CENTER_AXIS (rotate the currently visible content around a diagonal axis in the middle of its height, the other content is shown as the other side of the flip). #ELM_FLIP_CUBE_LEFT (rotate the currently visible content to the left as if the flip was a cube, the other content is shown as the right face of the cube), #ELM_FLIP_CUBE_RIGHT (rotate the currently visible content to the right as if the flip was a cube, the other content is shown as the left face of the cube), #ELM_FLIP_CUBE_UP (rotate the currently visible content up as if the flip was a cube, the other content is shown as the bottom face of the cube), #ELM_FLIP_CUBE_DOWN (rotate the currently visible content down as if the flip was a cube, the other content is shown as the upper face of the cube), #ELM_FLIP_PAGE_LEFT (move the currently visible content to the left as if the flip was a book, the other content is shown as the page below that), #ELM_FLIP_PAGE_RIGHT (move the currently visible content to the right as if the flip was a book, the other content is shown as the page below it), #ELM_FLIP_PAGE_UP (move the currently visible content up as if the flip was a book, the other content is shown as the page below it), #ELM_FLIP_PAGE_DOWN (move the currently visible content down as if the flip was a book, the other content is shown as the page below that) and #ELM_FLIP_CROSS_FADE (fade out the currently visible content, while fading in the invisible content).</summary>
     /// <param name="mode">The mode type.</param>
     virtual public void Go(Efl.Ui.FlipMode mode) {
-                                 Efl.Ui.Flip.NativeMethods.efl_ui_flip_go_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode);
+                                 Efl.Ui.Flip.NativeMethods.efl_ui_flip_go_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Runs the flip animation to front or back.
@@ -356,29 +362,29 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="front">If <c>true</c>, makes front visible, otherwise makes back.</param>
     /// <param name="mode">The mode type.</param>
     virtual public void GoTo(bool front, Efl.Ui.FlipMode mode) {
-                                                         Efl.Ui.Flip.NativeMethods.efl_ui_flip_go_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),front, mode);
+                                                         Efl.Ui.Flip.NativeMethods.efl_ui_flip_go_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),front, mode);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -386,7 +392,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -394,7 +400,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
     virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -405,7 +411,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -416,7 +422,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="subobj">Object to pack at the beginning.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBegin(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -427,7 +433,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="subobj">Object to pack at the end.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackEnd(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -437,7 +443,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -447,7 +453,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, existing);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -461,7 +467,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool PackAt(Efl.Gfx.IEntity subobj, int index) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj, index);
+                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -472,7 +478,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="index">Index of the existing sub-object to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object contained at the given <c>index</c>.</returns>
     virtual public Efl.Gfx.IEntity GetPackContent(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -480,7 +486,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="subobj">An existing sub-object in this container.</param>
     /// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range 0 to (<c>count</c>-1).</returns>
     virtual public int GetPackIndex(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -491,7 +497,7 @@ public class Flip : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLinear
     /// <param name="index">Index of the sub-object to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
     /// <returns>The sub-object if it could be removed.</returns>
     virtual public Efl.Gfx.IEntity PackUnpackAt(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1600,6 +1606,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI flip mode</summary>
+[Efl.Eo.BindingEntity]
 public enum FlipMode
 {
 /// <summary>Rotate Y center axis flip mode</summary>
@@ -1639,6 +1646,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI flip interaction</summary>
+[Efl.Eo.BindingEntity]
 public enum FlipInteraction
 {
 /// <summary>No interaction</summary>

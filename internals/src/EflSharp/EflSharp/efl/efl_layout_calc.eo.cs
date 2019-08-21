@@ -13,6 +13,7 @@ namespace Layout {
 /// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.
 /// (Since EFL 1.22)</summary>
 [Efl.Layout.ICalcConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ICalc : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -81,6 +82,7 @@ void CalcForce();
     }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Layout.ICalc.CircularDependencyEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ICalcCircularDependencyEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Eina.Array<System.String> arg { get; set; }
@@ -109,11 +111,18 @@ sealed public class ICalcConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ICalcConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
         efl_layout_calc_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ICalc"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ICalcConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ICalcConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -123,7 +132,7 @@ sealed public class ICalcConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -150,7 +159,7 @@ sealed public class ICalcConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -176,7 +185,7 @@ sealed public class ICalcConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -204,7 +213,7 @@ sealed public class ICalcConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
@@ -315,7 +324,7 @@ sealed public class ICalcConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
         /// <summary>Gets the list of Eo operations to override.</summary>

@@ -11,6 +11,7 @@ namespace Access {
 
 /// <summary>Elementary accessible window interface</summary>
 [Efl.Access.IWindowConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IWindow : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -51,11 +52,18 @@ sealed public class IWindowConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IWindowConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_window_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IWindow"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IWindowConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IWindowConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -64,7 +72,7 @@ sealed public class IWindowConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -91,7 +99,7 @@ sealed public class IWindowConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_CREATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -116,7 +124,7 @@ sealed public class IWindowConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -143,7 +151,7 @@ sealed public class IWindowConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DESTROYED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -168,7 +176,7 @@ sealed public class IWindowConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -195,7 +203,7 @@ sealed public class IWindowConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_ACTIVATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -220,7 +228,7 @@ sealed public class IWindowConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -247,7 +255,7 @@ sealed public class IWindowConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DEACTIVATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -272,7 +280,7 @@ sealed public class IWindowConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -299,7 +307,7 @@ sealed public class IWindowConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MAXIMIZED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -324,7 +332,7 @@ sealed public class IWindowConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -351,7 +359,7 @@ sealed public class IWindowConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MINIMIZED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -376,7 +384,7 @@ sealed public class IWindowConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -403,7 +411,7 @@ sealed public class IWindowConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_RESTORED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -429,7 +437,7 @@ sealed public class IWindowConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>

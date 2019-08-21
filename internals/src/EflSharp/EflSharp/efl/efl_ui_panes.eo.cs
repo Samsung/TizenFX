@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Elementary panes class</summary>
 [Efl.Ui.Panes.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrientable
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,9 +34,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
         efl_ui_panes_class_get();
     /// <summary>Initializes a new instance of the <see cref="Panes"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Panes(Efl.Object parent
-            , System.String style = null) : base(efl_ui_panes_class_get(), typeof(Panes), parent)
+            , System.String style = null) : base(efl_ui_panes_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,19 +46,24 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Panes(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Panes"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Panes(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Panes(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Panes"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Panes(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Panes(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,7 +72,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -93,7 +99,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_ELM_PANES_EVENT_PRESS";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -118,7 +124,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -145,7 +151,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_ELM_PANES_EVENT_UNPRESS";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -170,7 +176,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -198,7 +204,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -232,7 +238,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -260,7 +266,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED_ANY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -294,7 +300,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -322,7 +328,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_PRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -355,7 +361,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -383,7 +389,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_UNPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -416,7 +422,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -444,7 +450,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -498,7 +504,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     /// Note: This ratio will change when user drags the panes bar.</summary>
     /// <returns>Value between 0.0 and 1.0 representing split ratio between panes first and second parts.</returns>
     virtual public double GetSplitRatio() {
-         var _ret_var = Efl.Ui.Panes.NativeMethods.efl_ui_panes_split_ratio_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Panes.NativeMethods.efl_ui_panes_split_ratio_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -512,14 +518,14 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     /// Note: This ratio will change when user drags the panes bar.</summary>
     /// <param name="ratio">Value between 0.0 and 1.0 representing split ratio between panes first and second parts.</param>
     virtual public void SetSplitRatio(double ratio) {
-                                 Efl.Ui.Panes.NativeMethods.efl_ui_panes_split_ratio_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ratio);
+                                 Efl.Ui.Panes.NativeMethods.efl_ui_panes_split_ratio_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ratio);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set whether the left and right panes can be resized by user interaction.
     /// By default panes&apos; contents are resizable by user interaction.</summary>
     /// <returns>Use <c>true</c> to fix the left and right panes sizes and make them not to be resized by user interaction. Use <c>false</c> to make them resizable.</returns>
     virtual public bool GetFixed() {
-         var _ret_var = Efl.Ui.Panes.NativeMethods.efl_ui_panes_fixed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Panes.NativeMethods.efl_ui_panes_fixed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -527,27 +533,27 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     /// By default panes&apos; contents are resizable by user interaction.</summary>
     /// <param name="kw_fixed">Use <c>true</c> to fix the left and right panes sizes and make them not to be resized by user interaction. Use <c>false</c> to make them resizable.</param>
     virtual public void SetFixed(bool kw_fixed) {
-                                 Efl.Ui.Panes.NativeMethods.efl_ui_panes_fixed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_fixed);
+                                 Efl.Ui.Panes.NativeMethods.efl_ui_panes_fixed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_fixed);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got pressed.
     /// When the button is already pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Press(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got unpressed.
     /// When the button is not pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Unpress(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts the internal state after a press call.
     /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
     virtual public void ResetButtonState(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the direction of a given widget.
@@ -556,7 +562,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -566,7 +572,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Ui.IClickable, Efl.Ui.ILayoutOrienta
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the split ratio between panes widget first and second parts.

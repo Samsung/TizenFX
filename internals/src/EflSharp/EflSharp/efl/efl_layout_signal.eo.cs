@@ -8,6 +8,7 @@ using System.ComponentModel;
 /// <param name="kw_object">The object the callback is being triggered from.</param>
 /// <param name="emission">The name component of the signal.</param>
 /// <param name="source">The source of a signal used as context.</param>
+[Efl.Eo.BindingEntity]
 public delegate void EflLayoutSignalCb(Efl.Layout.ISignal kw_object, System.String emission, System.String source);
 public delegate void EflLayoutSignalCbInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Layout.ISignal kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source);
 internal class EflLayoutSignalCbWrapper : IDisposable
@@ -81,6 +82,7 @@ namespace Layout {
 /// <summary>Layouts asynchronous messaging and signaling interface.
 /// (Since EFL 1.22)</summary>
 [Efl.Layout.ISignalConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ISignal : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -167,11 +169,18 @@ sealed public class ISignalConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISignalConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
         efl_layout_signal_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISignal"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISignalConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISignalConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -259,7 +268,7 @@ sealed public class ISignalConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
         /// <summary>Gets the list of Eo operations to override.</summary>

@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>An <see cref="Efl.LoopConsumer"/> is a class which requires one of the parents to provide an <see cref="Efl.Loop"/> interface when performing <see cref="Efl.Object.FindProvider"/>. It will enforce this by only allowing parents which provide such an interface or <c>NULL</c>.
 /// (Since EFL 1.22)</summary>
 [Efl.LoopConsumer.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class LoopConsumer : Efl.Object
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -33,31 +34,36 @@ public abstract class LoopConsumer : Efl.Object
     /// <summary>Initializes a new instance of the <see cref="LoopConsumer"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopConsumer(Efl.Object parent= null
-            ) : base(efl_loop_consumer_class_get(), typeof(LoopConsumer), parent)
+            ) : base(efl_loop_consumer_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopConsumer(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopConsumer"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopConsumer(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopConsumer(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class LoopConsumerRealized : LoopConsumer
     {
-        private LoopConsumerRealized(IntPtr ptr) : base(ptr)
+        private LoopConsumerRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="LoopConsumer"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopConsumer(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopConsumer(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -65,7 +71,7 @@ public abstract class LoopConsumer : Efl.Object
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl loop</returns>
     virtual public Efl.Loop GetLoop() {
-         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -79,7 +85,7 @@ public abstract class LoopConsumer : Efl.Object
     /// <returns>The future or <c>NULL</c> on error.</returns>
     virtual public  Eina.Future FutureResolved(Eina.Value result) {
          var _in_result = result.GetNative();
-                        var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_resolved_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_result);
+                        var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_resolved_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_result);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -91,7 +97,7 @@ public abstract class LoopConsumer : Efl.Object
     /// <param name="error">An Eina_Error value</param>
     /// <returns>The future or <c>NULL</c> on error.</returns>
     virtual public  Eina.Future FutureRejected(Eina.Error error) {
-                                 var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_rejected_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),error);
+                                 var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_rejected_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),error);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -100,7 +106,7 @@ public abstract class LoopConsumer : Efl.Object
     /// (Since EFL 1.22)</summary>
     /// <returns>The new promise.</returns>
     virtual public Eina.Promise NewPromise() {
-         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_promise_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_promise_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }

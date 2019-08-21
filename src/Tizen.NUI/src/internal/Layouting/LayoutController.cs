@@ -15,10 +15,11 @@
  *
  */
 
-using System.ComponentModel;
-using System;
 using Tizen.NUI.BaseComponents;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System;
 
 namespace Tizen.NUI
 {
@@ -33,12 +34,19 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate void Callback(int id);
 
-        event Callback mInstance;
+        event Callback _instance;
 
-        //A Flat to check if it is already disposed.
+        // A Flag to check if it is already disposed.
         protected bool disposed = false;
 
         private Window _window;
+
+        Animation _coreAnimation;
+
+        private List<LayoutData> _layoutTransitionDataQueue;
+
+        private List<LayoutItem> _itemRemovalQueue;
+
         /// <summary>
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
         /// <param name="window">Window attach this LayoutController to.</param>
@@ -50,8 +58,10 @@ namespace Tizen.NUI
             // Wrap cPtr in a managed handle.
             unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
-            mInstance = new Callback(Process);
-            Interop.LayoutController.LayoutController_SetCallback(unmanagedLayoutController, mInstance);
+            _instance = new Callback(Process);
+            Interop.LayoutController.LayoutController_SetCallback(unmanagedLayoutController, _instance);
+
+            _layoutTransitionDataQueue = new List<LayoutData>();
         }
 
         /// <summary>
@@ -80,7 +90,6 @@ namespace Tizen.NUI
             }
         }
 
-
         /// <summary>
         /// Destructor which adds LayoutController to the Dispose queue.
         /// </summary>
@@ -94,6 +103,28 @@ namespace Tizen.NUI
         public void Dispose()
         {
            Dispose(DisposeTypes.Explicit);
+        }
+
+        /// <summary>
+        /// Add transition data for a LayoutItem to the transition stack.
+        /// </summary>
+        /// <param name="transitionDataEntry">Transition data for a LayoutItem.</param>
+        internal void AddTransitionDataEntry( LayoutData transitionDataEntry)
+        {
+            _layoutTransitionDataQueue.Add(transitionDataEntry);
+        }
+
+        /// <summary>
+        /// Add LayoutItem to a removal stack for removal after transitions finish.
+        /// </summary>
+        /// <param name="itemToRemove">LayoutItem to remove.</param>
+        internal void AddToRemovalStack( LayoutItem itemToRemove)
+        {
+            if (_itemRemovalQueue == null)
+            {
+                _itemRemovalQueue = new List<LayoutItem>();
+            }
+            _itemRemovalQueue.Add(itemToRemove);
         }
 
         /// <summary>
@@ -155,7 +186,6 @@ namespace Tizen.NUI
         {
             if (rootNode.Layout != null)
             {
-                Log.Info("NUI", "Found root:" + rootNode.Name + "\n");
                 // rootNode has a layout, ensure all children have default layouts or layout items.
                 AutomaticallyAssignLayouts(rootNode);
                 // rootNode has a layout, start measuring and layouting from here.
@@ -205,7 +235,7 @@ namespace Tizen.NUI
                 MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.AtMost;
                 MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.AtMost;
 
-                if (root.WidthSpecification >= 0 )
+                if ( root.WidthSpecification >= 0 )
                 {
                     // exact size provided so match width exactly
                     width = new LayoutLength(root.WidthSpecification);
@@ -213,6 +243,7 @@ namespace Tizen.NUI
                 }
                 else if (root.WidthSpecification == LayoutParamPolicies.MatchParent)
                 {
+
                     widthMode = MeasureSpecification.ModeType.Exactly;
                 }
 
@@ -241,6 +272,13 @@ namespace Tizen.NUI
                                      new LayoutLength(rootPosition.Y),
                                      new LayoutLength(rootPosition.X) + root.Layout.MeasuredWidth.Size,
                                      new LayoutLength(rootPosition.Y) + root.Layout.MeasuredHeight.Size );
+
+                bool readyToPlay = SetupCoreAnimation();
+
+                if (readyToPlay)
+                {
+                    PlayAnimation();
+                }
             }
         }
 
@@ -249,11 +287,16 @@ namespace Tizen.NUI
         /// </summary>
         private void Process(int id)
         {
-            Layer defaultLayer = _window.GetDefaultLayer();
-            for (uint i = 0; i < defaultLayer.ChildCount; i++)
+            // First layer in the Window should be the default layer (index 0 )
+            uint numberOfLayers = _window.LayerCount;
+            for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
             {
-                View view = defaultLayer.GetChildAt(i);
-                FindRootLayouts(view);
+                Layer layer = _window.GetLayer(layerIndex);
+                for (uint i = 0; i < layer.ChildCount; i++)
+                {
+                    View view = layer.GetChildAt(i);
+                    FindRootLayouts(view);
+                }
             }
 
         }
@@ -285,6 +328,231 @@ namespace Tizen.NUI
                 root.Layout.Layout(left, top, right, bottom);
             }
         }
+
+        /// <summary>
+        /// Play the animation.
+        /// </summary>
+        private void PlayAnimation()
+        {
+            _coreAnimation.Play();
+        }
+
+        private void AnimationFinished(object sender, EventArgs e)
+        {
+            // Iterate list of LayoutItem that were set for removal.
+            // Now the core animation has finished their Views can be removed.
+            if (_itemRemovalQueue != null)
+            {
+                foreach (LayoutItem item in _itemRemovalQueue)
+                {
+                    // Check incase the parent was already removed and the Owner was
+                    // removed already.
+                    if (item.Owner)
+                    {
+                        // Check again incase the parent has already been removed.
+                        ILayoutParent layoutParent = item.GetParent();
+                        LayoutGroup layoutGroup = layoutParent as LayoutGroup;
+                        if (layoutGroup !=null)
+                        {
+                            layoutGroup.Owner?.RemoveChild(item.Owner);
+                        }
+
+                    }
+                }
+                _itemRemovalQueue.Clear();
+                // If LayoutItems added to stack whilst the core animation is playing
+                // they would have been cleared here.
+                // Could have another stack to be added to whilst the animation is running.
+                // After the running stack is cleared it can be populated with the content
+                // of the other stack.  Then the main removal stack iterated when AnimationFinished
+                // occurs again.
+            }
+        }
+
+        /// <summary>
+        /// Set up the animation from each LayoutItems position data.
+        /// Iterates the transition stack, adding an Animator to the core animation.
+        /// </summary>
+        private bool SetupCoreAnimation()
+        {
+            // Initialize animation for this layout run.
+            bool animationPending = false;
+
+            if (_layoutTransitionDataQueue.Count > 0 ) // Something to animate
+            {
+                _coreAnimation = new Animation();
+                _coreAnimation.EndAction = Animation.EndActions.StopFinal;
+                _coreAnimation.Finished += AnimationFinished;
+
+                // Iterate all items that have been queued for repositioning.
+                foreach (LayoutData layoutPositionData in _layoutTransitionDataQueue)
+                {
+                    AddAnimatorsToAnimation(layoutPositionData);
+                }
+
+                animationPending = true;
+
+                // transitions have now been applied, clear stack, ready for new transitions on
+                // next layout traversal.
+                _layoutTransitionDataQueue.Clear();
+            }
+            return animationPending;
+        }
+
+        private void SetupAnimationForPosition(LayoutData layoutPositionData, TransitionComponents positionTransitionComponents)
+        {
+            // A removed item does not have a valid target position within the layout so don't try to position.
+            if( layoutPositionData.ConditionForAnimation != TransitionCondition.Remove )
+            {
+                _coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Position",
+                            new Vector3(layoutPositionData.Left, layoutPositionData.Top, 0.0f),
+                            positionTransitionComponents.Delay,
+                            positionTransitionComponents.Duration,
+                            positionTransitionComponents.AlphaFunction );
+            }
+        }
+
+        private void SetupAnimationForText(LayoutData layoutPositionData)
+        {
+            // Text size cant be animated so is set to it's final size.
+            // It is due to the internals of the Text not being able to recalculate fast enough.
+            if (layoutPositionData.Item.Owner is TextLabel || layoutPositionData.Item.Owner is TextField)
+            {
+                float itemWidth = layoutPositionData.Right-layoutPositionData.Left;
+                float itemHeight = layoutPositionData.Bottom-layoutPositionData.Top;
+                // Set size directly.
+                layoutPositionData.Item.Owner.Size2D = new Size2D((int)itemWidth, (int)itemHeight);
+            }
+            else
+            {
+                _coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Size",
+                                         new Vector3(layoutPositionData.Right-layoutPositionData.Left,
+                                                     layoutPositionData.Bottom-layoutPositionData.Top,
+                                                     0.0f),
+                                         0, 1000);
+            }
+        }
+
+        void SetupAnimationForCustomTransitions(TransitionList transitionsToAnimate, View view )
+        {
+            if (transitionsToAnimate.Count > 0)
+            {
+                foreach (LayoutTransition transition in transitionsToAnimate)
+                {
+                    if ( transition.AnimatableProperty != AnimatableProperties.Position)
+                    {
+                        _coreAnimation.AnimateTo(view,
+                                                 transition.AnimatableProperty.ToString(),
+                                                 transition.TargetValue,
+                                                 transition.Animator.Delay,
+                                                 transition.Animator.Duration,
+                                                 transition.Animator.AlphaFunction );
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Interate transitions and replace Position Components if replacements found in list.
+        /// </summary>
+        private void FindAndReplaceAnimatorComponentsForProperty(TransitionList sourceTransitionList,
+                                                                 AnimatableProperties propertyToMatch,
+                                                                 ref TransitionComponents transitionComponentToUpdate)
+        {
+            foreach( LayoutTransition matchedTransitionList in sourceTransitionList)
+            {
+                if (matchedTransitionList.AnimatableProperty == propertyToMatch)
+                {
+                    // Matched property to animate is for the propertyToMatch so use provided Animator.
+                    transitionComponentToUpdate = matchedTransitionList.Animator;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets up the main animation with the animators for each item (each layoutPositionData structure)
+        /// </summary>
+        private void AddAnimatorsToAnimation( LayoutData layoutPositionData )
+        {
+            LayoutTransition positionTransition = new LayoutTransition();
+            TransitionCondition conditionForAnimators = layoutPositionData.ConditionForAnimation;
+
+            // LayoutChanged transitions overrides ChangeOnAdd and ChangeOnRemove as siblings will
+            // reposition to the new layout not to the insertion/removal of a sibling.
+            if (layoutPositionData.ConditionForAnimation.HasFlag(TransitionCondition.LayoutChanged))
+            {
+                conditionForAnimators = TransitionCondition.LayoutChanged;
+            }
+
+            // Set up a default transition, will be overwritten if inherited from parent or set explicitly.
+            const int START_TIME = 0;
+            const int END_TIME = 100;
+            AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            // positionTransitionComponents will be overwritten if set explicitly
+            TransitionComponents positionTransitionComponents = new TransitionComponents(START_TIME, END_TIME, alphaFunction);
+            bool matchedCustomTransitions = false;
+
+            // Inherit parent transitions if none already set on View for the condition.
+            // Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
+            // Still need to inherit Position animator from parent but not other animatable properties if already set.
+
+            TransitionList transitionsForCurrentCondition;
+
+            ILayoutParent layoutParent = layoutPositionData.Item.GetParent();
+            if (layoutParent !=null)
+            {
+                // Check if item to aninmate has it's own Transitions for this condition.
+                if (layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
+                {
+                    matchedCustomTransitions = true; // If a key exists then a List of atleast 1 transition exists.
+                }
+                else
+                {
+                    // Item doesn't have it's own transitions for this condition so copy parents if
+                    // has a parent with transitions.
+                    transitionsForCurrentCondition = new TransitionList();
+                    LayoutGroup layoutGroup = layoutParent as LayoutGroup;
+                    TransitionList parentTransitionList;
+                    // Note TryGetValue returns null if key not matched.
+                    if (layoutGroup.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out parentTransitionList))
+                    {
+                        // Copy parent transitions for this condition to temporary TransitionList.
+                        LayoutTransitionsHelper.CopyTransitions(parentTransitionList,
+                                                                transitionsForCurrentCondition);
+
+                        SetupAnimationForCustomTransitions(transitionsForCurrentCondition, layoutPositionData.Item.Owner);
+                        matchedCustomTransitions = false;
+                    }
+                }
+            }
+
+            // SetupAnimationXXXX functions add Animators to the core Animation, these can be custom or set by the
+            // layout system in the case of Positioning.
+
+            if (matchedCustomTransitions)
+            {
+                // Position transition can be for a layout changing to another layout or an item being added or removed.
+                // There can only be one position transition, it will be replaced if set multiple times.
+                // transitionsForCurrentCondition represent all non position (custom) properties that should be animated.
+                // There can be multiple properties hence returned as a list.
+                if (layoutPositionData.Item.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out transitionsForCurrentCondition))
+                {
+                    // Search for Position property in the transitionsForCurrentCondition list of custom transitions,
+                    // and only use the particular parts of the animator as custom transitions should not effect all parameters of Position.
+                    // Typically Delay, Duration and Alphafunction can be custom.
+                    FindAndReplaceAnimatorComponentsForProperty(transitionsForCurrentCondition,
+                                                                AnimatableProperties.Position,
+                                                                ref positionTransitionComponents);
+
+                    SetupAnimationForCustomTransitions(transitionsForCurrentCondition, layoutPositionData.Item.Owner);
+                }
+            }
+
+            SetupAnimationForPosition(layoutPositionData, positionTransitionComponents);
+
+            SetupAnimationForText(layoutPositionData);
+        }
+
     } // class LayoutController
 
 } // namespace Tizen.NUI

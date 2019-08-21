@@ -11,6 +11,7 @@ namespace Ui {
 
 /// <summary>Efl UI clickable interface</summary>
 [Efl.Ui.IClickableConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IClickable : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -37,26 +38,31 @@ void ResetButtonState(uint button);
     event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt;
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IClickable.ClickedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IClickableClickedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ClickableClicked arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IClickable.ClickedAnyEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IClickableClickedAnyEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public Efl.Ui.ClickableClicked arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IClickable.PressedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IClickablePressedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public int arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IClickable.UnpressedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IClickableUnpressedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public int arg { get; set; }
 }
 ///<summary>Event argument wrapper for event <see cref="Efl.Ui.IClickable.LongpressedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IClickableLongpressedEvt_Args : EventArgs {
     ///<summary>Actual event payload.</summary>
     public int arg { get; set; }
@@ -83,11 +89,18 @@ sealed public class IClickableConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IClickableConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_clickable_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IClickable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IClickableConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IClickableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -96,7 +109,7 @@ sealed public class IClickableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -124,7 +137,7 @@ sealed public class IClickableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -158,7 +171,7 @@ sealed public class IClickableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -186,7 +199,7 @@ sealed public class IClickableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_CLICKED_ANY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -220,7 +233,7 @@ sealed public class IClickableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -248,7 +261,7 @@ sealed public class IClickableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_PRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -281,7 +294,7 @@ sealed public class IClickableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -309,7 +322,7 @@ sealed public class IClickableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_UNPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -342,7 +355,7 @@ sealed public class IClickableConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -370,7 +383,7 @@ sealed public class IClickableConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_LONGPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
@@ -424,7 +437,7 @@ sealed public class IClickableConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -594,6 +607,7 @@ namespace Ui {
 
 /// <summary>A struct that expresses a click in elementary.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ClickableClicked
 {
     /// <summary>The amount of how often the clicked event was repeated in a certain amount of time</summary>

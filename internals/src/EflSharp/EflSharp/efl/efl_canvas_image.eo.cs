@@ -12,6 +12,7 @@ namespace Canvas {
 /// <summary>Low-level Image object.
 /// This replaces the legacy Evas Object Image, with only image-related interfaces: file and data images only. This object does not implement any special features such as proxy, snapshot or GL.</summary>
 [Efl.Canvas.Image.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameController, Efl.Gfx.IImageLoadController
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -35,24 +36,29 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// <summary>Initializes a new instance of the <see cref="Image"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Image(Efl.Object parent= null
-            ) : base(efl_canvas_image_class_get(), typeof(Image), parent)
+            ) : base(efl_canvas_image_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Image(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Image"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Image(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Image(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Image"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Image(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Image(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -61,7 +67,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -88,7 +94,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -113,7 +119,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -141,7 +147,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
@@ -173,7 +179,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// (Since EFL 1.22)</summary>
     /// <returns>The handle to the <see cref="Eina.File"/> that will be used</returns>
     virtual public Eina.File GetMmap() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -183,7 +189,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// <param name="f">The handle to the <see cref="Eina.File"/> that will be used</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetMmap(Eina.File f) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -192,7 +198,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// (Since EFL 1.22)</summary>
     /// <returns>The file path.</returns>
     virtual public System.String GetFile() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -202,7 +208,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// <param name="file">The file path.</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetFile(System.String file) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -213,7 +219,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// (Since EFL 1.22)</summary>
     /// <returns>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</returns>
     virtual public System.String GetKey() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -222,14 +228,14 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</param>
     virtual public void SetKey(System.String key) {
-                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is loaded, <c>false</c> otherwise.</returns>
     virtual public bool GetLoaded() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -240,7 +246,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error Load() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -250,14 +256,14 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// Calling <see cref="Efl.IFile.Unload"/> on an object which is not currently loaded will have no effect.
     /// (Since EFL 1.22)</summary>
     virtual public void Unload() {
-         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Check if an object can be animated (has multiple frames).
     /// This will be <c>true</c> for animated object for instance but <c>false</c> for a single frame object.</summary>
     /// <returns><c>true</c> if the object is animated</returns>
     virtual public bool GetAnimated() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_animated_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_animated_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -265,7 +271,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// Ranges from 1 to <see cref="Efl.Gfx.IFrameController.GetFrameCount"/>. Valid only if <see cref="Efl.Gfx.IFrameController.GetAnimated"/>.</summary>
     /// <returns>The index of current frame.</returns>
     virtual public int GetFrame() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -273,7 +279,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// <param name="frame_index">The index of current frame.</param>
     /// <returns>Returns <c>true</c> if the frame index is valid.</returns>
     virtual public bool SetFrame(int frame_index) {
-                                 var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),frame_index);
+                                 var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),frame_index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -281,7 +287,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// Returns -1 if not animated.</summary>
     /// <returns>The number of frames in the animated object.</returns>
     virtual public int GetFrameCount() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_count_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -295,7 +301,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// The default type is <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>.</summary>
     /// <returns>Loop type of the animated object.</returns>
     virtual public Efl.Gfx.FrameControllerLoopHint GetLoopType() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -305,7 +311,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// If 0 is returned, then looping should happen indefinitely (no limit to the number of times it loops).</summary>
     /// <returns>The number of loop of an animated object.</returns>
     virtual public int GetLoopCount() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_count_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -317,14 +323,14 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// <param name="frame_num">Number of frames in the sequence, starts from 0.</param>
     /// <returns>Duration in seconds</returns>
     virtual public double GetFrameDuration(int start_frame, int frame_num) {
-                                                         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_duration_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),start_frame, frame_num);
+                                                         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_duration_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),start_frame, frame_num);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Returns the requested load size.</summary>
     /// <returns>The image load size.</returns>
     virtual public Eina.Size2D GetLoadSize() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -333,14 +339,14 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// <param name="size">The image load size.</param>
     virtual public void SetLoadSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the DPI resolution of a loaded image object in the canvas.
     /// This function returns the DPI resolution of the given canvas image.</summary>
     /// <returns>The DPI resolution.</returns>
     virtual public double GetLoadDpi() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -348,20 +354,20 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// This function sets the DPI resolution of a given loaded canvas image. Most useful for the SVG image loader.</summary>
     /// <param name="dpi">The DPI resolution.</param>
     virtual public void SetLoadDpi(double dpi) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dpi);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dpi);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
     /// <returns><c>true</c> if region load of the image is supported, <c>false</c> otherwise</returns>
     virtual public bool GetLoadRegionSupport() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_support_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_support_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
     /// <returns>A region of the image.</returns>
     virtual public Eina.Rect GetLoadRegion() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -372,14 +378,14 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// <param name="region">A region of the image.</param>
     virtual public void SetLoadRegion(Eina.Rect region) {
          Eina.Rect.NativeStruct _in_region = region;
-                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_region);
+                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_region);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines whether the orientation information in the image file should be honored.
     /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
     /// <returns><c>true</c> means that it should honor the orientation information.</returns>
     virtual public bool GetLoadOrientation() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -387,7 +393,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
     /// <param name="enable"><c>true</c> means that it should honor the orientation information.</param>
     virtual public void SetLoadOrientation(bool enable) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The scale down factor is a divider on the original image size.
@@ -398,40 +404,40 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
     /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
     /// <returns>The scale down dividing factor.</returns>
     virtual public int GetLoadScaleDown() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Requests the image loader to scale down by <c>div</c> times. Call this before starting the actual image load.</summary>
     /// <param name="div">The scale down dividing factor.</param>
     virtual public void SetLoadScaleDown(int div) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),div);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),div);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Initial load should skip header check and leave it all to data load
     /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
     /// <returns>Will be true if header is to be skipped.</returns>
     virtual public bool GetLoadSkipHeader() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set the skip header state for susbsequent loads of a file.</summary>
     /// <param name="skip">Will be true if header is to be skipped.</param>
     virtual public void SetLoadSkipHeader(bool skip) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),skip);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),skip);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Begin preloading an image object&apos;s image data in the background.
     /// Once the background task is complete the event <c>load</c>,done will be emitted.</summary>
     virtual public void LoadAsyncStart() {
-         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Cancel preloading an image object&apos;s image data in the background.
     /// The object should be left in a state where it has no image data. If cancel is called too late, the image will be kept in memory.</summary>
     virtual public void LoadAsyncCancel() {
-         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_cancel_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_cancel_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).

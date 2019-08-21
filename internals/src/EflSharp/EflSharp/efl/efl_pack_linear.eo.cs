@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>Common interface for objects (containers) with multiple contents (sub-objects) which can be added and removed at runtime in a linear fashion.
 /// This means the sub-objects are internally organized in an ordered list.</summary>
 [Efl.IPackLinearConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IPackLinear : 
     Efl.IPack ,
     Efl.Eo.IWrapper, IDisposable
@@ -92,11 +93,18 @@ sealed public class IPackLinearConcrete :
         }
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IPackLinearConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_pack_linear_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IPackLinear"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IPackLinearConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IPackLinearConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -106,7 +114,7 @@ sealed public class IPackLinearConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -134,7 +142,7 @@ sealed public class IPackLinearConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -161,7 +169,7 @@ sealed public class IPackLinearConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -189,7 +197,7 @@ sealed public class IPackLinearConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
@@ -302,7 +310,7 @@ sealed public class IPackLinearConcrete :
     public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
          var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
@@ -352,7 +360,7 @@ sealed public class IPackLinearConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>

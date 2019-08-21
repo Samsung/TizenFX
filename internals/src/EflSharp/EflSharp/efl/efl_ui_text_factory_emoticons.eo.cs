@@ -13,6 +13,7 @@ namespace TextFactory {
 
 /// <summary>Factory that creates emoticons from the current theme given a key.</summary>
 [Efl.Ui.TextFactory.Emoticons.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Emoticons : Efl.Object, Efl.Canvas.ITextFactory
 {
     ///<summary>Pointer to the native class description.</summary>
@@ -36,24 +37,29 @@ public class Emoticons : Efl.Object, Efl.Canvas.ITextFactory
     /// <summary>Initializes a new instance of the <see cref="Emoticons"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Emoticons(Efl.Object parent= null
-            ) : base(efl_ui_text_factory_emoticons_class_get(), typeof(Emoticons), parent)
+            ) : base(efl_ui_text_factory_emoticons_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Emoticons(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Emoticons"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Emoticons(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Emoticons(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Emoticons"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Emoticons(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Emoticons(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -61,7 +67,7 @@ public class Emoticons : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="kw_object">The parent of the created object</param>
     /// <param name="key">Key that is associated to an item object</param>
     virtual public Efl.Canvas.Object Create(Efl.Canvas.Object kw_object, System.String key) {
-                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_object, key);
+                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_object, key);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }

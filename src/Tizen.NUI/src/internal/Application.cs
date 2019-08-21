@@ -1354,7 +1354,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal List<Window> GetWindowList()
+        internal static List<Window> GetWindowList()
         {
             uint ListSize = Interop.Application.Application_GetWindowsListSize();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
