@@ -18,7 +18,7 @@ internal static partial class Interop
         internal struct CBAppLifecycleCallbacks
         {
             public CBAppInitCallback OnInit;
-            public CBAppFiniCallback OnFini;
+            public CBAppFiniCallback OnFinished;
             public CBAppRunCallback OnRun;
             public CBAppExitCallback OnExit;
             public CBAppCreateCallback OnCreate;

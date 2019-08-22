@@ -55,7 +55,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// This method will be called after exiting main-loop
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected override void OnFini()
+        protected override void OnFinished()
         {
             Interop.Elementary.ElmShutdown();
             if (Environment.GetEnvironmentVariable("AUL_LOADER_INIT") == null)

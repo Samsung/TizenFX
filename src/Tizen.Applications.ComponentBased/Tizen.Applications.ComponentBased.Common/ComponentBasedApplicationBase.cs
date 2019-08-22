@@ -42,7 +42,7 @@ namespace Tizen.Applications.ComponentBased.Common
         public ComponentBasedApplicationBase(IDictionary<Type, string> typeInfo)
         {
             _callbacks.OnInit = new Interop.CBApplication.CBAppInitCallback(OnInitNative);
-            _callbacks.OnFini = new Interop.CBApplication.CBAppFiniCallback(OnFiniNative);
+            _callbacks.OnFinished = new Interop.CBApplication.CBAppFiniCallback(OnFinishedNative);
             _callbacks.OnRun = new Interop.CBApplication.CBAppRunCallback(OnRunNative);
             _callbacks.OnExit = new Interop.CBApplication.CBAppExitCallback(OnExitNative);
             _callbacks.OnCreate = new Interop.CBApplication.CBAppCreateCallback(OnCreateNative);
@@ -153,9 +153,9 @@ namespace Tizen.Applications.ComponentBased.Common
             OnInit(argv);
         }
 
-        private void OnFiniNative(IntPtr data)
+        private void OnFinishedNative(IntPtr data)
         {
-            OnFini();
+            OnFinished();
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// This method will be called after exiting main-loop
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnFini()
+        protected virtual void OnFinished()
         {
         }
 
